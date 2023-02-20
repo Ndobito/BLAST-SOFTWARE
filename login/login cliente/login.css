@@ -5,13 +5,18 @@ body{
    background-size: cover;
 }
 .logo{
-    margin-left: 40%;
-    background-image: url("../../imagenes/2.jpg");
-    width: 95px;
-    height: 95px;
-    background-repeat: no-repeat;
+   margin-left: 40%;
+   background-image: url("../../imagenes/2-1.jpg");
+   width: 100px;
+   height: 100px;
+   background-repeat: no-repeat;
    background-position: center;
    background-size: cover;
+   border-radius: 90px;
+   -webkit-border-radius: 90px;
+   -moz-border-radius: 90px;
+   -ms-border-radius: 90px;
+   -o-border-radius: 90px;
 }
 .login{
     width: 330px;
