@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
+    <title>Animal World</title>
+    <link rel="stylesheet" href="css/style-index.css">
+</head>
+<body>
+    <div class="container">
+        <!--Header-->
+        <header>
+            <div class="header-top">
+                <!--Logo-->
+                <img src="img/logo-removebg.png" alt="">
+                <div>
+                    <!--Social Networks-->
+                    <div class="social-networks">
+                        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                    <!-- Register Button -->
+                    <div class="user">
+                        <a href="#"><button>REGISTRARSE <i class="fa-solid fa-circle-user"></i></button></a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <!--Search Bar-->
+                <div>
+                    <form action="#" method="post">
+                        <label>
+                            <input type="text" name="ctSearch" id="ctSearch"><i class="fa-solid fa-magnifying-glass"></i>
+                        </label>
+                    </form>
+                </div>
+                <hr>
+                <!--Nav-->
+                <nav>
+                    <a href="#">CONOCENOS</a>
+                    <a href="#">SERVICIOS</a>
+                    <a href="#">CONTACTENOS</a>
+                    <a href="#">RESERVA TU CITA</a>
+                </nav>
+            </div>
+        </header>
+        <!-- Body of the work -->
+        <main>
+            <!--Slider-->
+            <div class="container-slider">
+                <div class="slider">
+                    <div class="mySlides">
+                        <img src="img/slider-1.jpg" alt="">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="img/slider-2.jpg" alt="">
+                    </div>
+                    <div class="mySlides">
+                        <img src="img/slider-3.jpg" alt="">
+                    </div>
+                    <div class="mySlides">
+                        <img src="img/slider-4.jpg" alt="">
+                    </div>
+
+                    <!--Buttons Previous and Next-->
+                    <div class="btn">
+                        <a class="prev" onclick="plusSlides(-1)"><i class="fa-solid fa-circle-chevron-left" ></i></a>
+                        <a class="prev" onclick="plusSlides(1)"><i class="fa-solid fa-circle-chevron-right" ></i></a>
+                    </div>
+                </div>
+
+                <!--Dots-->
+                <div class="dots">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                </div>
+            </div>
+            <!-- Services -->
+            <div class="container-cards">
+                <div class="card-father">
+                    <div class="card">
+                        <div class="card-front">
+                            <div class="body-card-front">
+                                <h1>CITAS</h1>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="body-card-back">
+                                <h1>!SOLICITA TU CITA YA¡</h1>
+                                <a href="#"><button><i class="fa-solid fa-plus"></i>MAS INFORMACION</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+       
+    </div>
+
+    <!--Slider-->
+    <script src="Javascript/slider.js"></script>
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
+</body>
+</html>
