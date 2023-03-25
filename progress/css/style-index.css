@@ -190,6 +190,7 @@ nav a:hover{
 .slider{
     width: 100%;
     height: 100%;
+    position: relative; 
 }
 
 .mySlides img{
@@ -203,7 +204,7 @@ nav a:hover{
 .btn{
     width: 100%;
     height: 50px;
-    top: 60%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
@@ -249,6 +250,7 @@ nav a:hover{
 
 .container-cards{
     width: 100%;
+    perspective: 1000px;
 }
 
 .card-father{
@@ -257,15 +259,43 @@ nav a:hover{
 
 .card-father:hover .card-front{
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
 }
 .card-father:hover .card-back{
     transform: rotateY(0);
 }
 
 .card{
-   width: 350px;
-   height: 400px;
+   width: 280px;
+   height: 350px;
    position: relative;
+   transform-style: preserve-3d;
+}
+
+.card-front{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+.card-front:nth-child(1){
+    background: url(../img/dating.jpg);
+}
+.card-front:nth-child(2){
+    background: url(../img/dating.jpg);
+}
+.card-front:nth-child(3){
+    background: url(../img/dating.jpg);
+}
+.card-front:nth-child(4){
+    background: url(../img/dating.jpg);
 }
 
 .card-front, 
@@ -276,9 +306,85 @@ nav a:hover{
     top: 0;
     left: 0;
     backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    transition: all 600ms;
+    -webkit-transition: all 600ms;
+    -moz-transition: all 600ms;
+    -ms-transition: all 600ms;
+    -o-transition: all 600ms;
 } 
 
 .card-back{
     transform: rotateY(180deg);
-    background-color: white;
+}
+
+.body-card-front{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-5);
+    transform: translateZ(60px);
+    -webkit-transform: translateZ(60px);
+    -moz-transform: translateZ(60px);
+    -ms-transform: translateZ(60px);
+    -o-transform: translateZ(60px);
+    font-family: var(--font-1);
+}
+
+.bg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0, 0.4);
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+.body-card-back{
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    text-align: center;
+    font-family: var(--font-2);
+    font-size: 15px;
+    transform: translateZ(60px);
+    -webkit-transform: translateZ(60px);
+    -moz-transform: translateZ(60px);
+    -ms-transform: translateZ(60px);
+    -o-transform: translateZ(60px);
+}
+
+.body-card-back button{
+    padding: 10px 40px;
+    margin-top: 70%;
+    font-size: 12px;
+    cursor: pointer;
+    border: none;
+    color: var(--color-5);
+    background: var(--color-2);
+    box-shadow: 1px 1px 30px -5px var(--color-2);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    transition: box-shadow 600ms;
+    -webkit-transition: box-shadow 600ms;
+    -moz-transition: box-shadow 600ms;
+    -ms-transition: box-shadow 600ms;
+    -o-transition: box-shadow 600ms;
+}
+
+.body-card-back button:hover{
+    box-shadow: 1px 1px 30px 0px var(--color-1);
 }
