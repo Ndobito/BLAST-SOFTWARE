@@ -520,12 +520,11 @@ nav a:hover{
     display: block;
 }
 
-.location div img{
-    width: 100%;
-    background-size: cover;
-    object-fit: cover;
+.location .map{
+    display: flex;
+    justify-content: center;
 }
-
 .location div:nth-child(2) img{
-    width: 100px;
+    width: 200px;
+    margin-top: 30px;
 }
