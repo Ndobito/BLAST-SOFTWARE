@@ -1,3 +1,5 @@
+/* Slider */
+
 let slideIndex = 1;
 showSlides(slideIndex);
 
@@ -35,3 +37,15 @@ function showSlides(n) {
 setInterval(() =>{
     plusSlides(1)
 }, 4000);
+
+
+/*Accordion*/
+
+
+const slideAccordion = document.querySelectorAll(".container-accordion-slide"); 
+
+slideAccordion.forEach( ac => {
+    ac.addEventListener("click", () => {
+        ac.classList.toggle("active");
+    })
+})
