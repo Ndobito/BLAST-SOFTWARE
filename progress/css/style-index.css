@@ -23,10 +23,6 @@
 
 /*Header*/
 
-.header-top{
-    display: block;
-}
-
 .header-top img{
     width: 80px;
     height: 80px;
@@ -98,20 +94,26 @@
     margin-top: 2px;
 }
 
+/* Header Bottom */
+
+.header-bottom{
+    width: 100%;
+}
+
 /*Search Bar*/
 
 form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
 }
 
 label {
     position: relative;
+    top: 50%;
+    left: 10%;
 }
 
 input[type="text"] {
-    width: 100%;
+    width: 80%;
     height: 2rem;
     font-size: 1rem;
     padding: 0rem 2rem 0rem 2.2rem;
@@ -128,7 +130,7 @@ input[type="text"]:focus {
 form label i{
     position: absolute;
     left: 1rem;
-    top: 15%;
+    top: 12%;
     font-size: 1rem;
 }
 hr{
@@ -139,7 +141,6 @@ hr{
 /*Nav*/
 
 nav{
-    
     text-align: center;
     font-family: var(--font-2);
     font-size: 12px;
@@ -162,7 +163,7 @@ nav a{
 
 }
 
-nav a:hover{
+nav a p:hover{
     transform: scale(1.05);
     -webkit-transform: scale(1.05);
     -moz-transform: scale(1.05);
@@ -183,8 +184,8 @@ nav a:hover{
     width: 100%;
     height: 300px;
     background: url(../img/bg-slider.png);
-    background-size: 100%;
-    background-position: center;
+    background-size: cover;
+    background-position: center center;
     background-repeat: no-repeat;
     padding: 20px;
     text-align: center;
@@ -242,7 +243,6 @@ nav a:hover{
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 1rem;
 }
 
 .dots span{
@@ -257,7 +257,6 @@ nav a:hover{
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
     margin-bottom: 20px;
-    top: 50%;
 }
 .active{
     background-color: white !important;
@@ -546,6 +545,7 @@ nav a:hover{
     display: flex;
     justify-content: center;
 }
+
 .location div:nth-child(2) img{
     width: 200px;
     margin-top: 30px;
@@ -710,6 +710,7 @@ footer{
     margin-top: 20px;
     margin-bottom: 20px;
     display: flex;
+    gap: 20px;
 }
 
 .footer-contain div a{
@@ -727,8 +728,10 @@ footer{
     color: var(--color-5);
     display: flex;
     align-items: center;
+    justify-content: center;
     text-align: center;
     padding: 10px;
+    gap: 20px;
 }
 
 .footer-bottom img{
@@ -739,4 +742,403 @@ footer{
     -moz-border-radius:50%;
     -ms-border-radius:50%;
     -o-border-radius:50%;
+}
+
+/*Responsive Tablet*/
+
+@media (min-width:426px) and (max-width:768px) {
+    /* Header Top */
+
+    .header-top img{
+        width: 150px;
+        height: 150px;
+    }
+
+    /* Register Button */
+    .user a button{
+        font-size: 20px;
+        padding: 20px;
+    }
+
+    /* Search Bar */
+    input[type=text]{
+        height: 3rem;
+        font-size: 1.5rem;
+        padding: 0rem 2rem 0rem 3rem;
+    }
+
+    form label i{
+        transform: translateY(-7px);
+        font-size: 1.5rem;
+        -webkit-transform: translateY(-7px);
+        -moz-transform: translateY(-7px);
+        -ms-transform: translateY(-7px);
+        -o-transform: translateY(-7px);
+}
+
+    /* Nav */
+
+    nav{
+        font-size: 15px;
+    }
+
+    /* Slider */
+    .container-slider{
+        height: 450px;
+    }
+    .slider{
+        height: 90%;  
+    }
+    .btn a i{
+        font-size: 40px;
+    }
+    .dots{
+        height: 0.5rem;
+    }
+    .dots span{
+        width: 15px;
+        height: 15px;
+        margin: 0 5px;
+    }
+
+    /* Information */
+    .container-info .info .cont-info h1{
+        font-size: 22px;
+    }
+    .container-info .info .cont-info h2{
+        font-size: 15px;
+    }
+    .container-info .info .cont-info p{
+        font-size: 12px;
+    }
+
+    /* Frequent Questions */
+
+    .img-question > div:nth-child(1){
+        width: 1000px;
+        transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+        -webkit-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+        -moz-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+        -ms-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+        -o-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+    }
+
+    /* Accordion */
+
+    .question h1{
+        font-size: 20px;
+    }
+
+    .question i{
+        transform: scale(1.5);
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+}
+
+}
+ /*Responsive Laptop */
+@media (min-width:769px) and (max-width:1024px) {
+    
+    /*Header*/
+
+    header {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Header Top */
+
+    .header-top{
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .header-top img{
+        width: 150px;
+        height: 150px;
+    }
+
+
+    /* Register Button */
+    .user a button{
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    /* Nav */
+
+    nav{
+        font-size: 12px;
+        display: flex;
+        justify-content: space-around;
+    }
+    nav a{
+        margin: 10px;
+    }
+
+    /* Slider */
+    .container-slider{
+        height: 700px;
+        padding: 40px;
+    }
+    .slider{
+        height: 100%;  
+    }
+    .btn a i{
+        font-size: 40px;
+    }
+    .dots{
+        height: 0.5rem;
+    }
+    .dots span{
+        width: 15px;
+        height: 15px;
+        margin: 0 5px;
+    }
+
+    /* Information */
+    .container-info .info .cont-info h1{
+        font-size: 25px;
+    }
+    .container-info .info .cont-info h2{
+        font-size: 18px;
+    }
+    .container-info .info .cont-info p{
+        font-size: 15px;
+    }
+    /* Frequent Questions */
+    .frequent-question{
+        display: flex;
+        justify-content: space-between;
+        padding-right: 20px;
+        gap: 20px;
+        border-top: 2px solid var(--color-1);
+    }
+
+    .img-question{
+        width: 100%;
+        height: 400px;
+        border-radius: 0 0 20px ;
+        -webkit-border-radius: 0 0 20px ;
+        -moz-border-radius: 0 0 20px ;
+        -ms-border-radius: 0 0 20px ;
+        -o-border-radius: 0 0 20px ;
+}
+    .img-question > div:nth-child(1){
+        width: 1400px;
+        transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+        -webkit-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+        -moz-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+        -ms-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+        -o-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+    }
+
+    /* Accordion */
+
+    .question h1{
+        font-size: 22px;
+    }
+
+    .question i{
+        transform: scale(1.5);
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+    }
+
+    /* Footer Top*/
+
+    .footer-top{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .footer-contain{
+        border-bottom: none;
+        padding-left: 50px;
+    }
+    .footer-contain:nth-child(2), .footer-contain:nth-child(4){
+        border-left: 2px solid var(--color-4);
+    }
+
+}
+
+ /*Responsive Monitor and More Big */
+
+ @media (min-width:1025px) {
+    
+    /*Header*/
+
+    header {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10% 0 10%; 
+    }
+
+    /* Header Top */
+
+    .header-top{
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .header-top img{
+        width: 150px;
+        height: 150px;
+    }
+
+
+    /* Register Button */
+    .user a button{
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    /* Nav */
+
+    nav{
+        font-size: 12px;
+        display: flex;
+        justify-content: space-around;
+    }
+    nav a{
+        margin: 10px;
+    }
+
+    /* Slider */
+    .container-slider{
+        height: 950px;
+        padding: 40px;
+    }
+    .slider{
+        width: 80%;
+        height: 100%;  
+    }
+    .btn a i{
+        font-size: 40px;
+    }
+    .dots{
+        height: 0.5rem;
+    }
+    .dots span{
+        width: 15px;
+        height: 15px;
+        margin: 0 5px;
+    }
+
+    /* Services */
+
+    .container-cards{
+        height: 800px;
+    }
+
+    .card{
+        width: 300px;
+        height: 400px;
+    }
+
+    .card h1{
+        font-size: 30px;
+    }
+
+    .card button{
+        transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        -o-transform: scale(1.2);
+    }
+
+    /* Location */
+
+    .location{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 80px;
+    }
+
+    .location img{
+        transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        -o-transform: scale(1.2);
+}
+
+    
+    /* Information */
+    
+    .container-info .info .cont-info h1{
+        font-size: 25px;
+    }
+    .container-info .info .cont-info h2{
+        font-size: 18px;
+    }
+    .container-info .info .cont-info p{
+        font-size: 15px;
+    }
+    /* Frequent Questions */
+    .frequent-question{
+        display: flex;
+        justify-content: space-between;
+        padding-right: 20px;
+        gap: 20px;
+        border-top: 2px solid var(--color-1);
+    }
+
+    .img-question{
+        width: 100%;
+        height: 400px;
+        border-radius: 0 0 20px ;
+        -webkit-border-radius: 0 0 20px ;
+        -moz-border-radius: 0 0 20px ;
+        -ms-border-radius: 0 0 20px ;
+        -o-border-radius: 0 0 20px ;
+}
+    .img-question > div:nth-child(1){
+        width: 1400px;
+        transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+        -webkit-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+        -moz-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+        -ms-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+        -o-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+    }
+
+    /* Accordion */
+
+    .question h1{
+        font-size: 22px;
+    }
+
+    .question i{
+        transform: scale(1.5);
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+    }
+
+    /* Footer Top*/
+
+    .footer-top{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .footer-contain{
+        border-bottom: none;
+        padding-left: 50px;
+    }
+    .footer-contain:nth-child(2), .footer-contain:nth-child(3), .footer-contain:nth-child(4){
+        border-left: 2px solid var(--color-4);
+    }
+
 }
