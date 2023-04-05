@@ -1,0 +1,107 @@
+@media (min-width:426px) and (max-width:768px) {
+    /* Header Top */
+
+    .header-top img{
+        width: 150px;
+        height: 150px;
+    }
+
+    /* Register Button */
+    .user a button{
+        font-size: 20px;
+        padding: 20px;
+    }
+
+    /* Search Bar */
+    #ctSearch{
+        height: 3rem;
+        font-size: 1.5rem;
+        padding: 0rem 2rem 0rem 3rem;
+    }
+
+    form label i{
+        transform: translateY(-7px);
+        font-size: 1.5rem;
+        -webkit-transform: translateY(-7px);
+        -moz-transform: translateY(-7px);
+        -ms-transform: translateY(-7px);
+        -o-transform: translateY(-7px);
+}
+
+    /* Nav */
+
+    nav{
+        font-size: 15px;
+    }
+
+    /* Slider */
+    .container-slider{
+        height: 450px;
+    }
+    .slider{
+        height: 90%;  
+    }
+    .btn a i{
+        font-size: 40px;
+    }
+    .dots{
+        height: 0.5rem;
+    }
+    .dots span{
+        width: 15px;
+        height: 15px;
+        margin: 0 5px;
+    }
+
+    /* Information */
+    .container-info .info .cont-info h1{
+        font-size: 22px;
+    }
+    .container-info .info .cont-info h2{
+        font-size: 15px;
+    }
+    .container-info .info .cont-info p{
+        font-size: 12px;
+    }
+
+    /* Frequent Questions */
+
+    .img-question > div:nth-child(1){
+        width: 1000px;
+        transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+        -webkit-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+        -moz-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+        -ms-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+        -o-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
+    }
+
+    /* Accordion */
+
+    .question h1{
+        font-size: 20px;
+    }
+
+    .question i{
+        transform: scale(1.5);
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+}
+
+}
+
+
+/*
+*
+* Responsive Login
+*
+*/
+
+@media (min-width:426px) and (max-width:768px) {
+    .login{
+        width: 70%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+}

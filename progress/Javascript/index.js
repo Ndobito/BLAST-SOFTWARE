@@ -15,9 +15,7 @@ function currentSlide(n) {
 function showSlides(n) {
     let i;
     let slides = document.getElementsByClassName("mySlides");
-    console.log(slides);
     let dots = document.getElementsByClassName("dot");
-    console.log(dots);
 
     if (n > slides.length) {slideIndex = 1;}
     if (n < 1) {slideIndex = slides.length;}
@@ -39,8 +37,8 @@ setInterval(() =>{
 }, 4000);
 
 
-/*Accordion*/
 
+/*Accordion*/
 
 const slideAccordion = document.querySelectorAll(".container-accordion-slide"); 
 

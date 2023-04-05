@@ -1,0 +1,179 @@
+:root{
+    --color-1: #83DFFD;
+    --color-2: #8FE3FF;
+    --color-3: #303030;
+    --color-4: #191919;
+    --color-5: #FFFFFF;
+    --color-6: #31394A;
+    --color-7: #797979;
+    --color-8: #B8B6B4;
+    --color-9: #2C74FF;
+    --font-1: Verdana, Geneva, Tahoma, sans-serif;
+    --font-2: Microsoft-Yaheni;
+}
+
+@font-face {
+    font-family: 'Microsoft-Yaheni';
+    src: url(../fonts/chinese.msyh.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container */
+
+.container{
+    position: relative;
+    background: url(../img/bg-login.png);
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Icon Back */
+
+.icon-back{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-1);
+    position: absolute;
+    top: 2%;
+    left: 5%;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    font-size: 12px;
+    border: 2px solid var(--color-3);
+}
+.icon-back:hover{
+    background-color: var(--color-3);
+}
+.icon-back a{
+    color: var(--color-5);
+    text-decoration: none;
+}
+
+.login{
+    width: 80%;
+    background: var(--color-6);
+    padding: 20px;
+    text-align: center;
+    color: var(--color-5);
+    font-family: var(--font-1);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    margin-top: 20%;
+    margin-bottom: 20%;
+}
+
+/* Login - Img */
+.login img{
+    width: 80px;
+    width: 80px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+/* Login Title */
+
+.login h1, h3{
+    margin-top: 20px;
+    margin-left: 10%;
+    width: 80%;
+    border-bottom: 1px solid var(--color-7);
+    padding-bottom: 5px;
+}
+
+.login h1{
+    font-size: 30px;
+}
+
+.login h3{
+    font-size: 18px;
+}
+
+/* Login Form */
+
+form{
+    padding: 10px;
+    text-align: left;
+    margin-top: 20px;
+    display: block;
+}
+
+form > div{
+    width: 100%;
+    display: block;
+}
+
+label{
+    color: var(--color-8);
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+input[type=text], input[type=password]{
+    width: 100%;
+    padding: 5px 2px 5px 2px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-family: var(--font-1);
+} 
+
+input[type=submit]{
+    width: 80%;
+    margin-top: 20px;
+    margin-left: 10%;
+    padding: 10px 5px 10px 5px;
+    background: rgb(44,116,255);
+    background: linear-gradient(90deg, rgba(44,116,255,1) 0%, rgba(2,191,191,1) 100%);
+    color: var(--color-5);
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-1);
+    font-weight: 600;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+input[type=submit]:hover{
+    opacity: 0.6;
+}
+
+
+/* Footer Login */
+
+.footer-login{
+    width: 100%;
+    display: block;
+}
+
+.footer-login div{
+    margin: 30px 0 20px 0;
+}
+
+.footer-login div a{
+    text-decoration: none;
+    color: var(--color-5);
+    font-weight: 600;
+}
