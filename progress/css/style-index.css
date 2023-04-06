@@ -21,6 +21,10 @@
     box-sizing: border-box;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 /*Header*/
 
 .header-top img{
@@ -114,7 +118,7 @@ label {
     left: 10%;
 }
 
-input[type="text"] {
+#ctSearch{
     width: 80%;
     height: 2rem;
     font-size: 1rem;
@@ -125,7 +129,7 @@ input[type="text"] {
     margin-bottom: 20px;
 }
 
-input[type="text"]:focus {
+#ctSearch:focus {
     border-color: #F7AE40;
 }
 
@@ -166,18 +170,7 @@ nav a{
 }
 
 nav a p:hover{
-    transform: scale(1.05);
-    -webkit-transform: scale(1.05);
-    -moz-transform: scale(1.05);
-    -ms-transform: scale(1.05);
-    -o-transform: scale(1.05);
-    transition: all .5s;
-    -webkit-transition: all .5s;
-    -moz-transition: all .5s;
-    -ms-transition: all .5s;
-    -o-transition: all .5s;
-    background-color: #efefef;
-    letter-spacing: 1px;
+    color: var(--color-3);
 }
 
 /*Slider*/

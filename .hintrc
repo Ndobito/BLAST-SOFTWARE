@@ -21,6 +21,7 @@
         ]
       }
     ],
-    "axe/structure": "off"
+    "axe/structure": "off",
+    "axe/parsing": "off"
   }
 }

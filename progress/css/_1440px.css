@@ -241,3 +241,36 @@
     }
     
 }
+
+/*
+*
+* Responsive know-us
+*
+*/
+
+@media (min-width:1025px) {
+    .cont-main img{
+        width: 350px;
+        height: 200px;
+    }
+}
+
+/*
+*
+* Responsive contact-us
+*
+*/
+
+@media (min-width:1025px) {
+
+    /* Container Main */
+
+    .container-main-contact{
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+    }
+    /* Map */
+    .map{
+        margin-top: 20%;
+    }
+}

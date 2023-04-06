@@ -1,3 +1,10 @@
+/*
+*
+* Responsive Index
+*
+*/
+
+
 @media (min-width:769px) and (max-width:1024px) {
     
     /*Header*/
@@ -140,4 +147,26 @@
         margin-top: 10%;
         margin-bottom: 10%;
     }
+}
+
+/*
+*
+* Responsive contact-us
+*
+*/
+
+@media (min-width:769px) and (max-width:1024px) {
+
+    /* Container Main */
+
+    .container-main-contact{
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+    }
+
+    /* Map */
+    .map{
+        margin-top: 20%;
+    }
+
 }
