@@ -114,8 +114,13 @@
         -moz-transform: scale(1.2);
         -ms-transform: scale(1.2);
         -o-transform: scale(1.2);
-}
+    }
 
+    /*Cards*/
+
+    .container-cards > h1{
+        font-size: 40px;
+    }
     
     /* Information */
     
@@ -216,20 +221,20 @@
 
     /*Form*/
     
-    label{
+    .login label{
         color: var(--color-8);
         font-size: 20px;
         margin-top: 10px;
     }
 
-    input[type=text], input[type=password]{
+    .login input[type=text], input[type=password]{
         width: 100%;
         padding: 10px 5px 10px 5px;
         margin-top: 5px;
         margin-bottom: 20px;
     } 
     
-    input[type=submit]{
+    .login input[type=submit]{
         width: 80%;
         margin-top: 20px;
         margin-left: 10%;
@@ -272,5 +277,42 @@
     /* Map */
     .map{
         margin-top: 20%;
+    }
+}
+
+/*
+*
+* Responsive Restore Password
+*
+*/
+
+@media (min-width:1025px){
+    
+    /* Container Restore Pass */
+
+    .container-restore-pass{
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+
+    .container-restore-pass > h1{
+        left: 18%;
+    }
+    
+    /* Restore Pass */
+
+    .restore-pass{
+        margin-top: 6%;
+        padding: 10px;
+    }
+
+    /* Form Restore Pass */
+
+    .restore-pass form{
+        width: 60%;
+        margin-left: 20%;
+    }
+    .restore-pass form label{
+        color: black;
     }
 }

@@ -5,9 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
-        <title>Informacion de Contacto</title>
+        <title>Servicios y Reservas</title>
         <link rel="stylesheet" type="text/css" href="css/style-index.css">
-        <link rel="stylesheet" type="text/css" href="css/style-contact-us.css">
         <link rel="stylesheet" type="text/css" href="css/_768px.css">
         <link rel="stylesheet" type="text/css" href="css/_1024px.css">
         <link rel="stylesheet" type="text/css" href="css/_1440px.css">
@@ -18,7 +17,7 @@
             <header>
                 <div class="header-top">
                     <!--Logo-->
-                    <a href="index.html"><img src="img/logo-removebg.png" alt="Logo"></a>
+                    <img src="img/logo-removebg.png" alt="Logo">
                     <div>
                         <!--Social Networks-->
                         <div class="social-networks">
@@ -49,71 +48,82 @@
                     <!--Nav-->
                     <nav>
                         <a href="know-us.html"><p>CONOCENOS</p></a>
-                        <a href="book-appointment.html"><p>SERVICIOS</p></a>
+                        <a href="#services"><p>SERVICIOS</p></a>
                         <a href="contact-us.html"><p>CONTACTENOS</p></a>
-                        <a href="book-appointment.html"><p>RESERVA TU CITA</p></a>
+                        <a href="#"><p>RESERVA TU CITA</p></a>
                     </nav>
                 </div>
             </header>
+            <!-- Body of the work -->
             <main>
-                <div class="container-main-contact">
-                    <div class="cont-contact">
-                        <div class="contact-information">
-                            <h1>CONTACTANOS</h1>
-                            <p>Si deseas obtener más información de las consultas generales y especializadas, rayos X, ecografía o alguno de nuestros servicios especiales en veterinaria, no dudes en contactarnos vía telefónica, visitando nuestra clínica o escribiéndonos por medio del formulario de contacto en esta página. ¡Con gusto te atenderemos!</p>
-                            <div>
-                                <div>
-                                    <h2>TELEFONOS</h2>
-                                    <ul>
-                                        <li><i class="fa-solid fa-tty"></i> +57 3131241346</li>
-                                        <li><i class="fa-solid fa-tty"></i> +57 3114352472</li>
-                                        <li><i class="fa-solid fa-tty"></i> 3104589657</li>
-                                    </ul>
+                <!-- Services -->
+                <div class="container-cards" id="services">
+                    <h1>Servicios y Reservas</h1>
+                    <div class="card-father">
+                        <div class="card">
+                            <div class="card-front">
+                                <div class="bg"></div>
+                                <div class="body-card-front">
+                                    <h1>CITAS</h1>
                                 </div>
-                                <div>
-                                    <h2>DIRECCION</h2>
-                                    <p>Carrera 23 A sur #10D-03 Barrio el Centro, la Plata-Huila</p>
+                            </div>
+                            <div class="card-back">
+                                <div class="body-card-back">
+                                    <h1>!SOLICITA TU CITA YA¡</h1>
+                                    <a href="#"><button><i class="fa-solid fa-plus"></i>MAS INFORMACION</button></a>
                                 </div>
                             </div>
                         </div>
-                        <div class="map">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15945.403692971771!2d-75.9004982339112!3d2.3888799113005112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3ad2ac5e3b81b9%3A0xd8c3baaf8fdec314!2sLa%20Plata%2C%20Huila!5e0!3m2!1ses!2sco!4v1680093840348!5m2!1ses!2sco" width="700px" height="400px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="card-father">
+                        <div class="card">
+                            <div class="card-front">
+                                <div class="bg"></div>
+                                <div class="body-card-front">
+                                    <h1>CIRUGIA</h1>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="body-card-back">
+                                    <h1>AGENTA TU CIRUGIA</h1>
+                                    <a href="#"><button><i class="fa-solid fa-plus"></i>MAS INFORMACION</button></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="cont-contact">
-                        <div class="aside">
-                            <form action="#" method="post">
-                                <label for="ctName">Nombres: </label>
-                                <input type="text" name="ctName" id="ctName" placeholder="Nombres">
-                                <label for="ctSurName">Apellidos: </label>
-                                <input type="text" name="ctSurName" id="ctSurName" placeholder="Apellidos">
-                                <label for="ctEmailUser">Correo Electronico: </label>
-                                <input type="email" name="ctEmailUser" id="ctEmailUser" placeholder="Direccion de Correo Electronico">
-                                <label for="ctName">Numero de Contacto: </label>
-                                <input type="text" name="ctNumberTelUser" id="ctNumnberTelUser" placeholder="Numero de Celular">
-                                <label for="selAffair">Asunto del Mensaje: </label>
-                                <select name="selAffair" id="selAffair">
-                                    <option selected disabled>Seleccione Una Opcion</option>
-                                    <option value="informacion-general">Informacion General</option>
-                                    <option value="informacion-servicio">Informacion del Servicio</option>
-                                    <option value="quejas">Quejas</option>
-                                    <option value="otro">Otro</option>
-                                </select>
-                                <label for="txtMensaje">Mensaje: </label>
-                                <textarea name="txtMensaje" id="txtMensaje" cols="30" rows="5" placeholder="Escribe tu Comentario"></textarea>
-
-                                <input type="submit" value="Enviar">
-                            </form>
+                    <div class="card-father">
+                        <div class="card">
+                            <div class="card-front">
+                                <div class="bg"></div>
+                                <div class="body-card-front">
+                                    <h1>LABORATORIO CLINICO</h1>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="body-card-back">
+                                    <h1>!SOLICITA TUS EXAMENES¡</h1>
+                                    <a href="#"><button><i class="fa-solid fa-plus"></i>MAS INFORMACION</button></a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="aside-img">
-                            <hr>
-                            <img src="img/qr.png" alt="">
-                            <hr>
-                            <hr>
+                    </div>
+                    <div class="card-father">
+                        <div class="card">
+                            <div class="card-front">
+                                <div class="bg"></div>
+                                <div class="body-card-front">
+                                    <h1>RADIOGRAFIA</h1>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="body-card-back">
+                                    <h1>AGENDA TU RADIOGRAFIA</h1>
+                                    <a href="#"><button><i class="fa-solid fa-plus"></i>MAS INFORMACION</button></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="main-footer"></div>
             </main>
             <footer>
                 <div class="footer-top">

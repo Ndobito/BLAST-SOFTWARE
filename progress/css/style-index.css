@@ -271,10 +271,23 @@ nav a p:hover{
     background-position: center center;
     background-repeat: no-repeat;
     object-fit: cover;
+    position: relative;
 }
+.container-cards > h1{
+    text-align: center;
+    color: var(--color-5);
+    font-family: var(--font-1);
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    position: absolute;
+    top: 1%;
+}
+
 
 .card-father{
     margin: 20px;
+    margin-top: 100px;
 }
 
 .card-father:hover .card-front{

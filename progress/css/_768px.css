@@ -105,3 +105,16 @@
         margin-bottom: 5%;
     }
 }
+
+/*
+*
+* Responsive Restore Password
+*
+*/
+
+@media (min-width:426px) and (max-width:768px){
+    .restore-pass{
+        margin-top: 10%;
+        padding: 10px;
+    }
+}
