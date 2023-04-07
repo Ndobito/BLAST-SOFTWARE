@@ -1,0 +1,105 @@
+:root{
+    --color-1: #83DFFD;
+    --color-2: #8FE3FF;
+    --color-3: #303030;
+    --color-4: #191919;
+    --color-5: #FFFFFF;
+    --color-6: #31394A;
+    --color-7: #797979;
+    --color-8: #B8B6B4;
+    --color-9: #2C74FF;
+    --color-10: #2E353B;
+    --font-1: Verdana, Geneva, Tahoma, sans-serif;
+    --font-2: Microsoft-Yaheni;
+}
+
+@font-face {
+    font-family: 'Microsoft-Yaheni';
+    src: url(../fonts/chinese.msyh.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container Main */
+
+.container-main{
+    width: 100%;
+    display: block;
+   
+}
+
+
+/* Left */
+
+.left{
+    width: 100%;
+    background: rgb(241,252,255);
+    background: linear-gradient(180deg, rgba(241,252,255,1) 5%, rgba(143,227,255,1) 100%);  
+    font-family: var(--font-1);
+    text-align: center;
+}
+
+.container-menu{
+    width: 100%;
+    display: inline-block;
+}
+
+/*User information*/
+
+.user{
+    width: 100%;
+    padding: 20px;
+    border-bottom: 2px solid var(--color-3);
+}
+
+.user h1{
+    font-size: 28px;
+}
+
+.user hr{
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 10%;
+    background: var(--color-4);
+    height: 2px;
+}
+
+.user img{
+    width: 200px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+/* User Menu */
+
+.menu{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+
+button{
+    width: 60%;
+    background-color: var(--color-6);
+    padding: 12px 5px 12px 5px;
+    color: var(--color-5);
+    font-family: var(--font-2);
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
