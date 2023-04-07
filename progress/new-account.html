@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
+        <title>Nueva Cuenta</title>
+        <link rel="stylesheet" type="text/css" href="css/style-login.css">
+        <link rel="stylesheet" type="text/css" href="css/_768px.css">
+        <link rel="stylesheet" type="text/css" href="css/_1024px.css">
+        <link rel="stylesheet" type="text/css" href="css/_1440px.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="icon-back">
+                <a href="login.html"><i class="fa-solid fa-arrow-left"></i></a>
+            </div>
+            <div class="login">
+                <img src="img/logo.jpg" alt="logo">
+                <h1>REGISTRO</h1>
+                <h3>CREA TU CUENTA</h3>
+                <form id="form-new-account" action="#" method="post">
+                    <div>
+                        <label for="ctNameUser">Nombres </label>
+                        <input type="text" name="ctNameUser" id="ctNameUser"
+                            placeholder="Nombres">
+                    </div>
+                    <div>
+                        <label for="ctSurNameUser">Apellidos</label>
+                        <input type="text" name="ctSurNameUser" id="ctSurNameUser"
+                            placeholder="Apellidos">
+                    </div>
+                    <div>
+                        <label for="ctEmailUser">Correo Electronico</label>
+                        <input type="email" name="ctEmailUser" id="ctEmailUser"
+                            placeholder="@">
+                    </div>
+                    <div>
+                        <label for="ctEmailUser2">Confirmacion de Correo Electronico</label>
+                        <input type="email" name="ctEmailUser2" id="ctEmailUser2"
+                            placeholder="@">
+                    </div>
+                    <div>
+                        <label for="ctEmailUser3">Correo Electronico Alternativo</label>
+                        <input type="email" name="ctEmailUser3" id="ctEmailUser3"
+                            placeholder="@">
+                    </div>
+                    <div>
+                        <label for="ctSurNameUser">Lugar de Residencia</label>
+                        <input type="text" name="ctSurNameUser" id="ctSurNameUser"
+                            placeholder="Direccion">
+                    </div>
+                    <div>
+                        <label for="rbZoneResidence">Zona de Residencia</label>
+                        <div>
+                            <label for="rbZoneResidence1"><input type="radio" name="rb" id="rbZoneResidence1"> Urbana</label>
+                            <label for="rbZoneResidence2"><input type="radio" name="rb" id="rbZoneResidence2"> Rural</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="ctNumCelUser">Numero de Celular</label>
+                        <input type="number" name="ctNumCelUser" id="ctNumCelUser"
+                            placeholder="Numero de Celular">
+                    </div>
+                    <div>
+                        <label for="ctNumCelUser2">Numero de Celular Alternativo</label>
+                        <input type="number" name="ctNumCelUser2" id="ctNumCelUser2"
+                            placeholder="Numero de Celular">
+                    </div>
+                    <div class="submit-form">
+                        <input type="submit" value="Siguiente">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Redirec -->
+        <script src="Javascript/redirec-user.js"></script>
+
+        <!--Font Awesome-->
+        <script src="https://kit.fontawesome.com/7fa9974a48.js"
+            crossorigin="anonymous"></script>
+    </body>
+</html>
