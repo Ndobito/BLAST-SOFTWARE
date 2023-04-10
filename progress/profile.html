@@ -6,11 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
         <title>Animal World</title>
+        <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="css/style-index.css">
         <link rel="stylesheet" type="text/css" href="css/style-profile.css">
         <link rel="stylesheet" type="text/css" href="css/_768px.css">
         <link rel="stylesheet" type="text/css" href="css/_1024px.css">
         <link rel="stylesheet" type="text/css" href="css/_1440px.css">
+        <!-- Full Calendar -->
+        <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
+        <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
         <div class="container">
@@ -74,7 +80,104 @@
                         </div>
                     </div>
                     <div class="right">
-                        
+                        <div class="container-right">
+                            <div class="user-information">
+                                <form action="#" method="post">
+                                    <label for="ctNameuser">Nombres</label>
+                                    <input type="text" name="ctNameUser" id="ctNameUser" disabled>
+                                    <label for="ctSurNameUser">Apellidos</label>
+                                    <input type="text" name="ctSurNameUser" id="ctSurNameUser" disabled>
+                                    <label for="ctNameuser">Direccion</label>
+                                    <input type="text" name="ctAdrUser" id="ctAdrUser" disabled>
+                                    <label for="selZoneResid">Zona de Residencia</label>
+                                    <select name="selZoneResid" id="selZoneResid" disabled>
+                                        <option value="urbano">Urbano</option>
+                                        <option value="rural">Rural</option>
+                                    </select>
+                                    <div>
+                                        <div>
+                                            <label for="ctEmailUser">Correo Eletrónico</label>
+                                            <input type="text" name="ctEmailUser" id="ctEmailUser" disabled>
+                                        </div>
+                                        <div>
+                                            <label for="ctEmailUser2">Confirmacion de Correo electronico:</label>
+                                            <input type="text" name="ctEmailUser" id="ctEmailUser" disabled>
+                                        </div>
+                                        <div>
+                                            <label for="ctNumCel">Numero de Celular 1</label>
+                                            <input type="text" name="ctNumCel" id="ctNumCel" disabled>
+                                        </div>
+                                        <div>
+                                            <label for="ctNumCel2">Numero de Celular 2</label>
+                                            <input type="text" name="ctNumCel2" id="ctNumCel2" disabled>
+                                        </div>
+                                    </div>
+                                    <input type="submit" onclick="disable()" value="Guardar" disabled>
+                                </form>
+                                <button onclick="enable()">Editar</button>
+                            </div>
+                        </div>
+                        <div class="container-right2">
+                            <div class="slider" id="calendar"></div> 
+                        </div>
+                        <div class="container-right3">
+                            <div class="container-accordion">
+                                <div class="container-accordion-slide">
+                                    <div class="question">
+                                        <h3></h3>
+                                        <i class="fa-solid fa-circle-plus"></i>
+                                    </div>
+                                    <div class="answer">
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="container-accordion-slide">
+                                    <div class="question">
+                                        <h3></h3>
+                                        <i class="fa-solid fa-circle-plus"></i>
+                                    </div>
+                                    <div class="answer">
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="container-accordion-slide">
+                                    <div class="question">
+                                        <h3></h3>
+                                        <i class="fa-solid fa-circle-plus"></i>
+                                    </div>
+                                    <div class="answer">
+                                        
+                                    </div>
+                                </div>
+                                <div class="container-accordion-slide">
+                                    <div class="question">
+                                        <h3></h3>
+                                        <i class="fa-solid fa-circle-plus"></i>
+                                    </div>
+                                    <div class="answer">
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="container-accordion-slide">
+                                    <div class="question">
+                                        <h3></h3>
+                                        <i class="fa-solid fa-circle-plus"></i>
+                                    </div>
+                                    <div class="answer">
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="container-accordion-slide">
+                                    <div class="question">
+                                        <h3></h3>
+                                        <i class="fa-solid fa-circle-plus"></i>
+                                    </div>
+                                    <div class="answer">
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>
@@ -146,10 +249,17 @@
 
         </div>
 
-        <!--Slider-->
-        <script src="Javascript/index.js"></script>
+
+        <!-- Calendar -->
+        <script src="Javascript/calendar.js"></script>
+        <!-- Form Disable and Enable -->
+        <script src="Javascript/form-disable-enable.js"></script>
+        <!-- accordion -->
+        <script src="Javascript/accordion.js"></script>
         <!--Font Awesome-->
         <script src="https://kit.fontawesome.com/7fa9974a48.js"
             crossorigin="anonymous"></script>
+        <!-- Accordion -->
+        <script src="Javascript/"></script>
     </body>
 </html>
