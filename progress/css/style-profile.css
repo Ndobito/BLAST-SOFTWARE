@@ -114,7 +114,7 @@
 
 .right{
     width: 100%; 
-    /* *height: 670px;
+    /*height: 670px;
     *overflow: hidden;
     *position: relative; */
 }
@@ -127,12 +127,6 @@
    
 }
 
-.container-rigth3{
-    width: 100%;
-    height: 100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
 .container-right .user-information{
     width: 90%;
     margin: auto;
@@ -212,62 +206,75 @@
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-  }
-  
-  .slider {
+}
+
+.slider {
     display: flex;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-  }
-  
-  .slide {
+}
+
+.slide {
     scroll-snap-align: center;
     width: 100%;
     padding: 0 10px;
-  }
-  
-  table {
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-  }
-  
-  .container-right2 table th,
-  .container-right2 table td {
+}
+
+.container-right2 table th,
+.container-right2 table td {
     font-family: var(--font-1);
     padding: 10px;
     text-align: center;
     border: 1px solid #ddd;
-  }
-  
-  .container-right2 table td {
+}
+
+.container-right2 table td {
     background: var(--color-8);
     cursor: pointer;
-  }
+}
 
-  .container-right2 table td:hover{
+.container-right2 table td:hover{
     background: var(--color-5);
     color: var(--color-10);
-  }
+}
 
-  table caption {
+table caption {
     font-size: 1.5rem;
     background: var(--color-1);
     color: var(--color-5);
     margin-bottom: 2px;
     padding-top: 10px;
     padding-bottom: 10px;
-  }
-  
-  table tr:nth-child(even) {
+}
+
+table tr:nth-child(even) {
     background-color: #f2f2f2;
-  }
-  
-  table th {
+}
+
+table th {
     background-color: var(--color-1);
     color: var(--color-10);
-  }
+}
+
+/* Container Right 3 */
+
+.container-rigth3{
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.container-rigth3 form{
+    display: block;
+}
 
   
   
