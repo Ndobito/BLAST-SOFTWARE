@@ -26,7 +26,7 @@
 
 /* Container Main */
 
-.container-main{
+.container-main-profile{
     width: 100%;
     display: block;
    
@@ -127,7 +127,7 @@
    
 }
 
-.container-right .user-information{
+.container-right .user-information, .container-right3 .Pets{
     width: 90%;
     margin: auto;
     padding: 20px;
@@ -136,28 +136,42 @@
 
 }
 
-/* Form Information User */
+/* Form Information User and Pets */
 
-.user-information form{
+.user-information h1, .Pets h1{
+    text-align: center;
+    font-family: var(--font-2);
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.Pets h2{
+    font-family: var(--font-2);
+    color: var(--color-5);
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.user-information form, .Pets form{
     width: 100%;
     display: block;
     font-family: var(--font-1);
 }
 
-.user-information form label{
+.user-information form label, .Pets form label{
     position: static;
     width: 100%;
     font-size: 15px;
 }
 
-.user-information form input, select{
+.user-information form input, .user-information form select, .Pets form input, .Pets form select{
     width: 100%;
     margin-top: 5px;
     margin-bottom: 10px;
     padding: 5px 2px 5px 2px;
 }
 
-.user-information form input[type=submit]{
+.user-information form input[type=submit], .Pets form input[type=submit]{
     width: 80%;
     margin-left: 10%;
     background-color: var(--color-1);
@@ -174,7 +188,7 @@
 
 /* Button Edit */
 
-.user-information button{
+.user-information button, .Pets button{
     width: 50%;
     border: none;
     border-radius: 8px;
@@ -190,13 +204,22 @@
 }
 
 
-/* Container Right 2 */
+/* Container Right 2 and Container Right 3 */
 
 .container-right2{
     width: 100%;
     height: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
+    display: none;
+}
+
+.container-right3{
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: none;
 }
 
 /* Slider Calendar */
@@ -263,18 +286,10 @@ table th {
     color: var(--color-10);
 }
 
-/* Container Right 3 */
 
-.container-rigth3{
-    width: 100%;
-    height: 100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
 
-.container-rigth3 form{
-    display: block;
-}
+
+
 
   
   

@@ -316,3 +316,16 @@
         color: black;
     }
 }
+
+/*
+*
+* Responsive Profile
+*
+*/
+
+@media (min-width:1025px) {
+    .container-main-profile{
+        display: grid;
+        grid-template-columns: 30% 70%;
+    }
+}
