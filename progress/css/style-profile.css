@@ -231,7 +231,7 @@
     margin: 0 auto;
 }
 
-.slider {
+.slider-calendar {
     display: flex;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
