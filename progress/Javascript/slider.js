@@ -33,7 +33,7 @@ function showSlides(n) {
 }
 
 setInterval(() =>{
-    plusSlides(1)
+    plusSlides(1);
 }, 4000);
 
 
