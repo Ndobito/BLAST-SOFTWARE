@@ -534,6 +534,9 @@ footer{
         flex-direction: column;
         justify-content: center;
     }
+    .footer-bottom p:nth-child(2){
+        margin-left: 0;
+    }
 }
 
 
@@ -675,6 +678,7 @@ footer{
 
     .container-cards{
         height: auto;
+        padding: 20px;
     }
 
     .card{

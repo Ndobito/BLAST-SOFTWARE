@@ -269,3 +269,75 @@ input[type=submit]:hover{
     text-decoration: none;
     cursor: pointer;
   }
+
+/*
+*
+* Responsive Login
+*
+*/
+
+@media (min-width:426px) and (max-width:768px) {
+    .login{
+        width: 70%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+}
+
+@media (min-width:769px) and (max-width:1024px) {
+    .login{
+        width: 50%;
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
+}
+
+
+@media (min-width:1025px) {
+    /*Container*/
+    .container{
+        height: 100vh;
+    }
+
+    /* Login */
+    .login{
+        width: 30%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    .login h1{
+        font-size: 40px;
+    }
+    
+    .login h3{
+        font-size: 28px;
+    }
+
+    /*Form*/
+    
+    .login label{
+        color: var(--color-8);
+        font-size: 20px;
+        margin-top: 10px;
+    }
+
+    .login input[type=text], input[type=password]{
+        width: 100%;
+        padding: 10px 5px 10px 5px;
+        margin-top: 5px;
+        margin-bottom: 20px;
+    } 
+    
+    .login input[type=submit]{
+        width: 80%;
+        margin-top: 20px;
+        margin-left: 10%;
+        padding: 10px 5px 10px 5px;
+        background: rgb(44,116,255);
+        background: linear-gradient(90deg, rgba(44,116,255,1) 0%, rgba(2,191,191,1) 100%);
+        color: var(--color-5);
+        border: none;
+    }
+    
+}
