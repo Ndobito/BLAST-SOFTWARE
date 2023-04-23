@@ -42,10 +42,10 @@
         color: #3b5999;
       }
       .social ul li:nth-child(2):hover i:before {
-        color: #43c352;
+        color: #25d339;
       }
       .social ul li:nth-child(3):hover i:before {
-        color: #dc2a74;
+        color: #e62c7a;
       }
 .header-search {
   display: flex;
