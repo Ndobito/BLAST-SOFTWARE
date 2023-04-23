@@ -6,19 +6,7 @@
 
 
 
-/*
-*
-* Responsive Login
-*
-*/
 
-@media (min-width:769px) and (max-width:1024px) {
-    .login{
-        width: 60%;
-        margin-top: 10%;
-        margin-bottom: 10%;
-    }
-}
 
 /*
 *

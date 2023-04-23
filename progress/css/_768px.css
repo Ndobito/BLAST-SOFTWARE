@@ -1,18 +1,3 @@
-
-/*
-*
-* Responsive Login
-*
-*/
-
-@media (min-width:426px) and (max-width:768px) {
-    .login{
-        width: 70%;
-        margin-top: 5%;
-        margin-bottom: 5%;
-    }
-}
-
 /*
 *
 * Responsive Restore Password

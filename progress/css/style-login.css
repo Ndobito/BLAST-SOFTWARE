@@ -301,25 +301,25 @@ input[type=submit]:hover{
 
     /* Login */
     .login{
-        width: 30%;
+        width: 40%;
         margin-top: 5%;
         margin-bottom: 5%;
     }
 
     .login h1{
-        font-size: 40px;
+        font-size: 25px;
     }
     
     .login h3{
-        font-size: 28px;
+        font-size: 18px;
     }
 
     /*Form*/
     
     .login label{
         color: var(--color-8);
-        font-size: 20px;
-        margin-top: 10px;
+        font-size: 15px;
+        margin-top: 5px;
     }
 
     .login input[type=text], input[type=password]{
