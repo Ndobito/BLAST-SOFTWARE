@@ -147,7 +147,7 @@
 
   .hero{
     height: 100vh;
-    background: url(hero.webp);  
+    background: url(img/hero.webp);  
     background-size: 100% 120%;
     background-repeat: no-repeat;
     background-position: center center;
@@ -217,7 +217,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 40% 60%;
-  background: url(nosotros.jpg);
+  background: url(img/nosotros.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
