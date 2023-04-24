@@ -1,0 +1,96 @@
+/* 
+*
+* Responsive Index 
+*
+*/
+
+
+/*
+*
+* Responsive Login
+*
+*/
+
+
+/*
+*
+* Responsive know-us
+*
+*/
+
+@media (min-width:1025px) {
+    .cont-main img{
+        width: 350px;
+        height: 200px;
+    }
+}
+
+/*
+*
+* Responsive contact-us
+*
+*/
+
+@media (min-width:1025px) {
+
+    /* Container Main */
+
+    .container-main-contact{
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+    }
+    /* Map */
+    .map{
+        margin-top: 20%;
+    }
+}
+
+/*
+*
+* Responsive Restore Password
+*
+*/
+
+@media (min-width:1025px){
+    
+    /* Container Restore Pass */
+
+    .container-restore-pass{
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+
+    .container-restore-pass > h1{
+        left: 18%;
+    }
+    
+    /* Restore Pass */
+
+    .restore-pass{
+        margin-top: 6%;
+        padding: 10px;
+    }
+
+    /* Form Restore Pass */
+
+    .restore-pass form{
+        width: 60%;
+        margin-left: 20%;
+    }
+    .restore-pass form label{
+        color: black;
+    }
+}
+
+/*
+*
+* Responsive Profile
+*
+*/
+
+@media (min-width:1025px) {
+    .container-main-profile{
+        display: grid;
+        grid-template-columns: 30% 70%;
+    }
+}
