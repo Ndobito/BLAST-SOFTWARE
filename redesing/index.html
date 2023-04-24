@@ -13,9 +13,9 @@
         <header>
             <div class="header-top">
                 <div class="social-networks">
-                    <i class="fa-brands fa-facebook-f"></i>
-                    <i class="fa-brands fa-whatsapp"></i>
-                    <i class="fa-brands fa-instagram"></i>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
                 </div>
                 <div class="search-bar">
                     <div>
@@ -34,19 +34,20 @@
                     <img src="img/logo-removebg.png" alt="">
                 </div>
                 <div class="icon-menu">
-                    <i class="fa-solid fa-bars"></i>
-                </div>
-                <div>
-                    <ul>
-                        <li>Inicio</li>
-                        <li>Conocenos</li>
-                        <li>Servicios</li>
-                        <li>Contactenos</li>
-                        <li>Reservas</li>
-                    </ul>
+                    <i id="open-menu" class="fa-solid fa-bars"></i>
+                    <i id="close-menu" class="fa-solid fa-xmark"></i>
                 </div>
             </div>
         </header>
+        <div id="panel-menu" class="content-menu">
+            <ul>
+                <a href="#"><li>Inicio</li></a>
+                <a href="#"><li>Conocenos</li></a>
+                <a href="#"><li>Servicios</li></a>
+                <a href="#"><li>Contactenos</li></a>
+                <a href="#"><li>Reservas</li></a>
+            </ul>
+        </div>
         <main>
             <div class="hero">
                 <div class="hero-text">
@@ -135,7 +136,7 @@
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
-    <!-- Search Bar -->
-    <script src="Javascript/search-bar.js"></script>
+    <!-- Menu -->
+    <script src="Javascript/menu.js"></script>
 </body>
 </html>
