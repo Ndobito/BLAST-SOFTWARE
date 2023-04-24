@@ -59,8 +59,8 @@ header .header-top{
     position: relative;
 }
 
-.header-top .search-bar input{
-    display: none;
+.header-top .search-bar form input{
+    visibility: hidden;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -68,7 +68,8 @@ header .header-top{
     border: none;
     border-radius: 40px;
     padding: 5px 2px 5px 2px;
-    transition: .5s ease;
+    max-width: 100%;
+    transition: max-width 5s ease;
 }
 
 .header-top .search-bar i{
