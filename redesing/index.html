@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
     <title>Animal World</title>
+    <link rel="stylesheet" href="css/style-index.css">
 </head>
 <body>
     <div class="container">
@@ -18,12 +19,14 @@
                 </div>
                 <div class="search-bar">
                     <div>
-                        <input type="search" name="ctSearch" id="ctSearch" placeholder="">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <form action="#" method="post">
+                            <input type="search" name="ctSearch" id="ctSearch" placeholder="">
+                            <i type="submit" id="icon-search" class="fa-solid fa-magnifying-glass"></i>
+                        </form>
                     </div>
                 </div>
                 <div class="button-register">
-                    <button>Iniciar Sesion &nbsp; <i class="fa-solid fa-user"></i></button>
+                    <button><span>Iniciar Sesion</span> &nbsp; <i class="fa-solid fa-user"></i></button>
                 </div>
             </div>
             <div class="header-bottom">
@@ -33,12 +36,106 @@
                 <div class="icon-menu">
                     <i class="fa-solid fa-bars"></i>
                 </div>
-                <div></div>
+                <div>
+                    <ul>
+                        <li>Inicio</li>
+                        <li>Conocenos</li>
+                        <li>Servicios</li>
+                        <li>Contactenos</li>
+                        <li>Reservas</li>
+                    </ul>
+                </div>
             </div>
         </header>
+        <main>
+            <div class="hero">
+                <div class="hero-text">
+                    <div>
+                        <h1>¡HOLA <br> AMIGOS!</h1>
+                        <p>Bienvenidos a su veterinaria de confianza</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container-cards" id="services">
+                <div class="card-father">
+                    <div class="card">
+                        <div class="card-front">
+                            <div class="bg"></div>
+                            <div class="body-card-front">
+                                <h1>CITAS</h1>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="body-card-back">
+                                <h1>!SOLICITA TU CITA YA¡</h1>
+                                <a href="#"><button><i class="fa-solid fa-plus"></i>MAS INFORMACION</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-father">
+                    <div class="card">
+                        <div class="card-front">
+                            <div class="bg"></div>
+                            <div class="body-card-front">
+                                <h1>CIRUGIA</h1>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="body-card-back">
+                                <h1>AGENTA TU CIRUGIA</h1>
+                                <a href="#"><button><i class="fa-solid fa-plus"></i>MAS INFORMACION</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-father">
+                    <div class="card">
+                        <div class="card-front">
+                            <div class="bg"></div>
+                            <div class="body-card-front">
+                                <h1>LABORATORIO CLINICO</h1>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="body-card-back">
+                                <h1>!SOLICITA TUS EXAMENES¡</h1>
+                                <a href="#"><button><i class="fa-solid fa-plus"></i>MAS INFORMACION</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-father">
+                    <div class="card">
+                        <div class="card-front">
+                            <div class="bg"></div>
+                            <div class="body-card-front">
+                                <h1>RADIOGRAFIA</h1>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="body-card-back">
+                                <h1>AGENDA TU RADIOGRAFIA</h1>
+                                <a href="#"><button><i class="fa-solid fa-plus"></i>MAS INFORMACION</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="know-us">
+                <div>
+                    <h1><span>Nuestra</span> Clinica</h1>
+                </div>
+                <div>
+                    <p>Desde el año 2012 el equipo del centro veterinario Animal World trabaja para prestar un servicio profesional, de calidad y personalizado a nuestros pacientes. Ha sido pionero en el uso de nuevas técnicas y tratamientos desde sus comienzos, con una ideología fresca, encaminada en todo momento al bienestar de los pacientes y sus propietarios, la clínica viene realizando una importante labor en los ámbitos de la medicina y peluquería para caninos y felinos al ofrecer entre sus servicios, cirugía especializada, consultas generales y especializadas, además de contar en cada una de estas áreas con equipo y profesionales altamente calificados.</p>
+                </div>
+            </div>
+        </main>
     </div>
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
+    <!-- Search Bar -->
+    <script src="Javascript/search-bar.js"></script>
 </body>
 </html>
