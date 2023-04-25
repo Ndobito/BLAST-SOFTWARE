@@ -539,7 +539,7 @@ header .header-top{
 
 .location .container-location .location-map .map{
     height: 70%;
-    padding: 10px;
+    padding: 10px 10px 30px 10px;
 }
 
 /* Frequent Questions */
@@ -752,3 +752,23 @@ footer{
     height: 40px;
 }
 
+/* 
+*
+*
+* RESPONSIVE INDEX  
+*
+*
+*/
+
+
+@media (min-width: 426px) and (max-width: 768px) {
+    .header-top .search-bar form input{
+        width: 80%;
+        padding: 6px 6px 6px 6px;
+    }
+    .header-top .search-bar i{
+        width: 26px;
+        height: 26px;
+        right: 10%;
+    }
+}
