@@ -922,7 +922,9 @@ footer{
         text-align: center;
     }
 
-    .header-bottom .nav ul li:hover
+    .header-bottom .nav ul li:hover{
+        
+    }
 
     .header-bottom .icon-menu{
         display: none;
