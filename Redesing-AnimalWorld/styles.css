@@ -1,0 +1,288 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  max-width: 1000px;
+  width: 100%;
+}
+.header-top {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  background-color: #47b7c3;
+}
+.social {
+  display: flex;
+  justify-content: flex-start;; 
+}
+  .social ul{
+    display: flex;
+    list-style: none;    
+  }
+    .social ul li{
+      padding-left: 25px;
+      font-size: 25pt;
+    }
+      .social ul li i{
+        color: white;
+      }
+      .social ul li:hover i:before{
+        transition: .7s;
+      }
+      .social ul li:nth-child(1):hover i:before{
+        color: #3b5999;
+      }
+      .social ul li:nth-child(2):hover i:before {
+        color: #25d339;
+      }
+      .social ul li:nth-child(3):hover i:before {
+        color: #e62c7a;
+      }
+.header-search {
+  display: flex;
+  justify-content: flex-end;
+}
+  .header-search form{
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-right: 25px;
+  }
+  .header-search .button-login{
+    padding: 15px 20px;
+    background-color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 14px;  
+  }
+    .header-search .button-login ul li{
+      list-style: none;
+    } 
+      .header-search .button-login ul li a {
+        color: #47b7c3;
+        font-size: 13pt;
+        font-weight: bold;
+      } 
+      .button-login i{
+        margin-left: 10px;
+      }
+    .header-search input[type="text"] {
+      border: white;
+      padding: 5px;
+      padding-left: 15px;
+      font-size: 12px;
+      width: 300px;
+      border-radius: 15px;
+      color: #443741;
+    }
+    input:focus {
+      outline: none;
+    }
+    .header-search button[type="submit"] {
+      color: white;
+      font-size: 15pt;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding-left: 10px;
+    }
+.header-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+  .header-bottom .navbar-default .navbar-nav > li > a {
+    position: relative;
+  }
+    .header-bottom .navbar-default .navbar-nav > li > a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #47b7c3;
+      color: #443741;
+      transition: width 0.5s ease-in-out;
+      transform: scaleX(0);
+      transform-origin: left center;
+    }
+    .header-bottom .navbar-default .navbar-nav > li > a:hover::before {
+      width: 100%;
+      transform: scaleX(1);
+    }
+    .header-bottom .navbar-default .navbar-nav > li > a:hover{
+      color: #47b7c3;
+      transition: ease 0.5s;
+    }
+  .logo img{
+    height: 135px;
+    padding-left: 26px;
+  }
+.header-bottom .navbar-nav{
+  display: flex;
+  list-style: none;
+  align-items: center;
+}
+  .header-bottom .navbar-nav > li > a {
+    color: black;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 16px;
+    padding: 15px 20px;
+  }
+
+  /*Hero*/
+
+  /*Main*/
+
+  .hero{
+    height: 100vh;
+    background: url(img/hero.webp);  
+    background-size: 100% 120%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    overflow: hidden;
+  }
+
+  .hero .hero-text{
+    height: 100%;
+    width: 40%;
+    background: rgba(71, 183, 195, 0.4);
+    position: relative;
+  }
+  .hero .hero-text div{
+    position: absolute;
+    width: 50%;
+    right: 0;
+    top: 50%;
+    transform: translatey(-50%);
+    -webkit-transform: translatey(-50%);
+    -moz-transform: translatey(-50%);
+    -ms-transform: translatey(-50%);
+    -o-transform: translatey(-50%);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.hero .hero-text div h1 {
+  color: white;
+  font-size: 40px;
+}
+
+.hero .hero-text div p{
+  margin-top: 30px;
+  font-size: 20px;
+}
+
+.button{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  background: #47b7c3;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0px 0px 10px 1px  rgba(255, 255, 255, 1);
+  margin-top: 30px;
+  padding: 5px 10px 5px 10px;
+  border: none;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  cursor: pointer;
+  transition: .5s;
+  -webkit-transition: .5s;
+  -moz-transition: .5s;
+  -ms-transition: .5s;
+  -o-transition: .5s;
+}
+
+.button:hover{
+  background: white;
+  color: black; 
+}
+
+/*Nosotros*/
+
+.nosotros{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  background: url(img/nosotros.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.nosotros div:nth-child(1){
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  position: relative;
+  background: rgba(71, 183, 195, 0.8);
+}
+.nosotros > div:nth-child(1) h1 strong{
+  color: rgba(0, 0, 0, 0.815);
+}
+.nosotros > div:nth-child(1) h1{
+  color: white;
+  position: absolute;
+  top: 40%;
+  right: 20%;
+}
+
+.nosotros div:nth-child(2){
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 100px 40px 40px 40px;
+  background: rgba(71, 183, 195, 0.8);
+}
+
+/*Location*/
+
+.location{
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+
+.location div:nth-child(1){
+  position: relative;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.location > div:nth-child(1) h1{
+  position: absolute;
+  text-transform: uppercase;
+  top: 20%;
+  right: 30%;
+}
+.location h1 strong{
+  color: #47b7c3;
+}
+
+.location div:nth-child(2){
+  padding: 50px 20px 20px 20px;
+}
+.location div:nth-child(2) div{
+  background: #e6e6e6;
+  padding: 20px;
+}
+.location div:nth-child(2) > div .information h1{
+  text-transform: uppercase;
+} 
+
+.location div:nth-child(2) > div .information p:nth-child(2){
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.location div:nth-child(2) > div .map{
+  width: 100%;
+}

@@ -3,15 +3,22 @@
     "development"
   ],
   "hints": {
+<<<<<<< HEAD
     "axe/forms": "off",
     "axe/name-role-value": "off",
     "css-prefix-order": "off",
     "compat-api/css": "off",
+=======
+    "axe/name-role-value": "off",
+    "css-prefix-order": "off",
+    "no-inline-styles": "off",
+>>>>>>> 4fcb23a3528d0f511a07c338bf4ffb75797abdb4
     "axe/text-alternatives": [
       "default",
       {
         "frame-title": "off"
       }
+<<<<<<< HEAD
     ],
     "compat-api/html": [
       "default",
@@ -25,4 +32,16 @@
     "axe/parsing": "off",
     "no-inline-styles": "off"
   }
+=======
+    ]
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not and_ff <= 110",
+    "not firefox <= 111",
+    "not ios_saf <= 16.3",
+    "not safari <= 16.3"
+  ]
+>>>>>>> 4fcb23a3528d0f511a07c338bf4ffb75797abdb4
 }
