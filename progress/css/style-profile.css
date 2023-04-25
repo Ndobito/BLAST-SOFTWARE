@@ -1,0 +1,295 @@
+:root{
+    --color-1: #83DFFD;
+    --color-2: #8FE3FF;
+    --color-3: #303030;
+    --color-4: #191919;
+    --color-5: #FFFFFF;
+    --color-6: #31394A;
+    --color-7: #797979;
+    --color-8: #B8B6B4;
+    --color-9: #2C74FF;
+    --color-10: #2E353B;
+    --font-1: Verdana, Geneva, Tahoma, sans-serif;
+    --font-2: Microsoft-Yaheni;
+}
+
+@font-face {
+    font-family: 'Microsoft-Yaheni';
+    src: url(../fonts/chinese.msyh.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container Main */
+
+.container-main-profile{
+    width: 100%;
+    display: block;
+   
+}
+
+
+/* Left */
+
+.left{
+    width: 100%;
+    background: rgb(241,252,255);
+    background: linear-gradient(180deg, rgba(241,252,255,1) 5%, rgba(143,227,255,1) 100%);  
+    font-family: var(--font-1);
+    text-align: center;
+}
+
+.container-menu{
+    width: 100%;
+    display: inline-block;
+}
+
+/*User information*/
+
+.container-menu .user{
+    width: 100%;
+    padding: 20px;
+    border-bottom: 2px solid var(--color-3);
+}
+
+.user h1{
+    font-size: 28px;
+}
+
+.user hr{
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 10%;
+    background: var(--color-4);
+    height: 2px;
+}
+
+.user img{
+    width: 200px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+/* User Menu */
+
+.menu{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+
+.menu button{
+    width: 60%;
+    background-color: var(--color-6);
+    padding: 12px 5px 12px 5px;
+    color: var(--color-5);
+    font-family: var(--font-2);
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    cursor: pointer;
+}
+
+.menu button:hover{
+    opacity: 0.6;
+}
+
+
+/* Right */
+
+.right{
+    width: 100%; 
+    /*height: 670px;
+    *overflow: hidden;
+    *position: relative; */
+}
+
+.container-right{
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+   
+}
+
+.container-right .user-information, .container-right3 .Pets{
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    background: var(--color-6);
+    color: var(--color-8);
+
+}
+
+/* Form Information User and Pets */
+
+.user-information h1, .Pets h1{
+    text-align: center;
+    font-family: var(--font-2);
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.Pets h2{
+    font-family: var(--font-2);
+    color: var(--color-5);
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.user-information form, .Pets form{
+    width: 100%;
+    display: block;
+    font-family: var(--font-1);
+}
+
+.user-information form label, .Pets form label{
+    position: static;
+    width: 100%;
+    font-size: 15px;
+}
+
+.user-information form input, .user-information form select, .Pets form input, .Pets form select{
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 5px 2px 5px 2px;
+}
+
+.user-information form input[type=submit], .Pets form input[type=submit]{
+    width: 80%;
+    margin-left: 10%;
+    background-color: var(--color-1);
+    border: none;
+    font-weight: 600;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    cursor: pointer;
+}
+
+
+/* Button Edit */
+
+.user-information button, .Pets button{
+    width: 50%;
+    border: none;
+    border-radius: 8px;
+    margin-top: 20px;
+    color: var(--color-5);
+    font-weight: 600;
+    padding: 6px 2px 6px 2px;
+    background: var(--color-9);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+
+/* Container Right 2 and Container Right 3 */
+
+.container-right2{
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: none;
+}
+
+.container-right3{
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: none;
+}
+
+/* Slider Calendar */
+
+#calendar {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.slider-calendar {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+}
+
+.slide {
+    scroll-snap-align: center;
+    width: 100%;
+    padding: 0 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.container-right2 table th,
+.container-right2 table td {
+    font-family: var(--font-1);
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.container-right2 table td {
+    background: var(--color-8);
+    cursor: pointer;
+}
+
+.container-right2 table td:hover{
+    background: var(--color-5);
+    color: var(--color-10);
+}
+
+table caption {
+    font-size: 1.5rem;
+    background: var(--color-1);
+    color: var(--color-5);
+    margin-bottom: 2px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table th {
+    background-color: var(--color-1);
+    color: var(--color-10);
+}
+
+
+
+
+
+
+  
+  
