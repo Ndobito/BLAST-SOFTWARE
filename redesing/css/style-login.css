@@ -4,11 +4,46 @@
     box-sizing: border-box;
 }
 
+:root{
+    --color-1: #83DFFD;
+    --color-2: #8FE3FF;
+    --color-3: #303030;
+    --color-4: #191919;
+    --color-5: #FFFFFF;
+    --color-6: #31394A;
+    --color-7: #797979;
+    --color-8: #B8B6B4;
+    --color-9: #2C74FF;
+    --color-10: #2E353B;
+    --font-1: Verdana, Geneva, Tahoma, sans-serif;
+    --font-2: Microsoft-Yaheni;
+}
+
+
+
+
 body{
-    background-image: url("../img/fondLog.png");
+    background-color: #d3f1fc;
     background-repeat: no-repeat;
     background-size: cover;
 }
+/*volver*/
+.returm{
+    width: 100%;
+    height: 30px;
+    background-color: #FFFFFF;
+}
+    .returm i{
+        height: 80px;
+        width: 80px;
+        margin-top: 1rem;
+        margin-left: 5rem;
+        color: var(--color-4);
+        border: 1px solid black;
+    }
+    .returm div:hover{
+        color: black;
+    }
 
 .container{
     display: flex;
@@ -16,8 +51,12 @@ body{
     align-items: center;
     justify-items: center;
     width: 100%;
-    height: 100vh;
+    height: 80vh;
+    
 }
+
+
+
  /*formulario*/
 .container1{
     width: 550px;
@@ -25,7 +64,8 @@ body{
     display: grid;
     justify-content: center;
     justify-items: center;
-    background-color: white;
+    background-color: var(--color-5);
+    box-shadow: 2px 2px 8px 0 rgb(0, 0, 0, 0.069), 4px 4px 16px 0 rgba(0, 0, 0, 0.069), 0px 0px 24px 2px rgba(0, 0, 0, 0.169);
 }
         /*primera parte: encabezdo*/
     .container1 > div:nth-child(1){
@@ -39,10 +79,23 @@ body{
             border-bottom: 1px solid black;
             height: 2.5rem;
         }
+        .container1 > div:nth-child(1) > div:nth-child(1){
+            display: flex;
+            border: 0;
 
+        }
+
+        .container1 > div:nth-child(1) > div:nth-child(1) p{
+            text-align: center;
+            margin-left: 5px;
+            margin: auto;
+        }
+
+
+        
         .container1 div:nth-child(1) img{
-            height: 5rem;
-            width: 5rem;
+            height: 2rem;
+            width: 2rem;
         }
         /*segunda parte: cuerpo*/
     .container1 > div:nth-child(2){
@@ -66,7 +119,7 @@ body{
                 justify-content: center;
                 text-align: center;
                 align-items: center;
-                border: 1px solid black;
+                border: 1px solid rgb(0, 187, 255);
                 border-radius: 10px;
                 background-color: azure;
                 -webkit-border-radius: 10px;
@@ -84,12 +137,14 @@ body{
             #input{
                 height: 100%;
                 width: 100%;
+                padding-left: .5rem;
                 border: none;
                 border-bottom-right-radius: 10px;
                 border-top-right-radius: 10px;
                 background-color: azure;
                 font-size: 12pt;
-}
+                
+            }
                 #input:focus{
                     background-color: rgba(0, 0, 0, 0.071);
                     outline: none;
@@ -110,7 +165,7 @@ body{
             }
 
         /*tercera parte: pie*/
-        .container1 > div:nth-child(3) {
+        .container1 > div:nth-child(3){
             display: grid;
             padding-bottom: 1.5rem;
             margin-top: .6rem;
@@ -121,15 +176,19 @@ body{
             margin-bottom: .5rem;
             height: 2rem;
             width: 30rem;
+            cursor: pointer;
             border-radius: 10px;
             -webkit-border-radius: 10px;
             -moz-border-radius: 10px;
             -ms-border-radius: 10px;
             -o-border-radius: 10px;
-            border: 1px solid;
+            border: 0;
+            background-color: #2cb5ff42;
+            box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.069), 2px 2px 8px 0 rgba(0, 0, 0, 0.069), 0px 0px 8px 2px rgba(0, 0, 0, 0.169);  
         }
+
         .container1 > div:nth-child(3) a{
-            margin-top: .2rem;
+            margin-top: .5rem;
             margin-bottom: .2rem;
             height: 2rem;
             text-decoration: none;
@@ -138,12 +197,23 @@ body{
 /*complemento*/
 .container2{
     width: 50%;
-    background-color: rgba(65, 65, 65, 0.098);
+    background-image: url("../img/fondLogin2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 500px;
     height: 550px;
+    box-shadow: 2px 2px 8px 0 rgb(0, 0, 0, 0.069), 4px 4px 16px 0 rgba(0, 0, 0, 0.069), 0px 0px 24px 2px rgba(0, 0, 0, 0.169);
+
 }
     .container2 img{
-        margin-left: 0;
-        width: 585px;
-        height: 500px;
-    }
+        margin-left: 80px;
+        margin-top: 100px;
+        width: 350px;
+        height: 350px;
+        box-shadow: 2px 2px 8px 0 rgb(0, 0, 0, 0.069), 4px 4px 16px 0 rgba(0, 0, 0, 0.069), 0px 0px 24px 2px rgba(0, 0, 0, 0.169);
+        border-radius: 100%;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        -ms-border-radius: 100%;
+        -o-border-radius: 100%;
+}
