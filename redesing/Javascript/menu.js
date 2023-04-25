@@ -1,6 +1,6 @@
 const panel = document.getElementById("panel-menu");
-const icon = document.getElementById("open-menu")
-const iconx = document.querySelector(".fa-xmark")
+const icon = document.getElementById("open-menu");
+const iconx = document.getElementById("close-menu");
 
 icon.addEventListener("click", () =>{
     panel.style.display = "block"; 
