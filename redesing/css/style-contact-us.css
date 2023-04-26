@@ -1,55 +1,21 @@
-:root {
-  --color-1: #83DFFD;
-  --color-2: #8FE3FF;
-  --color-3: #303030;
-  --color-4: #191919;
-  --color-5: #FFFFFF;
-  --color-6: #31394A;
-  --color-7: #797979;
-  --color-8: #B8B6B4;
-  --color-9: rgba(246,252,255,0.35);
-  --color-10: rgba(246,252,255);
-
-  --font-1: Verdana, Geneva, Tahoma, sans-serif;
-  --font-2: Microsoft-Yaheni;
-}
-
-@font-face {
-  font-family: 'Microsoft-Yaheni';
-  src: url(../fonts/chinese.msyh.ttf);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 main{
-  background-color: var(--color-10); 
+  background-color: var(--color-11); 
 }
 
 /* background image */
 
   .img-and-text {
     position: relative;
-    background-image: url('../contac/font-contact-2.jpg');
+    background-image: url('../img/font-contact-2.jpg');
     background-size: cover;
     background-position: center;
     height: 560px;
     border: none;
   }
-    .img-and-text .overlay {
-      background-color: var(--color-9);
-      position: absolute;
-      display: flex;
-      top: 0;  
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
+    
       .img-and-text .contac {
         position: absolute;
-        background-color: rgba(246,252,255);
+        background-color: var(--color-12);
         padding: 5px;
         border-top-right-radius: 5px;
         border-top-left-radius: 5px;
@@ -162,7 +128,7 @@ main{
         padding: 5px;
         width: 100%;
       }
-    form label {
+    .aside form label {
       display: block;
       padding-top: 10px;
       font-weight: 800;
@@ -171,9 +137,9 @@ main{
       font-size: 11pt;
       font-family: var(--font-2);
     }
-    form input,
-    form select,
-    form textarea {
+    .aside form input,
+    .aside form select,
+    .aside form textarea {
       display: block;
       width: 100%;
       border: none;
@@ -186,26 +152,26 @@ main{
       background-color: #83DFFD50;
       transition: all 0.7s;
     }
-    form input:focus,
-    form select:focus,
-    form textarea:focus {
+    .aside form input:focus,
+    .aside form select:focus,
+    .aside form textarea:focus {
       outline: none;
       background-color: var(--color-3);
       color: var(--color-5);
     }    
-    form input:hover,
-    form select:hover,
-    form textarea:hover,
+    .aside form input:hover,
+    .aside form select:hover,
+    .aside form textarea:hover,
     iframe:hover {
       box-shadow: 0px 0px 10px 5px rgba(143,227,255,1) ;
       -webkit-box-shadow: 0px 0px 10px 5px rgba(143,227,255,1); 
       -moz-box-shadow: 0px 0px 10px 5px rgba(143,227,255,1);
       transition: all 0.7s;
     }
-    form textarea {
+    .aside form textarea {
       resize: none;
     }
-    form input[type="submit"] {
+    .aside form input[type="submit"] {
       background-color: var(--color-6);
       color: var(--color-5);
       font-size: 18px;
@@ -221,7 +187,7 @@ main{
         margin: 0 !important;
     }
     
-    form input[type="submit"]:hover {
+    .aside form input[type="submit"]:hover {
       background-color: var(--color-3);
     }  
 
@@ -289,6 +255,9 @@ main{
     }
     
     @media (min-width:320px) and (max-width:768px){
+      .img-and-text {
+        background-position: right;
+      }
       .cont-contact-text {
         flex-direction: column;
         width: 100%;
