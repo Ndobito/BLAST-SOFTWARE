@@ -715,16 +715,14 @@ footer{
 @media (min-width:769px) {
   /* Header */
 
-  /* Haader Top */
-  .header-top .button-register{
+    /* Haader Top */
+    .header-top .button-register{
       width: 220px;
   }
 
   .header-top .button-register i{
       margin-right: 5px;
   }
-
-  /* Header Bottom */
 
   /* Logo */
 
@@ -737,7 +735,11 @@ footer{
   .header-bottom .nav{
       display: block;
       width: 60%;
-      margin-right: 0.1rem;
+      transform: translateX(-30px);
+      -webkit-transform: translateX(-30px);
+      -moz-transform: translateX(-30px);
+      -ms-transform: translateX(-30px);
+      -o-transform: translateX(-30px);
   }
 
   .header-bottom .nav ul{
@@ -767,6 +769,7 @@ footer{
   .header-bottom .icon-menu{
       display: none;
   }
+
 
   /* Hero */
 
@@ -889,55 +892,61 @@ footer{
 }
 
 @media (min-width:1025px) {
-  /* Header Top */
+   /* Header Top */
 
-  .header-top{
-      height: 100px;
-  }
+   .header-top{
+    height: 50px;
+}
 
-  /* Social Networks */
+/* Social Networks */
 
-  .header-top .social-networks{
-      font-size: 30px;
-      gap: 40px;
-  }
+.header-top .social-networks{
+    font-size: 20px;
+    gap: 20px;
+    transform: translateX(50px);
+    -webkit-transform: translateX(50px);
+    -moz-transform: translateX(50px);
+    -ms-transform: translateX(50px);
+    -o-transform: translateX(50px);
+}
 
-  /* Search bar */
-  
-  .header-top .search-bar div form input{
-      height: 50%;
-      width: 70%;
-      padding: 15px 15px 15px 15px;
-  }
+/* Search bar */
 
-  .header-top .search-bar i{
-      width: 40px;
-      height: 40px;
-      right: 15%;
-  }
+.header-top .search-bar div form input{
+    height: 50%;
+    width: 60%;
+    padding: 15px 15px 15px 15px;
+}
 
-  /* Button Register */
+.header-top .search-bar i{
+    width: 30px;
+    height: 30px;
+    right: 20%;
+}
 
-  .button-register button{
-      width: 100%;
-      padding: 12px;
-      font-size: 30px;
-      margin-right: 40px;
-  }
-  
-  /* Header Bottom */
+/* Button Register */
 
-  .header-bottom .container-logo img {
-      width: 50%;
-      transform: translateX(50%);
-      -webkit-transform: translateX(50%);
-      -moz-transform: translateX(50%);
-      -ms-transform: translateX(50%);
-      -o-transform: translateX(50%);
-  }
+.button-register button{
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    transform: translateX(-50px);
+    -webkit-transform: translateX(-50px);
+    -moz-transform: translateX(-50px);
+    -ms-transform: translateX(-50px);
+    -o-transform: translateX(-50px);
+}
 
-  
+/* Header Bottom */
 
+.header-bottom .container-logo img {
+    width: 25%;
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+}
   /* Frequnet Questions */
 
   .img-question{
@@ -1041,9 +1050,10 @@ footer{
 @media (min-width:1441px) {
   /* Header */
 
-  /* Header Top */
-  .header-top{
-      height: 150px;
+    /* Header Top */
+    
+    .header-top{
+      height: 60px;
   }
   .header-top .search-bar div form input{
       width: 40%;
@@ -1053,18 +1063,18 @@ footer{
 
   .header-top .search-bar div form i{
       right: 30%;
-      width: 65px;
-      height: 65px;
+      width: 40px;
+      height: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 30px;
+      font-size: 20px;
   }
 
   /* Header Bottom */
 
   .header-bottom .container-logo img{
-      width: 60%;
+      width: 30%;
   }
 
   .header-bottom .nav ul{
@@ -1073,6 +1083,12 @@ footer{
 
   .header-bottom .nav ul li{
       font-size: 30px;
+  }
+
+  /* Hero */
+  .img-and-text{
+    height: 70vh;
+    background-position: center center;
   }
 
 }
