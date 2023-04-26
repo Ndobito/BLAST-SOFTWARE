@@ -1,0 +1,278 @@
+main{
+  background-color: var(--color-11); 
+}
+
+/* background image */
+
+  .img-and-text {
+    position: relative;
+    background-image: url('../img/font-contact-2.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 560px;
+    border: none;
+  }
+    
+      .img-and-text .contac {
+        position: absolute;
+        background-color: var(--color-12);
+        padding: 5px;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+        font-size: 11pt;
+        bottom: 0;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: var(--color-6);
+        text-transform: uppercase;
+        font-family: var(--font-1);
+      }
+
+      /* container measures */
+
+    .child-container {
+      margin: auto;
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    /* contact container */
+
+      .container-main-contact {
+        font-family: var(--font-2);
+      }
+        .title-container{
+          padding-top: 50px;
+          position: static;
+          align-items: center;
+          justify-content: center;
+          display: flex;
+          height: auto;
+          width: 100%;
+          min-height: auto;
+        }
+          .title-container .title-hr{
+            width: 33%;
+            height: 6px;
+            border-bottom: 2px solid var(--color-6);
+            border-top: 2px solid var(--color-6);
+          }  
+            .title-container .title-hr .hr{
+              border-bottom: 1px;
+              border-top: 3px;
+              padding: 5px;
+            }
+      .title-container p{
+        margin: 0px 10px;
+        font-size: 15pt;
+        padding: 0;
+        font-family: var(--font-1);
+      }
+          .cont-contact .text-information p {
+            line-height: 1.5;
+            font-size: 11pt;
+            text-align: justify;
+          }
+        .cont-contact-text{
+          width: 100%;
+          gap: 30px;
+          padding-top: 50px;
+          display: flex;
+        }
+          .contact-info {
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 90px;
+            font-size: 11pt;
+            text-align: center;
+          }
+            .contact-info a, .contact-info p {
+              color: #31394A;
+              display: block;
+              text-decoration: none;
+              padding-top: 5px;
+            }
+            .contact-info a:hover {
+              color: #83DFFD;
+              font-weight: 800;
+            }
+      .map, iframe {
+        border-radius: 10px;
+        border: none;
+        width: 100%;
+      }
+
+/* form */
+
+  .aside form{
+    padding-top: 50px;
+    height: fit-content;
+    padding: 20px;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 30px;
+    font-family: var(--OpenSans);
+    color: var(--color-6);
+    font-weight: 800;
+  }
+    .name-container {
+      display: flex;
+      justify-content: center;      
+    }
+      .field-container {
+        position: relative;
+        padding: 5px;
+        width: 100%;
+      }
+    .aside form label {
+      display: block;
+      padding-top: 10px;
+      font-weight: 800;
+      color: var(--color-4);
+      text-align: left;
+      font-size: 11pt;
+      font-family: var(--font-2);
+    }
+    .aside form input,
+    .aside form select,
+    .aside form textarea {
+      display: block;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 5px;
+      color: var(--color-6);
+      background-color: #83DFFD50;
+      transition: all 0.7s;
+    }
+    .aside form input:focus,
+    .aside form select:focus,
+    .aside form textarea:focus {
+      outline: none;
+      background-color: var(--color-3);
+      color: var(--color-5);
+    }    
+    .aside form input:hover,
+    .aside form select:hover,
+    .aside form textarea:hover,
+    iframe:hover {
+      box-shadow: 0px 0px 10px 5px rgba(143,227,255,1) ;
+      -webkit-box-shadow: 0px 0px 10px 5px rgba(143,227,255,1); 
+      -moz-box-shadow: 0px 0px 10px 5px rgba(143,227,255,1);
+      transition: all 0.7s;
+    }
+    .aside form textarea {
+      resize: none;
+    }
+    .aside form input[type="submit"] {
+      background-color: var(--color-6);
+      color: var(--color-5);
+      font-size: 18px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none !important;
+        margin: 0 !important;
+    }
+    
+    .aside form input[type="submit"]:hover {
+      background-color: var(--color-3);
+    }  
+
+    .modal {
+      position: fixed;
+      width: 30%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      padding: 20px;
+      background-color: #83DFFD;
+      border-radius: 10px;      
+      text-align: center;
+      font-family: var(--OpenSans);
+      font-weight: 800;
+      color: var(--color-6);
+      z-index: 10;
+      transition:  0.5s;
+    }
+      .close{
+        background-color: var(--color-6);
+        color: #FFFFFF;
+        font-size: 18px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        margin-top: 20px;
+        cursor: pointer;
+        transition: all 3s;
+        }
+        .opacidad {
+          position : fixed ;
+          top :0 ;
+          left :0 ;
+          right :0 ;
+          bottom :0 ;
+          background-color : var(--color-9) ;
+          z-index :5 ;
+        }
+/* responsive measures */
+
+    @media (min-width:1025px){
+      .cont-contact{
+        width: 100%;
+      }
+      .telefono-info,.direccion-info{
+        width: 100%;
+      }
+    }
+  
+    @media (min-width:769px) and (max-width:1024px) {
+      .cont-contact-text {
+        width: 100%;
+        padding: 20px;
+      }
+      .title-container{
+        text-align: center;
+      }
+      .telefono-info,.direccion-info{
+        width: 50%;
+      }
+      .cont-contact, iframe{
+        width: 100%;
+      }
+    }
+    
+    @media (min-width:320px) and (max-width:768px){
+      .img-and-text {
+        background-position: right;
+      }
+      .cont-contact-text {
+        flex-direction: column;
+        width: 100%;
+        padding: 20px;
+      }
+      .title-container{
+        text-align: center;
+      }
+      .contact-info{
+        gap: 50px; 
+      }
+      .telefono-info,.direccion-info{
+        width: 50%;
+      }
+      .modal{
+        width: 80%;
+      }
+  }
