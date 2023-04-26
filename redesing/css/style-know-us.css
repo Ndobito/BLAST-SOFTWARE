@@ -239,6 +239,18 @@ header .header-top{
     font-size: 15px;
 }
 
+/* Container Cards */
+
+.container-cards{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    background: rgb(241,252,255);
+    background: linear-gradient(180deg, rgba(241,252,255,1) 5%, rgba(172,213,222,1) 100%);
+}
+
+
+
 /* Container Team */
 
 .container-team{
