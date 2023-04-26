@@ -46,16 +46,3 @@
         margin-left: 20%;
     }
 }
-
-/*
-*
-* Responsive Profile
-*
-*/
-
-@media (min-width:769px) and (max-width:1024px){
-    .container-main-profile{
-        display: grid;
-        grid-template-columns: 30% 70%;
-    }
-}

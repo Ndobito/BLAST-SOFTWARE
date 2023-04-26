@@ -26,6 +26,11 @@
     src: url(../fonts/chinese.msyh.ttf);
 }
 
+html {
+    scroll-behavior: smooth;
+  }
+  
+
 a{
     color: black;
     text-decoration: none;
