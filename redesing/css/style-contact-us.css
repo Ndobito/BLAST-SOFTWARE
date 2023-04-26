@@ -193,7 +193,6 @@ main{
 
     .modal {
       position: fixed;
-      width: 30%;
       top: 50%;
       left: 50%;
       transform: translate(-50%,-50%);
@@ -201,8 +200,7 @@ main{
       background-color: #83DFFD;
       border-radius: 10px;      
       text-align: center;
-      font-family: var(--OpenSans);
-      font-weight: 800;
+      font-family: var(--font-1);
       color: var(--color-6);
       z-index: 10;
       transition:  0.5s;
@@ -210,11 +208,11 @@ main{
       .close{
         background-color: var(--color-6);
         color: #FFFFFF;
-        font-size: 18px;
+        font-size: 15px;
         padding: 10px 20px;
         border: none;
         border-radius: 5px;
-        margin-top: 20px;
+        margin-top: 25px;
         cursor: pointer;
         transition: all 3s;
         }
@@ -224,9 +222,10 @@ main{
           left :0 ;
           right :0 ;
           bottom :0 ;
-          background-color : var(--color-9) ;
+          background-color : var(--color-11) ;
           z-index :5 ;
         }
+        
 /* responsive measures */
 
     @media (min-width:1025px){
@@ -239,6 +238,9 @@ main{
     }
   
     @media (min-width:769px) and (max-width:1024px) {
+      .img-and-text {
+        background-position: center;
+      }
       .cont-contact-text {
         width: 100%;
         padding: 20px;
@@ -271,8 +273,5 @@ main{
       }
       .telefono-info,.direccion-info{
         width: 50%;
-      }
-      .modal{
-        width: 80%;
       }
   }
