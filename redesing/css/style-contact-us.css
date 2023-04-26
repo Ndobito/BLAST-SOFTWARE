@@ -232,7 +232,7 @@ main{
       left: 50%;
       transform: translate(-50%,-50%);
       padding: 20px;
-      background-color: #83DFFD95;
+      background-color: #83DFFD;
       border-radius: 10px;      
       text-align: center;
       font-family: var(--OpenSans);
