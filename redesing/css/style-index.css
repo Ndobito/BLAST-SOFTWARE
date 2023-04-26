@@ -762,6 +762,9 @@ footer{
 
 
 @media (min-width: 426px) and (max-width: 768px) {
+
+    /* Header Top */
+
     .header-top .search-bar form input{
         width: 80%;
         padding: 6px 6px 6px 6px;
