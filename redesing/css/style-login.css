@@ -63,7 +63,6 @@ body{
     justify-items: center;
     width: 100%;
     height: 80vh;
-    
 }
 
 
@@ -99,64 +98,46 @@ body{
         }
 
         .container1 > div:nth-child(1) > div:nth-child(1) p{
-            text-align: center;
+            display: flex;
+            align-items:center;
             margin-left: 5px;
-            margin: auto;
         }
 
 
         
         .container1 div:nth-child(1) img{
-            height: 2rem;
-            width: 2rem;
+            height: 3rem;
+            width: 3rem;
         }
+
+
+
         /*segunda parte: cuerpo*/
-    .container1 > div:nth-child(2){
+    .container1 > div:nth-child(2) > form > div:nth-child(2) {
         width: 100%;
         height: 100%;
+        margin-top: 1rem;
     }   
-    .container1 > div:nth-child(2) > label{
-        font-size: 12pt;
+    .container1  > div:nth-child(2) > form > label{
+        font-size: 16pt;
     } 
-        .container1 > div:nth-child(2) > div{
-            display: grid;
-            padding-top: 1rem;
-            font-size: 12pt;
-        }
-        
+
             .input{
-                margin-top: 5px;
-                height: 100%;
+                position: relative;
+                display: inline-block;
                 width: 100%;
-                display: flex;
-                justify-content: center;
-                text-align: center;
-                align-items: center;
-                border: 1px solid rgb(0, 187, 255);
-                border-radius: 10px;
-                background-color: azure;
-                -webkit-border-radius: 10px;
-                -moz-border-radius: 10px;
-                -ms-border-radius: 10px;
-                -o-border-radius: 10px;
-            }
-            
-            #icono{
-                text-align: center;
-                padding: .5rem;
-                margin-top: 5px;
-                border-radius: 10px;
             }
             #input{
-                height: 100%;
+                padding-left: 12px;
+                font-size: 12pt;
+                margin-top: 5px;
+                height: 35px;
                 width: 100%;
-                padding-left: .5rem;
-                border: none;
+                border: 1px solid rgb(0, 187, 255);
                 border-bottom-right-radius: 10px;
                 border-top-right-radius: 10px;
                 background-color: azure;
-                font-size: 12pt;
-                
+                margin-left: 34px;
             }
                 #input:focus{
                     background-color: rgba(0, 0, 0, 0.071);
@@ -165,16 +146,36 @@ body{
                 #input:active{
                     background-color: azure;
                 }
+            
+            #icono{
+                background-color: azure;
+                border: 1px solid rgb(0, 187, 255);
+                border-right: 0 ;
+                text-align: center;
+                width: 40px;
+                height: 35px;
+                padding: .5rem;
+                margin-top: 5px;
+                border-bottom-left-radius: 10px;
+                border-top-left-radius: 10px ;
+                position: absolute;
+            }
                 
-        .container1 > div:nth-child(2) > div:nth-child(3){
-            display: flex;
-        }
-            .container1 > div:nth-child(2) > div:nth-child(3) > p {
+                
+            .container1  > div:nth-child(2) > form > div:nth-child(3){
+                display: flex;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            .container1  > div:nth-child(2) > form > div:nth-child(3) > p{
                 margin-left: 5px;
             }
-            .container1 > div:nth-child(2) > div:nth-child(3) > .input {
-                width: 1rem;
-                height: 1rem;
+                .container1  > div:nth-child(2) > form > div:nth-child(3) > p > a {
+                    font-size: 14pt;
+                }
+            .container1 > div:nth-child(2) > div:nth-child(3) > input {
+                width: .5rem;
+                height: .5rem;
             }
 
         /*tercera parte: pie*/
@@ -242,17 +243,17 @@ body{
 /*responsive*/
 
                 /*laptop*/
-    @media (min-width: 837px) and (max-width: 1024px){
+    @media (min-width: 837px) and (max-width: 1084px){
 
         /*primer contenedor*/
         .container1{
             width: 400px;
         }
         .container1 > div:nth-child(2){
-            width: auto;
+            width: 80%;
         }
         .container1 > div:nth-child(3){
-            width:100;
+            width: 90%;
         }
 
 
@@ -268,7 +269,7 @@ body{
         }
     } 
             /*tablet*/
-    @media (min-width: 521px) and (max-width: 837px){
+    @media (min-width: 519px) and (max-width: 837px){
 
         /*primer contenedor*/
         .container1{
@@ -277,13 +278,11 @@ body{
             margin-top: 125px;
         }
         .container1 > div:nth-child(2){
-            width: auto;
+            width: 100%;
         }
         .container1 > div:nth-child(3){
-            width:100;
+            width: 90%;
         }
-
-
 
         /*segundo contenedor*/
         .container2{
@@ -295,30 +294,29 @@ body{
             height: 0;
         }
     }
+
             /*mobile*/
-    @media (min-width: 0px) and (max-width: 836px){
+    @media (min-width: 0px) and (max-width: 519px){
 
         /*primer contenedor*/
         .container1{
             width: 300px;
-            height: 500px;
+            height: 600px;
             margin-top: 125px;
         }
         .container1 > div:nth-child(1) > div:nth-child(2) h1{
-            
             font-size: 20pt;
         }
         .container1 > div:nth-child(2){
-            width: 80%;
+            width: 60%;
         }
         .container1 > div:nth-child(3){
-            width:50%;
+            width:40%;
+            height: 60%;
         }
             #a1{
                 margin-bottom: 30px;
             }
-
-
 
         /*segundo contenedor*/
         .container2{
