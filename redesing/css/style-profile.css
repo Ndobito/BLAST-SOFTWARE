@@ -11,6 +11,7 @@
     --color-10: #2E353B;
     --font-1: Verdana, Geneva, Tahoma, sans-serif;
     --font-2: Microsoft-Yaheni;
+    color: #f0ffff;
 }
 
 @font-face {
@@ -31,7 +32,6 @@
     display: block;
    
 }
-
 
 /* Left */
 
@@ -58,24 +58,27 @@
 
 .user h1{
     font-size: 28px;
+    color: var(--color-4);
 }
 
-.user hr{
-    width: 80%;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    margin-left: 10%;
-    background: var(--color-4);
-    height: 2px;
-}
-
-.user img{
+.user .img{
     width: 200px;
+    height: 200px;
+    background: url(../img/user-profile.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin-left: 50%;
+    transform: translateX(-50%);
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
 }
 
 /* User Menu */
@@ -103,6 +106,14 @@
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     cursor: pointer;
+}
+
+.menu div:nth-child(4) button{
+    background: #2C74FF;
+}
+
+.menu div:nth-child(4) button i{
+    margin-right: 10px;
 }
 
 .menu button:hover{
@@ -212,6 +223,10 @@
     padding-top: 20px;
     padding-bottom: 20px;
     display: none;
+    background: url(../img/calendar-profile-bg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .container-right3{
@@ -236,9 +251,12 @@
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
+    height: 80%;
 }
 
 .slide {
+    margin: 20vh 0vh 20vh 0vh;
+    display: inline-block;
     scroll-snap-align: center;
     width: 100%;
     padding: 0 10px;
@@ -252,38 +270,42 @@ table {
 
 .container-right2 table th,
 .container-right2 table td {
-    font-family: var(--font-1);
+    font-family: var(--font-2);
     padding: 10px;
     text-align: center;
-    border: 1px solid #ddd;
-}
-
-.container-right2 table td {
-    background: var(--color-8);
-    cursor: pointer;
+    color: var(--color-4);
+    background: var(--color-5);
+    border: 1px solid var(--color-7);
 }
 
 .container-right2 table td:hover{
-    background: var(--color-5);
-    color: var(--color-10);
+    background: var(--color-4);
+    color: var(--color-5);
 }
 
 table caption {
+    font-family: var(--font-2);
     font-size: 1.5rem;
-    background: var(--color-1);
-    color: var(--color-5);
-    margin-bottom: 2px;
+    color: var(--color-9);
     padding-top: 10px;
     padding-bottom: 10px;
+    border: 1px solid var(--color-4);
 }
 
 table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-table th {
-    background-color: var(--color-1);
-    color: var(--color-10);
+/* Calendar Citas */
+
+#calendar-citas{
+    height: 20%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-family: var(--font-2);
+    font-size: 20px;
+    padding: 0px 10px 30px 30px;
 }
 
 /* Footer */
@@ -345,6 +367,7 @@ footer{
 
 @media (min-width: 426px) {
     
+    
 
     /* Footer */
     
@@ -363,6 +386,12 @@ footer{
 /*  */
 @media (min-width:769px) {
     
+    /* Container Profile */
+
+    .container-main-profile{
+        display: grid;
+        grid-template-columns: 30% 70%;
+    }
 
     /* Footer Boottom */
 
@@ -372,6 +401,24 @@ footer{
 }
 
 @media (min-width:1025px) {
+
+    /* Right */
+    .right{
+        width: 80%;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+}
+
+    /* Container Main Profile */
+
+    .container-main-profile{
+        display: grid;
+        grid-template-columns: 30% 70%;
+    }
    
     /* Footer Boottom */
 
@@ -385,6 +432,8 @@ footer{
         margin-left: 25%;
 }
 
+
+
     .footer-bottom p:nth-child(2) img{
         width: 50px;
         height: 50px;
@@ -397,13 +446,6 @@ footer{
 
 }
 
-@media (min-width:1880px){
-    /* Know us and Location*/
-
-    .know-us .container-know-us > div p{
-        font-size: 32px;
-    }
-}
 
 
 

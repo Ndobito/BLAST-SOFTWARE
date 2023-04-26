@@ -56,6 +56,12 @@ for (let i = 0; i < months.length; i++) {
       if (j === 0 && k < firstDayOfWeek || date > daysInMonth) {
         const dayNumber = document.createTextNode("");
                     cell.appendChild(dayNumber);
+      if(cell == ""){
+        // Code
+      }else{
+        cell.classList.add(k);
+      }
+
     } else {
       const dayNumber = document.createTextNode(date);
       cell.appendChild(dayNumber);
@@ -71,3 +77,18 @@ for (let i = 0; i < months.length; i++) {
 slideContainer.appendChild(table);
 }
 
+
+const slide = document.querySelectorAll(".slide");
+const td = document.getElementsByTagName("td");
+let calendarCitas = document.getElementById("calendar-citas");
+
+for (let z = 0; z < td.length; z++) {
+  td[z].addEventListener("click", () => {
+    if(td[z].textContent === ""){
+      calendarCitas.innerHTML = "";
+    }
+    else{
+      calendarCitas.innerHTML= "No tienes ninguna cita registrada";
+    }
+  });
+}
