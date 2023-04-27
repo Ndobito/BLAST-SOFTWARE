@@ -1,72 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nueva cuenta</title>
-    <link rel="stylesheet" href="css/style-login.css">
+    <link rel="stylesheet" href="css/style-New-Account.css">
     <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
 </head>
-<body>
- 
-    
-    <div class="returm">
-        <a href="index.html"><i class="fa-solid fa-arrow-left"></i></a>
-    </div>    
-<div class="container">
-    
-    <div class="container1">
-        <div>
-            <div>
-                <img src="img/logo-removebg.png" alt=""> <p>Animal world</p>
-            </div>
-            
-            <div>
-                <h1>Iniciar sesión</h1>
-            </div>
-            
-        </div>
 
-        <div>
-            <form action="#">
-                <div>
-                    <label for="#">Usuario</label>
-                    <div class="input">
-                        <i class="fa-solid fa-paw"id="icono"></i>
-                        <input type="text" placeholder="  user" id="input">
+<body>
+    <div class="container-background">
+        <div class="container-form">
+            <h2>Crear cuenta</h2>
+            <form>
+                <div class="NameandLastname">
+                    <div class="input-container">
+                        <label>Nombre</label>
+                        <input type="text" name="nombre" required>
+                    </div>
+
+                    <div class="input-container">
+                        <label>Apellido</label>
+                        <input type="text" name="apellido" required>
                     </div>
                 </div>
-                <div>
-                    <label for="#">Contraseña</label>
-                    <div class="input">
-                        <i class="fa-solid fa-lock" id="icono"></i>
-                        <input type="password" placeholder="  Contraseña" id="input">
+                <label>Email</label>
+                <input type="email" name="email" required>
+
+                <label>Confirmar Email</label>
+                <input type="email" name="emailC" required>
+
+                <label>Dirección de residencia</label>
+                <input type="text" name="addres" required>
+
+                <label for="location">Tipo de ubicación</label>
+                <select type="select" required>
+                    <option value="urbano" selected disabled>Selectiona el tipo de ubicación</option>
+                    <option value="rural">Rural</option>
+                    <option value="urbano">Urbano</option>  
+                </select>
+
+                <div class="numbers">
+                    <div class="input-container">
+                        <label>Numero de celular</label>
+                        <input type="number" name="tel" required>
+                    </div>
+
+                    <div class="input-container">
+                        <label>Numero de celular 2</label>
+                        <input type="number" name="tel2">
                     </div>
                 </div>
-                <div>
-                    <input type="checkbox">
-                    <p> Aceptar terminos y condiciones <a href="#">Mas información</a> </p>
-                    
+                <div class="buttons">
+                    <div class="buttons-container">
+                        <input type="submit" value="Volver">
+                        <input type="submit" value="Siguiente">
+                    </div>
+                    <input type="submit" value="Salir">
                 </div>
             </form>
-            
-        </div>
-        <div>
-            <button href="#">Ingresar</button>
-            <a href="#" id="a1">¿Olvidaste tu contraseña?</a>
-            <a href="#" id="a2">Crear cuenta</a>
         </div>
     </div>
-    <div class="container2">
-        <img src="img/principalLogin.png" alt="">
-    </div>
-</div>
     <!--Font Awesome-->
-    <script src="https://kit.fontawesome.com/7fa9974a48.js"
-        crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous">
     </script>
-    
-
 </body>
+
 </html>
