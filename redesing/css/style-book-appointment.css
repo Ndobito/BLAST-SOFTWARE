@@ -196,7 +196,162 @@ header .header-top{
     background: rgba(212, 212, 212, 0.3);
 }
 
-/*  */
+/*Header Services  */
+
+.header-services{
+    background: rgba(44, 116, 255, 0.8);
+    font-family: var(--font-2);
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    color: var(--color-5);
+}
+
+/* Container Services */
+
+.container-services{
+    padding: 10px;
+    background: var(--color-6);
+}
+
+.container-services .cont-service{
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.container-services .cont-service .service{
+    background: var(--color-5);
+    text-align: center;
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    padding: 20px 10px 20px 10px;
+    font-size: 10px;
+    font-family: var(--font-1);
+}
+
+.container-services .cont-service .service button, .container-services .cont-service .reserve button{
+    padding: 12px;
+    background: var(--color-9);
+    font-family: var(--font-1);
+    font-weight: bold;
+    color: var(--color-5);
+    border: none;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.container-services .cont-service .service button:hover,.container-services .cont-service .reserve button:hover{
+    opacity: 0.8;
+}
+
+/* Reserve */
+
+.reserve{ 
+    display: none;
+    background: var(--color-5);
+    border-top: 2px solid var(--color-9);
+    padding: 20px;
+}
+
+.reserve h1{
+    margin-top: 50px;
+    margin-left: 10%;
+    margin-bottom: 20px;
+    font-family: var(--font-1);
+}
+
+.reserve p{
+    margin-bottom: 20px;
+    font-family: var(--font-1);
+}
+
+/* Calendar */
+/* Estilos generales para el calendario */
+.calendar {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #333;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  /* Estilos para la cabecera de la tabla */
+  .calendar table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  
+  .calendar th {
+    font-weight: 500;
+    text-align: center;
+    padding: 12px 0;
+    background-color: #f2f2f2;
+    border-bottom: 2px solid #e0e0e0;
+  }
+  
+  /* Estilos para las celdas del calendario */
+  .calendar td {
+    text-align: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  /* Estilos para los días del mes */
+  .calendar td:not(:empty) {
+    position: relative;
+  }
+  
+  .calendar td:not(:empty)::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
+  
+  .calendar td:not(:empty) span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .calendar td:not(:empty):hover {
+    cursor: pointer;
+    background-color: #f2f2f2;
+  }
+  
+  .calendar td:not(:empty):hover span {
+    color: #fff;
+  }
+  
+  .calendar td:not(:empty):hover::before {
+    background-color: #4caf50;
+    opacity: 0.2;
+  }
+  
+  /* Estilos para los días de la semana */
+  .calendar td:first-child,
+  .calendar th:first-child {
+    border-left: none;
+  }
+  
+  .calendar td:last-child,
+  .calendar th:last-child {
+    border-right: none;
+  }
+  
 
 /* Footer */
 

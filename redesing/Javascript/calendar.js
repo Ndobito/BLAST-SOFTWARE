@@ -77,8 +77,6 @@ for (let i = 0; i < months.length; i++) {
 slideContainer.appendChild(table);
 }
 
-
-const slide = document.querySelectorAll(".slide");
 const td = document.getElementsByTagName("td");
 let calendarCitas = document.getElementById("calendar-citas");
 
