@@ -71,26 +71,11 @@
                     <div class="reserve" id="reserve-citas">
                         <i class="fa-solid fa-xmark" onclick="exit(1)"></i>
                         <h1>Citas</h1>
-                        <p>Consulta nuestra disponibilidad y reserva la fecha y hora que más te convenga</p>
-
-                        <div class="calendar">
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>Domingo</th>
-                                    <th>Lunes</th>
-                                    <th>Martes</th>
-                                    <th>Miércoles</th>
-                                    <th>Jueves</th>
-                                    <th>Viernes</th>
-                                    <th>Sábado</th>
-                                </tr>
-                                </thead>
-                                <tbody id="calendar-body">
-                                </tbody>
-                            </table>
+                        <p>Consulta nuestra disponibilidad y reserva la fecha y hora que más te convenga.</p>
+                        <div class="container-calendar">
+                            <div class="slider-calendar" id="calendar1"></div>
                         </div>
-
+                        <div id="container-info-reserve1"></div>
                         <button>Confirmar</button>
                     </div>
                 </div>
@@ -103,28 +88,12 @@
                     <div class="reserve" id="reserve-surgeries">
                         <i class="fa-solid fa-xmark" onclick="exit(2)"></i>
                         <h1>Cirugia</h1>
-                        <p>Consulta nuestra disponibilidad y reserva la fecha y hora que más te convenga</p>
-
-                        <div class="calendar">
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>Domingo</th>
-                                    <th>Lunes</th>
-                                    <th>Martes</th>
-                                    <th>Miércoles</th>
-                                    <th>Jueves</th>
-                                    <th>Viernes</th>
-                                    <th>Sábado</th>
-                                </tr>
-                                </thead>
-                                <tbody id="calendar-body">
-                                </tbody>
-                            </table>
+                        <p>Consulta nuestra disponibilidad y reserva la fecha y hora que más te convenga.</p>
+                        <div class="container-calendar">
+                            <div class="slider-calendar" id="calendar2"></div>
                         </div>
-
+                        <div id="container-info-reserve2"></div>
                         <button>Confirmar</button>
-
                     </div>
                 </div>
                 <div class="cont-service">
@@ -136,28 +105,12 @@
                     <div class="reserve" id="reserve-lab">
                         <i class="fa-solid fa-xmark" onclick="exit(3)"></i>
                         <h1>Laboratorio Clinico</h1>
-                        <p>Consulta nuestra disponibilidad y reserva la fecha y hora que más te convenga</p>
-
-                        <div class="calendar">
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>Domingo</th>
-                                    <th>Lunes</th>
-                                    <th>Martes</th>
-                                    <th>Miércoles</th>
-                                    <th>Jueves</th>
-                                    <th>Viernes</th>
-                                    <th>Sábado</th>
-                                </tr>
-                                </thead>
-                                <tbody id="calendar-body">
-                                </tbody>
-                            </table>
+                        <p>Consulta nuestra disponibilidad y reserva la fecha y hora que más te convenga.</p>
+                        <div class="container-calendar">
+                            <div class="slider-calendar" id="calendar3"></div>
                         </div>
-
+                        <div id="container-info-reserve3"></div>
                         <button>Confirmar</button>
-
                     </div>
                 </div>
                 <div class="cont-service">
@@ -169,28 +122,12 @@
                     <div class="reserve" id="reserve-xrays">
                         <i class="fa-solid fa-xmark" onclick="exit(4)"></i>
                         <h1>Radiografias</h1>
-                        <p>Consulta nuestra disponibilidad y reserva la fecha y hora que más te convenga</p>
-
-                        <div class="calendar">
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>Domingo</th>
-                                    <th>Lunes</th>
-                                    <th>Martes</th>
-                                    <th>Miércoles</th>
-                                    <th>Jueves</th>
-                                    <th>Viernes</th>
-                                    <th>Sábado</th>
-                                </tr>
-                                </thead>
-                                <tbody id="calendar-body">
-                                </tbody>
-                            </table>
+                        <p>Consulta nuestra disponibilidad y reserva la fecha y hora que más te convenga.</p>
+                        <div class="container-calendar">
+                            <div class="slider-calendar" id="calendar4"></div>
                         </div>
-
+                        <div id="container-info-reserve4"></div>
                         <button>Confirmar</button>
-
                     </div>
                 </div>
             </div>
@@ -277,7 +214,12 @@
     <script src="Javascript/services.js"></script>
     <!-- Calendar -->
     <script src="Javascript/calendar-reserver.js"></script>
-    <script>generateCurrentMonthCalendar();
-</script>
+    <script>
+        containerCalendar('calendar1'); 
+        containerCalendar('calendar2'); 
+        containerCalendar('calendar3'); 
+        containerCalendar('calendar4'); 
+    </script>
+    
 </body>
 </html>
