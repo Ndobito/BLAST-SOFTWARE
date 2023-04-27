@@ -62,7 +62,7 @@
                 <h1>¡No podemos esperar a verte!</h1>
             </div>
             <div class="container-services">
-                <div class="cont-service">
+                <div class="cont-service citas">
                     <div class="service">
                         <h1>Citas</h1>
                         <p>1h <br> $10.000</p>
@@ -73,22 +73,9 @@
                         <h1>Citas</h1>
                         <p>Consulta nuestra disponibilidad y reserva la fecha y hora que más te convenga</p>
 
-                        <div class="calendar">
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>Domingo</th>
-                                    <th>Lunes</th>
-                                    <th>Martes</th>
-                                    <th>Miércoles</th>
-                                    <th>Jueves</th>
-                                    <th>Viernes</th>
-                                    <th>Sábado</th>
-                                </tr>
-                                </thead>
-                                <tbody id="calendar-body">
-                                </tbody>
-                            </table>
+                        <div class="container-calendar">
+                            <div class="slider-calendar" id="calendar-reserve1"></div> 
+                            <div id="calendar-citas1"></div>
                         </div>
 
                         <button>Confirmar</button>
@@ -105,22 +92,9 @@
                         <h1>Cirugia</h1>
                         <p>Consulta nuestra disponibilidad y reserva la fecha y hora que más te convenga</p>
 
-                        <div class="calendar">
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>Domingo</th>
-                                    <th>Lunes</th>
-                                    <th>Martes</th>
-                                    <th>Miércoles</th>
-                                    <th>Jueves</th>
-                                    <th>Viernes</th>
-                                    <th>Sábado</th>
-                                </tr>
-                                </thead>
-                                <tbody id="calendar-body">
-                                </tbody>
-                            </table>
+                        <div class="container-calendar">
+                            <div class="slider-calendar" id="calendar-reserve2"></div> 
+                            <div id="calendar-citas"></div>
                         </div>
 
                         <button>Confirmar</button>
@@ -138,22 +112,9 @@
                         <h1>Laboratorio Clinico</h1>
                         <p>Consulta nuestra disponibilidad y reserva la fecha y hora que más te convenga</p>
 
-                        <div class="calendar">
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>Domingo</th>
-                                    <th>Lunes</th>
-                                    <th>Martes</th>
-                                    <th>Miércoles</th>
-                                    <th>Jueves</th>
-                                    <th>Viernes</th>
-                                    <th>Sábado</th>
-                                </tr>
-                                </thead>
-                                <tbody id="calendar-body">
-                                </tbody>
-                            </table>
+                        <div class="container-calendar">
+                            <div class="slider-calendar" id="calendar-reserve3"></div> 
+                            <div id="calendar-citas"></div>
                         </div>
 
                         <button>Confirmar</button>
@@ -171,22 +132,9 @@
                         <h1>Radiografias</h1>
                         <p>Consulta nuestra disponibilidad y reserva la fecha y hora que más te convenga</p>
 
-                        <div class="calendar">
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>Domingo</th>
-                                    <th>Lunes</th>
-                                    <th>Martes</th>
-                                    <th>Miércoles</th>
-                                    <th>Jueves</th>
-                                    <th>Viernes</th>
-                                    <th>Sábado</th>
-                                </tr>
-                                </thead>
-                                <tbody id="calendar-body">
-                                </tbody>
-                            </table>
+                        <div class="container-calendar">
+                            <div class="slider-calendar" id="calendar-reserve4"></div> 
+                            <div id="calendar-citas"></div>
                         </div>
 
                         <button>Confirmar</button>
@@ -277,7 +225,11 @@
     <script src="Javascript/services.js"></script>
     <!-- Calendar -->
     <script src="Javascript/calendar-reserver.js"></script>
-    <script>generateCurrentMonthCalendar();
-</script>
+    <script>
+        containerCalendar('calendar-reserve1');
+        containerCalendar('calendar-reserve2');
+        containerCalendar('calendar-reserve3');
+        containerCalendar('calendar-reserve4');
+    </script>
 </body>
 </html>
