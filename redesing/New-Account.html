@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nueva cuenta</title>
-    <link rel="stylesheet" href="css/style-new-account.css">
+    <link rel="stylesheet" href="css/style-New-Account.css">
     <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
 </head>
+
 <body>
 
     <div class="container-background">
@@ -19,22 +20,22 @@
                     <div class="NameandLastname">
                         <div class="input-container">
                             <label>Nombre</label>
-                            <input type="text" name="nombre" required>
+                            <input type="text" name="nombre" required id="input-obligatorio">
                         </div>
 
                         <div class="input-container">
                             <label>Apellido</label>
-                            <input type="text" name="apellido" required>
+                            <input type="text" name="apellido" required id="input-obligatorio">
                         </div>
                     </div>
                     <label>Email</label>
-                    <input type="email" name="email" required>
+                    <input type="email" name="email" required id="input-obligatorio">
 
                     <label>Confirmar Email</label>
-                    <input type="email" name="emailC" required>
+                    <input type="email" name="emailC" required id="input-obligatorio">
 
                     <label>Dirección de residencia</label>
-                    <input type="text" name="addres" required>
+                    <input type="text" name="addres" required id="input-obligatorio">
 
                     <label for="location">Tipo de ubicación</label>
                     <select type="select" required>
@@ -56,8 +57,13 @@
                     </div>
                     <div class="buttons">
                         <div class="buttons-container">
+                            <div class="">
+                                <span class="button">Volver</span>
+                            </div>
+                            <div class="nextpet">
+                                <span class="button">Siguiente</span>
+                            </div>
 
-                            <input type="submit" class="nextpet" value="Siguiente">
                         </div>
                         <input type="submit" value="Salir">
                     </div>
@@ -70,14 +76,14 @@
                         </div>
                     </div>
                     <label for="gender">Genero</label>
-                    <select type="select" required>
+                    <select type="select" required> id="input-obligatorio"
                         <option value="" selected disabled>Selectiona el genero de tu mascota</option>
                         <option value="">Macho</option>
                         <option value="">Hembra</option>
                     </select>
 
                     <label for="gender">Especie</label>
-                    <select type="select" required>
+                    <select type="select" required id="input-obligatorio">
                         <option value="" selected disabled>Selectiona la especie</option>
                         <option value="">Perro</option>
                         <option value="">Gato</option>
@@ -91,7 +97,9 @@
                             <div class="return">
                                 <span class="button">Volver</span>
                             </div>
-                            <input type="submit" value="Siguiente">
+                            <div class="nextpet">
+                                <span class="button"><a href="login.html">Siguiente</a></span>
+                            </div>
                         </div>
                         <input type="reset" value="Guardar y agregar otra mascota">
                     </div>

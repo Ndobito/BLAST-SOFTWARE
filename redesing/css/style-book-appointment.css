@@ -269,78 +269,89 @@ header .header-top{
 }
 
 /* Calendar */
-
-.container-calendar{
-    width: 100%;
-    height: 50%;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-#calendar {
-    position: relative;
+/* Estilos generales para el calendario */
+.calendar {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #333;
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-}
-
-.slider-calendar {
-    display: flex;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    height: 50%;
-}
-
-.slide {
-    display: inline-block;
-    scroll-snap-align: center;
-    width: 100%;
-    padding: 0 10px;
-    height: 100%;
-}
-
-table {
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  /* Estilos para la cabecera de la tabla */
+  .calendar table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-.slider-calendar table th,
-.slider-calendar table td {
-    font-family: var(--font-2);
-    padding: 8px;
+    border-spacing: 0;
+  }
+  
+  .calendar th {
+    font-weight: 500;
     text-align: center;
-    color: var(--color-4);
-    background: var(--color-5);
-    border: 1px solid var(--color-7);
-}
-
-.slider-calendar table td:hover{
-    background: var(--color-4);
-    color: var(--color-5);
-}
-
-table caption {
-    font-family: var(--font-2);
-    font-size: 1rem;
-    color: var(--color-9);
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border: 1px solid var(--color-4);
-}
-
-table tr:nth-child(even) {
+    padding: 12px 0;
     background-color: #f2f2f2;
-}
-
-/* Information of Reserve */
-
-#container-info-reserve{
-    font-family: var(--font-1);
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
+    border-bottom: 2px solid #e0e0e0;
+  }
+  
+  /* Estilos para las celdas del calendario */
+  .calendar td {
+    text-align: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  /* Estilos para los días del mes */
+  .calendar td:not(:empty) {
+    position: relative;
+  }
+  
+  .calendar td:not(:empty)::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
+  
+  .calendar td:not(:empty) span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .calendar td:not(:empty):hover {
+    cursor: pointer;
+    background-color: #f2f2f2;
+  }
+  
+  .calendar td:not(:empty):hover span {
+    color: #fff;
+  }
+  
+  .calendar td:not(:empty):hover::before {
+    background-color: #4caf50;
+    opacity: 0.2;
+  }
+  
+  /* Estilos para los días de la semana */
+  .calendar td:first-child,
+  .calendar th:first-child {
+    border-left: none;
+  }
+  
+  .calendar td:last-child,
+  .calendar th:last-child {
+    border-right: none;
+  }
+  
 
 /* Footer */
 
@@ -545,45 +556,6 @@ footer{
     }
 
 
-    /* Service */
-
-    .container-services .cont-service .service{
-        width: 80%;
-        margin-left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .container-services .cont-service .service h1{
-        font-size: 30px;
-    }
-
-    .container-services .cont-service .service p{
-        font-size: 12px;
-    }
-
-    .container-services .cont-service .service button{
-        width: 60%;
-        margin-left: 30%;
-    }
-
-    /* Reserve */
-
-    .reserve{
-        width: 80%;
-        margin-left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .reserve p{
-        margin-left: 10%;
-    }
-
-    .container-services .cont-service .reserve button{
-        margin-left: 50%;
-        transform: translateX(-50%);
-        padding-left: 20%;
-        padding-right: 20%;
-    }
     /* Footer Top*/
 
     .footer-top{
@@ -660,12 +632,6 @@ footer{
         -moz-transform: translateX(100%);
         -ms-transform: translateX(100%);
         -o-transform: translateX(100%);
-    }
-
-    /* Container of the Information of Disponibylto of appointments */
-
-    #container-info-reserve{
-        padding: 0% 10% 0% 10%;
     }
 
     /* Footer Top*/
