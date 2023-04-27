@@ -21,82 +21,77 @@ function containerCalendar(container) {
   const calendarContainer = document.getElementById(container);
 
   for (let i = 0; i < months.length; i++) {
+    const slideContainer = document.createElement("div");
+    slideContainer.classList.add("slide");
+    calendarContainer.appendChild(slideContainer);
 
-  const slideContainer = document.createElement("div");
-  slideContainer.classList.add("slide");
-  calendarContainer.appendChild(slideContainer);
+    const table = document.createElement("table");
 
-  const table = document.createElement("table");
+    const caption = document.createElement("caption");
+    const captionText = document.createTextNode(months[i] + " " + year);
+    caption.appendChild(captionText);
+    table.appendChild(caption);
 
-  const caption = document.createElement("caption");
-  const captionText = document.createTextNode(months[i] + " " + year);
-  caption.appendChild(captionText);
-  table.appendChild(caption);
+    const daysOfWeekRow = document.createElement("tr");
 
-  const daysOfWeekRow = document.createElement("tr");
+    for (let j = 0; j < daysOfWeek.length; j++) {
+      const cell = document.createElement("th");
+      const dayOfWeekName = document.createTextNode(daysOfWeek[j]);
+      cell.appendChild(dayOfWeekName);
+      daysOfWeekRow.appendChild(cell);
+    }
 
-  for (let j = 0; j < daysOfWeek.length; j++) {
-    const cell = document.createElement("th");
-    const dayOfWeekName = document.createTextNode(daysOfWeek[j]);
-    cell.appendChild(dayOfWeekName);
-    daysOfWeekRow.appendChild(cell);
-  }
+    table.appendChild(daysOfWeekRow);
 
-  table.appendChild(daysOfWeekRow);
+    const daysInMonth = new Date(year, i + 1, 0).getDate();
+    const firstDayOfWeek = new Date(year, i, 1).getDay();
 
-  const daysInMonth = new Date(year, i + 1, 0).getDate();
-  const firstDayOfWeek = new Date(year, i, 1).getDay();
+    let date = 1;
+    for (let j = 0; j < 6; j++) {
+      const weekRow = document.createElement("tr");
 
-  let date = 1;
-  for (let j = 0; j < 6; j++) {
-    const weekRow = document.createElement("tr");
+      for (let k = 0; k < 7; k++) {
+        const cell = document.createElement("td");
 
-    for (let k = 0; k < 7; k++) {
-      const cell = document.createElement("td");
+        if (j === 0 && k < firstDayOfWeek || date > daysInMonth) {
+          const dayNumber = document.createTextNode("");
+          cell.appendChild(dayNumber);
+          if (cell == "") {
+            // Code
+          } else {
+            cell.classList.add(k);
+          }
+        } else {
+          const dayNumber = document.createTextNode(date);
+          cell.appendChild(dayNumber);
+          date++;
+        }
 
-      if (j === 0 && k < firstDayOfWeek || date > daysInMonth) {
-        const dayNumber = document.createTextNode("");
-                    cell.appendChild(dayNumber);
-      if(cell == ""){
-        // Code
-      }else{
-        cell.classList.add(k);
+        weekRow.appendChild(cell);
       }
 
-    } else {
-      const dayNumber = document.createTextNode(date);
-      cell.appendChild(dayNumber);
-      date++;
+      table.appendChild(weekRow);
     }
 
-    weekRow.appendChild(cell);
+    slideContainer.appendChild(table);
   }
 
-  table.appendChild(weekRow);
-}
+  //Calendar
+  
+  const calendarTables = calendarContainer.querySelectorAll('table');
+  calendarTables.forEach((table, index) => {
+    const cells = table.querySelectorAll('td');
+    cells.forEach(cell => {
+      cell.addEventListener('click', e => {
+        // obtener el número del calendario
+        const calendarNum = index+1;
 
-slideContainer.appendChild(table);
-}
+        // obtener el contenedor de información de reservas correspondiente
+        const reserveContainer = document.querySelector(`#container-info-reserve${calendarNum}`);
 
-} 
-
-// Event Calendar
-
-const td = document.getElementsByTagName("td");
-
-
-
-
-
-let calendarCitas = document.getElementById("container-info-reserve1");
-
-for (let z = 0; z < td.length; z++) {
-  td[z].addEventListener("click", () => {
-    if(td[z].textContent === ""){
-      calendarCitas.innerHTML = "";
-    }
-    else{
-      calendarCitas.innerHTML= "No tienes ninguna cita registrada";
-    }
+        // agregar texto al contenedor
+        reserveContainer.innerHTML = 'Información de reserva aquí';
+      });
+    });
   });
 }
