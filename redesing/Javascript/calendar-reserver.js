@@ -79,18 +79,29 @@ function containerCalendar(container) {
   //Calendar
   
   const calendarTables = calendarContainer.querySelectorAll('table');
+  const citas = document.querySelectorAll(".service");
+  
+  let hola = citas.parentElement;
+  console.log(hola);
+  
+  
   calendarTables.forEach((table, index) => {
     const cells = table.querySelectorAll('td');
     cells.forEach(cell => {
       cell.addEventListener('click', e => {
-        // obtener el número del calendario
-        const calendarNum = index+1;
+        
 
-        // obtener el contenedor de información de reservas correspondiente
-        const reserveContainer = document.querySelector(`#container-info-reserve${calendarNum}`);
+        const calendarNum = index;
+        let panel = e.target;
+        
+        let panel2 = document.querySelectorAll(".citas");
 
-        // agregar texto al contenedor
-        reserveContainer.innerHTML = 'Información de reserva aquí';
+        console.log(panel2);
+
+        if(panel2.parentNode == ".citas"){
+          console.log("Siuuuu"); 
+        }
+
       });
     });
   });
