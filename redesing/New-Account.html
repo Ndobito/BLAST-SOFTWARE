@@ -11,58 +11,100 @@
 </head>
 
 <body>
+
     <div class="container-background">
         <div class="container-form">
             <h2>Crear cuenta</h2>
             <form>
-                <div class="NameandLastname">
-                    <div class="input-container">
-                        <label>Nombre</label>
-                        <input type="text" name="nombre" required>
-                    </div>
+                <div id="parent-container-form-user">
+                    <div class="NameandLastname">
+                        <div class="input-container">
+                            <label>Nombre</label>
+                            <input type="text" name="nombre" required>
+                        </div>
 
-                    <div class="input-container">
-                        <label>Apellido</label>
-                        <input type="text" name="apellido" required>
+                        <div class="input-container">
+                            <label>Apellido</label>
+                            <input type="text" name="apellido" required>
+                        </div>
+                    </div>
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+
+                    <label>Confirmar Email</label>
+                    <input type="email" name="emailC" required>
+
+                    <label>Dirección de residencia</label>
+                    <input type="text" name="addres" required>
+
+                    <label for="location">Tipo de ubicación</label>
+                    <select type="select" required>
+                        <option value="" selected disabled>Selectiona el tipo de ubicación</option>
+                        <option value="">Rural</option>
+                        <option value="">Urbano</option>
+                    </select>
+
+                    <div class="numbers">
+                        <div class="input-container">
+                            <label>Numero de celular</label>
+                            <input type="number" name="tel" required>
+                        </div>
+
+                        <div class="input-container">
+                            <label>Numero de celular 2</label>
+                            <input type="number" name="tel2">
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <div class="buttons-container">
+
+                            <input type="submit" class="nextpet" value="Siguiente">
+                        </div>
+                        <input type="submit" value="Salir">
                     </div>
                 </div>
-                <label>Email</label>
-                <input type="email" name="email" required>
-
-                <label>Confirmar Email</label>
-                <input type="email" name="emailC" required>
-
-                <label>Dirección de residencia</label>
-                <input type="text" name="addres" required>
-
-                <label for="location">Tipo de ubicación</label>
-                <select type="select" required>
-                    <option value="urbano" selected disabled>Selectiona el tipo de ubicación</option>
-                    <option value="rural">Rural</option>
-                    <option value="urbano">Urbano</option>  
-                </select>
-
-                <div class="numbers">
-                    <div class="input-container">
-                        <label>Numero de celular</label>
-                        <input type="number" name="tel" required>
+                <div id="parent-container-form-pet" style="display: none;">
+                    <div class="NameandLastname">
+                        <div class="input-container">
+                            <label>Mascota</label>
+                            <input type="text" name="nombre" required placeholder="Nombre de tu mascota">
+                        </div>
                     </div>
+                    <label for="gender">Genero</label>
+                    <select type="select" required>
+                        <option value="" selected disabled>Selectiona el genero de tu mascota</option>
+                        <option value="">Macho</option>
+                        <option value="">Hembra</option>
+                    </select>
 
-                    <div class="input-container">
-                        <label>Numero de celular 2</label>
-                        <input type="number" name="tel2">
+                    <label for="gender">Especie</label>
+                    <select type="select" required>
+                        <option value="" selected disabled>Selectiona la especie</option>
+                        <option value="">Perro</option>
+                        <option value="">Gato</option>
+                        <option value="">Bovino</option>
+                        <option value="">Equino</option>
+                        <option value="">Porcion</option>
+                        <option value="">Ave</option>
+                    </select>
+                    <div class="buttons">
+                        <div class="buttons-container">
+                            <div class="return">
+                                <span class="button">Volver</span>
+                            </div>
+                            <input type="submit" value="Siguiente">
+                        </div>
+                        <input type="reset" value="Guardar y agregar otra mascota">
                     </div>
-                </div>
-                <div class="buttons">
-                    <div class="buttons-container">
-                        <input type="submit" value="Volver">
-                        <input type="submit" value="Siguiente">
-                    </div>
-                    <input type="submit" value="Salir">
                 </div>
             </form>
         </div>
     </div>
+    </div>
+
+
+    <script src="Javascript/New-Account.js">
+    </script>
     <!--Font Awesome-->
     <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous">
     </script>
