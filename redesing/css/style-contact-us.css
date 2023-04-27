@@ -449,51 +449,13 @@ input[type="number"]::-webkit-outer-spin-button {
   z-index: 5;
 }
 
-<<<<<<< HEAD
-    .modal {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-      padding: 20px;
-      background-color: #83DFFD;
-      border-radius: 10px;      
-      text-align: center;
-      font-family: var(--font-1);
-      color: var(--color-6);
-      z-index: 10;
-      transition:  0.5s;
-    }
-      .close{
-        background-color: var(--color-6);
-        color: #FFFFFF;
-        font-size: 15px;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        margin-top: 25px;
-        cursor: pointer;
-        transition: all 3s;
-        }
-        .opacidad {
-          position : fixed ;
-          top :0 ;
-          left :0 ;
-          right :0 ;
-          bottom :0 ;
-          background-color : var(--color-11) ;
-          z-index :5 ;
-        }
-        
-=======
->>>>>>> 5e6e194b302a5129d0b74e2e1afdacba41f3e6f7
 /* responsive measures */
 
 @media (min-width: 1025px) {
-  .cont-contact {
+  .cont-contact,
+  iframe {
     width: 100%;
   }
-
   .telefono-info,
   .direccion-info {
     width: 100%;
@@ -654,46 +616,6 @@ footer{
 
   /* Button Register */
   
-<<<<<<< HEAD
-    @media (min-width:769px) and (max-width:1024px) {
-      .img-and-text {
-        background-position: center;
-      }
-      .cont-contact-text {
-        width: 100%;
-        padding: 20px;
-      }
-      .title-container{
-        text-align: center;
-      }
-      .telefono-info,.direccion-info{
-        width: 50%;
-      }
-      .cont-contact, iframe{
-        width: 100%;
-      }
-    }
-    
-    @media (min-width:320px) and (max-width:768px){
-      .img-and-text {
-        background-position: right;
-      }
-      .cont-contact-text {
-        flex-direction: column;
-        width: 100%;
-        padding: 20px;
-      }
-      .title-container{
-        text-align: center;
-      }
-      .contact-info{
-        gap: 50px; 
-      }
-      .telefono-info,.direccion-info{
-        width: 50%;
-      }
-  }
-=======
   .button-register button{
       background: var(--color-9);
       padding: 8px;
@@ -1170,4 +1092,3 @@ footer{
   }
 
 }
->>>>>>> 5e6e194b302a5129d0b74e2e1afdacba41f3e6f7
