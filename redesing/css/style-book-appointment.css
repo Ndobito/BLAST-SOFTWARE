@@ -325,63 +325,7 @@ footer{
         font-size: 13px;
     }
 
-    /* Hero */
-
-    .hero .hero-text h1{
-        font-size: 30px;
-    }
-    .hero .hero-text p{
-        font-size: 18px;
-    }
     
-    /* Know-us and Location*/
-
-    .know-us{
-        height: 90vh;
-    }
-
-    .know-us .container-know-us > div h1, .location .container-location > div h1{
-        font-size: 35px;
-    }
-
-    .know-us .container-know-us > div p{
-        font-size: 18px;
-    }
-
-    /* Location */
-
-    .location .container-location .location-map .header-map h1{
-        font-size: 25px;
-    }
-
-    .location .container-location .location-map .header-map p{
-        font-size: 15px;
-        margin-left: 20px;
-    }
-
-    /* Frequnet Questions */
-
-    .img-question{
-        height: 300px;
-    }
-
-    .img-question > div:nth-child(1){
-        width: 900px;
-        transform: rotate(-8deg) translateX(-15px) translateY(-140px);
-        -webkit-transform: rotate(-8deg) translateX(-15px) translateY(-140px);
-        -moz-transform: rotate(-8deg) translateX(-15px) translateY(-140px);
-        -ms-transform: rotate(-8deg) translateX(-15px) translateY(-140px);
-        -o-transform: rotate(-8deg) translateX(-15px) translateY(-140px);
-    }
-
-    .img-question > div:nth-child(2){
-        top: 20px;
-        left: 30px;
-    }
-
-    .img-question > div:nth-child(2) h1{
-        font-size: 20px;
-    }
 
     /* Footer */
     
@@ -399,7 +343,7 @@ footer{
 }
 /*  */
 @media (min-width:769px) {
-    /* Header */
+   /* Header */
 
     /* Haader Top */
     .header-top .button-register{
@@ -409,8 +353,6 @@ footer{
     .header-top .button-register i{
         margin-right: 5px;
     }
-
-    /* Header Bottom */
 
     /* Logo */
 
@@ -423,7 +365,11 @@ footer{
     .header-bottom .nav{
         display: block;
         width: 60%;
-        margin-right: 0.1rem;
+        transform: translateX(-30px);
+        -webkit-transform: translateX(-30px);
+        -moz-transform: translateX(-30px);
+        -ms-transform: translateX(-30px);
+        -o-transform: translateX(-30px);
     }
 
     .header-bottom .nav ul{
@@ -454,104 +400,6 @@ footer{
         display: none;
     }
 
-    /* Hero */
-
-    .hero .hero-text{
-        width: 40%;
-    }
-
-    /* Know Us and Location */
-
-    .know-us > .container-know-us, .location .container-location{
-        display: grid;
-        grid-template-columns:  30% 70%;
-        grid-template-rows: 100%;
-    }
-    .know-us .container-know-us > div:nth-child(1), .know-us .container-know-us > div:nth-child(2){
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-    }
-
-    .location .container-location > div:nth-child(1),  .location .container-location > div:nth-child(2){
-        height: 100%;
-        position: relative;
-    }
-
-    .container-location .header-map, .container-location .map {
-        width: 1005;
-    }
-
-    .know-us .container-know-us > div:nth-child(1) h1{
-        position: absolute;
-        top: 20%;
-        right: 10%;
-
-    }
-
-    .location .container-location > div:nth-child(1) h1{
-        position: absolute;
-        top: 30%;
-    }
-    
-    .location .container-location .location-map .header-map h1{
-        margin-top: 20px;
-    }
-
-    .location .container-location .location-map .header-map p:nth-child(2){
-        margin-top: 20px;
-    }
-    
-    .container-location .header-map hr{
-        height: 2px;
-        margin-top: 30px;
-        background: black;
-        width: 80%;
-        margin-left: 10%;
-    }
-    .know-us .container-know-us > div p span {
-        display: block;
-        color: black;
-    }
-    
-    /* Frequent Question */
-    
-    .img-question{
-        height: 400px;
-    }
-
-    .img-question > div:nth-child(1){
-        width: 1100px;
-        transform: rotate(-5deg) translateX(-15px) translateY(-140px);
-        -webkit-transform: rotate(-5deg) translateX(-15px) translateY(-140px);
-        -moz-transform: rotate(-5deg) translateX(-15px) translateY(-140px);
-        -ms-transform: rotate(-5deg) translateX(-15px) translateY(-140px);
-        -o-transform: rotate(-5deg) translateX(-15px) translateY(-140px);
-}
-
-    .img-question > div:nth-child(2){
-        top: 20px;
-        left: 30px;
-    }
-
-    .img-question > div:nth-child(2) h1{
-        font-size: 25px;
-    }
-
-    /* Accordeon */
-
-    .container-accordion-slide .question{
-        font-size: 20px;
-    }
-
-    .container-accordion-slide .answer{
-        text-align: left;
-        padding-left: 50px;
-        font-family: var(--font-1);
-        font-size: 15px;
-    }
 
     /* Footer Top*/
 
@@ -578,116 +426,57 @@ footer{
     /* Header Top */
 
     .header-top{
-        height: 100px;
+        height: 50px;
     }
 
     /* Social Networks */
 
     .header-top .social-networks{
-        font-size: 30px;
-        gap: 40px;
+        font-size: 20px;
+        gap: 20px;
+        transform: translateX(50px);
+        -webkit-transform: translateX(50px);
+        -moz-transform: translateX(50px);
+        -ms-transform: translateX(50px);
+        -o-transform: translateX(50px);
     }
 
     /* Search bar */
-    
+
     .header-top .search-bar div form input{
         height: 50%;
-        width: 70%;
+        width: 60%;
         padding: 15px 15px 15px 15px;
     }
 
     .header-top .search-bar i{
-        width: 40px;
-        height: 40px;
-        right: 15%;
+        width: 30px;
+        height: 30px;
+        right: 20%;
     }
 
     /* Button Register */
 
     .button-register button{
         width: 100%;
-        padding: 12px;
-        font-size: 30px;
-        margin-right: 40px;
+        padding: 10px;
+        font-size: 15px;
+        transform: translateX(-50px);
+        -webkit-transform: translateX(-50px);
+        -moz-transform: translateX(-50px);
+        -ms-transform: translateX(-50px);
+        -o-transform: translateX(-50px);
     }
-    
+
     /* Header Bottom */
 
     .header-bottom .container-logo img {
-        width: 50%;
-        transform: translateX(50%);
-        -webkit-transform: translateX(50%);
-        -moz-transform: translateX(50%);
-        -ms-transform: translateX(50%);
-        -o-transform: translateX(50%);
-    }
-
-    
-
-    /* Frequnet Questions */
-
-    .img-question{
-        height: 400px;
-    }
-
-    .img-question > div:nth-child(1){
-        width: 1500px;
-        transform: rotate(-4.5deg) translateX(-15px) translateY(-140px);
-        -webkit-transform: rotate(-4.5deg) translateX(-15px) translateY(-140px);
-        -moz-transform: rotate(-4.5deg) translateX(-15px) translateY(-140px);
-        -ms-transform: rotate(-4.5deg) translateX(-15px) translateY(-140px);
-        -o-transform: rotate(-4.5deg) translateX(-15px) translateY(-140px);
-}
-
-    .img-question > div:nth-child(2){
-        top: 25px;
-        left: 30px;
-    }
-
-    .img-question > div:nth-child(2) h1{
-        font-size: 30px;
-    }
-
-    /* Frequent Questions */
-    
-    .frequent-question{
-        display: flex;
-        justify-content: space-between;
-        padding-right: 20px;
-        gap: 20px;
-        border-top: 2px solid var(--color-1);
-    }
-
-    .img-question{
-        width: 100%;
-        height: 400px;
-        border-radius: 0 0 20px ;
-        -webkit-border-radius: 0 0 20px ;
-        -moz-border-radius: 0 0 20px ;
-        -ms-border-radius: 0 0 20px ;
-        -o-border-radius: 0 0 20px ;
-}
-    .img-question > div:nth-child(1){
-        width: 1400px;
-        transform: rotate(-5deg) translateX(-100px) translateY(-100px);
-        -webkit-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
-        -moz-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
-        -ms-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
-        -o-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
-    }
-
-    /* Accordion */
-
-    .question h1{
-        font-size: 22px;
-    }
-
-    .question i{
-        transform: scale(1.5);
-        -webkit-transform: scale(1.5);
-        -moz-transform: scale(1.5);
-        -ms-transform: scale(1.5);
-        -o-transform: scale(1.5);
+        width: 25%;
+        transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+        -moz-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+        -o-transform: translateX(100%);
     }
 
     /* Footer Top*/
@@ -696,10 +485,12 @@ footer{
         display: grid;
         grid-template-columns: repeat(4, 1fr);
     }
+
     .footer-contain{
         border-bottom: none;
         padding-left: 50px;
     }
+
     .footer-contain:nth-child(2), .footer-contain:nth-child(3), .footer-contain:nth-child(4){
         border-left: 2px solid var(--color-4);
     }
@@ -714,7 +505,7 @@ footer{
 
     .footer-bottom p:nth-child(2){
         margin-left: 25%;
-}
+    }
 
     .footer-bottom p:nth-child(2) img{
         width: 50px;
@@ -727,8 +518,9 @@ footer{
     /* Header */
 
     /* Header Top */
+    
     .header-top{
-        height: 150px;
+        height: 60px;
     }
     .header-top .search-bar div form input{
         width: 40%;
@@ -738,18 +530,18 @@ footer{
 
     .header-top .search-bar div form i{
         right: 30%;
-        width: 65px;
-        height: 65px;
+        width: 40px;
+        height: 40px;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 30px;
+        font-size: 20px;
     }
 
     /* Header Bottom */
 
     .header-bottom .container-logo img{
-        width: 60%;
+        width: 30%;
     }
 
     .header-bottom .nav ul{
@@ -760,117 +552,8 @@ footer{
         font-size: 30px;
     }
 
-    /* Hero */
-
-    .hero .hero-text h1{
-        font-size: 100px;
-    }
-
-    .hero .hero-text p{
-        font-size: 50px;
-    }
-
-    /* Cards */
-    .container-cards{ 
-        padding-top: 20vh;
-        padding-bottom: 20vh;
-        gap: 30px;
-    }
-
-    .card{
-        width: 400px;
-        height: 600px;
-    }
-    
-    .body-card-front h1{
-        font-size: 40px;
-    }
-
-    .body-card-back h1{     
-        font-size: 45px;
-    }
-
-    .body-card-back a button{
-        left: 15%;
-        bottom: 30%;
-        font-size: 20px;
-}
-   
-
-    /* Know us and Location*/
-
-    .know-us .container-know-us > div:nth-child(1) h1, .location .container-location > div:nth-child(1) h1{
-        font-size: 60px;
-    }
-
-    .know-us .container-know-us > div p{
-        font-size: 25px;
-    }
-
-    /* Location */
-    
-    .location .container-location .location-map .header-map h1{
-        font-size: 40px;
-    }
-
-    .location .container-location .location-map .header-map p{
-        font-size: 25px;
-    }
-
-    .location .container-location .location-map .map{
-        width: 80%;
-        margin-left: 10%;
-    }
-
-     /* Frequent Questions */
-    
-     .frequent-question{
-        display: flex;
-        justify-content: space-between;
-        padding-right: 20px;
-        gap: 20px;
-        border-top: 2px solid var(--color-1);
-        margin-bottom: 100px;
-    }
-
-    .img-question{
-        width: 80%;
-        height: 500px;
-        border-radius: 0 0 20px ;
-        -webkit-border-radius: 0 0 20px ;
-        -moz-border-radius: 0 0 20px ;
-        -ms-border-radius: 0 0 20px ;
-        -o-border-radius: 0 0 20px ;
-}
-    .img-question > div:nth-child(1){
-        width: 1400px;
-        transform: rotate(-5deg) translateX(-100px) translateY(-100px);
-        -webkit-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
-        -moz-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
-        -ms-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
-        -o-transform: rotate(-5deg) translateX(-100px) translateY(-100px);
-    }
-
-    /* Accordion */
-
-    .question h1{
-        font-size: 22px;
-    }
-
-    .question i{
-        transform: scale(1.5);
-        -webkit-transform: scale(1.5);
-        -moz-transform: scale(1.5);
-        -ms-transform: scale(1.5);
-        -o-transform: scale(1.5);
-    }
-
 }
 
 @media (min-width:1880px){
-    /* Know us and Location*/
-
-    .know-us .container-know-us > div p{
-        font-size: 32px;
-    }
+    
 }

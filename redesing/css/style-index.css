@@ -893,7 +893,7 @@ footer{
         margin-left: 0;
     }
 }
-/*  */
+
 @media (min-width:769px) {
     /* Header */
 
@@ -1217,6 +1217,10 @@ footer{
         padding: 20px 0px 20px 0px;
     }
 
+    .footer-bottom p:nth-child(1) img{
+        margin-left: 20px;
+    }
+
     .footer-bottom p:nth-child(2){
         margin-left: 25%;
 }
@@ -1224,7 +1228,7 @@ footer{
     .footer-bottom p:nth-child(2) img{
         width: 50px;
         height: 50px;
-        margin-left: 30px;
+        margin-left: 20px;
     }
 }
 
