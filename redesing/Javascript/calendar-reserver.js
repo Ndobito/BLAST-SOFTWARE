@@ -1,13 +1,4 @@
 function containerCalendar(container) {
-
-  if (container.textContent == "") {
-    
-  }else{
-    
-
-  }
-  
-
   const year = new Date().getFullYear();
 
   const months = [
@@ -84,8 +75,5 @@ function containerCalendar(container) {
 
     slideContainer.appendChild(table);
   }
-
-  //Calendar
-  
   
 }

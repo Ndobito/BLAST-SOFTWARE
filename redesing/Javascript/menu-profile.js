@@ -1,4 +1,3 @@
-
 const container1 = document.getElementById("container-right");
 const container2 = document.getElementById("container-right2");
 const container3 = document.getElementById("container-right3");
