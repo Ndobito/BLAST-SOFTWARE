@@ -3,7 +3,8 @@
 class databaseConexion {
     public static function conexion(){
         try{
-            $db = "mysqli:host=localhost;dbname=";
+            //Variables que contiene host, nombre de la base de datos usuario y contraseña
+            $db = "mysqli:host=localhost;dbname=veterinaria";
             $u = "root"; 
             $p = ""; 
             $con = new PDO($db,$u,$p);
