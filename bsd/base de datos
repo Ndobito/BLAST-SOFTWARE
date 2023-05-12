@@ -1,0 +1,188 @@
+DROP DATABASE IF EXISTS veterinaria; 
+CREATE DATABASE veterinaria;
+USE veterinaria;
+
+CREATE TABLE mascota(
+    idmas INT NOT NULL AUTO_INCREMENT COMMENT 'id de la mascota' PRIMARY KEY,
+    nombremas VARCHAR(50) NOT NULL COMMENT 'Nombre de la mascota',
+    edadmas DATE NOT NULL COMMENT 'edad de la mascota',
+    especiemas VARCHAR(50) NOT NULL COMMENT 'especie de la mascota',
+    generomas VARCHAR(10) NOT NULL COMMENT 'sexo de la mascota',
+    vacunamas VARCHAR(255) NOT NULL COMMENT 'vacunas de las mascotas',
+    tiposangremas VARCHAR(5) NOT NULL COMMENT 'tipo de sangre de la mascota rul',
+    idcit INT(11) NOT NULL COMMENT 'fk id que tomara la cita',
+    FOREIGN KEY (idcit) REFERENCES cita(idcit),
+    idcli INT(50) NOT NULL COMMENT 'fk identificador del cliente',
+    FOREIGN KEY (idcli) REFERENCES cliente(idcli),
+    numdia INT COMMENT 'fk NUMERO DE DIAGNOSTICO',
+    FOREIGN KEY (numdia) REFERENCES diagnostico(numdia)
+);
+
+
+CREATE TABLE empresaveterinaria (
+    numcomercioemp VARCHAR(100) NOT NULL PRIMARY KEY COMMENT 'numero del 
+    registro de la camara de comercio brindado para su identificacion',
+    nombreemp VARCHAR(50) NOT NULL COMMENT 'Nombre empresa',
+    direccionemp VARCHAR(50) NOT NULL COMMENT 'direccion de la empresa' ,
+    horaservicioemp  VARCHAR(50) NOT NULL COMMENT 'horario de atencion de la empresa',
+    telefonoemp VARCHAR(20) NOT NULL COMMENT ' numero del telefono celular de la empresa',
+    areaservicioemp VARCHAR(50) NOT NULL COMMENT 'Area donde se van a empeñar las labores veterinarias',
+    nitrupemp INT(15) NOT NULL COMMENT 'codigo unico de la empresa',
+    idpro INT(11) NOT NULL COMMENT 'FK Id que se le dara al producto',
+    FOREIGN KEY (idpro) REFERENCES producto(idpro),
+    idpersonal INT NOT NULL  COMMENT 'FK id que se le dara al personal',
+    FOREIGN KEY (idpersonal) REFERENCES personal(idper),
+    idcli INT(50) NOT NULL COMMENT 'FK identificador del cliente',
+    FOREIGN KEY (idcli) REFERENCES cliente(idcli)
+);
+
+CREATE TABLE cliente (
+    idcli INT(50) NOT NULL AUTO_INCREMENT COMMENT 'identificador del cliente' PRIMARY KEY,
+    nombrecli VARCHAR(50) NOT NULL COMMENT 'nombre de la persona que lleva la mascota',
+    correocli VARCHAR(100) NOT NULL COMMENT 'correo electronico del cliente',
+    direccioncli VARCHAR(100) NOT NULL COMMENT 'direccion de la vivienda del cliente',
+    telefonocli VARCHAR(50) NOT NULL COMMENT 'numero telefonico del cliente',
+    idmas INT NOT NULL COMMENT 'fk id de las mascota',
+    FOREIGN KEY (idmas) REFERENCES mascota(idmas)
+);
+
+CREATE TABLE diagnostico (
+    numdia INT PRIMARY KEY COMMENT 'NUEMERO DE DIAGOSTICO',
+    nombremascotadia VARCHAR(50) NOT NULL COMMENT 'NOMBRE DE LA MASCOTA',
+    tipodia VARCHAR(250) NOT NULL COMMENT ' EL DIAGNOSTICO QUE DA EL DOCTOR ',
+    fechadia DATE NOT NULL COMMENT 'EL DIA QUE SE REALIZO EL DIAGNOSTICO',
+    lugardia VARCHAR(50) NOT NULL COMMENT 'LUGAR DONDE SE REALIZO EL DIAGNOSTICO',
+    areaevaluadadia VARCHAR(255) NOT NULL COMMENT 'SE ESPECIFICA QUE AREA FUE EVALUADA',
+    nhistorialclinico INT NOT NULL COMMENT 'NUMERO DEL HISTORIAL CLINICO',
+    FOREIGN KEY (nhistorialclinico) REFERENCES historial(nhistorialclinico)
+);
+
+CREATE TABLE personal (
+    idper INT AUTO_INCREMENT  NOT NULL  COMMENT 'id que se le dara al personal' PRIMARY KEY,
+    nombreper VARCHAR(50) NOT NULL  COMMENT 'nombre del personal',
+    apellidosper VARCHAR(50) NOT NULL  COMMENT 'apellidos del personal',
+    contratoper VARCHAR(255) NOT NULL  COMMENT 'contrato establecido con el presonal ruta url del Dirve donde este se encutre',
+    documentoper INT(11) NOT NULL  COMMENT 'documento de identificación del personal',
+    direccionper VARCHAR(25) NOT NULL  COMMENT 'dirección de la residencia del empleado',
+    telefonoper VARCHAR(20) NOT NULL  COMMENT 'numero de telefono del personal',
+    rol VARCHAR(50) NOT NULL  COMMENT 'rol del personal'
+);
+
+
+CREATE TABLE cirugia (
+    idcir INT NOT NULL PRIMARY KEY COMMENT 'id de la cirugia',                          
+    nombreper VARCHAR(50) NOT NULL  COMMENT 'nombre de la cirugia',
+    especiecir VARCHAR(50) NOT NULL  COMMENT 'especie la cual aplica la cirugia',
+    documentacioncir VARCHAR(255)  NOT NULL COMMENT 'docuemtos requeridos para la cirugia',
+    numdia INT COMMENT 'fk NUMERO DE DIAGNOSTICO',
+    FOREIGN KEY (numdia) REFERENCES diagnostico(numdia),
+    idmas INT NOT NULL COMMENT 'fk id de las mascota',
+    FOREIGN KEY (idmas) REFERENCES mascota(idmas),
+    nhistorialclinico INT NOT NULL COMMENT 'FK NUMERO DEL HISTORIAL CLINICO',
+    FOREIGN KEY (nhistorialclinico) REFERENCES historial(nhistorialclinico)
+);
+
+CREATE TABLE ventas (
+    idven INT NOT NULL COMMENT 'id de la venta' PRIMARY KEY,
+    cantidadven INT NOT NULL COMMENT 'NUMERO DE PRODUCTO QUE SE VAN A ADQUIRIR',
+    claseventa VARCHAR (255) NOT NULL COMMENT 'TIPO DE PRODUCTOS ADQUIRIDOS',
+    idpro INT(11) NOT NULL COMMENT 'fk Id del producto',
+    FOREIGN KEY (idpro) REFERENCES producto(idpro)
+);
+
+CREATE TABLE inventario (
+    idinv INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'id Que se le dara al inventario',
+    stockinv VARCHAR(255) NOT NULL COMMENT 'es el stock que tendra el inventario',
+    registroinv VARCHAR(50) NOT NULL COMMENT 'registro que tendra el inventario ',
+    actualizacioninv VARCHAR(255) NOT NULL COMMENT 'la actualizacion que se le hara previamente',
+    idpro INT(11) NOT NULL COMMENT 'fk Id del producto',
+    FOREIGN KEY (idpro) REFERENCES producto(idpro),
+    idprov VARCHAR (50) NOT NULL COMMENT 'fk ID QUE SE LE IDENTIFICARA AL PROVEEDOR',
+    FOREIGN KEY (idprov) REFERENCES proveedor(idprov)
+);
+
+CREATE TABLE producto (
+    idpro INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'Id del producto ',
+    fechaelaboracionpro DATE NOT NULL COMMENT 'Es la fecha en que fue creado el producto',
+    laboratoriopro VARCHAR(50) NOT NULL COMMENT 'Laboratorio donde fue creado el producto',
+    nomcomercialpro VARCHAR(50) NOT NULL COMMENT 'Nombre el cual tiene el producto a comercializar',
+    origenpro VARCHAR(255) NOT NULL COMMENT 'Origen de donde proviene',
+    fechavencimientopro DATE NOT NULL COMMENT 'fecha en el cual expide el producto',
+    cantidadpro INT(50) NOT NULL COMMENT 'cantidad del prodcto';
+    categoriapro VARCHAR(50) NOT NULL COMMENT 'Origen de donde proviene',
+    idprov VARCHAR (50) NOT NULL COMMENT 'fk ID QUE SE LE IDENTIFICARA AL PROVEEDOR',
+    FOREIGN KEY (idprov) REFERENCES proveedor(idprov),
+    idven INT NOT NULL COMMENT 'FK id de la venta',
+    FOREIGN KEY (idven) REFERENCES venta(idven),
+    idinv INT(11) NOT NULL COMMENT 'fk id Que se le dara al inventario',
+    FOREIGN KEY (idinv) REFERENCES inventario(idinv)
+);
+
+CREATE TABLE historial (
+    numhis INT NOT NULL PRIMARY KEY COMMENT 'NUMERO DEL HISTORIAL CLINICO',
+    datospacientehis VARCHAR (255) NOT NULL COMMENT 'DATOS O HISTORIAL CLINICA DE LA MASCOTA',
+    datospropietariohis VARCHAR (255) NOT NULL COMMENT 'INFORMACION DEL DUEÑO DE LA MASCOTAS',
+    dnihis VARCHAR (50) NOT NULL COMMENT 'DNI DE EL HISTORIAL',
+    componenteshis VARCHAR (255) NOT NULL COMMENT 'FECHAS DE ACTUALIZACION DEL HISTORIAL',
+    diagnosticohis VARCHAR (255) NOT NULL COMMENT 'EL DIAGNOSTICO DEL DOCTOR',
+    numdia INT COMMENT 'fk NUMERO DE DIAGNOSTICO',
+    FOREIGN KEY (numdia) REFERENCES diagnostico(numdia),
+    idcir INT NOT NULL COMMENT 'fk id de la cirugia',
+    FOREIGN KEY (idcir) REFERENCES cirugia(idcir),
+    idcit INT(11) NOT NULL COMMENT 'fk id que tomara la cita',
+    FOREIGN KEY (idcit) REFERENCES cita(idcit),
+    idmas INT NOT NULL COMMENT 'fk id de las mascota',
+    FOREIGN KEY (idmas) REFERENCES mascota(idmas)
+);
+
+CREATE TABLE factura (
+    numfac INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'Numero de factura',
+    formapagofac VARCHAR(50) NOT NULL COMMENT 'forma de pago en efectivo o tarjeta',
+    nombreclifac VARCHAR(50) NOT NULL COMMENT 'nombre y apellidos del cliente',
+    numeroNITfac VARCHAR(50) NOT NULL COMMENT 'identificador',
+    fechaexpedicionfac VARCHAR(50) NOT NULL COMMENT 'fecha del dia que se realizo la factura',
+    resolucionfac VARCHAR(50) NOT NULL COMMENT 'autorizacion',
+    descripcionfac VARCHAR(50) NOT NULL COMMENT 'nombre de el o los productos adquiridos',
+    codigocufefac VARCHAR(11) NOT NULL COMMENT 'codigo de validez de factura',
+    retenedorimpuestofac VARCHAR(15) NOT NULL COMMENT 'retencion en la fuente del impuesto sobre las ventas',
+    idpro INT(11) NOT NULL COMMENT 'fk ID que se le dara al producto',
+    FOREIGN KEY (idpro) REFERENCES producto(idpro),
+    idven INT NOT NULL COMMENT 'FK NUMERO DEL PRODUCTO',
+    FOREIGN KEY (idven) REFERENCES venta(idven)
+);
+
+
+CREATE TABLE login (
+    idlog INT NOT NULL COMMENT 'ID QUE SE LE DARA A LA PERSONA PARA SER IDENTIFICADA' PRIMARY KEY,
+    usuariolog VARCHAR (255) NOT NULL COMMENT 'NOMBRE DE QUIEN CREO LA CUENTA',
+    fechalog DATE NOT NULL COMMENT 'FECHA DE CREACION DEL PERFIL',
+    fechaactuallog DATE NOT NULL COMMENT 'FECHA ACTUAL DEL PERFIL',
+    actividadrealizadalog VARCHAR(255) NOT NULL COMMENT 'ACTIVIDAD QUE SE REALIZO EN EL PERFIL',
+    idcli INT(50) NOT NULL COMMENT 'fk identificador del cliente',
+    FOREIGN KEY (idcli) REFERENCES cliente(idcli),
+    numcomercioemp VARCHAR(100) NOT NULL COMMENT 'fk numero del 
+    registro de la camara de comercio brindado para su identificacion',
+    FOREIGN KEY (numcomercioemp) REFERENCES empresaveterinaria(numcomercioemp)
+);
+
+CREATE TABLE proveedor (
+    idprov INT AUTO_INCREMENT NOT NULL COMMENT 'ID QUE SE LE IDENTIFICARA AL PROVEEDOR' PRIMARY KEY,
+    dniprov INT(11) NOT NULL COMMENT 'DOCUMENTO DE IDENTIFICACION DEL PROVEEDOR',
+    nombreprov VARCHAR (50) NOT NULL COMMENT 'NOMBRE DELPROVEEDOR',
+    apellidoprov VARCHAR (50) NOT NULL COMMENT 'APELLIDO DEL PROVEEDOR',
+    direccionprov VARCHAR (255) NOT NULL COMMENT 'DIRECCION DONDE ESTA UBICADO EL PROVEEDOR',
+    telefonoprov VARCHAR (20) NOT NULL COMMENT 'TELEFONO DEL PROVEEDOR'
+);
+
+CREATE TABLE cita (
+    idcit INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'id que tomara la cita',
+    fechacit DATE NOT NULL COMMENT 'Fecha que se realizara la cita',
+    nidentificacioncit INT(11) NOT NULL COMMENT 'numero de identificacion de la cita',
+    lugarcit VARCHAR(25) NOT NULL COMMENT 'Lugar donde se realiza la cita',
+    tiposerviciocit VARCHAR(255) NOT NULL COMMENT 'Tipo de servicio que se realiazara',
+    asignarmedicocit VARCHAR(50) NOT NULL COMMENT 'Cual fue el medico asignado',
+    idcli INT(50) NOT NULL COMMENT 'fk identificador del cliente',
+    FOREIGN KEY (idcli) REFERENCES cliente(idcli),
+    idper INT NOT NULL  COMMENT 'fk id que se le dara al personal',
+    FOREIGN KEY (idper) REFERENCES personal(idper)
+);
