@@ -20,10 +20,6 @@
     --font-1: Verdana, Geneva, Tahoma, sans-serif;
     --font-2: Microsoft-Yaheni;
 }
-
-
-
-
 .container-background {
 	background-image: url("../img/Account-fond.jpg");
 	background-size: cover;
@@ -121,11 +117,12 @@
     cursor: pointer;
     transition: all 0.7s;
   }
-    .container-form form .button,.return{
+    .container-form form .button,.return,.return1,.nextpet,a{
       display: flex;
       width: 100%;
       justify-content: center;
       font-family: var(--font-1);
+      text-decoration: none;
       font-size: 11pt;
     }
   .container-form form input[type="submit"]:hover,.container-form input[type="reset"]:hover,.button:hover {
@@ -159,12 +156,13 @@
         width: 500px;
         padding-top: 85px;
         padding-bottom: 85px;
+        height: inherit;
         left: 51%;
         transform: translateX(-50%);
     }
 }
     
-@media (min-width: 320px) and (max-width: 768px) {
+@media (min-width: 480px) and (max-width: 768px) {
     /* Estilos para pantallas pequeñas */
     .container-background{
         height: 110vh;
@@ -182,10 +180,14 @@
         font-size: 14px;
     }
 }
-@media (min-width: 320px) and (max-width: 480px) {
+@media (min-width: 320px) and (max-width: 479px) {
     .container-form {
-        width: 345px;
-        left: 51%;
+        width: 350px;
+        left: -4%;
+        height: inherit;
     }
+    .NameandLastname, .numbers  {
+      flex-direction: column;
+  }
 }
   

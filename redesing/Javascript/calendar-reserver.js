@@ -57,7 +57,7 @@ function containerCalendar(container) {
           const dayNumber = document.createTextNode("");
           cell.appendChild(dayNumber);
           if (cell == "") {
-            // Code
+
           } else {
             cell.classList.add(k);
           }
@@ -75,34 +75,5 @@ function containerCalendar(container) {
 
     slideContainer.appendChild(table);
   }
-
-  //Calendar
   
-  const calendarTables = calendarContainer.querySelectorAll('table');
-  const citas = document.querySelectorAll(".service");
-  
-  let hola = citas.parentElement;
-  console.log(hola);
-  
-  
-  calendarTables.forEach((table, index) => {
-    const cells = table.querySelectorAll('td');
-    cells.forEach(cell => {
-      cell.addEventListener('click', e => {
-        
-
-        const calendarNum = index;
-        let panel = e.target;
-        
-        let panel2 = document.querySelectorAll(".citas");
-
-        console.log(panel2);
-
-        if(panel2.parentNode == ".citas"){
-          console.log("Siuuuu"); 
-        }
-
-      });
-    });
-  });
 }

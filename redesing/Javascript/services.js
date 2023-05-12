@@ -29,7 +29,6 @@ function reserver(opc){
 
     switch (opc) {
         case 1:
-            panel1.classList.add("reserve-active");
             panel1.style.display = "block";
             break;
         case 2:
@@ -47,4 +46,6 @@ function reserver(opc){
     }
 }
 
-//Calendar 
+
+
+
