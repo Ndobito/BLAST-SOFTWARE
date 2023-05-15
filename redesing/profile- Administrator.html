@@ -1,10 +1,10 @@
-
+<!-- 
 <?php
 if (isset($_POST['buscar_trabajador'])) {
-    $buscar_empleado = $_POST['buscar_empleado'];
-    $sql = "SELECT * FROM empleados WHERE Idempleado LIKE :buscar_empleado OR cedempleado LIKE :buscar_empleado";
+    $buscar_trabajador = $_POST['buscar_trabajador'];
+    $sql = "SELECT * FROM empleados WHERE Idempleado LIKE :buscar_trabajador OR cedempleado LIKE :buscar_trabajador";
     $stmt = $con->prepare($sql);
-    $stmt->bindValue(':buscar_empleado', "%$buscar_empleado%", PDO::PARAM_STR);
+    $stmt->bindValue(':buscar_trabajador', "%$buscar_trabajador%", PDO::PARAM_STR);
 } else {
     $stmt = $con->prepare("SELECT * FROM empleados");
 }
@@ -12,7 +12,7 @@ $stmt->execute();
 $empleados = $stmt->fetchAll(PDO::FETCH_OBJ);
 ?>
 
-<!--Consulta para obtener los clientes-->
+
 <?php
 if (isset($_POST['buscar_cliente'])) {
     $buscar_cliente = $_POST['buscar_cliente'];
@@ -24,7 +24,20 @@ if (isset($_POST['buscar_cliente'])) {
 }
 $stmt->execute();
 $clientes = $stmt->fetchAll(PDO::FETCH_OBJ);
-?>
+
+<?php
+if (isset($_POST['buscar_cliente'])) {
+    $buscar_cliente = $_POST['buscar_mascota'];
+    $sql = "SELECT * FROM mascota WHERE Idmascota LIKE :buscar_mascota OR dueño LIKE :buscar_mascota";
+    $stmt = $con->prepare($sql);
+    $stmt->bindValue(':buscar_cliente', "%$buscar_cliente%", PDO::PARAM_STR);
+} else {
+    $stmt = $con->prepare("SELECT * FROM mascota");
+}
+$stmt->execute();
+$clientes = $stmt->fetchAll(PDO::FETCH_OBJ);
+?> 
+?> -->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -192,6 +205,48 @@ $clientes = $stmt->fetchAll(PDO::FETCH_OBJ);
                                             <td><?= $cliente->apellidos?></td>
                                             <td><?= $cliente->telefono?></td>
                                             <td><?= $cliente->direccion?></td>
+                                        </tr>
+                                    </tbody>
+                                    <?php endforeach ?>
+                            </table>
+                            <div class="edit">
+                                    <a href="<?= $cliente->Idclienteo">Editar</a>
+                            </div>
+                        </div>
+                        <div class="container-right4" id="container-right4">
+                            <div class="title">
+                                <h1>Mascotas</h1>
+                            </div>
+                            <div class="table-container">
+                                <div class="form-container">
+                                    <form method="POST" action="">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Buscar mascota" name="buscar_mascota">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="submit">Buscar</button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <table class="table-container">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nombre</th>
+                                        <th>Genero</th>
+                                        <th>Edad</th>                                        
+                                        <th>Dueño</th>
+                                    </tr>
+                                </thead>
+                                <?php foreach ($mascotas as $mascota) : ?>
+                                    <tbody>
+                                        <tr>
+                                            <td><?= $mascota->Idmascota ?></td>
+                                            <td><?= $mascota->dueño ?></td>
+                                            <td><?= $mascota->nombre ?></td>
+                                            <td><?= $mascota->genero?></td>
+                                            <td><?= $mascota->edad?></td>                                            
                                         </tr>
                                     </tbody>
                                     <?php endforeach ?>

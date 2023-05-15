@@ -229,7 +229,7 @@
     background-repeat: no-repeat;
 }
 
-.container-right3{
+.container-right3,.container-right4{
     width: 100%;
     height: 100%;
     padding-top: 20px;
@@ -390,17 +390,6 @@
     transition: background-color 0.5s ease;
   }
 
-/* Calendar Citas */
-
-#calendar-citas{
-    height: 20%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    font-family: var(--font-2);
-    font-size: 20px;
-    padding: 0px 10px 30px 30px;
-}
 
 /* Footer */
 
