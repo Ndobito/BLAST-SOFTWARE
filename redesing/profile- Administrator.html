@@ -327,11 +327,11 @@ $proveedor = $stmt->fetchAll(PDO::FETCH_OBJ);
                                 <?php foreach ($mascotas as $mascota) : ?>
                                     <tbody>
                                         <tr>
-                                            <td><?= $mascota->Idmascota ?></td>
-                                            <td><?= $mascota->dueño ?></td>
-                                            <td><?= $mascota->nombre ?></td>
+                                            <td><?= $mascota->Idmascota?></td>
+                                            <td><?= $mascota->nombre?></td>
                                             <td><?= $mascota->genero?></td>
-                                            <td><?= $mascota->edad?></td> 
+                                            <td><?= $mascota->edad?></td>
+                                            <td><?= $mascota->dueño?></td> 
                                             <td>
                                                 <a href="editar.php?id=<?= $producto->idproducto ?>">
                                                     <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
