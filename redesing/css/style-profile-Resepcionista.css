@@ -9,6 +9,7 @@
     --color-8: #B8B6B4;
     --color-9: #2C74FF;
     --color-10: #2E353B;
+    --color-11: #f5f5f5;
     --font-1: Verdana, Geneva, Tahoma, sans-serif;
     --font-2: Microsoft-Yaheni;
     color: #f0ffff;
@@ -24,7 +25,13 @@
     padding: 0;
     box-sizing: border-box;
 }
+a{
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    color: white;
 
+}
 /* Container Main */
 
 .container-main-profile{
@@ -57,7 +64,7 @@
 }
 
 .user h1{
-    font-size: 24px;
+    font-size: 28px;
     color: var(--color-4);
 }
 
@@ -108,11 +115,11 @@
     cursor: pointer;
 }
 
-.menu div:nth-child(4) button{
+.menu div:nth-child(5) button{
     background: #2C74FF;
 }
 
-.menu div:nth-child(4) button i{
+.menu div:nth-child(5) button i{
     margin-right: 10px;
 }
 
@@ -309,6 +316,135 @@ table tr:nth-child(even) {
     padding: 0px 10px 30px 30px;
 }
 
+.title {
+    text-transform: uppercase;
+    text-align: center;
+    font-family:var(--font-1);
+    padding-bottom: 30px;
+    color: #191919;
+  }
+.table-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .form-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 30px;
+  }
+  .form-container input[type="text"] {
+    display: block;
+    width: 30%;
+    border: none;
+    border-radius: 5px;
+    font-size: 10pt;
+    padding: 10px 20px;
+    font-family: var(--font-1);
+    text-align: center;
+    font-weight: 600;
+    color: var(--color-4);
+    transition: all 0.7s;
+  }
+  .form-container form input:hover {
+    outline: none;
+    background-color: var(--color-11);
+    color: var(--color-4);
+  }
+  .form-container form input:focus {
+   outline: none;
+   background-color: var(--color-11);
+   color: var(--color-4);
+   border: none;
+ }
+
+ form {
+   width: 100%;
+ }
+ .input-group {
+   justify-content: flex-end;
+   align-items: center;
+   display: flex;
+   gap: 30px;
+ }
+ .input-group button {
+   font-family: var(--font-1);
+   background-color: var(--color-1);
+   color: var(--color-10);
+   border: none;
+   padding: 10px 20px;
+   font-size: 10pt;
+   font-weight: 800;
+   border-radius: 5px;
+   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+   cursor: pointer;
+   transition: background-color 0.5s ease;
+ }
+ .input-group button:hover {
+   background-color: var(--color-2);
+   transition: all .5s ease;
+ }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+  }
+  thead tr {
+    transition: all .5s ease;
+    color: var(--color-5);
+    background-color: var(--color-10);
+    font-family:var(--font-2);
+  }
+  th {
+    padding: 12px;
+    font-size: 12pt;
+    font-weight: bold;
+    border: 2px solid var(--color-5);
+    cursor: pointer;
+  }
+
+  tbody td{
+   font-family: var(--font-1);
+   text-decoration: none;
+   font-size: 10pt;
+   color: var(--color-4);
+   font-weight: 800;
+   border: 2px solid var(--color-5);
+   transition: all .5s ease;
+  }
+ 
+  tbody:hover{
+   background-color: var(--color-11);
+   transition: all .5s ease;
+  }
+
+  td, th {
+    padding: 8px;
+    text-align: left;
+  }
+  .edit{
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+  }
+  .edit a{
+    font-family: var(--font-1);
+    background-color: var(--color-1);
+    color: var(--color-10);
+    border: none;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 10pt;
+    font-weight: 800;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+  }
+
 /* Footer */
 
 footer{
@@ -402,7 +538,9 @@ footer{
 }
 
 @media (min-width:1025px) {
+
     /* Container Profile */
+
     .container-main-profile{
         height: 90vh;
     }
@@ -450,3 +588,11 @@ footer{
     
 
 }
+
+
+
+
+
+
+  
+  
