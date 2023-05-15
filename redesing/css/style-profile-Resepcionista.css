@@ -12,6 +12,7 @@
     --color-11: #f5f5f5;
     --font-1: Verdana, Geneva, Tahoma, sans-serif;
     --font-2: Microsoft-Yaheni;
+    color: #f0ffff;
 }
 
 @font-face {
@@ -24,7 +25,13 @@
     padding: 0;
     box-sizing: border-box;
 }
+a{
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    color: white;
 
+}
 /* Container Main */
 
 .container-main-profile{
@@ -224,12 +231,13 @@
     padding-top: 20px;
     padding-bottom: 20px;
     display: none;
+    background: url(../img/calendar-profile-bg.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.container-right3,.container-right4{
+.container-right3{
     width: 100%;
     height: 100%;
     padding-top: 20px;
@@ -260,6 +268,52 @@
     scroll-snap-align: center;
     width: 100%;
     padding: 0 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.container-right2 table th,
+.container-right2 table td {
+    font-family: var(--font-2);
+    padding: 10px;
+    text-align: center;
+    color: var(--color-4);
+    background: var(--color-5);
+    border: 1px solid var(--color-7);
+}
+
+.container-right2 table td:hover{
+    background: var(--color-4);
+    color: var(--color-5);
+}
+
+table caption {
+    font-family: var(--font-2);
+    font-size: 1.5rem;
+    color: var(--color-9);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid var(--color-4);
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Calendar Citas */
+
+#calendar-citas{
+    height: 20%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-family: var(--font-2);
+    font-size: 20px;
+    padding: 0px 10px 30px 30px;
 }
 
 .title {
@@ -368,23 +422,28 @@
   td, th {
     padding: 8px;
     text-align: left;
-  } 
-  tbody td:nth-child(7),tbody td:nth-child(8){
-    background-color: var(--color-10);
-    transition: all .5s ease;
   }
-  tbody td:nth-child(7) a,tbody td:nth-child(8) a{
-    color: var(--color-5);
-    transition: all .5s ease;
+  .edit{
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
   }
-  tbody td:nth-child(7) a:hover{
-    color: #007fff;
-    transition: all .5s ease;
-   } tbody td:nth-child(8) a:hover{
-    color: #ff0000;
-    transition: all .5s ease;
-   }
-
+  .edit a{
+    font-family: var(--font-1);
+    background-color: var(--color-1);
+    color: var(--color-10);
+    border: none;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 10pt;
+    font-weight: 800;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+  }
 
 /* Footer */
 
@@ -479,6 +538,12 @@ footer{
 }
 
 @media (min-width:1025px) {
+
+    /* Container Profile */
+
+    .container-main-profile{
+        height: 90vh;
+    }
 
     /* Right */
     .right{

@@ -57,7 +57,7 @@
 }
 
 .user h1{
-    font-size: 28px;
+    font-size: 24px;
     color: var(--color-4);
 }
 
@@ -402,6 +402,10 @@ footer{
 }
 
 @media (min-width:1025px) {
+    /* Container Profile */
+    .container-main-profile{
+        height: 90vh;
+    }
 
     /* Right */
     .right{
@@ -446,11 +450,3 @@ footer{
     
 
 }
-
-
-
-
-
-
-  
-  
