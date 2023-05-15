@@ -108,11 +108,11 @@
     cursor: pointer;
 }
 
-.menu div:nth-child(5) button{
+.menu div:nth-child(7) button{
     background: #2C74FF;
 }
 
-.menu div:nth-child(5) button i{
+.menu div:nth-child(7) button i{
     margin-right: 10px;
 }
 
@@ -370,6 +370,7 @@
   } 
   tbody td:nth-child(7),tbody td:nth-child(8){
     background-color: var(--color-10);
+    text-align: center;
     transition: all .5s ease;
   }
   tbody td:nth-child(7) a,tbody td:nth-child(8) a{
@@ -380,6 +381,21 @@
     color: #007fff;
     transition: all .5s ease;
    } tbody td:nth-child(8) a:hover{
+    color: #ff0000;
+    transition: all .5s ease;
+   }
+   .container-right4 tbody td:nth-child(6){
+    background-color: var(--color-10);  
+    text-align: center;  
+   }
+   .container-right4 tbody td:nth-child(6) a{
+    color: var(--color-5);    
+   }
+   .container-right4 tbody td:nth-child(6) a:hover{
+    color: #007fff;
+    transition: all .5s ease;
+   }
+   .container-right4 tbody td:nth-child(7) a:hover{
     color: #ff0000;
     transition: all .5s ease;
    }
