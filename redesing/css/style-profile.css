@@ -57,7 +57,7 @@
 }
 
 .user h1{
-    font-size: 28px;
+    font-size: 24px;
     color: var(--color-4);
 }
 
@@ -108,11 +108,11 @@
     cursor: pointer;
 }
 
-.menu div:nth-child(4) button{
+.menu div:nth-child(5) button{
     background: #2C74FF;
 }
 
-.menu div:nth-child(4) button i{
+.menu div:nth-child(5) button i{
     margin-right: 10px;
 }
 
@@ -403,6 +403,9 @@ footer{
 
 @media (min-width:1025px) {
 
+    .container-main-profile{
+        height: 90vh;
+    }
     /* Right */
     .right{
         width: 80%;
