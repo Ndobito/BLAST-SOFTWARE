@@ -402,10 +402,11 @@ footer{
 }
 
 @media (min-width:1025px) {
-
+    /* Container Profile */
     .container-main-profile{
         height: 90vh;
     }
+    
     /* Right */
     .right{
         width: 80%;
