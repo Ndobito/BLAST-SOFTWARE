@@ -108,11 +108,11 @@
     cursor: pointer;
 }
 
-.menu div:nth-child(5) button{
+.menu div:nth-child(4) button{
     background: #2C74FF;
 }
 
-.menu div:nth-child(5) button i{
+.menu div:nth-child(4) button i{
     margin-right: 10px;
 }
 
@@ -406,7 +406,7 @@ footer{
     .container-main-profile{
         height: 90vh;
     }
-    
+
     /* Right */
     .right{
         width: 80%;
