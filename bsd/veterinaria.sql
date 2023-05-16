@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-05-2023 a las 18:36:09
+-- Tiempo de generación: 16-05-2023 a las 18:52:38
 -- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.1.12
+-- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,13 +27,6 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `administrador`
 --
 
-<<<<<<< HEAD
-CREATE TABLE `cirugia` (
-  `idcir` int(11) NOT NULL COMMENT 'Numero identificador de la tabla',
-  `nomcir` varchar(50) NOT NULL COMMENT 'Nombre del procedimiento',
-  `espcir` varchar(50) NOT NULL COMMENT 'Especie que involucra el procedimiento',
-  `doccir` varchar(255) NOT NULL COMMENT 'Documento resultante de la cirugia'
-=======
 CREATE TABLE `administrador` (
   `idadmin` int(11) NOT NULL COMMENT 'Numero identificador del administrador',
   `nomadmin` varchar(255) NOT NULL COMMENT 'Nombre del administrador',
@@ -42,7 +35,6 @@ CREATE TABLE `administrador` (
   `diradmin` varchar(255) NOT NULL COMMENT 'Direccion del administrador',
   `teladmin` varchar(255) NOT NULL COMMENT 'Numero de telefono del administrador',
   `fileadmin` varchar(255) NOT NULL COMMENT 'Imagen de perfil del administrador'
->>>>>>> 0e98e64a460d39eea42b0fef12d924e4dad8bc04
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -76,20 +68,13 @@ CREATE TABLE `cita` (
 
 CREATE TABLE `cliente` (
   `idcli` int(11) NOT NULL COMMENT 'Numero Identificador del cliente',
-<<<<<<< HEAD
-  `nomcli` varchar(50) NOT NULL COMMENT 'Nombre propietario de la mascota',
-  `corcli` varchar(100) NOT NULL COMMENT 'Correo electronico del cliente',
-  `dircli` varchar(100) NOT NULL COMMENT 'Direccion de cliente',
-  `telcli` varchar(50) NOT NULL COMMENT 'Numero telefonico del cliente'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-=======
   `nomcli` varchar(255) NOT NULL COMMENT 'Nombre del cliente',
   `emacli` varchar(255) NOT NULL COMMENT 'Correo Electronico del cliente',
-  `usercli` varchar(255) NOT NULL,
+  `usercli` varchar(255) NOT NULL COMMENT 'Nombre de Usuario dentro del sistema',
   `passcli` varchar(255) NOT NULL COMMENT 'Contraseña del Cliente',
   `dircli` varchar(255) NOT NULL COMMENT 'Direccion del cliente',
   `telcli` varchar(255) NOT NULL COMMENT 'Numero de Telefono del cliente',
-  `tel2cli` varchar(255) NOT NULL,
+  `telaltcli` varchar(255) NOT NULL COMMENT 'Numero de telefono alternativo del cliente',
   `filecli` varchar(255) NOT NULL COMMENT 'Imagen de peril del cliente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -97,7 +82,7 @@ CREATE TABLE `cliente` (
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`idcli`, `nomcli`, `emacli`, `usercli`, `passcli`, `dircli`, `telcli`, `tel2cli`, `filecli`) VALUES
+INSERT INTO `cliente` (`idcli`, `nomcli`, `emacli`, `usercli`, `passcli`, `dircli`, `telcli`, `telaltcli`, `filecli`) VALUES
 (1, 'Jose Alejandro Cuellar', 'jcuellarmenza@gmail.com', '', 'alejo123', 'Calle 8 #6-87', '3133215141', '0', 'img/alejo.png');
 
 -- --------------------------------------------------------
@@ -123,7 +108,6 @@ CREATE TABLE `colaborador` (
 
 INSERT INTO `colaborador` (`idcol`, `nomcol`, `emacol`, `passcol`, `dircol`, `telcol`, `rolcol`, `filecol`) VALUES
 (1, 'Manuel Contreras', 'marpex@gmail.com', 'mar123', 'Calle 4 #12-34 La Plata-Huila', '3124569878', 'veterinario', 'img/vet1.png');
->>>>>>> 0e98e64a460d39eea42b0fef12d924e4dad8bc04
 
 -- --------------------------------------------------------
 
@@ -170,19 +154,8 @@ CREATE TABLE `mascota` (
 -- Volcado de datos para la tabla `mascota`
 --
 
-<<<<<<< HEAD
-CREATE TABLE `colaborador` (
-  `idcol` int(11) NOT NULL COMMENT 'Numero identificador del colaborador',
-  `nomcol` varchar(50) NOT NULL COMMENT 'Nombre completo del colaborador',
-  `doccol` varchar(50) NOT NULL COMMENT 'documento de identificación del personal',
-  `dircol` varchar(50) NOT NULL COMMENT 'dirección de la residencia del empleado',
-  `telcol` varchar(50) NOT NULL COMMENT 'numero de telefono del personal',
-  `rolcol` varchar(20) NOT NULL COMMENT 'Rol de colaborador en el sistema'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-=======
 INSERT INTO `mascota` (`idmas`, `nommas`, `edadmas`, `genmas`, `espmas`, `idcli`) VALUES
 (1, 'Manolo', '1 año', 'Masculino', 'canino', 1);
->>>>>>> 0e98e64a460d39eea42b0fef12d924e4dad8bc04
 
 -- --------------------------------------------------------
 
