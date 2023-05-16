@@ -27,12 +27,12 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `cirugia`
 --
 
--- CREATE TABLE `cirugia` (
---   `idcir` int(11) NOT NULL COMMENT 'Numero identificador de la tabla',
---   `nomcir` varchar(50) NOT NULL COMMENT 'Nombre del procedimiento',
---   `espcir` varchar(50) NOT NULL COMMENT 'Especie que involucra el procedimiento',
---   `doccir` varchar(255) NOT NULL COMMENT 'Documento resultante de la cirugia'
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `cirugia` (
+  `idcir` int(11) NOT NULL COMMENT 'Numero identificador de la tabla',
+  `nomcir` varchar(50) NOT NULL COMMENT 'Nombre del procedimiento',
+  `espcir` varchar(50) NOT NULL COMMENT 'Especie que involucra el procedimiento',
+  `doccir` varchar(255) NOT NULL COMMENT 'Documento resultante de la cirugia'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -57,13 +57,13 @@ CREATE TABLE `cita` (
 -- Estructura de tabla para la tabla `cliente`
 --
 
--- CREATE TABLE `cliente` (
---   `idcli` int(11) NOT NULL COMMENT 'Numero Identificador del cliente',
---   `nomcli` varchar(50) NOT NULL COMMENT 'Nombre propietario de la mascota',
---   `corcli` varchar(100) NOT NULL COMMENT 'Correo electronico del cliente',
---   `dircli` varchar(100) NOT NULL COMMENT 'Direccion de cliente',
---   `telcli` varchar(50) NOT NULL COMMENT 'Numero telefonico del cliente'
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `cliente` (
+  `idcli` int(11) NOT NULL COMMENT 'Numero Identificador del cliente',
+  `nomcli` varchar(50) NOT NULL COMMENT 'Nombre propietario de la mascota',
+  `corcli` varchar(100) NOT NULL COMMENT 'Correo electronico del cliente',
+  `dircli` varchar(100) NOT NULL COMMENT 'Direccion de cliente',
+  `telcli` varchar(50) NOT NULL COMMENT 'Numero telefonico del cliente'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -195,14 +195,14 @@ CREATE TABLE `mascota` (
 -- Estructura de tabla para la tabla `personal`
 --
 
--- CREATE TABLE `colaborador` (
---   `idcol` int(11) NOT NULL COMMENT 'Numero identificador del colaborador',
---   `nomcol` varchar(50) NOT NULL COMMENT 'Nombre completo del colaborador',
---   `doccol` varchar(50) NOT NULL COMMENT 'documento de identificación del personal',
---   `dircol` varchar(50) NOT NULL COMMENT 'dirección de la residencia del empleado',
---   `telcol` varchar(50) NOT NULL COMMENT 'numero de telefono del personal',
---   `rolcol` varchar(20) NOT NULL COMMENT 'Rol de colaborador en el sistema'
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `colaborador` (
+  `idcol` int(11) NOT NULL COMMENT 'Numero identificador del colaborador',
+  `nomcol` varchar(50) NOT NULL COMMENT 'Nombre completo del colaborador',
+  `doccol` varchar(50) NOT NULL COMMENT 'documento de identificación del personal',
+  `dircol` varchar(50) NOT NULL COMMENT 'dirección de la residencia del empleado',
+  `telcol` varchar(50) NOT NULL COMMENT 'numero de telefono del personal',
+  `rolcol` varchar(20) NOT NULL COMMENT 'Rol de colaborador en el sistema'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
