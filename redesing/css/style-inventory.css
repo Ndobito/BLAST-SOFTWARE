@@ -1,0 +1,60 @@
+body {
+        background: url(../img/inventary.png);
+        background-repeat: no-repeat; 
+        background-size: cover;
+    }
+.container-1{
+    width: 80%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+table.content-table {
+    width: 100%;
+    margin: 10px;
+    border-collapse: separate;
+    border-spacing: 20px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.btn-agregar{
+    margin: 0 auto;
+    padding: 8px 40px;
+    text-align: center;
+    color: #fff;
+    background-color: #079907;
+    border: 1px solid #079907;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn-agregar:hover{
+    background-color: #177c30;
+    border: 1px solid #177c30;   
+}
+.btn-editar{
+    margin-left: auto;
+    padding: 6px 12px;
+    text-align: center;
+    color: #fff;
+    background-color: #0077ff;
+    border: 1px solid #0077ff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn-borrar {
+    margin-left: auto;
+    padding: 6px 12px;
+    text-align: center;
+    color: #fff;
+    background-color: #f53c3c;
+    border: 1px solid #f53c3c;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn-editar:hover{
+    background-color: #0069d9;
+    border: 1px solid #0062cc;
+}
+.btn-borrar:hover {
+    background-color: #d30404;
+    border: 1px solid #d30404;
+}
