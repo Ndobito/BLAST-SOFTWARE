@@ -1,5 +1,6 @@
 <?php
 
-echo "Hola";
+include_once 'view/new-account.php';
+
 
 ?>
