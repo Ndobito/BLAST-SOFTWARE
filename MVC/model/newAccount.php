@@ -16,18 +16,18 @@ class newAccount{
     }
 
     public function Registrar(newAccount $data){
-    try{
-        $pet = "INSERT INTO cliente(nomcli, emacli, usercli, passcli, dircli, tzonecli, telcli, telaltcli) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        $this -> consulta -> prepare($pet)-> execute(array(
-            $data -> name, 
-            $data -> email, 
-            $data -> uname, 
-            $data -> pass, 
-            $data -> dir, 
-            $data -> zone, 
-            $data -> phone, 
-            $data -> phonealt, 
-        )); 
+        try{
+            $pet = "INSERT INTO cliente(nomcli, emacli, usercli, passcli, dircli, tzonecli, telcli, telaltcli) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            $this -> consulta -> prepare($pet)-> execute(array(
+                $data -> name, 
+                $data -> email, 
+                $data -> uname, 
+                $data -> pass, 
+                $data -> dir, 
+                $data -> zone, 
+                $data -> phone, 
+                $data -> phonealt, 
+            )); 
          
     } catch (Exception $error){
         echo "No se puede registrar el Usuario: ". $error->getMessage();
