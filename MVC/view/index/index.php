@@ -21,7 +21,7 @@
             </div>
             <div class="header-bottom">
                 <div class="container-logo">
-                    <img src="img/logo-removebg.png" alt="">
+                    <img src="assets/img/logo-removebg.png" alt="">
                 </div>
                 <div class="nav">
                     <ul>
