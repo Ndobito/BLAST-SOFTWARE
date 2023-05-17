@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="button-register">
-                    <a href="login.html"><button><i class="fa-solid fa-user"></i>&nbsp;<span>Iniciar Sesion</span></button></a>
+                    <a href="view/login/login.html"><button><i class="fa-solid fa-user"></i>&nbsp;<span>Iniciar Sesion</span></button></a>
                 </div>
             </div>
             <div class="header-bottom">
