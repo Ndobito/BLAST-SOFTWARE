@@ -74,7 +74,8 @@
 .container-form input[type="text"],
 .container-form input[type="email"],
 .container-form input[type="number"],
-.container-form select[type="select"]{
+.container-form select[type="select"],
+.container-form input[type="password"]{
     display: block;
     width: 100%;
     border: none;
@@ -104,7 +105,7 @@
 .container-form input[type="number"] {
   -moz-appearance: textfield;
 }
-.container-form form input[type="submit"],.container-form input[type="reset"],.button {
+.container-form form input[type="submit"],.container-form input[type="reset"],.button ,.nextconf{
     background-color: var(--color-7);
     color: var(--color-5);
     font-size: 16px;
@@ -117,7 +118,7 @@
     cursor: pointer;
     transition: all 0.7s;
   }
-    .container-form form .button,.return,.return1,.nextpet,a{
+    .container-form form .button,.return,.return1,.return2,.nextpet,.nextconf,.next,a{
       display: flex;
       width: 100%;
       justify-content: center;
@@ -125,7 +126,7 @@
       text-decoration: none;
       font-size: 11pt;
     }
-  .container-form form input[type="submit"]:hover,.container-form input[type="reset"]:hover,.button:hover {
+  .container-form form input[type="submit"]:hover,.container-form input[type="reset"]:hover,.button:hover,.nextconf:hover {
     background-color: var(--color-3);
     transition: all 0.7s;
   }

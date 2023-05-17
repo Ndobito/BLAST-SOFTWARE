@@ -14,7 +14,7 @@
     <div class="container-background">
         <div class="container-form">
             <h2>Crear cuenta</h2>
-            <form id="myForm">
+            <form id="myForm" action="php/newAccount.php" method="post">
                 <div id="parent-container-form-user">
                     <div class="NameandLastname">
                         <div class="input-container">
@@ -61,13 +61,36 @@
                                     <span class="button">Volver</span>
                                 </a>
                             </div>
-                            <input type="submit" value="Siguiente" class="nextpet">
+                            <button class="nextconf">Siguiente</button>
                         </div>
                         <div class="nextpet">
                             <a href="index.html">
                                 <span class="button">Salir</span>
                             </a>
                         </div>
+                    </div>
+                </div>
+                <div id="parent-container-form-confirmation-user" style="display: none;">
+
+                    <label>Definir usuario</label>
+                    <input type="text" name="mascota" required>
+
+                    <label>Contraseña</label>
+                    <input type="password" name="cont-user" required id="input-obligatorio">
+
+                    <label>Confirmar Contraseña</label>
+                    <input type="password" name="conf-cont-user" required id="input-obligatorio">
+                    <div class="buttons">
+                        <div class="buttons-container">
+                            <div class="return1">
+                                <span class="button">Volver</span>
+                            </div>
+                            <div class="next">
+                                <a href="">
+                                    <span class="button">Siguiente</span>
+                                </a>
+                            </div>
+                        </div>                        
                     </div>
                 </div>
                 <div id="parent-container-form-pet" style="display: none;">
@@ -96,7 +119,7 @@
                     </select>
                     <div class="buttons">
                         <div class="buttons-container">
-                            <div class="return1">
+                            <div class="return2">
                                 <span class="button">Volver</span>
                             </div>
                             <div class="nextpet">

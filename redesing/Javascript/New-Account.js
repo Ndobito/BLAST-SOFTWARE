@@ -1,15 +1,23 @@
 const userContainer = document.getElementById("parent-container-form-user");
 const petContainer = document.getElementById("parent-container-form-pet");
-const botonPet = document.querySelector(".nextpet");
-const botonReturn = document.querySelector(".return1");
+const confirmationUserContainer = document.getElementById("parent-container-form-confirmation-user");
 
-botonPet.addEventListener("click", () => {
-    petContainer.style.display = "block";
-    userContainer.style.display = "none";
-});
-
-botonReturn.addEventListener("click", (event) => {
+const addButtonEvent = (button, targetContainer, sourceContainer) => {
+  button.addEventListener("click", (event) => {
     event.preventDefault();
-    petContainer.style.display = "none";
-    userContainer.style.display = "block";
-});
+    targetContainer.style.display = "block";
+    sourceContainer.style.display = "none";
+  });
+};
+
+const nextConfButton = document.querySelector(".nextconf");
+addButtonEvent(nextConfButton, confirmationUserContainer, userContainer);
+
+const returnButton1 = document.querySelector(".return1");
+addButtonEvent(returnButton1, userContainer, confirmationUserContainer);
+
+const nextButton = document.querySelector(".next");
+addButtonEvent(nextButton, petContainer, confirmationUserContainer);
+
+const returnButton2 = document.querySelector(".return2");
+addButtonEvent(returnButton2, confirmationUserContainer, petContainer);
