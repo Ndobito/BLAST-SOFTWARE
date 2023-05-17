@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-05-2023 a las 18:52:38
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
+-- Tiempo de generación: 17-05-2023 a las 03:23:55
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -73,17 +73,18 @@ CREATE TABLE `cliente` (
   `usercli` varchar(255) NOT NULL COMMENT 'Nombre de Usuario dentro del sistema',
   `passcli` varchar(255) NOT NULL COMMENT 'Contraseña del Cliente',
   `dircli` varchar(255) NOT NULL COMMENT 'Direccion del cliente',
+  `tzonecli` int(11) NOT NULL COMMENT 'Zona en la cual se encuentra ubicado el cliente',
   `telcli` varchar(255) NOT NULL COMMENT 'Numero de Telefono del cliente',
   `telaltcli` varchar(255) NOT NULL COMMENT 'Numero de telefono alternativo del cliente',
-  `filecli` varchar(255) NOT NULL COMMENT 'Imagen de peril del cliente'
+  `filecli` varchar(255) DEFAULT NULL COMMENT 'Imagen de peril del cliente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`idcli`, `nomcli`, `emacli`, `usercli`, `passcli`, `dircli`, `telcli`, `telaltcli`, `filecli`) VALUES
-(1, 'Jose Alejandro Cuellar', 'jcuellarmenza@gmail.com', '', 'alejo123', 'Calle 8 #6-87', '3133215141', '0', 'img/alejo.png');
+INSERT INTO `cliente` (`idcli`, `nomcli`, `emacli`, `usercli`, `passcli`, `dircli`, `tzonecli`, `telcli`, `telaltcli`, `filecli`) VALUES
+(1, 'Jose Alejandro Cuellar', 'jcuellarmenza@gmail.com', '', 'alejo123', 'Calle 8 #6-87', 0, '3133215141', '0', 'img/alejo.png');
 
 -- --------------------------------------------------------
 
