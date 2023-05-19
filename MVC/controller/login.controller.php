@@ -6,7 +6,7 @@ class loginController{
     private $object;
 
     public function __construct(){
-        $this -> object = new newlogin(); 
+        $this -> object = new Login(); 
     }
 
     public function Index(){
@@ -14,7 +14,7 @@ class loginController{
     }
 
     public function Evaluar(){
-        
+        require_once "view/index/index.php";
     }
 
 
