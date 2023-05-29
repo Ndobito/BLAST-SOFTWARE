@@ -18,5 +18,4 @@ if(!isset($_REQUEST['b'])){
     call_user_func(array($controller, $accion)); 
 }
 
-
 ?>

@@ -15,4 +15,5 @@ class indexController{
         require_once "view/footer.php"; 
     }
 }
+
 ?>
