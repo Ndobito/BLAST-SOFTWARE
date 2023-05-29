@@ -10,7 +10,10 @@ class loginController{
     }
 
     public function Index(){
-
+        $style = "<link rel='stylesheet' href='assets/css/style-login.css'>"; 
+        require_once "view/head.php"; 
+        require_once "view/login/login.php"; 
+        require_once "view/footer.php"; 
     }
 
     public function Evaluar(){
