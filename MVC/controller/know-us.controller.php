@@ -1,7 +1,5 @@
 <?php
 
-include_once "model/"; 
-
 class knowUsController{
 
     public function knowUs(){
@@ -12,5 +10,3 @@ class knowUsController{
     }
 
 }
-
-?>

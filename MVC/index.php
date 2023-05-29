@@ -18,4 +18,9 @@ if(!isset($_REQUEST['b'])){
     call_user_func(array($controller, $accion)); 
 }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 5a5748e8523b97311e50cb27bda4a077451e5636
 ?>
