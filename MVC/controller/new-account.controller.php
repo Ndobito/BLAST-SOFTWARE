@@ -13,7 +13,7 @@ class newAccountController{
     public function Inicio(){
         $style = "<link rel='stylesheet' href='assets/css/style-new-account.css'>"; 
         require_once "view/head.php"; 
-        require_once "view/index/index.php"; 
+        require_once "view/"; 
         require_once "view/footer.php"; 
     }   
 

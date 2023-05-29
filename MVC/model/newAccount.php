@@ -28,10 +28,9 @@ class newAccount{
                 $data -> phone, 
                 $data -> phonealt, 
             )); 
-         
-    } catch (Exception $error){
-        echo "No se puede registrar el Usuario: ". $error->getMessage();
-    }
+        } catch (Exception $error){
+            echo "No se puede registrar el Usuario: ". $error->getMessage();
+        }
 
 
     }

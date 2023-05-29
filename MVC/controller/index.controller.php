@@ -15,5 +15,7 @@ class indexController{
         require_once "view/index/index.php"; 
         require_once "view/footer.php"; 
     }
+
+    
 }
 ?>

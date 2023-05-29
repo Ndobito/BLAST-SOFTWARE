@@ -9,21 +9,16 @@ class loginController{
         $this -> object = new Login(); 
     }
 
-    public function Index(){
+    public function Inicio(){
         $style = "<link rel='stylesheet' href='assets/css/style-login.css'>"; 
-        require_once "view/head.php"; 
         require_once "view/login/login.php"; 
-        require_once "view/footer.php"; 
     }
 
-    public function Evaluar(){
-        require_once "view/index/index.php";
-    }
+    // public function Evaluar(){
+    //     require_once "view/index/index.php";
+    // }
 
 
 }
-
-
-
 
 ?>
