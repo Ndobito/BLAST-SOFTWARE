@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="button-register">
-                    <a href="view/login/login.php"><button><i class="fa-solid fa-user"></i>&nbsp;<span>Iniciar Sesion</span></button></a>
+                    <a href="?c=new-Account&s=Inicio"><button><i class="fa-solid fa-user"></i>&nbsp;<span>Iniciar Sesion</span></button></a>
                 </div>
             </div>
             <div class="header-bottom">

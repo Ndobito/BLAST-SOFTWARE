@@ -6,5 +6,5 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="assets/img/logo.jpg" type="image/x-icon">
         <title>Animal World</title>
-        <link rel="stylesheet" href="assets/css/style-index.css">
+        <?php if(isset($style)) echo $style; ?>
     </head>

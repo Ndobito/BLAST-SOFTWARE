@@ -10,8 +10,11 @@ class newAccountController{
         $this -> object = new newAccount();
     }
 
-    public function Index(){
-
+    public function Inicio(){
+        $style = "<link rel='stylesheet' href='assets/css/style-new-account.css'>"; 
+        require_once "view/head.php"; 
+        require_once "view/index/index.php"; 
+        require_once "view/footer.php"; 
     }   
 
     public function Guardar(){
