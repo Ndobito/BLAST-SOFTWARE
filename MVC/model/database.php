@@ -3,10 +3,11 @@
 class databaseConexion {
     public static function conexion(){
             //Variables que contiene host, nombre de la base de datos usuario y contraseña
-            $db = "mysqli:host=localhost;port=8080;dbname=veterinaria";
+            $host= "localhost"; 
+            $db = "veterinaria";
             $u = "root"; 
             $p = ""; 
-            $con = new PDO($db,$u,$p);
+            $con = mysqli_connect($host, $u, $p, $db); 
             return $con;  
     }
 }

@@ -1,13 +1,13 @@
 <body>
     <div class="returm">
-        <a href="index.html"><i class="fa-solid fa-arrow-left"></i></a>
+        <a href="?b=index"><i class="fa-solid fa-arrow-left"></i></a>
     </div>    
     <div class="container">
         
         <div class="container1">
             <div>
                 <div>
-                    <img src="img/logo-removebg.png" alt=""> <p>Animal world</p>
+                    <img src="assets/img/logo-removebg.png" alt=""> <p>Animal world</p>
                 </div>
                 <div>
                     <h1>Iniciar sesión</h1>
@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="container2">
-            <img src="img/principalLogin.png" alt="">
+            <img src="assets/img/principalLogin.png" alt="">
         </div>
     </div>
 
@@ -63,7 +63,7 @@
         crossorigin="anonymous">
     </script>
     <!-- Pop-up Window -->
-    <script src="Javascript/popup-window.js"></script>
+    <script src="assets/Javascript/popup-window.js"></script>
 
 </body>
 </html>
