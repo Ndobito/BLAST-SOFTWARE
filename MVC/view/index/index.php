@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="button-register">
-                    <a href="?b=login"><button><i class="fa-solid fa-user"></i>&nbsp;<?= isset($_SESSION[]) ? $_SESSION[] : "iniciar sesion" ?></button></a>
+                    <a href="?b=login"><button><i class="fa-solid fa-user"></i>&nbsp;<span>Iniciar Sesion</span></button></a>
                 </div>
             </div>
             <div class="header-bottom">
@@ -68,7 +68,7 @@
                         <div class="card-back">
                             <div class="body-card-back">
                                 <h1>!SOLICITA TU CITA YA¡</h1>
-                                <a href="book-appointment.html"><button><i class="fa-solid fa-plus"></i>MAS INFORMACION</button></a>
+                                <a href="?b=bookappointment"><button><i class="fa-solid fa-plus"></i>MAS INFORMACION</button></a>
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                         <div class="card-back">
                             <div class="body-card-back">
                                 <h1>AGENTA TU CIRUGIA</h1>
-                                <a href="book-appointment.html"><button><i class="fa-solid fa-plus"></i>MAS INFORMACION</button></a>
+                                <a href="?b=bookappointment"><button><i class="fa-solid fa-plus"></i>MAS INFORMACION</button></a>
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                         <div class="card-back">
                             <div class="body-card-back">
                                 <h1>!SOLICITA TUS EXAMENES¡</h1>
-                                <a href="book-appointment.html"><button><i class="fa-solid fa-plus"></i>MAS INFORMACION</button></a>
+                                <a href="?b=bookappointment"><button><i class="fa-solid fa-plus"></i>MAS INFORMACION</button></a>
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                         <div class="card-back">
                             <div class="body-card-back">
                                 <h1>AGENDA TU RADIOGRAFIA</h1>
-                                <a href="book-appointment.html">
+                                <a href="?b=bookappointment">
                                     <button><i class="fa-solid fa-plus"></i>MAS INFORMACION</button>
                                     </a>
                             </div>
@@ -181,13 +181,7 @@
                         </div>
                         <div class="answer">
                             <p>Nos encontramos en la ciudad de la Plata,
-                                condireccion 23 A sur #10D-03 Barrio el
-                                Centro.
-                                <br>
-                                <br>
-                                Tambien puedes encontrarnos escaneando el
-                                codigo qr.</p> <br><br>
-                            <img src="img/qr.png" width="150px" alt="">
+                                condireccion Calle 5 sur # 4B - 10 Barrio Jose Dario Obviez
                         </div>
                     </div>
                     <div class="container-accordion-slide">
@@ -197,8 +191,6 @@
                             <i class="fa-solid fa-circle-plus"></i>
                         </div>
                         <div class="answer">
-                            <img src="img/slider-3.jpg" width="180px"
-                                height="150px" alt="">
                             <p>Nuestra veterinaria tiene una gran variadad
                                 para asi poder prestar el mejor servicio a
                                 nuestras compañeros siendo estos:
@@ -225,15 +217,14 @@
                         </div>
                         <div class="answer">
                             <p>Nuestras consultas generales en la
-                                veterinaria tenen un valor de $?????.
+                                veterinaria tenen un valor de $25.000.
                                 <br>
                                 <br>
                                 Minetras que las consultas generales externa
-                                tienen un valor de $?????.
+                                tienen un valor de $35.000.
                                 <br>
                                 <br>
-                                <strong>Estos preciós son dados tanto para
-                                    perros como gatos</strong></p>
+                                <strong>Estos precios corresponden para toda especie de animales</strong></p>
                         </div>
                     </div>
                     <div class="container-accordion-slide">
@@ -242,8 +233,6 @@
                             <i class="fa-solid fa-circle-plus"></i>
                         </div>
                         <div class="answer">
-                            <img src="img/slider-2.jpg" width="180px"
-                                alt="">
                             <p>¡Si!, nuestra vaterinaria cuenta con consultas
                                 externas para comodiada del propientario asi
                                 como para la de la mascota</p>
@@ -277,7 +266,7 @@
                                     <li> Dirijase al apartado de Servicios</li>
                                     <li> Busque el Servicio de desee y de
                                         clic en la "+ mas informacion".</li>
-                                    <li> Llene el formulario</li>
+                                    <li> y reserve el dia que desee!</li>
                                 </ol>
                             </p>
                         </div>
