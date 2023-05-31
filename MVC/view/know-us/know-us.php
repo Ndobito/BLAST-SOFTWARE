@@ -63,7 +63,7 @@
             </div>
             <div class="container-information">
                 <div class="information-img">
-                    <img src="img/infomation-img.jpg" alt="">
+                    <img src="assets/img/infomation-img.jpg" alt="">
                 </div>
                 <div class="information-text">
                     <h1>Acerca de Animal World</h1>
@@ -93,17 +93,17 @@
                 </div>
                 <div class="container-team-person">
                     <div>
-                        <div><img src="img/team1.png" alt=""></div>
+                        <div><img src="assets/img/team1.png" alt=""></div>
                         <h2>Armando Perdomo Piñacue</h2>
                         <p>Veterinario especializado en cirugía de animales grandes.</p>
                     </div>
                     <div>
-                        <div><img src="img/team2.png" alt=""></div>
+                        <div><img src="assets/img/team2.png" alt=""></div>
                         <h2>Paula Andrea Collazos</h2>
                         <p>Veterinaria apasionada por la atención y cuidado de animales exóticos.</p>
                     </div>
                     <div>
-                        <div><img src="img/team3.png" alt=""></div>
+                        <div><img src="assets/img/team3.png" alt=""></div>
                         <h2>Carlos Eduardo Perez</h2>
                         <p>Veterinario experto en rehabilitación de mascotas con discapacidades físicas.</p>
                     </div>

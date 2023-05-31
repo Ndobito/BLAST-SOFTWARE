@@ -1,8 +1,10 @@
 <?php
 
+include_once 'model/knowus.php'; 
+
 class knowUsController{
 
-    public function knowUs(){
+    public function Inicio(){
         $style = "<link rel='stylesheet' href='assets/css/style-know-us.css'>"; 
         require_once "view/head.php"; 
         require_once "view/know-us/know-us.php"; 
