@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="button-register">
-                    <a href="?b=login"><button><i class="fa-solid fa-user"></i>&nbsp;<span>Iniciar Sesion</span></button></a>
+                    <a href="?b=login"><button><i class="fa-solid fa-user"></i>&nbsp;<?= isset($_SESSION[]) ? $_SESSION[] : "iniciar sesion" ?></button></a>
                 </div>
             </div>
             <div class="header-bottom">
