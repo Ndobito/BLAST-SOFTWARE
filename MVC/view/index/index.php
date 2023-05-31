@@ -25,8 +25,8 @@
                 </div>
                 <div class="nav">
                     <ul>
-                        <a href="index.html"><li>Inicio</li></a>
-                        <a href="know-us.html"><li>Conocenos</li></a>
+                        <a href="?b=index"><li>Inicio</li></a>
+                        <a href="?b=knowus"><li>Conocenos</li></a>
                         <a href="book-appointment.html"><li>Servicios</li></a>
                         <a href="contact-us.html"><li>Contactenos</li></a>
                         <a href="book-appointment.html"><li>Reservas</li></a>
@@ -40,8 +40,8 @@
         </header>
         <div id="panel-menu" class="content-menu">
             <ul>
-                <a href="index.html"><li>Inicio</li></a>
-                <a href="know-us.html"><li>Conocenos</li></a>
+                <a href="?b=index&s=Inicio"><li>Inicio</li></a>
+                <a href="?b=knowus"><li>Conocenos</li></a>
                 <a href="book-appointment.html"><li>Servicios</li></a>
                 <a href="contact-us.html"><li>Contactenos</li></a>
                 <a href="book-appointment.html"><li>Reservas</li></a>
@@ -152,7 +152,7 @@
                     <div class="location-map">
                         <div class="header-map">
                             <h1><span>NUESTRA</span> DIRECCION</h1>
-                            <p> 10D #6-58 Barrrio el Tovar, La Plata-Huila. </p>
+                            <p> Calle 5 sur # 4B- 10 La Plata - Huila</p>
                             <p><strong>Email: </strong> animalworld@gmail.com</p>
                             <p><strong>Cel: </strong>111 111 1111</p>
                             <hr>

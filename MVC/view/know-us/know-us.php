@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
     <title>Animal World</title>
-    <link rel="stylesheet" href="css/style-know-us.css">
+    <link rel="stylesheet" href="assets/css/style-know-us.css">
 </head>
 <body>
     <div class="container">
@@ -63,7 +63,7 @@
             </div>
             <div class="container-information">
                 <div class="information-img">
-                    <img src="img/infomation-img.jpg" alt="">
+                    <img src="assets/img/infomation-img.jpg" alt="">
                 </div>
                 <div class="information-text">
                     <h1>Acerca de Animal World</h1>
@@ -93,102 +93,20 @@
                 </div>
                 <div class="container-team-person">
                     <div>
-                        <div><img src="img/team1.png" alt=""></div>
+                        <div><img src="assets/img/team1.png" alt=""></div>
                         <h2>Armando Perdomo Piñacue</h2>
                         <p>Veterinario especializado en cirugía de animales grandes.</p>
                     </div>
                     <div>
-                        <div><img src="img/team2.png" alt=""></div>
+                        <div><img src="assets/img/team2.png" alt=""></div>
                         <h2>Paula Andrea Collazos</h2>
                         <p>Veterinaria apasionada por la atención y cuidado de animales exóticos.</p>
                     </div>
                     <div>
-                        <div><img src="img/team3.png" alt=""></div>
+                        <div><img src="assets/img/team3.png" alt=""></div>
                         <h2>Carlos Eduardo Perez</h2>
                         <p>Veterinario experto en rehabilitación de mascotas con discapacidades físicas.</p>
                     </div>
                 </div>
             </div>
         </main>
-        <footer>
-            <div class="footer-top">
-                <div class="footer-contain">
-                    <h1>Siguenos en redes Sociales</h1>
-                    <div>
-                        <a href="#">
-                            <i class="fa-brands fa-whatsapp"></i> Whatsapp
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <i class="fa-brands fa-instagram"></i> Instagram
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <i class="fa-brands fa-facebook"></i> Facebook
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-contain">
-                    <h1>Informacion de Contacto</h1>
-                    <div>
-                        <i class="fa-solid fa-tty"></i>
-                        <p>111 111 1111</p>
-                    </div>
-                    <div>
-                        <i class="fa-solid fa-envelope"></i>
-                        <p>animal.world2023@gmail.com</p>
-                    </div>
-                    <div>
-                        <i class="fa-solid fa-map-location-dot"></i>
-                        <p>Carrera 23 A sur #10D-03 Barrio Puerto Gaitán</p>
-                    </div>
-                </div>
-                <div class="footer-contain">
-                    <h1>Horarios de Atencion</h1>
-                    <p>
-                        <br><br>
-                        Lunes a Viernes: 8:00 am a 5:00 pm.
-                        <br><br><br>
-                        Sabado, Domingo y Festivos : 9:00 am
-                        a 4:00 pm.
-                    </p>
-                </div>
-                <div class="footer-contain">
-                    <h1>Servicos Destacados</h1>
-                    <p>
-                        <br><br>
-                        Consulta
-                        <br><br>
-                        Vacunacion
-                        <br><br>
-                        Radiografia
-                        <br><br>
-                        Laboratorio Clinico
-                    </p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>
-                    <img src="img/logo.jpg" alt="">
-                    <i>@2023 Clinica Animal World | Veterinaria para mascotas en Colombia</i>
-                    <br><br>
-                </p>
-                <p>
-                    Sitio creado por
-                    <img src="img/logo-removebg-blast-software.png" alt="Logo Blast Software"> 
-                    <strong>BLast Software</strong>
-                </p>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
-    <!-- Menu -->
-    <script src="Javascript/menu.js"></script>
-    <!-- Accordion -->
-    <script src="Javascript/accordion.js"></script>
-</body>
-</html>

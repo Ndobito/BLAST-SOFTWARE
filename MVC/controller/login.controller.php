@@ -1,7 +1,6 @@
 <?php
 
 include_once "model/login.php";
-
 class loginController{
     private $object;
 
@@ -11,13 +10,9 @@ class loginController{
 
     public function Inicio(){
         $style = "<link rel='stylesheet' href='assets/css/style-login.css'>"; 
+        require_once "view/head.php"; 
         require_once "view/login/login.php"; 
     }
-
-    // public function Evaluar(){
-    //     require_once "view/index/index.php";
-    // }
-
 
 }
 

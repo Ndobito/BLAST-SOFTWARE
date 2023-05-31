@@ -1,18 +1,18 @@
 <?php
 
- class Login{   
-    private $consulta;
+include_once 'model/database.php'; 
 
-    public  $user, $pass;
-    
+class knowUs{
+
+    private $consulta; 
     public function __construct(){
         try{
             $this -> consulta = databaseConexion::conexion();
-        }catch(PDOException $e){
+        }catch(Exception $e){
             echo "Error de Conexion ". $e -> getMessage(); 
         }
     }
- }
 
+}
 
 ?>

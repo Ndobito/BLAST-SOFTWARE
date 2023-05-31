@@ -99,7 +99,7 @@
                                 <span class="button">Volver</span>
                             </div>
                             <div class="nextpet">
-                                <a href="login.html">
+                                <a href="?b=login">
                                     <span class="button">Siguiente</span>
                                 </a>
                             </div>
@@ -111,7 +111,7 @@
         </div>
     </div>
 
-    <script src="Javascript/new-account.js"></script>
+    <script src="assets/Javascript/new-account.js"></script>
     <!--Font Awesome-->
     <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
 </body>
