@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nueva cuenta</title>
-    <link rel="stylesheet" href="assets/css/style-new-account.css">
-    <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
-</head>
-
 <body>
     <div class="container-background">
         <div class="container-form">
@@ -86,12 +75,12 @@
                     <label for="gender">Especie</label>
                     <select type="select" required id="input-obligatorio">
                         <option value="" selected disabled>Selectiona la especie</option>
-                        <option value="">Perro</option>
-                        <option value="">Gato</option>
-                        <option value="">Bovino</option>
-                        <option value="">Equino</option>
-                        <option value="">Porcion</option>
-                        <option value="">Ave</option>
+                        <option value="canino">Canino</option>
+                        <option value="felino">Felino</option>
+                        <option value="bovino">Bovino</option>
+                        <option value="equino">Equino</option>
+                        <option value="porcino">Porcino</option>
+                        <option value="ave">Ave</option>
                     </select>
                     <div class="buttons">
                         <div class="buttons-container">
