@@ -27,9 +27,9 @@
                     <ul>
                         <a href="?b=index"><li>Inicio</li></a>
                         <a href="?b=knowus"><li>Conocenos</li></a>
-                        <a href="book-appointment.html"><li>Servicios</li></a>
-                        <a href="contact-us.html"><li>Contactenos</li></a>
-                        <a href="book-appointment.html"><li>Reservas</li></a>
+                        <a href="?b=bookappointment"><li>Servicios</li></a>
+                        <a href="?b=contactus"><li>Contactenos</li></a>
+                        <a href="?b=bookappointment"><li>Reservas</li></a>
                     </ul>
                 </div>
                 <div class="icon-menu">
@@ -42,9 +42,9 @@
             <ul>
                 <a href="?b=index&s=Inicio"><li>Inicio</li></a>
                 <a href="?b=knowus"><li>Conocenos</li></a>
-                <a href="book-appointment.html"><li>Servicios</li></a>
-                <a href="contact-us.html"><li>Contactenos</li></a>
-                <a href="book-appointment.html"><li>Reservas</li></a>
+                <a href="?b=bookappointment"><li>Servicios</li></a>
+                <a href="?b=contactus"><li>Contactenos</li></a>
+                <a href="?b=bookappointment"><li>Reservas</li></a>
             </ul>
         </div>
         <main>
