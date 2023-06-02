@@ -22,13 +22,25 @@ class newAccountController{
         $m -> name = trim($nombre); 
         $m -> email = $_POST['ctEmail']; 
         $m -> uname = $_POST['ctNick']; 
-        $m -> pass = $_POST['']; 
-        $m -> dir = $_POST['']; 
-        $m -> zone = $_POST['']; 
-        $m -> phone = $_POST['']; 
-        $m -> phonealt = $_POST[''];
+        $m -> pass = $_POST['ctPass']; 
+        $m -> dir = $_POST['ctAddres']; 
+        $m -> zone = $_POST['selTipoUbicacion']; 
+        $m -> phone = $_POST['ctTel']; 
+        $m -> phonealt = $_POST['ctTel2'];
 
-        $this->object->Registrar($m); 
+        $this->object->Registrar($m);
+
+        $_POST['ctNombre']  = ""; 
+        $_POST['ctApellido'] = ""; 
+        $_POST['ctEmail'] = ""; 
+        $_POST['ctNick'] = ""; 
+        $_POST['ctPass'] = ""; 
+        $_POST['ctAddres'] = ""; 
+        $_POST['selTipoUbicacion'] = ""; 
+        $_POST['ctTel'] = ""; 
+        $_POST['ctTel2'] = "";
+
+        header("Location: ?b=newaccountpet"); 
     }
 }
 

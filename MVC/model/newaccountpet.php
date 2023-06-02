@@ -5,8 +5,6 @@ class newAccount{
 
     private $consulta;
     
-    public $id, $name, $uname, $email, $user, $pass, $dir, $zone, $phone, $phonealt;
-    
     public function __construct(){
         try{
             $this -> consulta = databaseConexion::conexion(); 
