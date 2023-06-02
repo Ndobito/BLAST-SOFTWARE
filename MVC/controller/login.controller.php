@@ -28,6 +28,8 @@ class loginController{
             }else{
                 echo "<p>nombre de usuario incorrecto</p>";
             }
+
+            
             if($password){
                 $validacion = "SELECT*FROM user, passcli";
             }else{
