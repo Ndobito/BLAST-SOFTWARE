@@ -74,7 +74,8 @@
 .container-form input[type="text"],
 .container-form input[type="email"],
 .container-form input[type="number"],
-.container-form select[type="select"]{
+.container-form select[type="select"], 
+.container-form input[type="password"]{
     display: block;
     width: 100%;
     border: none;
@@ -104,7 +105,7 @@
 .container-form input[type="number"] {
   -moz-appearance: textfield;
 }
-.container-form form input[type="submit"],.container-form input[type="reset"],.button {
+.container-form form input[type="submit"],.container-form input[type="reset"],.button, .nextpet input[type="submit"] {
     background-color: var(--color-7);
     color: var(--color-5);
     font-size: 16px;

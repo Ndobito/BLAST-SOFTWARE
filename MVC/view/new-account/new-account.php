@@ -1,8 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva cuenta</title>
+    <link rel="stylesheet" href="css/style-new-account.css">
+    <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
+</head>
+
 <body>
     <div class="container-background">
         <div class="container-form">
             <h2>Crear cuenta</h2>
-            <form id="myForm">
+            <form id="myForm" action="?b=newaccount&s=GuardarUser" method="POST" >
                 <div id="parent-container-form-user">
                     <div class="NameandLastname">
                         <div class="input-container">
@@ -20,6 +32,12 @@
 
                     <label>Confirmar Email</label>
                     <input type="email" name="emailC" required id="input-obligatorio">
+
+                    <label>Nickname</label>
+                    <input type="text" name="ctNick" required id="input-obligatorio">
+
+                    <label>Contraseña</label>
+                    <input type="password" name="ctPass" required id="input-obligatorio">
 
                     <label>Dirección de residencia</label>
                     <input type="text" name="addres" required id="input-obligatorio">
@@ -45,19 +63,22 @@
                     <div class="buttons">
                         <div class="buttons-container">
                             <div class="return">
-                                <a href="login.html">
+                                <a href="?b=login">
                                     <span class="button">Volver</span>
                                 </a>
                             </div>
                             <input type="submit" value="Siguiente" class="nextpet">
                         </div>
                         <div class="nextpet">
-                            <a href="index.html">
+                            <a href="?b=index">
                                 <span class="button">Salir</span>
                             </a>
                         </div>
                     </div>
                 </div>
+            
+            </form>
+            <form action="?b=newaccount&s=GuardarPet"></form>
                 <div id="parent-container-form-pet" style="display: none;">
                     <div class="NameandLastname">
                         <div class="input-container">
@@ -75,12 +96,12 @@
                     <label for="gender">Especie</label>
                     <select type="select" required id="input-obligatorio">
                         <option value="" selected disabled>Selectiona la especie</option>
-                        <option value="canino">Canino</option>
-                        <option value="felino">Felino</option>
-                        <option value="bovino">Bovino</option>
-                        <option value="equino">Equino</option>
-                        <option value="porcino">Porcino</option>
-                        <option value="ave">Ave</option>
+                        <option value="">Perro</option>
+                        <option value="">Gato</option>
+                        <option value="">Bovino</option>
+                        <option value="">Equino</option>
+                        <option value="">Porcion</option>
+                        <option value="">Ave</option>
                     </select>
                     <div class="buttons">
                         <div class="buttons-container">
@@ -88,9 +109,7 @@
                                 <span class="button">Volver</span>
                             </div>
                             <div class="nextpet">
-                                <a href="?b=login">
-                                    <span class="button">Siguiente</span>
-                                </a>
+                                <input type="submit" value="Guardar">
                             </div>
                         </div>
                         <input type="reset" value="Guardar y agregar otra mascota">

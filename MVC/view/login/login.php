@@ -38,7 +38,7 @@
                 
             </div>
             <div>
-                <a href="restore-password.html" id="a1">¿Olvidaste tu contraseña?</a>
+                <a href="?b=restorepassword" id="a1">¿Olvidaste tu contraseña?</a>
                 <a href="?b=newaccount" id="a2">Crear cuenta</a>
             </div>
         </div>

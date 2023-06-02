@@ -16,17 +16,19 @@ class newAccountController{
         require_once "view/new-account/new-account.php"; 
     }   
 
-    public function Guardar(){
+    public function GuardarUser(){
         $m = new newAccount(); 
+        $nombre = $_POST['ctNombre'] ." ".  $_POST['ctApellido']; 
+        $m -> name = trim($nombre); 
+        $m -> email = $_POST['ctEmail']; 
+        $m -> uname = $_POST['ctNick']; 
+        $m -> pass = $_POST['']; 
+        $m -> dir = $_POST['']; 
+        $m -> zone = $_POST['']; 
+        $m -> phone = $_POST['']; 
+        $m -> phonealt = $_POST[''];
 
-        $m -> name= $_REQUEST['']; 
-        $m -> email = $_REQUEST['']; 
-        $m -> uname = $_REQUEST['']; 
-        $m -> pass = $_REQUEST['']; 
-        $m -> dir = $_REQUEST['']; 
-        $m -> zone = $_REQUEST['']; 
-        $m -> phone = $_REQUEST['']; 
-        $m -> phonealt = $_REQUEST[''];
+        $this->object->Registrar($m); 
     }
 }
 
