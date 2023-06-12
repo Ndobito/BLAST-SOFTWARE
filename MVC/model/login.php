@@ -1,13 +1,16 @@
 <?php
 
-class Login {
+class Login
+{
     private $conexion;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->conexion = databaseConexion::conexion();
     }
 
-    public function validarUsuario($usuario, $contrasena) {
+    public function validarUsuario($usuario, $contrasena)
+    {
         $query = "SELECT * FROM cliente WHERE usercli = '$usuario' AND passcli = '$contrasena'";
         $resultado = mysqli_query($this->conexion, $query);
 
@@ -18,7 +21,8 @@ class Login {
         }
     }
 
-    public function existeUsuario($usuario) {
+    public function existeUsuario($usuario)
+    {
         $query = "SELECT * FROM cliente WHERE usercli = '$usuario'";
         $resultado = mysqli_query($this->conexion, $query);
 
@@ -26,8 +30,9 @@ class Login {
             return true; // El usuario está registrado
         } else {
             return false; // El usuario no está registrado
+
+
         }
     }
 }
-
 ?>

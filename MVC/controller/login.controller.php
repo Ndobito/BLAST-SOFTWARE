@@ -18,17 +18,17 @@ class LoginController {
 
     public function revicion() {
         $usuario = $_POST['ctUser'];
-        $contrasena = $_POST['ctPassword'];
+        $passsword = $_POST['ctPassword'];
         $terminos = $_POST['checkbox'];
     
-        if (empty($terminos) || empty($usuario) || empty($contrasena)) {
+        if (empty($terminos) || empty($usuario) || empty($passsword)) {
             echo "<p>Se requiere llenar todos los campos.</p>";
         } else {
-            $usuario_valido = $this->loginModel->validarUsuario($usuario, $contrasena);
+            $usuario_valido = $this->loginModel->validarUsuario($usuario, $passsword);
     
             if ($usuario_valido) {
                 // redirigir a perfil del usuario
-                header('Location: http://localhost/BLAST-SOFTWARE/MVC/?b=knowus');
+                header('Location: http://localhost:8080/BLAST-SOFTWARE/MVC/?b=knowus');
                 exit();
             } else {
                 $usuario_registrado = $this->loginModel->existeUsuario($usuario);

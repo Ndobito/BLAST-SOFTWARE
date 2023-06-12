@@ -26,7 +26,7 @@
                     </div>
                     <div>
                         <i class="fa-solid fa-envelope"></i>
-                        <p>animal.world2023@gmail.com</p>
+                        <p>animal2023world2023@gmail.com</p>
                     </div>
                     <div>
                         <i class="fa-solid fa-map-location-dot"></i>

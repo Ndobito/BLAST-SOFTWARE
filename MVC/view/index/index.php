@@ -1,52 +1,4 @@
-<body>
-    <div class="container">
-        <header>
-            <div class="header-top">
-                <div class="social-networks">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                </div>
-                <div class="search-bar">
-                    <div>
-                        <form action="#" method="post">
-                            <input type="search" name="ctSearch" id="ctSearch" placeholder="¿Que deseas buscar hoy?">
-                            <i type="submit" id="icon-search" class="fa-solid fa-magnifying-glass"></i>
-                        </form>
-                    </div>
-                </div>
-                <div class="button-register">
-                    <a href="?b=login"><button><i class="fa-solid fa-user"></i>&nbsp;<span>Iniciar Sesion</span></button></a>
-                </div>
-            </div>
-            <div class="header-bottom">
-                <div class="container-logo">
-                    <img src="assets/img/logo-removebg.png" alt="">
-                </div>
-                <div class="nav">
-                    <ul>
-                        <a href="?b=index"><li>Inicio</li></a>
-                        <a href="?b=knowus"><li>Conocenos</li></a>
-                        <a href="book-appointment.html"><li>Servicios</li></a>
-                        <a href="contact-us.html"><li>Contactenos</li></a>
-                        <a href="book-appointment.html"><li>Reservas</li></a>
-                    </ul>
-                </div>
-                <div class="icon-menu">
-                    <i id="open-menu" class="fa-solid fa-bars"></i>
-                    <i id="close-menu" class="fa-solid fa-xmark"></i>
-                </div>
-            </div>
-        </header>
-        <div id="panel-menu" class="content-menu">
-            <ul>
-                <a href="?b=index&s=Inicio"><li>Inicio</li></a>
-                <a href="?b=knowus"><li>Conocenos</li></a>
-                <a href="book-appointment.html"><li>Servicios</li></a>
-                <a href="contact-us.html"><li>Contactenos</li></a>
-                <a href="book-appointment.html"><li>Reservas</li></a>
-            </ul>
-        </div>
+
         <main>
             <div class="hero">
                 <div class="hero-text">
@@ -132,12 +84,10 @@
                     </div>
                     <div>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis nisi quia tempore possimus unde, natus hic eligendi officia perferendis vero quam ipsa distinctio, voluptas aut, blanditiis numquam voluptatem enim! Culpa!
-                            Sit hic reprehenderit amet. Nobis, praesentium sunt impedit quia optio consequuntur et natus quasi nisi velit ab quas necessitatibus soluta commodi! Cum, distinctio excepturi? Quibusdam hic accusamus cumque temporibus labore?
-                            Enim nostrum tempora voluptatibus adipisci iste? Quibusdam inventore molestiae facere accusantium repellat porro minus quo unde praesentium non incidunt nobis quasi voluptatibus similique quidem, ipsum qui amet? Dolorem, natus maxime!
+                            ¡Bienvenidos a nuestra clínica veterinaria, donde tus mascotas son nuestra prioridad! Nos complace ser tu socio confiable en el cuidado y bienestar de tus adorados compañeros peludos. En nuestra clínica, comprendemos el vínculo especial que tienes con tus mascotas y nos esforzamos por brindarles la mejor atención veterinaria posible. Nuestro equipo de médicos veterinarios altamente calificados y amantes de los animales está comprometido con su salud y felicidad. Ofrecemos una amplia gama de servicios veterinarios, que incluyen exámenes de rutina, vacunaciones, atención de emergencia, cirugías, esterilización y castración, atención dental y mucho más. Utilizamos equipos y tecnología de última generación para garantizar diagnósticos precisos y tratamientos efectivos.
                             <br><br>
                             <span>
-                                Desde el año 2012 el equipo del centro veterinario Animal World trabaja para prestar un servicio profesional, de calidad y personalizado a nuestros pacientes. Ha sido pionero en el uso de nuevas técnicas y tratamientos desde sus comienzos, con una ideología fresca, encaminada en todo momento al bienestar de los pacientes y sus propietarios, la clínica viene realizando una importante labor en los ámbitos de la medicina y peluquería para caninos y felinos al ofrecer entre sus servicios, cirugía especializada, consultas generales y especializadas, además de contar en cada una de estas áreas con equipo y profesionales altamente calificados.
+                            En nuestra clínica, creemos en una atención personalizada y compasiva. Nos tomamos el tiempo para escuchar tus inquietudes y responder a todas tus preguntas, brindándote la tranquilidad de que tu mascota está en buenas manos. Confía en nosotros para cuidar a tus compañeros peludos como si fueran parte de nuestra propia familia. ¡Te invitamos a que nos visites y descubras por qué somos la clínica veterinaria de confianza en la que puedes confiar para el cuidado de tus adorables mascotas!
                             </span>
                         </p>
                         
