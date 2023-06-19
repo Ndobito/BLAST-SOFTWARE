@@ -1,19 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
-        <title>Animal World</title>
-        <!-- CSS -->
-        <link rel="stylesheet" type="text/css" href="css/style-profile.css">
-        <!-- Full Calendar -->
-        <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
-        <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-        <!-- jQuery -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    </head>
     <body>
         <div class="container">
             <!-- Body of the work -->
@@ -36,7 +22,10 @@
                                     <button onclick="container(3)" >MASCOTAS</button>
                                 </div>
                                 <div>
-                                    <button><i class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</button>
+                                <button><a href="?b=profile&s=cerrarSesion"><i class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</a></button>
+                                </div>
+                                <div>
+                                    <a href="?b=index"><span>inicio</span></a>
                                 </div>
                             </div>
 

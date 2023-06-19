@@ -2,37 +2,60 @@
 
 include_once "model/login.php";
 
-class LoginController {
+class LoginController
+{
     private $loginModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->loginModel = new Login();
-        session_start(); // Iniciar la sesión
     }
 
-    public function inicio() {
-        $style = "<link rel='stylesheet' href='assets/css/style-login.css'>"; 
-        require_once "view/head.php"; 
-        require_once "view/login/login.php"; 
+    public function Inicio()
+    {
+        $style = "<link rel='stylesheet' href='assets/css/style-login.css'>";
+        require_once "view/head.php";
+        require_once "view/login/login.php";
     }
 
-    public function revicion() {
+    public function revicion()
+    {
         $usuario = $_POST['ctUser'];
         $passsword = $_POST['ctPassword'];
         $terminos = $_POST['checkbox'];
-    
+
         if (empty($terminos) || empty($usuario) || empty($passsword)) {
-            echo "<p>Se requiere llenar todos los campos.</p>";
+            header('Location: ?b=login');
         } else {
             $usuario_valido = $this->loginModel->validarUsuario($usuario, $passsword);
-    
+
             if ($usuario_valido) {
-                // redirigir a perfil del usuario
-                header('Location: http://localhost:8080/BLAST-SOFTWARE/MVC/?b=knowus');
+                $tipoUsuario = $this->loginModel->obtenerRol($usuario);
+
+                session_start();
+                $_SESSION['usuario'] = $usuario;
+                $_SESSION['tipoUsuario'] = $tipoUsuario;
+                $_SESSION['ultimaActividad'] = time(); // Guardar el tiempo de última actividad
+
+                switch ($tipoUsuario) {
+                    case "cliente":
+                        header('Location: ?b=profile');
+                        break;
+                    case "administrador":
+                        header('Location: ?b=profileadministrador');
+                        break;
+                    case "colaborador":
+                        header('Location: ?b=profile');
+                        break;
+                    default:
+                        // Redirigir a una página de error o manejar el caso adecuadamente
+                        break;
+                }
+
                 exit();
             } else {
                 $usuario_registrado = $this->loginModel->existeUsuario($usuario);
-                
+
                 if ($usuario_registrado) {
                     echo "<p>Contraseña incorrecta.</p>";
                 } else {
@@ -41,6 +64,23 @@ class LoginController {
             }
         }
     }
-    
 }
+
+
+
+if (isset($_SESSION['ultimaActividad'])) {
+    $tiempoInactividad = 1 * 60; // 1 minuto
+    $tiempoActual = time();
+    $tiempoTranscurrido = $tiempoActual - $_SESSION['ultimaActividad'];
+
+    if ($tiempoTranscurrido > $tiempoInactividad) {
+        session_unset();
+        session_destroy();
+        header('Location: http://localhost/BLAST-SOFTWARE/MVC/?b=login');
+        exit();
+    }
+
+    $_SESSION['ultimaActividad'] = $tiempoActual; 
+}
+
 ?>
