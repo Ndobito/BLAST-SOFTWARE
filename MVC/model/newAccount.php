@@ -17,8 +17,8 @@ class newAccount{
 
     public function Registrar(newAccount $data){
         try{
-            $pet = "INSERT INTO cliente(nomcli, emacli, usercli, passcli, dircli, tzonecli, telcli, telaltcli) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            $this -> consulta -> prepare($pet)-> execute(array(
+            $user= "INSERT INTO cliente(nomcli, emacli, usercli, passcli, dircli, tzonecli, telcli, telaltcli) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            $this -> consulta -> prepare($user)-> execute(array(
                 $data -> name, 
                 $data -> email, 
                 $data -> uname, 

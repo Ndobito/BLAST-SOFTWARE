@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div>
-                <form action="#">
+                <form action="?b=login&s=revicion" method="post">
                     <div>
                         <label for="#">Usuario</label>
                         <div class="input">
@@ -30,15 +30,15 @@
                         </div>
                     </div>
                     <div>
-                        <input type="checkbox">
+                        <input type="checkbox" name="checkbox">
                         <p> Aceptar terminos y condiciones <a id="window-up" href="#">Mas información</a></p>
                     </div>
-                    <button href="#">Ingresar</button>
+                    <button name="submit">Ingresar</button>
                 </form>
                 
             </div>
             <div>
-                <a href="restore-password.html" id="a1">¿Olvidaste tu contraseña?</a>
+                <a href="?b=restorepassword" id="a1">¿Olvidaste tu contraseña?</a>
                 <a href="?b=newaccount" id="a2">Crear cuenta</a>
             </div>
         </div>

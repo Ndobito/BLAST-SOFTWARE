@@ -3,7 +3,7 @@
                 <div class="footer-contain">
                     <h1>Siguenos en redes Sociales</h1>
                     <div>
-                        <a href="#">
+                        <a href="https://api.whatsapp.com/send?phone=3133215141">
                             <i class="fa-brands fa-whatsapp"></i> Whatsapp
                         </a>
                     </div>
@@ -22,15 +22,15 @@
                     <h1>Informacion de Contacto</h1>
                     <div>
                         <i class="fa-solid fa-tty"></i>
-                        <p>111 111 1111</p>
+                        <p>313 321 5141</p>
                     </div>
                     <div>
                         <i class="fa-solid fa-envelope"></i>
-                        <p>animal.world2023@gmail.com</p>
+                        <p>animal2023world2023@gmail.com</p>
                     </div>
                     <div>
                         <i class="fa-solid fa-map-location-dot"></i>
-                        <p>Carrera 23 A sur #10D-03 Barrio Puerto Gaitán</p>
+                        <p>Calle 5 sur # 4B - 10 Barrio Jose Dario Obviez La Plata - Huila</p>
                     </div>
                 </div>
                 <div class="footer-contain">

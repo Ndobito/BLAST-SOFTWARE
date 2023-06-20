@@ -1,9 +1,14 @@
 <?php
-
 include_once 'model/database.php';
+session_start(); // Iniciar la sesión
+
+// Verificar si el usuario está logueado
+if (isset($_SESSION['usuario'])) {
+    // Mostrar el nombre de usuario en lugar de "Iniciar Sesión"
+    $nombreUsuario = $_SESSION['usuario'];
+}
 
 $controller = "index";
-
 
 if(!isset($_REQUEST['b'])){
     require_once "controller/$controller.controller.php";
