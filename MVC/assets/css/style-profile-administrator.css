@@ -24,6 +24,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+<<<<<<< HEAD
 
 .returm {
     width: 100%;
@@ -32,12 +33,26 @@
   }
   .returm a {
     margin-top: 0.5rem;
+=======
+/*volver*/
+.returm {
+    width: 100%;
+    height: 40px;
+    background-color: #ffffff;
+  }
+  .returm a {
+    margin-top: 1rem;
+>>>>>>> be6f6f3f7af9a134dff3cc02fb7100c79db57669
     margin-left: 1rem;
     height: 40px;
     width: 40px;
   }
   .returm i {
+<<<<<<< HEAD
     margin-top: 0.4rem;
+=======
+    margin-top: 0.8rem;
+>>>>>>> be6f6f3f7af9a134dff3cc02fb7100c79db57669
     height: 20px;
     width: 20px;
     text-align: center;
@@ -53,7 +68,10 @@
     -ms-border-radius: 200%;
     -o-border-radius: 200%;
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> be6f6f3f7af9a134dff3cc02fb7100c79db57669
 /* Container Main */
 
 .container-main-profile{
@@ -450,6 +468,7 @@ footer{
     padding: 10px;
     gap: 20px;
     position: relative;
+    height: 106px;
 }
 
 .footer-bottom img{
