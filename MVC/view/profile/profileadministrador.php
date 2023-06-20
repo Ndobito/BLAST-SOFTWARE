@@ -13,7 +13,7 @@
                                     <button onclick="container(1)">INFORMACION</button>
                                 </div>
                                 <div>
-                                    <button onclick="container(2)">INVENTARIOS</button>
+                                <a href="view/profile/inventory.php"><button>INVENTARIOS</button></a>
                                 </div>
                                 <div>
                                     <button onclick="container(3)">PROVEEDORES</button>
@@ -29,7 +29,7 @@
                                 </div>
 
                                 <div>
-                                    <button><a href="?b=profile&s=cerrarSesion"><i class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR </a></button>
+                                <a href="?b=profile&s=cerrarSesion"><button><i class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR </button></a>
                                 </div>
                             </div>
 
