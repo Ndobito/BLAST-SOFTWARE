@@ -2,7 +2,7 @@
 
 require_once 'model/inventory.php';
 
-class ProductController {
+class InventoryController {
     private $model;
 
     public function __construct() {
@@ -15,6 +15,6 @@ class ProductController {
     }
 }
 
-$controller = new ProductController();
+$controller = new InventoryController();
 $controller->index();
 ?>

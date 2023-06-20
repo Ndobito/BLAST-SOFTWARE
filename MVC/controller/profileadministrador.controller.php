@@ -16,4 +16,19 @@ class ProfileAdministradorController
         header('Location: index.php');
         exit();
     }
+    
+}
+if (isset($_SESSION['ultimaActividad'])) {
+    $tiempoInactividad = 1 * 60; // 1 minuto
+    $tiempoActual = time();
+    $tiempoTranscurrido = $tiempoActual - $_SESSION['ultimaActividad'];
+
+    if ($tiempoTranscurrido > $tiempoInactividad) {
+        session_unset();
+        session_destroy();
+        header('Location: ?b=login');
+        exit();
+    }
+
+    $_SESSION['ultimaActividad'] = $tiempoActual; 
 }
