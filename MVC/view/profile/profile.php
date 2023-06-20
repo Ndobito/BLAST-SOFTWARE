@@ -122,11 +122,11 @@
         </div>
 
         <!-- Menu Profile -->
-        <script src="Javascript/menu-profile.js"></script>
+        <script src="assets/Javascript/menu-profile.js"></script>
         <!-- Calendar -->
-        <script src="Javascript/calendar.js"></script>
+        <script src="assets/Javascript/calendar.js"></script>
         <!-- Form Disable and Enable -->
-        <script src="Javascript/form-disable-enable.js"></script>
+        <script src="assets/Javascript/form-disable-enable.js"></script>
         <!--Font Awesome-->
         <script src="https://kit.fontawesome.com/7fa9974a48.js"
             crossorigin="anonymous"></script>
