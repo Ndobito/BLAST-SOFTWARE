@@ -1,5 +1,7 @@
         <div class="container">
-            <!-- Body of the work -->
+            <div class="returm">
+                <a href="?b=index"><i class="fa-solid fa-arrow-left"></i></a>
+            </div> <!-- Body of the work -->
             <main>
                 <div class="container-main-profile">
                     <div class="left">
@@ -29,7 +31,7 @@
                                 </div>
 
                                 <div>
-                                    <button><a href="?b=profile&s=cerrarSesion"><i class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</a></button>
+                                    <a href="?b=profile&s=cerrarSesion"><button><i class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</button></a>
                                 </div>
                             </div>
 
@@ -238,13 +240,13 @@
                     </p>
                     <p>
                         Sitio creado por
-                        <img src="img/logo-removebg-blast-software.png" alt="Logo Blast Software"> 
+                        <img src="img/logo-removebg-blast-software.png" alt="Logo Blast Software">
                         <strong>BLast Software</strong>
                     </p>
                 </div>
             </footer>
         </div>
-        
+
         <!-- Menu Profile -->
         <script src="assets/Javascript/menu-profile.js"></script>
         <!-- Calendar -->
@@ -252,5 +254,4 @@
         <!-- Form Disable and Enable -->
         <script src="assets/Javascript/form-disable-enable.js"></script>
         <!--Font Awesome-->
-        <script src="https://kit.fontawesome.com/7fa9974a48.js"
-            crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
