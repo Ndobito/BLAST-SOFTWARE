@@ -5,8 +5,8 @@ class ProfileController
 {
     public function Inicio()
     {
-        require_once "view/head.php";
         $style = "<link rel='stylesheet' href='assets/css/style-profile.css'>";
+        require_once "view/head.php";
         require_once "view/profile/profile.php";
     }
 
