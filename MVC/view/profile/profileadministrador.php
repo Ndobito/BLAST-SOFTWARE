@@ -229,4 +229,28 @@
                     </div>
                 </div>
             </main>
+            <footer>
+                <div class="footer-bottom">
+                    <p>
+                        <img src="img/logo.jpg" alt="">
+                        <i>@2023 Clinica Animal World | Veterinaria para mascotas en Colombia</i>
+                        <br><br>
+                    </p>
+                    <p>
+                        Sitio creado por
+                        <img src="img/logo-removebg-blast-software.png" alt="Logo Blast Software"> 
+                        <strong>BLast Software</strong>
+                    </p>
+                </div>
+            </footer>
         </div>
+        
+        <!-- Menu Profile -->
+        <script src="Javascript/menu-profile.js"></script>
+        <!-- Calendar -->
+        <script src="Javascript/calendar.js"></script>
+        <!-- Form Disable and Enable -->
+        <script src="Javascript/form-disable-enable.js"></script>
+        <!--Font Awesome-->
+        <script src="https://kit.fontawesome.com/7fa9974a48.js"
+            crossorigin="anonymous"></script>
