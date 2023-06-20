@@ -29,7 +29,7 @@
                                 </div>
 
                                 <div>
-                                    <button><i class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</button>
+                                    <button><a href="?b=profile&s=cerrarSesion"><i class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</a></button>
                                 </div>
                             </div>
 
