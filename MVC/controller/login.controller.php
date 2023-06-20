@@ -45,7 +45,7 @@ class LoginController
                         header('Location: ?b=profileadministrador');
                         break;
                     case "colaborador":
-                        header('Location: ?b=profile');
+                        header('Location: ?b=profilecolaborador');
                         break;
                     default:
                         // Redirigir a una página de error o manejar el caso adecuadamente

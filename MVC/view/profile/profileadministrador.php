@@ -10,24 +10,24 @@
                             </div>
                             <div class="menu">
                                 <div id="btns-menu">
-                                    <button onclick="container(1)" >INFORMACION</button>
+                                    <button onclick="container(1)">INFORMACION</button>
                                 </div>
                                 <div>
-                                    <button onclick="container(2)" >INVENTARIOS</button>
+                                    <button onclick="container(2)">INVENTARIOS</button>
                                 </div>
                                 <div>
-                                    <button onclick="container(3)" >PROVEEDORES</button>
-                                </div>      
-                                <div>
-                                    <button onclick="container(4)" >EMPLEADOS</button>
+                                    <button onclick="container(3)">PROVEEDORES</button>
                                 </div>
                                 <div>
-                                    <button onclick="container(5)" >CLIENTES</button>
-                                </div>                      
-                                <div>
-                                    <button onclick="container(6)" >MASCOTAS</button>
+                                    <button onclick="container(4)">EMPLEADOS</button>
                                 </div>
-                    
+                                <div>
+                                    <button onclick="container(5)">CLIENTES</button>
+                                </div>
+                                <div>
+                                    <button onclick="container(6)">MASCOTAS</button>
+                                </div>
+
                                 <div>
                                     <button><i class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</button>
                                 </div>
@@ -107,9 +107,9 @@
                                             <td><?= $empleado->Idempleado ?></td>
                                             <td><?= $empleado->cedula ?></td>
                                             <td><?= $empleado->nombres ?></td>
-                                            <td><?= $empleado->apellidos?></td>
-                                            <td><?= $empleado->telefono?></td>
-                                            <td><?= $empleado->direccion?></td>
+                                            <td><?= $empleado->apellidos ?></td>
+                                            <td><?= $empleado->telefono ?></td>
+                                            <td><?= $empleado->direccion ?></td>
                                             <td>
                                                 <a href="editar.php?id=<?= $producto->idproducto ?>">
                                                     <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
@@ -122,7 +122,7 @@
                                             </td>
                                         </tr>
                                     </tbody>
-                                    <?php endforeach ?>
+                                <?php endforeach ?>
                             </table>
 
                         </div>
@@ -159,9 +159,9 @@
                                             <td><?= $cliente->Idcliente ?></td>
                                             <td><?= $cliente->cedula ?></td>
                                             <td><?= $cliente->nombres ?></td>
-                                            <td><?= $cliente->apellidos?></td>
-                                            <td><?= $cliente->telefono?></td>
-                                            <td><?= $cliente->direccion?></td>
+                                            <td><?= $cliente->apellidos ?></td>
+                                            <td><?= $cliente->telefono ?></td>
+                                            <td><?= $cliente->direccion ?></td>
                                             <td>
                                                 <a href="editar.php?id=<?= $producto->idproducto ?>">
                                                     <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
@@ -174,7 +174,7 @@
                                             </td>
                                         </tr>
                                     </tbody>
-                                    <?php endforeach ?>
+                                <?php endforeach ?>
                             </table>
                         </div>
                         <div class="container-right4" id="container-right4">
@@ -199,7 +199,7 @@
                                         <th>Id</th>
                                         <th>Nombre</th>
                                         <th>Genero</th>
-                                        <th>Edad</th>                                        
+                                        <th>Edad</th>
                                         <th>Dueño</th>
                                     </tr>
                                 </thead>
@@ -209,8 +209,8 @@
                                             <td><?= $mascota->Idmascota ?></td>
                                             <td><?= $mascota->dueño ?></td>
                                             <td><?= $mascota->nombre ?></td>
-                                            <td><?= $mascota->genero?></td>
-                                            <td><?= $mascota->edad?></td> 
+                                            <td><?= $mascota->genero ?></td>
+                                            <td><?= $mascota->edad ?></td>
                                             <td>
                                                 <a href="editar.php?id=<?= $producto->idproducto ?>">
                                                     <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
@@ -220,15 +220,13 @@
                                                 <a href="elimina.php?id=<?= $producto->idproducto ?>">
                                                     <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
                                                 </a>
-                                            </td>                                           
+                                            </td>
                                         </tr>
                                     </tbody>
-                                    <?php endforeach ?>
+                                <?php endforeach ?>
                             </table>
                         </div>
                     </div>
                 </div>
             </main>
         </div>
-
-       
