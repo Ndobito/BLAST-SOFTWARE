@@ -1,4 +1,4 @@
-    <div class="returm">
+<div class="returm">
         <a href="?b=index"><i class="fa-solid fa-arrow-left"></i></a>
     </div> 
         <div class="container">
@@ -9,14 +9,14 @@
                         <div class="container-menu">
                             <div class="user">
                                 <div class="img"></div>
-                                <h1>Adminstrador</h1>
+                                <h1>Veterinario</h1>
                             </div>
                             <div class="menu">
                                 <div id="btns-menu">
                                     <button onclick="container(1)">INFORMACION</button>
                                 </div>
                                 <div>
-                                <a href="?b=inventory&s=listado"><button>INVENTARIOS</button></a>
+                                <a href="view/profile/inventory.php"><button>INVENTARIOS</button></a>
                                 </div>
                                 <div>
                                     <button onclick="container(3)">PROVEEDORES</button>
