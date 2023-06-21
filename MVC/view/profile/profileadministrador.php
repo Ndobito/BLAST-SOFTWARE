@@ -18,7 +18,7 @@
                                     <button onclick="container(1)">INFORMACION</button>
                                 </div>
                                 <div>
-                                <a href="view/profile/inventory.php"><button>INVENTARIOS</button></a>
+                                <a href="?b=inventory&s=listado"><button>INVENTARIOS</button></a>
                                 </div>
                                 <div>
                                     <button onclick="container(3)">PROVEEDORES</button>

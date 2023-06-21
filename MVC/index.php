@@ -19,7 +19,7 @@ if(!isset($_REQUEST['b'])){
     $controller = strtolower($_REQUEST['b']);
     $action = isset($_REQUEST['s']) ? $_REQUEST['s'] : 'Inicio'; 
     require_once "controller/$controller.controller.php";
-    $controller = ucwords($controller).'controller';
+    $controller = ucwords($_REQUEST['b']).'controller';
     $controller = new $controller(); 
     call_user_func(array($controller, $action)); 
 }
