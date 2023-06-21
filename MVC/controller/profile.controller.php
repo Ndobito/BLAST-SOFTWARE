@@ -7,6 +7,8 @@ class ProfileController
     {
         $style = "<link rel='stylesheet' href='assets/css/style-profile.css'>";
         require_once "view/head.php";
+        $nombreUsuario = $_SESSION['usuario'];
+        $data = compact('nombreUsuario');
         require_once "view/profile/profile.php";
     }
 

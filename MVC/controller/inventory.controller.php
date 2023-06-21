@@ -2,12 +2,8 @@
 
 require_once 'model/inventory.php';
 
-<<<<<<< HEAD
-class InventoryController {
-=======
 class InventoryController
 {
->>>>>>> ebc6abf927dd002fa615cb244b9db4a235b8c6b1
     private $model;
 
     public function __construct()
@@ -47,9 +43,6 @@ class InventoryController
 }
 
 $controller = new InventoryController();
-<<<<<<< HEAD
 $controller->index();
 ?>
-=======
 $controller->index();
->>>>>>> ebc6abf927dd002fa615cb244b9db4a235b8c6b1
