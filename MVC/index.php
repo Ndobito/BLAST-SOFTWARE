@@ -21,7 +21,7 @@ if(!isset($_REQUEST['b'])){
     require_once "controller/$controller.controller.php";
     $controller = ucwords($_REQUEST['b']).'controller';
     $controller = new $controller(); 
-    call_user_func(array($controller, $action)); 
+    call_user_func(array($controller, $action));
 }
 
 ?>

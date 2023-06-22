@@ -1,7 +1,13 @@
 <?php
-
+require_once 'model/database.php';
 class ProductModel {
+    
     private $pdo;
+
+    public function __construct()
+    {
+        $this->pdo = databaseConexion::conexion();
+    }
     public function getAllProducts() {
         return [
             ['id' => 1, 'name' => 'Producto 1', 'description' => 'Descripción del producto 1', 'image' => 'imagen1.jpg', 'price' => 10.99, 'sale_price' => 9.99, 'quantity' => 20, 'category' => 'Categoría 1', 'distributor' => 'Distribuidor 1'],
@@ -12,12 +18,11 @@ class ProductModel {
 
 public function guardar( $data){
     try {
-        $sql = 'INSERT INTO producto (idProd,nomprod,desprod,imgprod,precprod,precvenprod,stockprod,catprod, )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?.)';
+        $sql = 'INSERT INTO producto (nomprod,desprod,imgprod,precprod,precvenprod,stockprod,catprod,idprov)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
         $this->pdo->prepare($sql)
         ->execute(
             array(
-                $data->idProd,
                 $data->nomprod,
                 $data->desprod, 
                 $data->imgprod,
@@ -25,13 +30,14 @@ public function guardar( $data){
                 $data->precvenprod,
                 $data->stockprod,
                 $data->catprod,
+                $data->idprov,
             )
         );
     } catch (Exception $e) {
         die($e->getMessage());
     }
 }
-public function Actualizar($data) {
+public function actualizar($data) {
 		try {
 			$sql = 'UPDATE producto SET
 			nomprod = ?,
@@ -40,8 +46,9 @@ public function Actualizar($data) {
             precprod = ?,
 			precvenprod = ?,
 			stockprod = ?,
-            catprod = ?
-			WHERE idProd = ?';
+            catprod = ?,
+            idprov = ?
+			WHERE idprod = ?';
 			$this->pdo->prepare($sql)
 			->execute(
 				array(
@@ -52,11 +59,25 @@ public function Actualizar($data) {
                     $data->precvenprod,
                     $data->stockprod,
                     $data->catprod,
+                    $data->idprov,
+                    $data->idprod
 				)
 			);
 		} catch (Exception $e) {
 			die($e->getMessage());
 		}
 	}
+
+    public function eliminar($data) {
+        $sql = "DELETE FROM producto WHERE idprod = ?";
+        try {
+            $this->pdo->prepare($sql)
+            ->execute([
+                $data->idprod
+            ]);
+        } catch (Exception $e) {
+			die($e->getMessage());
+		}
+    }
 }
 ?>
