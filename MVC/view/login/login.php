@@ -30,8 +30,7 @@
                         </div>
                     </div>
                     <div>
-                        <input type="checkbox" name="checkbox">
-                        <p> Aceptar terminos y condiciones <a id="window-up" href="#">Mas información</a></p>
+                        <p> Terminos y condiciones <a id="window-up" href="#">Mas información</a></p>
                     </div>
                     <button name="submit">Ingresar</button>
                 </form>

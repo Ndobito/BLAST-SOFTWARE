@@ -3,9 +3,9 @@
         <header>
             <div class="header-top">
                 <div class="social-networks">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://es-la.facebook.com/"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=3133215141"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
                 </div>
                 <div class="search-bar">
                     <div>
@@ -50,7 +50,7 @@
             </div>
             <div class="header-bottom">
                 <div class="container-logo">
-                    <img src="assets/img/logo-removebg.png" alt="">
+                    <a href="?b=index"><img src="assets/img/logo-removebg.png" alt=""></a>
                 </div>
                 <div class="nav">
                     <ul>

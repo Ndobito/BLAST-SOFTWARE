@@ -22,7 +22,7 @@ class AdministradorModel
 
         $query = "UPDATE administrador SET nomadmin = ?, apeadmin = ?, emaadmin = ?, diradmin = ?, teladmin = ?, teladmin2 = ? WHERE idamin = ?";
         $stmt = $this->conexion->prepare($query);
-        $stmt->bind_param("ssssssi", $nomadmin, $apeadmin, $emaadmin, $diradmin, $teladmin, $teladmin2, $idamin);
+        $stmt->bind_param( $nomadmin, $apeadmin, $emaadmin, $diradmin, $teladmin, $teladmin2, $idamin);
         $stmt->execute();
         $stmt->close();
     }

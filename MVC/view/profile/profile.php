@@ -23,11 +23,12 @@
                                 <button onclick="container(3)">MASCOTAS</button>
                             </div>
                             <div>
-                                <button><a href="?b=profile&s=cerrarSesion"><i
-                                            class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</a></button>
-                            </div>
-                            <div>
-                                <a href="?b=index"><span>inicio</span></a>
+                                <a href="?b=profile&s=cerrarSesion">
+                                    <button>
+                                        <i class="fa-solid fa-right-from-bracket fa-rotate-180"></i>
+                                        SALIR
+                                    </button>
+                                </a>
                             </div>
                         </div>
 
