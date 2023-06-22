@@ -1,15 +1,16 @@
 <?php
-include_once "model/profile.php";
 
-class ProfileController 
+
+class ProfileRecepcionistacontroller 
 {
     public function Inicio()
     {
-        $style = "<link rel='stylesheet' href='assets/css/style-profile.css'>";
+        $style = "<link rel='stylesheet' href='assets/css/style-profile-recepcionista.css'>";
         require_once "view/head.php";
         $nombreUsuario = $_SESSION['usuario'];
         $data = compact('nombreUsuario');
-        require_once "view/profile/profile.php";
+        require_once "view/profile/profilerecepcionista.php";
+        require_once "view/footerprofile.php";
     }
 
     public function cerrarSesion()
@@ -19,4 +20,3 @@ class ProfileController
         exit();
     }
 }
-

@@ -31,7 +31,7 @@
                                     $perfilURL = "?b=profileadministrador";
                                     break;
                                 case "colaborador":
-                                    $perfilURL = "?b=colaborador";
+                                    $perfilURL = "?b=profilecolaborador";
                                     break;
                                 default:
                                     $perfilURL = ""; // Define una URL adecuada en caso de error

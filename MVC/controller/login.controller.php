@@ -45,7 +45,21 @@ class LoginController
                         header('Location: ?b=profileadministrador');
                         break;
                     case "colaborador":
-                        header('Location: ?b=profilecolaborador');
+                        $rolColaborador = $this->loginModel->obtenerRolColaborador($usuario);
+                        switch ($rolColaborador) {
+                            case "veterinario":
+                                header('Location: ?b=profileveterinario');
+                                break;
+                            case "recepcionista":
+                                header('Location: ?b=profilerecepcionista');
+                                break;
+                            case "colaborador":
+                                header('Location: ?b=profilecolaborador');
+                                break;
+                            default:
+                                // Redirigir a una página de error o manejar el caso adecuadamente
+                                break;
+                        }
                         break;
                     default:
                         // Redirigir a una página de error o manejar el caso adecuadamente
@@ -64,23 +78,6 @@ class LoginController
             }
         }
     }
-}
-
-
-
-if (isset($_SESSION['ultimaActividad'])) {
-    $tiempoInactividad = 1 * 60; // 1 minuto
-    $tiempoActual = time();
-    $tiempoTranscurrido = $tiempoActual - $_SESSION['ultimaActividad'];
-
-    if ($tiempoTranscurrido > $tiempoInactividad) {
-        session_unset();
-        session_destroy();
-        header('Location: http://localhost/BLAST-SOFTWARE/MVC/?b=login');
-        exit();
-    }
-
-    $_SESSION['ultimaActividad'] = $tiempoActual; 
 }
 
 ?>

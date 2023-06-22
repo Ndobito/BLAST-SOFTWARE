@@ -18,16 +18,18 @@
     </header>
     <button class="btn-regresar"><i class="fa-solid fa-arrow-left"></i></button>  
     <div class="container">
+        <form action= "?b=inventory&s=guardar" method="post">
+
         <label for="nombre">Nombre del producto:</label>
         <input type="text" id="nombre" name="nombre" placeholder="agrega el nombre del producto">
 <br>
         <label for="nombre">Descripcion:</label>
         <input type="text" id="descripcion" name="descripcion" placeholder="agrega  la descripcion del producto">
 <br>
-        <form>
+       
          <label for="imagen">Selecciona una imagen:</label>
          <input type="file" id="imagen" name="imagen">
-        </form>
+        
 <br>
         <label for="nombre">precio:</label>
         <input type="text" id="precio" name="precio" placeholder="agrega el precio del producto">
@@ -42,6 +44,8 @@
         <input type="text" id="categoria" name="categoria" placeholder="agrega la categoria del producto">
 <br>
         <button class="btn-save">Guardar</button>
+
+        </form>
         
     </div>
 </head>

@@ -56,6 +56,19 @@ class Login
             return false;
         }
     }
+
+    public function obtenerRolColaborador($usuario)
+    {
+        $query = "SELECT rolcol FROM colaborador WHERE nomcol = '$usuario'";
+        $resultado = mysqli_query($this->conexion, $query);
+
+        if ($fila = mysqli_fetch_assoc($resultado)) {
+            return $fila['rolcol'];
+        } else {
+            return false;
+        }
+    }
+    
 }
 
 ?>
