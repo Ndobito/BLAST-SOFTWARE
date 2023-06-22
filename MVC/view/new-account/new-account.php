@@ -33,7 +33,7 @@
                     <label for="location">Tipo de ubicación</label>
                     <select type="select" name="selTipoUbicacion" required id="input-obligatorio">
                         <option value="" selected disabled>Selectiona el tipo de ubicación</option>
-                        <option value="rural">Rural</option>
+                        <option value="rural" >Rural</option>
                         <option value="urbano">Urbano</option>
                     </select>
 

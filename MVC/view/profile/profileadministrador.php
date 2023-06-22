@@ -48,28 +48,28 @@
                         <form id="form-user-information" action="updateprofile.controller.php?action=guardarAdministrador" method="post">
                             <label for="ctNameuser">Nombres</label>
                             <input type="text" name="ctNameUser" id="ctNameUser"
-                                value="<?php echo $administrador['nomadmin']; ?>" >
+                                value="<?php echo $administrador['nomadmin']; ?>" disabled>
                             <label for="ctSurNameUser">Apellidos</label>
                             <input type="text" name="ctSurNameUser" id="ctSurNameUser"
-                                value="<?php echo $administrador['apeadmin']; ?>" >
+                                value="<?php echo $administrador['apeadmin']; ?>" disabled>
                             <label for="ctNameuser">Direccion</label>
                             <input type="text" name="ctAdrUser" id="ctAdrUser"
-                                value="<?php echo $administrador['diradmin']; ?>" >
+                                value="<?php echo $administrador['diradmin']; ?>" disabled>
                             <div>
                                 <div>
                                     <label for="ctEmailUser">Correo Eletrónico</label>
                                     <input type="text" name="ctEmailUser" id="ctEmailUser"
-                                        value="<?php echo $administrador['emaadmin']; ?>" >
+                                        value="<?php echo $administrador['emaadmin']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCel">Numero de Celular 1</label>
                                     <input type="text" name="ctNumCel" id="ctNumCel"
-                                        value="<?php echo $administrador['teladmin']; ?>" >
+                                        value="<?php echo $administrador['teladmin']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCel2">Numero de Celular 2</label>
                                     <input type="text" name="ctNumCel2" id="ctNumCel2"
-                                        value="<?php echo $administrador['teladmin2']; ?>" >
+                                        value="<?php echo $administrador['teladmin2']; ?>" disabled>
                                 </div>
                             </div>
                             <div class="updatebutton">

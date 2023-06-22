@@ -8,12 +8,12 @@
                         </a>
                     </div>
                     <div>
-                        <a href="#">
+                        <a href="https://www.instagram.com/">
                             <i class="fa-brands fa-instagram"></i> Instagram
                         </a>
                     </div>
                     <div>
-                        <a href="#">
+                        <a href="https://es-la.facebook.com/">
                             <i class="fa-brands fa-facebook"></i> Facebook
                         </a>
                     </div>
