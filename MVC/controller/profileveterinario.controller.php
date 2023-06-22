@@ -7,7 +7,10 @@ class ProfileVeterinarioController
     {
         $style = "<link rel='stylesheet' href='assets/css/style-profile-veterinario.css'>";
         require_once "view/head.php";
-        require_once "view/profile/profileaveterinario.php";
+        $nombreUsuario = $_SESSION['usuario'];
+        $data = compact('nombreUsuario');
+        require_once "view/profile/profileveterinario.php";
+        require_once "view/footerprofile.php";
     }
 
     public function cerrarSesion()

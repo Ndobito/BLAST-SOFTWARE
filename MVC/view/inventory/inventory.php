@@ -20,7 +20,7 @@
                         <input type="text" placeholder="Buscar">
                         <button class="btn-buscar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         
-                        <a href="#"><button class="btn-agregar"><i class="fa-solid fa-plus"  style="margin-right: 5px";></i>  Agregar</button></a>
+                        <a href="?b=inventory&s=agregar"><button class="btn-agregar"><i class="fa-solid fa-plus"  style="margin-right: 5px";></i>  Agregar</button></a>
                     </div> 
                 </div>
                 <div class="container-1">
@@ -51,8 +51,8 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><button class="btn-editar"><i class="fa-solid fa-pen"></i></button></td>
-                            <td><button class="btn-borrar"><i class="fa-solid fa-trash"></i></button></td>
+                            <td> <button class="btn-editar"><a href="?b=inventory&s=editar"><i class="fa-solid fa-pen"></i></a></button></td>
+                            <td> <button class="btn-borrar" ><a href="?b=inventory&s=r"><i class="fa-solid fa-trash"></i></button></td>
                         </tr>        
                     </tbody>
                 </table>             

@@ -125,7 +125,8 @@ header .header-top{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2px; 
+    padding: 2px;
+    text-transform: uppercase; 
 }
 
 .button-register button span{
@@ -1111,6 +1112,7 @@ footer{
         width: 100%;
         padding: 10px;
         font-size: 15px;
+        text-transform: uppercase;
         transform: translateX(-50px);
         -webkit-transform: translateX(-50px);
         -moz-transform: translateX(-50px);
