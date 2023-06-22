@@ -1,5 +1,7 @@
+<div class="returm">
+    <a href="?b=index"><i class="fa-solid fa-arrow-left"></i></a>
+</div>
 <div class="container">
-    <!-- Body of the work -->
     <main>
         <div class="container-main-profile">
             <div class="left">
@@ -135,20 +137,6 @@
             </div>
         </div>
     </main>
-    <footer>
-        <div class="footer-bottom">
-            <p>
-                <img src="img/logo.jpg" alt="">
-                <i>@2023 Clinica Animal World | Veterinaria para mascotas en Colombia</i>
-                <br><br>
-            </p>
-            <p>
-                Sitio creado por
-                <img src="img/logo-removebg-blast-software.png" alt="Logo Blast Software">
-                <strong>BLast Software</strong>
-            </p>
-        </div>
-    </footer>
 </div>
 
 <!-- Menu Profile -->

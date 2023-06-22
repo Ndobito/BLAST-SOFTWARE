@@ -10,6 +10,7 @@ class ProfileVeterinarioController
         $nombreUsuario = $_SESSION['usuario'];
         $data = compact('nombreUsuario');
         require_once "view/profile/profileveterinario.php";
+        require_once "view/footerprofile.php";
     }
 
     public function cerrarSesion()

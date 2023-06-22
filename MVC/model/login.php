@@ -68,6 +68,7 @@ class Login
             return false;
         }
     }
+    
 }
 
 ?>

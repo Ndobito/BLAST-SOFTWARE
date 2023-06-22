@@ -10,6 +10,7 @@ class ProfileRecepcionistacontroller
         $nombreUsuario = $_SESSION['usuario'];
         $data = compact('nombreUsuario');
         require_once "view/profile/profilerecepcionista.php";
+        require_once "view/footerprofile.php";
     }
 
     public function cerrarSesion()

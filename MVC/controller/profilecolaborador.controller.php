@@ -10,6 +10,7 @@ class ProfileColaboradorController
         $nombreUsuario = $_SESSION['usuario'];
         $data = compact('nombreUsuario');
         require_once "view/profile/profilecolaborador.php";
+        require_once "view/footerprofile.php";
     }
 
     public function cerrarSesion()
