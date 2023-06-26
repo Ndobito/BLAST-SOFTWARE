@@ -22,9 +22,8 @@ class LoginController
     {
         $usuario = $_POST['ctUser'];
         $passsword = $_POST['ctPassword'];
-        $terminos = $_POST['checkbox'];
 
-        if (empty($terminos) || empty($usuario) || empty($passsword)) {
+        if (empty($usuario) || empty($passsword)) {
             header('Location: ?b=login');
         } else {
             $usuario_valido = $this->loginModel->validarUsuario($usuario, $passsword);
