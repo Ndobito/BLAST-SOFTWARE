@@ -11,17 +11,14 @@ class Login
 
     public function validarUsuario($usuario, $contrasena)
     {
-        $query = "(SELECT 'cliente' AS rol FROM cliente WHERE usercli = '$usuario' AND passcli = '$contrasena')
-                  UNION
-                  (SELECT 'administrador' AS rol FROM administrador WHERE nomadmin = '$usuario' AND passadmin = '$contrasena')
-                  UNION
-                  (SELECT 'colaborador' AS rol FROM colaborador WHERE nomcol = '$usuario' AND passcol = '$contrasena')";
+        $query = "(SELECT 'cliente' AS rol FROM cliente WHERE usercli = '$usuario' AND passcli = '$contrasena') UNION (SELECT 'administrador' AS rol FROM administrador WHERE nomadmin = '$usuario' AND passadmin = '$contrasena') UNION (SELECT 'colaborador' AS rol FROM colaborador WHERE nomcol = '$usuario' AND passcol = '$contrasena')";
+
         $resultado = mysqli_query($this->conexion, $query);
 
         if (mysqli_num_rows($resultado) > 0) {
-            return true; // El usuario y la contraseña son válidos
+            return true; 
         } else {
-            return false; // El usuario o la contraseña son incorrectos
+            return false;
         }
     }
 

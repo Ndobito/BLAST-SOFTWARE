@@ -9,9 +9,9 @@
                     <div class="user">
                         <div class="img"></div>
                         <h1>
-                            <?php echo $nombreUsuario; ?>
+                            <?php echo $usuario; ?>
                         </h1>
-                        <h1>Adminstrador</h1>
+                        <h1>Administrador</h1>
                     </div>
                     <div class="menu">
                         <div id="btns-menu">
@@ -48,28 +48,28 @@
                         <form id="form-user-information" action="updateprofile.controller.php?action=guardarAdministrador" method="post">
                             <label for="ctNameuser">Nombres</label>
                             <input type="text" name="ctNameUser" id="ctNameUser"
-                                value="<?php echo $administrador['nomadmin']; ?>" disabled>
+                                value="<?php echo $user['nomadmin']; ?>" disabled>
                             <label for="ctSurNameUser">Apellidos</label>
                             <input type="text" name="ctSurNameUser" id="ctSurNameUser"
-                                value="<?php echo $administrador['apeadmin']; ?>" disabled>
+                                value="<?php echo $user['apeadmin']; ?>" disabled>
                             <label for="ctNameuser">Direccion</label>
                             <input type="text" name="ctAdrUser" id="ctAdrUser"
-                                value="<?php echo $administrador['diradmin']; ?>" disabled>
+                                value="<?php echo $user['diradmin']; ?>" disabled>
                             <div>
                                 <div>
                                     <label for="ctEmailUser">Correo Eletrónico</label>
                                     <input type="text" name="ctEmailUser" id="ctEmailUser"
-                                        value="<?php echo $administrador['emaadmin']; ?>" disabled>
+                                        value="<?php echo $user['emaadmin']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCel">Numero de Celular 1</label>
                                     <input type="text" name="ctNumCel" id="ctNumCel"
-                                        value="<?php echo $administrador['teladmin']; ?>" disabled>
+                                        value="<?php echo $user['teladmin']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCel2">Numero de Celular 2</label>
                                     <input type="text" name="ctNumCel2" id="ctNumCel2"
-                                        value="<?php echo $administrador['teladmin2']; ?>" disabled>
+                                        value="<?php echo $user['teladmin2']; ?>" disabled>
                                 </div>
                             </div>
                             <div class="updatebutton">

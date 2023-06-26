@@ -14,19 +14,31 @@
                 </div>
             </div>
             <div>
-                <form action="?b=login&s=revicion" method="post">
+                <script>
+                    function validarForm(){
+
+                        let user = document.getElementById('ctUser').value; 
+                        let pass = document.getElementById('ctPass').value; 
+
+                        if(user == "" || pass == ""){
+                            alert("Complete todos los campos"); 
+                            return false;
+                        }
+                    }
+                </script>
+                <form action="?b=login&s=validarUser" method="post" onsubmit="return validarForm()">
                     <div>
-                        <label for="#">Usuario</label>
+                        <label for="ctUser">Usuario</label>
                         <div class="input">
                             <i class="fa-solid fa-paw"id="icono"></i>
-                            <input type="text" placeholder="user" name="ctUser">
+                            <input type="text" placeholder="user" id="ctUser" name="ctUser" required>
                         </div>
                     </div>
                     <div>
-                        <label for="#">Contraseña</label>
+                        <label for="ctPass">Contraseña</label>
                         <div class="input">
                             <i class="fa-solid fa-lock" id="icono"></i>
-                            <input type="password" placeholder="Contraseña" name="ctPassword">
+                            <input type="password" placeholder="Contraseña" id="ctPass" name="ctPassword" required>
                         </div>
                     </div>
                     <div>
