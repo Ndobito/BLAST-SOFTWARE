@@ -24,7 +24,32 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+/*volver*/
+.returm {
+    width: 100%;
+    height: 25px;
+    background-color: #ffffff;
+  }
+  .returm a {
+    margin-left: 1rem;
+  }
+  .returm i {
+    margin-top: 0.3rem;
+    height: 17px;
+    width: 23px;
+    text-align: center;
+    color: var(--color-4);
+  }
+  
+  .returm i:hover {
+    border-radius: 200%;
+    box-shadow: 2px 2px 8px 0 rgb(0, 0, 0, 0.069),
+      4px 4px 16px 0 rgba(0, 0, 0, 0.069), 0px 0px 24px 2px rgba(0, 0, 0, 0.169);
+    -webkit-border-radius: 200%;
+    -moz-border-radius: 200%;
+    -ms-border-radius: 200%;
+    -o-border-radius: 200%;
+  }
 /* Container Main */
 
 .container-main-profile{
@@ -198,12 +223,21 @@
 
 
 /* Button Edit */
+.updatebutton{
+    display: flex;
+    gap: 30px;
+    padding-bottom: 10px;
+    margin-top: -10px;
+}
 
-.user-information button, .Pets button{
+
+.user-information span{
     width: 50%;
     border: none;
     border-radius: 8px;
     margin-top: 20px;
+    text-align: center;
+    font-size: 10pt;
     color: var(--color-5);
     font-weight: 600;
     padding: 6px 2px 6px 2px;
@@ -229,7 +263,7 @@
     background-repeat: no-repeat;
 }
 
-.container-right3,.container-right4{
+.container-right3,.container-right4,.container-right5{
     width: 100%;
     height: 100%;
     padding-top: 20px;
@@ -421,6 +455,7 @@ footer{
     padding: 10px;
     gap: 20px;
     position: relative;
+    height: 106px;
 }
 
 .footer-bottom img{
