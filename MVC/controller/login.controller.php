@@ -71,15 +71,12 @@ class LoginController
             } else {
                 $usuario_registrado = $this->loginModel->existeUsuario($usuario);
 
-                if ($usuario_registrado) {     
-                    header("Location: ?b=login");
-                
+                if ($usuario_registrado) {
+                    header('location: ?b=login&s=Inicio&p=true');
                 } else {
-                    echo "<p>Usuario no registrado.</p>";
+                    header('location: ?b=login&s=Inicio&p=false');
                 }
             }
         }
     }
 }
-
-?>

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="returm">
-        <a href="?b=index"><i class="fa-solid fa-arrow-left"></i></a>
+        <a href="?b=index&s=Inicio&p=admin"><i class="fa-solid fa-arrow-left"></i></a>
     </div> <!-- Body of the work -->
     <main>
         <div class="container-main-profile">
@@ -45,7 +45,7 @@
                 <div class="profile-adm container-right" id="container-right">
                     <div class="user-information">
                         <h1>Datos</h1>
-                        <form id="form-user-information" action="updateprofile.controller.php?action=guardarAdministrador" method="post">
+                        <form id="form-user-information" action="?b=profile&s=update" method="post">
                             <label for="ctNameuser">Nombres</label>
                             <input type="text" name="ctNameUser" id="ctNameUser"
                                 value="<?php echo $user['nomadmin']; ?>" disabled>
