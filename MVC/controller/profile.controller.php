@@ -4,7 +4,7 @@ include_once "model/Profile.php";
 
 class ProfileController
 {
-
+    //-----Metodo para redireccionar segun el rol de inicio de sesión-----//
     public function Inicio($rol)
     {   
         $style = "<link rel='stylesheet' href='assets/css/style-$rol.css'>";
@@ -42,7 +42,20 @@ class ProfileController
         require_once "view/footerprofile.php";
 
     }
-   
+    //-----Metodo para actualizar Datos-----//
+    
+    public function update(){
+
+        $nombre = $_REQUEST['ctNameUser']; 
+        $apellido = $_REQUEST['ctSurNameUser']; 
+        $nombre = $_REQUEST['ctNameUser']; 
+        $nombre = $_REQUEST['ctNameUser']; 
+        $nombre = $_REQUEST['ctNameUser']; 
+        $nombre = $_REQUEST['ctNameUser']; 
+        $nombre = $_REQUEST['ctNameUser']; 
+
+    }
+
     public function cerrarSesion()
     {
         session_destroy();

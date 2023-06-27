@@ -72,13 +72,11 @@ class LoginController
                 $usuario_registrado = $this->loginModel->existeUsuario($usuario);
 
                 if ($usuario_registrado) {
-                    echo "<p>Contraseña incorrecta.</p>";
+                    header('location: ?b=login&s=Inicio&p=true');
                 } else {
-                    echo "<p>Usuario no registrado.</p>";
+                    header('location: ?b=login&s=Inicio&p=false');
                 }
             }
         }
     }
 }
-
-?>

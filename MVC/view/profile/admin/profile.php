@@ -45,7 +45,7 @@
                 <div class="profile-adm container-right" id="container-right">
                     <div class="user-information">
                         <h1>Datos</h1>
-                        <form id="form-user-information" action="updateprofile.controller.php?action=guardarAdministrador" method="post">
+                        <form id="form-user-information" action="?b=profile&s=update" method="post">
                             <label for="ctNameuser">Nombres</label>
                             <input type="text" name="ctNameUser" id="ctNameUser"
                                 value="<?php echo $user['nomadmin']; ?>" disabled>

@@ -9,7 +9,18 @@ class Profile
     {
         $this->conexion = databaseConexion::conexion();
     }
-
+    // Metodo para Seleccionar el nombre del Usuario
+    public function selectUser($nombreUsuario)
+    {
+        $query = "SELECT * FROM administrador WHERE nomadmin = ?";
+        $stmt = $this->conexion->prepare($query);
+        $stmt->bind_param("s", $nombreUsuario);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $administrador = $result->fetch_assoc();
+        $stmt->close();
+        return $administrador;
+    }
     public function update($administrador)
     {
         $idamin = $administrador['idamin'];
@@ -27,15 +38,5 @@ class Profile
         $stmt->close();
     }
 
-    public function selectUser($nombreUsuario)
-    {
-        $query = "SELECT * FROM administrador WHERE nomadmin = ?";
-        $stmt = $this->conexion->prepare($query);
-        $stmt->bind_param("s", $nombreUsuario);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $administrador = $result->fetch_assoc();
-        $stmt->close();
-        return $administrador;
-    }
+    
 }
