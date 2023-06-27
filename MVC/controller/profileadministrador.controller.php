@@ -1,9 +1,9 @@
 <?php
 
-include_once 'model/administrador.php';
+include_once 'model/Profile.php';
 include_once 'controller/updateprofile.controller.php';
 
-class ProfileAdministradorController
+class ProfileController
 {
     public function Inicio()
     {
@@ -13,13 +13,10 @@ class ProfileAdministradorController
             $updateProfileController = new UpdateProfileController();
             $updateProfileController->guardarAdministrador();
         }
-
-        $style = "<link rel='stylesheet' href='assets/css/style-profile-administrator.css'>";
-        require_once "view/head.php";
         $nombreUsuario = $_SESSION['usuario'];
 
-        $model = new AdministradorModel();
-        $administrador = $model->obtenerAdministradorPorNombre($nombreUsuario);
+        $model = new Profile();
+        $administrador = $model->selectUser($nombreUsuario);
 
         if ($administrador !== null) {
             $data = compact('administrador');
@@ -39,6 +36,6 @@ class ProfileAdministradorController
     }
 }
 
-$profileAdminController = new ProfileAdministradorController();
+$profileAdminController = new Profile();
 
-$profileAdminController->Inicio();
+// $profileAdminController->Inicio();

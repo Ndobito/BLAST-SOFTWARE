@@ -10,10 +10,6 @@
     --color-9: #2C74FF;
     --color-10: #2E353B;
     --color-11: #f5f5f5;
-<<<<<<< HEAD
-=======
-    --color-12: #ff0000;
->>>>>>> f6c2d9841ae5381988d405d2e4f7d3da361436a4
     --font-1: Verdana, Geneva, Tahoma, sans-serif;
     --font-2: Microsoft-Yaheni;
 }
@@ -29,6 +25,33 @@
     box-sizing: border-box;
 }
 
+/*volver*/
+.returm {
+    width: 100%;
+    height: 25px;
+    background-color: #ffffff;
+  }
+  .returm a {
+    margin-left: 1rem;
+  }
+  .returm i {
+    margin-top: 0.3rem;
+    height: 17px;
+    width: 20px;
+    text-align: center;
+    color: var(--color-4);
+  }
+  
+  .returm i:hover {
+    border-radius: 200%;
+    box-shadow: 2px 2px 8px 0 rgb(0, 0, 0, 0.069),
+      4px 4px 16px 0 rgba(0, 0, 0, 0.069), 0px 0px 24px 2px rgba(0, 0, 0, 0.169);
+    -webkit-border-radius: 200%;
+    -moz-border-radius: 200%;
+    -ms-border-radius: 200%;
+    -o-border-radius: 200%;
+  }
+  
 /* Container Main */
 
 .container-main-profile{
@@ -41,6 +64,7 @@
 
 .left{
     width: 100%;
+    height: 90vh;
     background: rgb(241,252,255);
     background: linear-gradient(180deg, rgba(241,252,255,1) 5%, rgba(143,227,255,1) 100%);  
     font-family: var(--font-1);
@@ -112,15 +136,11 @@
     cursor: pointer;
 }
 
-.menu div:nth-child(7) button{
-<<<<<<< HEAD
+.menu div:nth-child(5) button{
     background: #2C74FF;
-=======
-    background: var(--color-9);
->>>>>>> f6c2d9841ae5381988d405d2e4f7d3da361436a4
 }
 
-.menu div:nth-child(7) button i{
+.menu div:nth-child(5) button i{
     margin-right: 10px;
 }
 
@@ -237,11 +257,7 @@
     background-repeat: no-repeat;
 }
 
-<<<<<<< HEAD
 .container-right3,.container-right4{
-=======
-.container-right3,.container-right4,.container-right5{
->>>>>>> f6c2d9841ae5381988d405d2e4f7d3da361436a4
     width: 100%;
     height: 100%;
     padding-top: 20px;
@@ -273,17 +289,12 @@
     width: 100%;
     padding: 0 10px;
 }
-
 .title {
     text-transform: uppercase;
     text-align: center;
     font-family:var(--font-1);
     padding-bottom: 30px;
-<<<<<<< HEAD
     color: #191919;
-=======
-    color: var(--color-4);
->>>>>>> f6c2d9841ae5381988d405d2e4f7d3da361436a4
   }
 .table-container {
     width: 100%;
@@ -384,65 +395,41 @@
   td, th {
     padding: 8px;
     text-align: left;
-  } 
-  tbody td:nth-child(7),tbody td:nth-child(8){
-    background-color: var(--color-10);
-    text-align: center;
-    transition: all .5s ease;
   }
-  tbody td:nth-child(7) a,tbody td:nth-child(8) a{
-    color: var(--color-5);
-    transition: all .5s ease;
+  .edit{
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
   }
-  tbody td:nth-child(7) a:hover{
-<<<<<<< HEAD
-    color: #007fff;
-    transition: all .5s ease;
-   } tbody td:nth-child(8) a:hover{
-    color: #ff0000;
-    transition: all .5s ease;
-   }
-   .container-right4 tbody td:nth-child(6){
-    background-color: var(--color-10);  
-    text-align: center;  
-   }
-   .container-right4 tbody td:nth-child(6) a{
-    color: var(--color-5);    
-   }
-   .container-right4 tbody td:nth-child(6) a:hover{
-    color: #007fff;
-    transition: all .5s ease;
-   }
-   .container-right4 tbody td:nth-child(7) a:hover{
-    color: #ff0000;
-    transition: all .5s ease;
-   }
+  .edit a{
+    font-family: var(--font-1);
+    background-color: var(--color-1);
+    color: var(--color-10);
+    border: none;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 10pt;
+    font-weight: 800;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+  }
 
+/* Calendar Citas */
 
-=======
-    color: var(--color-9);
-    transition: all .5s ease;
-   } tbody td:nth-child(8) a:hover{
-    color: var(--color-12);
-    transition: all .5s ease;
-   }
-   .container-right5 tbody td:nth-child(6){
-    text-align: center;
-    background-color: var(--color-10);  
-   }
-   .container-right5 tbody td:nth-child(6) a{
-    color: var(--color-5);    
-   }
-   .container-right5 tbody td:nth-child(6) a:hover{
-    color: var(--color-9);
-    transition: all .5s ease;
-   }
-   .container-right5 tbody td:nth-child(7) a:hover{
-    color: var(--color-12);
-    transition: all .5s ease;
-   }
+#calendar-citas{
+    height: 20%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-family: var(--font-2);
+    font-size: 20px;
+    padding: 0px 10px 30px 30px;
+}
 
->>>>>>> f6c2d9841ae5381988d405d2e4f7d3da361436a4
 /* Footer */
 
 footer{
@@ -454,6 +441,7 @@ footer{
 /* Footer Bottom */
 
 .footer-bottom{
+    width: 100%;
     background: var(--color-4);
     color: var(--color-5);
     align-items: center;
@@ -461,7 +449,8 @@ footer{
     text-align: center;
     padding: 10px;
     gap: 20px;
-    position: relative;
+    position: absolute;
+    bottom: 0;
 }
 
 .footer-bottom img{
@@ -579,6 +568,98 @@ footer{
 @media (min-width:1441px) {
     
 
+}
+
+/* Slider Calendar */
+
+#calendar {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.slider-calendar {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    height: 80%;
+}
+
+.slide {
+    margin: 20vh 0vh 20vh 0vh;
+    display: inline-block;
+    scroll-snap-align: center;
+    width: 100%;
+    padding: 0 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.container-right2 table th,
+.container-right2 table td {
+    font-family: var(--font-2);
+    padding: 10px;
+    text-align: center;
+    color: var(--color-4);
+    background: var(--color-5);
+    border: 1px solid var(--color-7);
+}
+
+.container-right2 table td:hover{
+    background: var(--color-4);
+    color: var(--color-5);
+}
+
+table caption {
+    font-family: var(--font-2);
+    font-size: 1.5rem;
+    color: var(--color-9);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid var(--color-4);
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Calendar Citas */
+
+#calendar-citas{
+    height: 20%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-family: var(--font-2);
+    font-size: 20px;
+    padding: 0px 10px 30px 30px;
+}
+/* Container Right 2 and Container Right 3 */
+
+.container-right2{
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: none;
+    background: url(../img/calendar-profile-bg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.container-right3{
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: none;
 }
 
 

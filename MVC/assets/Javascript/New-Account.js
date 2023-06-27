@@ -20,8 +20,4 @@ const nextButton = document.querySelector(".next");
 addButtonEvent(nextButton, petContainer, confirmationUserContainer);
 
 const returnButton2 = document.querySelector(".return2");
-<<<<<<< HEAD
 addButtonEvent(returnButton2, confirmationUserContainer, petContainer);
-=======
-addButtonEvent(returnButton2, confirmationUserContainer, petContainer);
->>>>>>> f6c2d9841ae5381988d405d2e4f7d3da361436a4

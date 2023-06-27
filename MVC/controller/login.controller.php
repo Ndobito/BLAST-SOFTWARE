@@ -18,15 +18,15 @@ class LoginController
         require_once "view/login/login.php";
     }
 
-    public function revicion()
+    public function validarUser()
     {
         $usuario = $_POST['ctUser'];
         $passsword = $_POST['ctPassword'];
-        $terminos = $_POST['checkbox'];
-        setcookie("notify", serialize(["message" => "Error de inicio"]), 5, "/");
 
         if (empty($usuario) || empty($passsword)) {
+            
             header('Location: ?b=login');
+
         } else {
             $usuario_valido = $this->loginModel->validarUsuario($usuario, $passsword);
 
@@ -36,26 +36,26 @@ class LoginController
                 session_start();
                 $_SESSION['usuario'] = $usuario;
                 $_SESSION['tipoUsuario'] = $tipoUsuario;
-                $_SESSION['ultimaActividad'] = time(); // Guardar el tiempo de última actividad
+                $_SESSION['ultimaActividad'] = time(); 
 
                 switch ($tipoUsuario) {
                     case "cliente":
-                        header('Location: ?b=profile');
+                        header('Location: ?b=profile&s=Inicio&p=customer');
                         break;
                     case "administrador":
-                        header('Location: ?b=profileadministrador');
+                        header('Location: ?b=profile&s=Inicio&p=admin');
                         break;
                     case "colaborador":
                         $rolColaborador = $this->loginModel->obtenerRolColaborador($usuario);
                         switch ($rolColaborador) {
                             case "veterinario":
-                                header('Location: ?b=profileveterinario');
+                                header('Location: ?b=profile&s=Inicio&p=vet');
                                 break;
                             case "recepcionista":
-                                header('Location: ?b=profilerecepcionista');
+                                header('Location: ?b=profile&s=Inicio&p=recepcionist');
                                 break;
                             case "colaborador":
-                                header('Location: ?b=profilecolaborador');
+                                header('Location: ?b=profilecolaborador&s=Inicio&p=collaborator');
                                 break;
                             default:
                                 // Redirigir a una página de error o manejar el caso adecuadamente

@@ -75,6 +75,7 @@ font-weight: bold;
 .container-form input[type="email"],
 .container-form input[type="number"],
 .container-form select[type="select"],
+<<<<<<< HEAD
 .container-form select[type="password"]{
   display: block;
   width: 100%;
@@ -87,6 +88,20 @@ font-weight: bold;
   color: var(--color-3);
   background-color: #83dffd50;
   transition: all 0.7s;
+=======
+.container-form input[type="password"]{
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 10pt;
+    padding: 10px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--color-3);
+    background-color: #83dffd50;
+    transition: all 0.7s;
+>>>>>>> f6c2d9841ae5381988d405d2e4f7d3da361436a4
 }
 
 .container-form form input:focus,
@@ -105,6 +120,7 @@ margin: 0;
 .container-form input[type="number"] {
 -moz-appearance: textfield;
 }
+<<<<<<< HEAD
 .container-form form input[type="submit"],.container-form input[type="reset"],.button {
   background-color: var(--color-7);
   color: var(--color-5);
@@ -119,6 +135,34 @@ margin: 0;
   transition: all 0.7s;
 }
   .container-form form .button,.return,.return1,.nextpet,a{
+=======
+.container-form form input[type="submit"],.container-form input[type="reset"],.button ,.nextconf{
+    background-color: var(--color-7);
+    color: var(--color-5);
+    font-size: 16px;
+    font-weight: 700;
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all 0.7s;
+  }
+    .container-form form .button,.return,.return1,.return2,.nextpet,.nextconf,.next,a{
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      font-family: var(--font-1);
+      text-decoration: none;
+      font-size: 11pt;
+    }
+  .container-form form input[type="submit"]:hover,.container-form input[type="reset"]:hover,.button:hover,.nextconf:hover {
+    background-color: var(--color-3);
+    transition: all 0.7s;
+  }
+  .buttons-container{
+>>>>>>> f6c2d9841ae5381988d405d2e4f7d3da361436a4
     display: flex;
     width: 100%;
     justify-content: center;
