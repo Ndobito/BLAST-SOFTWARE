@@ -50,17 +50,10 @@
                             <label for="ctNameuser">Nombres *</label>
                             <input type="text" name="ctNameUser" id="ctNameUser"
                                 value="<?php echo $user['nomadmin'] ?? "Sin definir"; ?>" disabled>
-                            <label for="ctSurNameUser">Apellidos</label>
-                            <input type="text" name="ctSurNameUser" id="ctSurNameUser"
-                                value="<?php echo $user['apeadmin'] ?? "Sin definir"; ?>" disabled>
-                            <label for="ctNameuser">Direccion</label>
-=======
-                                value="<?php echo $user['nomadmin']; ?>" disabled>
                             <label for="ctSurNameUser">Apellidos *</label>
                             <input type="text" name="ctSurNameUser" id="ctSurNameUser"
                                 value="<?php echo $user['apeadmin'] ?? "Sin definir"; ?>" disabled>
                             <label for="ctNameuser">Direccion *</label>
->>>>>>> d2f4009d22628e5e11b18b2592187733dcc42ecb
                             <input type="text" name="ctAdrUser" id="ctAdrUser"
                                 value="<?php echo $user['diradmin'] ?? "Sin definir"; ?>" disabled>
                             <div>
