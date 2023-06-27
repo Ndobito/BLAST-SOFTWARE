@@ -48,28 +48,28 @@
                         <form id="form-user-information" action="?b=profile&s=update" method="post">
                             <label for="ctNameuser">Nombres</label>
                             <input type="text" name="ctNameUser" id="ctNameUser"
-                                value="<?php echo $user['nomadmin']; ?>" disabled>
+                                value="<?php echo $user['nomadmin'] ?? "Sin definir"; ?>" disabled>
                             <label for="ctSurNameUser">Apellidos</label>
                             <input type="text" name="ctSurNameUser" id="ctSurNameUser"
-                                value="<?php echo $user['apeadmin']; ?>" disabled>
+                                value="<?php echo $user['apeadmin'] ?? "Sin definir"; ?>" disabled>
                             <label for="ctNameuser">Direccion</label>
                             <input type="text" name="ctAdrUser" id="ctAdrUser"
-                                value="<?php echo $user['diradmin']; ?>" disabled>
+                                value="<?php echo $user['diradmin'] ?? "Sin definir"; ?>" disabled>
                             <div>
                                 <div>
                                     <label for="ctEmailUser">Correo Eletrónico</label>
                                     <input type="text" name="ctEmailUser" id="ctEmailUser"
-                                        value="<?php echo $user['emaadmin']; ?>" disabled>
+                                        value="<?php echo $user['emaadmin'] ?? "Sin definir"; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCel">Numero de Celular 1</label>
                                     <input type="text" name="ctNumCel" id="ctNumCel"
-                                        value="<?php echo $user['teladmin']; ?>" disabled>
+                                        value="<?php echo $user['teladmin'] ?? "Sin definir"; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCel2">Numero de Celular 2</label>
                                     <input type="text" name="ctNumCel2" id="ctNumCel2"
-                                        value="<?php echo $user['teladmin2']; ?>" disabled>
+                                        value="<?php echo $user['teladmin2'] ?? "Sin definir"; ?>" disabled>
                                 </div>
                             </div>
                             <div class="updatebutton">
