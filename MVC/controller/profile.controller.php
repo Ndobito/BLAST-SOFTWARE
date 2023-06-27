@@ -2,8 +2,10 @@
 
 include_once "model/Profile.php";
 
+
 class ProfileController
 {
+    
     //-----Metodo para redireccionar segun el rol de inicio de sesión-----//
     public function Inicio($rol)
     {   
@@ -63,4 +65,6 @@ class ProfileController
         header('Location: index.php');
         exit();
     }
+    //-----Metodo para ver los probedores-----//
+    
 }
