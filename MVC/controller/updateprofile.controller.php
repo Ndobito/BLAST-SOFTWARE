@@ -1,8 +1,7 @@
 <?php
 
-
-include_once 'model/database.php';
-include_once 'model/administrador.php';
+include_once 'lib/database/database.php';
+include_once 'model/profile.php';
 
 class UpdateProfileController
 {
@@ -22,8 +21,8 @@ class UpdateProfileController
             ];
 
             // Actualizar los datos del administrador
-            $model = new AdministradorModel();
-            $model->actualizarAdministrador($administrador);
+            $model = new Profile();
+            $model->update($administrador);
 
             header('Location: ?b=profileadministrador');
             return;

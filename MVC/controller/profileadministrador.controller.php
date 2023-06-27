@@ -20,7 +20,7 @@ class ProfileController
 
         if ($administrador !== null) {
             $data = compact('administrador');
-            require_once "view/profile/profileadministrador.php";
+            require_once "view/profile/admin/profileadministrador.php";
         } else {
            
         }
