@@ -5,6 +5,8 @@ class Profile
 {
     private $conexion;
 
+    public $id, $nombre, $apellido, $direccion, $email, $numcel, $numcel2, $file; 
+
     public function __construct()
     {
         $this->conexion = databaseConexion::conexion();
@@ -21,21 +23,23 @@ class Profile
         $stmt->close();
         return $administrador;
     }
-    public function update($administrador)
+    public function update(Profile $administrador)
     {
-        $idamin = $administrador['idamin'];
-        $nomadmin = $administrador['nomadmin'];
-        $apeadmin = $administrador['apeadmin'];
-        $emaadmin = $administrador['emaadmin'];
-        $diradmin = $administrador['diradmin'];
-        $teladmin = $administrador['teladmin'];
-        $teladmin2 = $administrador['teladmin2'];
+        $update = "UPDATE administrador SET nomadmin = ?, apeadmin = ?, diradmin = ?, emaadmin = ?, teladmin = ?, teladmin2 = ? WHERE idadmin = ? ";        
+        try{
+            $this->conexion->prepare($update)->execute(array(
+                $administrador -> nombre, 
+                $administrador -> apellido, 
+                $administrador -> direccion, 
+                $administrador -> email, 
+                $administrador -> numcel, 
+                $administrador -> numcel2, 
+                $administrador -> id, 
+            ));
 
-        $query = "UPDATE administrador SET nomadmin = ?, apeadmin = ?, emaadmin = ?, diradmin = ?, teladmin = ?, teladmin2 = ? WHERE idamin = ?";
-        $stmt = $this->conexion->prepare($query);
-        $stmt->bind_param( $nomadmin, $apeadmin, $emaadmin, $diradmin, $teladmin, $teladmin2, $idamin);
-        $stmt->execute();
-        $stmt->close();
+        }catch(Exception $e){
+            echo "Error al actualizar datos: ". $e->getMessage(); 
+        }
     }
 
     

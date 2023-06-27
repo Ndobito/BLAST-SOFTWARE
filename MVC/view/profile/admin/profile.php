@@ -45,25 +45,33 @@
                 <div class="profile-adm container-right" id="container-right">
                     <div class="user-information">
                         <h1>Datos</h1>
-                        <form id="form-user-information" action="?b=profile&s=update" method="post">
-                            <label for="ctNameuser">Nombres</label>
+                        <form id="form-user-information" action="?b=profile&s=actualizarUsuario" method="post">
+                            <input type="hidden" name="ctIdUser" value="<?php echo $user['idadmin'] ?>">
+                            <label for="ctNameuser">Nombres *</label>
                             <input type="text" name="ctNameUser" id="ctNameUser"
                                 value="<?php echo $user['nomadmin'] ?? "Sin definir"; ?>" disabled>
                             <label for="ctSurNameUser">Apellidos</label>
                             <input type="text" name="ctSurNameUser" id="ctSurNameUser"
                                 value="<?php echo $user['apeadmin'] ?? "Sin definir"; ?>" disabled>
                             <label for="ctNameuser">Direccion</label>
+=======
+                                value="<?php echo $user['nomadmin']; ?>" disabled>
+                            <label for="ctSurNameUser">Apellidos *</label>
+                            <input type="text" name="ctSurNameUser" id="ctSurNameUser"
+                                value="<?php echo $user['apeadmin'] ?? "Sin definir"; ?>" disabled>
+                            <label for="ctNameuser">Direccion *</label>
+>>>>>>> d2f4009d22628e5e11b18b2592187733dcc42ecb
                             <input type="text" name="ctAdrUser" id="ctAdrUser"
                                 value="<?php echo $user['diradmin'] ?? "Sin definir"; ?>" disabled>
                             <div>
                                 <div>
-                                    <label for="ctEmailUser">Correo Eletrónico</label>
+                                    <label for="ctEmailUser">Correo Eletrónico *</label>
                                     <input type="text" name="ctEmailUser" id="ctEmailUser"
                                         value="<?php echo $user['emaadmin'] ?? "Sin definir"; ?>" disabled>
                                 </div>
                                 <div>
-                                    <label for="ctNumCel">Numero de Celular 1</label>
-                                    <input type="text" name="ctNumCel" id="ctNumCel"
+                                    <label for="ctNumCel">Numero de Celular 1 *</label>
+                                    <input type="text" name="ctNumCelUser" id="ctNumCel"
                                         value="<?php echo $user['teladmin'] ?? "Sin definir"; ?>" disabled>
                                 </div>
                                 <div>
@@ -76,10 +84,21 @@
                                 <span id="enableForm1"> Editar</span>
                                 <span id=""> Cancelar</span>
                             </div>
-                            <input type="submit" name="guardarAdministrador" value="Guardar">
-
+                            <input type="submit" name="btnUpdateProfile" value="Guardar">
+                            
                         </form>
-
+                        <p class="alert-form">
+                        <?php 
+                                if (!isset($_REQUEST['v'])) {
+                                } else {
+                                    if ($_REQUEST['v'] == "true") {
+                                        echo "Complete todos los campos con *";
+                                    } else{
+                                        echo ""; 
+                                    }
+                                }
+                        ?>
+                        </p>
                     </div>
                 </div>
                 <div class="profile-adm container-right2" id="container-right2">

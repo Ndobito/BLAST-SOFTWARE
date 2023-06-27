@@ -3,6 +3,7 @@ require_once './lib/database/database.php';
 class ProductModel {
     
     private $pdo;
+    public $idprod, $nomprod, $desprod, $imgprod, $precprod, $precvenprod, $stockprod, $catprod, $idprov ;
 
     public function __construct()
     {
