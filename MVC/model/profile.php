@@ -27,7 +27,8 @@ class Profile
     {
         $update = "UPDATE administrador SET nomadmin = ?, apeadmin = ?, diradmin = ?, emaadmin = ?, teladmin = ?, teladmin2 = ? WHERE idadmin = ? ";        
         try{
-            $this->conexion->prepare($update)->execute(array(
+            $stmt = $this->conexion->prepare($update);
+            $stmt->execute(array(
                 $administrador -> nombre, 
                 $administrador -> apellido, 
                 $administrador -> direccion, 
@@ -36,9 +37,10 @@ class Profile
                 $administrador -> numcel2, 
                 $administrador -> id, 
             ));
-
+            return true;
         }catch(Exception $e){
             echo "Error al actualizar datos: ". $e->getMessage(); 
+            return false;
         }
     }
 

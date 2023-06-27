@@ -47,12 +47,17 @@ class ProfileController
         require_once "view/footerprofile.php";
 
     }
+
+    public function update() {
+
+    }
+
     //-----Metodo para actualizar Datos-----//
     
     public function actualizarUsuario(){
         if(isset($_REQUEST['btnUpdateProfile'])){
             if($_POST['ctNameUser'] == "" || $_POST['ctSurNameUser'] == "" || $_POST['ctAdrUser'] ==  "" || $_POST['ctEmailUser'] == "" || $_POST['ctNumCelUser'] == ""){
-                header("location: ?b=profile&s=Inicio&p=admin&v=true"); 
+                redirect("?b=profile&s=Inicio&p=admin&v=true")->error("Se deben llenar todos los campos")->send();
             } else {
                 $u = new Profile(); 
                 $u -> id = $_POST['ctIdUser']; 
@@ -62,10 +67,16 @@ class ProfileController
                 $u -> email = $_POST['ctEmailUser']; 
                 $u -> numcel = $_POST['ctNumCelUser']; 
                 $u -> numcel2 = $_POST['ctNumCel2']; 
-
-
-                $this -> object -> update($u); 
-                header("location: ?b=profile&s=Inicio&p=admin&v=false"); 
+                if ($this -> object -> update($u)) {
+                    if ($_POST['ctNameUser'] != $_SESSION["usuario"]) {
+                        session_destroy();
+                        redirect("index.php")->success("Se ha actualizado el nombre de usuario, vuelva a iniciar sesión")->send();
+                    } else {
+                        redirect("?b=profile&s=Inicio&p=admin&v=false")->success("Se ha actualizado la información del usuario")->send();
+                    }
+                } else {
+                    redirect("?b=profile&s=Inicio&p=admin&v=false")->error("No se pudo actualizar el usuario")->send();
+                }
 
             }
         }
