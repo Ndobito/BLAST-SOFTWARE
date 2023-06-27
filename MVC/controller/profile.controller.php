@@ -34,11 +34,12 @@ class ProfileController
                 $data = compact('persona');
                 break;
             default:
+                var_dump($rol);
                 echo "Rol indefinido"; 
                 break;
         }   
 
-        require_once "view/profile/$rol/profile.php";
+        require_once "view/profile/".$rol."/profile.php";
         require_once "view/footerprofile.php";
 
     }

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="returm">
-        <a href="?b=index"><i class="fa-solid fa-arrow-left"></i></a>
+        <a href="?b=index&s=Inicio&p=admin"><i class="fa-solid fa-arrow-left"></i></a>
     </div> <!-- Body of the work -->
     <main>
         <div class="container-main-profile">

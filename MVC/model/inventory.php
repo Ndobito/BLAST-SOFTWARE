@@ -1,5 +1,5 @@
 <?php
-require_once '../lib/database/database.php';
+require_once './lib/database/database.php';
 class ProductModel {
     
     private $pdo;
@@ -33,6 +33,8 @@ public function guardar( $data){
                 $data->idprov,
             )
         );
+        setcookie("notify", serialize(["message" => "Se ha agregado el producto"]), 5, "/");
+        return true;
     } catch (Exception $e) {
         die($e->getMessage());
     }
