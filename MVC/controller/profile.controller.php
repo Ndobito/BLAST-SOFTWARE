@@ -4,8 +4,11 @@ include_once "model/Profile.php";
 
 
 class ProfileController
-{
-    
+{   
+    private $object; 
+    public function __construct(){
+        $this-> object = new Profile();  
+    }
     //-----Metodo para redireccionar segun el rol de inicio de sesión-----//
     public function Inicio($rol)
     {   
@@ -47,15 +50,27 @@ class ProfileController
     }
     //-----Metodo para actualizar Datos-----//
     
-    public function update(){
+    public function actualizarUsuario(){
+        if(isset($_REQUEST['btnUpdateProfile'])){
+            if($_POST['ctNameUser'] == "" || $_POST['ctSurNameUser'] == "" || $_POST['ctAdrUser'] ==  "" || $_POST['ctEmailUser'] == "" || $_POST['ctNumCelUser'] == ""){
+                header("location: ?b=profile&s=Inicio&p=admin&v=true"); 
+            } else {
+                $u = new Profile(); 
+                $u -> id = $_POST['ctIdUser']; 
+                $u -> nombre = $_POST['ctNameUser']; 
+                $u -> apellido = $_POST['ctSurNameUser']; 
+                $u -> direccion = $_POST['ctAdrUser']; 
+                $u -> email = $_POST['ctEmailUser']; 
+                $u -> numcel = $_POST['ctNumCelUser']; 
+                $u -> numcel2 = $_POST['ctNumCel2']; 
 
-        $nombre = $_REQUEST['ctNameUser']; 
-        $apellido = $_REQUEST['ctSurNameUser']; 
-        $nombre = $_REQUEST['ctNameUser']; 
-        $nombre = $_REQUEST['ctNameUser']; 
-        $nombre = $_REQUEST['ctNameUser']; 
-        $nombre = $_REQUEST['ctNameUser']; 
-        $nombre = $_REQUEST['ctNameUser']; 
+
+                $this -> object -> update($u); 
+                header("location: ?b=profile&s=Inicio&p=admin&v=false"); 
+
+            }
+        }
+        
 
     }
 

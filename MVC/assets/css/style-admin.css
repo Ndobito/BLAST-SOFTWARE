@@ -231,7 +231,9 @@
     margin-top: -10px;
 }
 
-
+.alert-form{
+    color: red;
+}
 .user-information span{
     width: 50%;
     border: none;

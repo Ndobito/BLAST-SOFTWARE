@@ -68,7 +68,7 @@
                             <td><?= $e["catprod"] ?></td>
                             <td><?= $e["nomprov"] ?></td>
                             <td><a href="?b=inventory&s=editar&idprod=<?= $e["idprod"] ?>"><button class="btn-editar"><i class="fa-solid fa-pen"></i></button></a></td>
-                            <td><a href="?b=inventory&s=eliminar&idprod=<?= $e["idprod"] ?>"><button class="btn-borrar" ><i class="fa-solid fa-trash"></i></button></a></td>
+                            <td><a href="?b=inventory&s=eliminar&idprod=<?= $e["idprod"] ?>&name=<?= $e["idprod"] ?>"><button class="btn-borrar" ><i class="fa-solid fa-trash"></i></button></a></td>
                         </tr>        
                             <?php
                         }
