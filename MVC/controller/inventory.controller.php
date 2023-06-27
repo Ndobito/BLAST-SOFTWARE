@@ -1,6 +1,6 @@
 <?php
 
-include_once 'model/database.php';
+include_once 'lib/database/database.php';
 require_once 'model/inventory.php';
 
 class InventoryController
@@ -58,43 +58,43 @@ class InventoryController
         require_once 'view/inventory/agregar.php';
     }
 
-//     public function guardar() {
-//         // (new ProductModel())->guardar();
-//         $prod = new ProductModel();
+    public function guardar() {
+        // (new ProductModel())->guardar();
+        $prod = new ProductModel();
       
-//         $prod->idprov = $_REQUEST['idprov'];
-//         $prod->nomprod = $_REQUEST['nombre'];
-//         $prod->desprod = $_REQUEST['descripcion'];
-//         $prod->imgprod = $_REQUEST['imagen'];
-//         $prod->precprod = $_REQUEST['precio'];
-//         $prod->precvenprod = $_REQUEST['venta'];
-//         $prod->stockprod = $_REQUEST['cantidad'];
-//         $prod->catprod = $_REQUEST['categoria'];
-//         $this->model->guardar($prod);
-//         header("Location: ?b=inventory&s=listado");
-//     }
+        $prod->idprov = $_REQUEST['idprov'];
+        $prod->nomprod = $_REQUEST['nombre'];
+        $prod->desprod = $_REQUEST['descripcion'];
+        $prod->imgprod = $_REQUEST['imagen'];
+        $prod->precprod = $_REQUEST['precio'];
+        $prod->precvenprod = $_REQUEST['venta'];
+        $prod->stockprod = $_REQUEST['cantidad'];
+        $prod->catprod = $_REQUEST['categoria'];
+        $this->model->guardar($prod);
+        header("Location: ?b=inventory&s=listado");
+    }
 
-//     public function eliminar() {
-//         $prod = new ProductModel();
-//         $prod->idprod = $_REQUEST["idprod"];
-//         $this->model->eliminar($prod);
-//         header("Location: ?b=inventory&s=listado");
-//     }
+    public function eliminar() {
+        $prod = new ProductModel();
+        $prod->idprod = $_REQUEST["idprod"];
+        $this->model->eliminar($prod);
+        header("Location: ?b=inventory&s=listado");
+    }
 
-//     public function edit(){
-//         $prod = new ProductModel();
-//         $prod->idprod = $_REQUEST['idprod'];
-//         $prod->nomprod = $_REQUEST['nombre'];
-//         $prod->desprod = $_REQUEST['descripcion'];
-//         $prod->imgprod = $_REQUEST['imagen'];
-//         $prod->precprod = $_REQUEST['precio'];
-//         $prod->precvenprod = $_REQUEST['venta'];
-//         $prod->stockprod = $_REQUEST['cantidad'];
-//         $prod->catprod = $_REQUEST['categoria'];
-//         $prod->idprov = $_REQUEST['proveedor'];
-//     $this->model->actualizar($prod);
-//     header('Location: index.php?b=inventory&s=listado');
-//     }
+    public function edit(){
+        $prod = new ProductModel();
+        $prod->idprod = $_REQUEST['idprod'];
+        $prod->nomprod = $_REQUEST['nombre'];
+        $prod->desprod = $_REQUEST['descripcion'];
+        $prod->imgprod = $_REQUEST['imagen'];
+        $prod->precprod = $_REQUEST['precio'];
+        $prod->precvenprod = $_REQUEST['venta'];
+        $prod->stockprod = $_REQUEST['cantidad'];
+        $prod->catprod = $_REQUEST['categoria'];
+        $prod->idprov = $_REQUEST['proveedor'];
+    $this->model->actualizar($prod);
+    header('Location: index.php?b=inventory&s=listado');
+    }
 
 }
 // ?>
