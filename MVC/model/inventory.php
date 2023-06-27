@@ -1,5 +1,5 @@
 <?php
-require_once '../lib/database/database.php';
+require_once './lib/database/database.php';
 class ProductModel {
     
     private $pdo;
