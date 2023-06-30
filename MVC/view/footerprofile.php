@@ -7,7 +7,7 @@
         </p>
         <p>
             Sitio creado por
-            <img src="assets/img/logo-removebg-blast-software.png" alt="Logo Blast Software">
+            <img src="assets/img/logo-removebg-blast-software.png" alt="Logo Blast Software" title="Blast Software">
             <strong>BLast Software</strong>
         </p>
     </div>

@@ -9,7 +9,7 @@
                     <div class="user">
                         <div class="img"></div>
                         <h1>
-                            <?php echo $usuario; ?>
+                        <?php echo $user['nomadmin'] . $user['apeadmin']; ?>
                         </h1>
                         <h1>Administrador</h1>
                     </div>
@@ -75,7 +75,6 @@
                             </div>
                             <div class="updatebutton">
                                 <span id="enableForm1"> Editar</span>
-                                <span id=""> Cancelar</span>
                             </div>
                             <input type="submit" name="btnUpdateProfile" value="Guardar">
                             

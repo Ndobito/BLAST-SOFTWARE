@@ -38,7 +38,6 @@ class ProfileController
                 $data = compact('persona');
                 break;
             default:
-                var_dump($rol);
                 echo "Rol indefinido"; 
                 break;
         }   
@@ -47,6 +46,8 @@ class ProfileController
         require_once "view/footerprofile.php";
 
     }
+
+
     //-----Metodo para actualizar Datos-----//
     
     public function actualizarUsuario(){
@@ -72,7 +73,8 @@ class ProfileController
         
 
     }
-
+    
+    //Metodo para cerrar Sesion
     public function cerrarSesion()
     {
         session_destroy();

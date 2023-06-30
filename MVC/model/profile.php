@@ -5,7 +5,7 @@ class Profile
 {
     private $conexion;
 
-    public $id, $nombre, $apellido, $direccion, $email, $numcel, $numcel2, $file; 
+    public $id, $nombre, $apellido, $direccion, $email, $numcel, $numcel2, $file;
 
     public function __construct()
     {
@@ -25,22 +25,37 @@ class Profile
     }
     public function update(Profile $administrador)
     {
-        $update = "UPDATE administrador SET nomadmin = ?, apeadmin = ?, diradmin = ?, emaadmin = ?, teladmin = ?, teladmin2 = ? WHERE idadmin = ? ";        
-        try{
+        $update = "UPDATE administrador SET nomadmin = ?, apeadmin = ?, diradmin = ?, emaadmin = ?, teladmin = ?, teladmin2 = ? WHERE idadmin = ? ";
+        try {
             $this->conexion->prepare($update)->execute(array(
-                $administrador -> nombre, 
-                $administrador -> apellido, 
-                $administrador -> direccion, 
-                $administrador -> email, 
-                $administrador -> numcel, 
-                $administrador -> numcel2, 
-                $administrador -> id, 
+                $administrador->nombre,
+                $administrador->apellido,
+                $administrador->direccion,
+                $administrador->email,
+                $administrador->numcel,
+                $administrador->numcel2,
+                $administrador->id,
             ));
-
-        }catch(Exception $e){
-            echo "Error al actualizar datos: ". $e->getMessage(); 
+        } catch (Exception $e) {
+            echo "Error al actualizar datos: " . $e->getMessage();
         }
     }
 
-    
+
+    // Metodo para consultar todos los clientes en la BD
+
+    public function selectCustomers()
+    {
+        $sql = "SELECT * FROM cliente";
+        try {
+            $clientes = $this->conexion->prepare($sql);
+            $clientes->execute();
+            $result = $clientes->get_result();
+            $customer = $result->fetch_assoc();
+            $clientes->close();
+            return $customer;
+        } catch (Exception $e) {
+            echo "Error al consultar clientes: " . $e->getMessage();
+        }
+    }
 }
