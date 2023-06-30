@@ -48,11 +48,11 @@
                         <form id="form-user-information" action="?b=profile&s=update" method="post">
                             <label for="ctNameuser">Nombres</label>
                             <input type="text" name="ctNameUser" id="ctNameUser"
-                                value="<?php echo $user['nomadmin']; ?>" disabled>
-                            <label for="ctSurNameUser">Apellidos</label>
+                                value="<?php echo $user['nomadmin'] ?? "Sin definir"; ?>" disabled>
+                            <label for="ctSurNameUser">Apellidos *</label>
                             <input type="text" name="ctSurNameUser" id="ctSurNameUser"
-                                value="<?php echo $user['apeadmin']; ?>" disabled>
-                            <label for="ctNameuser">Direccion</label>
+                                value="<?php echo $user['apeadmin'] ?? "Sin definir"; ?>" disabled>
+                            <label for="ctNameuser">Direccion *</label>
                             <input type="text" name="ctAdrUser" id="ctAdrUser"
                                 value="<?php echo $user['diradmin']; ?>" disabled>
                             <div>
