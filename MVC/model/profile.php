@@ -59,4 +59,49 @@ class Profile
 
         return $proveedores;
     }
+    public function getEmpleado()
+    {
+        $query = "SELECT * FROM colaborador";
+        $result = $this->conexion->query($query);
+        $empleado = array();
+
+        if ($result->num_rows > 0) {
+            // Recorrer los resultados y almacenarlos en el array $proveedores
+            while ($row = $result->fetch_assoc()) {
+                $empleado[] = $row;
+            }
+        }
+
+        return $empleado;
+    }
+    public function getCliente()
+    {
+        $query = "SELECT * FROM cliente";
+        $result = $this->conexion->query($query);
+        $cliente = array();
+
+        if ($result->num_rows > 0) {
+            // Recorrer los resultados y almacenarlos en el array $proveedores
+            while ($row = $result->fetch_assoc()) {
+                $cliente[] = $row;
+            }
+        }
+
+        return $cliente;
+    }
+    public function getMascota()
+    {
+        $query = "SELECT * FROM mascota";
+        $result = $this->conexion->query($query);
+        $mascota = array();
+
+        if ($result->num_rows > 0) {
+            // Recorrer los resultados y almacenarlos en el array $proveedores
+            while ($row = $result->fetch_assoc()) {
+                $mascota[] = $row;
+            }
+        }
+
+        return $mascota;
+    }
 }
