@@ -16,6 +16,9 @@ class ProfileController
         $style = "<link rel='stylesheet' href='assets/css/style-$rol.css'>";
         require_once "view/head.php";
         $proveedores = $this->object->getProveedores();
+        $empleado = $this->object->getEmpleado();
+        $cliente = $this->object->getCliente();
+        $mascota = $this->object->getMascota();
         $usuario = $_SESSION['usuario'];
         $model = new Profile();
         switch ($rol) {

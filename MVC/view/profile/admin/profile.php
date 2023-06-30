@@ -103,7 +103,6 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Cedula</th>
                                 <th>Nombres</th>
                                 <th>Apellidos</th>
                                 <th>Telefono</th>
@@ -116,7 +115,6 @@
                         foreach ($proveedores as $proveedor){ ?>
                             <tr>
                                 <td><?php echo $proveedor['idprov'] ; ?></td>
-                                <td><?php echo $proveedor['dniprov'] ; ?></td>
                                 <td><?php echo $proveedor['nomprov'] ; ?></td>
                                 <td><?php echo $proveedor['dirprov'] ; ?></td>
                                 <td><?php echo $proveedor['emaprov'] ; ?></td>
@@ -166,42 +164,32 @@
                                 <th>Apellidos</th>
                                 <th>Telefono</th>
                                 <th>Direccion</th>
+                                <th>Rol</th>
                             </tr>
                         </thead>
-                        <?php foreach ($empleados as $empleado): ?>
+                        <?php foreach ($empleado as $colaborador){ ?>
                             <tbody>
                                 <tr>
-                                    <td>
-                                        <?= $empleado->Idempleado ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->cedula ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->nombres ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->apellidos ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->telefono ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->direccion ?>
-                                    </td>
-                                    <td>
-                                        <a href="editar.php?id=<?= $producto->idproducto ?>">
-                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="elimina.php?id=<?= $producto->idproducto ?>">
-                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
+                                <td><?php echo $colaborador['idcol'] ; ?></td>
+                                <td><?php echo $colaborador['dnicol'] ; ?></td>
+                                <td><?php echo $colaborador['nomcol'] ; ?></td>
+                                <td><?php echo $colaborador['emacol'] ; ?></td>
+                                <td><?php echo $colaborador['dircol'] ; ?></td>
+                                <td><?php echo $colaborador['telcol'] ; ?></td>
+                                <td><?php echo $colaborador['rolcol'] ; ?></td>
+                                <td>
+                                    <a href="#">
+                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#">
+                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                    </a>
+                                </td>
                                 </tr>
                             </tbody>
-                        <?php endforeach ?>
+                        <?php } ?>
                     </table>
 
                 </div>
@@ -226,47 +214,37 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Cedula</th>
-                                <th>Nombres</th>
-                                <th>Apellidos</th>
-                                <th>Telefono</th>
+                                <th>Nombre</th>
+                                <th>EMAIL</th>
+                                <th>USUARIO</th>
                                 <th>Direccion</th>
+                                <th>ZONA</th>
+                                <th>Telefono</th>
                             </tr>
                         </thead>
-                        <?php foreach ($clientes as $cliente): ?>
+                        <?php foreach ($cliente as $cliente){ ?>
                             <tbody>
                                 <tr>
-                                    <td>
-                                        <?= $cliente->Idcliente ?>
-                                    </td>
-                                    <td>
-                                        <?= $cliente->cedula ?>
-                                    </td>
-                                    <td>
-                                        <?= $cliente->nombres ?>
-                                    </td>
-                                    <td>
-                                        <?= $cliente->apellidos ?>
-                                    </td>
-                                    <td>
-                                        <?= $cliente->telefono ?>
-                                    </td>
-                                    <td>
-                                        <?= $cliente->direccion ?>
-                                    </td>
-                                    <td>
-                                        <a href="editar.php?id=<?= $producto->idproducto ?>">
-                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="elimina.php?id=<?= $producto->idproducto ?>">
-                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
+                                <td><?php echo $cliente['idcli'] ; ?></td>
+                                <td><?php echo $cliente['nomcli'] ; ?></td>
+                                <td><?php echo $cliente['emacli'] ; ?></td>
+                                <td><?php echo $cliente['usercli'] ; ?></td>
+                                <td><?php echo $cliente['dircli'] ; ?></td>
+                                <td><?php echo $cliente['tzonecli'] ; ?></td>
+                                <td><?php echo $cliente['telcli'] ; ?></td>
+                                <td>
+                                    <a href="#">
+                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#">
+                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                    </a>
+                                </td>
                                 </tr>
                             </tbody>
-                        <?php endforeach ?>
+                        <?php } ?>
                     </table>
                 </div>
                 <div class="profile-adm container-right5" id="container-right5">
@@ -291,42 +269,34 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Nombre</th>
-                                <th>Genero</th>
                                 <th>Edad</th>
-                                <th>Dueño</th>
+                                <th>Genero</th>
+                                <th>ESPECIE</th>
+                                <th>Dueño ID</th>
                             </tr>
                         </thead>
-                        <?php foreach ($mascotas as $mascota): ?>
+                        <?php foreach ($mascota as $mascota){ ?>
                             <tbody>
                                 <tr>
-                                    <td>
-                                        <?= $mascota->Idmascota ?>
-                                    </td>
-                                    <td>
-                                        <?= $mascota->dueño ?>
-                                    </td>
-                                    <td>
-                                        <?= $mascota->nombre ?>
-                                    </td>
-                                    <td>
-                                        <?= $mascota->genero ?>
-                                    </td>
-                                    <td>
-                                        <?= $mascota->edad ?>
-                                    </td>
-                                    <td>
-                                        <a href="editar.php?id=<?= $producto->idproducto ?>">
-                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="elimina.php?id=<?= $producto->idproducto ?>">
-                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
+                                <td><?php echo $mascota['idmas'] ; ?></td>
+                                <td><?php echo $mascota['nommas'] ; ?></td>
+                                <td><?php echo $mascota['edadmas'] ; ?></td>
+                                <td><?php echo $mascota['genmas'] ; ?></td>
+                                <td><?php echo $mascota['espmas'] ; ?></td>
+                                <td><?php echo $mascota['idcli'] ; ?></td>
+                                <td>
+                                    <a href="#">
+                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#">
+                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                    </a>
+                                </td>
                                 </tr>
                             </tbody>
-                        <?php endforeach ?>
+                        <?php } ?>
                     </table>
                 </div>
             </div>
