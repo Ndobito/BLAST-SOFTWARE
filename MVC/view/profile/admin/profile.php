@@ -110,40 +110,30 @@
                                 <th>Direccion</th>
                             </tr>
                         </thead>
-                        <?php foreach ($empleados as $empleado): ?>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <?= $empleado->Idempleado ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->cedula ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->nombres ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->apellidos ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->telefono ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->direccion ?>
-                                    </td>
-                                    <td>
-                                        <a href="editar.php?id=<?= $producto->idproducto ?>">
-                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="elimina.php?id=<?= $producto->idproducto ?>">
-                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        <?php endforeach ?>
+                        
+                        <tbody>
+                        <?php 
+                        foreach ($proveedores as $proveedor){ ?>
+                            <tr>
+                                <td><?php echo $proveedor['idprov']; ?></td>
+                                <td><?php echo $proveedor['nomprov'] ; ?></td>
+                                <td><?php echo $proveedor['dirprov'] ; ?></td>
+                                <td><?php echo $proveedor['emaprov'] ; ?></td>
+                                <td><?php echo $proveedor['telprov'] ; ?></td>
+                                <td>
+                                    <a href="#">
+                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#">
+                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <?php };
+                             ?>
+                        </tbody>
                     </table>
 
                 </div>

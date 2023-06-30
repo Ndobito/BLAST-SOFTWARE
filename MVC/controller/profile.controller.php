@@ -6,6 +6,7 @@ include_once "model/Profile.php";
 class ProfileController
 {   
     private $object; 
+    public $proveedores;
     public function __construct(){
         $this-> object = new Profile();  
     }
@@ -14,6 +15,7 @@ class ProfileController
     {   
         $style = "<link rel='stylesheet' href='assets/css/style-$rol.css'>";
         require_once "view/head.php";
+        $proveedores = $this->object->getProveedores();
         $usuario = $_SESSION['usuario'];
         $model = new Profile();
         switch ($rol) {

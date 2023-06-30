@@ -44,5 +44,19 @@ class Profile
         }
     }
 
-    
+    public function getProveedores()
+    {
+        $query = "SELECT * FROM proveedor";
+        $result = $this->conexion->query($query);
+        $proveedores = array();
+
+        if ($result->num_rows > 0) {
+            // Recorrer los resultados y almacenarlos en el array $proveedores
+            while ($row = $result->fetch_assoc()) {
+                $proveedores[] = $row;
+            }
+        }
+
+        return $proveedores;
+    }
 }
