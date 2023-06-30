@@ -4,5 +4,58 @@
     right: 0;
     margin: 1rem;
     background-color: white;
-    padding: 1rem 1.5rem;
+    width: 300px;
+    animation: fade-in .2s linear;
+    -webkit-animation: fade-in .2s linear;
+    box-shadow:  0 0 5px 0 lightgrey;
+}
+
+.notify > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+}
+
+.notify > div:first-child div {
+    display: flex;
+    gap: 1rem;
+}
+
+.notify > div:last-child {
+    padding: .5rem 1rem;
+}
+
+.notify .error {
+    color: orangered;
+}
+
+.notify .error-head {
+    background: pink;
+}
+
+.notify .success-head {
+    background: lightseagreen;
+}
+
+.notify .success {
+    color: darkgreen;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateX(5rem);
+        -webkit-transform: translateX(5rem);
+        -moz-transform: translateX(5rem);
+        -ms-transform: translateX(5rem);
+        -o-transform: translateX(5rem);
+}
+100% {
+    opacity: 1;
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+}
 }

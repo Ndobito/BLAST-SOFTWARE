@@ -45,26 +45,25 @@
                 <div class="profile-adm container-right" id="container-right">
                     <div class="user-information">
                         <h1>Datos</h1>
-                        <form id="form-user-information" action="?b=profile&s=actualizarUsuario" method="post">
-                            <input type="hidden" name="ctIdUser" value="<?php echo $user['idadmin'] ?>">
-                            <label for="ctNameuser">Nombres *</label>
+                        <form id="form-user-information" action="?b=profile&s=update" method="post">
+                            <label for="ctNameuser">Nombres</label>
                             <input type="text" name="ctNameUser" id="ctNameUser"
-                                value="<?php echo $user['nomadmin']; ?>" disabled>
+                                value="<?php echo $user['nomadmin'] ?? "Sin definir"; ?>" disabled>
                             <label for="ctSurNameUser">Apellidos *</label>
                             <input type="text" name="ctSurNameUser" id="ctSurNameUser"
-                                value="<?php echo $user['apeadmin']; ?>" disabled>
+                                value="<?php echo $user['apeadmin'] ?? "Sin definir"; ?>" disabled>
                             <label for="ctNameuser">Direccion *</label>
                             <input type="text" name="ctAdrUser" id="ctAdrUser"
                                 value="<?php echo $user['diradmin']; ?>" disabled>
                             <div>
                                 <div>
-                                    <label for="ctEmailUser">Correo Eletrónico *</label>
+                                    <label for="ctEmailUser">Correo Eletrónico</label>
                                     <input type="text" name="ctEmailUser" id="ctEmailUser"
                                         value="<?php echo $user['emaadmin']; ?>" disabled>
                                 </div>
                                 <div>
-                                    <label for="ctNumCel">Numero de Celular 1 *</label>
-                                    <input type="text" name="ctNumCelUser" id="ctNumCel"
+                                    <label for="ctNumCel">Numero de Celular 1</label>
+                                    <input type="text" name="ctNumCel" id="ctNumCel"
                                         value="<?php echo $user['teladmin']; ?>" disabled>
                                 </div>
                                 <div>
@@ -76,21 +75,10 @@
                             <div class="updatebutton">
                                 <span id="enableForm1"> Editar</span>
                             </div>
-                            <input type="submit" name="btnUpdateProfile" value="Guardar">
-                            
+                            <input type="submit" name="guardarAdministrador" value="Guardar">
+
                         </form>
-                        <p class="alert-form">
-                        <?php 
-                                if (!isset($_REQUEST['v'])) {
-                                } else {
-                                    if ($_REQUEST['v'] == "true") {
-                                        echo "Complete todos los campos con *";
-                                    } else{
-                                        echo ""; 
-                                    }
-                                }
-                        ?>
-                        </p>
+
                     </div>
                 </div>
                 <div class="profile-adm container-right2" id="container-right2">
@@ -114,47 +102,36 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Cedula</th>
                                 <th>Nombres</th>
                                 <th>Apellidos</th>
                                 <th>Telefono</th>
                                 <th>Direccion</th>
                             </tr>
                         </thead>
-                        <?php foreach ($empleados as $empleado): ?>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <?= $empleado->Idempleado ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->cedula ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->nombres ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->apellidos ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->telefono ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->direccion ?>
-                                    </td>
-                                    <td>
-                                        <a href="editar.php?id=<?= $producto->idproducto ?>">
-                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="elimina.php?id=<?= $producto->idproducto ?>">
-                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        <?php endforeach ?>
+                        
+                        <tbody>
+                        <?php 
+                        foreach ($proveedores as $proveedor){ ?>
+                            <tr>
+                                <td><?php echo $proveedor['idprov'] ; ?></td>
+                                <td><?php echo $proveedor['nomprov'] ; ?></td>
+                                <td><?php echo $proveedor['dirprov'] ; ?></td>
+                                <td><?php echo $proveedor['emaprov'] ; ?></td>
+                                <td><?php echo $proveedor['telprov'] ; ?></td>
+                                <td>
+                                    <a href="?b=profile&s=showEdit">
+                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#">
+                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <?php };
+                             ?>
+                        </tbody>
                     </table>
 
                 </div>

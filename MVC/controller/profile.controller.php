@@ -15,6 +15,7 @@ class ProfileController
         require_once "view/head.php";
         $usuario = $_SESSION['usuario'];
         $model = new Profile();
+        $proveedores = $this->object->getProveedores(); 
         switch ($rol) {
             case 'admin':
                 $name = $_SESSION['usuario'];
@@ -47,6 +48,14 @@ class ProfileController
 
     }
 
+    public function showEdit(){
+        $style = "<link rel='stylesheet' href='assets/css/style-editar-proveedor.css'>";
+        require_once "view/head.php";
+        require_once "view/profile/admin/editar.php"; 
+    }
+    public function update() {
+
+    }
 
     //-----Metodo para actualizar Datos-----//
     

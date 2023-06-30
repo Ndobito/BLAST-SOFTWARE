@@ -25,37 +25,38 @@ class Profile
     }
     public function update(Profile $administrador)
     {
-        $update = "UPDATE administrador SET nomadmin = ?, apeadmin = ?, diradmin = ?, emaadmin = ?, teladmin = ?, teladmin2 = ? WHERE idadmin = ? ";
-        try {
-            $this->conexion->prepare($update)->execute(array(
-                $administrador->nombre,
-                $administrador->apellido,
-                $administrador->direccion,
-                $administrador->email,
-                $administrador->numcel,
-                $administrador->numcel2,
-                $administrador->id,
+        $update = "UPDATE administrador SET nomadmin = ?, apeadmin = ?, diradmin = ?, emaadmin = ?, teladmin = ?, teladmin2 = ? WHERE idadmin = ? ";        
+        try{
+            $stmt = $this->conexion->prepare($update);
+            $stmt->execute(array(
+                $administrador -> nombre, 
+                $administrador -> apellido, 
+                $administrador -> direccion, 
+                $administrador -> email, 
+                $administrador -> numcel, 
+                $administrador -> numcel2, 
+                $administrador -> id, 
             ));
-        } catch (Exception $e) {
-            echo "Error al actualizar datos: " . $e->getMessage();
+            return true;
+        }catch(Exception $e){
+            echo "Error al actualizar datos: ". $e->getMessage(); 
+            return false;
         }
     }
 
-
-    // Metodo para consultar todos los clientes en la BD
-
-    public function selectCustomers()
+    public function getProveedores()
     {
-        $sql = "SELECT * FROM cliente";
-        try {
-            $clientes = $this->conexion->prepare($sql);
-            $clientes->execute();
-            $result = $clientes->get_result();
-            $customer = $result->fetch_assoc();
-            $clientes->close();
-            return $customer;
-        } catch (Exception $e) {
-            echo "Error al consultar clientes: " . $e->getMessage();
+        $query = "SELECT * FROM proveedor";
+        $result = $this->conexion->query($query);
+        $proveedores = array();
+
+        if ($result->num_rows > 0) {
+            // Recorrer los resultados y almacenarlos en el array $proveedores
+            while ($row = $result->fetch_assoc()) {
+                $proveedores[] = $row;
+            }
         }
+
+        return $proveedores;
     }
 }
