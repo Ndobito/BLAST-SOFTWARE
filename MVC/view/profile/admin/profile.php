@@ -115,7 +115,8 @@
                         <?php 
                         foreach ($proveedores as $proveedor){ ?>
                             <tr>
-                                <td><?php echo $proveedor['idprov']; ?></td>
+                                <td><?php echo $proveedor['idprov'] ; ?></td>
+                                <td><?php echo $proveedor['dniprov'] ; ?></td>
                                 <td><?php echo $proveedor['nomprov'] ; ?></td>
                                 <td><?php echo $proveedor['dirprov'] ; ?></td>
                                 <td><?php echo $proveedor['emaprov'] ; ?></td>
