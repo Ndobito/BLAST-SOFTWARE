@@ -93,6 +93,6 @@ class ProfileController
         header('Location: index.php');
         exit();
     }
-    //-----Metodo para ver los probedores-----//
+    
     
 }
