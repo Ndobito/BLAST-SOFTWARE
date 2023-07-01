@@ -48,7 +48,7 @@ class ProfileController
         }   
 
         require_once "view/profile/".$rol."/profile.php";
-
+        require_once "view/footerprofile.php";
 
     }
 

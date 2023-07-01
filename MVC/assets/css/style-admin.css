@@ -226,6 +226,7 @@
 /* Button Edit */
 .updatebutton{
     display: flex;
+    justify-content: center;
     gap: 30px;
     padding-bottom: 10px;
     margin-top: -10px;
