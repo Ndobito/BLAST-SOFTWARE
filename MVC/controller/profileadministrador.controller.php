@@ -25,7 +25,6 @@ class ProfileController
            
         }
 
-        require_once "view/footerprofile.php";
     }
 
     public function cerrarSesion()

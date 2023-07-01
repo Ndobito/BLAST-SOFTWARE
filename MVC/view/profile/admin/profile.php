@@ -118,12 +118,12 @@
                                 <td><?php echo $proveedor['dirprov'] ; ?></td>
                                 <td><?php echo $proveedor['emaprov'] ; ?></td>
                                 <td><?php echo $proveedor['telprov'] ; ?></td>
-                                <td>
+                                <td class="icons1">
                                     <a href="?b=profile&s=showEdit">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
-                                <td>
+                                <td class="icons2">
                                     <a href="#">
                                         <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
                                     </a>
@@ -176,12 +176,12 @@
                                 <td><?php echo $colaborador['dircol'] ; ?></td>
                                 <td><?php echo $colaborador['telcol'] ; ?></td>
                                 <td><?php echo $colaborador['rolcol'] ; ?></td>
-                                <td>
+                                <td class="icons1">
                                     <a href="#">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
-                                <td>
+                                <td class="icons2">
                                     <a href="#">
                                         <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
                                     </a>
@@ -224,23 +224,23 @@
                         <?php foreach ($cliente as $cliente){ ?>
                             <tbody>
                                 <tr>
-                                <td><?php echo $cliente['idcli'] ; ?></td>
-                                <td><?php echo $cliente['nomcli'] ; ?></td>
-                                <td><?php echo $cliente['emacli'] ; ?></td>
-                                <td><?php echo $cliente['usercli'] ; ?></td>
-                                <td><?php echo $cliente['dircli'] ; ?></td>
-                                <td><?php echo $cliente['tzonecli'] ; ?></td>
-                                <td><?php echo $cliente['telcli'] ; ?></td>
-                                <td>
-                                    <a href="#">
-                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#">
-                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                    </a>
-                                </td>
+                                    <td><?php echo $cliente['idcli'] ; ?></td>
+                                    <td><?php echo $cliente['nomcli'] ; ?></td>
+                                    <td><?php echo $cliente['emacli'] ; ?></td>
+                                    <td><?php echo $cliente['usercli'] ; ?></td>
+                                    <td><?php echo $cliente['dircli'] ; ?></td>
+                                    <td><?php echo $cliente['tzonecli'] ; ?></td>
+                                    <td><?php echo $cliente['telcli'] ; ?></td>
+                                    <td class="icons1">
+                                        <a href="#">
+                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    <td class="icons2"> 
+                                        <a href="#">
+                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         <?php } ?>
@@ -283,12 +283,12 @@
                                 <td><?php echo $mascota['genmas'] ; ?></td>
                                 <td><?php echo $mascota['espmas'] ; ?></td>
                                 <td><?php echo $mascota['idcli'] ; ?></td>
-                                <td>
+                                <td class="icons1">
                                     <a href="#">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
-                                <td>
+                                <td class="icons2">
                                     <a href="#">
                                         <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
                                     </a>
@@ -301,6 +301,20 @@
             </div>
         </div>
     </main>
+    <footer>
+        <div class="footer-bottom">
+            <p>
+                <img src="assets/img/logo.jpg" alt="">
+                <i>@2023 Clinica Animal World | Veterinaria para mascotas en Colombia</i>
+                <br><br>
+            </p>
+            <p>
+                Sitio creado por
+                <img src="assets/img/logo-removebg-blast-software.png" alt="Logo Blast Software" title="Blast Software">
+                <strong>BLast Software</strong>
+            </p>
+        </div>
+    </footer>
 </div>
 
 <!-- Menu Profile -->
