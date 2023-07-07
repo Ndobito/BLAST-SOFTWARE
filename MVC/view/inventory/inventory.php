@@ -1,45 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
-    <title>Inventario</title>
-    <link rel="stylesheet" href="../../assets/css/style-inventory.css">
-</head>
 <body>
         <div class="container">
             <header>
-                <h1>INVENTARIO</h1>
-                <img class="logo" src="assets/img/logo-removebg.png" alt="">
-                <h3>Animal World</h3>
-            </header>           
-                <div class="container-button">
-                    <div class="search-bar">
-                        <form id="buscador-form" action="?b=inventory&s=listado" method="get">
-                            <input id="buscador" name="buscador" type="text" placeholder="Buscar">
-                            <button class="btn-buscar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                            <script>
-                                const bf = document.querySelector("#buscador-form");
-                                const bi = document.querySelector("#buscador");
-                                bf.addEventListener("submit", (e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    let url = bf.getAttribute("action");
-                                    url += "&search=" + bi.value;
-                                    window.location.href = url;
-                                })
-                            </script>
-                        </form>
-                        <a href="?b=inventory&s=agregar"><button class="btn-agregar"><i class="fa-solid fa-plus"  style="margin-right: 5px";></i>  Agregar</button></a>
-                    </div> 
+                <div class="img-logp">
+                    <img class="logo" src="assets/img/logo-removebg.png" alt="">
                 </div>
-                <div class="container-1">
-                    <table class="content-table"> 
+                <div class="text-logo">
+                    <h1>INVENTARIO</h1>
+                    <h3>Animal World</h3>
+                </div>
+            </header>           
+            <div class="container-button">
+                <div class="search-bar">
+                    <form id="buscador-form" action="?b=inventory&s=listado" method="get">
+                        <input id="buscador" name="buscador" type="text" placeholder="Buscar">
+                        <button class="btn-buscar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <script>
+                            const bf = document.querySelector("#buscador-form");
+                            const bi = document.querySelector("#buscador");
+                            bf.addEventListener("submit", (e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                let url = bf.getAttribute("action");
+                                url += "&search=" + bi.value;
+                                window.location.href = url;
+                            })
+                        </script>
+                    </form>
+                    <a href="?b=inventory&s=agregar"><button class="btn-agregar"><i class="fa-solid fa-plus"  style="margin-right: 5px";></i>  Agregar</button></a>
+                </div> 
+            </div>
+            <div class="container-table1">
+                <table class="content-table"> 
                     <thead>
                         <tr> 
-                            <th>ID</th>
+                            <th>Id</th>
                             <th>nombre del producto</th>
                             <th>descripcion</th>
                             <th>imagen</th>
@@ -82,7 +76,7 @@
                         ?>
                     </tbody>
                 </table>             
-             </div>  
+            </div>  
         </div>
         <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
 </body>

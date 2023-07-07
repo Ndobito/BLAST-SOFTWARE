@@ -9,7 +9,7 @@
                     <div class="user">
                         <div class="img"></div>
                         <h1>
-                        <?php echo $user['nomadmin'] . $user['apeadmin']; ?>
+                        <?php echo $user['nomadmin']." ". $user['apeadmin']; ?>
                         </h1>
                         <h1>Administrador</h1>
                     </div>
@@ -45,8 +45,9 @@
                 <div class="profile-adm container-right" id="container-right">
                     <div class="user-information">
                         <h1>Datos</h1>
-                        <form id="form-user-information" action="?b=profile&s=update" method="post">
-                            <label for="ctNameuser">Nombres</label>
+                        <form id="form-user-information" action="?b=profile&s=actualizarUsuario" method="post">
+                            <input name="ctIdUser" type="hidden" value="<?php echo $user['idadmin'] ?>">
+                            <label for="ctNameUser">Nombres*</label>
                             <input type="text" name="ctNameUser" id="ctNameUser"
                                 value="<?php echo $user['nomadmin'] ?? "Sin definir"; ?>" disabled>
                             <label for="ctSurNameUser">Apellidos *</label>
@@ -57,28 +58,34 @@
                                 value="<?php echo $user['diradmin']; ?>" disabled>
                             <div>
                                 <div>
-                                    <label for="ctEmailUser">Correo Eletrónico</label>
+                                    <label for="ctEmailUser">Correo Eletrónico *</label>
                                     <input type="text" name="ctEmailUser" id="ctEmailUser"
                                         value="<?php echo $user['emaadmin']; ?>" disabled>
                                 </div>
                                 <div>
-                                    <label for="ctNumCel">Numero de Celular 1</label>
-                                    <input type="text" name="ctNumCel" id="ctNumCel"
+                                    <label for="ctNumCelUser">Numero de Celular 1 *</label>
+                                    <input type="text" name="ctNumCelUser" id="ctNumCelUser"
                                         value="<?php echo $user['teladmin']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCel2">Numero de Celular 2</label>
-                                    <input type="text" name="ctNumCel2" id="ctNumCel2"
+                                    <input type="text" name="ctNumCelUser2" id="ctNumCel2"
                                         value="<?php echo $user['teladmin2']; ?>" disabled>
                                 </div>
                             </div>
                             <div class="updatebutton">
                                 <span id="enableForm1"> Editar</span>
                             </div>
-                            <input type="submit" name="guardarAdministrador" value="Guardar">
-
+                            <input type="submit" name="btnUpdateProfile" value="Guardar">
                         </form>
-
+                        <?php
+                            if($_REQUEST['v'] == "true"){
+                                echo "Complete todos los campos con el (*)";
+                            } else {
+                                echo "Datos actualizados correctamente"; 
+                            }
+                            
+                        ?>
                     </div>
                 </div>
                 <div class="profile-adm container-right2" id="container-right2">

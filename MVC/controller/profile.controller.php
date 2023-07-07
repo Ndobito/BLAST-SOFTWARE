@@ -75,12 +75,15 @@ class ProfileController
                 $u -> direccion = $_POST['ctAdrUser']; 
                 $u -> email = $_POST['ctEmailUser']; 
                 $u -> numcel = $_POST['ctNumCelUser']; 
-                $u -> numcel2 = $_POST['ctNumCel2']; 
+                $u -> numcel2 = $_POST['ctNumCelUser2']; 
 
 
-                $this -> object -> update($u); 
-                header("location: ?b=profile&s=Inicio&p=admin&v=false"); 
-
+                
+                if($this -> object -> update($u)){
+                    header("location: ?b=profile&s=Inicio&p=admin&v=false"); 
+                }else {
+                    echo "Error .:3"; 
+                }                
             }
         }
         
