@@ -97,15 +97,7 @@ header div h3{
 }
 
 /* Tabla */
-.container-table1{
-    max-width: 80%;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-}
+
 table.content-table {
     width: 100%;
     margin: 10px;
@@ -160,4 +152,36 @@ table.content-table th  {
 .btn-borrar:hover {
     background-color: #d30404;
     border: 1px solid #d30404;
+}
+
+@media screen and (min-width:769px) {
+
+    .search-bar{
+        margin-left: 60%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+    }
+    
+}
+
+@media screen and (min-width:1024px) {
+
+    .search-bar{
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+    }
+    .search-bar div{
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 500px;
+    }
+    .search-bar div a button{
+        margin-top: 0;
+    }
 }

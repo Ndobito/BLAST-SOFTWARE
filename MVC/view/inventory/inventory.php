@@ -11,22 +11,26 @@
             </header>           
             <div class="container-button">
                 <div class="search-bar">
-                    <form id="buscador-form" action="?b=inventory&s=listado" method="get">
-                        <input id="buscador" name="buscador" type="text" placeholder="Buscar">
-                        <button class="btn-buscar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        <script>
-                            const bf = document.querySelector("#buscador-form");
-                            const bi = document.querySelector("#buscador");
-                            bf.addEventListener("submit", (e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                let url = bf.getAttribute("action");
-                                url += "&search=" + bi.value;
-                                window.location.href = url;
-                            })
-                        </script>
-                    </form>
-                    <a href="?b=inventory&s=agregar"><button class="btn-agregar"><i class="fa-solid fa-plus"  style="margin-right: 5px";></i>  Agregar</button></a>
+                    <div>
+                        <form id="buscador-form" action="?b=inventory&s=listado" method="get">
+                            <input id="buscador" name="buscador" type="text" placeholder="Buscar">
+                            <button class="btn-buscar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <script>
+                                const bf = document.querySelector("#buscador-form");
+                                const bi = document.querySelector("#buscador");
+                                bf.addEventListener("submit", (e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    let url = bf.getAttribute("action");
+                                    url += "&search=" + bi.value;
+                                    window.location.href = url;
+                                })
+                            </script>
+                        </form>
+                    </div>
+                    <div>
+                        <a href="?b=inventory&s=agregar"><button class="btn-agregar"><i class="fa-solid fa-plus"  style="margin-right: 5px";></i>  Agregar</button></a>
+                    </div>
                 </div> 
             </div>
             <div class="container-table1">
