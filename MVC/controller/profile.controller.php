@@ -68,7 +68,7 @@ class ProfileController
     {
         if (isset($_REQUEST['btnUpdateProfile'])) {
             if ($_POST['ctNameUser'] == "" || $_POST['ctSurNameUser'] == "" || $_POST['ctAdrUser'] ==  "" || $_POST['ctEmailUser'] == "" || $_POST['ctNumCelUser'] == "") {
-                header("location: ?b=profile&s=Inicio&p=admin&v=true");
+                redirect("location: ?b=profile&s=Inicio&p=admin&v=true");
             } else {
                 $u = new Profile();
                 $u->id = $_POST['ctIdUser'];
@@ -82,7 +82,7 @@ class ProfileController
 
 
                 if ($this->object->update($u)) {
-                    redirect("ocation: ?b=profile&s=Inicio&p=admin&v=false");
+                    redirect("location: ?b=profile&s=Inicio&p=admin&v=false");
                 } else {
                     echo "Error .:3";
                 }

@@ -25,19 +25,20 @@
 
                             switch ($tipoUsuario) {
                                 case "customer":
-                                    $perfilURL = "?b=profile&Inicio&p=customer";
+                                    $perfilURL = "?b=profile&s=Inicio&p=customer";
+
                                     break;
                                 case "admin":
-                                    $perfilURL = "?b=profile&Inicio&p=admin";
+                                    $perfilURL = "?b=profile&s=Inicio&p=admin";
                                     break;
                                 case "collaborator":
-                                    $perfilURL = "?b=profile&Inicio&p=collaborator";
+                                    $perfilURL = "?b=profile&s=Inicio&p=collaborator";
                                     break;
                                 case "vet":
-                                    $perfilURL = "?b=profile&Inicio&p=vet";
+                                    $perfilURL = "?b=profile&s=Inicio&p=vet";
                                     break;
                                 case "recepcionist":
-                                    $perfilURL = "?b=profile&Inicio&p=recepcionist";
+                                    $perfilURL = "?b=profile&s=Inicio&p=recepcionist";
                                     break;
                                 default:
                                     $perfilURL = ""; // Define una URL adecuada en caso de error

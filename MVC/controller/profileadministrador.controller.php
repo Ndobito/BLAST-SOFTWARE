@@ -7,9 +7,9 @@ class ProfileController
 {
     public function Inicio()
     {
-       
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
+
             $updateProfileController = new UpdateProfileController();
             $updateProfileController->guardarAdministrador();
         }
@@ -22,7 +22,6 @@ class ProfileController
             $data = compact('administrador');
             require_once "view/profile/admin/profileadministrador.php";
         } else {
-           
         }
 
         require_once "view/footerprofile.php";
@@ -31,7 +30,7 @@ class ProfileController
     public function cerrarSesion()
     {
         session_destroy();
-        header('Location: index.php');
+        redirect("index.php")->success("Se ha cerrado session correctamente <b>")->send();
         exit();
     }
 }
