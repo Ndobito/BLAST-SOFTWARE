@@ -40,7 +40,9 @@ class newAccountController{
         $_POST['ctTel'] = ""; 
         $_POST['ctTel2'] = "";
 
-        header("Location: ?b=newaccountpet"); 
+        
+
+        // header("Location: ?b=newaccountpet"); 
     }
 }
 

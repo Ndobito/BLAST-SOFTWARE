@@ -7,19 +7,19 @@
                     <input type="hidden" name="ctIdProv" id="ctIdProv">
                     <div>
                         <label for="">Nombre:</label>
-                        <input type="text" name="ctNomProv" id="">
+                        <input type="text" name="ctNomProv" id="ctNomProv">
                     </div>
                     <div>
                         <label for="">Direccion: </label>
-                        <input type="text" name="ctDirProv" id="">
+                        <input type="text" name="ctNomProv" id="ctNomProv">
                     </div>
                     <div>
                         <label for="">Email: </label>
-                        <input type="text" name="ctEmaProv" id="">
+                        <input type="text" name="ctEmaProv" id="ctEmaProv">
                     </div>
                     <div>
                         <label for="">Telefono:</label>
-                        <input type="text" name="ctTelProv" id="">
+                        <input type="text" name="ctTelProv" id="ctTelProv">
                     </div>
                     <div>
                         <input type="submit" name="btnEditar" value="Enviar">

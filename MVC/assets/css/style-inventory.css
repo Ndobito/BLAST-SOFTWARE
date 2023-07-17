@@ -184,4 +184,9 @@ table.content-table th  {
     .search-bar div a button{
         margin-top: 0;
     }
+    table.content-table{
+        max-width: 100%;
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
 }
