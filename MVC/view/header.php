@@ -21,7 +21,7 @@
                         if (isset($_SESSION['usuario'])) {
                             // Si la sesión está iniciada, mostrar el nombre del usuario y redirigir al perfil correspondiente
                             $usuario = $_SESSION['usuario'];
-                            $tipoUsuario = $_REQUEST['p'];
+                            $tipoUsuario = isset($_REQUEST['p']) ? $_REQUEST['p'] : "";
 
                             switch ($tipoUsuario) {
                                 case "customer":
