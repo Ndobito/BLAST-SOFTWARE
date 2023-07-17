@@ -67,13 +67,10 @@
                             <li>Conocenos</li>
                         </a>
                         <a href="?b=bookappointment">
-                            <li>Servicios</li>
+                            <li>Servicios y Reservas</li>
                         </a>
                         <a href="?b=contactus">
                             <li>Contactenos</li>
-                        </a>
-                        <a href="?b=bookappointment">
-                            <li>Reservas</li>
                         </a>
                     </ul>
                 </div>
