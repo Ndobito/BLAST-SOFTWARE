@@ -44,7 +44,7 @@
                                     break;
                             }
 
-                            echo "<a href='?b=profile&s=Inicio&p=".$tipoUsuario."'><button><i class='fa-solid fa-user'></i>&nbsp;<span>" . $usuario . "</span></button></a>";
+                            echo "<a href='?b=profile&s=Inicio&p=" . $tipoUsuario . "'><button><i class='fa-solid fa-user'></i>&nbsp;<span>" . $usuario . "</span></button></a>";
                         } else {
                             // Si la sesión no está iniciada, mostrar el botón de iniciar sesión
                             echo '<a href="?b=login"><button><i class="fa-solid fa-user"></i>&nbsp;<span>Iniciar Sesión</span></button></a>';
