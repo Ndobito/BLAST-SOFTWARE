@@ -20,9 +20,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $headers .= "Reply-To: $email \r\n";
 
   if (mail($destinatario, $asunto, $contenido, $headers)) {
-    echo 'El mensaje ha sido enviado correctamente.';
+    setNotify("success", "Se Ha Enviado El correo correctamente");
+    header("Location: ?b=contactus&s=Inicio&p");
   } else {
     echo 'Ha ocurrido un error al enviar el mensaje.';
   }
 }
+
 ?>
