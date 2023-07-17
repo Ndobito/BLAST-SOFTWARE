@@ -1,6 +1,6 @@
 <?php 
 
-include_once 'model/database.php';
+include_once 'lib/database/database.php';
 
 class bookAppointment{
 

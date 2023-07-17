@@ -18,34 +18,47 @@ class LoginController
         require_once "view/login/login.php";
     }
 
-    public function revicion()
+    public function validarUser()
     {
         $usuario = $_POST['ctUser'];
         $passsword = $_POST['ctPassword'];
-        $terminos = $_POST['checkbox'];
 
-        if (empty($terminos) || empty($usuario) || empty($passsword)) {
+        if (empty($usuario) || empty($passsword)) {
             header('Location: ?b=login');
         } else {
             $usuario_valido = $this->loginModel->validarUsuario($usuario, $passsword);
-
             if ($usuario_valido) {
                 $tipoUsuario = $this->loginModel->obtenerRol($usuario);
 
                 session_start();
                 $_SESSION['usuario'] = $usuario;
                 $_SESSION['tipoUsuario'] = $tipoUsuario;
-                $_SESSION['ultimaActividad'] = time(); // Guardar el tiempo de última actividad
+                $_SESSION['ultimaActividad'] = time(); 
+                setNotify("success", "ha iniciado sesión correctamente");
 
                 switch ($tipoUsuario) {
                     case "cliente":
-                        header('Location: ?b=profile');
+                        header('Location: ?b=profile&s=Inicio&p=customer');
                         break;
                     case "administrador":
-                        header('Location: ?b=profileadministrador');
+                        header('Location: ?b=profile&s=Inicio&p=admin');
                         break;
                     case "colaborador":
-                        header('Location: ?b=profilecolaborador');
+                        $rolColaborador = $this->loginModel->obtenerRolColaborador($usuario);
+                        switch ($rolColaborador) {
+                            case "veterinario":
+                                header('Location: ?b=profile&s=Inicio&p=vet');
+                                break;
+                            case "recepcionista":
+                                header('Location: ?b=profile&s=Inicio&p=recepcionist');
+                                break;
+                            case "colaborador":
+                                header('Location: ?b=profilecolaborador&s=Inicio&p=collaborator');
+                                break;
+                            default:
+                                // Redirigir a una página de error o manejar el caso adecuadamente
+                                break;
+                        }
                         break;
                     default:
                         // Redirigir a una página de error o manejar el caso adecuadamente
@@ -54,31 +67,9 @@ class LoginController
 
                 exit();
             } else {
-                $usuario_registrado = $this->loginModel->existeUsuario($usuario);
-
-                if ($usuario_registrado) {
-                    echo "<p>Contraseña incorrecta.</p>";
-                } else {
-                    echo "<p>Usuario no registrado.</p>";
-                }
+                setcookie("notify", serialize(["status" => "error", "message" => "El usuario ingresado no existe"]), time() + 5, "/");
+                header('location: ?b=login&s=Inicio&p=admin');
             }
         }
     }
-}
-
-
-
-if (isset($_SESSION['ultimaActividad'])) {
-    $tiempoInactividad = 1 * 60; // 1 minuto
-    $tiempoActual = time();
-    $tiempoTranscurrido = $tiempoActual - $_SESSION['ultimaActividad'];
-
-    if ($tiempoTranscurrido > $tiempoInactividad) {
-        session_unset();
-        session_destroy();
-        header('Location: ?b=login');
-        exit();
-    }
-
-    $_SESSION['ultimaActividad'] = $tiempoActual; 
 }

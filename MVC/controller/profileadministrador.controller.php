@@ -1,13 +1,31 @@
 <?php
 
+include_once 'model/Profile.php';
+include_once 'controller/updateprofile.controller.php';
 
-class ProfileAdministradorController 
+class ProfileController
 {
     public function Inicio()
     {
-        $style = "<link rel='stylesheet' href='assets/css/style-profile-administrator.css'>";
-        require_once "view/head.php";
-        require_once "view/profile/profileadministrador.php";
+       
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            
+            $updateProfileController = new UpdateProfileController();
+            $updateProfileController->guardarAdministrador();
+        }
+        $nombreUsuario = $_SESSION['usuario'];
+
+        $model = new Profile();
+        $administrador = $model->selectUser($nombreUsuario);
+
+        if ($administrador !== null) {
+            $data = compact('administrador');
+            require_once "view/profile/admin/profileadministrador.php";
+        } else {
+           
+        }
+
+        require_once "view/footerprofile.php";
     }
 
     public function cerrarSesion()
@@ -16,6 +34,8 @@ class ProfileAdministradorController
         header('Location: index.php');
         exit();
     }
-    
 }
 
+$profileAdminController = new Profile();
+
+// $profileAdminController->Inicio();

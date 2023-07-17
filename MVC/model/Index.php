@@ -1,5 +1,7 @@
 <?php
 
+
+include_once 'lib/database/database.php'; 
 class Index{
     private $consulta; 
     public function __construct(){

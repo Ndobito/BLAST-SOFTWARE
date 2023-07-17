@@ -3,9 +3,9 @@
         <header>
             <div class="header-top">
                 <div class="social-networks">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://es-la.facebook.com/"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=3133215141"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
                 </div>
                 <div class="search-bar">
                     <div>
@@ -21,24 +21,30 @@
                         if (isset($_SESSION['usuario'])) {
                             // Si la sesión está iniciada, mostrar el nombre del usuario y redirigir al perfil correspondiente
                             $usuario = $_SESSION['usuario'];
-                            $tipoUsuario = $_SESSION['tipoUsuario'];
+                            $tipoUsuario = $_REQUEST['p'];
 
                             switch ($tipoUsuario) {
-                                case "cliente":
-                                    $perfilURL = "?b=profile";
+                                case "customer":
+                                    $perfilURL = "?b=profile&Inicio&p=customer";
                                     break;
-                                case "administrador":
-                                    $perfilURL = "?b=profileadministrador";
+                                case "admin":
+                                    $perfilURL = "?b=profile&Inicio&p=admin";
                                     break;
-                                case "colaborador":
-                                    $perfilURL = "?b=profilecolaborador";
+                                case "collaborator":
+                                    $perfilURL = "?b=profile&Inicio&p=collaborator";
+                                    break;
+                                case "vet":
+                                    $perfilURL = "?b=profile&Inicio&p=vet";
+                                    break;
+                                case "recepcionist":
+                                    $perfilURL = "?b=profile&Inicio&p=recepcionist";
                                     break;
                                 default:
                                     $perfilURL = ""; // Define una URL adecuada en caso de error
                                     break;
                             }
 
-                            echo '<a href="' . $perfilURL . '"><button><i class="fa-solid fa-user"></i>&nbsp;<span>' . $usuario . '</span></button></a>';
+                            echo "<a href='?b=profile&s=Inicio&p=".$tipoUsuario."'><button><i class='fa-solid fa-user'></i>&nbsp;<span>" . $usuario . "</span></button></a>";
                         } else {
                             // Si la sesión no está iniciada, mostrar el botón de iniciar sesión
                             echo '<a href="?b=login"><button><i class="fa-solid fa-user"></i>&nbsp;<span>Iniciar Sesión</span></button></a>';
@@ -50,7 +56,7 @@
             </div>
             <div class="header-bottom">
                 <div class="container-logo">
-                    <img src="assets/img/logo-removebg.png" alt="">
+                    <a href="?b=index"><img src="assets/img/logo-removebg.png" alt=""></a>
                 </div>
                 <div class="nav">
                     <ul>
@@ -61,13 +67,10 @@
                             <li>Conocenos</li>
                         </a>
                         <a href="?b=bookappointment">
-                            <li>Servicios</li>
+                            <li>Servicios y Reservas</li>
                         </a>
                         <a href="?b=contactus">
                             <li>Contactenos</li>
-                        </a>
-                        <a href="?b=bookappointment">
-                            <li>Reservas</li>
                         </a>
                     </ul>
                 </div>
