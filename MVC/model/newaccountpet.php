@@ -1,35 +1,34 @@
 <?php
 
 include_once 'lib/database/database.php'; 
-class newAccount{
+class newAccountPet{
 
     private $consulta;
+
+    public $id, $namepet, $agepet, $genpet, $esppet, $idcli; 
     
     public function __construct(){
         try{
-            $this -> consulta = databaseConexion::conexion(); 
+            $this->consulta = databaseConexion::conexion(); 
         }catch(Exception $e){
             echo "Error de Conexion ". $e -> getMessage(); 
         }
     }
 
-    // public function Registrar(newAccount $data){
-    //     try{
-    //         $user= "INSERT INTO cliente(nomcli, emacli, usercli, passcli, dircli, tzonecli, telcli, telaltcli) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    //         $this -> consulta -> prepare($user)-> execute(array(
-    //             $data -> name, 
-    //             $data -> email, 
-    //             $data -> uname, 
-    //             $data -> pass, 
-    //             $data -> dir, 
-    //             $data -> zone, 
-    //             $data -> phone, 
-    //             $data -> phonealt, 
-    //         )); 
-    //     } catch (Exception $error){
-    //         echo "No se puede registrar el Usuario: ". $error->getMessage();
-    //     }
-    // }
+    public function Registrar(newAccountPet $data){
+        try{
+            $pet= "INSERT INTO mascota(nommas, edadmas, genmas, espmas, idcli) VALUES (?, ?, ?, ?, ?)";
+            $this -> consulta -> prepare($pet)-> execute(array(
+                $data -> namepet, 
+                $data -> agepet, 
+                $data -> genpet, 
+                $data -> esppet, 
+                $data -> idcli, 
+            )); 
+        } catch (Exception $error){
+            echo "No se puede registrar el Usuario: ". $error->getMessage();
+        }
+    }
 
 }
 

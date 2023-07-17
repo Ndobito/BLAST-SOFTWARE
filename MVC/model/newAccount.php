@@ -1,6 +1,6 @@
 <?php
 
-include_once 'model/database.php'; 
+include_once 'lib/database/database.php'; 
 class newAccount{
 
     private $consulta;
@@ -31,8 +31,22 @@ class newAccount{
         } catch (Exception $error){
             echo "No se puede registrar el Usuario: ". $error->getMessage();
         }
+    }
 
-
+    public function selectUser($nick){
+        try{
+            $sql = "SELECT idcli FROM cliente WHERE usercli='".$nick."'"; 
+            $result = $this->consulta->query($sql);
+            if($result->num_rows > 0 ){
+                $fila = $result->fetch_assoc(); 
+                $id = $fila['idcli'];
+                return $id;
+            } else{
+                return null; 
+            } 
+        }catch(Exception $e){
+            echo "Error: ".$e->getMessage(); 
+        }
     }
 
 
