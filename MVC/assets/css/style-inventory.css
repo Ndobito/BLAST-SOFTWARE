@@ -1,14 +1,14 @@
 header {
     background: url(../img/inventary.png);
     background-repeat: no-repeat;
-    padding: 5px;
+    padding: 1.5%;
     margin-bottom: 20px;
 }   
 .logo {
     position: absolute;
-    top: 12px;
+    top: 10px;
     left: 50px;
-    width: 130px; 
+    width: 8%; 
     height: 130px; 
 }
 h1 {
@@ -29,7 +29,6 @@ h3{
 .search-bar {
     align-items: center;
 }
-  
 .search-bar input {
     padding: 8px;
     border: 1px solid #ccc;
@@ -37,7 +36,7 @@ h3{
 }
 
 .btn-buscar{
-    margin-left: 8px;
+    margin-left: 1%;
     padding: 8px 16px;
     background-color: #1787ff;
     color: #fff;
@@ -58,6 +57,7 @@ h3{
     border-radius: 4px;
     cursor: pointer;
     float: right;
+    margin-bottom: 2%;
 }
 .btn-agregar:hover{
     background-color: #177c30;
