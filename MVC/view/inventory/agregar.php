@@ -17,12 +17,16 @@
             <h3>Animal World</h3>
         </div>
     </header>
-    <button class="btn-regresar"><i class="fa-solid fa-arrow-left"></i></button>
+<<<<<<< HEAD
+    <a href="?b=inventory&s=listado"><button class="btn-regresar"><i class="fa-solid fa-arrow-left"></i></button></a>
+=======
+    <a href="?b=inventory"><button class="btn-regresar"><i class="fa-solid fa-arrow-left"></i></button></a>
+>>>>>>> 1b324292bf78b99aa4dd4263bd0d5ef7c85e2d06
     <div class="container">
         <form action="?b=inventory&s=guardar" method="post">
 
             <label for="idprov">ID proveedor:</label>
-            <input type="text" id="idprov" name="idprov" placeholder="agrega el id del producto">
+            <input type="text" id="idprov" name="idprov" placeholder="agrega el id del proveedor">
 
             <br>
 
@@ -51,6 +55,7 @@
             <input type="text" id="categoria" name="categoria" placeholder="agrega la categoria del producto">
             <br>
             <button class="btn-save">Guardar</button>
+            <br> 
 
         </form>
 

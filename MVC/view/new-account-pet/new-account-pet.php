@@ -3,23 +3,32 @@
     <div class="container-background">
         <div class="container-form">
             <h2>Crear cuenta</h2>
-            <form action="?b=newaccount&s=GuardarPet" method="POST">
+            <?php 
+                $id = $_REQUEST['p'];
+                echo "<form action='?b=newaccountpet&s=GuardarPet&p=$id' method='POST'>";
+            ?>
                 <div id="parent-container-form-pet">
                     <div class="NameandLastname">
                         <div class="input-container">
                             <label>Mascota</label>
-                            <input type="text" name="mascota" required>
+                            <input type="text" name="ctNomMas" required>
+                        </div>
+                    </div>
+                    <div class="NameandLastname">
+                        <div class="input-container">
+                            <label>Edad</label>
+                            <input type="number" name="ctAgeMas" required>
                         </div>
                     </div>
                     <label for="gender">Genero</label>
-                    <select type="select" required id="input-obligatorio">
+                    <select type="select" name="selGenPet" required id="input-obligatorio">
                         <option value="" selected disabled>Selectiona el genero de tu mascota</option>
-                        <option value="">Macho</option>
-                        <option value="">Hembra</option>
+                        <option value="M">Macho</option>
+                        <option value="H">Hembra</option>
                     </select>
 
                     <label for="gender">Especie</label>
-                    <select type="select" required id="input-obligatorio">
+                    <select type="select" name="selEspPet" required id="input-obligatorio">
                         <option value="" selected disabled>Selectiona la especie</option>
                         <option value="">Perro</option>
                         <option value="">Gato</option>
