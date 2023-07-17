@@ -1,6 +1,6 @@
 <div class="container">
     <div class="returm">
-        <a href="?b=index"><i class="fa-solid fa-arrow-left"></i></a>
+        <a href="?b=index&s=Inicio&p=admin"><i class="fa-solid fa-arrow-left"></i></a>
     </div> <!-- Body of the work -->
     <main>
         <div class="container-main-profile">
@@ -9,7 +9,7 @@
                     <div class="user">
                         <div class="img"></div>
                         <h1>
-                            <?php echo $usuario; ?>
+                        <?php echo $user['nomadmin']." ". $user['apeadmin']; ?>
                         </h1>
                         <h1>Administrador</h1>
                     </div>
@@ -45,41 +45,47 @@
                 <div class="profile-adm container-right" id="container-right">
                     <div class="user-information">
                         <h1>Datos</h1>
-                        <form id="form-user-information" action="updateprofile.controller.php?action=guardarAdministrador" method="post">
-                            <label for="ctNameuser">Nombres</label>
+                        <form id="form-user-information" action="?b=profile&s=actualizarUsuario" method="post">
+                            <input name="ctIdUser" type="hidden" value="<?php echo $user['idadmin'] ?>">
+                            <label for="ctNameUser">Nombres*</label>
                             <input type="text" name="ctNameUser" id="ctNameUser"
-                                value="<?php echo $user['nomadmin']; ?>" disabled>
-                            <label for="ctSurNameUser">Apellidos</label>
+                                value="<?php echo $user['nomadmin'] ?? "Sin definir"; ?>" disabled>
+                            <label for="ctSurNameUser">Apellidos *</label>
                             <input type="text" name="ctSurNameUser" id="ctSurNameUser"
-                                value="<?php echo $user['apeadmin']; ?>" disabled>
-                            <label for="ctNameuser">Direccion</label>
+                                value="<?php echo $user['apeadmin'] ?? "Sin definir"; ?>" disabled>
+                            <label for="ctNameuser">Direccion *</label>
                             <input type="text" name="ctAdrUser" id="ctAdrUser"
                                 value="<?php echo $user['diradmin']; ?>" disabled>
                             <div>
                                 <div>
-                                    <label for="ctEmailUser">Correo Eletrónico</label>
+                                    <label for="ctEmailUser">Correo Eletrónico *</label>
                                     <input type="text" name="ctEmailUser" id="ctEmailUser"
                                         value="<?php echo $user['emaadmin']; ?>" disabled>
                                 </div>
                                 <div>
-                                    <label for="ctNumCel">Numero de Celular 1</label>
-                                    <input type="text" name="ctNumCel" id="ctNumCel"
+                                    <label for="ctNumCelUser">Numero de Celular 1 *</label>
+                                    <input type="text" name="ctNumCelUser" id="ctNumCelUser"
                                         value="<?php echo $user['teladmin']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCel2">Numero de Celular 2</label>
-                                    <input type="text" name="ctNumCel2" id="ctNumCel2"
+                                    <input type="text" name="ctNumCelUser2" id="ctNumCel2"
                                         value="<?php echo $user['teladmin2']; ?>" disabled>
                                 </div>
                             </div>
                             <div class="updatebutton">
                                 <span id="enableForm1"> Editar</span>
-                                <span id=""> Cancelar</span>
                             </div>
-                            <input type="submit" name="guardarAdministrador" value="Guardar">
-
+                            <input type="submit" name="btnUpdateProfile" value="Guardar">
                         </form>
-
+                        <?php
+                            if($_REQUEST['v'] == "true"){
+                                echo "Complete todos los campos con el (*)";
+                            } else {
+                                echo "Datos actualizados correctamente"; 
+                            }
+                            
+                        ?>
                     </div>
                 </div>
                 <div class="profile-adm container-right2" id="container-right2">
@@ -103,47 +109,36 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Cedula</th>
                                 <th>Nombres</th>
                                 <th>Apellidos</th>
                                 <th>Telefono</th>
                                 <th>Direccion</th>
                             </tr>
                         </thead>
-                        <?php foreach ($empleados as $empleado): ?>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <?= $empleado->Idempleado ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->cedula ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->nombres ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->apellidos ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->telefono ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->direccion ?>
-                                    </td>
-                                    <td>
-                                        <a href="editar.php?id=<?= $producto->idproducto ?>">
-                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="elimina.php?id=<?= $producto->idproducto ?>">
-                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        <?php endforeach ?>
+                        
+                        <tbody>
+                        <?php 
+                        foreach ($proveedores as $proveedor){ ?>
+                            <tr>
+                                <td><?php echo $proveedor['idprov'] ; ?></td>
+                                <td><?php echo $proveedor['nomprov'] ; ?></td>
+                                <td><?php echo $proveedor['dirprov'] ; ?></td>
+                                <td><?php echo $proveedor['emaprov'] ; ?></td>
+                                <td><?php echo $proveedor['telprov'] ; ?></td>
+                                <td class="icons1">
+                                    <a href="?b=profile&s=showEdit">
+                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                                <td class="icons2">
+                                    <a href="#">
+                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <?php };
+                             ?>
+                        </tbody>
                     </table>
 
                 </div>
@@ -175,42 +170,32 @@
                                 <th>Apellidos</th>
                                 <th>Telefono</th>
                                 <th>Direccion</th>
+                                <th>Rol</th>
                             </tr>
                         </thead>
-                        <?php foreach ($empleados as $empleado): ?>
+                        <?php foreach ($empleado as $colaborador){ ?>
                             <tbody>
                                 <tr>
-                                    <td>
-                                        <?= $empleado->Idempleado ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->cedula ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->nombres ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->apellidos ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->telefono ?>
-                                    </td>
-                                    <td>
-                                        <?= $empleado->direccion ?>
-                                    </td>
-                                    <td>
-                                        <a href="editar.php?id=<?= $producto->idproducto ?>">
-                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="elimina.php?id=<?= $producto->idproducto ?>">
-                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
+                                <td><?php echo $colaborador['idcol'] ; ?></td>
+                                <td><?php echo $colaborador['dnicol'] ; ?></td>
+                                <td><?php echo $colaborador['nomcol'] ; ?></td>
+                                <td><?php echo $colaborador['emacol'] ; ?></td>
+                                <td><?php echo $colaborador['dircol'] ; ?></td>
+                                <td><?php echo $colaborador['telcol'] ; ?></td>
+                                <td><?php echo $colaborador['rolcol'] ; ?></td>
+                                <td class="icons1">
+                                    <a href="#">
+                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                                <td class="icons2">
+                                    <a href="#">
+                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                    </a>
+                                </td>
                                 </tr>
                             </tbody>
-                        <?php endforeach ?>
+                        <?php } ?>
                     </table>
 
                 </div>
@@ -235,47 +220,37 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Cedula</th>
-                                <th>Nombres</th>
-                                <th>Apellidos</th>
-                                <th>Telefono</th>
+                                <th>Nombre</th>
+                                <th>EMAIL</th>
+                                <th>USUARIO</th>
                                 <th>Direccion</th>
+                                <th>ZONA</th>
+                                <th>Telefono</th>
                             </tr>
                         </thead>
-                        <?php foreach ($clientes as $cliente): ?>
+                        <?php foreach ($cliente as $cliente){ ?>
                             <tbody>
                                 <tr>
-                                    <td>
-                                        <?= $cliente->Idcliente ?>
-                                    </td>
-                                    <td>
-                                        <?= $cliente->cedula ?>
-                                    </td>
-                                    <td>
-                                        <?= $cliente->nombres ?>
-                                    </td>
-                                    <td>
-                                        <?= $cliente->apellidos ?>
-                                    </td>
-                                    <td>
-                                        <?= $cliente->telefono ?>
-                                    </td>
-                                    <td>
-                                        <?= $cliente->direccion ?>
-                                    </td>
-                                    <td>
-                                        <a href="editar.php?id=<?= $producto->idproducto ?>">
+                                    <td><?php echo $cliente['idcli'] ; ?></td>
+                                    <td><?php echo $cliente['nomcli'] ; ?></td>
+                                    <td><?php echo $cliente['emacli'] ; ?></td>
+                                    <td><?php echo $cliente['usercli'] ; ?></td>
+                                    <td><?php echo $cliente['dircli'] ; ?></td>
+                                    <td><?php echo $cliente['tzonecli'] ; ?></td>
+                                    <td><?php echo $cliente['telcli'] ; ?></td>
+                                    <td class="icons1">
+                                        <a href="#">
                                             <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                         </a>
                                     </td>
-                                    <td>
-                                        <a href="elimina.php?id=<?= $producto->idproducto ?>">
+                                    <td class="icons2"> 
+                                        <a href="#">
                                             <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
                                         </a>
                                     </td>
                                 </tr>
                             </tbody>
-                        <?php endforeach ?>
+                        <?php } ?>
                     </table>
                 </div>
                 <div class="profile-adm container-right5" id="container-right5">
@@ -300,47 +275,53 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Nombre</th>
-                                <th>Genero</th>
                                 <th>Edad</th>
-                                <th>Dueño</th>
+                                <th>Genero</th>
+                                <th>ESPECIE</th>
+                                <th>Dueño ID</th>
                             </tr>
                         </thead>
-                        <?php foreach ($mascotas as $mascota): ?>
+                        <?php foreach ($mascota as $mascota){ ?>
                             <tbody>
                                 <tr>
-                                    <td>
-                                        <?= $mascota->Idmascota ?>
-                                    </td>
-                                    <td>
-                                        <?= $mascota->dueño ?>
-                                    </td>
-                                    <td>
-                                        <?= $mascota->nombre ?>
-                                    </td>
-                                    <td>
-                                        <?= $mascota->genero ?>
-                                    </td>
-                                    <td>
-                                        <?= $mascota->edad ?>
-                                    </td>
-                                    <td>
-                                        <a href="editar.php?id=<?= $producto->idproducto ?>">
-                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="elimina.php?id=<?= $producto->idproducto ?>">
-                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
+                                <td><?php echo $mascota['idmas'] ; ?></td>
+                                <td><?php echo $mascota['nommas'] ; ?></td>
+                                <td><?php echo $mascota['edadmas'] ; ?></td>
+                                <td><?php echo $mascota['genmas'] ; ?></td>
+                                <td><?php echo $mascota['espmas'] ; ?></td>
+                                <td><?php echo $mascota['idcli'] ; ?></td>
+                                <td class="icons1">
+                                    <a href="#">
+                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                                <td class="icons2">
+                                    <a href="#">
+                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                    </a>
+                                </td>
                                 </tr>
                             </tbody>
-                        <?php endforeach ?>
+                        <?php } ?>
                     </table>
                 </div>
             </div>
         </div>
     </main>
+    <footer>
+        <div class="footer-bottom">
+            <p>
+                <img src="assets/img/logo.jpg" alt="">
+                <i>@2023 Clinica Animal World | Veterinaria para mascotas en Colombia</i>
+                <br><br>
+            </p>
+            <p>
+                Sitio creado por
+                <img src="assets/img/logo-removebg-blast-software.png" alt="Logo Blast Software" title="Blast Software">
+                <strong>BLast Software</strong>
+            </p>
+        </div>
+    </footer>
 </div>
 
 <!-- Menu Profile -->

@@ -24,12 +24,9 @@ class LoginController
         $passsword = $_POST['ctPassword'];
 
         if (empty($usuario) || empty($passsword)) {
-            
             header('Location: ?b=login');
-
         } else {
             $usuario_valido = $this->loginModel->validarUsuario($usuario, $passsword);
-
             if ($usuario_valido) {
                 $tipoUsuario = $this->loginModel->obtenerRol($usuario);
 
@@ -37,6 +34,7 @@ class LoginController
                 $_SESSION['usuario'] = $usuario;
                 $_SESSION['tipoUsuario'] = $tipoUsuario;
                 $_SESSION['ultimaActividad'] = time(); 
+                setNotify("success", "ha iniciado sesión correctamente");
 
                 switch ($tipoUsuario) {
                     case "cliente":
@@ -69,17 +67,9 @@ class LoginController
 
                 exit();
             } else {
-                $usuario_registrado = $this->loginModel->existeUsuario($usuario);
-
-                if ($usuario_registrado) {     
-                    header("Location: ?b=login");
-                
-                } else {
-                    echo "<p>Usuario no registrado.</p>";
-                }
+                setcookie("notify", serialize(["status" => "error", "message" => "El usuario ingresado no existe"]), time() + 5, "/");
+                header('location: ?b=login&s=Inicio&p=admin');
             }
         }
     }
 }
-
-?>

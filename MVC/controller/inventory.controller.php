@@ -71,6 +71,8 @@ class InventoryController
         $prod->stockprod = $_REQUEST['cantidad'];
         $prod->catprod = $_REQUEST['categoria'];
         $this->model->guardar($prod);
+
+        setNotify("success", "Se ha guardado el producto " . $_REQUEST['nombre'] . " correctamente");
         header("Location: ?b=inventory&s=listado");
     }
 
@@ -78,6 +80,7 @@ class InventoryController
         $prod = new ProductModel();
         $prod->idprod = $_REQUEST["idprod"];
         $this->model->eliminar($prod);
+        setNotify("success", "Se ha eliminado el producto " . $_REQUEST["name"] . " correctamente");
         header("Location: ?b=inventory&s=listado");
     }
 
@@ -92,8 +95,11 @@ class InventoryController
         $prod->stockprod = $_REQUEST['cantidad'];
         $prod->catprod = $_REQUEST['categoria'];
         $prod->idprov = $_REQUEST['proveedor'];
-    $this->model->actualizar($prod);
-    header('Location: index.php?b=inventory&s=listado');
+        $this->model->actualizar($prod);
+        redirect("?b=inventory&s=listado")->success("Se ha actualizado el producto <b>" . $_REQUEST["nombre"] . "</b> correctamente")->send();
+
+    // setNotify("success", "Se ha editado el producto " . $_REQUEST['nombre'] . " correctamente");
+    // header('Location: index.php?b=inventory&s=listado');
     }
 
 }

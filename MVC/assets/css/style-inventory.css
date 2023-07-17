@@ -1,33 +1,62 @@
+@charset "UTF-8";
+
+/* Global */
+
+:root{
+    --font-1: Georgia, 'Times New Roman', Times, serif;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Header */
+
 header {
     background: url(../img/inventary.png);
+    background-size: cover;
     background-repeat: no-repeat;
-    padding: 1.5%;
-    margin-bottom: 20px;
-}   
-.logo {
-    position: absolute;
-    top: 10px;
-    left: 50px;
-    width: 8%; 
-    height: 130px; 
+    background-position: center center;
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
-h1 {
+
+header > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+header > div:nth-child(2){
+    flex-direction: column;
+}
+
+header > div .logo{
+    width: 150px;
+}
+header div h1 {
     color: #234876;
-    font-size: 36px;
-    margin-top: 20px;
-    margin-left: 65%;
-    padding: 5px;
-    font-family: Georgia, serif;
+    font-size: 25px;
+    font-family: var(--font-1);
     font-weight: bold;
 }
-h3{
-    margin-left: 70%; 
-    font-style: inherit;
+
+header div h3{
     font-style: italic;
-    padding: 0;
+}
+
+/* Buscador */
+.container-button{
+    text-align: center;
+    padding: 15px;
 }
 .search-bar {
     align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 .search-bar input {
     padding: 8px;
@@ -48,7 +77,10 @@ h3{
     background-color: #0077ff;
     border: 1px solid #0077ff; 
 } 
+
+/* Agregar */
 .btn-agregar{
+    margin-top: 20px;
     padding: 8px 40px;
     text-align: center;
     color: #fff;
@@ -63,18 +95,9 @@ h3{
     background-color: #177c30;
     border: 1px solid #177c30;   
 }
-.container-button{
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 65px;
-    margin-bottom: 20px;
-}
-.container-1{
-    width: 80%;
-    margin-left: 50%;
-    transform: translateX(-50%);
-}
+
+/* Tabla */
+
 table.content-table {
     width: 100%;
     margin: 10px;
@@ -101,6 +124,7 @@ table.content-table th  {
     padding: 8px;
     border-top: none;
 }
+
 .btn-editar{
     margin-left: auto;
     padding: 6px 12px;
@@ -128,4 +152,36 @@ table.content-table th  {
 .btn-borrar:hover {
     background-color: #d30404;
     border: 1px solid #d30404;
+}
+
+@media screen and (min-width:769px) {
+
+    .search-bar{
+        margin-left: 60%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+    }
+    
+}
+
+@media screen and (min-width:1024px) {
+
+    .search-bar{
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+    }
+    .search-bar div{
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 500px;
+    }
+    .search-bar div a button{
+        margin-top: 0;
+    }
 }

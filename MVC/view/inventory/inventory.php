@@ -1,22 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
-    <title>Inventario</title>
-    <link rel="stylesheet" href="../../assets/css/style-inventory.css">
-</head>
 <body>
         <div class="container">
             <header>
-                <h1>INVENTARIO</h1>
-                <img class="logo" src="assets/img/logo-removebg.png" alt="">
-                <h3>Animal World</h3>
+                <div class="img-logp">
+                    <img class="logo" src="assets/img/logo-removebg.png" alt="">
+                </div>
+                <div class="text-logo">
+                    <h1>INVENTARIO</h1>
+                    <h3>Animal World</h3>
+                </div>
             </header>           
-                <div class="container-button">
-                    <div class="search-bar">
+            <div class="container-button">
+                <div class="search-bar">
+                    <div>
                         <form id="buscador-form" action="?b=inventory&s=listado" method="get">
                             <input id="buscador" name="buscador" type="text" placeholder="Buscar">
                             <button class="btn-buscar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -32,14 +27,17 @@
                                 })
                             </script>
                         </form>
+                    </div>
+                    <div>
                         <a href="?b=inventory&s=agregar"><button class="btn-agregar"><i class="fa-solid fa-plus"  style="margin-right: 5px";></i>  Agregar</button></a>
-                    </div> 
-                </div>
-                <div class="container-1">
-                    <table class="content-table"> 
+                    </div>
+                </div> 
+            </div>
+            <div class="container-table1">
+                <table class="content-table"> 
                     <thead>
                         <tr> 
-                            <th>ID</th>
+                            <th>Id</th>
                             <th>nombre del producto</th>
                             <th>descripcion</th>
                             <th>imagen</th>
@@ -68,7 +66,7 @@
                             <td><?= $e["catprod"] ?></td>
                             <td><?= $e["nomprov"] ?></td>
                             <td><a href="?b=inventory&s=editar&idprod=<?= $e["idprod"] ?>"><button class="btn-editar"><i class="fa-solid fa-pen"></i></button></a></td>
-                            <td><a href="?b=inventory&s=eliminar&idprod=<?= $e["idprod"] ?>"><button class="btn-borrar" ><i class="fa-solid fa-trash"></i></button></a></td>
+                            <td><a href="?b=inventory&s=eliminar&idprod=<?= $e["idprod"] ?>&name=<?= $e["idprod"] ?>"><button class="btn-borrar" ><i class="fa-solid fa-trash"></i></button></a></td>
                         </tr>        
                             <?php
                         }
@@ -82,7 +80,7 @@
                         ?>
                     </tbody>
                 </table>             
-             </div>  
+            </div>  
         </div>
         <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
 </body>
