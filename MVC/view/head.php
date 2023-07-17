@@ -9,4 +9,5 @@
         <link rel="stylesheet" href="assets/css/notify.css">
         <title>Animal World</title>
         <?php if(isset($style)) echo $style; ?>
+
     </head>

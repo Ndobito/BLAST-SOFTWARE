@@ -21,7 +21,7 @@
                         if (isset($_SESSION['usuario'])) {
                             // Si la sesión está iniciada, mostrar el nombre del usuario y redirigir al perfil correspondiente
                             $usuario = $_SESSION['usuario'];
-                            $tipoUsuario = $_REQUEST['p'];
+                            $tipoUsuario = isset($_REQUEST['p'])  ? $_REQUEST['p'] : "";
 
                             switch ($tipoUsuario) {
                                 case "customer":
@@ -59,20 +59,36 @@
                     <a href="?b=index"><img src="assets/img/logo-removebg.png" alt=""></a>
                 </div>
                 <div class="nav">
-                    <ul>
-                        <a href="?b=index">
-                            <li>Inicio</li>
-                        </a>
-                        <a href="?b=knowus">
-                            <li>Conocenos</li>
-                        </a>
-                        <a href="?b=bookappointment">
-                            <li>Servicios y Reservas</li>
-                        </a>
-                        <a href="?b=contactus">
-                            <li>Contactenos</li>
-                        </a>
-                    </ul>
+                    <?php 
+                    if ($_SESSION == true){
+                        echo '<ul>';
+                            echo "<a href='?b=index&s=Inicio&p=$tipoUsuario'><li>Inicio</li></a>";
+                            echo "<a href='?b=knowus&s=Inicio&p=$tipoUsuario'><li>Conocenos</li></a>";
+                            echo "<a href='?b=bookappointment&s=Inicio&p=$tipoUsuario'><li>Servicios y Reservas</li></a>";
+                            echo "<a href='?b=contactus&s=Inicio&p=$tipoUsuario'><li>Contactenos</li></a>";
+                        echo '</ul>';
+
+                    }else if($_SESSION == false){
+                        echo '<ul>';
+                            echo '<a href="?b=index">
+                                <li>Inicio</li>
+                            </a>';
+                            echo '<a href="?b=knowus">
+                                <li>Conocenos</li>
+                            </a>';
+                            echo '<a href="?b=bookappointment">
+                                <li>Servicios</li>
+                            </a>';
+                            echo '<a href="?b=contactus">
+                                <li>Contactenos</li>
+                            </a>';
+                            echo '<a href="?b=bookappointment">
+                                <li>Reservas</li>
+                            </a>';
+                        echo '</ul>';
+                    };
+                    
+                    ?>
                 </div>
                 <div class="icon-menu">
                     <i id="open-menu" class="fa-solid fa-bars"></i>
@@ -80,22 +96,5 @@
                 </div>
             </div>
         </header>
-        <div id="panel-menu" class="content-menu">
-            <ul>
-                <a href="?b=index&s=Inicio">
-                    <li>Inicio</li>
-                </a>
-                <a href="?b=knowus">
-                    <li>Conocenos</li>
-                </a>
-                <a href="?b=bookappointment">
-                    <li>Servicios</li>
-                </a>
-                <a href="?b=contactus">
-                    <li>Contactenos</li>
-                </a>
-                <a href="?b=bookappointment">
-                    <li>Reservas</li>
-                </a>
-            </ul>
-        </div>
+
+
