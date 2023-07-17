@@ -59,24 +59,36 @@
                     <a href="?b=index"><img src="assets/img/logo-removebg.png" alt=""></a>
                 </div>
                 <div class="nav">
-                    <ul>
-                        <?php echo "<a href='?b=index&s=Inicio&p=$tipoUsuario'>
+                    <?php 
+                    if ($_SESSION == true){
+                        echo '<ul>';
+                            echo "<a href='?b=index&s=Inicio&p=$tipoUsuario'><li>Inicio</li></a>";
+                            echo "<a href='?b=knowus&s=Inicio&p=$tipoUsuario'><li>Conocenos</li></a>";
+                            echo "<a href='?b=bookappointment&s=Inicio&p=$tipoUsuario'><li>Servicios y Reservas</li></a>";
+                            echo "<a href='?b=contactus&s=Inicio&p=$tipoUsuario'><li>Contactenos</li></a>";
+                        echo '</ul>';
+
+                    }else if($_SESSION == false){
+                        echo '<ul>';
+                            echo '<a href="?b=index">
                                 <li>Inicio</li>
-                            </a>"
-                        ?>
-                        <?php echo "<a href='?b=knowus&s=Inicio&p=$tipoUsuario'>
+                            </a>';
+                            echo '<a href="?b=knowus">
                                 <li>Conocenos</li>
-                            </a>"
-                        ?>
-                        <?php echo "<a href='?b=bookappointment&s=Inicio&p=$tipoUsuario'>
-                                <li>Servicios y Reservas</li>
-                            </a>"
-                        ?>
-                        <?php echo "<a href='?b=contactus&s=Inicio&p=$tipoUsuario'>
+                            </a>';
+                            echo '<a href="?b=bookappointment">
+                                <li>Servicios</li>
+                            </a>';
+                            echo '<a href="?b=contactus">
                                 <li>Contactenos</li>
-                            </a>"
-                        ?>
-                    </ul>
+                            </a>';
+                            echo '<a href="?b=bookappointment">
+                                <li>Reservas</li>
+                            </a>';
+                        echo '</ul>';
+                    };
+                    
+                    ?>
                 </div>
                 <div class="icon-menu">
                     <i id="open-menu" class="fa-solid fa-bars"></i>
@@ -84,3 +96,5 @@
                 </div>
             </div>
         </header>
+
+

@@ -119,7 +119,6 @@
                                 <th>Direccion</th>
                             </tr>
                         </thead>
-                        
                         <tbody>
                         <?php 
                         foreach ($proveedores as $proveedor){ ?>

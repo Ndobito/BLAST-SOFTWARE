@@ -27,9 +27,11 @@ class newAccountController{
         $m -> zone = $_POST['selTipoUbicacion']; 
         $m -> phone = $_POST['ctTel']; 
         $m -> phonealt = $_POST['ctTel2'];
-
+        
+        $nickName = $_POST['ctNick']; 
         $this->object->Registrar($m);
-
+        
+        $id = $this -> object -> selectUser($nickName); 
         $_POST['ctNombre']  = ""; 
         $_POST['ctApellido'] = ""; 
         $_POST['ctEmail'] = ""; 
@@ -40,7 +42,7 @@ class newAccountController{
         $_POST['ctTel'] = ""; 
         $_POST['ctTel2'] = "";
 
-        header("Location: ?b=newaccountpet"); 
+        header("Location: ?b=newaccountpet&s=Inicio&p=$id"); 
     }
 }
 
