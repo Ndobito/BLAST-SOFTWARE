@@ -104,7 +104,7 @@
                             <h1><span>NUESTRA</span> DIRECCION</h1>
                             <p> Calle 5 sur # 4B- 10 La Plata - Huila</p>
                             <p><strong>Email: </strong> animalworld@gmail.com</p>
-                            <p><strong>Cel: </strong>111 111 1111</p>
+                            <p><strong>Cel: </strong>313 321 5141</p>
                             <hr>
                         </div>
                         <div class="map">

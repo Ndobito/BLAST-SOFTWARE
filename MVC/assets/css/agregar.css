@@ -84,4 +84,5 @@ header {
 }  
 .btn-regresar:hover{
     background-color: #0018f3;
+    cursor: pointer;
 }

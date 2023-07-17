@@ -79,12 +79,16 @@
                             <input type="submit" name="btnUpdateProfile" value="Guardar">
                         </form>
                         <?php
-                            if($_REQUEST['v'] == "true"){
-                                echo "Complete todos los campos con el (*)";
-                            } else {
-                                echo "Datos actualizados correctamente"; 
+                            if (isset($_REQUEST['v'])) {
+                                $confirm = $_REQUEST['v'];
+                                if(!empty($confirm)){
+                                    if($confirm == "true"){
+                                        echo "Complete todos los campos con el (*)";
+                                    } else if($confirm == "false"){
+                                        echo "Datos actualizados correctamente"; 
+                                    }
+                                }
                             }
-                            
                         ?>
                     </div>
                 </div>
