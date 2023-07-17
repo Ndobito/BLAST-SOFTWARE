@@ -21,7 +21,7 @@
                         if (isset($_SESSION['usuario'])) {
                             // Si la sesión está iniciada, mostrar el nombre del usuario y redirigir al perfil correspondiente
                             $usuario = $_SESSION['usuario'];
-                            $tipoUsuario = isset($_REQUEST['p']) ? $_REQUEST['p'] : "";
+                            $tipoUsuario = isset($_REQUEST['p'])  ? $_REQUEST['p'] : "";
 
                             switch ($tipoUsuario) {
                                 case "customer":
@@ -61,18 +61,22 @@
                 </div>
                 <div class="nav">
                     <ul>
-                        <a href="?b=index">
-                            <li>Inicio</li>
-                        </a>
-                        <a href="?b=knowus">
-                            <li>Conocenos</li>
-                        </a>
-                        <a href="?b=bookappointment">
-                            <li>Servicios y Reservas</li>
-                        </a>
-                        <a href="?b=contactus">
-                            <li>Contactenos</li>
-                        </a>
+                        <?php echo "<a href='?b=index&s=Inicio&p=$tipoUsuario'>
+                                <li>Inicio</li>
+                            </a>"
+                        ?>
+                        <?php echo "<a href='?b=knowus&s=Inicio&p=$tipoUsuario'>
+                                <li>Conocenos</li>
+                            </a>"
+                        ?>
+                        <?php echo "<a href='?b=bookappointment&s=Inicio&p=$tipoUsuario'>
+                                <li>Servicios y Reservas</li>
+                            </a>"
+                        ?>
+                        <?php echo "<a href='?b=contactus&s=Inicio&p=$tipoUsuario'>
+                                <li>Contactenos</li>
+                            </a>"
+                        ?>
                     </ul>
                 </div>
                 <div class="icon-menu">
@@ -81,22 +85,3 @@
                 </div>
             </div>
         </header>
-        <div id="panel-menu" class="content-menu">
-            <ul>
-                <a href="?b=index&s=Inicio">
-                    <li>Inicio</li>
-                </a>
-                <a href="?b=knowus">
-                    <li>Conocenos</li>
-                </a>
-                <a href="?b=bookappointment">
-                    <li>Servicios</li>
-                </a>
-                <a href="?b=contactus">
-                    <li>Contactenos</li>
-                </a>
-                <a href="?b=bookappointment">
-                    <li>Reservas</li>
-                </a>
-            </ul>
-        </div>

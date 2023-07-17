@@ -44,6 +44,6 @@ class newAccountController
         $_POST['ctTel'] = "";
         $_POST['ctTel2'] = "";
 
-        redirect("Location: ?b=newaccountpet")->success("Se ha guardo el usuario correctamente <b>")->send();
+        redirect("Location: ?b=newaccountpet")->success("Se ha guardo el perfil correctamente <b>")->send();
     }
 }
