@@ -64,15 +64,15 @@
                                 <li>Inicio</li>
                             </a>"
                         ?>
-                        <?php echo "<a href='?b=index&s=Inicio&p=$tipoUsuario'>
+                        <?php echo "<a href='?b=knowus&s=Inicio&p=$tipoUsuario'>
                                 <li>Conocenos</li>
                             </a>"
                         ?>
-                        <?php echo "<a href='?b=index&s=Inicio&p=$tipoUsuario'>
+                        <?php echo "<a href='?b=bookappointment&s=Inicio&p=$tipoUsuario'>
                                 <li>Servicios y Reservas</li>
                             </a>"
                         ?>
-                        <?php echo "<a href='?b=index&s=Inicio&p=$tipoUsuario'>
+                        <?php echo "<a href='?b=contactus&s=Inicio&p=$tipoUsuario'>
                                 <li>Contactenos</li>
                             </a>"
                         ?>
