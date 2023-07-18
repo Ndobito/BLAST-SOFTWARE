@@ -1,7 +1,7 @@
 
         <main>
             <div class="header-main">
-                <h1 id="conocenos">Acerca de</h1>
+                <h1 id="conocenos">Acerca de nosotros</h1>
             </div>
             <div class="container-information">
                 <div class="information-img">
@@ -9,24 +9,17 @@
                 </div>
                 <div class="information-text">
                     <h1>Acerca de Animal World</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto eaque libero architecto pariatur exercitationem perspiciatis eius animi quam unde ut nihil, inventore dolorum dolores adipisci expedita quidem vel similique aperiam!
-                    Atque, delectus. Expedita maxime explicabo dolor distinctio eaque optio numquam ipsam et, ducimus mollitia commodi at fugit modi, maiores assumenda temporibus dolorum veniam delectus nesciunt? Quis quod voluptate ad perferendis.
-                    Ratione facilis veritatis tempora accusamus temporibus consectetur fugiat neque veniam. Nisi voluptas, doloremque laborum consequuntur sapiente quos neque aut aliquid mollitia praesentium modi eum incidunt et aspernatur obcaecati aliquam sequi!
-                    Totam et, distinctio quas velit sit repellat, fuga mollitia excepturi necessitatibus nesciunt unde veniam quia quo hic maiores sed rem optio natus explicabo porro eum cumque id! Rerum, sequi ab!</p>
+                    <p>Hace dos años, en La Plata, Huila, nació Animal World, una veterinaria fundada por Paula y Armando, dos amantes de los animales. Con un equipo dedicado y una clínica moderna, ofrecen cuidado de calidad a las mascotas de la comunidad. Animal World se ha convertido en un punto de referencia, brindando servicios médicos avanzados, atención de emergencia y programas de vacunación y esterilización. Su compromiso con la comunidad se refleja en su participación en eventos locales y su labor educativa. Animal World sigue creciendo, dejando una huella positiva en la vida de los animales y las personas.</p>
                 </div>
             </div>
             <div class="container-cards">
                 <div class="card">
                     <h1>Mision</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptatum perferendis cum deleniti beatae sit! Id officiis rerum itaque architecto porro, corporis cum qui natus odit, quasi, sunt voluptas dicta.
-                    Sint laboriosam aut sapiente fuga explicabo quibusdam ab inventore error? Omnis itaque consequatur, molestias rerum beatae praesentium, ea dignissimos explicabo excepturi obcaecati odio magni repellendus molestiae? Corporis reprehenderit enim aliquid!
-                    Qui illum, nemo animi illo omnis ab consequatur dolorum iste non quas delectus perspiciatis quia, suscipit necessitatibus aspernatur corporis quasi nesciunt modi exercitationem cumque corrupti deserunt dolorem libero. Sit, molestiae.</p>
+                    <p>Ser la veterinaria de referencia en el municipio de La Plata, Huila, y sus alrededores, reconocida por brindar atención veterinaria excepcional, promoviendo el bienestar y la salud de todas las mascotas. Nos esforzamos por ser líderes en el cuidado animal, proporcionando servicios de calidad y estableciendo una relación de confianza con nuestros clientes.</p>
                 </div>
                 <div class="card">
                     <h1>Vision</h1>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti qui eos sint aut porro esse quia quas odio unde! Doloribus voluptatum delectus quidem rerum adipisci iusto quia placeat consequuntur blanditiis.
-                    Vitae sint pariatur veritatis obcaecati recusandae exercitationem voluptatibus qui dolorum porro dolorem cumque labore mollitia alias a id, numquam eius voluptas dolores! Dolore iure quia quisquam impedit delectus doloribus ducimus.
-                    Tempora fugit, quasi maiores hic temporibus amet labore nobis quisquam magnam molestiae, inventore architecto, nam eveniet eum deleniti sit animi voluptates quos. Reprehenderit, sint distinctio magni iste illum necessitatibus eligendi?</p>
+                    <p>En Animal World, nuestra misión es proporcionar un cuidado integral y compasivo a todas las mascotas que llegan a nuestras puertas. Nos comprometemos a mejorar la calidad de vida de los animales, ofreciendo servicios médicos avanzados, programas de prevención, educación y promoción de la salud animal. Trabajamos en estrecha colaboración con los dueños de las mascotas, brindando orientación y apoyo para garantizar una convivencia feliz y saludable entre las familias y sus queridos compañeros animales.</p>
                 </div>
             </div>
             <div class="container-team">

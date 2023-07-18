@@ -25,24 +25,31 @@ class Profile
     }
     public function update(Profile $administrador)
     {
-        $update = "UPDATE administrador SET nomadmin = ?, apeadmin = ?, diradmin = ?, emaadmin = ?, teladmin = ?, teladmin2 = ? WHERE idadmin = ? ";        
-        try{
+        $update = "UPDATE administrador SET nomadmin = ?, apeadmin = ?, diradmin = ?, emaadmin = ?, teladmin = ?, teladmin2 = ? WHERE idadmin = ? ";
+
+        try {
             $stmt = $this->conexion->prepare($update);
-            $stmt->execute(array(
-                $administrador -> nombre, 
-                $administrador -> apellido, 
-                $administrador -> direccion, 
-                $administrador -> email, 
-                $administrador -> numcel, 
-                $administrador -> numcel2, 
-                $administrador -> id, 
-            ));
+
+            // Check if each field is empty or not, and update accordingly
+            $stmt->bind_param(
+                "ssssssi",
+                $administrador->nombre,
+                $administrador->apellido,
+                $administrador->direccion,
+                $administrador->email,
+                $administrador->numcel,
+                $administrador->numcel2,
+                $administrador->id
+            );
+
+            $stmt->execute();
             return true;
-        }catch(Exception $e){
-            echo "Error al actualizar datos: ". $e->getMessage(); 
+        } catch (Exception $e) {
+            echo "Error al actualizar datos: " . $e->getMessage();
             return false;
         }
     }
+
 
     public function getProveedores()
     {

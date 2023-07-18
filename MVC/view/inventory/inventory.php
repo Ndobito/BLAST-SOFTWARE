@@ -12,6 +12,7 @@
             <div class="container-button">
                 <div class="search-bar">
                     <div>
+                    <a href="?b=profile&s=Inicio&p=admin"><button class="btn-regresar"><i class="fa-solid fa-arrow-left"></i></button></a> 
                         <form id="buscador-form" action="?b=inventory&s=listado" method="get">
                             <input id="buscador" name="buscador" type="text" placeholder="Buscar">
                             <button class="btn-buscar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>

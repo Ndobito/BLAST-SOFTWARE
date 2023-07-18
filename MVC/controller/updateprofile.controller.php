@@ -7,9 +7,9 @@ class UpdateProfileController
 {
     public function guardarAdministrador()
     {
-       
+
         if (isset($_SESSION['idamin'])) {
-           
+
             $administrador = [
                 'idamin' => $_SESSION['idamin'],
                 'nomadmin' => $_POST['ctNameUser'],

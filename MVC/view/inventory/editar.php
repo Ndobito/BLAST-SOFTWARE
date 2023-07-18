@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="../../assets/css/style-editar.css">
+    <link rel="stylesheet" href="assets/css/style-editar.css">
     <title>editar producto</title>
     <header>
             <div class="imagen-logo">
@@ -16,7 +16,7 @@
                 <h3>Animal World</h3>
             </div>
     </header>
-    <button class="btn-regresar"><i class="fa-solid fa-arrow-left"></i></button>  
+    <a href="?b=inventory"><button class="btn-regresar"><i class="fa-solid fa-arrow-left"></i></button></a> 
     <div class="container">
     <form action= "?b=inventory&s=edit" method="post">
 
