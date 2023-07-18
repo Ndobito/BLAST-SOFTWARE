@@ -17,11 +17,7 @@
             <h3>Animal World</h3>
         </div>
     </header>
-<<<<<<< HEAD
-    <a href="?b=inventory&s=listado"><button class="btn-regresar"><i class="fa-solid fa-arrow-left"></i></button></a>
-=======
     <a href="?b=inventory"><button class="btn-regresar"><i class="fa-solid fa-arrow-left"></i></button></a>
->>>>>>> 1b324292bf78b99aa4dd4263bd0d5ef7c85e2d06
     <div class="container">
         <form action="?b=inventory&s=guardar" method="post">
 

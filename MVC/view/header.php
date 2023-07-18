@@ -25,27 +25,26 @@
 
                             switch ($tipoUsuario) {
                                 case "customer":
-                                    $perfilURL = "?b=profile&s=Inicio&p=customer";
-
+                                    $perfilURL = "?b=profile&Inicio&p=customer";
                                     break;
                                 case "admin":
-                                    $perfilURL = "?b=profile&s=Inicio&p=admin";
+                                    $perfilURL = "?b=profile&Inicio&p=admin";
                                     break;
                                 case "collaborator":
-                                    $perfilURL = "?b=profile&s=Inicio&p=collaborator";
+                                    $perfilURL = "?b=profile&Inicio&p=collaborator";
                                     break;
                                 case "vet":
-                                    $perfilURL = "?b=profile&s=Inicio&p=vet";
+                                    $perfilURL = "?b=profile&Inicio&p=vet";
                                     break;
                                 case "recepcionist":
-                                    $perfilURL = "?b=profile&s=Inicio&p=recepcionist";
+                                    $perfilURL = "?b=profile&Inicio&p=recepcionist";
                                     break;
                                 default:
                                     $perfilURL = ""; // Define una URL adecuada en caso de error
                                     break;
                             }
 
-                            echo "<a href='?b=profile&s=Inicio&p=" . $tipoUsuario . "'><button><i class='fa-solid fa-user'></i>&nbsp;<span>" . $usuario . "</span></button></a>";
+                            echo "<a href='?b=profile&s=Inicio&p=".$tipoUsuario."'><button><i class='fa-solid fa-user'></i>&nbsp;<span>" . $usuario . "</span></button></a>";
                         } else {
                             // Si la sesión no está iniciada, mostrar el botón de iniciar sesión
                             echo '<a href="?b=login"><button><i class="fa-solid fa-user"></i>&nbsp;<span>Iniciar Sesión</span></button></a>';
