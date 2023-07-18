@@ -7,6 +7,7 @@
         <link rel="shortcut icon" href="assets/img/logo.jpg" type="image/x-icon">
         <link rel="stylesheet" href="assets/css/global.css">
         <link rel="stylesheet" href="assets/css/notify.css">
+        <link rel="stylesheet" href="assets/css/header.css">
         <title>Animal World</title>
         <?php if(isset($style)) echo $style; ?>
 
