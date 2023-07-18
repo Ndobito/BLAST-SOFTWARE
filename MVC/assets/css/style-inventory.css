@@ -80,7 +80,26 @@ header div h3{
     background-color: #0077ff;
     border: 1px solid #0077ff; 
 } 
-
+ /* BOTON REGRESAR  */
+.btn-regresar{
+    margin-left: 10px;
+    background-color: #1787ff;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-items: center;
+   
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}  
+.btn-regresar:hover{
+    background-color: #0077ff;
+    border: 1px solid #0077ff; 
+}
 
 /* Agregar */
 .btn-agregar{
