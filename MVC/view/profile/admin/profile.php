@@ -9,7 +9,7 @@
                     <div class="user">
                         <div class="img"></div>
                         <h1>
-                        <?php echo $user['nomadmin']." ". $user['apeadmin']; ?>
+                            <?php echo $user['nomadmin'] . " " . $user['apeadmin']; ?>
                         </h1>
                         <h1>Administrador</h1>
                     </div>
@@ -54,8 +54,8 @@
                             <input type="text" name="ctSurNameUser" id="ctSurNameUser"
                                 value="<?php echo $user['apeadmin'] ?? "Sin definir"; ?>" disabled>
                             <label for="ctNameuser">Direccion *</label>
-                            <input type="text" name="ctAdrUser" id="ctAdrUser"
-                                value="<?php echo $user['diradmin']; ?>" disabled>
+                            <input type="text" name="ctAdrUser" id="ctAdrUser" value="<?php echo $user['diradmin']; ?>"
+                                disabled>
                             <div>
                                 <div>
                                     <label for="ctEmailUser">Correo Eletrónico *</label>
@@ -69,8 +69,9 @@
                                 </div>
                                 <div>
                                     <label for="ctNumCel2">Numero de Celular 2</label>
-                                    <input type="text" name="ctNumCelUser2" id="ctNumCel2"
+                                    <input type="text" name="ctNumCel2" id="ctNumCel2"
                                         value="<?php echo $user['teladmin2']; ?>" disabled>
+
                                 </div>
                             </div>
                             <div class="updatebutton">
@@ -79,16 +80,16 @@
                             <input type="submit" name="btnUpdateProfile" value="Guardar">
                         </form>
                         <?php
-                            if (isset($_REQUEST['v'])) {
-                                $confirm = $_REQUEST['v'];
-                                if(!empty($confirm)){
-                                    if($confirm == "true"){
-                                        echo "Complete todos los campos con el (*)";
-                                    } else if($confirm == "false"){
-                                        echo "Datos actualizados correctamente"; 
-                                    }
+                        if (isset($_REQUEST['v'])) {
+                            $confirm = $_REQUEST['v'];
+                            if (!empty($confirm)) {
+                                if ($confirm == "true") {
+                                    echo "Complete todos los campos con el (*)";
+                                } else if ($confirm == "false") {
+                                   
                                 }
                             }
+                        }
                         ?>
                     </div>
                 </div>
@@ -120,14 +121,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php 
-                        foreach ($proveedores as $proveedor){ ?>
+                            <?php
+                            foreach ($proveedores as $proveedor) { ?>
                             <tr>
-                                <td><?php echo $proveedor['idprov'] ; ?></td>
-                                <td><?php echo $proveedor['nomprov'] ; ?></td>
-                                <td><?php echo $proveedor['dirprov'] ; ?></td>
-                                <td><?php echo $proveedor['emaprov'] ; ?></td>
-                                <td><?php echo $proveedor['telprov'] ; ?></td>
+                                <td><?php echo $proveedor['idprov']; ?></td>
+                                <td><?php echo $proveedor['nomprov']; ?></td>
+                                <td><?php echo $proveedor['dirprov']; ?></td>
+                                <td><?php echo $proveedor['emaprov']; ?></td>
+                                <td><?php echo $proveedor['telprov']; ?></td>
                                 <td class="icons1">
                                     <a href="?b=profile&s=showEdit">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
@@ -140,7 +141,7 @@
                                 </td>
                             </tr>
                             <?php };
-                             ?>
+                            ?>
                         </tbody>
                     </table>
 
@@ -176,16 +177,16 @@
                                 <th>Rol</th>
                             </tr>
                         </thead>
-                        <?php foreach ($empleado as $colaborador){ ?>
-                            <tbody>
-                                <tr>
-                                <td><?php echo $colaborador['idcol'] ; ?></td>
-                                <td><?php echo $colaborador['dnicol'] ; ?></td>
-                                <td><?php echo $colaborador['nomcol'] ; ?></td>
-                                <td><?php echo $colaborador['emacol'] ; ?></td>
-                                <td><?php echo $colaborador['dircol'] ; ?></td>
-                                <td><?php echo $colaborador['telcol'] ; ?></td>
-                                <td><?php echo $colaborador['rolcol'] ; ?></td>
+                        <?php foreach ($empleado as $colaborador) { ?>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $colaborador['idcol']; ?></td>
+                                <td><?php echo $colaborador['dnicol']; ?></td>
+                                <td><?php echo $colaborador['nomcol']; ?></td>
+                                <td><?php echo $colaborador['emacol']; ?></td>
+                                <td><?php echo $colaborador['dircol']; ?></td>
+                                <td><?php echo $colaborador['telcol']; ?></td>
+                                <td><?php echo $colaborador['rolcol']; ?></td>
                                 <td class="icons1">
                                     <a href="#">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
@@ -196,8 +197,8 @@
                                         <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
                                     </a>
                                 </td>
-                                </tr>
-                            </tbody>
+                            </tr>
+                        </tbody>
                         <?php } ?>
                     </table>
 
@@ -231,28 +232,28 @@
                                 <th>Telefono</th>
                             </tr>
                         </thead>
-                        <?php foreach ($cliente as $cliente){ ?>
-                            <tbody>
-                                <tr>
-                                    <td><?php echo $cliente['idcli'] ; ?></td>
-                                    <td><?php echo $cliente['nomcli'] ; ?></td>
-                                    <td><?php echo $cliente['emacli'] ; ?></td>
-                                    <td><?php echo $cliente['usercli'] ; ?></td>
-                                    <td><?php echo $cliente['dircli'] ; ?></td>
-                                    <td><?php echo $cliente['tzonecli'] ; ?></td>
-                                    <td><?php echo $cliente['telcli'] ; ?></td>
-                                    <td class="icons1">
-                                        <a href="#">
-                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                    <td class="icons2"> 
-                                        <a href="#">
-                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
+                        <?php foreach ($cliente as $cliente) { ?>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $cliente['idcli']; ?></td>
+                                <td><?php echo $cliente['nomcli']; ?></td>
+                                <td><?php echo $cliente['emacli']; ?></td>
+                                <td><?php echo $cliente['usercli']; ?></td>
+                                <td><?php echo $cliente['dircli']; ?></td>
+                                <td><?php echo $cliente['tzonecli']; ?></td>
+                                <td><?php echo $cliente['telcli']; ?></td>
+                                <td class="icons1">
+                                    <a href="#">
+                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                                <td class="icons2">
+                                    <a href="#">
+                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
                         <?php } ?>
                     </table>
                 </div>
@@ -284,15 +285,15 @@
                                 <th>Dueño ID</th>
                             </tr>
                         </thead>
-                        <?php foreach ($mascota as $mascota){ ?>
-                            <tbody>
-                                <tr>
-                                <td><?php echo $mascota['idmas'] ; ?></td>
-                                <td><?php echo $mascota['nommas'] ; ?></td>
-                                <td><?php echo $mascota['edadmas'] ; ?></td>
-                                <td><?php echo $mascota['genmas'] ; ?></td>
-                                <td><?php echo $mascota['espmas'] ; ?></td>
-                                <td><?php echo $mascota['idcli'] ; ?></td>
+                        <?php foreach ($mascota as $mascota) { ?>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $mascota['idmas']; ?></td>
+                                <td><?php echo $mascota['nommas']; ?></td>
+                                <td><?php echo $mascota['edadmas']; ?></td>
+                                <td><?php echo $mascota['genmas']; ?></td>
+                                <td><?php echo $mascota['espmas']; ?></td>
+                                <td><?php echo $mascota['idcli']; ?></td>
                                 <td class="icons1">
                                     <a href="#">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
@@ -303,8 +304,8 @@
                                         <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
                                     </a>
                                 </td>
-                                </tr>
-                            </tbody>
+                            </tr>
+                        </tbody>
                         <?php } ?>
                     </table>
                 </div>
