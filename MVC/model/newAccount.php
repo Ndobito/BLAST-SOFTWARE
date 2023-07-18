@@ -49,6 +49,21 @@ class newAccount{
         }
     }
 
+    public function userExist($nick){
+        try{
+            $sql = "SELECT usercli FROM cliente WHERE usercli='".$nick."'"; 
+            $result = $this->consulta->query($sql);
+            if($result->num_rows > 0 ){
+                $fila = $result->fetch_assoc(); 
+                $user = $fila['usercli'];
+                return $user;
+            } else{
+                return null; 
+            } 
+        }catch(Exception $e){
+            echo "Error: ".$e->getMessage(); 
+        }
+    }
 
 }
 
