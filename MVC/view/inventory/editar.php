@@ -9,7 +9,7 @@
     <title>editar producto</title>
     <header>
             <div class="imagen-logo">
-            <img class="logo" src="../../assets/img/logo-removebg.png" alt="">
+            <img class="logo" src="assets/img/logo-removebg.png" alt="">
             </div>
             <div class="informacion-title">
                 <h1>EDITAR REGISTROS</h1>
