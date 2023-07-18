@@ -77,14 +77,12 @@
                                 <li>Conocenos</li>
                             </a>';
                             echo '<a href="?b=bookappointment">
-                                <li>Servicios</li>
+                                <li>Servicios y Reservas</li>
                             </a>';
                             echo '<a href="?b=contactus">
                                 <li>Contactenos</li>
                             </a>';
-                            echo '<a href="?b=bookappointment">
-                                <li>Reservas</li>
-                            </a>';
+
                         echo '</ul>';
                     };
                     
