@@ -56,7 +56,7 @@
                 <!-- veterinary address -->
                 <div class="direccion-info">
                   <h4>Dirección</h4>
-                  <p>Carrera 23 A sur #10 D 03 Puerto Gaitán - Meta</p>
+                  <p>Calle 5 sur # 4B - 10 Barrio Jose Dario Obviez La Plata - Huila</p>
                 </div>
               </div>
             </div>
