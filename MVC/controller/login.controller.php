@@ -33,7 +33,7 @@ class LoginController
                 session_start();
                 $_SESSION['usuario'] = $usuario;
                 $_SESSION['tipoUsuario'] = $tipoUsuario;
-                $_SESSION['ultimaActividad'] = time(); 
+                $_SESSION['ultimaActividad'] = time();
                 setNotify("success", "ha iniciado sesión correctamente");
 
                 switch ($tipoUsuario) {
@@ -60,15 +60,12 @@ class LoginController
                                 break;
                         }
                         break;
-                    default:
-                        // Redirigir a una página de error o manejar el caso adecuadamente
-                        break;
                 }
 
                 exit();
             } else {
-                setcookie("notify", serialize(["status" => "error", "message" => "El usuario ingresado no existe"]), time() + 5, "/");
-                header('location: ?b=login&s=Inicio&p=admin');
+                setcookie("notify", serialize(["status" => "error", "message" => "Usuario y/o contraseña incorrectos, porfavor verifique"]), time() + 5, "/");
+                header('Locarion: ?b=login&s=Inicio&p=admin');
             }
         }
     }

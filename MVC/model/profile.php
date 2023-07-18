@@ -30,7 +30,7 @@ class Profile
         try {
             $stmt = $this->conexion->prepare($update);
 
-            // Check if each field is empty or not, and update accordingly
+
             $stmt->bind_param(
                 "ssssssi",
                 $administrador->nombre,

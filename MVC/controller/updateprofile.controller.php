@@ -20,7 +20,7 @@ class UpdateProfileController
                 'teladmin2' => $_POST['ctNumCel2'],
             ];
 
-            // Actualizar los datos del administrador
+
             $model = new Profile();
             $model->update($administrador);
 

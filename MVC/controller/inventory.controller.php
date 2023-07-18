@@ -16,7 +16,7 @@ class InventoryController
 
     public function Inicio()
     {
-        header("Location: ?b=inventory&s=listado");
+        redirect("?b=inventory&s=listado");
     }
     public function listado()
     {
@@ -36,7 +36,7 @@ class InventoryController
         while ($item = $result->fetch_assoc()) {
             $items[] = $item;
         }
-        
+
         $style = "<link rel='stylesheet' href='assets/css/style-inventory.css'>";
         require_once "view/head.php";
         require_once 'view/inventory/inventory.php';
@@ -58,10 +58,11 @@ class InventoryController
         require_once 'view/inventory/agregar.php';
     }
 
-    public function guardar() {
+    public function guardar()
+    {
         // (new ProductModel())->guardar();
         $prod = new ProductModel();
-      
+
         $prod->idprov = $_REQUEST['idprov'];
         $prod->nomprod = $_REQUEST['nombre'];
         $prod->desprod = $_REQUEST['descripcion'];
@@ -73,18 +74,20 @@ class InventoryController
         $this->model->guardar($prod);
 
         setNotify("success", "Se ha guardado el producto " . $_REQUEST['nombre'] . " correctamente");
-        header("Location: ?b=inventory&s=listado");
+        redirect("?b=inventory&s=listado");
     }
 
-    public function eliminar() {
+    public function eliminar()
+    {
         $prod = new ProductModel();
         $prod->idprod = $_REQUEST["idprod"];
         $this->model->eliminar($prod);
         setNotify("success", "Se ha eliminado el producto " . $_REQUEST["name"] . " correctamente");
-        header("Location: ?b=inventory&s=listado");
+        redirect("?b=inventory&s=listado");
     }
 
-    public function edit(){
+    public function edit()
+    {
         $prod = new ProductModel();
         $prod->idprod = $_REQUEST['idprod'];
         $prod->nomprod = $_REQUEST['nombre'];
@@ -98,9 +101,8 @@ class InventoryController
         $this->model->actualizar($prod);
         redirect("?b=inventory&s=listado")->success("Se ha actualizado el producto <b>" . $_REQUEST["nombre"] . "</b> correctamente")->send();
 
-    // setNotify("success", "Se ha editado el producto " . $_REQUEST['nombre'] . " correctamente");
-    // header('Location: index.php?b=inventory&s=listado');
+        // setNotify("success", "Se ha editado el producto " . $_REQUEST['nombre'] . " correctamente");
+        // header('Location: index.php?b=inventory&s=listado');
     }
-
 }
-// ?>
+// 
