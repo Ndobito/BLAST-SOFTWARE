@@ -45,6 +45,7 @@ class newAccountController
         $_POST['selTipoUbicacion'] = "";
         $_POST['ctTel'] = "";
         $_POST['ctTel2'] = "";
+
         header("Location: ?b=newaccountpet&s=Inicio&p=$id");
     }
 }

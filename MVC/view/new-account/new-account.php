@@ -1,3 +1,7 @@
+<?php 
+
+?>
+
 <body>
     <div class="container-background">
         <div class="container-form">
@@ -6,31 +10,47 @@
                 <div id="parent-container-form-user">
                     <div class="NameandLastname">
                         <div class="input-container">
-                            <label>Nombre</label>
+                            <label>Nombre <strong>*</strong></label>
                             <input type="text" name="ctNombre" required id="input-obligatorio">
                         </div>
 
                         <div class="input-container">
-                            <label>Apellido</label>
+                            <label>Apellido <strong>*</strong></label>
                             <input type="text" name="ctApellido" required id="input-obligatorio">
                         </div>
                     </div>
-                    <label>Email</label>
+                    <?php 
+                        if(empty($_REQUEST['p'])) {
+                        } else {
+                            echo ($_REQUEST['p'] == "nfalse") ? "El nombre y/o apellidos no pueden llevar numeros" : ""; 
+                        }
+                    ?>
+                    <label>Email <strong>*</strong></label>
                     <input type="email" name="ctEmail" required id="input-obligatorio">
 
-                    <label>Confirmar Email</label>
+                    <label>Confirmar Email <strong>*</strong></label>
                     <input type="email" name="ctEmailC" required id="input-obligatorio">
-
-                    <label>Nickname</label>
+                    <?php 
+                        if(empty($_REQUEST['p'])) {
+                        } else {
+                            echo ($_REQUEST['p'] == "efalse") ? "Los emails no coinciden" : ""; 
+                        }
+                    ?>
+                    <label>Nickname <strong>*</strong></label>
                     <input type="text" name="ctNick" required id="input-obligatorio">
-
-                    <label>Contraseña</label>
+                    <?php 
+                        if(empty($_REQUEST['p'])) {
+                        } else {
+                            echo ($_REQUEST['p'] == "ufalse") ? "Este Nick ya esta en uso" : ""; 
+                        }
+                    ?>
+                    <label>Contraseña <strong>*</strong></label>
                     <input type="password" name="ctPass" required id="input-obligatorio">
 
-                    <label>Dirección de residencia</label>
+                    <label>Dirección de residencia <strong>*</strong></label>
                     <input type="text" name="ctAddres" required id="input-obligatorio">
 
-                    <label for="location">Tipo de ubicación</label>
+                    <label for="location">Tipo de ubicación <strong>*</strong></label>
                     <select type="select" name="selTipoUbicacion" required id="input-obligatorio">
                         <option value="" selected disabled>Selectiona el tipo de ubicación</option>
                         <option value="rural" >Rural</option>
@@ -39,7 +59,7 @@
 
                     <div class="numbers">
                         <div class="input-container">
-                            <label>Numero de celular</label>
+                            <label>Numero de celular <strong>*</strong></label>
                             <input type="number" name="ctTel" required id="input-obligatorio">
                         </div>
 
@@ -49,18 +69,23 @@
                         </div>
                     </div>
                     <div class="input-check">
-                        <input type="checkbox"> <p> Terminos y condiciones <a id="window-up" href="#">Mas Información</a></p>
+                        <input type="checkbox" name="conditions" value="true" required><p> Terminos y condiciones <a id="window-up" href="#">Mas Información</a></p>
                     </div>
-                        <div id="window">
-                            <div class="container-window">
-                                <i id="exit-window" class="fa-solid fa-xmark"></i>
-                                <h1>Terminos y Condiciones</h1>
-                                <p>La veterinaria Animal World recopilara la información conforme a lo señalado por la Ley 1712 de 2014 en lo relacionado con información reservada y clasificada. Es posible que la información que recopilamos en nuestro sitio web (por ejemplo: el nombres, las búsquedas realizadas, las páginas visitadas y la duración de la sesión del usuario) se combinen para analizar estadísticamente el tráfico y nivel de utilización del sitio web. Esta información se recopila para mejorar el rendimiento de nuestras plataformas.
-                                <br><br>
-                                En aquellos casos en los cuales el Ciudadano-Usuario publique libre y voluntariamente en el sitio web cualquier información adicional a la solicitada que tenga el carácter de clasificada, se entenderá que ha consentido la revelación de esta en los términos señalados en el artículo 18 de la Ley 1712 de 2014. En el mismo sentido, si la información que sea publicada por la entidad es sujeta a reserva o clasificada, los usuarios deberán hacer las reclamaciones respectivas ante el sitio en los términos señalados en la Ley 1712 de 2014.</p>
-                            </div>
+                    <?php 
+                        if(empty($_REQUEST['p'])) {
+                        } else {
+                            echo ($_REQUEST['p'] == "tfalse") ? "Acepte los terminos y condiciones" : ""; 
+                        }
+                    ?>
+                    <div id="window">
+                        <div class="container-window">
+                            <i id="exit-window" class="fa-solid fa-xmark"></i>
+                            <h1>Terminos y Condiciones</h1>
+                            <p>La veterinaria Animal World recopilara la información conforme a lo señalado por la Ley 1712 de 2014 en lo relacionado con información reservada y clasificada. Es posible que la información que recopilamos en nuestro sitio web (por ejemplo: el nombres, las búsquedas realizadas, las páginas visitadas y la duración de la sesión del usuario) se combinen para analizar estadísticamente el tráfico y nivel de utilización del sitio web. Esta información se recopila para mejorar el rendimiento de nuestras plataformas.
+                            <br><br>
+                            En aquellos casos en los cuales el Ciudadano-Usuario publique libre y voluntariamente en el sitio web cualquier información adicional a la solicitada que tenga el carácter de clasificada, se entenderá que ha consentido la revelación de esta en los términos señalados en el artículo 18 de la Ley 1712 de 2014. En el mismo sentido, si la información que sea publicada por la entidad es sujeta a reserva o clasificada, los usuarios deberán hacer las reclamaciones respectivas ante el sitio en los términos señalados en la Ley 1712 de 2014.</p>
                         </div>
-
+                    </div>
                     <div class="buttons">
                         <div class="buttons-container">
                             <div class="return">
@@ -77,7 +102,12 @@
                         </div>
                     </div>
                 </div>
-            
+                <?php 
+                        if(empty($_REQUEST['p'])) {
+                        } else {
+                            echo ($_REQUEST['p'] == "ifalse") ? "Complete todos los campos con el (*)" : ""; 
+                        }
+                    ?>
             </form>
         </div>
     </div>

@@ -103,7 +103,7 @@
                                     <a href=""><button class="btn btn-default" type="submit">Agregar</button></a>
                                 </span>
                             </div>
-                            <form method="POST" action="">
+                            <form method="GET" action="?bprofileadministrador.controller.php">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Buscar Trabajador"
                                         name="buscar_trabajador">

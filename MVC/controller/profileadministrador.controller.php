@@ -18,11 +18,10 @@ class ProfileController
         $model = new Profile();
         $administrador = $model->selectUser($nombreUsuario);
 
-        if ($administrador !== null) {
-            $data = compact('administrador');
-            require_once "view/profile/admin/profileadministrador.php";
-        } else {
-        }
+
+
+
+
 
         require_once "view/footerprofile.php";
     }
@@ -36,8 +35,9 @@ class ProfileController
 
 
     //BUSCADOR
-
-
+    public function buscador()
+    {
+    }
 }
 
 $profileAdminController = new Profile();
