@@ -33,6 +33,11 @@ class ProfileController
         redirect("index.php");
         exit();
     }
+
+
+    //BUSCADOR
+
+
 }
 
 $profileAdminController = new Profile();

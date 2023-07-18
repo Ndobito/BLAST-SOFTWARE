@@ -34,8 +34,7 @@
                         </div>
 
                         <div>
-                            <a href="?b=profile&s=cerrarSesion"><button><i
-                                        class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</button></a>
+                            <a href="?b=profile&s=cerrarSesion"><button><i class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</button></a>
                         </div>
                     </div>
 
@@ -99,6 +98,11 @@
                     </div>
                     <div class="table-container">
                         <div class="form-container">
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <a href=""><button class="btn btn-default" type="submit">Agregar</button></a>
+                                </span>
+                            </div>
                             <form method="POST" action="">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Buscar Trabajador"
@@ -154,6 +158,11 @@
                     </div>
                     <div class="table-container">
                         <div class="form-container">
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <a href=""><button class="btn btn-default" type="submit">Agregar</button></a>
+                                </span>
+                            </div>
                             <form method="POST" action="">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Buscar Trabajador"

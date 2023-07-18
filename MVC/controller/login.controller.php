@@ -24,7 +24,7 @@ class LoginController
         $passsword = $_POST['ctPassword'];
 
         if (empty($usuario) || empty($passsword)) {
-            header('Location: ?b=login');
+            redirect("?b=login");
         } else {
             $usuario_valido = $this->loginModel->validarUsuario($usuario, $passsword);
             if ($usuario_valido) {
@@ -60,12 +60,15 @@ class LoginController
                                 break;
                         }
                         break;
+                    default:
+                        // Redirigir a una página de error o manejar el caso adecuadamente
+                        break;
                 }
 
                 exit();
             } else {
-                setcookie("notify", serialize(["status" => "error", "message" => "Usuario y/o contraseña incorrectos, porfavor verifique"]), time() + 5, "/");
-                header('Locarion: ?b=login&s=Inicio&p=admin');
+                setcookie("notify", serialize(["status" => "error", "message" => "Usuario y/o contraseña incorrectos, porvafor verifique"]), time() + 5, "/");
+                redirect("?b=login&s=Inicio&p=admin");
             }
         }
     }

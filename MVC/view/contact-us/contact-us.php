@@ -56,7 +56,7 @@
                 <!-- veterinary address -->
                 <div class="direccion-info">
                   <h4>Dirección</h4>
-                  <p>Calle 5 sur # 4B - 10 Barrio Jose Dario Obviez La Plata - Huila</p>
+                  <p> Calle 5 sur # 4B - 10 Barrio Jose Dario Obviez La Plata - Huila</p>
                 </div>
               </div>
             </div>
