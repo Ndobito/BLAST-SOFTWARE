@@ -24,7 +24,7 @@ class LoginController
         $passsword = $_POST['ctPassword'];
 
         if (empty($usuario) || empty($passsword)) {
-            redirect("?b=login");
+            header('Location: ?b=login');
         } else {
             $usuario_valido = $this->loginModel->validarUsuario($usuario, $passsword);
             if ($usuario_valido) {
@@ -67,8 +67,8 @@ class LoginController
 
                 exit();
             } else {
-                setcookie("notify", serialize(["status" => "error", "message" => "Usuario y/o contraseña incorrectos, porvafor verifique"]), time() + 5, "/");
-                redirect("?b=login&s=Inicio&p=admin");
+                setcookie("notify", serialize(["status" => "error", "message" => "El usuario ingresado no existe"]), time() + 5, "/");
+                header('location: ?b=login&s=Inicio&p=admin');
             }
         }
     }
