@@ -20,6 +20,9 @@ class ProfileController
 
         require_once "view/footerprofile.php";
     }
+    public function buscarProveedor()
+    {
+    }
 
     public function cerrarSesion()
     {
@@ -27,7 +30,10 @@ class ProfileController
         redirect("index.php");
         exit();
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2d2d71df0604c37f5e53cbab498709ba2108c014
 }
 
 $profileAdminController = new Profile();
