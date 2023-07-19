@@ -58,10 +58,6 @@ class ProfileController
         require_once "view/head.php";
         require_once "view/profile/admin/editar.php";
     }
-    public function update()
-    {
-    }
-
     //-----Metodo para actualizar Datos-----//
     // NO ME TOQUE ESTA PARTE DEL CODIGO SAPO HIJUEPUTA
 

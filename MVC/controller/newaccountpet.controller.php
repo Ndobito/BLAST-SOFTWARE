@@ -19,17 +19,26 @@ class newAccountPetController
     }
 
     public function GuardarPet()
-    {
-        $u = new newAccountPet();
+    {   
+        $id = $_REQUEST['p']; 
+        if (!empty($_POST['ctNomMas']) || !empty($_POST['selAgeMas']) || !empty($_POST['selGenMas']) || !empty($_POST['selEspMas'])) {
+            setcookie("notify", serialize(["status" => "error", "message" => "Complete todos los campos con (*)"]), time() + 5, "/");
+            header('Location: ?b=newaccountpet&s=Inicio&p='.$id);
+        } else {
+            $u = new newAccountPet();
+            $u->namepet = $_POST['ctNomMas'];
+            $u->agepet = $_POST['selAgeMas'];
+            $u->genpet = $_POST['selGenMas'];
+            $u->esppet = $_POST['selEspMas'];
+            $u->idcli = $_REQUEST['p'];
 
-        $u->namepet = $_POST['ctNomMas'];
-        $u->agepet = $_POST['ctAgeMas'];
-        $u->genpet = $_POST['selGenPet'];
-        $u->esppet = $_POST['selEspPet'];
-        $u->idcli = $_REQUEST['p'];
-
-
-        $this->object->Registrar($u);
-        redirect("?b=login");
+            if ($this->object->Registrar($u)) {
+                setNotify("success", "Perfil creado con exito!");
+                header("Location: ?b=login");
+            } else {
+                setcookie("notify", serialize(["status" => "error", "message" => "hubo un problema al crear el usuario, intentelo nuevamente"]), time() + 5, "/");
+                header('Location: ?b=login&s=Inicio');
+            }
+        }
     }
 }
