@@ -1,7 +1,7 @@
 <?php
-if (isset($_COOKIE["notify"])) {
-    $notify = unserialize($_COOKIE["notify"]);
-    ?>
+    if (isset($_COOKIE["notify"])) {
+        $notify = unserialize($_COOKIE["notify"]);
+?>
 <div class="notify">
     <?php 
                 switch($notify["status"]) {
