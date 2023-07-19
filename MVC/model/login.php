@@ -11,7 +11,7 @@ class Login
 
     public function validarUsuario($usuario, $contrasena)
     {
-        $query = "(SELECT 'cliente' AS rol FROM cliente WHERE usercli = '$usuario' AND passcli = '$contrasena') UNION (SELECT 'administrador' AS rol FROM administrador WHERE nomadmin = '$usuario' AND passadmin = '$contrasena') UNION (SELECT 'colaborador' AS rol FROM colaborador WHERE nomcol = '$usuario' AND passcol = '$contrasena')";
+        $query = "(SELECT 'cliente' AS rol FROM cliente WHERE usercli = '$usuario' AND passcli = '$contrasena') UNION (SELECT 'administrador' AS rol FROM administrador WHERE nickadmin = '$usuario' AND passadmin = '$contrasena') UNION (SELECT 'colaborador' AS rol FROM colaborador WHERE nomcol = '$usuario' AND passcol = '$contrasena')";
 
         $resultado = mysqli_query($this->conexion, $query);
 
@@ -42,7 +42,7 @@ class Login
     {
         $query = "(SELECT 'cliente' AS rol FROM cliente WHERE usercli = '$usuario')
                   UNION
-                  (SELECT 'administrador' AS rol FROM administrador WHERE nomadmin = '$usuario')
+                  (SELECT 'administrador' AS rol FROM administrador WHERE nickadmin = '$usuario')
                   UNION
                   (SELECT 'colaborador' AS rol FROM colaborador WHERE nomcol = '$usuario')";
         $resultado = mysqli_query($this->conexion, $query);
