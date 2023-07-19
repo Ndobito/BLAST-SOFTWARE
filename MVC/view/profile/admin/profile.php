@@ -51,6 +51,8 @@
                             <input type="text" name="ctNameUser" id="ctNameUser" value="<?php echo $user['nomadmin'] ?? "Sin definir"; ?>" disabled>
                             <label for="ctSurNameUser">Apellidos *</label>
                             <input type="text" name="ctSurNameUser" id="ctSurNameUser" value="<?php echo $user['apeadmin'] ?? "Sin definir"; ?>" disabled>
+                            <label for="ctNameuser">Nickname: *</label>
+                            <input type="text" name="ctNickUser" id="ctNickUser" value="<?php echo $user['nickadmin']; ?>" disabled>
                             <label for="ctNameuser">Direccion *</label>
                             <input type="text" name="ctAdrUser" id="ctAdrUser" value="<?php echo $user['diradmin']; ?>" disabled>
                             <div>
