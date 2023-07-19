@@ -1,0 +1,348 @@
+
+/* Config Global */
+
+:root{
+    --color-1: #83DFFD;
+    --color-2: #8FE3FF;
+    --color-3: #303030;
+    --color-4: #191919;
+    --color-5: #FFFFFF;
+    --color-6: #31394A;
+    --color-7: #797979;
+    --color-8: #B8B6B4;
+    --color-9: #2C74FF;
+    --color-10: #2E353B;
+    --font-1: Verdana, Geneva, Tahoma, sans-serif;
+    --font-2: Microsoft-Yaheni;
+}
+
+@font-face {
+    font-family: 'Microsoft-Yaheni';
+    src: url(../fonts/chinese.msyh.ttf);
+}
+
+a{
+    color: black;
+    text-decoration: none;
+    font-family: var(--font-2);
+}
+
+/*Header Services  */
+
+.header-services{
+    background: rgba(44, 116, 255, 0.8);
+    font-family: var(--font-2);
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    color: var(--color-5);
+}
+
+/* Container Services */
+
+.container-services{
+    padding: 10px;
+    background: var(--color-6);
+}
+
+.container-services .cont-service{
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.container-services .cont-service .service{
+    background: var(--color-5);
+    text-align: center;
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    padding: 20px 10px 20px 10px;
+    font-size: 10px;
+    font-family: var(--font-1);
+}
+
+.container-services .cont-service .service button, .container-services .cont-service .reserve button{
+    padding: 12px;
+    background: var(--color-9);
+    font-family: var(--font-1);
+    font-weight: bold;
+    color: var(--color-5);
+    border: none;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.container-services .cont-service .service button:hover,.container-services .cont-service .reserve button:hover{
+    opacity: 0.8;
+}
+
+/* Reserve */
+
+.reserve{ 
+    display: none;
+    background: var(--color-5);
+    border-top: 2px solid var(--color-9);
+    padding: 20px;
+}
+
+.reserve h1{
+    margin-top: 50px;
+    margin-left: 10%;
+    margin-bottom: 20px;
+    font-family: var(--font-1);
+}
+
+.reserve p{
+    margin-bottom: 20px;
+    font-family: var(--font-1);
+}
+
+/* Calendar */
+
+#calendar {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.slider-calendar {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    height: 80%;
+}
+
+.slide {
+    margin: 20vh 0vh 20vh 0vh;
+    display: inline-block;
+    scroll-snap-align: center;
+    width: 100%;
+    padding: 0 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.container-calendar table th,
+.container-calendar table td {
+    font-family: var(--font-2);
+    padding: 10px;
+    text-align: center;
+    color: var(--color-4);
+    background: var(--color-5);
+    border: 1px solid var(--color-7);
+}
+
+.container-calendar table td:hover{
+    background: var(--color-4);
+    color: var(--color-5);
+}
+
+table caption {
+    font-family: var(--font-2);
+    font-size: 1.5rem;
+    color: var(--color-9);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid var(--color-4);
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Calendar Citas */
+
+#calendar-citas{
+    height: 20%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-family: var(--font-2);
+    font-size: 20px;
+    padding: 0px 10px 30px 30px;
+}
+
+/* Footer */
+
+footer{
+    width: 100%;
+    font-family: var(--font-1);
+    display: block;
+}
+
+/* Footer Top */
+
+.footer-top{
+    width: 100%;
+    background: var(--color-3);
+    color: var(--color-5); 
+    display: block;
+    padding: 30px;
+}
+
+.footer-contain{
+    border-bottom: 2px solid var(--color-4);
+    margin: 30px;  
+    padding: 10px;  
+}
+
+.footer-contain h1{
+    font-size: 20px;
+}
+
+.footer-contain div{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.footer-contain div a{
+    text-decoration: none;
+    color: var(--color-5);
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Footer Bottom */
+
+.footer-bottom{
+    background: var(--color-4);
+    color: var(--color-5);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    gap: 20px;
+    position: relative;
+}
+
+.footer-bottom img{
+    width: 50px;
+    height: 50px;
+    border-radius:50%;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    -ms-border-radius:50%;
+    -o-border-radius:50%;
+}
+
+.footer-bottom p{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.footer-bottom p:nth-child(2){
+    margin-left: 10%;
+}
+
+.footer-bottom p:nth-child(2) img{
+    width: 40px;
+    height: 40px;
+}
+
+/* 
+*
+*
+* RESPONSIVE INDEX  
+*
+*
+*/
+
+
+@media (min-width: 426px) {
+    
+    /* Footer */
+    
+    /*Footer Bottom*/
+
+    .footer-bottom {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .footer-bottom p:nth-child(2){
+        margin-left: 0;
+    }
+}
+/*  */
+@media (min-width:769px) {
+   
+    /* Footer Top*/
+
+    .footer-top{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .footer-contain{
+        border-bottom: none;
+        padding-left: 50px;
+    }
+    .footer-contain:nth-child(2), .footer-contain:nth-child(4){
+        border-left: 2px solid var(--color-4);
+    }
+
+    /* Footer Boottom */
+
+    .footer-bottom{
+        display: flex;
+    }
+}
+
+@media (min-width:1025px) {
+
+    /* Footer Top*/
+
+    .footer-top{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .footer-contain{
+        border-bottom: none;
+        padding-left: 50px;
+    }
+
+    .footer-contain:nth-child(2), .footer-contain:nth-child(3), .footer-contain:nth-child(4){
+        border-left: 2px solid var(--color-4);
+    }
+    
+    /* Footer Boottom */
+
+    .footer-bottom{
+        display: flex;
+        flex-direction: row;
+        padding: 20px 0px 20px 0px;
+    }
+
+    .footer-bottom p:nth-child(2){
+        margin-left: 25%;
+    }
+
+    .footer-bottom p:nth-child(2) img{
+        width: 50px;
+        height: 50px;
+        margin-left: 30px;
+    }
+}
+
+@media (min-width:1441px) {
+   
+
+}
+
+@media (min-width:1880px){
+    
+}

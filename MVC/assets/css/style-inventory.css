@@ -1,0 +1,216 @@
+@charset "UTF-8";
+
+/* Global */
+
+:root{
+    --font-1: Georgia, 'Times New Roman', Times, serif;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Header */
+
+header {
+    background: url(../img/inventary.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+header > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+header > div:nth-child(2){
+    flex-direction: column;
+}
+
+header > div .logo{
+    width: 150px;
+}
+header div h1 {
+    color: #234876;
+    font-size: 40px;
+    font-family: var(--font-1);
+    font-weight: bold;
+}
+
+header div h3{
+    font-style: italic;
+}
+
+/* Buscador */
+.container-button {
+    padding-top: 70px;
+    padding-bottom: 20px;
+}
+.search-bar {
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 0;
+}
+
+.search-bar input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-buscar{
+    margin-left: 1%;
+    padding: 8px 16px;
+    background-color: #1787ff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn-buscar:hover{
+    background-color: #0077ff;
+    border: 1px solid #0077ff; 
+} 
+ /* BOTON REGRESAR  */
+.btn-regresar{
+    margin-left: 10px;
+    background-color: #1787ff;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-items: center;
+    top: 20%;
+    left: 20%;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}  
+.btn-regresar:hover{
+    background-color: #0077ff;
+    border: 1px solid #0077ff; 
+}
+
+/* Agregar */
+.btn-agregar{
+    margin-top: 20px;
+    padding: 8px 40px;
+    text-align: center;
+    color: #fff;
+    background-color: #079907;
+    border: 1px solid #079907;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    margin-bottom: 2%;
+}
+.btn-agregar:hover{
+    background-color: #177c30;
+    border: 1px solid #177c30;   
+}
+
+/* Tabla */
+
+table.content-table {
+    width: 90%;
+    margin: 0 auto; 
+    border-collapse: separate;
+    border-spacing: 20px;
+    border-collapse: collapse;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+table.content-table th{
+    border-bottom: 1px solid rgb(156, 150, 150);
+    padding: 8px;
+    background-color: rgb(203, 203, 203);
+}
+
+table.content-table td{
+    border: 1px solid rgb(183, 180, 180);
+    padding: 8px;
+}
+table.content-table th  {
+    border: 1px solid rgb(158, 153, 153);
+    padding: 8px;
+    border-top: none;
+}
+
+.btn-editar{
+    margin-left: auto;
+    padding: 6px 12px;
+    text-align: center;
+    color: #fff;
+    background-color: #0077ff;
+    border: 1px solid #0077ff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn-borrar {
+    margin-left: auto;
+    padding: 6px 12px;
+    text-align: center;
+    color: #fff;
+    background-color: #f53c3c;
+    border: 1px solid #f53c3c;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn-editar:hover{
+    background-color: #0069d9;
+    border: 1px solid #0062cc;
+}
+.btn-borrar:hover {
+    background-color: #d30404;
+    border: 1px solid #d30404;
+}
+
+@media screen and (min-width:768px) {
+
+    .search-bar{
+        margin-left: 38%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+    }
+    
+}
+
+@media screen and (min-width:1024px) {
+
+    .search-bar{
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+    }
+    .search-bar div{
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 500px;
+    }
+    .search-bar div a button{
+        margin-top: 0;
+    }
+    table.content-table{
+        max-width: 100%;
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+}
