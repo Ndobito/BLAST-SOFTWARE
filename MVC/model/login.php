@@ -16,7 +16,7 @@ class Login
         $resultado = mysqli_query($this->conexion, $query);
 
         if (mysqli_num_rows($resultado) > 0) {
-            return true; 
+            return true;
         } else {
             return false;
         }
@@ -65,7 +65,4 @@ class Login
             return false;
         }
     }
-    
 }
-
-?>
