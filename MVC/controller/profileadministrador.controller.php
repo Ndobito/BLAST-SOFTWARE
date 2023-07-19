@@ -18,11 +18,6 @@ class ProfileController
         $model = new Profile();
         $administrador = $model->selectUser($nombreUsuario);
 
-
-
-
-
-
         require_once "view/footerprofile.php";
     }
 
@@ -33,11 +28,6 @@ class ProfileController
         exit();
     }
 
-
-    //BUSCADOR
-    public function buscador()
-    {
-    }
 }
 
 $profileAdminController = new Profile();
