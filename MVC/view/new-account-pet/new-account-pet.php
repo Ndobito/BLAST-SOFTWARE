@@ -16,8 +16,17 @@
                     </div>
                     <div class="NameandLastname">
                         <div class="input-container">
-                            <label>Edad</label>
-                            <input type="number" name="ctAgeMas" required>
+                            <label>Edad (meses)</label>
+                            <select type="select" name="ctAgemas" id="input-obligatorio" required>
+                                <option selected disabled>Seleccione una opcion</option>
+                                <option value="Menos de Un año">menos de un año</option>
+                                <option value="Un año">1 año</option>
+                                <option value="Dos año">2 años</option>
+                                <option value="Tres año">3 años</option>
+                                <option value="Cuatro año">4 años</option>
+                                <option value="Cinco años">5 años</option>
+                                <option value="Mas de cinco años">Mas de cinco años</option>
+                            </select>
                         </div>
                     </div>
                     <label for="gender">Genero</label>
@@ -34,19 +43,16 @@
                         <option value="">Gato</option>
                         <option value="">Bovino</option>
                         <option value="">Equino</option>
-                        <option value="">Porcion</option>
+                        <option value="">Porcino</option>
                         <option value="">Ave</option>
                     </select>
                     <div class="buttons">
                         <div class="buttons-container">
-                            <div class="return1">
-                                <span class="button">Volver</span>
-                            </div>
                             <div class="nextpet">
-                                <input type="submit" value="Guardar">
+                                <input type="submit" value="Crear perfil">
                             </div>
                         </div>
-                        <input type="reset" value="Guardar y agregar otra mascota">
+                        <input type="reset" name="" value="Agregar Nueva Mascota">
                     </div>
                 </div>
             </form>          

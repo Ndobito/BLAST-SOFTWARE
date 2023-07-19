@@ -7,9 +7,9 @@ class ProfileController
 {
     public function Inicio()
     {
-       
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
+
             $updateProfileController = new UpdateProfileController();
             $updateProfileController->guardarAdministrador();
         }
@@ -18,20 +18,16 @@ class ProfileController
         $model = new Profile();
         $administrador = $model->selectUser($nombreUsuario);
 
-        if ($administrador !== null) {
-            $data = compact('administrador');
-            require_once "view/profile/admin/profileadministrador.php";
-        } else {
-           
-        }
-
         require_once "view/footerprofile.php";
+    }
+    public function buscarProveedor()
+    {
     }
 
     public function cerrarSesion()
     {
         session_destroy();
-        header('Location: index.php');
+        redirect("index.php");
         exit();
     }
 }

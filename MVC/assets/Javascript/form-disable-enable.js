@@ -1,21 +1,22 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const enableFormButton = document.getElementById("enableForm1");
-  const disableFormButton = document.getElementById("disableForm1");
-  const formUserInformation = document.getElementById("form-user-information");
-
-  enableFormButton.addEventListener("click", function () {
-    enableFormButton.style.display = "none";
-    disableFormButton.style.display = "inline-block";
-    enableForm("form-user-information");
-  });
-
-  disableFormButton.addEventListener("click", function () {
-    disableFormButton.style.display = "none";
-    enableFormButton.style.display = "inline-block";
-    disableForm("form-user-information");
-  });
+// form-User-Information
+document.getElementById("enableForm1").addEventListener("click", function() {
+  enableForm("form-user-information");
 });
 
+document.getElementById("disableForm1").addEventListener("click", function() {
+  disableForm("form-user-information");
+});
+
+// Habilitar y deshabilitar form2
+document.getElementById("enableForm2").addEventListener("click", function() {
+  enableForm("form-pet-information");
+});
+
+document.getElementById("disableForm2").addEventListener("click", function() {
+  disableForm("form-pet-information");
+});
+
+// Funciones para habilitar y deshabilitar campos del formulario
 function enableForm(formId) {
   var form = document.getElementById(formId);
   var inputs = form.getElementsByTagName("input");

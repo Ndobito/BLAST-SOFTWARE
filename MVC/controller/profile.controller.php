@@ -96,7 +96,7 @@ class ProfileController
     public function cerrarSesion()
     {
         session_destroy();
-        header('Location: index.php');
+        redirect("index.php")->success("Se ha cerrado la sesion correctamente")->send();
         exit();
     }
 }

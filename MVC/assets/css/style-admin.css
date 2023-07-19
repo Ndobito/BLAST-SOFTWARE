@@ -447,7 +447,7 @@ footer{
     font-size: 10pt;
     padding: 10px;
     gap: 20px;
-    height: 106px;
+    height: 100%;
     bottom: 0;
 }
 
@@ -555,7 +555,7 @@ footer{
 
     /*Footer*/
     footer{
-        height: 19%;
+        height: 12.4%;
     }
    
     /* Footer Boottom */
@@ -576,10 +576,6 @@ footer{
     }
 }
 
-@media (min-width:1441px) {
-    
-
-}
 
 
 

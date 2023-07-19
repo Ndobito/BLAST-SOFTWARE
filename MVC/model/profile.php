@@ -30,7 +30,7 @@ class Profile
         try {
             $stmt = $this->conexion->prepare($update);
 
-            // Check if each field is empty or not, and update accordingly
+
             $stmt->bind_param(
                 "ssssssi",
                 $administrador->nombre,
@@ -81,6 +81,10 @@ class Profile
 
         return $empleado;
     }
+    public function buscarProveedor($filtro)
+    {
+    }
+
     public function getCliente()
     {
         $query = "SELECT * FROM cliente";
@@ -96,6 +100,7 @@ class Profile
 
         return $cliente;
     }
+
     public function getMascota()
     {
         $query = "SELECT * FROM mascota";
