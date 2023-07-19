@@ -83,25 +83,6 @@ class Profile
     }
     public function buscarProveedor($filtro)
     {
-<<<<<<< HEAD
-        $query = "SELECT * FROM proveedor WHERE nomprov LIKE ? OR dirprov LIKE ? OR emaprov LIKE ?";
-        $stmt = $this->conexion->prepare($query);
-        $filtro = "%" . $filtro . "%";
-        $stmt->bind_param("sss", $filtro, $filtro, $filtro);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $proveedores = array();
-
-        if ($result->num_rows > 0) {
-            // Recorrer los resultados y almacenarlos en el array $proveedores
-            while ($row = $result->fetch_assoc()) {
-                $proveedores[] = $row;
-            }
-        }
-
-        return $proveedores;
-=======
->>>>>>> 2d2d71df0604c37f5e53cbab498709ba2108c014
     }
 
     public function getCliente()
@@ -119,11 +100,6 @@ class Profile
 
         return $cliente;
     }
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> 2d2d71df0604c37f5e53cbab498709ba2108c014
     public function getMascota()
     {
         $query = "SELECT * FROM mascota";
