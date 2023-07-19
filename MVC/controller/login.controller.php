@@ -34,7 +34,7 @@ class LoginController
                 $_SESSION['usuario'] = $usuario;
                 $_SESSION['tipoUsuario'] = $tipoUsuario;
                 $_SESSION['ultimaActividad'] = time();
-                setNotify("success", "ha iniciado sesión correctamente");
+                setNotify("success", "Ha iniciado sesión correctamente");
 
                 switch ($tipoUsuario) {
                     case "cliente":
