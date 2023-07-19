@@ -48,29 +48,25 @@
                         <form id="form-user-information" action="?b=profile&s=actualizarUsuario" method="post">
                             <input name="ctIdUser" type="hidden" value="<?php echo $user['idadmin'] ?>">
                             <label for="ctNameUser">Nombres*</label>
-                            <input type="text" name="ctNameUser" id="ctNameUser"
-                                value="<?php echo $user['nomadmin'] ?? "Sin definir"; ?>" disabled>
+                            <input type="text" name="ctNameUser" id="ctNameUser" value="<?php echo $user['nomadmin'] ?? "Sin definir"; ?>" disabled>
                             <label for="ctSurNameUser">Apellidos *</label>
-                            <input type="text" name="ctSurNameUser" id="ctSurNameUser"
-                                value="<?php echo $user['apeadmin'] ?? "Sin definir"; ?>" disabled>
+                            <input type="text" name="ctSurNameUser" id="ctSurNameUser" value="<?php echo $user['apeadmin'] ?? "Sin definir"; ?>" disabled>
+                            <label for="ctNameuser">Nickname: *</label>
+                            <input type="text" name="ctNickUser" id="ctNickUser" value="<?php echo $user['nickadmin']; ?>" disabled>
                             <label for="ctNameuser">Direccion *</label>
-                            <input type="text" name="ctAdrUser" id="ctAdrUser" value="<?php echo $user['diradmin']; ?>"
-                                disabled>
+                            <input type="text" name="ctAdrUser" id="ctAdrUser" value="<?php echo $user['diradmin']; ?>" disabled>
                             <div>
                                 <div>
                                     <label for="ctEmailUser">Correo Eletrónico *</label>
-                                    <input type="text" name="ctEmailUser" id="ctEmailUser"
-                                        value="<?php echo $user['emaadmin']; ?>" disabled>
+                                    <input type="text" name="ctEmailUser" id="ctEmailUser" value="<?php echo $user['emaadmin']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCelUser">Numero de Celular 1 *</label>
-                                    <input type="text" name="ctNumCelUser" id="ctNumCelUser"
-                                        value="<?php echo $user['teladmin']; ?>" disabled>
+                                    <input type="text" name="ctNumCelUser" id="ctNumCelUser" value="<?php echo $user['teladmin']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCel2">Numero de Celular 2</label>
-                                    <input type="text" name="ctNumCel2" id="ctNumCel2"
-                                        value="<?php echo $user['teladmin2']; ?>" disabled>
+                                    <input type="text" name="ctNumCel2" id="ctNumCel2" value="<?php echo $user['teladmin2']; ?>" disabled>
 
                                 </div>
                             </div>
@@ -79,18 +75,6 @@
                             </div>
                             <input type="submit" name="btnUpdateProfile" value="Guardar">
                         </form>
-                        <?php
-                        if (isset($_REQUEST['v'])) {
-                            $confirm = $_REQUEST['v'];
-                            if (!empty($confirm)) {
-                                if ($confirm == "true") {
-                                    echo "Complete todos los campos con el (*)";
-                                } else if ($confirm == "false") {
-
-                                }
-                            }
-                        }
-                        ?>
                     </div>
                 </div>
                 <div class="profile-adm container-right2" id="container-right2">

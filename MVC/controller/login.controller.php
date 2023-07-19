@@ -21,20 +21,23 @@ class LoginController
     public function validarUser()
     {
         $usuario = $_POST['ctUser'];
-        $passsword = $_POST['ctPassword'];
+        $password = $_POST['ctPassword'];
 
-        if (empty($usuario) || empty($passsword)) {
+        if (empty($usuario) || empty($password)) {
             header('Location: ?b=login');
         } else {
-            $usuario_valido = $this->loginModel->validarUsuario($usuario, $passsword);
+            $usuario_valido = $this->loginModel->validarUsuario($usuario, $password);
             if ($usuario_valido) {
                 $tipoUsuario = $this->loginModel->obtenerRol($usuario);
 
                 session_start();
                 $_SESSION['usuario'] = $usuario;
+                var_dump($_SESSION['usuario'] = $usuario);
                 $_SESSION['tipoUsuario'] = $tipoUsuario;
+                var_dump($_SESSION['tipoUsuario'] = $tipoUsuario);
                 $_SESSION['ultimaActividad'] = time();
-                setNotify("success", "ha iniciado sesión correctamente");
+                var_dump($_SESSION['ultimaActividad'] = time());
+                setNotify("success", "Ha iniciado sesión correctamente");
 
                 switch ($tipoUsuario) {
                     case "cliente":
