@@ -74,7 +74,7 @@ class LoginController
                 }
                 
             } else {
-                setcookie("notify", serialize(["status" => "error", "message" => "El usuario ingresado no existe"]), time() + 5, "/");
+                setcookie("notify", serialize(["status" => "error", "message" => "Usuario y/o contraseña incorrectos, por favor verifique"]), time() + 5, "/");
                 header('location: ?b=login&s=Inicio&p=admin');
             }
         }
