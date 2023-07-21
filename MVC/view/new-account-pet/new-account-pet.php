@@ -10,14 +10,14 @@
                 <div id="parent-container-form-pet">
                     <div class="NameandLastname">
                         <div class="input-container">
-                            <label>Mascota</label>
+                            <label>Mascota <strong>*</strong></label>
                             <input type="text" name="ctNomMas" required>
                         </div>
                     </div>
                     <div class="NameandLastname">
                         <div class="input-container">
-                            <label>Edad (meses)</label>
-                            <select type="select" name="ctAgemas" id="input-obligatorio" required>
+                            <label>Edad (meses) <strong>*</strong></label>
+                            <select type="select" name="selAgeMas" id="input-obligatorio" required>
                                 <option selected disabled>Seleccione una opcion</option>
                                 <option value="Menos de Un año">menos de un año</option>
                                 <option value="Un año">1 año</option>
@@ -29,22 +29,22 @@
                             </select>
                         </div>
                     </div>
-                    <label for="gender">Genero</label>
-                    <select type="select" name="selGenPet" required id="input-obligatorio">
+                    <label for="gender">Genero <strong>*</strong></label>
+                    <select type="select" name="selGenMas" required id="input-obligatorio">
                         <option value="" selected disabled>Selectiona el genero de tu mascota</option>
                         <option value="M">Macho</option>
                         <option value="H">Hembra</option>
                     </select>
 
-                    <label for="gender">Especie</label>
-                    <select type="select" name="selEspPet" required id="input-obligatorio">
+                    <label for="gender">Especie <strong>*</strong></label>
+                    <select type="select" name="selEspMas" required id="input-obligatorio">
                         <option value="" selected disabled>Selectiona la especie</option>
-                        <option value="">Perro</option>
-                        <option value="">Gato</option>
-                        <option value="">Bovino</option>
-                        <option value="">Equino</option>
-                        <option value="">Porcino</option>
-                        <option value="">Ave</option>
+                        <option value="perro">Perro</option>
+                        <option value="gato">Gato</option>
+                        <option value="bovino">Bovino</option>
+                        <option value="equino">Equino</option>
+                        <option value="porcino">Porcino</option>
+                        <option value="ave">Ave</option>
                     </select>
                     <div class="buttons">
                         <div class="buttons-container">

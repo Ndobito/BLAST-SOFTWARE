@@ -9,9 +9,21 @@ class Login
         $this->conexion = databaseConexion::conexion();
     }
 
-    public function validarUsuario($usuario, $contrasena)
+    public function validarUsuario($usuario)
     {
-        $query = "(SELECT 'cliente' AS rol FROM cliente WHERE usercli = '$usuario' AND passcli = '$contrasena') UNION (SELECT 'administrador' AS rol FROM administrador WHERE nickadmin = '$usuario' AND passadmin = '$contrasena') UNION (SELECT 'colaborador' AS rol FROM colaborador WHERE nomcol = '$usuario' AND passcol = '$contrasena')";
+        $query = "(SELECT 'cliente' AS rol FROM cliente WHERE usercli = '$usuario') UNION (SELECT 'administrador' AS rol FROM administrador WHERE nickadmin = '$usuario') UNION (SELECT 'colaborador' AS rol FROM colaborador WHERE nomcol = '$usuario')";
+
+        $resultado = mysqli_query($this->conexion, $query);
+
+        if (mysqli_num_rows($resultado) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function validarPassword($pass){
+        $query = "(SELECT 'cliente' AS rol FROM cliente WHERE passcli = '$pass') UNION (SELECT 'administrador' AS rol FROM administrador WHERE passadmin = '$pass') UNION (SELECT 'colaborador' AS rol FROM colaborador WHERE passcol = '$pass')";
 
         $resultado = mysqli_query($this->conexion, $query);
 
