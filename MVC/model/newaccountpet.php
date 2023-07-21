@@ -18,15 +18,21 @@ class newAccountPet{
     public function Registrar(newAccountPet $data){
         try{
             $pet= "INSERT INTO mascota(nommas, edadmas, genmas, espmas, idcli) VALUES (?, ?, ?, ?, ?)";
-            $this -> consulta -> prepare($pet)-> execute(array(
+            $resultado = $this -> consulta -> prepare($pet)-> execute(array(
                 $data -> namepet, 
                 $data -> agepet, 
                 $data -> genpet, 
                 $data -> esppet, 
-                $data -> idcli, 
+                $data -> idcli
             )); 
+
+            if($resultado === true){
+                return true; 
+            }else{
+                return false; 
+            }
         } catch (Exception $error){
-            echo "No se puede registrar el Usuario: ". $error->getMessage();
+            echo "No se puede registrar la mascota: ". $error->getMessage();
         }
     }
 
