@@ -89,15 +89,6 @@ class ProfileController
             }
         }
     }
-
-    public function buscarProveedor()
-    {
-        $filtro = $_GET['buscar_proveedor'];
-        $resultadosProveedores = $this->object->buscarProveedor($filtro);
-        exit();
-    }
-
-
     //Metodo para cerrar Sesion
     public function cerrarSesion()
     {
