@@ -20,6 +20,7 @@ class newAccountPetController
 
     public function GuardarPet()
     {   
+
         $id = $_REQUEST['p']; 
         if (!empty($_POST['ctNomMas']) || !empty($_POST['selAgeMas']) || !empty($_POST['selGenMas']) || !empty($_POST['selEspMas'])) {
             setcookie("notify", serialize(["status" => "error", "message" => "Complete todos los campos con (*)"]), time() + 5, "/");
