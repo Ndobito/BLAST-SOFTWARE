@@ -8,23 +8,23 @@
                 </div>
                 <div>
                     <div>
-                        <form action="#">
+                        <form action="?b=restorepassword&s=sendEmail" method="POST">
                             <label for="#">Nombre de usuario</label>
                             <div class="input">
                                 <i class="fa-solid fa-paw" id="icono"></i>
-                                <input type="text" placeholder="User" id="input">
+                                <input type="text" name="ctUser" placeholder="User" id="input" required>
                             </div>
 
                             <label for="#">Correo
                                 electrónico</label>
                             <div class="input">
                                 <i class="fa-solid fa-envelope" id="icono"></i>
-                                <input type="email" placeholder="Correo" id="input">
+                                <input type="email" name="ctEmail" placeholder="Correo" id="input" required>
                             </div>
+                            <input type="submit" id="enviar-btn" value="Enviar Correo">
                         </form>
                     </div>
                     <div>
-                        <button href="#" id="enviar-btn"> Enviar correo</button>
                     </div>
                 </div>
                 <div class="main-footer"></div>

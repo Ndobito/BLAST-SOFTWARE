@@ -63,7 +63,7 @@ class newAccountController
                     $_POST['ctTel'] = "";
                     $_POST['ctTel2'] = "";
                     setNotify("success", "Usuario Creado con exito");
-                    header("Location: ?b=newaccountpet&s=Inicio&p=$id");
+                    header("Location: ?b=login");
                 }
             } else {
                 setcookie("notify", serialize(["status" => "error", "message" => "Acepte los Terminos y condiciones"]), time() + 5, "/");
