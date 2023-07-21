@@ -178,7 +178,7 @@
                                     <?php echo $proveedor['dirprov'] ?? "Sin definir"; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="?b=profile&s=showEdit">
+                                    <a href="?b=profile&s=EditarInfo" id="prveedor">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
