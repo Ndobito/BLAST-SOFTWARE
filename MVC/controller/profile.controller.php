@@ -56,31 +56,27 @@ class ProfileController
     {
         $style = "<link rel='stylesheet' href='assets/css/style-editar-proveedor.css'>";
         require_once "view/head.php";
-        require_once "view/profile/admin/editar.php";
     }
-    public function update()
-    {
-    }
-
     //-----Metodo para actualizar Datos-----//
     // NO ME TOQUE ESTA PARTE DEL CODIGO SAPO HIJUEPUTA
 
     public function actualizarUsuario()
     {
         if (isset($_REQUEST['btnUpdateProfile'])) {
-            if ($_POST['ctNameUser'] == "" || $_POST['ctSurNameUser'] == "" || $_POST['ctAdrUser'] ==  "" || $_POST['ctEmailUser'] == "" || $_POST['ctNumCelUser'] == "") {
+            if ($_POST['ctNameUser'] == "" || $_POST['ctSurNameUser'] == "" || $_POST['ctNickUser'] == "" || $_POST['ctAdrUser'] ==  "" || $_POST['ctEmailUser'] == "" || $_POST['ctNumCelUser'] == "") {
                 redirect("?b=profile&s=Inicio&p=admin&v=true")->error("Se deben llenar todos los campos")->send();
             } else {
                 $u = new Profile();
                 $u->id = $_POST['ctIdUser'];
                 $u->nombre = $_POST['ctNameUser'];
                 $u->apellido = $_POST['ctSurNameUser'];
+                $u->nick = $_POST['ctNickUser'];
                 $u->email = $_POST['ctEmailUser'];
                 $u->direccion = $_POST['ctAdrUser'];
                 $u->numcel = $_POST['ctNumCelUser'];
                 $u->numcel2 = $_POST['ctNumCel2'];
                 if ($this->object->update($u)) {
-                    if ($_POST['ctNameUser'] != $_SESSION["usuario"]) {
+                    if ($_POST['ctNickUser'] != $_SESSION["usuario"]) {
                         session_destroy();
                         redirect("index.php")->success("Se ha actualizado el nombre de usuario, vuelva a iniciar sesión")->send();
                     } else {
@@ -92,6 +88,19 @@ class ProfileController
             }
         }
     }
+
+    public function buscarProveedor()
+    {
+        $filtro = $_GET['buscar_proveedor'];
+        $resultadosProveedores = $this->object->buscarProveedor($filtro);
+        exit();
+    }
+
+    public function EditarInfo(){
+         require_once "view/profile/admin/proveedor/editar.php";
+
+    }
+
     //Metodo para cerrar Sesion
     public function cerrarSesion()
     {

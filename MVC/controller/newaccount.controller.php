@@ -19,61 +19,56 @@ class newAccountController
         require_once "view/new-account/new-account.php";
     }
 
-    public function GuardarUser(){ 
-        $a = $_POST['ctNombre'] ." ".  $_POST['ctApellido']; 
-        $nombre = trim($a); 
-        $correo= $_POST['ctEmail']; 
-        $apodo = $_POST['ctNick']; 
-        $contraseña = $_POST['ctPass']; 
-        $direccion = $_POST['ctAddres']; 
-        $ubicacion = $_POST['selTipoUbicacion']; 
-        $numcel = $_POST['ctTel']; 
-        $numcel2 = $_POST['ctTel2'];
-        
-        if(empty($nombre) || empty($correo) || empty($apodo) || empty($contraseña) || empty($direccion) || empty($ubicacion) || empty($numcel)){
-            header("Location: ?b=newaccount&s=Inicio&p=ifalse");   
-        }else{
+    public function GuardarUser()
+    {
 
-        }
+        if (empty($_POST['ctNombre'] . " " . $_POST['ctApellido']) || empty($_POST['ctEmail']) || empty($_POST['ctNick']) || empty($_POST['ctPass']) || empty($_POST['ctAddres']) || empty($_POST['selTipoUbicacion']) || empty($_POST['ctTel'])) {
+            setcookie("notify", serialize(["status" => "error", "message" => "Complete todos los campos con (*)"]), time() + 5, "/");
+            header("Location: ?b=newaccount&s=Inicio");
+        } else {
+            if (isset($_POST['conditions']) && $_POST['conditions'] == "true") {
+                $m = new newAccount();
+                $nombre = $_POST['ctNombre'] . " " .  $_POST['ctApellido'];
+                $nick = $_POST['ctNick'];
+                if (preg_match('/\d/', $nombre)) {
+                    setcookie("notify", serialize(["status" => "error", "message" => "El nombre no puede llevar valores numericos"]), time() + 5, "/");
+                    header('Location: ?b=newaccount&s=Inicio');
+                } else if ($_POST['ctEmail'] <> $_POST['ctEmailC']) {
+                    setcookie("notify", serialize(["status" => "error", "message" => "Las direcciones email no coinciden"]), time() + 5, "/");
+                    header('Location: ?b=newaccount&s=Inicio');
+                } else if ($this->object->userExist($nick) <> null) {
+                    setcookie("notify", serialize(["status" => "error", "message" => "El nikname no esta disponible"]), time() + 5, "/");
+                    header("Location: ?b=newaccount&s=Inicio");
+                } else {
+                    $m->name = trim($nombre);
+                    $m->email = $_POST['ctEmail'];
+                    $m->uname = $_POST['ctNick'];
+                    $m->pass = md5($_POST['ctPass']);
+                    $m->dir = $_POST['ctAddres'];
+                    $m->zone = $_POST['selTipoUbicacion'];
+                    $m->phone = $_POST['ctTel'];
+                    $m->phonealt = $_POST['ctTel2'];
 
-        if(isset($_POST['conditions']) && $_POST['conditions'] == "true"){
-            $m = new newAccount(); 
-            $nombre = $_POST['ctNombre'] ." ".  $_POST['ctApellido']; 
-            $nick = $_POST['ctNick'];
-            if(preg_match('/\d/', $nombre)){
-                header('Location: ?b=newaccount&s=Inicio&p=nfalse');
-            } else if($_POST['ctEmail'] <> $_POST['ctEmailC']) {
-                header('Location: ?b=newaccount&s=Inicio&p=efalse');
-            } else if($this->object->userExist($nick) <> null ){
-                header("Location: ?b=newaccount&s=Inicio&p=ufalse");
+                    $nickName = $_POST['ctNick'];
+                    $this->object->Registrar($m);
+
+                    $id = $this->object->selectUser($nickName);
+                    $_POST['ctNombre']  = "";
+                    $_POST['ctApellido'] = "";
+                    $_POST['ctEmail'] = "";
+                    $_POST['ctNick'] = "";
+                    $_POST['ctPass'] = "";
+                    $_POST['ctAddres'] = "";
+                    $_POST['selTipoUbicacion'] = "";
+                    $_POST['ctTel'] = "";
+                    $_POST['ctTel2'] = "";
+                    setNotify("success", "Usuario Creado con exito");
+                    header("Location: ?b=login");
+                }
             } else {
-                $m -> name = trim($nombre); 
-                $m -> email = $_POST['ctEmail']; 
-                $m -> uname = $_POST['ctNick']; 
-                $m -> pass = $_POST['ctPass']; 
-                $m -> dir = $_POST['ctAddres']; 
-                $m -> zone = $_POST['selTipoUbicacion']; 
-                $m -> phone = $_POST['ctTel']; 
-                $m -> phonealt = $_POST['ctTel2'];
-                
-                $nickName = $_POST['ctNick']; 
-                $this->object->Registrar($m);
-                
-                $id = $this -> object -> selectUser($nickName); 
-                $_POST['ctNombre']  = ""; 
-                $_POST['ctApellido'] = ""; 
-                $_POST['ctEmail'] = ""; 
-                $_POST['ctNick'] = ""; 
-                $_POST['ctPass'] = ""; 
-                $_POST['ctAddres'] = ""; 
-                $_POST['selTipoUbicacion'] = ""; 
-                $_POST['ctTel'] = ""; 
-                $_POST['ctTel2'] = "";
-
-                header("Location: ?b=newaccountpet&s=Inicio&p=$id"); 
+                setcookie("notify", serialize(["status" => "error", "message" => "Acepte los Terminos y condiciones"]), time() + 5, "/");
+                header("Location: ?b=newaccount&s=Inicio");
             }
-        } else{
-            header("Location: ?b=newaccount&s=inicio&p=tfalse"); 
         }
     }
 }

@@ -5,7 +5,7 @@ class Profile
 {
     private $conexion;
 
-    public $id, $nombre, $apellido, $direccion, $email, $numcel, $numcel2, $file;
+    public $id, $nombre, $apellido, $nick, $direccion, $email, $numcel, $numcel2, $file;
 
     public function __construct()
     {
@@ -14,9 +14,8 @@ class Profile
     // Metodo para Seleccionar el nombre del Usuario
     public function selectUser($nombreUsuario)
     {
-        $query = "SELECT * FROM administrador WHERE nomadmin = ?";
+        $query = "SELECT * FROM administrador WHERE nickadmin ='" . $nombreUsuario . "'";
         $stmt = $this->conexion->prepare($query);
-        $stmt->bind_param("s", $nombreUsuario);
         $stmt->execute();
         $result = $stmt->get_result();
         $administrador = $result->fetch_assoc();
@@ -25,16 +24,15 @@ class Profile
     }
     public function update(Profile $administrador)
     {
-        $update = "UPDATE administrador SET nomadmin = ?, apeadmin = ?, diradmin = ?, emaadmin = ?, teladmin = ?, teladmin2 = ? WHERE idadmin = ? ";
+        $update = "UPDATE administrador SET nomadmin = ?, apeadmin = ?, nickadmin = ?, diradmin = ?, emaadmin = ?, teladmin = ?, teladmin2 = ? WHERE idadmin = ? ";
 
         try {
             $stmt = $this->conexion->prepare($update);
-
-
             $stmt->bind_param(
-                "ssssssi",
+                "sssssssi",
                 $administrador->nombre,
                 $administrador->apellido,
+                $administrador->nick,
                 $administrador->direccion,
                 $administrador->email,
                 $administrador->numcel,
@@ -83,6 +81,22 @@ class Profile
     }
     public function buscarProveedor($filtro)
     {
+        $filtro = '%' . $filtro . '%';
+        $query = "SELECT * FROM proveedor WHERE nomprov LIKE ?";
+        $stmt = $this->conexion->prepare($query);
+        $stmt->bind_param("s", $filtro);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $proveedores = array();
+
+        if ($result->num_rows > 0) {
+            // Recorrer los resultados y almacenarlos en el array $proveedores
+            while ($row = $result->fetch_assoc()) {
+                $proveedores[] = $row;
+            }
+        }
+
+        return $proveedores;
     }
 
     public function getCliente()
@@ -97,7 +111,6 @@ class Profile
                 $cliente[] = $row;
             }
         }
-
         return $cliente;
     }
 
