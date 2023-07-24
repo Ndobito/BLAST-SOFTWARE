@@ -2,6 +2,7 @@
 include_once "model/editarInfo.php";
 class editarinfoController{
     private $object;
+    public $idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv;
     public function __construct()
     {
         $this->object = new info();
@@ -32,7 +33,20 @@ class editarinfoController{
         }
 
     }
-    
+    public function guardarproveedor(){
+
+        $idProv = $_POST['ctIdProv'];
+        $nombreProv = $_POST['ctNomProv'];
+        $direccionProv = $_POST['ctDirProv'];
+        $emailProv = $_POST['ctEmaProv'];
+        $telefonoProv = $_POST['ctTelProv'];
+        
+        $this->object->guardarproveedor($idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv);
+        
+        setNotify("success", "Se ha guardado correctamente " . $nombreProv . " correctamente");
+        redirect("?b=profile&s=Inicio&p=admin");
+    }
+
     }
 
 ?>

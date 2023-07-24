@@ -28,21 +28,19 @@ class info{
         }
     }
 
-    public function guardarproveedor( $data){
+    public function guardarproveedor($idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv){
         try {
-            $sql = 'INSERT INTO proveedor (idprov,nomprod,dirprod,emaprod,telprod)
-            VALUES (?, ?, ?, ?, ?,)';
-            $this->pdo->prepare($sql)
-            ->execute(
-                array(
-                    $data->nomprod,
-                    $data->desprod, 
-                    $data->dirprod,
-                    $data->emaprod,
-                    $data->telprod,
-                    
-                )
-            );
+            $sql = 'INSERT INTO proveedor (idprov, nomprov, dirprov, emaprov, telprov)
+                    VALUES (?, ?, ?, ?, ?)';
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bind_param("issss", $idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv);
+            $stmt->execute();
+            if ($stmt->execute()) {
+                header("Location: ?b=profile&s=Inicio&p=admin");
+                exit();
+            } else {
+                echo "Error en la actualización: " . $stmt->error;
+            }
             setcookie("notify", serialize(["message" => "Se ha agregado el proveedor"]), 5, "/");
             return true;
         } catch (Exception $e) {
