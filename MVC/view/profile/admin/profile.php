@@ -35,7 +35,7 @@
 
                         <div>
                             <a href="?b=profile&s=cerrarSesion"><button><i
-                                        class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</button></a>
+                                 class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</button></a>
                         </div>
                     </div>
 
@@ -91,7 +91,7 @@
                     <div class="table-container">
                         <div class="form-container">
                             <div class="input-group">
-                                <a href=""><button class="btn btn-default" type="submit">Agregar</button></a>
+                                <a href="?b=profile&s=Agregar"><button class="btn btn-default" type="submit">Agregar</button></a>
                             </div>
                             <form method="GET" action="?b=profile&s=Inicio&p=admin" id="search-form">
                                 <div class="input-group">
@@ -110,7 +110,7 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Nombres</th>
-                                        <th>Apellidos</th>
+                                        <th>Email</th>
                                         <th>Telefono</th>
                                         <th>Direccion</th>
                                     </tr>
@@ -119,22 +119,22 @@
                                     <?php foreach ($proveedores as $proveedor) { ?>
                                     <tr>
                                         <td>
-                                            <?php echo $proveedor['idprov']; ?>
+                                            <?php echo $proveedor['idprov'] ?? "Sin definir"; ?>
                                         </td>
                                         <td>
                                             <?php echo $proveedor['nomprov'] ?? "Sin definir"; ?>
                                         </td>
                                         <td>
-                                            <?php echo $proveedor['apeprov'] ?? "Sin definir"; ?>
+                                            <?php echo $proveedor['dirprov'] ?? "Sin definir"; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $proveedor['emaprov'] ?? "Sin definir"; ?>
                                         </td>
                                         <td>
                                             <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
                                         </td>
-                                        <td>
-                                            <?php echo $proveedor['dirprov'] ?? "Sin definir"; ?>
-                                        </td>
                                         <td class="icons1">
-                                            <a href="?b=profile&s=showEdit">
+                                            <a  href="?b=profile&s=EditarInfoProv&idprod=<?= $proveedor['idprov']; ?>">
                                                 <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                             </a>
                                         </td>
@@ -178,7 +178,7 @@
                                     <?php echo $proveedor['dirprov'] ?? "Sin definir"; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="?b=profile&s=showEdit">
+                                    <a href="?b=profile&s=EditarInfo" id="Prveedor">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
@@ -252,7 +252,7 @@
                                     <?php echo $colaborador['rolcol']; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="#">
+                                    <a href="?b=profile&s=EditarInfoemp&idcola=<?= $colaborador['idcol']; ?>">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>

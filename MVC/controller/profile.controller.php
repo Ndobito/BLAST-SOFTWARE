@@ -54,9 +54,7 @@ class ProfileController
 
     public function showEdit()
     {
-        $style = "<link rel='stylesheet' href='assets/css/style-editar-proveedor.css'>";
         require_once "view/head.php";
-        require_once "view/profile/admin/editar.php";
     }
     //-----Metodo para actualizar Datos-----//
     // NO ME TOQUE ESTA PARTE DEL CODIGO SAPO HIJUEPUTA
@@ -97,6 +95,15 @@ class ProfileController
         exit();
     }
 
+    public function EditarInfoProv(){
+        require_once "view/profile/admin/proveedor/editar.php";
+    }
+    public function EditarInfoemp(){
+        require_once "view/profile/admin/empleados/editar.php";
+    }
+    public function Agregar(){
+        require_once "view/profile/admin/proveedor/agregar.php";
+    }
 
     //Metodo para cerrar Sesion
     public function cerrarSesion()
