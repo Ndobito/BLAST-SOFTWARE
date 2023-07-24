@@ -1,44 +1,4 @@
-<?php
-include_once 'lib/database/database.php';
 
-    $conexion = databaseConexion::conexion();
-
-if (isset($_GET["idprod"])) {
-    $idProveedor = $_GET["idprod"];
-
-    $stmt = $conexion->prepare("SELECT * FROM proveedor WHERE idprov = ?");
-    $stmt->bind_param("i", $idProveedor);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $proveedor = $result->fetch_assoc();
-    $stmt->close();
-} else {
-    echo "Error: ID de proveedor no encontrado.";
-    exit();
-}
-
-
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $idProv = $_POST["ctIdProv"];
-    $nombreProv = $_POST["ctNomProv"];
-    $direccionProv = $_POST["ctDirProv"];
-    $emailProv = $_POST["ctEmaProv"];
-    $telefonoProv = $_POST["ctTelProv"];
-
-    $stmt = $conexion->prepare("UPDATE proveedor SET nomprov = ?, dirprov = ?, emaprov = ?, telprov = ? WHERE idprov = ?");
-    $stmt->bind_param("ssssi", $nombreProv, $direccionProv, $emailProv, $telefonoProv, $idProv);
-
-    if ($stmt->execute()) {
-        header("Location: ?b=profile&s=Inicio&p=admin");
-        exit();
-    } else {
-        echo "Error en la actualización: " . $stmt->error;
-    }
-
-    $stmt->close();
-    $conexion->close();
-}
-?>
 <html>
 <head>
     <meta charset="UTF-8">
