@@ -64,6 +64,19 @@ class Profile
 
         return $proveedores;
     }
+    public function buscarProveedor($buscar)
+    {
+        $query = "SELECT * FROM proveedor WHERE nomprov LIKE '%$buscar%'";
+        $result = $this->conexion->query($query);
+        $proveedores = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $proveedores[] = $row;
+            }
+        }
+        return $proveedores;
+    }
 
     public function getEmpleado()
     {
@@ -77,7 +90,6 @@ class Profile
                 $empleado[] = $row;
             }
         }
-
         return $empleado;
     }
 
@@ -95,7 +107,6 @@ class Profile
         }
         return $cliente;
     }
-
     public function getMascota()
     {
         $query = "SELECT * FROM mascota";

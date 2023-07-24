@@ -54,9 +54,7 @@ class ProfileController
 
     public function showEdit()
     {
-        $style = "<link rel='stylesheet' href='assets/css/style-editar-proveedor.css'>";
         require_once "view/head.php";
-        require_once "view/profile/admin/proveedor/editar.php";
     }
     //-----Metodo para actualizar Datos-----//
     // NO ME TOQUE ESTA PARTE DEL CODIGO SAPO HIJUEPUTA
@@ -89,6 +87,31 @@ class ProfileController
             }
         }
     }
+    public function buscarProveedor()
+    {
+        $searchTerm = $_POST['buscar_proveedor'];
+
+        $proveedores = $this->object->getProveedores();
+
+        $filteredProveedores = array_filter($proveedores, function ($proveedor) use ($searchTerm) {
+            return (stripos($proveedor['idprov'], $searchTerm) !== false) ||
+                (stripos($proveedor['nomprov'], $searchTerm) !== false);
+        });
+
+        // Generar la tabla de resultados y devolverla al cliente
+        foreach ($filteredProveedores as $proveedor) {
+            echo '<tr>';
+            echo '<td>' . $proveedor['idprov'] . '</td>';
+            echo '<td>' . ($proveedor['nomprov'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($proveedor['dirprov'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($proveedor['emaprov'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($proveedor['telprov'] ?? "Sin definir") . '</td>';
+            echo '<td class="icons1"><a href="?b=profile&s=EditarInfo" id="prveedor"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
+            echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
+            echo '</tr>';
+        }
+    }
+
     //Metodo para cerrar Sesion
     public function cerrarSesion()
     {
