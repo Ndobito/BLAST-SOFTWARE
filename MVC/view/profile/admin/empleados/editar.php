@@ -18,27 +18,7 @@ if (isset($_GET["idcola"])) {
 }
 
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $idcol = $_POST["idcol"];
-    $nombrecol = $_POST["nomcol"];
-    $emailcol = $_POST["emacol"];
-    $direccioncol = $_POST["dircol"];
-    $telefonocol = $_POST["telcol"];
-    $rolcol = $_POST["rolcol"];
 
-    $stmt = $conexion->prepare("UPDATE colaborador SET nomcol = ?, emacol  = ?, dircol = ?, telcol = ?, rolcol = ? WHERE idcol = ?");
-    $stmt->bind_param("sssssi", $nombrecol, $emailcol, $direccioncol,  $telefonocol, $rolcol, $idcol);
-
-    if ($stmt->execute()) {
-        header("Location: ?b=profile&s=Inicio&p=admin");
-        exit();
-    } else {
-        echo "Error en la actualización: " . $stmt->error;
-    }
-
-    $stmt->close();
-    $conexion->close();
-}
 ?>
 <html>
 <head>

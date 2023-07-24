@@ -10,9 +10,9 @@
 <body>
     <div class="container">
         <div class="edit">
-            <h1 >Editar Proveedor  </h1>
+            <h1 >Editar Proveedor</h1>
             <div class="form">
-                <form action="" method="POST">
+                <form action="?b=editarinfo&s=GuardarInfoProv&idprod=<?= $proveedor['idprov']; ?>" method="POST">
                     <input type="hidden" name="ctIdProv" id="ctIdProv" value="<?= $proveedor["idprov"] ?? "No definido" ?>" >
                     <div>
                         <label class="tex" for="">Nombre:</label>
@@ -28,7 +28,7 @@
                     </div>
                     <div>
                         <label class="tex" for="">Telefono:</label>
-                        <input type="number" name="ctTelProv" id="ctTelProv" value="<?= $proveedor["telprov"] ?? "No definido" ?>">
+                        <input type="number" name="ctTelProv" id="ctTelProv" value="<?= $proveedor["telprov"] ?? "0000000000000" ?>">
                     </div>
                     <div>
                         <input type="submit" name="btnEditar" value="Guardar">

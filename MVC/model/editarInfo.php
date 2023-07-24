@@ -46,7 +46,6 @@ class info{
                     
                 )
             );
-            var_dump($data);
             setcookie("notify", serialize(["message" => "Se ha agregado el proveedor"]), 5, "/");
             return true;
         } catch (Exception $e) {
