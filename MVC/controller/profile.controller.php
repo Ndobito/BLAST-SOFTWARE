@@ -95,9 +95,7 @@ class ProfileController
         exit();
     }
 
-    public function EditarInfoProv(){
-        require_once "view/profile/admin/proveedor/editar.php";
-    }
+
     public function EditarInfoemp(){
         require_once "view/profile/admin/empleados/editar.php";
     }

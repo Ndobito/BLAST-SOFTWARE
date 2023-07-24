@@ -134,7 +134,7 @@
                                             <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
                                         </td>
                                         <td class="icons1">
-                                            <a  href="?b=profile&s=EditarInfoProv&idprod=<?= $proveedor['idprov']; ?>">
+                                            <a  href="?b=editarinfo&s=EditarInfoProv&idprod=<?= $proveedor['idprov']; ?>">
                                                 <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                             </a>
                                         </td>
