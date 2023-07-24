@@ -1,20 +1,4 @@
 
-    // Espera a que el documento esté completamente cargado
-    document.addEventListener("DOMContentLoaded", function() {
-        
-        var form = document.getElementById("search-form");
-
-        
-        form.addEventListener("submit", function(event) {
-        
-            event.preventDefault();
-
-            // Obtiene el valor del campo de búsqueda
-            var filtro = form.elements["buscar_proveedor"].value;
-
-            // Realiza la redirección manualmente
-            window.location.href = "?b=profile&s=Inicio&p=admin&buscar_proveedor=" + filtro + "#container-right2";
-        });
 
         // Obtén los elementos del contenedor y los botones
         const container1 = document.getElementById("container-right");
@@ -34,5 +18,5 @@
                 profileAdmContainer[i].style.setProperty("display", "block");
             })
         });
-    });
+
 

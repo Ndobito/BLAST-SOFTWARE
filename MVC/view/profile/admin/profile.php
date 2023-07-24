@@ -110,9 +110,9 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Nombres</th>
+                                        <th>Direccion</th>
                                         <th>Email</th>
                                         <th>Telefono</th>
-                                        <th>Direccion</th>
                                     </tr>
                                 </thead>
                                 <tbody>
