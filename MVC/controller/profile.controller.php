@@ -1,5 +1,4 @@
 <?php
-
 include_once "model/Profile.php";
 
 class ProfileController
@@ -110,6 +109,15 @@ class ProfileController
             echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
             echo '</tr>';
         }
+    }
+
+    public function EditarInfoemp()
+    {
+        require_once "view/profile/admin/empleados/editar.php";
+    }
+    public function Agregar()
+    {
+        require_once "view/profile/admin/proveedor/agregar.php";
     }
 
     //Metodo para cerrar Sesion
