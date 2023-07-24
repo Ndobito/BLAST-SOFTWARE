@@ -6,7 +6,6 @@ class info{
     public function __construct()
     {
         $this->conexion = databaseConexion::conexion();
-        $controller = new editarinfo();
     }
     public function proveedor($idProveedor){
         $stmt = $this->conexion->prepare("SELECT * FROM proveedor WHERE idprov = ?");
@@ -24,9 +23,12 @@ class info{
         if ($stmt->execute()) {
             header("Location: ?b=profile&s=Inicio&p=admin");
             exit();
+            
         } else {
             echo "Error en la actualización: " . $stmt->error;
         }
+        setcookie("notify", serialize(["message" => "Se ha agregado el producto"]), 5, "/");
+        return true;
     }
 
 }

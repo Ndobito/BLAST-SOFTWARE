@@ -131,7 +131,7 @@
                                             <?php echo $proveedor['emaprov'] ?? "Sin definir"; ?>
                                         </td>
                                         <td>
-                                            <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
+                                            <?php echo $proveedor['telprov'] ?? "00000000"; ?>
                                         </td>
                                         <td class="icons1">
                                             <a  href="?b=editarinfo&s=EditarInfoProv&idprod=<?= $proveedor['idprov']; ?>">
