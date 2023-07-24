@@ -18,20 +18,6 @@ class ProfileController
         require_once "view/footerprofile.php";
     }
 
-    // public function buscarProveedor()
-    // {
-    //     if (isset($_GET['buscar_proveedor'])) {
-    //         $filtro = $_GET['buscar_proveedor'];
-    //         $model = new Profile();
-    //         $resultadosProveedores = $model->buscarProveedor($filtro);
-    //         echo json_encode($resultadosProveedores);
-    //         exit();
-    //     } else {
-
-    //         header("Location: ?b=index&s=Inicio&p=admin");
-    //         exit();
-    //     }
-    // }
 
     public function cerrarSesion()
     {

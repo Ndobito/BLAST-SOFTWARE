@@ -64,24 +64,7 @@ class Profile
 
         return $proveedores;
     }
-    // public function buscarProveedor($filtro)
-    // {
-    //     $filtro = '%' . $filtro . '%';
-    //     $query = "SELECT * FROM proveedor WHERE nomprov LIKE ?";
-    //     $stmt = $this->conexion->prepare($query);
-    //     $stmt->bind_param("s", $filtro);
-    //     $stmt->execute();
-    //     $result = $stmt->get_result();
-    //     $proveedores = array();
 
-    //     if ($result->num_rows > 0) {
-
-    //         while ($row = $result->fetch_assoc()) {
-    //             $proveedores[] = $row;
-    //         }
-    //     }
-    //     return $proveedores;
-    // }
     public function getEmpleado()
     {
         $query = "SELECT * FROM colaborador";

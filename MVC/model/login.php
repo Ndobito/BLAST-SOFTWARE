@@ -34,21 +34,21 @@ class Login
         }
     }
 
-    public function existeUsuario($usuario)
-    {
-        $query = "(SELECT 'cliente' AS rol FROM cliente WHERE usercli = '$usuario')
-                  UNION
-                  (SELECT 'administrador' AS rol FROM administrador WHERE nomadmin = '$usuario')
-                  UNION
-                  (SELECT 'colaborador' AS rol FROM colaborador WHERE nomcol = '$usuario')";
-        $resultado = mysqli_query($this->conexion, $query);
+    // public function existeUsuario($usuario)
+    // {
+    //     $query = "(SELECT 'cliente' AS rol FROM cliente WHERE usercli = '$usuario')
+    //               UNION
+    //               (SELECT 'administrador' AS rol FROM administrador WHERE nomadmin = '$usuario')
+    //               UNION
+    //               (SELECT 'colaborador' AS rol FROM colaborador WHERE nomcol = '$usuario')";
+    //     $resultado = mysqli_query($this->conexion, $query);
 
-        if (mysqli_num_rows($resultado) > 0) {
-            return true; // El usuario está registrado
-        } else {
-            return false; // El usuario no está registrado
-        }
-    }
+    //     if (mysqli_num_rows($resultado) > 0) {
+    //         return true; 
+    //     } else {
+    //         return false; 
+    //     }
+    // }
 
     public function obtenerRol($usuario)
     {
