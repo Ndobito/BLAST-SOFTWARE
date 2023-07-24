@@ -29,5 +29,30 @@ class info{
         }
     }
 
+
+
+    public function guardarproveedor( $data){
+        try {
+            $sql = 'INSERT INTO proveedor (idprov,nomprod,dirprod,emaprod,telprod)
+            VALUES (?, ?, ?, ?, ?,)';
+            $this->pdo->prepare($sql)
+            ->execute(
+                array(
+                    $data->nomprod,
+                    $data->desprod, 
+                    $data->dirprod,
+                    $data->emaprod,
+                    $data->telprod,
+                    
+                )
+            );
+            var_dump($data);
+            setcookie("notify", serialize(["message" => "Se ha agregado el proveedor"]), 5, "/");
+            return true;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
 }
 ?>

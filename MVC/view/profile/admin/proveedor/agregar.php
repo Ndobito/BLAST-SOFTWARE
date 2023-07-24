@@ -1,29 +1,4 @@
-<?php
-include_once 'lib/database/database.php';
 
-    $conexion = databaseConexion::conexion();
-
-
-    
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtén los datos del formulario
-    $idprov = $_POST["ctIdProv"];
-    $nomprov = $_POST["ctNomProv"];
-    $dirprov = $_POST["ctDirProv"];
-    $emaprov = $_POST["ctEmaProv"];
-    $telprov = $_POST["ctTelProv"];
-
-    // Realiza la consulta SQL para guardar la información en la base de datos
-    $sql = "INSERT INTO proveedor (idprov, nomprov, dirprov, emaprov, telprov) VALUES ('$idprov', '$nomprov', '$dirprov', '$emaprov', '$telprov')";
-    
-    if ($conexion->query($sql) === TRUE) {
-      var_dump("setNotify");
-        setNotify("success", "Se ha guardado el provedor  correctamente");
-    } else {
-        echo "Error al guardar la información del proveedor: " . $conexion->error;
-    }
-}
-?>
 
 <html>
 <head>
