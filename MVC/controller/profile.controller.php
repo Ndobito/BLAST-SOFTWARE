@@ -54,7 +54,6 @@ class ProfileController
 
     public function showEdit()
     {
-        $style = "<link rel='stylesheet' href='assets/css/style-editar-proveedor.css'>";
         require_once "view/head.php";
     }
     //-----Metodo para actualizar Datos-----//
@@ -96,9 +95,14 @@ class ProfileController
         exit();
     }
 
-    public function EditarInfo(){
-         require_once "view/profile/admin/proveedor/editar.php";
-
+    public function EditarInfoProv(){
+        require_once "view/profile/admin/proveedor/editar.php";
+    }
+    public function EditarInfoemp(){
+        require_once "view/profile/admin/empleados/editar.php";
+    }
+    public function Agregar(){
+        require_once "view/profile/admin/proveedor/agregar.php";
     }
 
     //Metodo para cerrar Sesion
