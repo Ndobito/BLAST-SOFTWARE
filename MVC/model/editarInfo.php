@@ -6,7 +6,6 @@ class info{
     public function __construct()
     {
         $this->conexion = databaseConexion::conexion();
-        $controller = new editarinfo();
     }
     public function proveedor($idProveedor){
         $stmt = $this->conexion->prepare("SELECT * FROM proveedor WHERE idprov = ?");
@@ -28,8 +27,6 @@ class info{
             echo "Error en la actualización: " . $stmt->error;
         }
     }
-
-
 
     public function guardarproveedor( $data){
         try {
