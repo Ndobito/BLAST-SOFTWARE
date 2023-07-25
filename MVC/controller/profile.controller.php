@@ -144,10 +144,11 @@ class ProfileController
 
 
 
-    public function EditarInfoemp()
-    {
-        require_once "view/profile/admin/empleados/editar.php";
-    }
+
+
+
+
+
     public function Agregar()
     {
         require_once "view/profile/admin/proveedor/agregar.php";
