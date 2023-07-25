@@ -30,10 +30,6 @@ class ProfileController
         redirect("index.php");
         exit();
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 2d2d71df0604c37f5e53cbab498709ba2108c014
 }
 
 $profileAdminController = new Profile();
