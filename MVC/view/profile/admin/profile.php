@@ -35,7 +35,7 @@
 
                         <div>
                             <a href="?b=profile&s=cerrarSesion"><button><i
-                                 class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</button></a>
+                                        class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</button></a>
                         </div>
                     </div>
 
@@ -91,62 +91,18 @@
                     <div class="table-container">
                         <div class="form-container">
                             <div class="input-group">
-                                <a href="?b=profile&s=Agregar"><button class="btn btn-default" type="submit">Agregar</button></a>
+                                <a href="?b=profile&s=Agregar"><button class="btn btn-default"
+                                        type="submit">Agregar</button></a>
                             </div>
-                            <form method="GET" action="?b=profile&s=Inicio&p=admin" id="search-form">
+                            <form action="?b=profile&s=buscarProveedor" method="post">
                                 <div class="input-group">
-                                    <input type="text" id="searchprov" class="form-control"
+                                    <input type="text" id="searchprov" class="form-control search-input"
                                         placeholder="Buscar Proveedor" name="buscar_proveedor">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default" type="submit">Buscar</button>
+                                        <button class="btn btn-default" id="miBoton" type="button">Buscar</button>
                                     </span>
                                 </div>
-
                             </form>
-                        </div>
-                        <div id="search-results">
-                            <table class="table-container">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Nombres</th>
-                                        <th>Email</th>
-                                        <th>Telefono</th>
-                                        <th>Direccion</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($proveedores as $proveedor) { ?>
-                                    <tr>
-                                        <td>
-                                            <?php echo $proveedor['idprov'] ?? "Sin definir"; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $proveedor['nomprov'] ?? "Sin definir"; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $proveedor['dirprov'] ?? "Sin definir"; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $proveedor['emaprov'] ?? "Sin definir"; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
-                                        </td>
-                                        <td class="icons1">
-                                            <a  href="?b=profile&s=EditarInfoProv&idprod=<?= $proveedor['idprov']; ?>">
-                                                <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                        <td class="icons2">
-                                            <a href="#">
-                                                <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                     <table class="table-container">
@@ -154,40 +110,40 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Nombres</th>
-                                <th>Apellidos</th>
-                                <th>Telefono</th>
                                 <th>Direccion</th>
+                                <th>Correo</th>
+                                <th>Telefono</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="resultados-proveedor">
                             <?php foreach ($proveedores as $proveedor) { ?>
-                            <tr>
-                                <td>
-                                    <?php echo $proveedor['idprov']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $proveedor['nomprov'] ?? "Sin definir"; ?>
-                                </td>
-                                <td>
-                                    <?php echo $proveedor['apeprov'] ?? "Sin definir"; ?>
-                                </td>
-                                <td>
-                                    <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
-                                </td>
-                                <td>
-                                    <?php echo $proveedor['dirprov'] ?? "Sin definir"; ?>
-                                </td>
-                                <td class="icons1">
-                                    <a href="?b=profile&s=EditarInfo" id="Prveedor">
-                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                                <td class="icons2">
-                                    <a href="#">
-                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <?php echo $proveedor['idprov']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $proveedor['nomprov'] ?? "Sin definir"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $proveedor['dirprov'] ?? "Sin definir"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $proveedor['emaprov'] ?? "Sin definir"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
+                                    </td>
+                                    <td class="icons1">
+                                        <a href="?b=profile&s=EditarInfo" id="Prveedor">
+                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    <td class="icons2">
+                                        <a href="#">
+                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                             <?php } ?>
                         </tbody>
                     </table>
@@ -203,16 +159,15 @@
                                     <a href=""><button class="btn btn-default" type="submit">Agregar</button></a>
                                 </span>
                             </div>
-                            <form method="POST" action="?b=profile&s=buscador">
+                            <form method="POST" action="?b=profile&s=buscarColaborador">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Buscar Trabajador"
-                                        name="buscar_trabajador">
+                                    <input type="text" class="form-control search-input" id="searchcol"
+                                        placeholder="Buscar Empleado" name="buscar_empleado">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default" type="submit">Buscar</button>
+                                        <button class="btn btn-default" id="miBoton" type="button">Buscar</button>
                                     </span>
                                 </div>
                             </form>
-
                         </div>
                     </div>
                     <table class="table-container">
@@ -221,47 +176,47 @@
                                 <th>Id</th>
                                 <th>Cedula</th>
                                 <th>Nombres</th>
-                                <th>Apellidos</th>
-                                <th>Telefono</th>
+                                <th>Correo</th>
                                 <th>Direccion</th>
+                                <th>Telefono</th>
                                 <th>Rol</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="resultados-empleados">
                             <?php foreach ($empleado as $colaborador) { ?>
-                            <tr>
-                                <td>
-                                    <?php echo $colaborador['idcol']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['dnicol']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['nomcol']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['emacol']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['dircol']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['telcol']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['rolcol']; ?>
-                                </td>
-                                <td class="icons1">
-                                    <a href="?b=profile&s=EditarInfoemp&idcola=<?= $colaborador['idcol']; ?>">
-                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                                <td class="icons2">
-                                    <a href="#">
-                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <?php echo $colaborador['idcol']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $colaborador['dnicol']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $colaborador['nomcol']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $colaborador['emacol']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $colaborador['dircol']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $colaborador['telcol']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $colaborador['rolcol']; ?>
+                                    </td>
+                                    <td class="icons1">
+                                        <a href="?b=profile&s=EditarInfoemp&idcola=<?= $colaborador['idcol']; ?>">
+                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    <td class="icons2">
+                                        <a href="#">
+                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                             <?php } ?>
                         </tbody>
                     </table>
@@ -274,10 +229,10 @@
                         <div class="form-container">
                             <form method="POST" action="?b=profile&s=buscarClientes">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Buscar cliente"
-                                        name="buscar_cliente">
+                                    <input type="text" class="form-control search-input" placeholder="Buscar cliente"
+                                        name="buscar_cliente" id="searchcli">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default" type="submit">Buscar</button>
+                                        <button class="btn btn-default" id="miBoton" type="button">Buscar</button>
                                     </span>
                                 </div>
                             </form>
@@ -295,45 +250,46 @@
                                 <th>Telefono</th>
                             </tr>
                         </thead>
-                        <?php foreach ($cliente as $cliente) { ?>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <?php echo $cliente['idcli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['nomcli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['emacli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['usercli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['dircli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['tzonecli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['telcli']; ?>
-                                </td>
-                                <td class="icons1">
-                                    <a href="#">
-                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                                <td class="icons2">
-                                    <a href="#">
-                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                        <tbody id="resultados">
+                            <?php foreach ($cliente as $cliente) { ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $cliente['idcli']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['nomcli']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['emacli']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['usercli']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['dircli']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['tzonecli']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['telcli']; ?>
+                                    </td>
+                                    <td class="icons1">
+                                        <a href="#">
+                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    <td class="icons2">
+                                        <a href="#">
+                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
-                        <?php } ?>
                     </table>
                 </div>
+
                 <div class="profile-adm container-right5" id="container-right5">
                     <div class="title">
                         <h1>Mascotas</h1>
@@ -342,10 +298,10 @@
                         <div class="form-container">
                             <form method="POST" action="">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Buscar mascota"
+                                    <input type="text" class="form-control search-input" placeholder="Buscar mascota"
                                         name="buscar_mascota">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default" type="submit">Buscar</button>
+                                        <button class="btn btn-default" id="miBoton" type="button">Buscar</button>
                                     </span>
                                 </div>
                             </form>
@@ -363,38 +319,38 @@
                             </tr>
                         </thead>
                         <?php foreach ($mascota as $mascota) { ?>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <?php echo $mascota['idmas']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $mascota['nommas']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $mascota['edadmas']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $mascota['genmas']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $mascota['espmas']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $mascota['idcli']; ?>
-                                </td>
-                                <td class="icons1">
-                                    <a href="#">
-                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                                <td class="icons2">
-                                    <a href="#">
-                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
+                            <tbody id="resultados">
+                                <tr>
+                                    <td>
+                                        <?php echo $mascota['idmas']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['nommas']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['edadmas']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['genmas']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['espmas']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['idcli']; ?>
+                                    </td>
+                                    <td class="icons1">
+                                        <a href="#">
+                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    <td class="icons2">
+                                        <a href="#">
+                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
                         <?php } ?>
                     </table>
                 </div>
@@ -425,3 +381,8 @@
 <script src="assets/Javascript/form-disable-enable.js"></script>
 <!--Font Awesome-->
 <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script src="assets/Javascript/real_time_search.js"></script>

@@ -10,5 +10,3 @@ class SearchController
         $termino = $_POST['buscar_trabajador'];
     }
 }
-
-$searchController = new SearchController();
