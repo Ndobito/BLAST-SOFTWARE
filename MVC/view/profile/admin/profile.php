@@ -91,62 +91,13 @@
                     <div class="table-container">
                         <div class="form-container">
                             <div class="input-group">
-                                <a href=""><button class="btn btn-default" type="submit">Agregar</button></a>
+                                <input type="text" id="searchprov" class="form-control" placeholder="Buscar Proveedor"
+                                    name="buscar_proveedor">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button"
+                                        onclick="buscarProveedor()">Buscar</button>
+                                </span>
                             </div>
-                            <form method="GET" action="?b=profile&s=Inicio&p=admin" id="search-form">
-                                <div class="input-group">
-                                    <input type="text" id="searchprov" class="form-control"
-                                        placeholder="Buscar Proveedor" name="buscar_proveedor">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="submit">Buscar</button>
-                                    </span>
-                                </div>
-
-                            </form>
-                        </div>
-                        <div id="search-results">
-                            <table class="table-container">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Nombres</th>
-                                        <th>Apellidos</th>
-                                        <th>Telefono</th>
-                                        <th>Direccion</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($proveedores as $proveedor) { ?>
-                                    <tr>
-                                        <td>
-                                            <?php echo $proveedor['idprov']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $proveedor['nomprov'] ?? "Sin definir"; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $proveedor['apeprov'] ?? "Sin definir"; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $proveedor['dirprov'] ?? "Sin definir"; ?>
-                                        </td>
-                                        <td class="icons1">
-                                            <a href="?b=profile&s=showEdit">
-                                                <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                        <td class="icons2">
-                                            <a href="#">
-                                                <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                     <table class="table-container">
@@ -161,74 +112,75 @@
                         </thead>
                         <tbody>
                             <?php foreach ($proveedores as $proveedor) { ?>
-                            <tr>
-                                <td>
-                                    <?php echo $proveedor['idprov']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $proveedor['nomprov'] ?? "Sin definir"; ?>
-                                </td>
-                                <td>
-                                    <?php echo $proveedor['apeprov'] ?? "Sin definir"; ?>
-                                </td>
-                                <td>
-                                    <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
-                                </td>
-                                <td>
-                                    <?php echo $proveedor['dirprov'] ?? "Sin definir"; ?>
-                                </td>
-                                <td class="icons1">
-                                    <a href="?b=profile&s=EditarInfo" id="prveedor">
-                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                                <td class="icons2">
-                                    <a href="#">
-                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <?php echo $proveedor['idprov']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $proveedor['nomprov'] ?? "Sin definir"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $proveedor['apeprov'] ?? "Sin definir"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $proveedor['dirprov'] ?? "Sin definir"; ?>
+                                    </td>
+                                    <td class="icons1">
+                                        <a href="?b=profile&s=EditarInfo" id="prveedor">
+                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    <td class="icons2">
+                                        <a href="#">
+                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                             <?php } ?>
                         </tbody>
                     </table>
+                    
+            </div>
+            <div class="profile-adm container-right3" id="container-right3">
+                <div class="title">
+                    <h1>empleados</h1>
                 </div>
-                <div class="profile-adm container-right3" id="container-right3">
-                    <div class="title">
-                        <h1>empleados</h1>
-                    </div>
-                    <div class="table-container">
-                        <div class="form-container">
+                <div class="table-container">
+                    <div class="form-container">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <a href=""><button class="btn btn-default" type="submit">Agregar</button></a>
+                            </span>
+                        </div>
+                        <form method="POST" action="?b=profile&s=buscador">
                             <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Buscar Trabajador"
+                                    name="buscar_trabajador">
                                 <span class="input-group-btn">
-                                    <a href=""><button class="btn btn-default" type="submit">Agregar</button></a>
+                                    <button class="btn btn-default" type="submit">Buscar</button>
                                 </span>
                             </div>
-                            <form method="POST" action="?b=profile&s=buscador">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Buscar Trabajador"
-                                        name="buscar_trabajador">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="submit">Buscar</button>
-                                    </span>
-                                </div>
-                            </form>
+                        </form>
 
-                        </div>
                     </div>
-                    <table class="table-container">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Cedula</th>
-                                <th>Nombres</th>
-                                <th>Apellidos</th>
-                                <th>Telefono</th>
-                                <th>Direccion</th>
-                                <th>Rol</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($empleado as $colaborador) { ?>
+                </div>
+                <table class="table-container">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Cedula</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Telefono</th>
+                            <th>Direccion</th>
+                            <th>Rol</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($empleado as $colaborador) { ?>
                             <tr>
                                 <td>
                                     <?php echo $colaborador['idcol']; ?>
@@ -262,40 +214,40 @@
                                     </a>
                                 </td>
                             </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="profile-adm container-right4" id="container-right4">
+                <div class="title">
+                    <h1>clientes</h1>
                 </div>
-                <div class="profile-adm container-right4" id="container-right4">
-                    <div class="title">
-                        <h1>clientes</h1>
+                <div class="table-container">
+                    <div class="form-container">
+                        <form method="POST" action="?b=profile&s=buscarClientes">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Buscar cliente"
+                                    name="buscar_cliente">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">Buscar</button>
+                                </span>
+                            </div>
+                        </form>
                     </div>
-                    <div class="table-container">
-                        <div class="form-container">
-                            <form method="POST" action="?b=profile&s=buscarClientes">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Buscar cliente"
-                                        name="buscar_cliente">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="submit">Buscar</button>
-                                    </span>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <table class="table-container">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Nombre</th>
-                                <th>EMAIL</th>
-                                <th>USUARIO</th>
-                                <th>Direccion</th>
-                                <th>ZONA</th>
-                                <th>Telefono</th>
-                            </tr>
-                        </thead>
-                        <?php foreach ($cliente as $cliente) { ?>
+                </div>
+                <table class="table-container">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>EMAIL</th>
+                            <th>USUARIO</th>
+                            <th>Direccion</th>
+                            <th>ZONA</th>
+                            <th>Telefono</th>
+                        </tr>
+                    </thead>
+                    <?php foreach ($cliente as $cliente) { ?>
                         <tbody>
                             <tr>
                                 <td>
@@ -331,38 +283,38 @@
                                 </td>
                             </tr>
                         </tbody>
-                        <?php } ?>
-                    </table>
+                    <?php } ?>
+                </table>
+            </div>
+            <div class="profile-adm container-right5" id="container-right5">
+                <div class="title">
+                    <h1>Mascotas</h1>
                 </div>
-                <div class="profile-adm container-right5" id="container-right5">
-                    <div class="title">
-                        <h1>Mascotas</h1>
+                <div class="table-container">
+                    <div class="form-container">
+                        <form method="POST" action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Buscar mascota"
+                                    name="buscar_mascota">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">Buscar</button>
+                                </span>
+                            </div>
+                        </form>
                     </div>
-                    <div class="table-container">
-                        <div class="form-container">
-                            <form method="POST" action="">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Buscar mascota"
-                                        name="buscar_mascota">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="submit">Buscar</button>
-                                    </span>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <table class="table-container">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Nombre</th>
-                                <th>Edad</th>
-                                <th>Genero</th>
-                                <th>ESPECIE</th>
-                                <th>Dueño ID</th>
-                            </tr>
-                        </thead>
-                        <?php foreach ($mascota as $mascota) { ?>
+                </div>
+                <table class="table-container">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Edad</th>
+                            <th>Genero</th>
+                            <th>ESPECIE</th>
+                            <th>Dueño ID</th>
+                        </tr>
+                    </thead>
+                    <?php foreach ($mascota as $mascota) { ?>
                         <tbody>
                             <tr>
                                 <td>
@@ -395,26 +347,26 @@
                                 </td>
                             </tr>
                         </tbody>
-                        <?php } ?>
-                    </table>
-                </div>
+                    <?php } ?>
+                </table>
             </div>
         </div>
-    </main>
-    <footer>
-        <div class="footer-bottom">
-            <p>
-                <img src="assets/img/logo.jpg" alt="">
-                <i>@2023 Clinica Animal World | Veterinaria para mascotas en Colombia</i>
-                <br><br>
-            </p>
-            <p>
-                Sitio creado por
-                <img src="assets/img/logo-removebg-blast-software.png" alt="Logo Blast Software" title="Blast Software">
-                <strong>BLast Software</strong>
-            </p>
-        </div>
-    </footer>
+</div>
+</main>
+<footer>
+    <div class="footer-bottom">
+        <p>
+            <img src="assets/img/logo.jpg" alt="">
+            <i>@2023 Clinica Animal World | Veterinaria para mascotas en Colombia</i>
+            <br><br>
+        </p>
+        <p>
+            Sitio creado por
+            <img src="assets/img/logo-removebg-blast-software.png" alt="Logo Blast Software" title="Blast Software">
+            <strong>BLast Software</strong>
+        </p>
+    </div>
+</footer>
 </div>
 
 <!-- Menu Profile -->
