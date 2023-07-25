@@ -28,6 +28,8 @@ class info{
         }
     }
 
+
+
     public function guardarproveedor($idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv){
         try {
             $sql = 'INSERT INTO proveedor (idprov, nomprov, dirprov, emaprov, telprov)
@@ -45,6 +47,30 @@ class info{
             return true;
         } catch (Exception $e) {
             die($e->getMessage());
+        }
+    }
+
+
+    // colaborador
+
+    public function empleado($idColaborador){
+        $stmt = $this->conexion->prepare("SELECT * FROM colaborador WHERE idcol = ?");
+        $stmt->bind_param("i", $idColaborador);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $colaborador = $result->fetch_assoc();
+        $stmt->close();
+        return $colaborador;
+    }
+    public function actualizaempleado($idCol, $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol){
+        $stmt = $this->conexion->prepare("UPDATE colaborador SET nomcol = ?, dircol = ?, emacol = ?, telcol = ?, rolcol = ? WHERE idcol = ?");
+        $stmt->bind_param("sssssi", $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol, $idCol);
+    
+        if ($stmt->execute()) {
+            header("Location: ?b=profile&s=Inicio&p=admin");
+            exit();
+        } else {
+            echo "Error en la actualización: " . $stmt->error;
         }
     }
 

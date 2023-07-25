@@ -252,7 +252,7 @@
                                     <?php echo $colaborador['rolcol']; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="?b=profile&s=EditarInfoemp&idcola=<?= $colaborador['idcol']; ?>">
+                                    <a href="?b=editarinfo&s=EditarInfoEmp&idcola=<?= $colaborador['idcol']; ?>">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>

@@ -2,7 +2,7 @@
 include_once "model/editarInfo.php";
 class editarinfoController{
     private $object;
-    public $idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv;
+
     public function __construct()
     {
         $this->object = new info();
@@ -47,6 +47,42 @@ class editarinfoController{
         redirect("?b=profile&s=Inicio&p=admin");
     }
 
+
+    // colaborador
+
+    public function EditarInfoEmp(){
+
+        if (isset($_GET["idcola"])) {
+            $idColaborador = $_GET["idcola"];
+            $colaborador = $this->object->empleado($idColaborador);
+            require_once "view/profile/admin/empleados/editar.php";
+        } else {
+            echo "Error: ID de colaborador no encontrado.";
+            exit();
+        }
     }
+public function GuardarInfoEmp(){
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        // Verificar datos antes de actualizar
+        var_dump($_POST); // Mostrar datos enviados desde el formulario
+
+        $idCol = $_POST["idcol"];
+        $nombreCol = $_POST["nomcol"];
+        $direccionCol = $_POST["dircol"];
+        $emailCol = $_POST["emacol"];
+        $telefonoCol = $_POST["telcol"];
+        $rolCol = $_REQUEST["rolcol"];
+
+        // Llamar a la función actualizaempleado
+        $this->object->actualizaempleado($idCol, $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol);
+        setNotify("success", "Se ha actualizado los datos del empleado correctamente");
+        redirect("?b=profile&s=Inicio&p=admin");
+    }
+}
+
+
+
+
+}
 
 ?>
