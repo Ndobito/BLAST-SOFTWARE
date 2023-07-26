@@ -212,9 +212,7 @@
                                     </a>
                                 </td>
                                 <td class="icons2">
-                                    <a href="#">
-                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                    </a>
+                                <a href="?b=editarinfo&s=eliminar&idcol=<?= $colaborador["idcol"] ?>&nomcol=<?= $colaborador["idcol"] ?>"><button class="btn-borrar" ><i class="fa-solid fa-trash"></i></button></a>
                                 </td>
                             </tr>
                             <?php } ?>

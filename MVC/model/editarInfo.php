@@ -86,6 +86,18 @@ class info{
         }
     }
 
+    public function eliminar($data) {
+        $sql = "DELETE FROM colaborador WHERE idcol = ?";
+        try {
+            $this->conexion->prepare($sql)
+            ->execute([
+                $data->idcol
+            ]);
+        } catch (Exception $e) {
+			die($e->getMessage());
+		}
+    }
+
 
     ////clinetes
     public function cliente($idCliente){
