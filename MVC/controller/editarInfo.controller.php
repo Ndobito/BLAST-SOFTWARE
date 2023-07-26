@@ -3,10 +3,11 @@ include_once "model/editarinfo.php";
 
 class editarinfoController{
     private $object;
-
+    
     public function __construct()
     {
         $this->object = new info();
+       
     }
     public function EditarInfoProv(){
 
@@ -19,7 +20,7 @@ class editarinfoController{
             exit();
         }
     }
-// public function guardarproveedor(){
+// public function GuardarProveedor(){
 
    
 //     $proveedor = new info();
@@ -30,7 +31,7 @@ class editarinfoController{
 //     $proveedor->emaprov = $_REQUEST['ctEmaProv'];
 //     $proveedor->telprov = $_REQUEST['ctTelProv'];
     
-//     $this->model->Save($proveedor);
+//     $this->model->info($proveedor);
 //         setNotify("success", "Se ha guardado correctamente " . $_REQUEST['ctNomProv'] . " correctamente");
 //         redirect("?b=profile&s=Inicio&p=admin");
 // }
@@ -50,16 +51,18 @@ class editarinfoController{
     }
     public function GuardarProveedor(){
 
-        $idProv = $_POST['ctIdProv'];
         $nombreProv = $_POST['ctNomProv'];
         $direccionProv = $_POST['ctDirProv'];
         $emailProv = $_POST['ctEmaProv'];
         $telefonoProv = $_POST['ctTelProv'];
         
-        $this->object->GuardarProveedor($idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv);
-        
-        setNotify("success", "Se ha guardado correctamente " . $nombreProv . " correctamente");
-        redirect("?b=profile&s=Inicio&p=admin");
+        if($this->object->GuardarProveedor($nombreProv, $direccionProv, $emailProv, $telefonoProv)){
+            setNotify("success", "Se ha guardado correctamente " . $nombreProv . " correctamente");
+            header("Location: ?b=profile&s=Inicio&p=admin");
+        }else{
+            setcookie("notify", serialize(["status" => "error", "message" => "Error al agregar proveedor"]), time() + 5, "/");
+            header('location: ?b=profile&s=Agregar');
+        }
     }
 
 

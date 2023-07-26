@@ -5,10 +5,12 @@ class info{
     private $conexion;
     private $pdo;
     protected $model;
+    
     public function __construct()
     {
         $this->conexion = databaseConexion::conexion();
     }
+
     public function proveedor($idProveedor){
         $stmt = $this->conexion->prepare("SELECT * FROM proveedor WHERE idprov = ?");
         $stmt->bind_param("i", $idProveedor);
@@ -32,21 +34,16 @@ class info{
 
 
 
-    public function GuardarProveedor($idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv){
+    public function GuardarProveedor($nombreProv, $direccionProv, $emailProv, $telefonoProv){
         try {
-            $sql = 'INSERT INTO proveedor (idprov, nomprov, dirprov, emaprov, telprov)
-                    VALUES (?, ?, ?, ?, ?)';
+            $sql = 'INSERT INTO proveedor(idprov, nomprov, dirprov, emaprov, telprov) VALUES (?, ?, ?, ?, ?)';
             $stmt = $this->conexion->prepare($sql);
             $stmt->bind_param("issss", $idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv);
-            $stmt->execute();
-            if ($stmt->execute()) {
-                header("Location: ?b=profile&s=Inicio&p=admin");
-                exit();
+            if($stmt->execute()) {
+                return true;
             } else {
-                echo "Error en la actualización: " . $stmt->error;
+                return false;
             }
-            setcookie("notify", serialize(["message" => "Se ha agregado el proveedor"]), 5, "/");
-            return true;
         } catch (Exception $e) {
             die($e->getMessage());
         }
