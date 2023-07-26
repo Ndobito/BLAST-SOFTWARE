@@ -1,12 +1,12 @@
 <?php
 if (isset($_COOKIE["notify"])) {
     $notify = unserialize($_COOKIE["notify"]);
-    ?>
+?>
     <div class="notify">
         <?php
         switch ($notify["status"]) {
             case "success":
-                ?>
+        ?>
                 <div class="success-head">
                     <div>
                         <div class="<?= $notify["status"] ?>"><i class="fa-solid fa-check"></i></div>
@@ -14,10 +14,10 @@ if (isset($_COOKIE["notify"])) {
                     </div>
                     <div id="close-notify"><i class="fa-solid fa-times"></i></div>
                 </div>
-                <?php
+            <?php
                 break;
             case "error":
-                ?>
+            ?>
                 <div class="error-head">
                     <div>
                         <div class="<?= $notify["status"] ?>"><i class="fa-solid fa-warning"></i></div>
@@ -25,13 +25,11 @@ if (isset($_COOKIE["notify"])) {
                     </div>
                     <div id="close-notify"><i class="fa-solid fa-times"></i></div>
                 </div>
-                <?php
+        <?php
                 break;
         }
         ?>
-        <div>
-            <?= $notify["message"] ?>
-        </div>
+        <div><?= $notify["message"] ?></div>
     </div>
     <script>
         (() => {
@@ -48,5 +46,5 @@ if (isset($_COOKIE["notify"])) {
             setTimeout(() => closeNotify.click(), 5000);
         })();
     </script>
-    <?php
+<?php
 }

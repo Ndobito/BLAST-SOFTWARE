@@ -1,6 +1,6 @@
 <?php
  
-include_once "lib/redirector.php";
+include_once "lib/notify/redirector.php";
 
 function redirect($r) {
     $redirector = new Redirector($r);
