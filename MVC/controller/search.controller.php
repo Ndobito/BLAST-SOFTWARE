@@ -1,0 +1,2 @@
+
+$searchController = new SearchController();

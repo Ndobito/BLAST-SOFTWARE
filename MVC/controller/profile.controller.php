@@ -96,10 +96,7 @@ class ProfileController
 
         $filteredProveedores = array_filter($proveedores, function ($proveedor) use ($searchTerm) {
             return (stripos($proveedor['idprov'], $searchTerm) !== false) ||
-                (stripos($proveedor['nomprov'], $searchTerm) !== false) ||
-                (stripos($proveedor['dirprov'], $searchTerm) !== false) ||
-                (stripos($proveedor['emaprov'], $searchTerm) !== false) ||
-                (stripos($proveedor['telprov'], $searchTerm) !== false);
+                (stripos($proveedor['nomprov'], $searchTerm) !== false);
         });
 
         foreach ($filteredProveedores as $proveedor) {
@@ -116,46 +113,62 @@ class ProfileController
     }
 
     public function buscarColaborador()
-{
-    $searchTerm = $_POST['buscar_empleado'];
-    $empleados = $this->object->getEmpleado();
-
-    $filteredEmpleados = array_filter($empleados, function ($empleado) use ($searchTerm) {
-        return (stripos($empleado['idcol'], $searchTerm) !== false) ||
-            (stripos($empleado['dnicol'], $searchTerm) !== false) ||
-            (stripos($empleado['nomcol'], $searchTerm) !== false) ||
-            (stripos($empleado['emacol'], $searchTerm) !== false) ||
-            (stripos($empleado['dircol'], $searchTerm) !== false) ||
-            (stripos($empleado['telcol'], $searchTerm) !== false) ||
-            (stripos($empleado['rolcol'], $searchTerm) !== false);
-    });
-
-    foreach ($filteredEmpleados as $empleado) {
-        echo '<tr>';
-        echo '<td>' . $empleado['idcol'] . '</td>';
-        echo '<td>' . ($empleado['dnicol'] ?? "Sin definir") . '</td>';
-        echo '<td>' . ($empleado['nomcol'] ?? "Sin definir") . '</td>';
-        echo '<td>' . ($empleado['emacol'] ?? "Sin definir") . '</td>';
-        echo '<td>' . ($empleado['dircol'] ?? "Sin definir") . '</td>';
-        echo '<td>' . ($empleado['telcol'] ?? "Sin definir") . '</td>';
-        echo '<td>' . ($empleado['rolcol'] ?? "Sin definir") . '</td>';
-        echo '<td class="icons1"><a href="?b=profile&s=EditarInfoemp&idcola=' . $empleado['idcol'] . '"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
-        echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
-        echo '</tr>';
-    }
-}
-
-
-
-
-
-
-
-
-    public function Agregar()
     {
-        require_once "view/profile/admin/proveedor/agregar.php";
+        $searchTerm = $_POST['buscar_empleado'];
+        $empleados = $this->object->getEmpleado();
+
+        $filteredEmpleados = array_filter($empleados, function ($empleado) use ($searchTerm) {
+            return (stripos($empleado['idcol'], $searchTerm) !== false) ||
+                (stripos($empleado['dnicol'], $searchTerm) !== false) ||
+                (stripos($empleado['nomcol'], $searchTerm) !== false) ||
+                (stripos($empleado['rolcol'], $searchTerm) !== false);
+        });
+
+        foreach ($filteredEmpleados as $empleado) {
+            echo '<tr>';
+            echo '<td>' . $empleado['idcol'] . '</td>';
+            echo '<td>' . ($empleado['dnicol'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($empleado['nomcol'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($empleado['emacol'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($empleado['dircol'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($empleado['telcol'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($empleado['rolcol'] ?? "Sin definir") . '</td>';
+            echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
+            echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
+            echo '</tr>';
+        }
     }
+    public function buscarClientes()
+    {
+        $searchTerm = $_POST['buscar_cliente'];
+        $clientes = $this->object->getCliente();
+
+        $filteredcliente = array_filter($clientes, function ($cliente) use ($searchTerm) {
+            return (stripos($cliente['idcli'], $searchTerm) !== false) ||
+                (stripos($cliente['nomcli'], $searchTerm) !== false) ||
+                (stripos($cliente['emacli'], $searchTerm) !== false) ||
+                (stripos($cliente['usercli'], $searchTerm) !== false);
+        });
+
+        foreach ($filteredcliente as $cliente) {
+            echo '<tr>';
+            echo '<td>' . $cliente['idcli'] . '</td>';
+            echo '<td>' . ($cliente['nomcli'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['emacli'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['usercli'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['dircli'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['tzonecli'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['telcli'] ?? "Sin definir") . '</td>';
+            echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
+            echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
+            echo '</tr>';
+        }
+    }
+
+
+
+
+
 
     //Metodo para cerrar Sesion
     public function cerrarSesion()
