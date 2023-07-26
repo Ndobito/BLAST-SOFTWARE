@@ -76,27 +76,27 @@ class editarinfoController{
             exit();
         }
     }
-public function GuardarInfoEmp(){
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        // Verificar datos antes de actualizar
-        var_dump($_POST); // Mostrar datos enviados desde el formulario
+    public function GuardarInfoEmp(){
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-        $idCol = $_POST["idcol"];
-        $nombreCol = $_POST["nomcol"];
-        $direccionCol = $_POST["dircol"];
-        $emailCol = $_POST["emacol"];
-        $telefonoCol = $_POST["telcol"];
-        $rolCol = $_REQUEST["rolcol"];
 
-        // Llamar a la función actualizaempleado
-        $this->object->actualizaempleado($idCol, $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol);
-        setNotify("success", "Se ha actualizado los datos del empleado correctamente");
-        redirect("?b=profile&s=Inicio&p=admin");
+
+            $idCol = $_POST["idcol"];
+            $nombreCol = $_POST["nomcol"];
+            $direccionCol = $_POST["dircol"];
+            $emailCol = $_POST["emacol"];
+            $telefonoCol = $_POST["telcol"];
+            $rolCol = $_REQUEST["rolcol"];
+
+            $this->object->actualizaempleado($idCol, $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol);
+            
+            setNotify("success", "Se ha actualizado los datos del empleado correctamente");
+            redirect("?b=profile&s=Inicio&p=admin");
+        }
     }
-}
 
 
-
+    ///// clientes
 
 }
 

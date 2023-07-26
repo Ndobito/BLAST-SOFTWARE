@@ -12,7 +12,7 @@
         <div class="edit">
             <h1 >Editar Empleados</h1>
             <div class="form">
-            <form action="?b=editarinfo&s=EditarInfoEmp&idcola=<?= $colaborador['idcol']; ?>" method="POST">
+            <form action="?b=editarinfo&s=GuardarInfoEmp&idcola=<?= $colaborador['idcol']; ?>" method="POST">
                 <input type="hidden" name="idcol" id="Idcol" value="<?= $colaborador["idcol"] ?? "No definido" ?>" >
                     <div>
                         <label class="tex" for="">Nombre:</label>
