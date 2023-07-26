@@ -114,7 +114,6 @@ class Profile
         $cliente = array();
 
         if ($result->num_rows > 0) {
-            // Recorrer los resultados y almacenarlos en el array $proveedores
             while ($row = $result->fetch_assoc()) {
                 $cliente[] = $row;
             }
@@ -129,12 +128,26 @@ class Profile
         $mascota = array();
 
         if ($result->num_rows > 0) {
-            // Recorrer los resultados y almacenarlos en el array $proveedores
             while ($row = $result->fetch_assoc()) {
                 $mascota[] = $row;
             }
         }
 
         return $mascota;
+    }
+
+    public function getContMas($id){
+
+        $query = "SELECT telcli FROM cliente WHERE idcli='".$id."'";
+        $result = $this->conexion->query($query);
+        $cliMas = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $cliMas[] = $row;
+            }
+        }
+        return $cliMas;
+
     }
 }

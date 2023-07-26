@@ -174,7 +174,6 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Cedula</th>
                                 <th>Nombres</th>
                                 <th>Correo</th>
                                 <th>Direccion</th>
@@ -187,9 +186,6 @@
                                 <tr>
                                     <td>
                                         <?php echo $colaborador['idcol']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $colaborador['dnicol']; ?>
                                     </td>
                                     <td>
                                         <?php echo $colaborador['nomcol']; ?>
@@ -243,10 +239,10 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Nombre</th>
-                                <th>EMAIL</th>
-                                <th>USUARIO</th>
+                                <th>Email</th>
+                                <th>Usuario</th>
                                 <th>Direccion</th>
-                                <th>ZONA</th>
+                                <th>Zona</th>
                                 <th>Telefono</th>
                             </tr>
                         </thead>
@@ -314,8 +310,8 @@
                                 <th>Nombre</th>
                                 <th>Edad</th>
                                 <th>Genero</th>
-                                <th>ESPECIE</th>
-                                <th>Dueño ID</th>
+                                <th>Especie</th>
+                                <th>Contacto de Dueño</th>
                             </tr>
                         </thead>
                         <?php foreach ($mascota as $mascota) { ?>
@@ -337,7 +333,9 @@
                                         <?php echo $mascota['espmas']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $mascota['idcli']; ?>
+                                        <?php
+                                           
+                                        ?>
                                     </td>
                                     <td class="icons1">
                                         <a href="#">

@@ -16,6 +16,9 @@ class ProfileController
         $proveedores = $this->object->getProveedores();
         $empleado = $this->object->getEmpleado();
         $cliente = $this->object->getCliente();
+        // foreach($cliente as $cliente){
+        //     var_dump($cliente['idcli']);
+        // }
         $mascota = $this->object->getMascota();
         $usuario = $_SESSION['usuario'];
         $model = new Profile();

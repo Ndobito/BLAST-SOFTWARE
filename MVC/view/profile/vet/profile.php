@@ -98,7 +98,6 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Cedula</th>
                                 <th>Nombres</th>
                                 <th>Apellidos</th>
                                 <th>Telefono</th>
@@ -110,9 +109,6 @@
                                 <tr>
                                     <td>
                                         <?= $cliente->Idcliente ?>
-                                    </td>
-                                    <td>
-                                        <?= $cliente->cedula ?>
                                     </td>
                                     <td>
                                         <?= $cliente->nombres ?>
