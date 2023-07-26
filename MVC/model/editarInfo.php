@@ -75,6 +75,29 @@ class info{
 
 
     ////clinetes
+    public function cliente($idCliente){
+        $stmt = $this->conexion->prepare("SELECT * FROM cliente WHERE idcli = ?");
+        $stmt->bind_param("i", $idCliente);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $cliente = $result->fetch_assoc();
+        $stmt->close();
+        return $cliente;
+    }
+    public function actualizacliente($idCli, $nombreCli, $emailCli,  $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli){
+        $stmt = $this->conexion->prepare("UPDATE cliente SET nomcli = ?, emacli = ?, usercli = ?, dircli = ?, tzonecli = ?, telcli = ?, telaltcli = ?  WHERE idcli = ?");
+        $stmt->bind_param("sssssssi",  $nombreCli, $emailCli,  $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli, $idCli);
+    
+        if ($stmt->execute()) {
+            header("Location: ?b=profile&s=Inicio&p=admin");
+            exit();
+        } else {
+            echo "Error en la actualización: " . $stmt->error;
+        }
+    }
 
+    ////mascota
+
+    
 }
 ?>

@@ -248,6 +248,7 @@
                                 <th>Direccion</th>
                                 <th>ZONA</th>
                                 <th>Telefono</th>
+                                <th>Telefono alternativo</th>
                             </tr>
                         </thead>
                         <tbody id="resultados-clientes">
@@ -274,8 +275,11 @@
                                 <td>
                                     <?php echo $cliente['telcli']; ?>
                                 </td>
+                                <td>
+                                    <?php echo $cliente['telaltcli']; ?>
+                                </td>
                                 <td class="icons1">
-                                    <a href="#">
+                                    <a href="?b=editarinfo&s=EditarInfoCli&idcli=<?= $cliente['idcli']; ?>">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>

@@ -75,7 +75,7 @@ class editarinfoController{
             $direccionCol = $_POST["dircol"];
             $emailCol = $_POST["emacol"];
             $telefonoCol = $_POST["telcol"];
-            $rolCol = $_REQUEST["rolcol"];
+            $rolCol = $_POST["rolcol"];
 
             $this->object->actualizaempleado($idCol, $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol);
             
@@ -87,6 +87,38 @@ class editarinfoController{
 
     ///// clientes
 
+    public function editarInfoCli(){
+        
+        if (isset($_GET["idcli"])) {
+            $idCliente = $_GET["idcli"];
+            $cliente = $this->object->cliente($idCliente);
+            require_once "view/profile/admin/clientes/editar.php";
+        } else {
+            echo "Error: ID de cliente no encontrado.";
+            exit();
+        }
+    }
+    public function GuardarInfoCli(){
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+            $idCli = $_POST["idcli"];
+            $nombreCli = $_POST["nomcli"];
+            $emailCli = $_POST["emacli"];
+            $userCli = $_POST["usercli"];
+            $direccionCli = $_POST["dircli"];
+            $tzonecli = $_POST["tzonecli"];
+            $telefonoCli = $_POST["telcli"];
+            $telefonoaltCli = $_POST["telaltcli"];
+
+            $this->object->actualizacliente($idCli, $nombreCli, $emailCli,  $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli);
+            
+            setNotify("success", "Se ha actualizado los datos del cleinte correctamente");
+            redirect("?b=profile&s=Inicio&p=admin");
+        }
+    }
+
+    ///// mascota
+    
 }
 
 ?>
