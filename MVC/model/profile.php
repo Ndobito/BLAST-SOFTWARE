@@ -121,7 +121,6 @@ class Profile
         }
         return $cliente;
     }
-
     public function buscarClientes($buscar)
     {
         $query = "SELECT * FROM cliente WHERE idcli LIKE '%$buscar%'";
