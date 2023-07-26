@@ -91,7 +91,7 @@
                     <div class="table-container">
                         <div class="form-container">
                             <div class="input-group">
-                                <a href="?b=profile&s=Agregar"><button class="btn btn-default"
+                                <a href="?b=editarinfo&s=GuardarProveedor"><button class="btn btn-default"
                                         type="submit">Agregar</button></a>
                             </div>
                             <form action="?b=profile&s=buscarProveedor" method="post">
@@ -155,11 +155,11 @@
                     <div class="table-container">
                         <div class="form-container">
                             <div class="input-group">
-                                <span class="input-group-btn">
-                                    <a href=""><button class="btn btn-default" type="submit">Agregar</button></a>
-                                </span>
+                                <div class="input-group-btn">
+                                    <a href="?b=editarInfo&s=GuardarColaborador"><button class="btn btn-default" type="submit">Agregar</button></a>
+                                </div>
                             </div>
-                            <form method="POST" action="?b=profile&s=buscarColaborador">
+                            <form method="POST" action="?b=editarInfo&s=buscarColaborador">
                                 <div class="input-group">
                                     <input type="text" class="form-control search-input" id="searchcol"
                                         placeholder="Buscar Empleado" name="buscar_empleado">

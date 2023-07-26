@@ -38,8 +38,7 @@ class info{
         try {
             $sql = 'INSERT INTO proveedor(idprov, nomprov, dirprov, emaprov, telprov) VALUES (?, ?, ?, ?, ?)';
             $stmt = $this->conexion->prepare($sql);
-            $stmt->bind_param("issss", $idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv);
-            if($stmt->execute()) {
+            if($stmt->execute(["sssi",  $nombreProv, $direccionProv, $emailProv, $telefonoProv])) {
                 return true;
             } else {
                 return false;
@@ -70,6 +69,20 @@ class info{
             exit();
         } else {
             echo "Error en la actualización: " . $stmt->error;
+        }
+    }
+
+    public function GuardarColaborador( $dnicol, $nombreCol, $emailCol, $passwordCol, $direccionCol,  $telefonoCol, $rolCol){
+        try {
+            $sql = 'INSERT INTO colaborador(idcol, dnicol, nomcol, emacol, passcol, dircol, telcol, rolcol) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+            $stmt = $this->conexion->prepare($sql);
+            if($stmt->execute(["ssssssi",  $dnicol, $nombreCol, $emailCol, $passwordCol, $direccionCol,  $telefonoCol, $rolCol])) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
         }
     }
 

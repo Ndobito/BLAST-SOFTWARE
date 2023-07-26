@@ -166,10 +166,6 @@ class ProfileController
 
 
 
-    public function Agregar()
-    {
-        require_once "view/profile/admin/proveedor/agregar.php";
-    }
 
     //Metodo para cerrar Sesion
     public function cerrarSesion()

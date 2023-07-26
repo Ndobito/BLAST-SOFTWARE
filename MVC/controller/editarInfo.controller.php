@@ -36,7 +36,8 @@ class editarinfoController{
 
     }
     public function GuardarProveedor(){
-
+        require_once "view/profile/admin/proveedor/agregar.php";
+        if((isset($_POST["btnEditar"]))){
         $nombreProv = $_POST['ctNomProv'];
         $direccionProv = $_POST['ctDirProv'];
         $emailProv = $_POST['ctEmaProv'];
@@ -50,9 +51,9 @@ class editarinfoController{
             header('location: ?b=profile&s=Agregar');
         }
     }
+}
 
-
-    // colaborador
+    //Colaborador 
 
     public function EditarInfoEmp(){
 
@@ -69,7 +70,6 @@ class editarinfoController{
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
-
             $idCol = $_POST["idcol"];
             $nombreCol = $_POST["nomcol"];
             $direccionCol = $_POST["dircol"];
@@ -79,8 +79,28 @@ class editarinfoController{
 
             $this->object->actualizaempleado($idCol, $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol);
             
-            setNotify("success", "Se ha actualizado los datos del empleado correctamente");
-            redirect("?b=profile&s=Inicio&p=admin");
+        }
+    }
+    public function GuardarColaborador(){
+        require_once "view/profile/admin/empleados/agregar.php";
+
+        if (isset($_POST["btnEditar"])) {
+            $dniCol = $_POST['ctDniCol'];
+            $nombreCol = $_POST['ctNomCol'];
+            $emailCol = $_POST['ctEmaCol'];
+            $passwordCol = $_POST['ctPassCol'];
+            $direccionCol = $_POST['ctDirEmp'];
+            $telefonoCol = $_POST['ctTelCol'];
+            $rolCol = $_POST['ctRolCol'];
+          
+            
+            if($this->object->GuardarColaborador($dniCol, $nombreCol, $emailCol, $passwordCol, $direccionCol,  $telefonoCol, $rolCol)){
+                setNotify("success", "Se ha guardado correctamente " . $nombreCol . " correctamente");
+                header("Location: ?b=profile&s=Inicio&p=admin");
+            }else{
+                setcookie("notify", serialize(["status" => "error", "message" => "Error al agregar proveedor"]), time() + 5, "/");
+                header('location: ?b=profile&s=Agregar');
+            }
         }
     }
 
