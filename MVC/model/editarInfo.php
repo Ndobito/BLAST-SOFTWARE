@@ -3,10 +3,12 @@ include_once 'lib/database/database.php';
 
 class info{
     private $conexion;
+    private $pdo;
+    protected $model;
     public function __construct()
     {
         $this->conexion = databaseConexion::conexion();
-        $controller = new editarinfo();
+        // $controller = new editarinfo();
     }
     public function proveedor($idProveedor){
         $stmt = $this->conexion->prepare("SELECT * FROM proveedor WHERE idprov = ?");
@@ -31,18 +33,18 @@ class info{
 
 
 
-    public function guardarproveedor( $data){
+    public function Save($data){
         try {
-            $sql = 'INSERT INTO proveedor (idprov,nomprod,dirprod,emaprod,telprod)
-            VALUES (?, ?, ?, ?, ?,)';
+            $sql = 'INSERT INTO proveedor (nomprov,dirprov,emaprov,telprov)
+            VALUES (?, ?, ?, ?)';
             $this->pdo->prepare($sql)
             ->execute(
                 array(
-                    $data->nomprod,
-                    $data->desprod, 
-                    $data->dirprod,
-                    $data->emaprod,
-                    $data->telprod,
+                    // $data->idprov,
+                    $data->nomprov, 
+                    $data->dirprov,
+                    $data->emaprov,
+                    $data->telprov,
                     
                 )
             );

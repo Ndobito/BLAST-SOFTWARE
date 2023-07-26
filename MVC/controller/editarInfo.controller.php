@@ -1,7 +1,9 @@
 <?php 
-include_once "model/editarInfo.php";
+include_once "model/editarinfo.php";
+
 class editarinfoController{
     private $object;
+    protected $model;
     public function __construct()
     {
         $this->object = new info();
@@ -19,16 +21,16 @@ class editarinfoController{
     }
 public function guardarproveedor(){
 
-    
-    $prod = new ProductModel();
+   
+    $proveedor = new info();
 
-    $prod->idprov = $_REQUEST['idprov'];
-    $prod->nomprod = $_REQUEST['ctNomProv'];
-    $prod->dirprod = $_REQUEST['ctDirProd'];
-    $prod->emaprod = $_REQUEST['ctEmaProv'];
-    $prod->telprod = $_REQUEST['ctTelProv'];
+    // $proveedor->idprov = $_REQUEST['idprov'];
+    $proveedor->nomprov = $_REQUEST['ctNomProv'];
+    $proveedor->dirprov = $_REQUEST['ctDirProv'];
+    $proveedor->emaprov = $_REQUEST['ctEmaProv'];
+    $proveedor->telprov = $_REQUEST['ctTelProv'];
     
-    $this->model->guardar($prod);
+    $this->model->Save($proveedor);
         setNotify("success", "Se ha guardado correctamente " . $_REQUEST['ctNomProv'] . " correctamente");
         redirect("?b=profile&s=Inicio&p=admin");
 }
