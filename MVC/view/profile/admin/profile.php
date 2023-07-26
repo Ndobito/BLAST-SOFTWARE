@@ -83,7 +83,7 @@
                     <div class="table-container">
                         <div class="form-container">
                             <div class="input-group">
-                                <a href="?b=profile&s=Agregar"><button class="btn btn-default" type="submit">Agregar</button></a>
+                                <a href="?b=editarinfo&s=GuardarProveedor"><button class="btn btn-default" type="submit">Agregar</button></a>
                             </div>
                             <form action="?b=profile&s=buscarProveedor" method="post">
                                 <div class="input-group">
@@ -124,12 +124,12 @@
                                         <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
                                     </td>
                                     <td class="icons1">
-                                        <a href="?b=profile&s=EditarInfo" id="Prveedor">
+                                        <a href="?b=editarinfo&s=EditarInfoProv&idprod=<?= $proveedor['idprov']; ?>" id="Prveedor">
                                             <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                         </a>
                                     </td>
                                     <td class="icons2">
-                                        <a href="?b=profile&s=eliminarProveedor&id=<?php echo $proveedor['idprov']; ?>">
+                                        <a href="#">
                                             <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
                                         </a>
                                     </td>
@@ -145,11 +145,11 @@
                     <div class="table-container">
                         <div class="form-container">
                             <div class="input-group">
-                                <span class="input-group-btn">
-                                    <a href=""><button class="btn btn-default" type="submit">Agregar</button></a>
-                                </span>
+                                <div class="input-group-btn">
+                                    <a href="?b=editarInfo&s=GuardarColaborador"><button class="btn btn-default" type="submit">Agregar</button></a>
+                                </div>
                             </div>
-                            <form method="POST" action="?b=profile&s=buscarColaborador">
+                            <form method="POST" action="?b=editarInfo&s=buscarColaborador">
                                 <div class="input-group">
                                     <input type="text" class="form-control search-input" id="searchcol" placeholder="Buscar Empleado" name="buscar_empleado">
                                     <span class="input-group-btn">
@@ -178,25 +178,25 @@
                                         <?php echo $colaborador['idcol']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $colaborador['dnicol'] ?? "Sin definir";; ?>
+                                        <?php echo $colaborador['dnicol']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $colaborador['nomcol'] ?? "Sin definir";; ?>
+                                        <?php echo $colaborador['nomcol']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $colaborador['emacol'] ?? "Sin definir";; ?>
+                                        <?php echo $colaborador['emacol']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $colaborador['dircol'] ?? "Sin definir";; ?>
+                                        <?php echo $colaborador['dircol']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $colaborador['telcol'] ?? "Sin definir";; ?>
+                                        <?php echo $colaborador['telcol']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $colaborador['rolcol'] ?? "Sin definir";; ?>
+                                        <?php echo $colaborador['rolcol']; ?>
                                     </td>
                                     <td class="icons1">
-                                        <a href="?b=profile&s=EditarInfoemp&idcola=<?= $colaborador['idcol']; ?>">
+                                        <a href="?b=editarinfo&s=EditarInfoEmp&idcola=<?= $colaborador['idcol']; ?>">
                                             <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                         </a>
                                     </td>
@@ -236,7 +236,7 @@
                                 <th>Direccion</th>
                                 <th>ZONA</th>
                                 <th>Telefono</th>
-                                <th>Telefono Alternativo</th>
+                                <th>Telefono alternativo</th>
                             </tr>
                         </thead>
                         <tbody id="resultados-clientes">
@@ -246,28 +246,28 @@
                                         <?php echo $cliente['idcli']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $cliente['nomcli'] ?? "Sin definir";; ?>
+                                        <?php echo $cliente['nomcli']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $cliente['emacli'] ?? "Sin definir";; ?>
+                                        <?php echo $cliente['emacli']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $cliente['usercli'] ?? "Sin definir";; ?>
+                                        <?php echo $cliente['usercli']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $cliente['dircli'] ?? "Sin definir";; ?>
+                                        <?php echo $cliente['dircli']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $cliente['tzonecli'] ?? "Sin definir";; ?>
+                                        <?php echo $cliente['tzonecli']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $cliente['telcli'] ?? "Sin definir";; ?>
+                                        <?php echo $cliente['telcli']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $cliente['telaltcli'] ?? "Sin definir";; ?>
+                                        <?php echo $cliente['telaltcli']; ?>
                                     </td>
                                     <td class="icons1">
-                                        <a href="#">
+                                        <a href="?b=editarinfo&s=EditarInfoCli&idcli=<?= $cliente['idcli']; ?>">
                                             <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                         </a>
                                     </td>
@@ -331,7 +331,7 @@
                                         <?php echo $mascota['idcli'] ?? "Sin definir";; ?>
                                     </td>
                                     <td class="icons1">
-                                        <a href="#">
+                                        <a href="?b=editarinfo&s=Editarmas&idmas=<?= $mascota['idmas']; ?>">
                                             <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                         </a>
                                     </td>
