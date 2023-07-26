@@ -112,6 +112,9 @@ class editarinfoController{
             redirect("?b=profile&s=Inicio&p=admin");
         }
     }
+
+    ///// mascota
+    
 }
 
 ?>

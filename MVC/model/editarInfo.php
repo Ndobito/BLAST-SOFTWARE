@@ -97,5 +97,8 @@ class info{
         }
     }
 
+    ////mascota
+
+    
 }
 ?>
