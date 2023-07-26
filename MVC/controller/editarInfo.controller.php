@@ -118,7 +118,33 @@ class editarinfoController{
     }
 
     ///// mascota
-    
+
+    public function editarmas(){
+        
+        if (isset($_GET["idmas"])) {
+            $idMascota = $_GET["idmas"];
+            $mascota = $this->object->mascota($idMascota);
+            require_once "view/profile/admin/mascotas/editar.php";
+        } else {
+            echo "Error: ID de mascota no encontrado.";
+            exit();
+        }
+    }
+    public function GuardarInfoMas(){
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+            $idmas = $_POST["idmas"];
+            $nombremas = $_POST["nommas"];
+            $edadmas = $_POST["edadmas"];
+            $genmas = $_POST["genmas"];
+            $espciemas = $_POST["espmas"];
+
+            $this->object->actualizamas($idmas, $nombremas, $edadmas,  $genmas, $espciemas);
+            
+            setNotify("success", "Se ha actualizado los datos del cleinte correctamente");
+            redirect("?b=profile&s=Inicio&p=admin");
+        }
+    }
 }
 
 ?>

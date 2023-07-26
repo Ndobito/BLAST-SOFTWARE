@@ -344,7 +344,7 @@
                                     <?php echo $mascota['idcli']; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="#">
+                                    <a href="?b=editarinfo&s=Editarmas&idmas=<?= $mascota['idmas']; ?>">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>

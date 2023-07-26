@@ -98,6 +98,28 @@ class info{
 
     ////mascota
 
+    public function mascota($idMascota){
+        $stmt = $this->conexion->prepare("SELECT * FROM mascota WHERE idmas = ?");
+        $stmt->bind_param("i", $idMascota);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $mascota = $result->fetch_assoc();
+        $stmt->close();
+        return $mascota;
+    }
+    public function actualizamas($idmas, $nombremas, $edadmas,  $genmas, $espciemas){
+        $stmt = $this->conexion->prepare("UPDATE mascota SET nommas = ?, edadmas = ?, genmas = ?, espmas = ? WHERE idmas = ?");
+        $stmt->bind_param("ssssi",  $nombremas, $edadmas,  $genmas, $espciemas, $idmas);
     
+        if ($stmt->execute()) {
+            header("Location: ?b=profile&s=Inicio&p=admin");
+            exit();
+        } else {
+            echo "Error en la actualización: " . $stmt->error;
+        }
+    }
+
+
+
 }
 ?>
