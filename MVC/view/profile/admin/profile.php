@@ -134,7 +134,7 @@
                                     <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="?b=profile&s=EditarInfo" id="Prveedor">
+                                    <a href="?b=editarinfo&s=EditarInfoProv&idprod=<?= $proveedor['idprov']; ?>" id="Prveedor">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
@@ -207,7 +207,7 @@
                                     <?php echo $colaborador['rolcol']; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="?b=profile&s=EditarInfoemp&idcola=<?= $colaborador['idcol']; ?>">
+                                    <a href="?b=editarinfo&s=EditarInfoEmp&idcola=<?= $colaborador['idcol']; ?>">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
