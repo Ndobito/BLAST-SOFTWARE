@@ -64,6 +64,20 @@ class Profile
 
         return $proveedores;
     }
+    public function buscarProveedor($buscar)
+    {
+        $query = "SELECT * FROM proveedor WHERE idprov LIKE '%$buscar%'";
+        $result = $this->conexion->query($query);
+        $proveedores = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $proveedores[] = $row;
+            }
+        }
+        return $proveedores;
+    }
+
     public function getEmpleado()
     {
         $query = "SELECT * FROM colaborador";
@@ -76,27 +90,21 @@ class Profile
                 $empleado[] = $row;
             }
         }
-
         return $empleado;
     }
-    public function buscarProveedor($filtro)
+    public function buscarEmpleado($buscar)
     {
-        $filtro = '%' . $filtro . '%';
-        $query = "SELECT * FROM proveedor WHERE nomprov LIKE ?";
-        $stmt = $this->conexion->prepare($query);
-        $stmt->bind_param("s", $filtro);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $proveedores = array();
+        $query = "SELECT * FROM colaborador WHERE idcol LIKE '%$buscar%'";
+        $result = $this->conexion->query($query);
+        $empleados = array();
 
         if ($result->num_rows > 0) {
-            // Recorrer los resultados y almacenarlos en el array $proveedores
             while ($row = $result->fetch_assoc()) {
-                $proveedores[] = $row;
+                $empleados[] = $row;
             }
         }
 
-        return $proveedores;
+        return $empleados;
     }
 
     public function getCliente()
@@ -107,6 +115,20 @@ class Profile
 
         if ($result->num_rows > 0) {
             // Recorrer los resultados y almacenarlos en el array $proveedores
+            while ($row = $result->fetch_assoc()) {
+                $cliente[] = $row;
+            }
+        }
+        return $cliente;
+    }
+
+    public function buscarClientes($buscar)
+    {
+        $query = "SELECT * FROM cliente WHERE idcli LIKE '%$buscar%'";
+        $result = $this->conexion->query($query);
+        $cliente = array();
+
+        if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $cliente[] = $row;
             }

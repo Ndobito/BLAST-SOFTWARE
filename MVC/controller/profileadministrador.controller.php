@@ -7,21 +7,15 @@ class ProfileController
 {
     public function Inicio()
     {
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             $updateProfileController = new UpdateProfileController();
             $updateProfileController->guardarAdministrador();
         }
-        $nombreUsuario = $_SESSION['usuario'];
 
+        $nombreUsuario = $_SESSION['usuario'];
         $model = new Profile();
         $administrador = $model->selectUser($nombreUsuario);
-
         require_once "view/footerprofile.php";
-    }
-    public function buscarProveedor()
-    {
     }
 
     public function cerrarSesion()

@@ -3,7 +3,7 @@ include_once "model/editarinfo.php";
 
 class editarinfoController{
     private $object;
-    protected $model;
+
     public function __construct()
     {
         $this->object = new info();
@@ -19,21 +19,21 @@ class editarinfoController{
             exit();
         }
     }
-public function guardarproveedor(){
+// public function guardarproveedor(){
 
    
-    $proveedor = new info();
+//     $proveedor = new info();
 
-    // $proveedor->idprov = $_REQUEST['idprov'];
-    $proveedor->nomprov = $_REQUEST['ctNomProv'];
-    $proveedor->dirprov = $_REQUEST['ctDirProv'];
-    $proveedor->emaprov = $_REQUEST['ctEmaProv'];
-    $proveedor->telprov = $_REQUEST['ctTelProv'];
+//     // $proveedor->idprov = $_REQUEST['idprov'];
+//     $proveedor->nomprov = $_REQUEST['ctNomProv'];
+//     $proveedor->dirprov = $_REQUEST['ctDirProv'];
+//     $proveedor->emaprov = $_REQUEST['ctEmaProv'];
+//     $proveedor->telprov = $_REQUEST['ctTelProv'];
     
-    $this->model->Save($proveedor);
-        setNotify("success", "Se ha guardado correctamente " . $_REQUEST['ctNomProv'] . " correctamente");
-        redirect("?b=profile&s=Inicio&p=admin");
-}
+//     $this->model->Save($proveedor);
+//         setNotify("success", "Se ha guardado correctamente " . $_REQUEST['ctNomProv'] . " correctamente");
+//         redirect("?b=profile&s=Inicio&p=admin");
+// }
     public function GuardarInfoProv(){
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $idProv = $_POST["ctIdProv"];
@@ -44,11 +44,60 @@ public function guardarproveedor(){
 
             $this->object->actproveedor($idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv);
             setNotify("success", "Se ha guardado el producto  correctamente");
-            redirect("?b=profile&s=Inicio&p=admin   ");
+            redirect("?b=profile&s=Inicio&p=admin");
         }
 
     }
-    
+    public function GuardarProveedor(){
+
+        $idProv = $_POST['ctIdProv'];
+        $nombreProv = $_POST['ctNomProv'];
+        $direccionProv = $_POST['ctDirProv'];
+        $emailProv = $_POST['ctEmaProv'];
+        $telefonoProv = $_POST['ctTelProv'];
+        
+        $this->object->GuardarProveedor($idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv);
+        
+        setNotify("success", "Se ha guardado correctamente " . $nombreProv . " correctamente");
+        redirect("?b=profile&s=Inicio&p=admin");
     }
+
+
+    // colaborador
+
+    public function EditarInfoEmp(){
+
+        if (isset($_GET["idcola"])) {
+            $idColaborador = $_GET["idcola"];
+            $colaborador = $this->object->empleado($idColaborador);
+            require_once "view/profile/admin/empleados/editar.php";
+        } else {
+            echo "Error: ID de colaborador no encontrado.";
+            exit();
+        }
+    }
+public function GuardarInfoEmp(){
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        // Verificar datos antes de actualizar
+        var_dump($_POST); // Mostrar datos enviados desde el formulario
+
+        $idCol = $_POST["idcol"];
+        $nombreCol = $_POST["nomcol"];
+        $direccionCol = $_POST["dircol"];
+        $emailCol = $_POST["emacol"];
+        $telefonoCol = $_POST["telcol"];
+        $rolCol = $_REQUEST["rolcol"];
+
+        // Llamar a la función actualizaempleado
+        $this->object->actualizaempleado($idCol, $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol);
+        setNotify("success", "Se ha actualizado los datos del empleado correctamente");
+        redirect("?b=profile&s=Inicio&p=admin");
+    }
+}
+
+
+
+
+}
 
 ?>

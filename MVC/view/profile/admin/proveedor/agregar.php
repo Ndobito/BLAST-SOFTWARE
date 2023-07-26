@@ -13,7 +13,7 @@
         <div class="edit">
             <h1 >Guardar Proveedor  </h1>
             <div class="form">
-                <form action="?b=editarinfo&s=guardarproveedor" method="POST">
+                <form action="?b=editarinfo&s=GuardarProveedor" method="POST">
                     <input type="hidden" name="ctIdProv" id="ctIdProv" >
                     <div>
                         <label class="tex" for="">Nombre:</label>
