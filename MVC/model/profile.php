@@ -78,6 +78,10 @@ class Profile
         return $proveedores;
     }
 
+    public function eliminarProveedor($id)
+    {
+    }
+
     public function getEmpleado()
     {
         $query = "SELECT * FROM colaborador";
@@ -135,7 +139,6 @@ class Profile
         }
         return $cliente;
     }
-
     public function getMascota()
     {
         $query = "SELECT * FROM mascota";
@@ -149,6 +152,18 @@ class Profile
             }
         }
 
+        return $mascota;
+    }
+    public function buscarMascotas($buscar)
+    {
+        $query = "SELECT * FROM mascota WHERE idmas LIKE '%$buscar%'";
+        $result = $this->conexion->query($query);
+        $mascota = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $mascota[] = $row;
+            }
+        }
         return $mascota;
     }
 }
