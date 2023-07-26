@@ -20,21 +20,7 @@ class editarinfoController{
             exit();
         }
     }
-// public function GuardarProveedor(){
 
-   
-//     $proveedor = new info();
-
-//     // $proveedor->idprov = $_REQUEST['idprov'];
-//     $proveedor->nomprov = $_REQUEST['ctNomProv'];
-//     $proveedor->dirprov = $_REQUEST['ctDirProv'];
-//     $proveedor->emaprov = $_REQUEST['ctEmaProv'];
-//     $proveedor->telprov = $_REQUEST['ctTelProv'];
-    
-//     $this->model->info($proveedor);
-//         setNotify("success", "Se ha guardado correctamente " . $_REQUEST['ctNomProv'] . " correctamente");
-//         redirect("?b=profile&s=Inicio&p=admin");
-// }
     public function GuardarInfoProv(){
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $idProv = $_POST["ctIdProv"];
