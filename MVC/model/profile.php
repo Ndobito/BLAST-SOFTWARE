@@ -66,7 +66,7 @@ class Profile
     }
     public function buscarProveedor($buscar)
     {
-        $query = "SELECT * FROM proveedor WHERE nomprov LIKE '%$buscar%'";
+        $query = "SELECT * FROM proveedor WHERE idprov LIKE '%$buscar%'";
         $result = $this->conexion->query($query);
         $proveedores = array();
 
@@ -94,7 +94,7 @@ class Profile
     }
     public function buscarEmpleado($buscar)
     {
-        $query = "SELECT * FROM colaborador WHERE idcol LIKE '%$buscar%' OR dnicol LIKE '%$buscar%' OR nomcol LIKE '%$buscar%'";
+        $query = "SELECT * FROM colaborador WHERE idcol LIKE '%$buscar%'";
         $result = $this->conexion->query($query);
         $empleados = array();
 
@@ -115,6 +115,20 @@ class Profile
 
         if ($result->num_rows > 0) {
             // Recorrer los resultados y almacenarlos en el array $proveedores
+            while ($row = $result->fetch_assoc()) {
+                $cliente[] = $row;
+            }
+        }
+        return $cliente;
+    }
+
+    public function buscarClientes($buscar)
+    {
+        $query = "SELECT * FROM cliente WHERE idcli LIKE '%$buscar%'";
+        $result = $this->conexion->query($query);
+        $cliente = array();
+
+        if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $cliente[] = $row;
             }
