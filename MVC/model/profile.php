@@ -148,7 +148,6 @@ class Profile
 
         return $mascota;
     }
-<<<<<<< HEAD
 
     public function getContMas($id){
 
@@ -165,6 +164,4 @@ class Profile
 
     }
 }
-=======
-}
->>>>>>> df171aa797d2029de7867bf6d2d06033d53dea94
+
