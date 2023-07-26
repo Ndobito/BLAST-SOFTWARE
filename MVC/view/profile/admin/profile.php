@@ -174,7 +174,6 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Cedula</th>
                                 <th>Nombres</th>
                                 <th>Correo</th>
                                 <th>Direccion</th>
@@ -241,10 +240,10 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Nombre</th>
-                                <th>EMAIL</th>
-                                <th>USUARIO</th>
+                                <th>Email</th>
+                                <th>Usuario</th>
                                 <th>Direccion</th>
-                                <th>ZONA</th>
+                                <th>Zona</th>
                                 <th>Telefono</th>
                                 <th>Telefono alternativo</th>
                             </tr>
@@ -316,11 +315,47 @@
                                 <th>Nombre</th>
                                 <th>Edad</th>
                                 <th>Genero</th>
-                                <th>ESPECIE</th>
-                                <th>Dueño ID</th>
+                                <th>Especie</th>
+                                <th>Contacto de Dueño</th>
                             </tr>
                         </thead>
                         <?php foreach ($mascota as $mascota) { ?>
+<<<<<<< HEAD
+                            <tbody id="resultados">
+                                <tr>
+                                    <td>
+                                        <?php echo $mascota['idmas']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['nommas']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['edadmas']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['genmas']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['espmas']; ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                           
+                                        ?>
+                                    </td>
+                                    <td class="icons1">
+                                        <a href="#">
+                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    <td class="icons2">
+                                        <a href="#">
+                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+=======
                         <tbody id="resultados">
                             <tr>
                                 <td>
@@ -353,6 +388,7 @@
                                 </td>
                             </tr>
                         </tbody>
+>>>>>>> df171aa797d2029de7867bf6d2d06033d53dea94
                         <?php } ?>
                     </table>
                 </div>
