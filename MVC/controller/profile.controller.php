@@ -8,6 +8,7 @@ class ProfileController
     {
         $this->object = new Profile();
     }
+
     //-----Metodo para redireccionar segun el rol de inicio de sesión-----//
     public function Inicio($rol)
     {
@@ -16,9 +17,6 @@ class ProfileController
         $proveedores = $this->object->getProveedores();
         $empleado = $this->object->getEmpleado();
         $cliente = $this->object->getCliente();
-        // foreach($cliente as $cliente){
-        //     var_dump($cliente['idcli']);
-        // }
         $mascota = $this->object->getMascota();
         $usuario = $_SESSION['usuario'];
         $model = new Profile();
@@ -49,18 +47,11 @@ class ProfileController
                 echo "Rol indefinido";
                 break;
         }
-
         require_once "view/profile/" . $rol . "/profile.php";
         require_once "view/footerprofile.php";
     }
-
-    public function showEdit()
-    {
-        require_once "view/head.php";
-    }
+    
     //-----Metodo para actualizar Datos-----//
-    // NO ME TOQUE ESTA PARTE DEL CODIGO SAPO HIJUEPUTA
-
     public function actualizarUsuario()
     {
         if (isset($_REQUEST['btnUpdateProfile'])) {
@@ -110,10 +101,6 @@ class ProfileController
             echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
             echo '</tr>';
         }
-    }
-
-    public function eliminarProveedor($id)
-    {
     }
 
     public function buscarColaborador()

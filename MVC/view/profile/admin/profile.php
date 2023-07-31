@@ -89,9 +89,6 @@
                             <form action="?b=profile&s=buscarProveedor" method="post">
                                 <div class="input-group">
                                     <input type="text" id="searchprov" class="form-control search-input" placeholder="Buscar Proveedor" name="buscar_proveedor">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" id="miBoton" type="button">Buscar</button>
-                                    </span>
                                 </div>
                             </form>
                         </div>
@@ -289,9 +286,6 @@
                             <form method="POST" action="?b=profile&s=buscarMascotas">
                                 <div class="input-group">
                                     <input type="text" class="form-control search-input" placeholder="Buscar mascota" name="buscar_mascota" id="searchmas">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" id="miBoton" type="button">Buscar</button>
-                                    </span>
                                 </div>
                             </form>
                         </div>
@@ -308,42 +302,6 @@
                             </tr>
                         </thead>
                         <?php foreach ($mascota as $mascota) { ?>
-<<<<<<< HEAD
-                            <tbody id="resultados">
-                                <tr>
-                                    <td>
-                                        <?php echo $mascota['idmas']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $mascota['nommas'] ?? "Sin definir";; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $mascota['edadmas'] ?? "Sin definir";; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $mascota['genmas'] ?? "Sin definir";; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $mascota['espmas'] ?? "Sin definir";; ?>
-                                    </td>
-                                    <td>
-                                        <?php
-                                           
-                                        ?>
-                                    </td>
-                                    <td class="icons1">
-                                        <a href="?b=editarinfo&s=Editarmas&idmas=<?= $mascota['idmas']; ?>">
-                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                    <td class="icons2">
-                                        <a href="#">
-                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-=======
                         <tbody id="resultados">
                             <tr>
                                 <td>
@@ -376,7 +334,6 @@
                                 </td>
                             </tr>
                         </tbody>
->>>>>>> df171aa797d2029de7867bf6d2d06033d53dea94
                         <?php } ?>
                     </table>
                 </div>
