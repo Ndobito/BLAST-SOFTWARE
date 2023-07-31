@@ -24,7 +24,7 @@
                             <button class="profile-adm-btn">PROVEEDORES</button>
                         </div>
                         <div>
-                            <button class="profile-adm-btn">EMPLEADOS</button>
+                            <button class="profile-adm-btn">COLABORADORES</button>
                         </div>
                         <div>
                             <button class="profile-adm-btn">CLIENTES</button>
@@ -83,8 +83,7 @@
                     <div class="table-container">
                         <div class="form-container">
                             <div class="input-group">
-                                <a href="?b=editarinfo&s=GuardarProveedor"><button class="btn btn-default"
-                                        type="submit">Agregar</button></a>
+                                <a href="?b=profile&s=optionSaveRedirec&p=proveedor"><button class="btn btn-default" type="submit">Agregar</button></a>
                             </div>
                             <form action="?b=profile&s=buscarProveedor" method="post">
                                 <div class="input-group">
@@ -122,7 +121,7 @@
                                     <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="?b=editarinfo&s=EditarInfoProv&idprod=<?= $proveedor['idprov']; ?>" id="Prveedor">
+                                    <a href="?b=profile&s=optionEditRedirec&p=proveedor&idprod=<?= $proveedor['idprov']; ?>" id="Prveedor">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
@@ -138,13 +137,13 @@
                 </div>
                 <div class="profile-adm container-right3" id="container-right3">
                     <div class="title">
-                        <h1>empleados</h1>
+                        <h1>Colaboradores</h1>
                     </div>
                     <div class="table-container">
                         <div class="form-container">
                             <div class="input-group">
                                 <span class="input-group-btn">
-                                    <a href=""><button class="btn btn-default" type="submit">Agregar</button></a>
+                                    <a href="?b=profile&s=optionSaveRedirec&p=colaborador"><button class="btn btn-default" type="submit">Agregar</button></a>
                                 </span>
                             </div>
                             <form method="POST" action="?b=profile&s=buscarColaborador">
@@ -193,7 +192,7 @@
                                     <?php echo $colaborador['rolcol']; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="?b=editarinfo&s=EditarInfoEmp&idcola=<?= $colaborador['idcol']; ?>">
+                                    <a href="?b=profile&s=optionEditRedirec&p=colaborador&idcola=<?= $colaborador['idcol']; ?>">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
@@ -207,7 +206,7 @@
                 </div>
                 <div class="profile-adm container-right4" id="container-right4">
                     <div class="title">
-                        <h1>clientes</h1>
+                        <h1>Clientes</h1>
                     </div>
                     <div class="table-container">
                         <div class="form-container">

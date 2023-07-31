@@ -162,14 +162,19 @@ class Profile
     }
 
     // -----Metodo para verificar la existencia del empleado ----- //
-    public function existEmpleado($idColaborador){
-        $stmt = $this->conexion->prepare("SELECT * FROM colaborador WHERE idcol = ?");
-        $stmt->bind_param("i", $idColaborador);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $colaborador = $result->fetch_assoc();
-        $stmt->close();
-        return $colaborador;
+    public function existColaborador($idColaborador){
+        try{
+            $stmt = $this->conexion->prepare("SELECT * FROM colaborador WHERE idcol = ?");
+            $stmt->bind_param("i", $idColaborador);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $colaborador = $result->fetch_assoc();
+            $stmt->close();
+            return $colaborador;
+        }catch(Exception $e){
+            echo "Error : ". $e->getMessage();
+        }
+        
     }
 
     // -----Metodo para verificar la existencia del Cliente ----- //

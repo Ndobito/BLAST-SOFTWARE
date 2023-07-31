@@ -11,7 +11,7 @@ class ProfileController
 
     //-----Metodo para redireccionar segun el rol de inicio de sesión-----//
     public function Inicio($rol)
-    {
+    {   
         $style = "<link rel='stylesheet' href='assets/css/style-$rol.css'>";
         require_once "view/head.php";
         $proveedores = $this->object->getProveedores();
@@ -19,28 +19,27 @@ class ProfileController
         $cliente = $this->object->getCliente();
         $mascota = $this->object->getMascota();
         $usuario = $_SESSION['usuario'];
-        $model = new Profile();
         $proveedores = $this->object->getProveedores();
         switch ($rol) {
             case 'admin':
                 $name = $_SESSION['usuario'];
-                $user = $model->selectUser($usuario);
+                $user = $this->object->selectUser($usuario);
                 $data = compact('user');
                 break;
             case 'customer':
-                $usuario = $model->selectUser($usuario);
+                $usuario = $this->object->selectUser($usuario);
                 $data = compact('persona');
                 break;
             case 'recepcionist':
-                $administrador = $model->selectUser($usuario);
+                $administrador = $this->object->selectUser($usuario);
                 $data = compact('persona');
                 break;
             case 'collaborator':
-                $administrador = $model->selectUser($usuario);
+                $administrador = $this->object->selectUser($usuario);
                 $data = compact('persona');
                 break;
             case 'vet':
-                $administrador = $model->selectUser($usuario);
+                $administrador = $this->object->selectUser($usuario);
                 $data = compact('persona');
                 break;
             default:
@@ -50,36 +49,48 @@ class ProfileController
         require_once "view/profile/" . $rol . "/profile.php";
         require_once "view/footerprofile.php";
     }
-    
-    //-----Metodo para actualizar Datos-----//
-    public function actualizarUsuario()
-    {
-        if (isset($_REQUEST['btnUpdateProfile'])) {
-            if ($_POST['ctNameUser'] == "" || $_POST['ctSurNameUser'] == "" || $_POST['ctNickUser'] == "" || $_POST['ctAdrUser'] ==  "" || $_POST['ctEmailUser'] == "" || $_POST['ctNumCelUser'] == "") {
-                redirect("?b=profile&s=Inicio&p=admin&v=true")->error("Se deben llenar todos los campos")->send();
-            } else {
-                $u = new Profile();
-                $u->id = $_POST['ctIdUser'];
-                $u->nombre = $_POST['ctNameUser'];
-                $u->apellido = $_POST['ctSurNameUser'];
-                $u->nick = $_POST['ctNickUser'];
-                $u->email = $_POST['ctEmailUser'];
-                $u->direccion = $_POST['ctAdrUser'];
-                $u->numcel = $_POST['ctNumCelUser'];
-                $u->numcel2 = $_POST['ctNumCel2'];
-                if ($this->object->update($u)) {
-                    if ($_POST['ctNickUser'] != $_SESSION["usuario"]) {
-                        session_destroy();
-                        redirect("index.php")->success("Se ha actualizado el nombre de usuario, vuelva a iniciar sesión")->send();
-                    } else {
-                        redirect("?b=profile&s=Inicio&p=admin&v=false")->success("Se ha actualizado la información del usuario")->send();
-                    }
-                } else {
-                    redirect("?b=profile&s=Inicio&p=admin&v=false")->error("No se pudo actualizar el usuario")->send();
+
+    // -----Metodo para redireccionar a vista de Editar Proveedor y Colaborador -----//
+    public function optionEditRedirec(){
+        $o = $_REQUEST['p']; 
+        switch ($o) {
+            case 'proveedor':
+                $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>"; 
+                require_once "view/head.php"; 
+                require_once "view/profile/admin/edit/editar-proveedor.php";  
+                break;
+            case 'colaborador':
+                if($_GET['idcola']){
+                    $idColaborador = $_GET['idcola'];
+                    $colaborador = $this->object->existColaborador($idColaborador);
+                    $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";  
+                    require_once "view/head.php"; 
+                    require_once "view/profile/admin/edit/editar-colaborador.php";  
                 }
-            }
+                break;
+            default:
+                redirect("?b=profile&s=Inicio&p=admin")->error("Pagina no encontrada")->send();
+                break;
         }
     }
+
+    // -----Metodo para redireccionar a vista de agregar Proveedor y Colaborador -----//
+    public function optionSaveRedirec(){
+        $o = $_REQUEST['p']; 
+        switch ($o) {
+            case 'proveedor':
+                require_once "view/profile/admin/save/guardar-proveedor.php";  
+                break;
+            case 'colaborador':
+                    require_once "view/profile/admin/save/guardar-colaborador.php";  
+                    break;
+            default:
+                redirect("?b=profile&s=Inicio&p=admin")->error("Pagina no encontrada")->send();
+                break;
+        }
+    }
+
+    // -----Metodo oara mostrar los resultados del buscador de Proveedor------ //
     public function buscarProveedor()
     {
         $searchTerm = $_POST['buscar_proveedor'];
@@ -102,7 +113,8 @@ class ProfileController
             echo '</tr>';
         }
     }
-
+    
+    // -----Metodo oara mostrar los resultados del buscador de Colaborador------ //
     public function buscarColaborador()
     {
         $searchTerm = $_POST['buscar_empleado'];
@@ -129,6 +141,8 @@ class ProfileController
             echo '</tr>';
         }
     }
+
+    // -----Metodo oara mostrar los resultados del buscador de Clientes------ //
     public function buscarClientes()
     {
         $searchTerm = $_POST['buscar_cliente'];
@@ -157,6 +171,7 @@ class ProfileController
         }
     }
 
+    // -----Metodo oara mostrar los resultados del buscador de Mascotas------ //
     public function buscarMascotas()
     {
         $searchTerm = $_POST['buscar_mascota'];
@@ -181,6 +196,35 @@ class ProfileController
             echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
             echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
             echo '</tr>';
+        }
+    }
+    //-----Metodo para actualizar Datos-----//
+    public function actualizarUsuario()
+    {
+        if (isset($_REQUEST['btnUpdateProfile'])) {
+            if ($_POST['ctNameUser'] == "" || $_POST['ctSurNameUser'] == "" || $_POST['ctNickUser'] == "" || $_POST['ctAdrUser'] ==  "" || $_POST['ctEmailUser'] == "" || $_POST['ctNumCelUser'] == "") {
+                redirect("?b=profile&s=Inicio&p=admin&v=true")->error("Se deben llenar todos los campos")->send();
+            } else {
+                $u = new Profile();
+                $u->id = $_POST['ctIdUser'];
+                $u->nombre = $_POST['ctNameUser'];
+                $u->apellido = $_POST['ctSurNameUser'];
+                $u->nick = $_POST['ctNickUser'];
+                $u->email = $_POST['ctEmailUser'];
+                $u->direccion = $_POST['ctAdrUser'];
+                $u->numcel = $_POST['ctNumCelUser'];
+                $u->numcel2 = $_POST['ctNumCel2'];
+                if ($this->object->update($u)) {
+                    if ($_POST['ctNickUser'] != $_SESSION["usuario"]) {
+                        session_destroy();
+                        redirect("index.php")->success("Se ha actualizado el nombre de usuario, vuelva a iniciar sesión")->send();
+                    } else {
+                        redirect("?b=profile&s=Inicio&p=admin&v=false")->success("Se ha actualizado la información del usuario")->send();
+                    }
+                } else {
+                    redirect("?b=profile&s=Inicio&p=admin&v=false")->error("No se pudo actualizar el usuario")->send();
+                }
+            }
         }
     }
 
