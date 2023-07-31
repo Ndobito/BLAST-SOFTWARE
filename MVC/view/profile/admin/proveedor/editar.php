@@ -1,5 +1,5 @@
-
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +7,14 @@
     <link rel="shortcut icon" href="assets/img/logo.jpg" type="image/x-icon">
     <title>Animal World</title>
 </head>
+
 <body>
     <div class="container">
         <div class="edit">
-            <h1 >Editar Proveedor</h1>
+            <h1>Editar Proveedor</h1>
             <div class="form">
                 <form action="?b=editarinfo&s=GuardarInfoProv&idprod=<?= $proveedor['idprov']; ?>" method="POST">
-                    <input type="hidden" name="ctIdProv" id="ctIdProv" value="<?= $proveedor["idprov"] ?? "No definido" ?>" >
+                    <input type="hidden" name="ctIdProv" id="ctIdProv" value="<?= $proveedor["idprov"] ?? "No definido" ?>">
                     <div>
                         <label class="tex" for="">Nombre:</label>
                         <input type="text" name="ctNomProv" id="ctNomProv" value="<?= $proveedor["nomprov"] ?? "No definido" ?>">
@@ -41,4 +42,5 @@
         </div>
     </div>
 </body>
+
 </html>

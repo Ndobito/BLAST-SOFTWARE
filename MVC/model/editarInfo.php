@@ -153,8 +153,4 @@ class info{
             die($e->getMessage());
         }
     }
-
-
-
 }
-?>
