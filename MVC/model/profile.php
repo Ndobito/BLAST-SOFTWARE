@@ -118,7 +118,6 @@ class Profile
         $cliente = array();
 
         if ($result->num_rows > 0) {
-            // Recorrer los resultados y almacenarlos en el array $proveedores
             while ($row = $result->fetch_assoc()) {
                 $cliente[] = $row;
             }
@@ -145,7 +144,6 @@ class Profile
         $mascota = array();
 
         if ($result->num_rows > 0) {
-            // Recorrer los resultados y almacenarlos en el array $proveedores
             while ($row = $result->fetch_assoc()) {
                 $mascota[] = $row;
             }
