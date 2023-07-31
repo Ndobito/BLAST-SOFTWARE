@@ -3,7 +3,7 @@ include_once "model/editarinfo.php";
 
 class editarinfoController{
     private $object;
-    
+    private $prod;
     public function __construct()
     {
         $this->object = new info();
@@ -44,8 +44,8 @@ class editarinfoController{
         $telefonoProv = $_POST['ctTelProv'];
         
         if($this->object->GuardarProveedor($nombreProv, $direccionProv, $emailProv, $telefonoProv)){
-            setNotify("success", "Se ha guardado correctamente " . $nombreProv . " correctamente");
-            header("Location: ?b=profile&s=Inicio&p=admin");
+            redirect("?b=profile&s=Inicio&p=admin")->success("Se ha guardado correctamente " . $nombreProv . " correctamente")->send();
+           
         }else{
             setcookie("notify", serialize(["status" => "error", "message" => "Error al agregar proveedor"]), time() + 5, "/");
             header('location: ?b=profile&s=Agregar');
@@ -81,6 +81,16 @@ class editarinfoController{
             
         }
     }
+
+    public function eliminar()
+    {
+        $prod = new info();
+        $prod->idcol = $_REQUEST["idcol"];
+        $prod->eliminar($prod);
+
+        redirect("?b=profile&s=Inicio&p=admin")->success("Se ha eliminado el colaborador " . $_REQUEST["nomcol"] . " correctamente")->send();
+    }
+
     public function GuardarColaborador(){
         require_once "view/profile/admin/empleados/agregar.php";
 
@@ -95,11 +105,10 @@ class editarinfoController{
           
             
             if($this->object->GuardarColaborador($dniCol, $nombreCol, $emailCol, $passwordCol, $direccionCol,  $telefonoCol, $rolCol)){
-                setNotify("success", "Se ha guardado correctamente " . $nombreCol . " correctamente");
-                header("Location: ?b=profile&s=Inicio&p=admin");
+                redirect("?b=profile&s=Inicio&p=admin")->success("Se ha guardado correctamente " . $nombreCol . " correctamente")->send();
             }else{
-                setcookie("notify", serialize(["status" => "error", "message" => "Error al agregar proveedor"]), time() + 5, "/");
-                header('location: ?b=profile&s=Agregar');
+                redirect("?b=profile&s=Agregar")->error("Error al agregar proveedor")->send();
+
             }
         }
     }
@@ -121,19 +130,23 @@ class editarinfoController{
     public function GuardarInfoCli(){
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-            $idCli = $_POST["idcli"];
-            $nombreCli = $_POST["nomcli"];
-            $emailCli = $_POST["emacli"];
-            $userCli = $_POST["usercli"];
-            $direccionCli = $_POST["dircli"];
-            $tzonecli = $_POST["tzonecli"];
-            $telefonoCli = $_POST["telcli"];
-            $telefonoaltCli = $_POST["telaltcli"];
+                $idCli = $_POST["idcli"];
+                $nombreCli = $_POST["nomcli"];
+                $emailCli = $_POST["emacli"];
+                $userCli = $_POST["usercli"];
+                $direccionCli = $_POST["dircli"];
+                $tzonecli = $_POST["tzonecli"];
+                $telefonoCli = $_POST["telcli"];
+                $telefonoaltCli = $_POST["telaltcli"];
 
-            $this->object->actualizacliente($idCli, $nombreCli, $emailCli,  $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli);
             
-            setNotify("success", "Se ha actualizado los datos del cleinte correctamente");
-            redirect("?b=profile&s=Inicio&p=admin");
+            if($this->object->actualizacliente($idCli, $nombreCli, $emailCli,  $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli)){
+                redirect("?b=profile&s=Inicio&p=admin")->success("Se ha guardado correctamente " . $nombreCli . " correctamente")->send();
+            }else{
+                setcookie("notify", serialize(["status" => "error", "message" => "Error al actualizar al cliente"]), time() + 5, "/");
+                header('location: ?b=profile&s=Agregar');
+            }
+
         }
     }
 
@@ -158,11 +171,14 @@ class editarinfoController{
             $edadmas = $_POST["edadmas"];
             $genmas = $_POST["genmas"];
             $espciemas = $_POST["espmas"];
-
-            $this->object->actualizamas($idmas, $nombremas, $edadmas,  $genmas, $espciemas);
             
-            setNotify("success", "Se ha actualizado los datos del cleinte correctamente");
-            redirect("?b=profile&s=Inicio&p=admin");
+            if( $this->object->actualizamas($idmas, $nombremas, $edadmas,  $genmas, $espciemas)){
+                setNotify("success", "Se ha actualizado " . $nombremas . " correctamente");
+                header("Location: ?b=profile&s=Inicio&p=admin");
+            }else{
+                setcookie("notify", serialize(["status" => "error", "message" => "Error al actualizar"]), time() + 5, "/");
+                header('location: ?b=profile&s=Agregar');
+            }
         }
     }
 }

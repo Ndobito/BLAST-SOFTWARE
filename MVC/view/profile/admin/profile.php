@@ -34,8 +34,7 @@
                         </div>
 
                         <div>
-                            <a href="?b=profile&s=cerrarSesion"><button><i
-                                        class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</button></a>
+                            <a href="?b=profile&s=cerrarSesion"><button><i class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</button></a>
                         </div>
                     </div>
 
@@ -48,32 +47,25 @@
                         <form id="form-user-information" action="?b=profile&s=actualizarUsuario" method="post">
                             <input name="ctIdUser" type="hidden" value="<?php echo $user['idadmin'] ?>">
                             <label for="ctNameUser">Nombres*</label>
-                            <input type="text" name="ctNameUser" id="ctNameUser"
-                                value="<?php echo $user['nomadmin'] ?? "Sin definir"; ?>" disabled>
+                            <input type="text" name="ctNameUser" id="ctNameUser" value="<?php echo $user['nomadmin'] ?? "Sin definir"; ?>" disabled>
                             <label for="ctSurNameUser">Apellidos *</label>
-                            <input type="text" name="ctSurNameUser" id="ctSurNameUser"
-                                value="<?php echo $user['apeadmin'] ?? "Sin definir"; ?>" disabled>
+                            <input type="text" name="ctSurNameUser" id="ctSurNameUser" value="<?php echo $user['apeadmin'] ?? "Sin definir"; ?>" disabled>
                             <label for="ctNameuser">Nickname: *</label>
-                            <input type="text" name="ctNickUser" id="ctNickUser"
-                                value="<?php echo $user['nickadmin']; ?>" disabled>
+                            <input type="text" name="ctNickUser" id="ctNickUser" value="<?php echo $user['nickadmin']; ?>" disabled>
                             <label for="ctNameuser">Direccion *</label>
-                            <input type="text" name="ctAdrUser" id="ctAdrUser" value="<?php echo $user['diradmin']; ?>"
-                                disabled>
+                            <input type="text" name="ctAdrUser" id="ctAdrUser" value="<?php echo $user['diradmin']; ?>" disabled>
                             <div>
                                 <div>
                                     <label for="ctEmailUser">Correo Eletrónico *</label>
-                                    <input type="text" name="ctEmailUser" id="ctEmailUser"
-                                        value="<?php echo $user['emaadmin']; ?>" disabled>
+                                    <input type="text" name="ctEmailUser" id="ctEmailUser" value="<?php echo $user['emaadmin']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCelUser">Numero de Celular 1 *</label>
-                                    <input type="text" name="ctNumCelUser" id="ctNumCelUser"
-                                        value="<?php echo $user['teladmin']; ?>" disabled>
+                                    <input type="text" name="ctNumCelUser" id="ctNumCelUser" value="<?php echo $user['teladmin']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCel2">Numero de Celular 2</label>
-                                    <input type="text" name="ctNumCel2" id="ctNumCel2"
-                                        value="<?php echo $user['teladmin2']; ?>" disabled>
+                                    <input type="text" name="ctNumCel2" id="ctNumCel2" value="<?php echo $user['teladmin2']; ?>" disabled>
 
                                 </div>
                             </div>
@@ -91,13 +83,11 @@
                     <div class="table-container">
                         <div class="form-container">
                             <div class="input-group">
-                                <a href="?b=editarinfo&s=GuardarProveedor"><button class="btn btn-default"
-                                        type="submit">Agregar</button></a>
+                                <a href="?b=editarinfo&s=GuardarProveedor"><button class="btn btn-default" type="submit">Agregar</button></a>
                             </div>
                             <form action="?b=profile&s=buscarProveedor" method="post">
                                 <div class="input-group">
-                                    <input type="text" id="searchprov" class="form-control search-input"
-                                        placeholder="Buscar Proveedor" name="buscar_proveedor">
+                                    <input type="text" id="searchprov" class="form-control search-input" placeholder="Buscar Proveedor" name="buscar_proveedor">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" id="miBoton" type="button">Buscar</button>
                                     </span>
@@ -117,34 +107,33 @@
                         </thead>
                         <tbody id="resultados-proveedor">
                             <?php foreach ($proveedores as $proveedor) { ?>
-                            <tr>
-                                <td>
-                                    <?php echo $proveedor['idprov']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $proveedor['nomprov'] ?? "Sin definir"; ?>
-                                </td>
-                                <td>
-                                    <?php echo $proveedor['dirprov'] ?? "Sin definir"; ?>
-                                </td>
-                                <td>
-                                    <?php echo $proveedor['emaprov'] ?? "Sin definir"; ?>
-                                </td>
-                                <td>
-                                    <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
-                                </td>
-                                <td class="icons1">
-                                    <a href="?b=editarinfo&s=EditarInfoProv&idprod=<?= $proveedor['idprov']; ?>"
-                                        id="Prveedor">
-                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                                <td class="icons2">
-                                    <a href="#">
-                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <?php echo $proveedor['idprov']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $proveedor['nomprov'] ?? "Sin definir"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $proveedor['dirprov'] ?? "Sin definir"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $proveedor['emaprov'] ?? "Sin definir"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
+                                    </td>
+                                    <td class="icons1">
+                                        <a href="?b=editarinfo&s=EditarInfoProv&idprod=<?= $proveedor['idprov']; ?>" id="Prveedor">
+                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    <td class="icons2">
+                                        <a href="#">
+                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                             <?php } ?>
                         </tbody>
                     </table>
@@ -157,14 +146,12 @@
                         <div class="form-container">
                             <div class="input-group">
                                 <div class="input-group-btn">
-                                    <a href="?b=editarInfo&s=GuardarColaborador"><button class="btn btn-default"
-                                            type="submit">Agregar</button></a>
+                                    <a href="?b=editarInfo&s=GuardarColaborador"><button class="btn btn-default" type="submit">Agregar</button></a>
                                 </div>
                             </div>
                             <form method="POST" action="?b=editarInfo&s=buscarColaborador">
                                 <div class="input-group">
-                                    <input type="text" class="form-control search-input" id="searchcol"
-                                        placeholder="Buscar Empleado" name="buscar_empleado">
+                                    <input type="text" class="form-control search-input" id="searchcol" placeholder="Buscar Empleado" name="buscar_empleado">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" id="miBoton" type="button">Buscar</button>
                                     </span>
@@ -185,37 +172,6 @@
                         </thead>
                         <tbody id="resultados-empleados">
                             <?php foreach ($empleado as $colaborador) { ?>
-                            <<<<<<< HEAD <tr>
-                                <td>
-                                    <?php echo $colaborador['idcol']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['nomcol']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['emacol']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['dircol']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['telcol']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['rolcol']; ?>
-                                </td>
-                                <td class="icons1">
-                                    <a href="?b=profile&s=EditarInfoemp&idcola=<?= $colaborador['idcol']; ?>">
-                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                                <td class="icons2">
-                                    <a href="#">
-                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                                </tr>
-                                =======
                                 <tr>
                                     <td>
                                         <?php echo $colaborador['idcol']; ?>
@@ -244,13 +200,10 @@
                                         </a>
                                     </td>
                                     <td class="icons2">
-                                        <a href="#">
-                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                        </a>
+                                        <a href="?b=editarinfo&s=eliminar&idcol=<?= $colaborador["idcol"] ?>&nomcol=<?= $colaborador["idcol"] ?>"><button class="btn-borrar"><i class="fa-solid fa-trash"></i></button></a>
                                     </td>
                                 </tr>
-                                >>>>>>> df171aa797d2029de7867bf6d2d06033d53dea94
-                                <?php } ?>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
@@ -262,8 +215,7 @@
                         <div class="form-container">
                             <form method="POST" action="?b=profile&s=buscarClientes">
                                 <div class="input-group">
-                                    <input type="text" class="form-control search-input" placeholder="Buscar cliente"
-                                        name="buscar_cliente" id="searchcli">
+                                    <input type="text" class="form-control search-input" placeholder="Buscar cliente" name="buscar_cliente" id="searchcli">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" id="miBoton" type="button">Buscar</button>
                                     </span>
@@ -286,42 +238,42 @@
                         </thead>
                         <tbody id="resultados-clientes">
                             <?php foreach ($cliente as $cliente) { ?>
-                            <tr>
-                                <td>
-                                    <?php echo $cliente['idcli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['nomcli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['emacli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['usercli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['dircli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['tzonecli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['telcli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['telaltcli']; ?>
-                                </td>
-                                <td class="icons1">
-                                    <a href="?b=editarinfo&s=EditarInfoCli&idcli=<?= $cliente['idcli']; ?>">
-                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                                <td class="icons2">
-                                    <a href="#">
-                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <?php echo $cliente['idcli']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['nomcli']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['emacli']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['usercli']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['dircli']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['tzonecli']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['telcli']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['telaltcli']; ?>
+                                    </td>
+                                    <td class="icons1">
+                                        <a href="?b=editarinfo&s=EditarInfoCli&idcli=<?= $cliente['idcli']; ?>">
+                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    <td class="icons2">
+                                        <a href="#">
+                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                             <?php } ?>
                         </tbody>
                     </table>
@@ -335,8 +287,7 @@
                         <div class="form-container">
                             <form method="POST" action="?b=profile&s=buscarMascotas">
                                 <div class="input-group">
-                                    <input type="text" class="form-control search-input" placeholder="Buscar mascota"
-                                        name="buscar_mascota" id="searchmas">
+                                    <input type="text" class="form-control search-input" placeholder="Buscar mascota" name="buscar_mascota" id="searchmas">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" id="miBoton" type="button">Buscar</button>
                                     </span>
@@ -357,36 +308,36 @@
                         </thead>
                         <tbody id="resultados-mascotas">
                             <?php foreach ($mascota as $mascota) { ?>
-                            <tr>
-                                <td>
-                                    <?php echo $mascota['idmas']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $mascota['nommas'] ?? "Sin definir";; ?>
-                                </td>
-                                <td>
-                                    <?php echo $mascota['edadmas'] ?? "Sin definir";; ?>
-                                </td>
-                                <td>
-                                    <?php echo $mascota['genmas'] ?? "Sin definir";; ?>
-                                </td>
-                                <td>
-                                    <?php echo $mascota['espmas'] ?? "Sin definir";; ?>
-                                </td>
-                                <td>
-                                    <?php echo $mascota['idcli'] ?? "Sin definir";; ?>
-                                </td>
-                                <td class="icons1">
-                                    <a href="?b=editarinfo&s=Editarmas&idmas=<?= $mascota['idmas']; ?>">
-                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                                <td class="icons2">
-                                    <a href="#">
-                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <?php echo $mascota['idmas']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['nommas'] ?? "Sin definir";; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['edadmas'] ?? "Sin definir";; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['genmas'] ?? "Sin definir";; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['espmas'] ?? "Sin definir";; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['idcli'] ?? "Sin definir";; ?>
+                                    </td>
+                                    <td class="icons1">
+                                        <a href="?b=editarinfo&s=Editarmas&idmas=<?= $mascota['idmas']; ?>">
+                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    <td class="icons2">
+                                        <a href="#">
+                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                             <?php } ?>
                         </tbody>
                     </table>

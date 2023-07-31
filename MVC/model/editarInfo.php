@@ -86,6 +86,18 @@ class info{
         }
     }
 
+    public function eliminar($data) {
+        $sql = "DELETE FROM colaborador WHERE idcol = ?";
+        try {
+            $this->conexion->prepare($sql)
+            ->execute([
+                $data->idcol
+            ]);
+        } catch (Exception $e) {
+			die($e->getMessage());
+		}
+    }
+
 
     ////clinetes
     public function cliente($idCliente){
@@ -98,14 +110,19 @@ class info{
         return $cliente;
     }
     public function actualizacliente($idCli, $nombreCli, $emailCli,  $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli){
-        $stmt = $this->conexion->prepare("UPDATE cliente SET nomcli = ?, emacli = ?, usercli = ?, dircli = ?, tzonecli = ?, telcli = ?, telaltcli = ?  WHERE idcli = ?");
-        $stmt->bind_param("sssssssi",  $nombreCli, $emailCli,  $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli, $idCli);
-    
-        if ($stmt->execute()) {
-            header("Location: ?b=profile&s=Inicio&p=admin");
-            exit();
-        } else {
-            echo "Error en la actualización: " . $stmt->error;
+
+        try {
+            $stmt = $this->conexion->prepare("UPDATE cliente SET nomcli = ?, emacli = ?, usercli = ?, dircli = ?, tzonecli = ?, telcli = ?, telaltcli = ?  WHERE idcli = ?");
+            $stmt->bind_param("sssssssi",  $nombreCli, $emailCli,  $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli, $idCli);
+        
+            if ($stmt->execute()) {
+                header("Location: ?b=profile&s=Inicio&p=admin");
+                exit();
+            } else {
+                echo "Error en la actualización: " . $stmt->error;
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
         }
     }
 
@@ -121,18 +138,19 @@ class info{
         return $mascota;
     }
     public function actualizamas($idmas, $nombremas, $edadmas,  $genmas, $espciemas){
-        $stmt = $this->conexion->prepare("UPDATE mascota SET nommas = ?, edadmas = ?, genmas = ?, espmas = ? WHERE idmas = ?");
-        $stmt->bind_param("ssssi",  $nombremas, $edadmas,  $genmas, $espciemas, $idmas);
-    
-        if ($stmt->execute()) {
-            header("Location: ?b=profile&s=Inicio&p=admin");
-            exit();
-        } else {
-            echo "Error en la actualización: " . $stmt->error;
+
+        try {
+            $stmt = $this->conexion->prepare("UPDATE mascota SET nommas = ?, edadmas = ?, genmas = ?, espmas = ? WHERE idmas = ?");
+            $stmt->bind_param("ssssi",  $nombremas, $edadmas,  $genmas, $espciemas, $idmas);
+
+            if ($stmt->execute()) {
+                header("Location: ?b=profile&s=Inicio&p=admin");
+                exit();
+            } else {
+                echo "Error en la actualización: " . $stmt->error;
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
         }
     }
-
-
-
 }
-?>
