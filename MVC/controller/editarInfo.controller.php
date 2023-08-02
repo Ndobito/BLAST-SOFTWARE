@@ -66,21 +66,21 @@ class editarinfoController{
             exit();
         }
     }
-    public function GuardarInfoEmp(){
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // public function GuardarInfoEmp(){
+    //     if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
-            $idCol = $_POST["idcol"];
-            $nombreCol = $_POST["nomcol"];
-            $direccionCol = $_POST["dircol"];
-            $emailCol = $_POST["emacol"];
-            $telefonoCol = $_POST["telcol"];
-            $rolCol = $_POST["rolcol"];
+    //         $idCol = $_POST["idcol"];
+    //         $nombreCol = $_POST["nomcol"];
+    //         $direccionCol = $_POST["dircol"];
+    //         $emailCol = $_POST["emacol"];
+    //         $telefonoCol = $_POST["telcol"];
+    //         $rolCol = $_POST["rolcol"];
 
-            $this->object->actualizaempleado($idCol, $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol);
+    //         $this->object->actualizaempleado($idCol, $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol);
             
-        }
-    }
+    //     }
+    // }
 
     public function eliminar()
     {

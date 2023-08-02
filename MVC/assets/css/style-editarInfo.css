@@ -80,7 +80,7 @@ body{
     text-align: 12pt;
 }
 
-.form form div input{
+.form form div input, .form form div select {
     margin-top: 5px;
     width: 100%;
     height: 30px;
@@ -89,8 +89,9 @@ body{
     border-bottom: 3px solid var(--color-1);
     outline: none;
     padding: 5px 5px 5px 10px;
-    font-size: 14pt;
+    font-size: 12pt;
 }
+
 .form form div input:focus{
     background-color: var(--color-11);
 }

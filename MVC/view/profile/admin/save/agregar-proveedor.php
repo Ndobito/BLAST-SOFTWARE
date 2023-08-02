@@ -1,10 +1,9 @@
 <body>
     <div class="container">
         <div class="edit">
-            <h1 >Guardar Proveedor  </h1>
+            <h1 >Guardar Proveedor</h1>
             <div class="form">
-                <form action="?b=editarinfo&s=GuardarProveedor" method="POST">
-                    <input type="hidden" name="ctIdProv" id="ctIdProv" >
+                <form action="?b=profile&s=saveProfile&p=proveedor" method="POST">
                     <div>
                         <label class="tex" for="">Nombre:</label>
                         <input type="text" name="ctNomProv" id="ctNomProv">
@@ -26,7 +25,7 @@
                     </div>
                 </form>
                 <div>
-                    <a href="?b=profile&s=Inicio&p=admin"><input type="submit" name="btnEditar" value="Cancelar"></a>
+                    <a href="?b=profile&s=Inicio&p=admin"><input type="submit" name="btnCancel" value="Cancelar"></a>
                 </div>
             </div>
         </div>

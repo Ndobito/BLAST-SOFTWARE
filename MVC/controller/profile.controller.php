@@ -11,7 +11,7 @@ class ProfileController
 
     //-----Metodo para redireccionar segun el rol de inicio de sesión-----//
     public function Inicio($rol)
-    {   
+    {
         $style = "<link rel='stylesheet' href='assets/css/style-$rol.css'>";
         require_once "view/head.php";
         $proveedores = $this->object->getProveedores();
@@ -51,21 +51,26 @@ class ProfileController
     }
 
     // -----Metodo para redireccionar a vista de Editar Proveedor y Colaborador -----//
-    public function optionEditRedirec(){
-        $o = $_REQUEST['p']; 
+    public function optionEditRedirec()
+    {
+        $o = $_REQUEST['p'];
         switch ($o) {
             case 'proveedor':
-                $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>"; 
-                require_once "view/head.php"; 
-                require_once "view/profile/admin/edit/editar-proveedor.php";  
+                if ($_GET['idprov']) {
+                    $idProveedor = $_GET['idprov'];
+                    $proveedor = $this->object->existProveedor($idProveedor);
+                    $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
+                    require_once "view/head.php";
+                    require_once "view/profile/admin/edit/editar-proveedor.php";
+                }
                 break;
             case 'colaborador':
-                if($_GET['idcola']){
+                if ($_GET['idcola']) {
                     $idColaborador = $_GET['idcola'];
                     $colaborador = $this->object->existColaborador($idColaborador);
-                    $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";  
-                    require_once "view/head.php"; 
-                    require_once "view/profile/admin/edit/editar-colaborador.php";  
+                    $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
+                    require_once "view/head.php";
+                    require_once "view/profile/admin/edit/editar-colaborador.php";
                 }
                 break;
             default:
@@ -75,15 +80,20 @@ class ProfileController
     }
 
     // -----Metodo para redireccionar a vista de agregar Proveedor y Colaborador -----//
-    public function optionSaveRedirec(){
-        $o = $_REQUEST['p']; 
+    public function optionSaveRedirec()
+    {
+        $o = $_REQUEST['p'];
         switch ($o) {
             case 'proveedor':
-                require_once "view/profile/admin/save/guardar-proveedor.php";  
+                $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
+                require_once "view/head.php";
+                require_once "view/profile/admin/save/agregar-proveedor.php";
                 break;
             case 'colaborador':
-                    require_once "view/profile/admin/save/guardar-colaborador.php";  
-                    break;
+                $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
+                require_once "view/head.php";
+                require_once "view/profile/admin/save/agregar-colaborador.php";
+                break;
             default:
                 redirect("?b=profile&s=Inicio&p=admin")->error("Pagina no encontrada")->send();
                 break;
@@ -113,7 +123,7 @@ class ProfileController
             echo '</tr>';
         }
     }
-    
+
     // -----Metodo oara mostrar los resultados del buscador de Colaborador------ //
     public function buscarColaborador()
     {
@@ -142,7 +152,7 @@ class ProfileController
         }
     }
 
-    // -----Metodo oara mostrar los resultados del buscador de Clientes------ //
+    // -----Metodo para mostrar los resultados del buscador de Clientes------ //
     public function buscarClientes()
     {
         $searchTerm = $_POST['buscar_cliente'];
@@ -198,8 +208,54 @@ class ProfileController
             echo '</tr>';
         }
     }
-    //-----Metodo para actualizar Datos-----//
-    public function actualizarUsuario()
+
+    // -----Metodo para guardar la informacion de Colaboradores y proveedores----- //
+    public function saveProfile(){
+        $rol = $_REQUEST['p']; 
+        switch ($rol) {
+            case 'proveedor':
+                if(empty($_POST['ctNomProv']) || empty($_POST['ctDirProv']) || empty($_POST['ctEmaProv']) || empty($_POST['ctTelProv']) ){
+                    redirect("?b=profile&s=saveProfile&p=proveedor")->error("Se deben llenar todos los campos")->send();        
+                }else{
+                    if($this->object->verifyNumberString($_POST['ctNomProv'])){
+                        redirect("?b=profile&s=saveProfile&p=proveedor")->error("campos con numeros")->send();        
+                    }else{
+                        if($this->object->verifyEmailString($_POST['ctEmaProv'])){
+                            redirect("?b=profile&s=saveProfile&p=proveedor")->error("Se deben llenar todos los campos")->send();
+                        }else{
+                            if($this->object->verifyLeterString($_POST['ctTelProv'])){
+                                redirect("?b=profile&s=saveProfile&p=proveedor")->error("Se deben llenar todos los campos")->send();
+                            }else{
+                                $name = $_POST['ctNomProv'];
+                                $dir = $_POST['ctDirProv'];
+                                $ema = $_POST['ctEmaProv'];
+                                $tel = $_POST['ctTelProv'];
+
+                                if($this->object->saveProveedor($name, $dir, $ema, $tel)){
+                                    redirect("?b=profile&s=Inicio&p=admin")->success("Se ha agregado el colaborador correctamente")->send();
+                                }else{
+                                    redirect("?b=profile&s=Inicio&p=admin")->error("Error al crear el usuario")->send();
+                                }
+                            }
+                        }
+                    }
+                }
+                break;
+            case 'colaborador':
+                if(empty($_POST['ctIdCol']) || empty($_POST['ctNomCol']) || empty($_POST['ctEmaCol']) || empty($_POST['ctPassCol']) || empty($_POST['ctDirCol']) || empty($_POST['ctTelCol']) || empty($_POST['selRolUser'])){
+                    redirect("?b=profile&s=saveColaborador&p=colaborador")->error("Se deben llenar todos los campos")->send();        
+                }else{
+                    if($this->object->verifyNumberString($_POST[''])){}else{}
+                }
+                break;
+            default:
+                redirect("?b=profile&s=Inicio&p=admin")->error("404 Not Found: Accion invalida")->send();
+                break;
+        }
+    }
+
+    //-----Metodo para actualizar Datos de Usuario-----//
+    public function updateUser()
     {
         if (isset($_REQUEST['btnUpdateProfile'])) {
             if ($_POST['ctNameUser'] == "" || $_POST['ctSurNameUser'] == "" || $_POST['ctNickUser'] == "" || $_POST['ctAdrUser'] ==  "" || $_POST['ctEmailUser'] == "" || $_POST['ctNumCelUser'] == "") {
@@ -219,15 +275,101 @@ class ProfileController
                         session_destroy();
                         redirect("index.php")->success("Se ha actualizado el nombre de usuario, vuelva a iniciar sesión")->send();
                     } else {
-                        redirect("?b=profile&s=Inicio&p=admin&v=false")->success("Se ha actualizado la información del usuario")->send();
+                        redirect("?b=profile&s=Inicio&p=admin")->success("Se ha actualizado la información del usuario")->send();
                     }
                 } else {
-                    redirect("?b=profile&s=Inicio&p=admin&v=false")->error("No se pudo actualizar el usuario")->send();
+                    redirect("?b=profile&s=Inicio&p=admin")->error("No se pudo actualizar el usuario")->send();
                 }
             }
         }
     }
 
+    // -----Metodo para actualizar datos de Colaboradores y Proveedores----- //
+    public function updateProfile()
+    {
+        $rol = $_REQUEST['p'];
+        switch ($rol) {
+            case 'colaborador':
+                if (isset($_REQUEST['idcola'])) {
+                    if (empty($_POST['idcol']) || empty($_POST['nomcol']) || empty($_POST['dircol']) || empty($_POST['emacol']) || empty($_POST['telcol']) || empty($_POST['rolcol'])) {
+                        $colaboradorId = $_REQUEST['idcola'];
+                        redirect("?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaboradorId)->error("Complete todos los campos")->send();
+                    } else {
+                        if ($this->object->verifyNumberString($_POST['nomcol'])) {
+                            $colaboradorId = $_REQUEST['idcola'];
+                            redirect("?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaboradorId)->error("El nombre no puede conetener numeros")->send();
+                        } else {
+                            if ($this->object->verifyEmailString($_POST['emacol'])) {
+                                if ($this->object->verifyNumberString($_POST['rolcol'])) {
+                                    $colaboradorId = $_REQUEST['idcola'];
+                                    redirect("?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaboradorId)->error("El rol no puede conetener numeros")->send();
+                                } else {
+                                    if ($this->object->verifyLeterString($_POST['telcol'])) {
+                                        $colaboradorId = $_REQUEST['idcola'];
+                                        redirect("?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaboradorId)->error("El numero de telefono no puede contener letras")->send();
+                                    } else {
+                                    }
+                                    $id = $_POST['idcol'];
+                                    $name = $_POST['nomcol'];
+                                    $dir = $_POST['dircol'];
+                                    $ema = $_POST['emacol'];
+                                    $tel = $_POST['telcol'];
+                                    $rolc = $_POST['rolcol'];
+
+                                    if ($this->object->updateColaborador($id, $name, $dir, $ema, $tel, $rolc)) {
+                                        redirect("?b=profile&s=Inicio&p=admin")->success("Se ha actualizado la información del colaborador")->send();
+                                    } else {
+                                        redirect("?b=profile&s=Inicio&p=admin")->error("No se pudo actualizar la informacion del colaborador")->send();
+                                    }
+                                }
+                            } else {
+                                $colaboradorId = $_REQUEST['idcola'];
+                                redirect("?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaboradorId)->error("El correo electronico no cumple con su formato")->send();
+                            }
+                        }
+                    }
+                }
+                break;
+            case 'proveedor':
+                if (isset($_REQUEST['idprov'])) {
+                    if (empty($_POST['ctIdProv']) || empty($_POST['ctNomProv']) || empty($_POST['ctDirProv']) || empty($_POST['ctEmaProv']) || empty($_POST['ctTelProv'])) {
+                        $ProveedorId = $_REQUEST['idprov'];
+                        redirect("?b=profile&s=optionEditRedirec&p=proveedor&idprov=" . $ProveedorId)->error("Complete todos los campos")->send();
+                    } else {
+                        if ($this->object->verifyNumberString($_POST['ctNomProv'])) {
+                            $ProveedorId = $_REQUEST['idprov'];
+                            redirect("?b=profile&s=optionEditRedirec&p=proveedor&idprov=" . $ProveedorId)->error("El nombre no puede conetener numeros")->send();
+                        } else {
+                            if ($this->object->verifyEmailString($_POST['ctEmaProv'])) {
+                                if ($this->object->verifyLeterString($_POST['ctTelProv'])) {
+                                    $ProveedorId = $_REQUEST['idprov'];
+                                    redirect("?b=profile&s=optionEditRedirec&p=proveedor&idprov=" . $ProveedorId)->error("El numero de telefono no puede contener letras")->send();
+                                } else {
+                                    $id = $_POST['ctIdProv'];
+                                    $name = $_POST['ctNomProv'];
+                                    $dir = $_POST['ctDirProv'];
+                                    $ema = $_POST['ctEmaProv'];
+                                    $tel = $_POST['ctTelProv'];
+
+                                    if ($this->object->updateProveedor($id, $name, $dir, $ema, $tel)) {
+                                        redirect("?b=profile&s=Inicio&p=admin")->success("Se ha actualizado la información del proveedor")->send();
+                                    } else {
+                                        redirect("?b=profile&s=Inicio&p=admin")->error("No se pudo actualizar la informacion del proveedor")->send();
+                                    }
+                                }
+                            } else {
+                                $ProveedorId = $_REQUEST['idprov'];
+                                redirect("?b=profile&s=optionEditRedirec&p=proveedor&idprov=" . $ProveedorId)->error("El correo electronico no cumple con su formato")->send();
+                            }
+                        }
+                    }
+                }
+                break;
+            default:
+                redirect("?b=profile&s=Inicio&p=admin")->error("404 Not Found: Pagina no encontrada")->send();
+                break;
+        }
+    }
     //Metodo para cerrar Sesion
     public function cerrarSesion()
     {

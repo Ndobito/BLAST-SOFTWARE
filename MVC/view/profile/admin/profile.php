@@ -44,7 +44,7 @@
                 <div class="profile-adm container-right" id="container-right">
                     <div class="user-information">
                         <h1>Datos</h1>
-                        <form id="form-user-information" action="?b=profile&s=actualizarUsuario" method="post">
+                        <form id="form-user-information" action="?b=profile&s=updateUser" method="post">
                             <input name="ctIdUser" type="hidden" value="<?php echo $user['idadmin'] ?>">
                             <label for="ctNameUser">Nombres*</label>
                             <input type="text" name="ctNameUser" id="ctNameUser" value="<?php echo $user['nomadmin'] ?? "Sin definir"; ?>" disabled>
@@ -121,7 +121,7 @@
                                     <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="?b=profile&s=optionEditRedirec&p=proveedor&idprod=<?= $proveedor['idprov']; ?>" id="Prveedor">
+                                    <a href="?b=profile&s=optionEditRedirec&p=proveedor&idprov=<?= $proveedor['idprov']; ?>" id="Prveedor">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
@@ -174,9 +174,6 @@
                                     <?php echo $colaborador['idcol']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['dnicol']; ?>
-                                </td>
-                                <td>
                                     <?php echo $colaborador['nomcol']; ?>
                                 </td>
                                 <td>
@@ -197,7 +194,7 @@
                                     </a>
                                 </td>
                                 <td class="icons2">
-                                <a href="?b=editarinfo&s=eliminar&idcol=<?= $colaborador["idcol"] ?>&nomcol=<?= $colaborador["idcol"] ?>"><button class="btn-borrar" ><i class="fa-solid fa-trash"></i></button></a>
+                                    <a href="#"><i class="fa-solid fa-trash"></i></a>
                                 </td>
                             </tr>
                             <?php } ?>

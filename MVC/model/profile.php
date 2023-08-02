@@ -232,10 +232,9 @@ class Profile
         $stmt->bind_param("ssssi", $nombreProv, $direccionProv, $emailProv, $telefonoProv, $idProv);
     
         if ($stmt->execute()) {
-            header("Location: ?b=profile&s=Inicio&p=admin");
-            exit();
+            return true;
         } else {
-            echo "Error en la actualización: " . $stmt->error;
+            return false;
         }
     }
 
@@ -245,10 +244,9 @@ class Profile
         $stmt->bind_param("sssssi", $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol, $idCol);
     
         if ($stmt->execute()) {
-            header("Location: ?b=profile&s=Inicio&p=admin");
-            exit();
+            return true;
         } else {
-            echo "Error en la actualización: " . $stmt->error;
+            return false; 
         }
     }
 
@@ -289,7 +287,7 @@ class Profile
     }
 
     // -----Metodo para agregar un nuevo Proveedor----- //
-    public function GuardarProveedor($nombreProv, $direccionProv, $emailProv, $telefonoProv){
+    public function saveProveedor($nombreProv, $direccionProv, $emailProv, $telefonoProv){
         try {
             $sql = 'INSERT INTO proveedor(idprov, nomprov, dirprov, emaprov, telprov) VALUES (?, ?, ?, ?, ?)';
             $stmt = $this->conexion->prepare($sql);
@@ -304,7 +302,7 @@ class Profile
     }
 
     // -----Metodo para agregar un nuevo Colaborador----- //
-    public function GuardarColaborador( $dnicol, $nombreCol, $emailCol, $passwordCol, $direccionCol,  $telefonoCol, $rolCol){
+    public function saveColaborador( $dnicol, $nombreCol, $emailCol, $passwordCol, $direccionCol,  $telefonoCol, $rolCol){
         try {
             $sql = 'INSERT INTO colaborador(idcol, dnicol, nomcol, emacol, passcol, dircol, telcol, rolcol) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
             $stmt = $this->conexion->prepare($sql);
@@ -329,5 +327,20 @@ class Profile
         } catch (Exception $e) {
 			die($e->getMessage());
 		}
+    }
+
+    // -----Metodo para verificar si un string contiene numeros----- //
+    public function verifyNumberString($string){
+        return preg_match('/\d/', $string) === 1 ? true : false; 
+    }
+
+    // -----Metodo para verificar que un string sea un correo electronico----- //
+    public function verifyEmailString($string){
+        return filter_var($string, FILTER_VALIDATE_EMAIL);
+    }
+
+    // -----Metodo para verificar que entre los numero haya letras----- //
+    public function verifyLeterString($number){
+        return preg_match('/[a-zA-Z]/', $number) === 1 ? true : false; 
     }
 }
