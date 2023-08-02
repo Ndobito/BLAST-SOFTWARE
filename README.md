@@ -16,8 +16,7 @@ Olvidar Contraseña:
 Perfil: 
   + Revisar las interfaces del modulo de inventarios (botones, rutas y responsive).
   + Revisar las acciones de eliminar en : proveedor, colaborador, cliente, mascota.
-  + Revisar las acciones de agregar en: colaborador.
-  + Revisar las accioes de editar en : mascota, cliente.
+  + Revisar las acciones de editar en : mascota, cliente.
   + Agregar alertas antes de eliminar en: proveedor, colaborador, cliente, mascota.
   + Agregar confirmacion de finalizar sesion.
   + Agregar modulo de cambiar contraseña a profile.
