@@ -1,15 +1,17 @@
-<?php 
+<?php
 include_once "model/editarinfo.php";
 
-class editarinfoController{
+class editarinfoController
+{
     private $object;
     private $prod;
-    public function __construct()
+    // public function __construct()
+    // {
+    //     $this->object = new info();
+
+    // }
+    public function EditarInfoProv()
     {
-        $this->object = new info();
-       
-    }
-    public function EditarInfoProv(){
 
         if (isset($_GET["idprod"])) {
             $idProveedor = $_GET["idprod"];
@@ -21,6 +23,14 @@ class editarinfoController{
         }
     }
 
+    public function GuardarInfoProv()
+    {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $idProv = $_POST["ctIdProv"];
+            $nombreProv = $_POST["ctNomProv"];
+            $direccionProv = $_POST["ctDirProv"];
+            $emailProv = $_POST["ctEmaProv"];
+            $telefonoProv = $_POST["ctTelProv"];
     // public function GuardarInfoProv(){
     //     if ($_SERVER["REQUEST_METHOD"] === "POST") {
     //         $idProv = $_POST["ctIdProv"];
@@ -29,33 +39,42 @@ class editarinfoController{
     //         $emailProv = $_POST["ctEmaProv"];
     //         $telefonoProv = $_POST["ctTelProv"];
 
-    //         $this->object->actproveedor($idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv);
-    //         setNotify("success", "Se ha guardado el producto  correctamente");
-    //         redirect("?b=profile&s=Inicio&p=admin");
-    //     }
+            if(isset($idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv) && !empty($idProv) && !empty($nombreProv) && !empty($direccionProv) && !empty($emailProv) && !empty($telefonoProv)){
 
-    // }
-//     public function GuardarProveedor(){
-//         require_once "view/profile/admin/proveedor/agregar.php";
-//         if((isset($_POST["btnEditar"]))){
-//         $nombreProv = $_POST['ctNomProv'];
-//         $direccionProv = $_POST['ctDirProv'];
-//         $emailProv = $_POST['ctEmaProv'];
-//         $telefonoProv = $_POST['ctTelProv'];
+                if ( $this->object->actproveedor($idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv)) {
+                    redirect("?b=profile&s=Inicio&p=admin")->success("Se ha guardado correctamente " . $nombreProv . " correctamente")->send();
+                } else {
+                    redirect("?b=profile&s=Inicio&p=admin" . $idProv)->error("Error al actualizar al proveedor")->send();
+                }
+            }else {
+                redirect("?b=editarinfo&s=EditarInfoProv&idprod=" . $idProv)->error("Por favor llene todo los campos")->send();
+            }
         
-//         if($this->object->GuardarProveedor($nombreProv, $direccionProv, $emailProv, $telefonoProv)){
-//             redirect("?b=profile&s=Inicio&p=admin")->success("Se ha guardado correctamente " . $nombreProv . " correctamente")->send();
+        }
+    }
+    public function GuardarProveedor()
+    {
+        require_once "view/profile/admin/proveedor/agregar.php";
+        if((isset($_POST["btnEditar"]))){
+        $nombreProv = $_POST['ctNomProv'];
+        $direccionProv = $_POST['ctDirProv'];
+        $emailProv = $_POST['ctEmaProv'];
+        $telefonoProv = $_POST['ctTelProv'];
+        
+        if($this->object->GuardarProveedor($nombreProv, $direccionProv, $emailProv, $telefonoProv)){
+            redirect("?b=profile&s=Inicio&p=admin")->success("Se ha guardado correctamente " . $nombreProv . " correctamente")->send();
            
-//         }else{
-//             setcookie("notify", serialize(["status" => "error", "message" => "Error al agregar proveedor"]), time() + 5, "/");
-//             header('location: ?b=profile&s=Agregar');
-//         }
-//     }
-// }
+        }else{
+            setcookie("notify", serialize(["status" => "error", "message" => "Error al agregar proveedor"]), time() + 5, "/");
+            header('location: ?b=profile&s=Agregar');
+        }
+    }
+}
 
     //Colaborador 
 
-    public function EditarInfoEmp(){
+    public function EditarInfoEmp()
+    {
 
         if (isset($_GET["idcola"])) {
             $idColaborador = $_GET["idcola"];
@@ -66,31 +85,30 @@ class editarinfoController{
             exit();
         }
     }
-    // public function GuardarInfoEmp(){
-    //     if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    public function GuardarInfoEmp(){
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
-    //         $idCol = $_POST["idcol"];
-    //         $nombreCol = $_POST["nomcol"];
-    //         $direccionCol = $_POST["dircol"];
-    //         $emailCol = $_POST["emacol"];
-    //         $telefonoCol = $_POST["telcol"];
-    //         $rolCol = $_POST["rolcol"];
+            $idCol = $_POST["idcol"];
+            $nombreCol = $_POST["nomcol"];
+            $direccionCol = $_POST["dircol"];
+            $emailCol = $_POST["emacol"];
+            $telefonoCol = $_POST["telcol"];
+            $rolCol = $_POST["rolcol"];
 
     //         $this->object->actualizaempleado($idCol, $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol);
             
-    //     }
-    // }
-
-    public function eliminar()
-    {
-        $prod = new info();
-        $prod->idcol = $_REQUEST["idcol"];
-        $prod->eliminar($prod);
-
-        redirect("?b=profile&s=Inicio&p=admin")->success("Se ha eliminado el colaborador " . $_REQUEST["nomcol"] . " correctamente")->send();
+        }
     }
 
+    // public function eliminar()
+    // {
+    //     $prod = new info();
+    //     $prod->idcol = $_REQUEST["idcol"]; 
+    //     $prod->eliminar($prod);
+
+    //     redirect("?b=profile&s=Inicio&p=admin")->success("Se ha eliminado el colaborador " . $_REQUEST["nomcol"] . " correctamente")->send();
+    // }
     public function GuardarColaborador(){
         require_once "view/profile/admin/empleados/agregar.php";
 
@@ -105,10 +123,11 @@ class editarinfoController{
           
             
             if($this->object->GuardarColaborador($dniCol, $nombreCol, $emailCol, $passwordCol, $direccionCol,  $telefonoCol, $rolCol)){
-                redirect("?b=profile&s=Inicio&p=admin")->success("Se ha guardado correctamente " . $nombreCol . " correctamente")->send();
+                setNotify("success", "Se ha guardado correctamente " . $nombreCol . " correctamente");
+                header("Location: ?b=profile&s=Inicio&p=admin");
             }else{
-                redirect("?b=profile&s=Agregar")->error("Error al agregar proveedor")->send();
-
+                setcookie("notify", serialize(["status" => "error", "message" => "Error al agregar proveedor"]), time() + 5, "/");
+                header('location: ?b=profile&s=Agregar');
             }
         }
     }
@@ -116,8 +135,9 @@ class editarinfoController{
 
     ///// clientes
 
-    public function editarInfoCli(){
-        
+    public function editarInfoCli()
+    {
+
         if (isset($_GET["idcli"])) {
             $idCliente = $_GET["idcli"];
             $cliente = $this->object->cliente($idCliente);
@@ -127,33 +147,34 @@ class editarinfoController{
             exit();
         }
     }
-    public function GuardarInfoCli(){
+    public function GuardarInfoCli()
+    {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $idCli = $_POST["idcli"];
+            $nombreCli = $_POST["nomcli"];
+            $emailCli = $_POST["emacli"];
+            $userCli = $_POST["usercli"];
+            $direccionCli = $_POST["dircli"];
+            $tzonecli = $_POST["tzonecli"];
+            $telefonoCli = $_POST["telcli"];
+            $telefonoaltCli = $_POST["telaltcli"];
 
-                $idCli = $_POST["idcli"];
-                $nombreCli = $_POST["nomcli"];
-                $emailCli = $_POST["emacli"];
-                $userCli = $_POST["usercli"];
-                $direccionCli = $_POST["dircli"];
-                $tzonecli = $_POST["tzonecli"];
-                $telefonoCli = $_POST["telcli"];
-                $telefonoaltCli = $_POST["telaltcli"];
 
-            
-            if($this->object->actualizacliente($idCli, $nombreCli, $emailCli,  $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli)){
+            if ($this->object->actualizacliente($idCli, $nombreCli, $emailCli, $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli)) {
                 redirect("?b=profile&s=Inicio&p=admin")->success("Se ha guardado correctamente " . $nombreCli . " correctamente")->send();
-            }else{
-                setcookie("notify", serialize(["status" => "error", "message" => "Error al actualizar al cliente"]), time() + 5, "/");
-                header('location: ?b=profile&s=Agregar');
+            } else {
+                redirect("?b=editarinfo&s=EditarInfoCli&idcli=" . $idCli)->error("Error al actualizar al cliente")->send();
             }
 
         }
+        redirect("?b=profile&s=Inicio&p=admin")->error("No ha pasao na")->send();
     }
 
     ///// mascota
 
-    public function editarmas(){
-        
+    public function editarmas()
+    {
+
         if (isset($_GET["idmas"])) {
             $idMascota = $_GET["idmas"];
             $mascota = $this->object->mascota($idMascota);
@@ -163,7 +184,8 @@ class editarinfoController{
             exit();
         }
     }
-    public function GuardarInfoMas(){
+    public function GuardarInfoMas()
+    {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             $idmas = $_POST["idmas"];
@@ -171,11 +193,11 @@ class editarinfoController{
             $edadmas = $_POST["edadmas"];
             $genmas = $_POST["genmas"];
             $espciemas = $_POST["espmas"];
-            
-            if( $this->object->actualizamas($idmas, $nombremas, $edadmas,  $genmas, $espciemas)){
+
+            if ($this->object->actualizamas($idmas, $nombremas, $edadmas, $genmas, $espciemas)) {
                 setNotify("success", "Se ha actualizado " . $nombremas . " correctamente");
                 header("Location: ?b=profile&s=Inicio&p=admin");
-            }else{
+            } else {
                 setcookie("notify", serialize(["status" => "error", "message" => "Error al actualizar"]), time() + 5, "/");
                 header('location: ?b=profile&s=Agregar');
             }
