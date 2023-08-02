@@ -36,11 +36,15 @@ class restorePasswordController{
                 if($this->object->verifyUser($user)){
                     if($this->object->verifyEmail($email, $user)){
                         $asunto = "ANIMAL WORLD - RECUPERACION DE CONTRASEÑA"; 
-                        $mensaje = "Dirijase a la sigueinte direccion de enlace para recuperar su contraseña https://localhost:8080/BLAST-SOFTWARE/MVC/"; 
+                        $mensaje = "Hola,
+                        
+                        Dirijase a la sigueinte direccion de enlace para recuperar su contraseña http://localhost:8080/BLAST-SOFTWARE/MVC/index.php?b=index
+                        
+                        recuerda que no debes compartir esta informacion con nadie. 
+                        
+                        Gracias!"; 
                         $cabecera = "From: animal20230world@gmail.com\r\n" .
                         "Reply-To: animal2023world@gmail.com\r\n";
-
-
                         $mail = new PHPMailer(true); 
                         $mail -> isSMTP(); 
                         $mail -> Host = "smtp.gmail.com"; 
@@ -48,7 +52,7 @@ class restorePasswordController{
 
                         $mail -> SMTPAuth = true; 
                         $mail -> Username = "animal2023world@gmail.com"; 
-                        $mail ->Password = "Animal2023??world"; 
+                        $mail ->Password = "wlplwfqgpkopkney"; 
 
                         $mail -> setFrom("animal2023world@gmail.com", "Animal World - 2023");
                         $mail -> addAddress($email, $user); 

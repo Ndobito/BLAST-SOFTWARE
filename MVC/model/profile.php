@@ -343,4 +343,23 @@ class Profile
     public function verifyLeterString($number){
         return preg_match('/[a-zA-Z]/', $number) === 1 ? true : false; 
     }
+
+    // -----Metodo para verificar contraseña----- //
+    public function verifyPasswordString($password){
+        $longmin = 8; 
+        $mayus = true; 
+        $minus = true; 
+        $number = true; 
+
+        // -----Verificar longitud minima----- //
+        $longpass = (strlen($password) < $longmin) ? true : false;
+        // -----Verificar mayuscula----- //
+        $mayuspass = ($mayus && preg_match('/[A-Z]/', $password)) ? true : false;  
+        // -----Verificar minuscula----- //
+        $minuspass = ($minus && preg_match('/[a-z]/', $password)) ? true : false; 
+        // Verificar numeros----- //
+        $numberpass = ($number && preg_match('/[0-9]/', $password)) ? true : false;
+
+        return ($longpass === true && $mayuspass === true && $minuspass === true && $numberpass === true) ? true : false; 
+    }
 }

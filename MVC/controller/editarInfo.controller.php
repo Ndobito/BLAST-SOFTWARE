@@ -21,37 +21,37 @@ class editarinfoController{
         }
     }
 
-    public function GuardarInfoProv(){
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $idProv = $_POST["ctIdProv"];
-            $nombreProv = $_POST["ctNomProv"];
-            $direccionProv = $_POST["ctDirProv"];
-            $emailProv = $_POST["ctEmaProv"];
-            $telefonoProv = $_POST["ctTelProv"];
+    // public function GuardarInfoProv(){
+    //     if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    //         $idProv = $_POST["ctIdProv"];
+    //         $nombreProv = $_POST["ctNomProv"];
+    //         $direccionProv = $_POST["ctDirProv"];
+    //         $emailProv = $_POST["ctEmaProv"];
+    //         $telefonoProv = $_POST["ctTelProv"];
 
-            $this->object->actproveedor($idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv);
-            setNotify("success", "Se ha guardado el producto  correctamente");
-            redirect("?b=profile&s=Inicio&p=admin");
-        }
+    //         $this->object->actproveedor($idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv);
+    //         setNotify("success", "Se ha guardado el producto  correctamente");
+    //         redirect("?b=profile&s=Inicio&p=admin");
+    //     }
 
-    }
-    public function GuardarProveedor(){
-        require_once "view/profile/admin/proveedor/agregar.php";
-        if((isset($_POST["btnEditar"]))){
-        $nombreProv = $_POST['ctNomProv'];
-        $direccionProv = $_POST['ctDirProv'];
-        $emailProv = $_POST['ctEmaProv'];
-        $telefonoProv = $_POST['ctTelProv'];
+    // }
+//     public function GuardarProveedor(){
+//         require_once "view/profile/admin/proveedor/agregar.php";
+//         if((isset($_POST["btnEditar"]))){
+//         $nombreProv = $_POST['ctNomProv'];
+//         $direccionProv = $_POST['ctDirProv'];
+//         $emailProv = $_POST['ctEmaProv'];
+//         $telefonoProv = $_POST['ctTelProv'];
         
-        if($this->object->GuardarProveedor($nombreProv, $direccionProv, $emailProv, $telefonoProv)){
-            redirect("?b=profile&s=Inicio&p=admin")->success("Se ha guardado correctamente " . $nombreProv . " correctamente")->send();
+//         if($this->object->GuardarProveedor($nombreProv, $direccionProv, $emailProv, $telefonoProv)){
+//             redirect("?b=profile&s=Inicio&p=admin")->success("Se ha guardado correctamente " . $nombreProv . " correctamente")->send();
            
-        }else{
-            setcookie("notify", serialize(["status" => "error", "message" => "Error al agregar proveedor"]), time() + 5, "/");
-            header('location: ?b=profile&s=Agregar');
-        }
-    }
-}
+//         }else{
+//             setcookie("notify", serialize(["status" => "error", "message" => "Error al agregar proveedor"]), time() + 5, "/");
+//             header('location: ?b=profile&s=Agregar');
+//         }
+//     }
+// }
 
     //Colaborador 
 
