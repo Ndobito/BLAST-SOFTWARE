@@ -209,22 +209,22 @@ class ProfileController
         }
     }
 
-    // -----Metodo para guardar la informacion de Colaboradores y proveedores----- //
+    // -----Metodo para guardar la informacion de Colaboradores y Proveedores----- //
     public function saveProfile(){
         $rol = $_REQUEST['p']; 
         switch ($rol) {
             case 'proveedor':
                 if(empty($_POST['ctNomProv']) || empty($_POST['ctDirProv']) || empty($_POST['ctEmaProv']) || empty($_POST['ctTelProv']) ){
-                    redirect("?b=profile&s=saveProfile&p=proveedor")->error("Se deben llenar todos los campos")->send();        
+                    redirect("?b=profile&s=optionSaveRedirec&p=proveedor")->error("Se deben llenar todos los campos")->send();        
                 }else{
                     if($this->object->verifyNumberString($_POST['ctNomProv'])){
-                        redirect("?b=profile&s=saveProfile&p=proveedor")->error("campos con numeros")->send();        
+                        redirect("?b=profile&s=optionSaveRedirec&p=proveedor")->error("El nombre no puede llevar numeros")->send();        
                     }else{
-                        if($this->object->verifyEmailString($_POST['ctEmaProv'])){
-                            redirect("?b=profile&s=saveProfile&p=proveedor")->error("Se deben llenar todos los campos")->send();
+                        if(!$this->object->verifyEmailString($_POST['ctEmaProv'])){
+                            redirect("?b=profile&s=optionSaveRedirec&p=proveedor")->error("Formato de correo electronico invalido")->send();
                         }else{
                             if($this->object->verifyLeterString($_POST['ctTelProv'])){
-                                redirect("?b=profile&s=saveProfile&p=proveedor")->error("Se deben llenar todos los campos")->send();
+                                redirect("?b=profile&s=optionSaveRedirec&p=proveedor")->error("El numero de telefono no puede llevar letras")->send();
                             }else{
                                 $name = $_POST['ctNomProv'];
                                 $dir = $_POST['ctDirProv'];
@@ -232,7 +232,7 @@ class ProfileController
                                 $tel = $_POST['ctTelProv'];
 
                                 if($this->object->saveProveedor($name, $dir, $ema, $tel)){
-                                    redirect("?b=profile&s=Inicio&p=admin")->success("Se ha agregado el colaborador correctamente")->send();
+                                    redirect("?b=profile&s=Inicio&p=admin")->success("Se ha agregado el proveedor correctamente")->send();
                                 }else{
                                     redirect("?b=profile&s=Inicio&p=admin")->error("Error al crear el usuario")->send();
                                 }
@@ -242,10 +242,35 @@ class ProfileController
                 }
                 break;
             case 'colaborador':
-                if(empty($_POST['ctIdCol']) || empty($_POST['ctNomCol']) || empty($_POST['ctEmaCol']) || empty($_POST['ctPassCol']) || empty($_POST['ctDirCol']) || empty($_POST['ctTelCol']) || empty($_POST['selRolUser'])){
-                    redirect("?b=profile&s=saveColaborador&p=colaborador")->error("Se deben llenar todos los campos")->send();        
+                if(empty($_POST['ctNomCol']) || empty($_POST['ctEmaCol']) || empty($_POST['ctPassCol']) || empty($_POST['ctDirCol']) || empty($_POST['ctTelCol']) || empty($_POST['selRolUser'])){
+                    redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("Se deben llenar todos los campos")->send();
                 }else{
-                    if($this->object->verifyNumberString($_POST[''])){}else{}
+                    // if($this->object->verifyNumberString($_POST['ctNomCol'])){
+                    //     redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("El nombre no puede llevar numeros")->send();        
+                    // }else{
+                    //     if($this->object->verifyEmailString($_POST['ctEmaCol'])){
+                    //         redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("Formato de correo electronico invalido")->send();
+                    //     }else{
+                    //         if($this->object->verifyLeterString($_POST['ctTelCol'])){
+                    //             redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("Se deben llenar todos los campos")->send();
+                    //         }else{
+                    //             if($this->object->verifyPasswordString($_POST['ctPassCol'])){
+                    //                 $name = $_POST['ctNomCol'];
+                    //                 $ema = $_POST['ctEmaCol'];
+                    //                 $pass = md5($_POST['ctPassCol']);                                    $dir = $_POST['ctDirCol'];
+                    //                 $tel = $_POST['ctTelProv'];
+
+                    //                 if($this->object->saveProveedor($name, $dir, $ema, $tel)){
+                    //                     redirect("?b=profile&s=Inicio&p=admin")->success("Se ha agregado el colaborador correctamente")->send();
+                    //                 }else{
+                    //                     redirect("?b=profile&s=Inicio&p=admin")->error("Error al crear el usuario")->send();
+                    //                 }
+                    //             }else{  
+                    //                 redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("La contraseña no cumple con los requisitos minimos de seguridad. ")->send();
+                    //             }
+                    //         }
+                    //     }
+                    // }
                 }
                 break;
             default:

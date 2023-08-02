@@ -92,6 +92,12 @@ body{
     font-size: 12pt;
 }
 
+p.verifyPass{
+    color: var(--color-8);
+    font-family: var(--font-2);
+    font-size: 12px;
+}
+
 .form form div input:focus{
     background-color: var(--color-11);
 }

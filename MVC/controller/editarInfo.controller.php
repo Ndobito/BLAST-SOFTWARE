@@ -5,11 +5,11 @@ class editarinfoController
 {
     private $object;
     private $prod;
-    public function __construct()
-    {
-        $this->object = new info();
+    // public function __construct()
+    // {
+    //     $this->object = new info();
 
-    }
+    // }
     public function EditarInfoProv()
     {
 
@@ -31,6 +31,13 @@ class editarinfoController
             $direccionProv = $_POST["ctDirProv"];
             $emailProv = $_POST["ctEmaProv"];
             $telefonoProv = $_POST["ctTelProv"];
+    // public function GuardarInfoProv(){
+    //     if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    //         $idProv = $_POST["ctIdProv"];
+    //         $nombreProv = $_POST["ctNomProv"];
+    //         $direccionProv = $_POST["ctDirProv"];
+    //         $emailProv = $_POST["ctEmaProv"];
+    //         $telefonoProv = $_POST["ctTelProv"];
 
             if(isset($idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv) && !empty($idProv) && !empty($nombreProv) && !empty($direccionProv) && !empty($emailProv) && !empty($telefonoProv)){
 
@@ -94,14 +101,14 @@ class editarinfoController
         }
     }
 
-    public function eliminar()
-    {
-        $prod = new info();
-        $prod->idcol = $_REQUEST["idcol"];
-        $prod->eliminar($prod);
+    // public function eliminar()
+    // {
+    //     $prod = new info();
+    //     $prod->idcol = $_REQUEST["idcol"]; 
+    //     $prod->eliminar($prod);
 
-        redirect("?b=profile&s=Inicio&p=admin")->success("Se ha eliminado el colaborador " . $_REQUEST["nomcol"] . " correctamente")->send();
-    }
+    //     redirect("?b=profile&s=Inicio&p=admin")->success("Se ha eliminado el colaborador " . $_REQUEST["nomcol"] . " correctamente")->send();
+    // }
     public function GuardarColaborador(){
         require_once "view/profile/admin/empleados/agregar.php";
 
