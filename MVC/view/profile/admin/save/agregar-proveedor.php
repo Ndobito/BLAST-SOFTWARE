@@ -1,0 +1,34 @@
+<body>
+    <div class="container">
+        <div class="edit">
+            <h1 >Guardar Proveedor</h1>
+            <div class="form">
+                <form action="?b=profile&s=saveProfile&p=proveedor" method="POST">
+                    <div>
+                        <label class="tex" for="">Nombre:</label>
+                        <input type="text" name="ctNomProv" id="ctNomProv">
+                    </div>
+                    <div>
+                        <label class="tex" for="">Direccion: </label>
+                        <input type="text" name="ctDirProv" id="ctDirProv">
+                    </div>
+                    <div>
+                        <label class="tex" for="">Email: </label>
+                        <input type="email" name="ctEmaProv" id="ctEmaProv">
+                    </div>
+                    <div>
+                        <label class="tex" for="">Telefono:</label>
+                        <input type="number" name="ctTelProv" id="ctTelProv" >
+                    </div>
+                    <div>
+                        <input type="submit" name="btnEditar" value="Guardar">
+                    </div>
+                </form>
+                <div>
+                    <a href="?b=profile&s=Inicio&p=admin"><input type="submit" name="btnCancel" value="Cancelar"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
