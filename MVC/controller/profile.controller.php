@@ -220,7 +220,7 @@ class ProfileController
                     if($this->object->verifyNumberString($_POST['ctNomProv'])){
                         redirect("?b=profile&s=optionSaveRedirec&p=proveedor")->error("El nombre no puede llevar numeros")->send();        
                     }else{
-                        if($this->object->verifyEmailString($_POST['ctEmaProv'])){
+                        if(!$this->object->verifyEmailString($_POST['ctEmaProv'])){
                             redirect("?b=profile&s=optionSaveRedirec&p=proveedor")->error("Formato de correo electronico invalido")->send();
                         }else{
                             if($this->object->verifyLeterString($_POST['ctTelProv'])){
@@ -232,7 +232,7 @@ class ProfileController
                                 $tel = $_POST['ctTelProv'];
 
                                 if($this->object->saveProveedor($name, $dir, $ema, $tel)){
-                                    redirect("?b=profile&s=Inicio&p=admin")->success("Se ha agregado el colaborador correctamente")->send();
+                                    redirect("?b=profile&s=Inicio&p=admin")->success("Se ha agregado el proveedor correctamente")->send();
                                 }else{
                                     redirect("?b=profile&s=Inicio&p=admin")->error("Error al crear el usuario")->send();
                                 }

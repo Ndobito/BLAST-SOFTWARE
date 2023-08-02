@@ -336,7 +336,7 @@ class Profile
 
     // -----Metodo para verificar que un string sea un correo electronico----- //
     public function verifyEmailString($string){
-        return filter_var($string, FILTER_VALIDATE_EMAIL);
+        return filter_var($string, FILTER_VALIDATE_EMAIL) ? true : false;
     }
 
     // -----Metodo para verificar que entre los numero haya letras----- //
