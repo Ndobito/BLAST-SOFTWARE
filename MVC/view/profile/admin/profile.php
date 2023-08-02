@@ -160,6 +160,7 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
+                                <th>DNI</th>
                                 <th>Nombres</th>
                                 <th>Correo</th>
                                 <th>Direccion</th>
@@ -172,6 +173,9 @@
                             <tr>
                                 <td>
                                     <?php echo $colaborador['idcol']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $colaborador['dnicol']; ?>
                                 </td>
                                 <td>
                                     <?php echo $colaborador['nomcol']; ?>
@@ -258,7 +262,7 @@
                                     <?php echo $cliente['telaltcli']; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="?b=editarinfo&s=EditarInfoCli&idcli=<?= $cliente['idcli']; ?>">
+                                    <a href="?b=profile&s=optionEditRedirec&p=cliente&idcli=<?= $cliente['idcli']; ?>">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
@@ -319,7 +323,7 @@
                                     <?php echo $mascota['idcli']; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="?b=editarinfo&s=Editarmas&idmas=<?= $mascota['idmas']; ?>">
+                                    <a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=<?= $mascota['idmas']; ?>">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>

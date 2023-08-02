@@ -148,55 +148,17 @@ class Profile
          $stmt->close();
          return $administrador;
     }
-    
-    // -----Metodo para verificar la existencia del proveedor ----- //
-    public function existProveedor($idProveedor)
+
+    // -----Metodo para verificar existencia en la base de datos ----- //
+    public function existProfile($table,$param, $id)
     {
-        $stmt = $this->conexion->prepare("SELECT * FROM proveedor WHERE idprov = ?");
-        $stmt->bind_param("i", $idProveedor);
+        $stmt = $this->conexion->prepare("SELECT * FROM $table WHERE $param = ?");
+        $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
-        $proveedor = $result->fetch_assoc();
+        $result = $result->fetch_assoc();
         $stmt->close();
-        return $proveedor;
-    }
-
-    // -----Metodo para verificar la existencia del empleado ----- //
-    public function existColaborador($idColaborador){
-        try{
-            $stmt = $this->conexion->prepare("SELECT * FROM colaborador WHERE idcol = ?");
-            $stmt->bind_param("i", $idColaborador);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $colaborador = $result->fetch_assoc();
-            $stmt->close();
-            return $colaborador;
-        }catch(Exception $e){
-            echo "Error : ". $e->getMessage();
-        }
-        
-    }
-
-    // -----Metodo para verificar la existencia del Cliente ----- //
-    public function existCliente($idCliente){
-        $stmt = $this->conexion->prepare("SELECT * FROM cliente WHERE idcli = ?");
-        $stmt->bind_param("i", $idCliente);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $cliente = $result->fetch_assoc();
-        $stmt->close();
-        return $cliente;
-    }
-
-    // -----Metodo para verificar la existencia de la Mascota----- //
-    public function mascota($idMascota){
-        $stmt = $this->conexion->prepare("SELECT * FROM mascota WHERE idmas = ?");
-        $stmt->bind_param("i", $idMascota);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $mascota = $result->fetch_assoc();
-        $stmt->close();
-        return $mascota;
+        return $result;
     }
 
     // -----Metodo para actualizar informacion de Usuario Admin----- //
@@ -258,28 +220,27 @@ class Profile
             $stmt->bind_param("sssssssi",  $nombreCli, $emailCli,  $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli, $idCli);
         
             if ($stmt->execute()) {
-                header("Location: ?b=profile&s=Inicio&p=admin");
+                return true; 
                 exit();
             } else {
-                echo "Error en la actualización: " . $stmt->error;
+                return false; 
             }
         } catch (Exception $e) {
             die($e->getMessage());
         }
     }
     
-    // -----Metodo para actualizar informacion de Cliente----- //
+    // -----Metodo para actualizar informacion de mascota----- //
     public function updateMascota($idmas, $nombremas, $edadmas,  $genmas, $espciemas){
-
         try {
             $stmt = $this->conexion->prepare("UPDATE mascota SET nommas = ?, edadmas = ?, genmas = ?, espmas = ? WHERE idmas = ?");
             $stmt->bind_param("ssssi",  $nombremas, $edadmas,  $genmas, $espciemas, $idmas);
 
             if ($stmt->execute()) {
-                header("Location: ?b=profile&s=Inicio&p=admin");
+                return true;
                 exit();
             } else {
-                echo "Error en la actualización: " . $stmt->error;
+                return false; 
             }
         } catch (Exception $e) {
             die($e->getMessage());
@@ -304,9 +265,9 @@ class Profile
     // -----Metodo para agregar un nuevo Colaborador----- //
     public function saveColaborador( $dnicol, $nombreCol, $emailCol, $passwordCol, $direccionCol,  $telefonoCol, $rolCol){
         try {
-            $sql = 'INSERT INTO colaborador(idcol, dnicol, nomcol, emacol, passcol, dircol, telcol, rolcol) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+            $sql = 'INSERT INTO colaborador(dnicol, nomcol, emacol, passcol, dircol, telcol, rolcol) VALUES (?, ?, ?, ?, ?, ?, ?)';
             $stmt = $this->conexion->prepare($sql);
-            if($stmt->execute(["ssssssi",  $dnicol, $nombreCol, $emailCol, $passwordCol, $direccionCol,  $telefonoCol, $rolCol])) {
+            if($stmt->execute([$dnicol, $nombreCol, $emailCol, $passwordCol, $direccionCol,  $telefonoCol, $rolCol])) {
                 return true;
             } else {
                 return false;
@@ -352,7 +313,7 @@ class Profile
         $number = true; 
 
         // -----Verificar longitud minima----- //
-        $longpass = (strlen($password) < $longmin) ? true : false;
+        $longpass = (strlen($password) < $longmin) ? false : true;
         // -----Verificar mayuscula----- //
         $mayuspass = ($mayus && preg_match('/[A-Z]/', $password)) ? true : false;  
         // -----Verificar minuscula----- //

@@ -57,8 +57,10 @@ class ProfileController
         switch ($o) {
             case 'proveedor':
                 if ($_GET['idprov']) {
+                    $table = "proveedor";
+                    $param = "idprov";
                     $idProveedor = $_GET['idprov'];
-                    $proveedor = $this->object->existProveedor($idProveedor);
+                    $proveedor = $this->object->existProfile($table, $param, $idProveedor);
                     $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
                     require_once "view/head.php";
                     require_once "view/profile/admin/edit/editar-proveedor.php";
@@ -66,13 +68,37 @@ class ProfileController
                 break;
             case 'colaborador':
                 if ($_GET['idcola']) {
-                    $idColaborador = $_GET['idcola'];
-                    $colaborador = $this->object->existColaborador($idColaborador);
+                    $table = "colaborador";
+                    $param = "idcol";
+                    $idColaborador = $_GET['idcola']; 
+                    $colaborador = $this->object->existProfile($table, $param, $idColaborador);
                     $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
                     require_once "view/head.php";
                     require_once "view/profile/admin/edit/editar-colaborador.php";
                 }
                 break;
+            case 'cliente':
+                    if ($_GET['idcli']) {
+                        $table = "cliente"; 
+                        $param = "idcli";
+                        $idCliente = $_GET['idcli'];
+                        $cliente = $this->object->existProfile($table, $param, $idCliente);
+                        $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
+                        require_once "view/head.php";
+                        require_once "view/profile/admin/edit/editar-cliente.php";
+                    }
+                    break;
+            case 'mascota':
+                        if ($_GET['idmas']) {
+                            $table = "mascota";
+                            $param = "idmas"; 
+                            $idMascota = $_GET['idmas'];
+                            $mascota = $this->object->existProfile($table, $param, $idMascota);
+                            $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
+                            require_once "view/head.php";
+                            require_once "view/profile/admin/edit/editar-mascota.php";
+                        }
+                        break;
             default:
                 redirect("?b=profile&s=Inicio&p=admin")->error("Pagina no encontrada")->send();
                 break;
@@ -210,30 +236,31 @@ class ProfileController
     }
 
     // -----Metodo para guardar la informacion de Colaboradores y Proveedores----- //
-    public function saveProfile(){
-        $rol = $_REQUEST['p']; 
+    public function saveProfile()
+    {
+        $rol = $_REQUEST['p'];
         switch ($rol) {
             case 'proveedor':
-                if(empty($_POST['ctNomProv']) || empty($_POST['ctDirProv']) || empty($_POST['ctEmaProv']) || empty($_POST['ctTelProv']) ){
-                    redirect("?b=profile&s=optionSaveRedirec&p=proveedor")->error("Se deben llenar todos los campos")->send();        
-                }else{
-                    if($this->object->verifyNumberString($_POST['ctNomProv'])){
-                        redirect("?b=profile&s=optionSaveRedirec&p=proveedor")->error("El nombre no puede llevar numeros")->send();        
-                    }else{
-                        if(!$this->object->verifyEmailString($_POST['ctEmaProv'])){
+                if (empty($_POST['ctNomProv']) || empty($_POST['ctDirProv']) || empty($_POST['ctEmaProv']) || empty($_POST['ctTelProv'])) {
+                    redirect("?b=profile&s=optionSaveRedirec&p=proveedor")->error("Se deben llenar todos los campos")->send();
+                } else {
+                    if ($this->object->verifyNumberString($_POST['ctNomProv'])) {
+                        redirect("?b=profile&s=optionSaveRedirec&p=proveedor")->error("El nombre no puede llevar numeros")->send();
+                    } else {
+                        if (!$this->object->verifyEmailString($_POST['ctEmaProv'])) {
                             redirect("?b=profile&s=optionSaveRedirec&p=proveedor")->error("Formato de correo electronico invalido")->send();
-                        }else{
-                            if($this->object->verifyLeterString($_POST['ctTelProv'])){
+                        } else {
+                            if ($this->object->verifyLeterString($_POST['ctTelProv'])) {
                                 redirect("?b=profile&s=optionSaveRedirec&p=proveedor")->error("El numero de telefono no puede llevar letras")->send();
-                            }else{
+                            } else {
                                 $name = $_POST['ctNomProv'];
                                 $dir = $_POST['ctDirProv'];
                                 $ema = $_POST['ctEmaProv'];
                                 $tel = $_POST['ctTelProv'];
 
-                                if($this->object->saveProveedor($name, $dir, $ema, $tel)){
+                                if ($this->object->saveProveedor($name, $dir, $ema, $tel)) {
                                     redirect("?b=profile&s=Inicio&p=admin")->success("Se ha agregado el proveedor correctamente")->send();
-                                }else{
+                                } else {
                                     redirect("?b=profile&s=Inicio&p=admin")->error("Error al crear el usuario")->send();
                                 }
                             }
@@ -242,36 +269,46 @@ class ProfileController
                 }
                 break;
             case 'colaborador':
-                if(empty($_POST['ctNomCol']) || empty($_POST['ctEmaCol']) || empty($_POST['ctPassCol']) || empty($_POST['ctDirCol']) || empty($_POST['ctTelCol']) || empty($_POST['selRolUser'])){
+                if (empty($_POST['ctNumId']) || empty($_POST['ctNomCol']) || empty($_POST['ctEmaCol']) || empty($_POST['ctPassCol']) || empty($_POST['ctDirCol']) || empty($_POST['ctTelCol']) || empty($_POST['selRolUser'])) {
                     redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("Se deben llenar todos los campos")->send();
-                }else{
-                    // if($this->object->verifyNumberString($_POST['ctNomCol'])){
-                    //     redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("El nombre no puede llevar numeros")->send();        
-                    // }else{
-                    //     if($this->object->verifyEmailString($_POST['ctEmaCol'])){
-                    //         redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("Formato de correo electronico invalido")->send();
-                    //     }else{
-                    //         if($this->object->verifyLeterString($_POST['ctTelCol'])){
-                    //             redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("Se deben llenar todos los campos")->send();
-                    //         }else{
-                    //             if($this->object->verifyPasswordString($_POST['ctPassCol'])){
-                    //                 $name = $_POST['ctNomCol'];
-                    //                 $ema = $_POST['ctEmaCol'];
-                    //                 $pass = md5($_POST['ctPassCol']);                                    $dir = $_POST['ctDirCol'];
-                    //                 $tel = $_POST['ctTelProv'];
+                } else {
+                    if ($this->object->verifyLeterString($_POST['ctNumId'])) {
+                        redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("El numero de identificacion no puede llevar letras")->send();
+                    } else {
+                        if ($this->object->verifyNumberString($_POST['ctNomCol'])) {
+                            redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("El nombre no puede llevar numeros")->send();
+                        } else {
+                            if (!$this->object->verifyEmailString($_POST['ctEmaCol'])) {
+                                redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("Formato de correo electronico invalido")->send();
+                            } else {
+                                if ($this->object->verifyLeterString($_POST['ctTelCol'])) {
+                                    redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("Se deben llenar todos los campos")->send();
+                                } else {
+                                    if ($this->object->verifyPasswordString($_POST['ctPassCol'])) {
+                                        $numid = $_POST['ctNumId'];
+                                        $name = $_POST['ctNomCol'];
+                                        $ema = $_POST['ctEmaCol'];
+                                        $pass = md5($_POST['ctPassCol']);
+                                        $dir = $_POST['ctDirCol'];
+                                        $tel = $_POST['ctTelCol'];
+                                        $ocup = $_POST['selRolUser'];
 
-                    //                 if($this->object->saveProveedor($name, $dir, $ema, $tel)){
-                    //                     redirect("?b=profile&s=Inicio&p=admin")->success("Se ha agregado el colaborador correctamente")->send();
-                    //                 }else{
-                    //                     redirect("?b=profile&s=Inicio&p=admin")->error("Error al crear el usuario")->send();
-                    //                 }
-                    //             }else{  
-                    //                 redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("La contraseña no cumple con los requisitos minimos de seguridad. ")->send();
-                    //             }
-                    //         }
-                    //     }
-                    // }
+                                        if ($this->object->saveColaborador($numid, $name, $ema, $pass,$dir, $tel, $ocup)) {
+                                            redirect("?b=profile&s=Inicio&p=admin")->success("Se ha agregado el colaborador correctamente")->send();
+                                        } else {
+                                            redirect("?b=profile&s=Inicio&p=admin")->error("Error al crear el usuario")->send();
+                                        }
+                                    } else {
+                                        redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("La contraseña no cumple con los requisitos minimos de seguridad. ")->send();
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
+                break;
+            case 'cliente':
+                
                 break;
             default:
                 redirect("?b=profile&s=Inicio&p=admin")->error("404 Not Found: Accion invalida")->send();

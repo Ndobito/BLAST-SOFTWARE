@@ -1,7 +1,7 @@
 <body>
     <div class="container">
         <div class="edit">
-            <h1>Guardar Empleado </h1>
+            <h1>Nuevo Colaborador </h1>
             <div class="form">
                 <form action="?b=profile&s=saveProfile&p=colaborador" method="POST">
                     <div>
