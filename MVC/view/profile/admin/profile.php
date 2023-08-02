@@ -24,7 +24,7 @@
                             <button class="profile-adm-btn">PROVEEDORES</button>
                         </div>
                         <div>
-                            <button class="profile-adm-btn">EMPLEADOS</button>
+                            <button class="profile-adm-btn">COLABORADORES</button>
                         </div>
                         <div>
                             <button class="profile-adm-btn">CLIENTES</button>
@@ -34,8 +34,7 @@
                         </div>
 
                         <div>
-                            <a href="?b=profile&s=cerrarSesion"><button><i
-                                        class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</button></a>
+                            <a href="?b=profile&s=cerrarSesion"><button><i class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</button></a>
                         </div>
                     </div>
 
@@ -45,35 +44,28 @@
                 <div class="profile-adm container-right" id="container-right">
                     <div class="user-information">
                         <h1>Datos</h1>
-                        <form id="form-user-information" action="?b=profile&s=actualizarUsuario" method="post">
+                        <form id="form-user-information" action="?b=profile&s=updateUser" method="post">
                             <input name="ctIdUser" type="hidden" value="<?php echo $user['idadmin'] ?>">
                             <label for="ctNameUser">Nombres*</label>
-                            <input type="text" name="ctNameUser" id="ctNameUser"
-                                value="<?php echo $user['nomadmin'] ?? "Sin definir"; ?>" disabled>
+                            <input type="text" name="ctNameUser" id="ctNameUser" value="<?php echo $user['nomadmin'] ?? "Sin definir"; ?>" disabled>
                             <label for="ctSurNameUser">Apellidos *</label>
-                            <input type="text" name="ctSurNameUser" id="ctSurNameUser"
-                                value="<?php echo $user['apeadmin'] ?? "Sin definir"; ?>" disabled>
+                            <input type="text" name="ctSurNameUser" id="ctSurNameUser" value="<?php echo $user['apeadmin'] ?? "Sin definir"; ?>" disabled>
                             <label for="ctNameuser">Nickname: *</label>
-                            <input type="text" name="ctNickUser" id="ctNickUser"
-                                value="<?php echo $user['nickadmin']; ?>" disabled>
+                            <input type="text" name="ctNickUser" id="ctNickUser" value="<?php echo $user['nickadmin']; ?>" disabled>
                             <label for="ctNameuser">Direccion *</label>
-                            <input type="text" name="ctAdrUser" id="ctAdrUser" value="<?php echo $user['diradmin']; ?>"
-                                disabled>
+                            <input type="text" name="ctAdrUser" id="ctAdrUser" value="<?php echo $user['diradmin']; ?>" disabled>
                             <div>
                                 <div>
                                     <label for="ctEmailUser">Correo Eletrónico *</label>
-                                    <input type="text" name="ctEmailUser" id="ctEmailUser"
-                                        value="<?php echo $user['emaadmin']; ?>" disabled>
+                                    <input type="text" name="ctEmailUser" id="ctEmailUser" value="<?php echo $user['emaadmin']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCelUser">Numero de Celular 1 *</label>
-                                    <input type="text" name="ctNumCelUser" id="ctNumCelUser"
-                                        value="<?php echo $user['teladmin']; ?>" disabled>
+                                    <input type="text" name="ctNumCelUser" id="ctNumCelUser" value="<?php echo $user['teladmin']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCel2">Numero de Celular 2</label>
-                                    <input type="text" name="ctNumCel2" id="ctNumCel2"
-                                        value="<?php echo $user['teladmin2']; ?>" disabled>
+                                    <input type="text" name="ctNumCel2" id="ctNumCel2" value="<?php echo $user['teladmin2']; ?>" disabled>
 
                                 </div>
                             </div>
@@ -91,16 +83,11 @@
                     <div class="table-container">
                         <div class="form-container">
                             <div class="input-group">
-                                <a href="?b=editarinfo&s=GuardarProveedor"><button class="btn btn-default"
-                                        type="submit">Agregar</button></a>
+                                <a href="?b=profile&s=optionSaveRedirec&p=proveedor"><button class="btn btn-default" type="submit">Agregar</button></a>
                             </div>
                             <form action="?b=profile&s=buscarProveedor" method="post">
                                 <div class="input-group">
-                                    <input type="text" id="searchprov" class="form-control search-input"
-                                        placeholder="Buscar Proveedor" name="buscar_proveedor">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" id="miBoton" type="button">Buscar</button>
-                                    </span>
+                                    <input type="text" id="searchprov" class="form-control search-input" placeholder="Buscar Proveedor" name="buscar_proveedor">
                                 </div>
                             </form>
                         </div>
@@ -134,7 +121,7 @@
                                     <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="?b=editarinfo&s=EditarInfoProv&idprod=<?= $proveedor['idprov']; ?>" id="Prveedor">
+                                    <a href="?b=profile&s=optionEditRedirec&p=proveedor&idprov=<?= $proveedor['idprov']; ?>" id="Prveedor">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
@@ -150,19 +137,18 @@
                 </div>
                 <div class="profile-adm container-right3" id="container-right3">
                     <div class="title">
-                        <h1>empleados</h1>
+                        <h1>Colaboradores</h1>
                     </div>
                     <div class="table-container">
                         <div class="form-container">
                             <div class="input-group">
-                                <div class="input-group-btn">
-                                    <a href="?b=editarInfo&s=GuardarColaborador"><button class="btn btn-default" type="submit">Agregar</button></a>
-                                </div>
+                                <span class="input-group-btn">
+                                    <a href="?b=profile&s=optionSaveRedirec&p=colaborador"><button class="btn btn-default" type="submit">Agregar</button></a>
+                                </span>
                             </div>
-                            <form method="POST" action="?b=editarInfo&s=buscarColaborador">
+                            <form method="POST" action="?b=profile&s=buscarColaborador">
                                 <div class="input-group">
-                                    <input type="text" class="form-control search-input" id="searchcol"
-                                        placeholder="Buscar Empleado" name="buscar_empleado">
+                                    <input type="text" class="form-control search-input" id="searchcol" placeholder="Buscar Empleado" name="buscar_empleado">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" id="miBoton" type="button">Buscar</button>
                                     </span>
@@ -188,9 +174,6 @@
                                     <?php echo $colaborador['idcol']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['dnicol']; ?>
-                                </td>
-                                <td>
                                     <?php echo $colaborador['nomcol']; ?>
                                 </td>
                                 <td>
@@ -206,14 +189,12 @@
                                     <?php echo $colaborador['rolcol']; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="?b=editarinfo&s=EditarInfoEmp&idcola=<?= $colaborador['idcol']; ?>">
+                                    <a href="?b=profile&s=optionEditRedirec&p=colaborador&idcola=<?= $colaborador['idcol']; ?>">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
                                 <td class="icons2">
-                                    <a href="#">
-                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                    </a>
+                                    <a href="#"><i class="fa-solid fa-trash"></i></a>
                                 </td>
                             </tr>
                             <?php } ?>
@@ -222,14 +203,13 @@
                 </div>
                 <div class="profile-adm container-right4" id="container-right4">
                     <div class="title">
-                        <h1>clientes</h1>
+                        <h1>Clientes</h1>
                     </div>
                     <div class="table-container">
                         <div class="form-container">
                             <form method="POST" action="?b=profile&s=buscarClientes">
                                 <div class="input-group">
-                                    <input type="text" class="form-control search-input" placeholder="Buscar cliente"
-                                        name="buscar_cliente" id="searchcli">
+                                    <input type="text" class="form-control search-input" placeholder="Buscar cliente" name="buscar_cliente" id="searchcli">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" id="miBoton" type="button">Buscar</button>
                                     </span>
@@ -247,10 +227,10 @@
                                 <th>Direccion</th>
                                 <th>Zona</th>
                                 <th>Telefono</th>
-                                <th>Telefono alternativo</th>
+                                <th>Telefono Alternaivo</th>
                             </tr>
                         </thead>
-                        <tbody id="resultados-clientes">
+                        <tbody id="resultados">
                             <?php foreach ($cliente as $cliente) { ?>
                             <tr>
                                 <td>
@@ -295,17 +275,13 @@
 
                 <div class="profile-adm container-right5" id="container-right5">
                     <div class="title">
-                        <h1>Mascotas</h1>
+                        <h1>mascota</h1>
                     </div>
                     <div class="table-container">
                         <div class="form-container">
-                            <form method="POST" action="">
+                            <form method="POST" action="?b=profile&s=buscarMascotas">
                                 <div class="input-group">
-                                    <input type="text" class="form-control search-input" placeholder="Buscar mascota"
-                                        name="buscar_mascota">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" id="miBoton" type="button">Buscar</button>
-                                    </span>
+                                    <input type="text" class="form-control search-input" placeholder="Buscar mascota" name="buscar_mascota" id="searchmas">
                                 </div>
                             </form>
                         </div>
@@ -386,6 +362,5 @@
 <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 
 <script src="assets/Javascript/real_time_search.js"></script>

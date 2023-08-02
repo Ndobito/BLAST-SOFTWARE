@@ -1,5 +1,6 @@
 $(document).ready(function () {
   // Buscador de proveedores
+
   $("#searchprov").on("input", function () {
     buscarProveedor();
   });
@@ -11,9 +12,8 @@ $(document).ready(function () {
       type: "post",
       url: "?b=profile&s=buscarProveedor",
       data: { buscar_proveedor: searchTerm },
-      success: function (response) {
-        $("#resultados-proveedor").html(response);
-      },
+    }).done(function (response) {
+      $("#resultados-proveedor").html(response);
     });
   }
 
@@ -29,9 +29,8 @@ $(document).ready(function () {
       type: "post",
       url: "?b=profile&s=buscarColaborador",
       data: { buscar_empleado: searchTerm },
-      success: function (response) {
-        $("#resultados-empleados").html(response);
-      },
+    }).done(function (response) {
+      $("#resultados-empleados").html(response);
     });
   }
 
@@ -47,9 +46,25 @@ $(document).ready(function () {
       type: "post",
       url: "?b=profile&s=buscarClientes",
       data: { buscar_cliente: searchTerm },
-      success: function (response) {
-        $("#resultados-clientes").html(response);
-      },
+    }).done(function (response) {
+      $("#resultados-clientes").html(response);
+    });
+  }
+
+  // Buscador de mascotas
+  $("#searchmas").on("input", function () {
+    buscarMascotas();
+  });
+
+  function buscarMascotas() {
+    var searchTerm = $("#searchmas").val();
+
+    $.ajax({
+      type: "post",
+      url: "?b=profile&s=buscarMascotas",
+      data: { buscar_mascota: searchTerm },
+    }).done(function (response) {
+      $("#resultados-mascotas").html(response);
     });
   }
 

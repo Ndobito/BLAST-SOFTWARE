@@ -1,24 +1,10 @@
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style-editarInfo.css">
-    <link rel="shortcut icon" href="assets/img/logo.jpg" type="image/x-icon">
-    <title>Animal World</title>
-</head>
-
 <body>
     <div class="container">
         <div class="edit">
             <h1>Guardar Empleado </h1>
             <div class="form">
-                <form action="?b=editarinfo&s=GuardarColaborador" method="POST">
+                <form action="?b=profile&s=saveProfile&p=colaborador" method="POST">
                     <input type="hidden" name="ctIdCol" id="ctIdCol">
-                    <div>
-                        <label class="tex" for="">Dni: </label>
-                        <input type="Number" name="ctDniCol" id="ctDniCol">
-                    </div>
                     <div>
                         <label class="tex" for="">Nombre:</label>
                         <input type="text" name="ctNomCol" id="ctNomCol">
@@ -35,7 +21,7 @@
 
                     <div>
                         <label class="tex" for="">Direccion: </label>
-                        <input type="text" name="ctDirEmp" id="ctDirEmp">
+                        <input type="text" name="ctDirCol" id="ctDirEmp">
                     </div>
 
                     <div>
@@ -44,8 +30,12 @@
                     </div>
 
                     <div>
-                        <label class="tex" for="">Rol:</label>
-                        <input type="text" name="ctRolCol" id="ctRolCol">
+                        <label class="tex" for="selRolUser">Rol:</label>
+                        <select name="selRolUser" id="selRolUser">
+                            <option selected disabled>seleccione un rol</option>
+                            <option value="veterinario">Veterinario(a)</option>
+                            <option value="recepcionista">Recepcionista</option>
+                        </select>
                     </div>
 
                     <div>

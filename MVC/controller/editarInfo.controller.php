@@ -4,7 +4,7 @@ include_once "model/editarinfo.php";
 class editarinfoController
 {
     private $object;
-
+    private $prod;
     public function __construct()
     {
         $this->object = new info();
@@ -48,21 +48,21 @@ class editarinfoController
     public function GuardarProveedor()
     {
         require_once "view/profile/admin/proveedor/agregar.php";
-        if ((isset($_POST["btnEditar"]))) {
-            $nombreProv = $_POST['ctNomProv'];
-            $direccionProv = $_POST['ctDirProv'];
-            $emailProv = $_POST['ctEmaProv'];
-            $telefonoProv = $_POST['ctTelProv'];
-            
-            if ($this->object->GuardarProveedor($nombreProv, $direccionProv, $emailProv, $telefonoProv)) {
-                setNotify("success", "Se ha guardado correctamente " . $nombreProv . " correctamente");
-                header("Location: ?b=profile&s=Inicio&p=admin");
-            } else {
-                setcookie("notify", serialize(["status" => "error", "message" => "Error al agregar proveedor"]), time() + 5, "/");
-                header('location: ?b=profile&s=Agregar');
-            }
+        if((isset($_POST["btnEditar"]))){
+        $nombreProv = $_POST['ctNomProv'];
+        $direccionProv = $_POST['ctDirProv'];
+        $emailProv = $_POST['ctEmaProv'];
+        $telefonoProv = $_POST['ctTelProv'];
+        
+        if($this->object->GuardarProveedor($nombreProv, $direccionProv, $emailProv, $telefonoProv)){
+            redirect("?b=profile&s=Inicio&p=admin")->success("Se ha guardado correctamente " . $nombreProv . " correctamente")->send();
+           
+        }else{
+            setcookie("notify", serialize(["status" => "error", "message" => "Error al agregar proveedor"]), time() + 5, "/");
+            header('location: ?b=profile&s=Agregar');
         }
     }
+}
 
     //Colaborador 
 
@@ -78,9 +78,10 @@ class editarinfoController
             exit();
         }
     }
-    public function GuardarInfoEmp()
-    {
+    public function GuardarInfoEmp(){
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+
             $idCol = $_POST["idcol"];
             $nombreCol = $_POST["nomcol"];
             $direccionCol = $_POST["dircol"];
@@ -88,21 +89,20 @@ class editarinfoController
             $telefonoCol = $_POST["telcol"];
             $rolCol = $_POST["rolcol"];
 
-            if(isset($idCol, $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol) && !empty($idCol) && !empty($nombreCol) && !empty($direccionCol) && !empty($emailCol) && !empty($telefonoCol) && !empty($rolCol)){
-
-                if ( $this->object->actualizaempleado($idCol, $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol)) {
-                    redirect("?b=profile&s=Inicio&p=admin")->success("Se ha guardado correctamente " . $nombreCol . " correctamente")->send();
-                } else {
-                    redirect("?b=profile&s=Inicio&p=admin" . $nombreCol)->error("Error al actualizar al proveedor")->send();
-                }
-            }else {
-                redirect("?b=editarinfo&s=EditarInfoProv&idprod=" . $nombreCol)->error("Por favor llene todo los campos")->send();
-            }
-
+    //         $this->object->actualizaempleado($idCol, $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol);
+            
         }
     }
-    public function GuardarColaborador()
+
+    public function eliminar()
     {
+        $prod = new info();
+        $prod->idcol = $_REQUEST["idcol"];
+        $prod->eliminar($prod);
+
+        redirect("?b=profile&s=Inicio&p=admin")->success("Se ha eliminado el colaborador " . $_REQUEST["nomcol"] . " correctamente")->send();
+    }
+    public function GuardarColaborador(){
         require_once "view/profile/admin/empleados/agregar.php";
 
         if (isset($_POST["btnEditar"])) {
@@ -113,12 +113,12 @@ class editarinfoController
             $direccionCol = $_POST['ctDirEmp'];
             $telefonoCol = $_POST['ctTelCol'];
             $rolCol = $_POST['ctRolCol'];
-
-
-            if ($this->object->GuardarColaborador($dniCol, $nombreCol, $emailCol, $passwordCol, $direccionCol, $telefonoCol, $rolCol)) {
+          
+            
+            if($this->object->GuardarColaborador($dniCol, $nombreCol, $emailCol, $passwordCol, $direccionCol,  $telefonoCol, $rolCol)){
                 setNotify("success", "Se ha guardado correctamente " . $nombreCol . " correctamente");
                 header("Location: ?b=profile&s=Inicio&p=admin");
-            } else {
+            }else{
                 setcookie("notify", serialize(["status" => "error", "message" => "Error al agregar proveedor"]), time() + 5, "/");
                 header('location: ?b=profile&s=Agregar');
             }
