@@ -1,34 +1,45 @@
 <body>
     <div class="container">
         <div class="edit">
-            <h1 >Guardar Proveedor</h1>
+            <div class="header">
+                <div class="logo">
+                    <img src="assets/img/logo-removebg.png" alt="Animal World">
+                </div>
+                <div class="informacion-title">
+                    <h1>Agregar Proveedor</h1>
+                    <h3>Tu información es importante</h3>
+                </div>
+            </div>
             <div class="form">
-                <form action="?b=profile&s=saveProfile&p=proveedor" method="POST">
-                    <div>
-                        <label class="tex" for="">Nombre:</label>
-                        <input type="text" name="ctNomProv" id="ctNomProv">
+                <form action="?b=editarinfo&s=GuardarProveedor" method="POST">
+                    <input type="hidden" name="ctIdProv" id="ctIdProv">
+                    <div class="input-container">
+                        <label for="ctNomProv">Nombre</label>
+                        <input type="text" name="ctNomProv" id="ctNomProv" class="input" autocomplete="off">
+                        <span>Nombre</span>
                     </div>
-                    <div>
-                        <label class="tex" for="">Direccion: </label>
-                        <input type="text" name="ctDirProv" id="ctDirProv">
+                    <div class="input-container">
+                        <label for="ctDirProv">Dirección</label>
+                        <input type="text" name="ctDirProv" id="ctDirProv" class="input" autocomplete="off">
+                        <span>Dirección</span>
                     </div>
-                    <div>
-                        <label class="tex" for="">Email: </label>
-                        <input type="email" name="ctEmaProv" id="ctEmaProv">
+                    <div class="input-container">
+                        <label for="ctEmaProv">E-mail</label>
+                        <input type="email" name="ctEmaProv" id="ctEmaProv" class="input" autocomplete="off">
+                        <span>E-mail</span>
                     </div>
-                    <div>
-                        <label class="tex" for="">Telefono:</label>
-                        <input type="number" name="ctTelProv" id="ctTelProv" >
+                    <div class="input-container">
+                        <label for="ctTelProv">Teléfono</label>
+                        <input type="number" name="ctTelProv" id="ctTelProv" class="input" autocomplete="off">
+                        <span>Teléfono</span>
                     </div>
-                    <div>
-                        <input type="submit" name="btnEditar" value="Guardar">
+                    <div class="buttons">
+                        <input type="submit" name="btnEditar" value="Guardar" class="btn-save btn">
+                        <a href="?b=profile&s=Inicio&p=admin" class="btn-regresar btn">Cancelar</a>
                     </div>
                 </form>
-                <div>
-                    <a href="?b=profile&s=Inicio&p=admin"><input type="submit" name="btnCancel" value="Cancelar"></a>
-                </div>
             </div>
         </div>
     </div>
 </body>
-</html>
+<script src="assets/Javascript/edit-and-save.js"></script>

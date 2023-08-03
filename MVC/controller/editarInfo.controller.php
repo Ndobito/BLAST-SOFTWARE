@@ -70,6 +70,14 @@ class editarinfoController
         }
     }
 }
+public function eliminarproveedor()
+{
+    $prod = new info();
+    $prod->idprov = $_REQUEST["idprov"];
+    $prod->eliminarproveedor($prod);
+
+    redirect("?b=profile&s=Inicio&p=admin")->success("Se ha eliminado el proveedor  " . $_REQUEST["nomprov"]. " con id " . $_REQUEST["idprov"] . " correctamente")->send();
+}
 
     //Colaborador 
 
@@ -170,6 +178,16 @@ class editarinfoController
         redirect("?b=profile&s=Inicio&p=admin")->error("No ha pasao na")->send();
     }
 
+    public function eliminarcliente()
+    {
+        $prod = new info();
+        $prod->idcli = $_REQUEST["idcli"];
+        $prod->eliminarcliente($prod);
+
+        redirect("?b=profile&s=Inicio&p=admin")->success("Se ha eliminado el cliente " . $_REQUEST["nomcli"]. " con id " . $_REQUEST["idcli"]. " correctamente")->send();
+    }
+
+
     ///// mascota
 
     public function editarmas()
@@ -203,6 +221,15 @@ class editarinfoController
             }
         }
     }
+    public function eliminarmascota()
+    {
+        $prod = new info();
+        $prod->idmas = $_REQUEST["idmas"];
+        $prod->eliminarmascota($prod);
+
+        redirect("?b=profile&s=Inicio&p=admin")->success("Se ha eliminado la mascota " . $_REQUEST["nommas"] ." con id " . $_REQUEST["idmas"]. " correctamente")->send();
+    }
+
 }
 
 ?>
