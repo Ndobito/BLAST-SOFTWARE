@@ -13,8 +13,8 @@
         <div class="edit">
             <h1>Editar clientes</h1>
             <div class="form">
-                <form action="?b=editarinfo&s=GuardarInfoCli&idcli=<?= $cliente['idcli']; ?>" method="POST">
-                    <input type="hidden" name="idcli" id="Idcli" value="<?= $cliente["idcli"] ?? "No definido" ?>">
+                <form action="?b=editarinfo&s=GuardarInfoCli&idcli=<?= $cliente['numid']; ?>" method="POST">
+                    <input type="hidden" name="idcli" id="Idcli" value="<?= $cliente["numid"] ?? "No definido" ?>">
                     <div>
                         <label class="tex" for="">Nombre:</label>
                         <input type="text" name="nomcli" id="Nomcli" value="<?= $cliente["nomcli"] ?? "No definido" ?>">

@@ -225,6 +225,7 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
+                                <th>N° Identificacion</th>
                                 <th>Nombre</th>
                                 <th>Email</th>
                                 <th>Usuario</th>
@@ -235,10 +236,13 @@
                             </tr>
                         </thead>
                         <tbody id="resultados">
-                            <?php foreach ($cliente as $cliente) { ?>
+                            <?php foreach ($cliente as $key=>$cliente) { ?>
                             <tr>
                                 <td>
-                                    <?php echo $cliente['idcli']; ?>
+                                    <?php echo $key + 1 ?>
+                                </td>
+                                <td>
+                                    <?php echo $cliente['numid']; ?>
                                 </td>
                                 <td>
                                     <?php echo $cliente['nomcli']; ?>
@@ -262,7 +266,7 @@
                                     <?php echo $cliente['telaltcli']; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="?b=profile&s=optionEditRedirec&p=cliente&idcli=<?= $cliente['idcli']; ?>">
+                                    <a href="?b=profile&s=optionEditRedirec&p=cliente&idcli=<?= $cliente['numid']; ?>">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>

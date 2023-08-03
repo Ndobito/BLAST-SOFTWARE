@@ -80,7 +80,7 @@ class ProfileController
             case 'cliente':
                     if ($_GET['idcli']) {
                         $table = "cliente"; 
-                        $param = "idcli";
+                        $param = "numid";
                         $idCliente = $_GET['idcli'];
                         $cliente = $this->object->existProfile($table, $param, $idCliente);
                         $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
@@ -144,7 +144,7 @@ class ProfileController
             echo '<td>' . ($proveedor['dirprov'] ?? "Sin definir") . '</td>';
             echo '<td>' . ($proveedor['emaprov'] ?? "Sin definir") . '</td>';
             echo '<td>' . ($proveedor['telprov'] ?? "Sin definir") . '</td>';
-            echo '<td class="icons1"><a href="?b=profile&s=EditarInfo" id="prveedor"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
+            echo '<td class="icons1"><a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=<?= $mascota["idmas"]; ?>"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
             echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
             echo '</tr>';
         }
@@ -284,7 +284,7 @@ class ProfileController
                                 if ($this->object->verifyLeterString($_POST['ctTelCol'])) {
                                     redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("Se deben llenar todos los campos")->send();
                                 } else {
-                                    if ($this->object->verifyPasswordString($_POST['ctPassCol'])) {
+                                    if($this->object->verifyPasswordString($_POST['ctPassCol'])){
                                         $numid = $_POST['ctNumId'];
                                         $name = $_POST['ctNomCol'];
                                         $ema = $_POST['ctEmaCol'];
@@ -308,8 +308,8 @@ class ProfileController
                 }
                 break;
             case 'cliente':
-                
-                break;
+                if(empty($_POST['idmas']) || empty($_POST['nommas']) || empty($_POST['edadmas']) || empty($_POST['selGenMas']) || empty($_POST['selEspMas'])){}
+                break;  
             default:
                 redirect("?b=profile&s=Inicio&p=admin")->error("404 Not Found: Accion invalida")->send();
                 break;
