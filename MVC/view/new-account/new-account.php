@@ -29,13 +29,19 @@
                     <input type="text" name="ctNick" required id="input-obligatorio">
                     <label>Contraseña <strong>*</strong></label>
                     <input type="password" name="ctPass" required id="input-obligatorio">
-
+                    <p class="verifyPass">
+                        Longitud minima de 8 caracteres <br>
+                        Debe contener por lo menos una letra mayuscula <br>
+                        Debe contener por lo menos una letra minuscula <br>
+                        Debe contener por lo menos un numero <br>
+                    </p>
+                    <br><br>
                     <label>Dirección de residencia <strong>*</strong></label>
                     <input type="text" name="ctAddres" required id="input-obligatorio">
 
                     <label for="location">Tipo de ubicación <strong>*</strong></label>
                     <select type="select" name="selTipoUbicacion" required id="input-obligatorio">
-                        <option value="" selected disabled>Selectiona el tipo de ubicación</option>
+                        <option selected disabled>Selectiona el tipo de ubicación</option>
                         <option value="rural" >Rural</option>
                         <option value="urbano">Urbano</option>
                     </select>
