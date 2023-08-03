@@ -24,11 +24,22 @@
                     </div>
                     <div>
                         <label class="tex" for="">Genero: </label>
-                        <input type="text" name="genmas" id="genmas" value="<?= $mascota["genmas"] ?? "No definido" ?>">
+                        <select name="selGenMas" id="selGenMas">
+                            <option value="Macho" <?php echo ($mascota["genmas"] === "Macho") ? "selected" : "" ?> >Macho</option>
+                            <option value="Hembra" <?php echo ($mascota["genmas"] === "Hembra") ? "selected" : "" ?>>Hembra</option>
+                        </select>
                     </div>
                     <div>
                         <label class="tex" for="">Especie:</label>
-                        <input type="text" name="espmas" id="espmas" value="<?= $mascota["espmas"] ?? "No definido" ?>">
+                        <select name="selEspMas" id="selEspMas">
+                            <option disabled <?php echo ($mascota["espmas"] <> "canino" && $mascota["espmas"] <> "felino" && $mascota["espmas"] <> "bovino" && $mascota["espmas"] <> "equino" && $mascota["espmas"] <> "ave" && $mascota["espmas"] <> "desconocino") ? "selected" : "" ?>>Seleccione una opcion</option>
+                            <option value="canino" <?php echo ($mascota["espmas"] === "canino") ? "selected" : "" ?> >Canino</option>
+                            <option value="felino" <?php echo ($mascota["espmas"] === "felino") ? "selected" : "" ?>>Felino</option>
+                            <option value="bovino" <?php echo ($mascota["espmas"] === "bovino") ? "selected" : "" ?>>Bovino</option>
+                            <option value="equino" <?php echo ($mascota["espmas"] === "equino") ? "selected" : "" ?>>Equino</option>
+                            <option value="ave" <?php echo ($mascota["espmas"] === "ave") ? "selected" : "" ?>>Ave</option>
+                            <option value="desconocida" <?php echo ($mascota["espmas"] === "desconocida") ? "selected" : "" ?>>Otro</option>
+                        </select>
                     </div>
                     <div>
                     <input type="submit" name="btnEditar" value="Guardar">

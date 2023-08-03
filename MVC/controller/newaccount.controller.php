@@ -27,43 +27,43 @@ class newAccountController
             header("Location: ?b=newaccount&s=Inicio");
         } else {
             if (isset($_POST['conditions']) && $_POST['conditions'] == "true") {
-                $m = new newAccount();
                 $nombre = $_POST['ctNombre'] . " " .  $_POST['ctApellido'];
-                $nick = $_POST['ctNick'];
-                if (preg_match('/\d/', $nombre)) {
+                if ($this->object->verifyNumberString($nombre)) {
                     setcookie("notify", serialize(["status" => "error", "message" => "El nombre no puede llevar valores numericos"]), time() + 5, "/");
                     header('Location: ?b=newaccount&s=Inicio');
-                } else if ($_POST['ctEmail'] <> $_POST['ctEmailC']) {
-                    setcookie("notify", serialize(["status" => "error", "message" => "Las direcciones email no coinciden"]), time() + 5, "/");
-                    header('Location: ?b=newaccount&s=Inicio');
-                } else if ($this->object->userExist($nick) <> null) {
-                    setcookie("notify", serialize(["status" => "error", "message" => "El nikname no esta disponible"]), time() + 5, "/");
-                    header("Location: ?b=newaccount&s=Inicio");
-                } else {
-                    $m->name = trim($nombre);
-                    $m->email = $_POST['ctEmail'];
-                    $m->uname = $_POST['ctNick'];
-                    $m->pass = md5($_POST['ctPass']);
-                    $m->dir = $_POST['ctAddres'];
-                    $m->zone = $_POST['selTipoUbicacion'];
-                    $m->phone = $_POST['ctTel'];
-                    $m->phonealt = $_POST['ctTel2'];
-
-                    $nickName = $_POST['ctNick'];
-                    $this->object->Registrar($m);
-
-                    $id = $this->object->selectUser($nickName);
-                    $_POST['ctNombre']  = "";
-                    $_POST['ctApellido'] = "";
-                    $_POST['ctEmail'] = "";
-                    $_POST['ctNick'] = "";
-                    $_POST['ctPass'] = "";
-                    $_POST['ctAddres'] = "";
-                    $_POST['selTipoUbicacion'] = "";
-                    $_POST['ctTel'] = "";
-                    $_POST['ctTel2'] = "";
-                    setNotify("success", "Usuario Creado con exito");
-                    header("Location: ?b=login");
+                } else{
+                    if($this->object->verifyLeterString($_POST['ctNumId'])){
+                        redirect("?b=newaccount&s=Inicio")->error("El numero de identificacion no puede llevar letras")->send();
+                    }else{
+                        if($this->object->verifyEmailString($_POST['ctEmail']) && $this->object->verifyEmailString($_POST['ctEmailC'])){
+                            redirect("?b=newaccount&s=Inicio")->error("El formato de las direcciones email no son validos")->send();
+                        }else{
+                            if($_POST['ctEmail'] <> $_POST['ctEmailC']){
+                                redirect("?b=newaccount&s=Inicio")->error("Las direcciones email no coinciden")->send();
+                            }else{
+                                if($this->object->userExist(trim($_POST['ctNick']))){
+                                    redirect("?b=newaccount&s=Inicio")->error("El Nickname ya se encuentra registrado")->send();
+                                }else{ 
+                                    if($this->object->verifyPasswordString($_POST['ctPass'])){
+                                        if($this->object->verifyLeterString($_POST['ctTel']) && $this->object->verifyLeterString($_POST['ctTel2'])){
+                                            redirect("?b=newaccount&s=Inicio")->error("Los numeros de telefono no pueden tener letras")->send();
+                                        }else{
+                                            $this->object->name = trim($nombre); 
+                                            $this->object->numid = trim($nombre); 
+                                            $this->object->email = trim($nombre); 
+                                            $this->object->name = trim($nombre); 
+                                            $this->object->name = trim($nombre); 
+                                            $this->object->name = trim($nombre); 
+                                            $this->object->name = trim($nombre); 
+                                            $this->object->name = trim($nombre); 
+                                        }
+                                    }else{
+                                        redirect("?b=newaccount&s=Inicio")->error("El Nickname ya se encuentra registrado")->send();
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             } else {
                 setcookie("notify", serialize(["status" => "error", "message" => "Acepte los Terminos y condiciones"]), time() + 5, "/");
