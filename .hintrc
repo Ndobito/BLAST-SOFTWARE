@@ -9,6 +9,8 @@
         "button-name": "off"
       }
     ],
-    "button-type": "off"
+    "button-type": "off",
+    "css-prefix-order": "off",
+    "compat-api/css": "off"
   }
 }

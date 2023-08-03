@@ -1,5 +1,6 @@
 <?php
 include_once "model/Profile.php";
+include_once 'lib/privilegios.php';
 
 class ProfileController
 {
@@ -12,6 +13,11 @@ class ProfileController
     //-----Metodo para redireccionar segun el rol de inicio de sesión-----//
     public function Inicio($rol)
     {
+        // var_dump(Privilegios::Admin->get(), $_SESSION["privilegios"]);
+        // if ((Privilegios::Admin->get() & $_SESSION["privilegios"]) != Privilegios::Admin->get()) {
+        //     redirect("?")->error("No tiene permisos")->send();
+        // }
+
         $style = "<link rel='stylesheet' href='assets/css/style-$rol.css'>";
         require_once "view/head.php";
         $proveedores = $this->object->getProveedores();

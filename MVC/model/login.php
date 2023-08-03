@@ -34,6 +34,17 @@ class Login
         }
     }
 
+    public function obtenerPrivilegios() {
+        $query = "(SELECT privilegios FROM administrador WHERE nickadmin = ?)";
+        $resultado = mysqli_execute_query($this->conexion, $query, [$_SESSION["usuario"]]);
+
+        if (mysqli_num_rows($resultado) > 0) {
+            return mysqli_fetch_object($resultado);
+        } else {
+            return false;
+        }
+    }
+
     // public function existeUsuario($usuario)
     // {
     //     $query = "(SELECT 'cliente' AS rol FROM cliente WHERE usercli = '$usuario')

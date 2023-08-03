@@ -19,44 +19,32 @@
                             <input type="text" name="ctApellido" required id="input-obligatorio">
                         </div>
                     </div>
-                    <?php 
-                        if(empty($_REQUEST['p'])) {
-                        } else {
-                            echo ($_REQUEST['p'] == "nfalse") ? "El nombre y/o apellidos no pueden llevar numeros" : ""; 
-                        }
-                    ?>
+                    <label>Numero de Identificacion <strong>*</strong></label>
+                    <input type="number" name="ctNumId" required id="input-obligatorio">
                     <label>Email <strong>*</strong></label>
                     <input type="email" name="ctEmail" required id="input-obligatorio">
-
                     <label>Confirmar Email <strong>*</strong></label>
                     <input type="email" name="ctEmailC" required id="input-obligatorio">
-                    <?php 
-                        if(empty($_REQUEST['p'])) {
-                        } else {
-                            echo ($_REQUEST['p'] == "efalse") ? "Los emails no coinciden" : ""; 
-                        }
-                    ?>
                     <label>Nickname <strong>*</strong></label>
                     <input type="text" name="ctNick" required id="input-obligatorio">
-                    <?php 
-                        if(empty($_REQUEST['p'])) {
-                        } else {
-                            echo ($_REQUEST['p'] == "ufalse") ? "Este Nick ya esta en uso" : ""; 
-                        }
-                    ?>
                     <label>Contraseña <strong>*</strong></label>
                     <input type="password" name="ctPass" required id="input-obligatorio">
-
+                    <p class="verifyPass">
+                        Longitud minima de 8 caracteres <br>
+                        Debe contener por lo menos una letra mayuscula <br>
+                        Debe contener por lo menos una letra minuscula <br>
+                        Debe contener por lo menos un numero <br>
+                    </p>
+                    <br><br>
                     <label>Dirección de residencia <strong>*</strong></label>
                     <input type="text" name="ctAddres" required id="input-obligatorio">
 
                     <label for="location">Tipo de ubicación <strong>*</strong></label>
                     <select type="select" name="selTipoUbicacion" required id="input-obligatorio">
-                        <option value="" selected disabled>Selectiona el tipo de ubicación</option>
+                        <option selected disabled>Selectiona el tipo de ubicación</option>
                         <option value="rural" >Rural</option>
                         <option value="urbano">Urbano</option>
                     </select>
-
                     <div class="numbers">
                         <div class="input-container">
                             <label>Numero de celular <strong>*</strong></label>
@@ -71,12 +59,6 @@
                     <div class="input-check">
                         <input type="checkbox" name="conditions" value="true" required><p> Terminos y condiciones <a id="window-up" href="#">Mas Información</a></p>
                     </div>
-                    <?php 
-                        if(empty($_REQUEST['p'])) {
-                        } else {
-                            echo ($_REQUEST['p'] == "tfalse") ? "Acepte los terminos y condiciones" : ""; 
-                        }
-                    ?>
                     <div id="window">
                         <div class="container-window">
                             <i id="exit-window" class="fa-solid fa-xmark"></i>
