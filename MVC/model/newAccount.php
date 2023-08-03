@@ -5,7 +5,7 @@ class newAccount{
 
     private $consulta;
     
-    public $id, $name, $numid, $uname, $email, $user, $pass, $dir, $zone, $phone, $phonealt;
+    public $id, $name, $numid, $uname, $email, $pass, $dir, $zone, $phone, $phonealt;
     
     public function __construct(){
         try{
@@ -15,10 +15,11 @@ class newAccount{
         }
     }
 
-    public function Registrar(newAccount $data){
+    public function saveUser(newAccount $data){
         try{
-            $user= "INSERT INTO cliente(nomcli, emacli, usercli, passcli, dircli, tzonecli, telcli, telaltcli) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            $this -> consulta -> prepare($user)-> execute(array(
+            $user= "INSERT INTO cliente(numid, nomcli, emacli, usercli, passcli, dircli, tzonecli, telcli, telaltcli) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $opr = $this -> consulta -> prepare($user)-> execute(array(
+                $data -> numid,
                 $data -> name, 
                 $data -> email, 
                 $data -> uname, 
@@ -28,6 +29,7 @@ class newAccount{
                 $data -> phone, 
                 $data -> phonealt, 
             )); 
+            return $opr; 
         } catch (Exception $error){
             echo "No se puede registrar el Usuario: ". $error->getMessage();
         }
@@ -49,9 +51,9 @@ class newAccount{
         }
     }
 
-    public function userExist($nick){
+    public function userExist($param1, $param2, $table, $value){
         try{
-            $sql = "SELECT usercli FROM cliente WHERE usercli='".$nick."'"; 
+            $sql = "SELECT $param1 FROM $table WHERE $param2='".$value."'"; 
             $result = $this->consulta->query($sql);
             if($result->num_rows > 0 ){
                 return true;

@@ -35,30 +35,48 @@ class newAccountController
                     if($this->object->verifyLeterString($_POST['ctNumId'])){
                         redirect("?b=newaccount&s=Inicio")->error("El numero de identificacion no puede llevar letras")->send();
                     }else{
-                        if($this->object->verifyEmailString($_POST['ctEmail']) && $this->object->verifyEmailString($_POST['ctEmailC'])){
-                            redirect("?b=newaccount&s=Inicio")->error("El formato de las direcciones email no son validos")->send();
+                        $param1= "numid"; 
+                        $param2= "numid"; 
+                        $table= "cliente"; 
+                        if($this->object->userExist($param1, $param2, $table, $_POST['ctNumId'])){
+                            redirect("?b=newaccount&s=Inicio")->error("Ya existe una cuenta con este numero de identificacion")->send();
                         }else{
-                            if($_POST['ctEmail'] <> $_POST['ctEmailC']){
-                                redirect("?b=newaccount&s=Inicio")->error("Las direcciones email no coinciden")->send();
+                            if(!$this->object->verifyEmailString($_POST['ctEmail']) && !$this->object->verifyEmailString($_POST['ctEmailC'])){
+                                redirect("?b=newaccount&s=Inicio")->error("El formato de las direcciones email no son validos")->send();
                             }else{
-                                if($this->object->userExist(trim($_POST['ctNick']))){
-                                    redirect("?b=newaccount&s=Inicio")->error("El Nickname ya se encuentra registrado")->send();
-                                }else{ 
-                                    if($this->object->verifyPasswordString($_POST['ctPass'])){
-                                        if($this->object->verifyLeterString($_POST['ctTel']) && $this->object->verifyLeterString($_POST['ctTel2'])){
-                                            redirect("?b=newaccount&s=Inicio")->error("Los numeros de telefono no pueden tener letras")->send();
-                                        }else{
-                                            $this->object->name = trim($nombre); 
-                                            $this->object->numid = trim($nombre); 
-                                            $this->object->email = trim($nombre); 
-                                            $this->object->name = trim($nombre); 
-                                            $this->object->name = trim($nombre); 
-                                            $this->object->name = trim($nombre); 
-                                            $this->object->name = trim($nombre); 
-                                            $this->object->name = trim($nombre); 
-                                        }
-                                    }else{
+                                if($_POST['ctEmail'] <> $_POST['ctEmailC']){
+                                    redirect("?b=newaccount&s=Inicio")->error("Las direcciones email no coinciden")->send();
+                                }else{
+                                    $param1 = "idcli"; 
+                                    $param2 = "usercli"; 
+                                    $table = "cliente" ; 
+                                    if($this->object->userExist($param1, $ $param2, $table, $_POST['ctNick'])){
                                         redirect("?b=newaccount&s=Inicio")->error("El Nickname ya se encuentra registrado")->send();
+                                    }else{ 
+                                        if($this->object->verifyPasswordString($_POST['ctPass'])){
+                                            if($this->object->verifyLeterString($_POST['ctTel']) && $this->object->verifyLeterString($_POST['ctTel2'])){
+                                                redirect("?b=newaccount&s=Inicio")->error("Los numeros de telefono no pueden tener letras")->send();
+                                            }else{
+                                                $m = new newAccount(); 
+                                                $m->name = trim($nombre); 
+                                                $m->numid = trim($_POST['ctNumId']); 
+                                                $m->email = trim($_POST['ctEmail']); 
+                                                $m->uname = trim($_POST['ctNick']); 
+                                                $m->pass = md5(trim($_POST['ctPass'])); 
+                                                $m->dir = trim($_POST['ctAddres']); 
+                                                $m->zone = $_POST['selTipoUbicacion']; 
+                                                $m->phone = trim($_POST['ctTel']); 
+                                                $m->phonealt = trim($_POST['ctTel2']); 
+    
+                                                if($this->object->saveUser($m)){
+                                                    redirect("?b=login")->success("Cuenta creada con exito, inicia sesión")->send();
+                                                }else{
+                                                    redirect("?b=newaccount&s=Inicio")->error("Error al crear la cuenta, intentelo nuevamente.")->send();
+                                                }
+                                            }
+                                        }else{
+                                            redirect("?b=newaccount&s=Inicio")->error("La contraseña no cumple con los requisitos minimos de seguridad")->send();
+                                        }
                                     }
                                 }
                             }

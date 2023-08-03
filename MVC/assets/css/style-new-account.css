@@ -58,7 +58,7 @@
 	font-weight: bold;
 }
 
-.container-form  form label {
+.container-form  form label, .verifyPass{
     display: block;
     padding-top: 10px;
     color: var(--color-3);
