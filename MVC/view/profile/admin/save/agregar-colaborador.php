@@ -1,23 +1,12 @@
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style-editarInfo.css">
-    <link rel="shortcut icon" href="assets/img/logo.jpg" type="image/x-icon">
-    <title>Animal World</title>
-</head>
-
 <body>
     <div class="container">
         <div class="edit">
-            <h1>Guardar Empleado </h1>
+            <h1>Nuevo Colaborador </h1>
             <div class="form">
-                <form action="?b=editarinfo&s=GuardarColaborador" method="POST">
-                    <input type="hidden" name="ctIdCol" id="ctIdCol">
+                <form action="?b=profile&s=saveProfile&p=colaborador" method="POST">
                     <div>
-                        <label class="tex" for="">Dni: </label>
-                        <input type="Number" name="ctDniCol" id="ctDniCol">
+                        <label class="tex" for="">Numero de identificación:</label>
+                        <input type="number" name="ctNumId" id="ctNumId">
                     </div>
                     <div>
                         <label class="tex" for="">Nombre:</label>
@@ -31,23 +20,28 @@
                     <div>
                         <label class="tex" for="">Password: </label>
                         <input type="Password" name="ctPassCol" id="ctPassCol">
+                        <br><br>
+                        <p class="verifyPass">Longitud minima de 8 caracterres</p>
+                        <p class="verifyPass">Debe contener minimo una letra mayuscula</p>
+                        <p class="verifyPass">Debe contener minimo una letra minuscula</p>
+                        <p class="verifyPass">Debe contener minimo una numero</p>
                     </div>
-
                     <div>
                         <label class="tex" for="">Direccion: </label>
-                        <input type="text" name="ctDirEmp" id="ctDirEmp">
+                        <input type="text" name="ctDirCol" id="ctDirEmp">
                     </div>
-
                     <div>
                         <label class="tex" for="">Telefono:</label>
                         <input type="number" name="ctTelCol" id="ctTelCol">
                     </div>
-
                     <div>
-                        <label class="tex" for="">Rol:</label>
-                        <input type="text" name="ctRolCol" id="ctRolCol">
+                        <label class="tex" for="selRolUser">Rol:</label>
+                        <select name="selRolUser" id="selRolUser">
+                            <option selected disabled>seleccione un rol</option>
+                            <option value="veterinario">Veterinario(a)</option>
+                            <option value="recepcionista">Recepcionista</option>
+                        </select>
                     </div>
-
                     <div>
                         <input type="submit" name="btnEditar" value="Guardar">
                     </div>
@@ -59,5 +53,3 @@
         </div>
     </div>
 </body>
-
-</html>

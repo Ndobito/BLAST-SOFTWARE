@@ -1,15 +1,17 @@
-<?php 
+<?php
 include_once "model/editarinfo.php";
 
-class editarinfoController{
+class editarinfoController
+{
     private $object;
-    
-    public function __construct()
+    private $prod;
+    // public function __construct()
+    // {
+    //     $this->object = new info();
+
+    // }
+    public function EditarInfoProv()
     {
-        $this->object = new info();
-       
-    }
-    public function EditarInfoProv(){
 
         if (isset($_GET["idprod"])) {
             $idProveedor = $_GET["idprod"];
@@ -21,21 +23,37 @@ class editarinfoController{
         }
     }
 
-    public function GuardarInfoProv(){
+    public function GuardarInfoProv()
+    {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $idProv = $_POST["ctIdProv"];
             $nombreProv = $_POST["ctNomProv"];
             $direccionProv = $_POST["ctDirProv"];
             $emailProv = $_POST["ctEmaProv"];
             $telefonoProv = $_POST["ctTelProv"];
+    // public function GuardarInfoProv(){
+    //     if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    //         $idProv = $_POST["ctIdProv"];
+    //         $nombreProv = $_POST["ctNomProv"];
+    //         $direccionProv = $_POST["ctDirProv"];
+    //         $emailProv = $_POST["ctEmaProv"];
+    //         $telefonoProv = $_POST["ctTelProv"];
 
-            $this->object->actproveedor($idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv);
-            setNotify("success", "Se ha guardado el producto  correctamente");
-            redirect("?b=profile&s=Inicio&p=admin");
+            if(isset($idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv) && !empty($idProv) && !empty($nombreProv) && !empty($direccionProv) && !empty($emailProv) && !empty($telefonoProv)){
+
+                if ( $this->object->actproveedor($idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv)) {
+                    redirect("?b=profile&s=Inicio&p=admin")->success("Se ha guardado correctamente " . $nombreProv . " correctamente")->send();
+                } else {
+                    redirect("?b=profile&s=Inicio&p=admin" . $idProv)->error("Error al actualizar al proveedor")->send();
+                }
+            }else {
+                redirect("?b=editarinfo&s=EditarInfoProv&idprod=" . $idProv)->error("Por favor llene todo los campos")->send();
+            }
+        
         }
-
     }
-    public function GuardarProveedor(){
+    public function GuardarProveedor()
+    {
         require_once "view/profile/admin/proveedor/agregar.php";
         if((isset($_POST["btnEditar"]))){
         $nombreProv = $_POST['ctNomProv'];
@@ -44,18 +62,27 @@ class editarinfoController{
         $telefonoProv = $_POST['ctTelProv'];
         
         if($this->object->GuardarProveedor($nombreProv, $direccionProv, $emailProv, $telefonoProv)){
-            setNotify("success", "Se ha guardado correctamente " . $nombreProv . " correctamente");
-            header("Location: ?b=profile&s=Inicio&p=admin");
+            redirect("?b=profile&s=Inicio&p=admin")->success("Se ha guardado correctamente " . $nombreProv . " correctamente")->send();
+           
         }else{
             setcookie("notify", serialize(["status" => "error", "message" => "Error al agregar proveedor"]), time() + 5, "/");
             header('location: ?b=profile&s=Agregar');
         }
     }
 }
+public function eliminarproveedor()
+{
+    $prod = new info();
+    $prod->idprov = $_REQUEST["idprov"];
+    $prod->eliminarproveedor($prod);
+
+    redirect("?b=profile&s=Inicio&p=admin")->success("Se ha eliminado el proveedor  " . $_REQUEST["nomprov"]. " con id " . $_REQUEST["idprov"] . " correctamente")->send();
+}
 
     //Colaborador 
 
-    public function EditarInfoEmp(){
+    public function EditarInfoEmp()
+    {
 
         if (isset($_GET["idcola"])) {
             $idColaborador = $_GET["idcola"];
@@ -77,10 +104,19 @@ class editarinfoController{
             $telefonoCol = $_POST["telcol"];
             $rolCol = $_POST["rolcol"];
 
-            $this->object->actualizaempleado($idCol, $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol);
+    //         $this->object->actualizaempleado($idCol, $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol);
             
         }
     }
+
+    // public function eliminar()
+    // {
+    //     $prod = new info();
+    //     $prod->idcol = $_REQUEST["idcol"]; 
+    //     $prod->eliminar($prod);
+
+    //     redirect("?b=profile&s=Inicio&p=admin")->success("Se ha eliminado el colaborador " . $_REQUEST["nomcol"] . " correctamente")->send();
+    // }
     public function GuardarColaborador(){
         require_once "view/profile/admin/empleados/agregar.php";
 
@@ -107,8 +143,9 @@ class editarinfoController{
 
     ///// clientes
 
-    public function editarInfoCli(){
-        
+    public function editarInfoCli()
+    {
+
         if (isset($_GET["idcli"])) {
             $idCliente = $_GET["idcli"];
             $cliente = $this->object->cliente($idCliente);
@@ -118,9 +155,9 @@ class editarinfoController{
             exit();
         }
     }
-    public function GuardarInfoCli(){
+    public function GuardarInfoCli()
+    {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
             $idCli = $_POST["idcli"];
             $nombreCli = $_POST["nomcli"];
             $emailCli = $_POST["emacli"];
@@ -130,17 +167,32 @@ class editarinfoController{
             $telefonoCli = $_POST["telcli"];
             $telefonoaltCli = $_POST["telaltcli"];
 
-            $this->object->actualizacliente($idCli, $nombreCli, $emailCli,  $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli);
-            
-            setNotify("success", "Se ha actualizado los datos del cleinte correctamente");
-            redirect("?b=profile&s=Inicio&p=admin");
+
+            if ($this->object->actualizacliente($idCli, $nombreCli, $emailCli, $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli)) {
+                redirect("?b=profile&s=Inicio&p=admin")->success("Se ha guardado correctamente " . $nombreCli . " correctamente")->send();
+            } else {
+                redirect("?b=editarinfo&s=EditarInfoCli&idcli=" . $idCli)->error("Error al actualizar al cliente")->send();
+            }
+
         }
+        redirect("?b=profile&s=Inicio&p=admin")->error("No ha pasao na")->send();
     }
+
+    public function eliminarcliente()
+    {
+        $prod = new info();
+        $prod->idcli = $_REQUEST["idcli"];
+        $prod->eliminarcliente($prod);
+
+        redirect("?b=profile&s=Inicio&p=admin")->success("Se ha eliminado el cliente " . $_REQUEST["nomcli"]. " con id " . $_REQUEST["idcli"]. " correctamente")->send();
+    }
+
 
     ///// mascota
 
-    public function editarmas(){
-        
+    public function editarmas()
+    {
+
         if (isset($_GET["idmas"])) {
             $idMascota = $_GET["idmas"];
             $mascota = $this->object->mascota($idMascota);
@@ -150,7 +202,8 @@ class editarinfoController{
             exit();
         }
     }
-    public function GuardarInfoMas(){
+    public function GuardarInfoMas()
+    {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             $idmas = $_POST["idmas"];
@@ -159,12 +212,24 @@ class editarinfoController{
             $genmas = $_POST["genmas"];
             $espciemas = $_POST["espmas"];
 
-            $this->object->actualizamas($idmas, $nombremas, $edadmas,  $genmas, $espciemas);
-            
-            setNotify("success", "Se ha actualizado los datos del cleinte correctamente");
-            redirect("?b=profile&s=Inicio&p=admin");
+            if ($this->object->actualizamas($idmas, $nombremas, $edadmas, $genmas, $espciemas)) {
+                setNotify("success", "Se ha actualizado " . $nombremas . " correctamente");
+                header("Location: ?b=profile&s=Inicio&p=admin");
+            } else {
+                setcookie("notify", serialize(["status" => "error", "message" => "Error al actualizar"]), time() + 5, "/");
+                header('location: ?b=profile&s=Agregar');
+            }
         }
     }
+    public function eliminarmascota()
+    {
+        $prod = new info();
+        $prod->idmas = $_REQUEST["idmas"];
+        $prod->eliminarmascota($prod);
+
+        redirect("?b=profile&s=Inicio&p=admin")->success("Se ha eliminado la mascota " . $_REQUEST["nommas"] ." con id " . $_REQUEST["idmas"]. " correctamente")->send();
+    }
+
 }
 
 ?>

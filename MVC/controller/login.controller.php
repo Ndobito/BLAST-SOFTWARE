@@ -72,8 +72,7 @@ class LoginController
                     redirect("?b=login&s=Inicio&p=admin")->error("usuario y/o contraseña incorrectos")->send();
                 }
             } else {
-                setcookie("notify", serialize(["status" => "error", "message" => "Usuario y/o contraseña incorrectos, por favor verifique"]), time() + 5, "/");
-                header('location: ?b=login&s=Inicio&p=admin');
+                redirect("?b=login&s=Inicio&p=admin")->error("Usuario y/o contraseña incorrectos, por favor verifique")->send();
             }
         }
     }

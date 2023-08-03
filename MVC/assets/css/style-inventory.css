@@ -68,7 +68,6 @@ header div h3{
 }
 
 .btn-buscar{
-    margin-left: 1%;
     padding: 8px 16px;
     background-color: #1787ff;
     color: #fff;
@@ -90,12 +89,9 @@ header div h3{
     border-radius: 4px;
     cursor: pointer;
     align-items: center;
-    top: 20%;
-    left: 20%;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
+   
+  
+
 }  
 .btn-regresar:hover{
     background-color: #0077ff;
@@ -195,15 +191,16 @@ table.content-table th  {
 @media screen and (min-width:1024px) {
 
     .search-bar{
-        display: flex;
-        flex-direction: row;
+        display: flex;        
         gap: 30px;
+        flex-direction: row;
     }
     .search-bar div{
-        flex-direction: row;
         align-items: center;
+        display: flex;
         justify-content: center;
         width: 500px;
+        gap: 10px;
     }
     .search-bar div a button{
         margin-top: 0;

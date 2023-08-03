@@ -47,6 +47,17 @@ class info{
             die($e->getMessage());
         }
     }
+    public function eliminarproveedor($data) {
+        $sql = "DELETE FROM proveedor WHERE idprov = ?";
+        try {
+            $this->conexion->prepare($sql)
+            ->execute([
+                $data->idprov
+            ]);
+        } catch (Exception $e) {
+			die($e->getMessage());
+		}
+    }
 
 
     // colaborador
@@ -86,6 +97,18 @@ class info{
         }
     }
 
+    public function eliminar($data) {
+        $sql = "DELETE FROM colaborador WHERE idcol = ?";
+        try {
+            $this->conexion->prepare($sql)
+            ->execute([
+                $data->idcol
+            ]);
+        } catch (Exception $e) {
+			die($e->getMessage());
+		}
+    }
+
 
     ////clinetes
     public function cliente($idCliente){
@@ -108,6 +131,18 @@ class info{
             echo "Error en la actualización: " . $stmt->error;
         }
     }
+    public function eliminarcliente($data) {
+        $sql = "DELETE FROM cliente WHERE idcli = ?";
+        try {
+            $this->conexion->prepare($sql)
+            ->execute([
+                $data->idcli
+            ]);
+        } catch (Exception $e) {
+			die($e->getMessage());
+		}
+    }
+
 
     ////mascota
 
@@ -125,6 +160,7 @@ class info{
         $stmt->bind_param("ssssi",  $nombremas, $edadmas,  $genmas, $espciemas, $idmas);
     
         if ($stmt->execute()) {
+            redirect("?b=profile&s=Inicio&p=admin") ->send();
             header("Location: ?b=profile&s=Inicio&p=admin");
             exit();
         } else {
@@ -132,7 +168,16 @@ class info{
         }
     }
 
-
-
+    public function eliminarmascota($data) {
+        $sql = "DELETE FROM mascota WHERE idmas = ?";
+        try {
+            $this->conexion->prepare($sql)
+            ->execute([
+                $data->idmas
+            ]);
+        } catch (Exception $e) {
+			die($e->getMessage());
+		}
+    }
 }
-?>
+?>                                                                                                                                                                                                          

@@ -4,7 +4,7 @@
                 <div>
                     <h1>¿Olvidaste contraseña?</h1>
                     <h3>Por favor introduce tu usuario y dirección de correo electrónico para recibir un codigo de
-                        restablecimiento de contraseña </h3>
+                        restablecimiento de contraseña. Si no recuerda su usuario y/o correo electronico, comuniquese con el administrador.</h3>
                 </div>
                 <div>
                     <div>

@@ -7,21 +7,161 @@ class Profile
 
     public $id, $nombre, $apellido, $nick, $direccion, $email, $numcel, $numcel2, $file;
 
+    // -----Constructor de la Conexion-----//
     public function __construct()
     {
         $this->conexion = databaseConexion::conexion();
     }
-    // Metodo para Seleccionar el nombre del Usuario
+
+    // ----- Metodo para obtener proveedores-----//
+    public function getProveedores()
+    {
+        $query = "SELECT * FROM proveedor";
+        $result = $this->conexion->query($query);
+        $proveedores = array();
+
+        if ($result->num_rows > 0) {
+            // Recorrer los resultados y almacenarlos en el array $proveedores
+            while ($row = $result->fetch_assoc()) {
+                $proveedores[] = $row;
+            }
+        }
+
+        return $proveedores;
+    }
+
+    // -----Metodo pata obtener los empleados en profile----- //
+    public function getEmpleado()
+    {
+        $query = "SELECT * FROM colaborador";
+        $result = $this->conexion->query($query);
+        $empleado = array();
+
+        if ($result->num_rows > 0) {
+            // Recorrer los resultados y almacenarlos en el array $proveedores
+            while ($row = $result->fetch_assoc()) {
+                $empleado[] = $row;
+            }
+        }
+        return $empleado;
+    }
+
+    // -----Metodo para obtener los clientes en Profile----- //
+    public function getCliente()
+    {
+        $query = "SELECT * FROM cliente";
+        $result = $this->conexion->query($query);
+        $cliente = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $cliente[] = $row;
+            }
+        }
+        return $cliente;
+    }
+
+    // -----Metodo para obtener las mascotas en Profile----- //
+    public function getMascota()
+    {
+        $query = "SELECT * FROM mascota";
+        $result = $this->conexion->query($query);
+        $mascota = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $mascota[] = $row;
+            }
+        }
+
+        return $mascota;
+    }
+
+    // -----Metodo para el buscador de clientes en Profile -----//
+    public function buscarClientes($buscar)
+    {
+        $query = "SELECT * FROM cliente WHERE idcli LIKE '%$buscar%'";
+        $result = $this->conexion->query($query);
+        $cliente = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $cliente[] = $row;
+            }
+        }
+        return $cliente;
+    }
+
+    // -----Metodo del para el buscador de mascotas de Profile----- //
+    public function buscarMascotas($buscar)
+    {
+        $query = "SELECT * FROM mascota WHERE idmas LIKE '%$buscar%'";
+        $result = $this->conexion->query($query);
+        $mascota = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $mascota[] = $row;
+            }
+        }
+        return $mascota;
+    }
+
+    // -----Metodo del para el buscador de proveedores de Profile----- //
+    public function buscarProveedor($buscar)
+    {
+        $query = "SELECT * FROM proveedor WHERE idprov LIKE '%$buscar%'";
+        $result = $this->conexion->query($query);
+        $proveedores = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $proveedores[] = $row;
+            }
+        }
+        return $proveedores;
+    }
+
+    // -----Metodo para el buscador de empleados en Profile----- //
+    public function buscarEmpleado($buscar)
+    {
+        $query = "SELECT * FROM colaborador WHERE idcol LIKE '%$buscar%'";
+        $result = $this->conexion->query($query);
+        $empleados = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $empleados[] = $row;
+            }
+        }
+
+        return $empleados;
+    }
+     
+    // -----Metodo para Seleccionar el nombre del Usuario----- //
     public function selectUser($nombreUsuario)
     {
-        $query = "SELECT * FROM administrador WHERE nickadmin ='" . $nombreUsuario . "'";
-        $stmt = $this->conexion->prepare($query);
+         $query = "SELECT * FROM administrador WHERE nickadmin ='" . $nombreUsuario . "'";
+         $stmt = $this->conexion->prepare($query);
+         $stmt->execute();
+         $result = $stmt->get_result();
+         $administrador = $result->fetch_assoc();
+         $stmt->close();
+         return $administrador;
+    }
+
+    // -----Metodo para verificar existencia en la base de datos ----- //
+    public function existProfile($table,$param, $id)
+    {
+        $stmt = $this->conexion->prepare("SELECT * FROM $table WHERE $param = ?");
+        $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
-        $administrador = $result->fetch_assoc();
+        $result = $result->fetch_assoc();
         $stmt->close();
-        return $administrador;
+        return $result;
     }
+
+    // -----Metodo para actualizar informacion de Usuario Admin----- //
     public function update(Profile $administrador)
     {
         $update = "UPDATE administrador SET nomadmin = ?, apeadmin = ?, nickadmin = ?, diradmin = ?, emaadmin = ?, teladmin = ?, teladmin2 = ? WHERE idadmin = ? ";
@@ -48,121 +188,139 @@ class Profile
         }
     }
 
-
-    public function getProveedores()
-    {
-        $query = "SELECT * FROM proveedor";
-        $result = $this->conexion->query($query);
-        $proveedores = array();
-
-        if ($result->num_rows > 0) {
-            // Recorrer los resultados y almacenarlos en el array $proveedores
-            while ($row = $result->fetch_assoc()) {
-                $proveedores[] = $row;
-            }
+    // -----Metodo para actualizar informacion de Proveedor----- //
+    public function updateProveedor($idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv){
+        $stmt = $this->conexion->prepare("UPDATE proveedor SET nomprov = ?, dirprov = ?, emaprov = ?, telprov = ? WHERE idprov = ?");
+        $stmt->bind_param("ssssi", $nombreProv, $direccionProv, $emailProv, $telefonoProv, $idProv);
+    
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
         }
-
-        return $proveedores;
-    }
-    public function buscarProveedor($buscar)
-    {
-        $query = "SELECT * FROM proveedor WHERE idprov LIKE '%$buscar%'";
-        $result = $this->conexion->query($query);
-        $proveedores = array();
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $proveedores[] = $row;
-            }
-        }
-        return $proveedores;
     }
 
-    public function eliminarProveedor($id)
-    {
+    // -----Metodo para actualizar informacion de Empleados----- //
+    public function updateColaborador($idCol, $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol){
+        $stmt = $this->conexion->prepare("UPDATE colaborador SET nomcol = ?, dircol = ?, emacol = ?, telcol = ?, rolcol = ? WHERE idcol = ?");
+        $stmt->bind_param("sssssi", $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol, $idCol);
+    
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false; 
+        }
     }
 
-    public function getEmpleado()
-    {
-        $query = "SELECT * FROM colaborador";
-        $result = $this->conexion->query($query);
-        $empleado = array();
+    // -----Metodo para actualizar informacion de Cliente----- //
+    public function updateCliente($idCli, $nombreCli, $emailCli,  $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli){
 
-        if ($result->num_rows > 0) {
-            // Recorrer los resultados y almacenarlos en el array $proveedores
-            while ($row = $result->fetch_assoc()) {
-                $empleado[] = $row;
+        try {
+            $stmt = $this->conexion->prepare("UPDATE cliente SET nomcli = ?, emacli = ?, usercli = ?, dircli = ?, tzonecli = ?, telcli = ?, telaltcli = ?  WHERE idcli = ?");
+            $stmt->bind_param("sssssssi",  $nombreCli, $emailCli,  $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli, $idCli);
+        
+            if ($stmt->execute()) {
+                return true; 
+                exit();
+            } else {
+                return false; 
             }
+        } catch (Exception $e) {
+            die($e->getMessage());
         }
-        return $empleado;
     }
-    public function buscarEmpleado($buscar)
-    {
-        $query = "SELECT * FROM colaborador WHERE idcol LIKE '%$buscar%'";
-        $result = $this->conexion->query($query);
-        $empleados = array();
+    
+    // -----Metodo para actualizar informacion de mascota----- //
+    public function updateMascota($idmas, $nombremas, $edadmas,  $genmas, $espciemas){
+        try {
+            $stmt = $this->conexion->prepare("UPDATE mascota SET nommas = ?, edadmas = ?, genmas = ?, espmas = ? WHERE idmas = ?");
+            $stmt->bind_param("ssssi",  $nombremas, $edadmas,  $genmas, $espciemas, $idmas);
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $empleados[] = $row;
+            if ($stmt->execute()) {
+                return true;
+                exit();
+            } else {
+                return false; 
             }
+        } catch (Exception $e) {
+            die($e->getMessage());
         }
-
-        return $empleados;
     }
 
-    public function getCliente()
-    {
-        $query = "SELECT * FROM cliente";
-        $result = $this->conexion->query($query);
-        $cliente = array();
-
-        if ($result->num_rows > 0) {
-            // Recorrer los resultados y almacenarlos en el array $proveedores
-            while ($row = $result->fetch_assoc()) {
-                $cliente[] = $row;
+    // -----Metodo para agregar un nuevo Proveedor----- //
+    public function saveProveedor($nombreProv, $direccionProv, $emailProv, $telefonoProv){
+        try {
+            $sql = 'INSERT INTO proveedor(idprov, nomprov, dirprov, emaprov, telprov) VALUES (?, ?, ?, ?, ?)';
+            $stmt = $this->conexion->prepare($sql);
+            if($stmt->execute(["sssi",  $nombreProv, $direccionProv, $emailProv, $telefonoProv])) {
+                return true;
+            } else {
+                return false;
             }
+        } catch (Exception $e) {
+            die($e->getMessage());
         }
-        return $cliente;
     }
-    public function buscarClientes($buscar)
-    {
-        $query = "SELECT * FROM cliente WHERE idcli LIKE '%$buscar%'";
-        $result = $this->conexion->query($query);
-        $cliente = array();
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $cliente[] = $row;
+    // -----Metodo para agregar un nuevo Colaborador----- //
+    public function saveColaborador( $dnicol, $nombreCol, $emailCol, $passwordCol, $direccionCol,  $telefonoCol, $rolCol){
+        try {
+            $sql = 'INSERT INTO colaborador(dnicol, nomcol, emacol, passcol, dircol, telcol, rolcol) VALUES (?, ?, ?, ?, ?, ?, ?)';
+            $stmt = $this->conexion->prepare($sql);
+            if($stmt->execute([$dnicol, $nombreCol, $emailCol, $passwordCol, $direccionCol,  $telefonoCol, $rolCol])) {
+                return true;
+            } else {
+                return false;
             }
+        } catch (Exception $e) {
+            die($e->getMessage());
         }
-        return $cliente;
     }
-    public function getMascota()
-    {
-        $query = "SELECT * FROM mascota";
-        $result = $this->conexion->query($query);
-        $mascota = array();
 
-        if ($result->num_rows > 0) {
-            // Recorrer los resultados y almacenarlos en el array $proveedores
-            while ($row = $result->fetch_assoc()) {
-                $mascota[] = $row;
-            }
-        }
-
-        return $mascota;
+    // -----Metodo para eliminar Colabordor----- //
+    public function deleteColaborador($data) {
+        $sql = "DELETE FROM colaborador WHERE idcol = ?";
+        try {
+            $this->conexion->prepare($sql)
+            ->execute([
+                $data->idcol
+            ]);
+        } catch (Exception $e) {
+			die($e->getMessage());
+		}
     }
-    public function buscarMascotas($buscar)
-    {
-        $query = "SELECT * FROM mascota WHERE idmas LIKE '%$buscar%'";
-        $result = $this->conexion->query($query);
-        $mascota = array();
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $mascota[] = $row;
-            }
-        }
-        return $mascota;
+
+    // -----Metodo para verificar si un string contiene numeros----- //
+    public function verifyNumberString($string){
+        return preg_match('/\d/', $string) === 1 ? true : false; 
+    }
+
+    // -----Metodo para verificar que un string sea un correo electronico----- //
+    public function verifyEmailString($string){
+        return filter_var($string, FILTER_VALIDATE_EMAIL) ? true : false;
+    }
+
+    // -----Metodo para verificar que entre los numero haya letras----- //
+    public function verifyLeterString($number){
+        return preg_match('/[a-zA-Z]/', $number) === 1 ? true : false; 
+    }
+
+    // -----Metodo para verificar contraseña----- //
+    public function verifyPasswordString($password){
+        $longmin = 8; 
+        $mayus = true; 
+        $minus = true; 
+        $number = true; 
+
+        // -----Verificar longitud minima----- //
+        $longpass = (strlen($password) < $longmin) ? false : true;
+        // -----Verificar mayuscula----- //
+        $mayuspass = ($mayus && preg_match('/[A-Z]/', $password)) ? true : false;  
+        // -----Verificar minuscula----- //
+        $minuspass = ($minus && preg_match('/[a-z]/', $password)) ? true : false; 
+        // Verificar numeros----- //
+        $numberpass = ($number && preg_match('/[0-9]/', $password)) ? true : false;
+
+        return ($longpass === true && $mayuspass === true && $minuspass === true && $numberpass === true) ? true : false; 
     }
 }
