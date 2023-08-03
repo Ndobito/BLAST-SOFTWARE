@@ -54,7 +54,7 @@ class newAccountController
                                             $this->object->name = trim($nombre); 
                                             $this->object->name = trim($nombre); 
                                             $this->object->name = trim($nombre); 
-                                            $this->object->name = trim($nombre); 
+                                            $this->object->pass = Privilegios::Admin->get() + Privilegios::User->get(); 
                                             $this->object->name = trim($nombre); 
                                         }
                                     }else{

@@ -37,6 +37,8 @@ class LoginController
                     $_SESSION['usuario'] = $usuario;
                     $_SESSION['tipoUsuario'] = $tipoUsuario;
                     $_SESSION['ultimaActividad'] = time();
+                    $privilegios = $this->loginModel->obtenerPrivilegios();
+                    $_SESSION['privilegios'] = $privilegios->privilegios;
                     setNotify("success", "Ha iniciado sesión correctamente");
                     switch ($tipoUsuario) {
                         case "cliente":

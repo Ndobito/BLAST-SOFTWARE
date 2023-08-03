@@ -22,7 +22,7 @@ class restorePasswordController{
         require_once "view/head.php";
         require_once "view/header.php";
         require_once "view/restore-password/restore-password.php";
-        require_once "view/footer.php";  
+        require_once "view/footer.php";
     }
 
     public function sendEmail(){

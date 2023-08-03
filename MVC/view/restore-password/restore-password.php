@@ -27,12 +27,6 @@
                     <div>
                     </div>
                 </div>
-                <div class="main-footer"></div>
-                <div class="modal" style="display: none;">
-                    <p>Gracias por tu mensaje.</p>
-                    <button class="close" id="close">Volver</button>
-                </div>
-                <div class="opacidad" style="display: none;"></div>
             </div>
 
         </main>
