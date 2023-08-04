@@ -137,13 +137,12 @@
                                     <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="?b=profile&s=optionEditRedirec&p=proveedor&idprov=<?= $proveedor['idprov']; ?>"
-                                        id="Prveedor">
+                                    <a href="?b=profile&s=optionEditRedirec&p=proveedor&idprov=<?= $proveedor['idprov']; ?>" id="Prveedor">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
                                 <td class="icons2">
-                                    <a href="#">
+                                    <a onclick="alertProfile(this.id, 'proveedor')" id="<?php echo $proveedor['idprov']; ?>">
                                         <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
                                     </a>
                                 </td>
@@ -218,7 +217,9 @@
                                     </a>
                                 </td>
                                 <td class="icons2">
-                                    <a href="#"><i class="fa-solid fa-trash"></i></a>
+                                    <a onclick="alertProfile(this.id, 'colaborador')" id="<?php echo $proveedor['idprov']; ?>">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
                                 </td>
                             </tr>
                             <?php } ?>
@@ -289,7 +290,7 @@
                                     </a>
                                 </td>
                                 <td class="icons2">
-                                    <a href="#">
+                                    <a onclick="alertProfile(this.id, 'cliente')" id="<?php echo $cliente['idcli']; ?>">
                                         <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
                                     </a>
                                 </td>
@@ -351,7 +352,7 @@
                                     </a>
                                 </td>
                                 <td class="icons2">
-                                    <a href="#">
+                                    <a onclick="alertProfile(this.id, 'mascota')" id="<?php echo $mascota['idmas']; ?>">
                                         <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
                                     </a>
                                 </td>
@@ -378,6 +379,9 @@
         </div>
     </footer>
 </div>
+
+<!-- Alerts -->
+<script src="assets/Javascript/alert-profile.js"></script>
 
 <!-- Menu Profile -->
 <script src="assets/Javascript/menu-profile-administrator.js"></script>

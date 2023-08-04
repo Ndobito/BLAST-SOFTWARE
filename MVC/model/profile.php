@@ -277,16 +277,17 @@ class Profile
         }
     }
 
-    // -----Metodo para eliminar Colabordor----- //
-    public function deleteColaborador($data) {
-        $sql = "DELETE FROM colaborador WHERE idcol = ?";
+    // -----Metodo para eliminar Profiles----- //
+    public function deleteUser($table, $param , $id) {
+        $sql = "DELETE FROM $table WHERE $param = ?";
         try {
-            $this->conexion->prepare($sql)
-            ->execute([
-                $data->idcol
-            ]);
+            if($this->conexion->prepare($sql)->execute([$id])){
+                return true; 
+            } else{
+                return false; 
+            }
         } catch (Exception $e) {
-			die($e->getMessage());
+            return false; 
 		}
     }
 

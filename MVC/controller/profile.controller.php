@@ -438,6 +438,59 @@ class ProfileController
                 break;
         }
     }
+
+
+    public function deleteProfile(){
+        $o = $_REQUEST['p']; 
+        $id = $_REQUEST['id']; 
+        switch ($o) {
+            case 'proveedor':
+                $table = "proveedor"; 
+                $param = "idprov"; 
+                var_dump($action = $this->object->deleteUser($table, $param, $id));
+                if($action){
+                    redirect("?b=profile&s=Inicio&p=admin")->success("Se ha eliminado el proveedor con exito")->send();
+                }else{
+                    redirect("?b=profile&s=Inicio&p=admin")->error("No se pudo eliminar el proveedor, revise que no haya ningun producto asignado a este proveedor. ")->send();
+                }
+                break;
+                case 'cliente':
+                    $table = "cliente"; 
+                    $param = "idcli"; 
+                    var_dump($action = $this->object->deleteUser($table, $param, $id));
+                    if($action){
+                        redirect("?b=profile&s=Inicio&p=admin")->success("Cliente eliminado con exito!")->send();
+                    }else{
+                        redirect("?b=profile&s=Inicio&p=admin")->error("No se pudo eliminar el cliente, revise que no haya ninguna mascota asociada a este cliente.")->send();
+                    }
+                    break;
+                case 'colaborador':
+                    $table = "colaborador"; 
+                    $param = "idcol"; 
+                    var_dump($action = $this->object->deleteUser($table, $param, $id));
+                    if($action){
+                        redirect("?b=profile&s=Inicio&p=admin")->success("Colaborador eliminado con exito!")->send();
+                    }else{
+                        redirect("?b=profile&s=Inicio&p=admin")->error("No se pudo eliminar el colaborador")->send();
+                    }
+                    break;
+                case 'mascota':
+                    $table = "mascota"; 
+                    $param = "idmas"; 
+                    var_dump($action = $this->object->deleteUser($table, $param, $id));
+                    if($action){
+                        redirect("?b=profile&s=Inicio&p=admin")->success("Mascota eliminada con exito!")->send();
+                    }else{
+                        redirect("?b=profile&s=Inicio&p=admin")->error("No se pudo eliminar la cliente.")->send();
+                    }
+                    break;
+            default:
+                # code...
+                break;
+        }
+
+    }
+
     //Metodo para cerrar Sesion
     public function cerrarSesion()
     {
