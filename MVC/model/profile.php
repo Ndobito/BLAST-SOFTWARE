@@ -216,8 +216,8 @@ class Profile
     public function updateCliente($idCli, $nombreCli, $emailCli,  $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli){
 
         try {
-            $stmt = $this->conexion->prepare("UPDATE cliente SET nomcli = ?, emacli = ?, usercli = ?, dircli = ?, tzonecli = ?, telcli = ?, telaltcli = ?  WHERE idcli = ?");
-            $stmt->bind_param("sssssssi",  $nombreCli, $emailCli,  $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli, $idCli);
+            $stmt = $this->conexion->prepare("UPDATE cliente SET numid = ?, nomcli = ?, emacli = ?, usercli = ?, dircli = ?, tzonecli = ?, telcli = ?, telaltcli = ?  WHERE numid = ?");
+            $stmt->bind_param("ssssssssi", $idCli,  $nombreCli, $emailCli,  $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli, $idCli);
         
             if ($stmt->execute()) {
                 return true; 
@@ -324,4 +324,20 @@ class Profile
 
         return ($longpass === true && $mayuspass === true && $minuspass === true && $numberpass === true) ? true : false; 
     }
+
+    // ------Metodo para verificar si un usuario existe------ //
+    public function userExist($param1, $param2, $table, $value){
+        try{
+            $sql = "SELECT $param1 FROM $table WHERE $param2='".$value."'"; 
+            $result = $this->conexion->query($sql);
+            if($result->num_rows > 0 ){
+                return true;
+            } else{
+                return false; 
+            } 
+        }catch(Exception $e){
+            echo "Error: ".$e->getMessage(); 
+        }
+    }
+
 }

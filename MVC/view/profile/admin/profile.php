@@ -258,10 +258,13 @@
                             </tr>
                         </thead>
                         <tbody id="resultados">
-                            <?php foreach ($cliente as $cliente) { ?>
+                            <?php foreach ($cliente as $key=>$cliente) { ?>
                             <tr>
                                 <td>
-                                    <?php echo $cliente['idcli']; ?>
+                                    <?php echo $key+1 ?>
+                                </td>
+                                <td>
+                                    <?php echo $cliente['numid']; ?>
                                 </td>
                                 <td>
                                     <?php echo $cliente['nomcli']; ?>
@@ -285,12 +288,12 @@
                                     <?php echo $cliente['telaltcli']; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="?b=profile&s=optionEditRedirec&p=cliente&idcli=<?= $cliente['idcli']; ?>">
+                                    <a href="?b=profile&s=optionEditRedirec&p=cliente&idcli=<?= $cliente['numid']; ?>">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
                                 <td class="icons2">
-                                    <a onclick="alertProfile(this.id, 'cliente')" id="<?php echo $cliente['idcli']; ?>">
+                                    <a onclick="alertProfile(this.id, 'cliente')" id="<?php echo $cliente['numid']; ?>">
                                         <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
                                     </a>
                                 </td>
@@ -322,7 +325,7 @@
                                 <th>Edad</th>
                                 <th>Genero</th>
                                 <th>Especie</th>
-                                <th>Contacto de Dueño</th>
+                                <th>Numero de identificacion del dueño</th>
                             </tr>
                         </thead>
                         <?php foreach ($mascota as $mascota) { ?>

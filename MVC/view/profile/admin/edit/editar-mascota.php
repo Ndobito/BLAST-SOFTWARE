@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="form">
-                <form action="?b=editarinfo&s=GuardarInfoMas&idmas<?= $mascota['idmas']; ?>" method="POST">
+                <form action="?b=profile&s=updateProfile&p=mascota&id=<?= $mascota['idmas']; ?>" method="POST">
                     <input type="hidden" name="idmas" id="Idmas" value="<?= $mascota["idmas"] ?? "No definido" ?>">
                     <div class="input-container">
                         <label class="tex" for="">Nombre</label>

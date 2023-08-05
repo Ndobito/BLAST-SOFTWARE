@@ -431,8 +431,99 @@ class ProfileController
                             }
                         }
                     }
+                }else{
+                    $ProveedorId = $_REQUEST['idprov'];
+                    redirect("?b=profile&s=Inicio&p=admin")->error("Error: no se puede identificar el proveedor.")->send();
                 }
                 break;
+            case 'cliente': 
+                if(isset($_REQUEST['numid'])){
+                    if(empty($_POST['idcli']) || empty($_POST['nomcli']) || empty($_POST['emacli']) || empty($_POST['usercli']) || empty($_POST['dircli']) || empty($_POST['zona']) || empty($_POST['telcli'])){
+                        $clienteId = $_REQUEST['numid'];
+                        redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("Complete todos los campos con el (*)")->send();    
+                    }else{
+                        if($this->object->verifyLeterString($_POST['idcli'])){
+                            $clienteId = $_REQUEST['numid'];
+                            redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("El numero de identificacion no puede llevar letras. ")->send();  
+                        }else{
+                            if($this->object->verifyNumberString($_POST['nomcli'])){
+                                $clienteId = $_REQUEST['numid'];
+                                redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("El nombre no puede llevar numeros. ")->send();  
+                            }else{
+                                if(!$this->object->verifyEmailString($_POST['emacli'])){
+                                    $clienteId = $_REQUEST['numid'];
+                                    redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("El formato del correo electronico es invalido. ")->send();  
+                                }else{ 
+                                    if($this->object->userExist("usercli", "cliente", "usercli", $_POST['usercli'])){
+                                        $clienteId = $_REQUEST['numid'];
+                                        redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("Ya existe un nombre de usuario con ese nickuser. ")->send();  
+                                    }else{
+                                        if($this->object->verifyLeterString($_POST['telcli']) || $this->object->verifyLeterString($_POST['telaltcli'])){
+                                            $clienteId = $_REQUEST['numid'];
+                                            redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("Los numero de telefono no pueden llevar letras.")->send();  
+                                        }else{
+                                            $id = $_POST['idcli'];
+                                            $nom = $_POST['nomcli'];
+                                            $ema = $_POST['emacli'];
+                                            $nick = $_POST['usercli'];
+                                            $dir = $_POST['dircli'];
+                                            $zone = $_POST['zona'];
+                                            $tel = $_POST['telcli'];
+                                            $tel2 = $_POST['telaltcli'];
+
+                                            if($this->object->updateCliente($id, $nom, $ema, $nick, $dir, $zone, $tel, $tel2)){
+                                                redirect("?b=profile&s=Inicio&p=admin")->success("Se ha actualizado la información del cliente")->send();
+                                            }else{
+                                                $clienteId = $_REQUEST['numid'];
+                                                redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("Error al actualizar la informacion del cliente.")->send();  
+                                            }
+                                        }
+                                    } 
+                                }
+                            }
+                        }
+                    }
+                }else{
+                    redirect("?b=profile&s=Inicio&p=admin")->error("Error: no se puede identificar el cliente")->send();
+                }
+                break; 
+            case 'mascota':
+                if(isset($_REQUEST['id'])){
+                    if(empty($_POST['idmas']) || empty($_POST['nommas']) || empty($_POST['edadmas']) || empty($_POST['genmas']) || empty($_POST['espmas'])){
+                        $idmas = $_REQUEST['id'];
+                        redirect("?b=profile&s=optionEditRedirec&p=mascota&idmas=" . $idmas)->error("Complete todos los campos.")->send();
+                    }else{
+                        if($this->object->verifyLeterString($_POST['idmas'])){
+                            $idmas = $_REQUEST['id'];
+                            redirect("?b=profile&s=optionEditRedirec&p=mascota&idmas=" . $idmas)->error("El id de la mascota no puede tener letras.")->send();
+                        }else{
+                            if($this->object->verifyNumberString($_POST['nommas'])){
+                                $idmas = $_REQUEST['id'];
+                                redirect("?b=profile&s=optionEditRedirec&p=mascota&idmas=" . $idmas)->error("El nombre de la mascota no puede tener numeros")->send();
+                            }else{
+                                if($this->object->verifyLeterString($_POST['edadmas'])){
+                                    $idmas = $_REQUEST['id'];
+                                    redirect("?b=profile&s=optionEditRedirec&p=mascota&idmas=" . $idmas)->error("La edad debe ser solamente con numeros.")->send();
+                                }else{
+                                    $id = $_POST['idmas']; 
+                                    $name = $_POST['nommas']; 
+                                    $age = $_POST['edadmas']; 
+                                    $gen = $_POST['genmas']; 
+                                    $esp = $_POST['espmas']; 
+
+                                    if($this->object->updateMascota($id, $name, $age, $gen, $esp)){
+                                        redirect("?b=profile&s=Inicio&p=admin")->success("Se ha actualizado la información de la mascota")->send();
+                                    }else{
+                                        redirect("?b=profile&s=Inicio&p=admin")->error("Error al actualizar la informacion de la mascota")->send();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }else{
+                    redirect("?b=profile&s=Inicio&p=admin")->error("Error: no se puede identificar la mascota")->send();
+                }                
+                break; 
             default:
                 redirect("?b=profile&s=Inicio&p=admin")->error("404 Not Found: Pagina no encontrada")->send();
                 break;
