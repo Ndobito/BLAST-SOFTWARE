@@ -25,5 +25,14 @@ function alertProfile(id, rol){
                 window.location.href = "?b=profile&s=deleteProfile&p=mascota&id="+id; 
             } 
             break;
+        default:
+            break;
     }
+}
+
+function destroySession(){
+    var respuesta = confirm("¿Esta seguro(a) de finalizar la sesión?");
+    if(respuesta === true){
+        window.location.href = "?b=profile&s=cerrarSesion"; 
+    } 
 }

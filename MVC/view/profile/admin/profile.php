@@ -40,8 +40,11 @@
                         </div>
 
                         <div>
-                            <a href="?b=profile&s=cerrarSesion"><button><i
-                                        class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR</button></a>
+                            <a>
+                                <button onclick="destroySession()">
+                                    <i class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR
+                                </button>
+                            </a>
                         </div>
                     </div>
 
