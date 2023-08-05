@@ -14,6 +14,6 @@ Perfil:
   + Revisar las interfaces del modulo de inventarios (botones, rutas y responsive).
   + Agregar modulo de cambiar contraseña a profile.
 
-Login: 
-  
+Login:
+
   +Realizar el inicio de sesion segun la tabla en la cual se encuentre el usuario. 
