@@ -12,7 +12,6 @@ Olvidar Contraseña:
 
 Perfil: 
   + Revisar las interfaces del modulo de inventarios (botones, rutas y responsive).
-  + Agregar confirmacion de finalizar sesion.
   + Agregar modulo de cambiar contraseña a profile.
 
 Login: 
