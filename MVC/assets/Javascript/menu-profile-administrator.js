@@ -1,9 +1,10 @@
 // Obtén los elementos del contenedor y los botones
-const container1 = document.getElementById("container-right");
-const container2 = document.getElementById("container-right2");
-const container3 = document.getElementById("container-right3");
-const container4 = document.getElementById("container-right4");
-const container5 = document.getElementById("container-right5");
+const container0 = document.getElementById("container-right");
+const container1 = document.getElementById("container-right2");
+const container2 = document.getElementById("container-right3");
+const container3 = document.getElementById("container-right4");
+const container4 = document.getElementById("container-right5");
+const container5 = document.getElementById("container-right6");
 
 const profileAdmContainer = document.querySelectorAll(".profile-adm");
 const profileAdmBtn = document.querySelectorAll(".profile-adm-btn");

@@ -1,6 +1,4 @@
-/* Global Cofiguration */
-
-:root{
+:root {
     --color-1: #83DFFD;
     --color-2: #8FE3FF;
     --color-3: #303030;
@@ -11,8 +9,7 @@
     --color-8: #B8B6B4;
     --color-9: #2C74FF;
     --color-10: #2E353B;
-    --color-11: rgba(246, 252, 255, 0.35);
-    --color-12: rgba(246, 252, 255);
+    --color-11: #f5f5f5;
     --font-1: Verdana, Geneva, Tahoma, sans-serif;
     --font-2: Microsoft-Yaheni;
 }
@@ -21,81 +18,140 @@
     font-family: 'Microsoft-Yaheni';
     src: url(../fonts/chinese.msyh.ttf);
 }
-a{
-    text-decoration: none;
-}
-/* Header Profile */
 
-.header{
-    background: var(--color-5); 
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    box-shadow: 0px 20px 18px -10px rgba(0,0,0,0.61);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.header a{
-    text-decoration: none;
-    color: black;
-    cursor: pointer;
+/*volver*/
+.returm {
+    width: 100%;
+    height: 25px;
+    background-color: #ffffff;
 }
 
-.header a i{
-    color: var(--color-9);
-    margin-right: 10px;
+.returm a {
+    margin-left: 1rem;
 }
 
-
-/* Main */
-
-main {
-    display: grid;
-    grid-template-columns: 25% 75%;
+.returm i {
+    margin-top: 0.3rem;
+    height: 17px;
+    width: 23px;
+    text-align: center;
+    color: var(--color-4);
 }
 
+.returm i:hover {
+    border-radius: 200%;
+    box-shadow: 2px 2px 8px 0 rgb(0, 0, 0, 0.069),
+        4px 4px 16px 0 rgba(0, 0, 0, 0.069), 0px 0px 24px 2px rgba(0, 0, 0, 0.169);
+    -webkit-border-radius: 200%;
+    -moz-border-radius: 200%;
+    -ms-border-radius: 200%;
+    -o-border-radius: 200%;
+}
+
+/* Container Main */
+
+.container-main-profile {
+    width: 100%;
+    display: block;
+
+}
 
 /* Left */
 
-.container-left .left {
-    background: var(--color-1);
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    padding: 10px 5px 10px 10px;
-    width: 40px;
-    height: 500px;
-    overflow-x: hidden;
+.left {
+    width: 100%;
+    height: auto;
+    background: rgb(241, 252, 255);
+    background: linear-gradient(180deg, rgba(241, 252, 255, 1) 5%, rgba(143, 227, 255, 1) 100%);
+    font-family: var(--font-1);
+    text-align: center;
 }
 
-.container-left .left:hover{
-    transition: 1s ease-in;
-    width: 250px;
-    -webkit-transition: 1s ease-in;
-    -moz-transition: 1s ease-in;
-    -ms-transition: 1s ease-in;
-    -o-transition: 1s ease-in;
+.container-menu {
+    width: 100%;
+    display: inline-block;
 }
 
-.left button.user-data{
-    margin-bottom: 50px;
+/*User information*/
+
+.container-menu .user {
+    width: 100%;
+    padding: 20px;
+    border-bottom: 2px solid var(--color-3);
 }
 
-.left button{
-    height: 35px;
+.user h1 {
+    font-size: 28px;
+    color: var(--color-4);
+}
+
+.user .img {
+    width: 200px;
+    height: 200px;
+    background: url(../img/user-profile.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+
+/* User Menu */
+
+.menu {
+    width: 100%;
+    padding: 20px;
     display: flex;
-    justify-content: left;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+
+.menu button {
+    width: 60%;
+    background-color: var(--color-6);
+    padding: 12px 5px 12px 5px;
+    color: var(--color-5);
     font-family: var(--font-2);
-    font-size: 18px;
-    gap: 20px;
-    background: none;border: none;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
     cursor: pointer;
-    margin-top: 5px;
-    margin-bottom: 10px;
+}
+
+.menu div:nth-child(7) button {
+    background: #2C74FF;
+}
+
+.menu div:nth-child(7) button i {
+    margin-right: 10px;
+}
+
+.menu button:hover {
+    opacity: 0.6;
 }
 
 
-
-/* estilos de admin.css */
+/* Right */
 
 .right {
     width: 100%;
@@ -109,45 +165,9 @@ main {
     height: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
+
 }
 
-.welcome{
-    background: var(--color-5);
-    box-shadow: 0px 0px 29px 0px rgba(0,0,0,0.61);
-    width: 80%;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    border-radius: 20px;
-    text-align: center;
-    padding: 30px 10px 20px 10px;
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
-}
-
-.welcome h1{
-    font-family: var(--font-2);
-}
-
-.welcome p{
-    margin-top: 50px;
-    font-family: var(--font-1);
-}
-
-.welcome i{
-    margin-top: 100px;
-    color: var(--color-9);
-    font-size: 40px;
-}
-
-.user{
-    display: none;
-}
 .container-right .user-information,
 .container-right3 .Pets {
     width: 90%;
@@ -588,6 +608,7 @@ footer {
 *
 */
 
+
 @media (min-width: 426px) {
 
 
@@ -659,8 +680,6 @@ footer {
     /*Footer*/
     footer {
         height: 12.4%;
-        position: absolute;
-        bottom: 0;
     }
 
     /* Footer Boottom */

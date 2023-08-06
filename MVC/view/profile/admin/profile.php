@@ -1,57 +1,35 @@
-<div class="container">
-    <div class="returm">
-        <a href="?b=index&s=Inicio&p=admin"><i class="fa-solid fa-arrow-left"></i></a>
-    </div> <!-- Body of the work -->
-    <main>
-        <div class="container-main-profile">
-            <div class="left">
-                <div class="container-menu">
-                    <div class="user">
-                        <div class="img"></div>
-                        <h1>
-                            <?php echo $user['nomadmin'] . " " . $user['apeadmin']; ?>
-                        </h1>
-                        <h1>Administrador</h1>
-                    </div>
-                    <div class="menu">
-                        <div id="btns-menu">
-                            <button class="profile-adm-btn">INFORMACION</button>
-                        </div>
-                        <?php
-                        if (Privilegios::check(Privilegios::Admin->get())) {
-                        ?>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="?b=index&s=Inicio&p=admin"><i class="fa-solid fa-arrow-left"></i></a>
+            <a href="#"><i class="fa-solid fa-key"></i><span>Cambiar contraseña</span></a>
+        </div>
+        <main>
+            <div class="container-left">
+                <div class="left">
+                    <button class="user-data">
+                        <img src="assets/img/usuario.png" alt="">
                         <div>
-                            <a href="?b=inventory&s=listado"><button>INVENTARIOS</button></a>
+                            <p><?php echo $user['nomadmin'] . " " . $user['apeadmin']; ?></p>
+                            <p>rol</p>
                         </div>
-                        <?php
-                        }
-                        ?>
-                        <div>
-                            <button class="profile-adm-btn">PROVEEDORES</button>
-                        </div>
-                        <div>
-                            <button class="profile-adm-btn">COLABORADORES</button>
-                        </div>
-                        <div>
-                            <button class="profile-adm-btn">CLIENTES</button>
-                        </div>
-                        <div>
-                            <button class="profile-adm-btn">MASCOTAS</button>
-                        </div>
-
-                        <div>
-                            <a>
-                                <button onclick="destroySession()">
-                                    <i class="fa-solid fa-right-from-bracket fa-rotate-180"></i> SALIR
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-
+                    </button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-house-user"></i><p>Inicio</p></button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-user-pen"></i><p>Datos del usuario</p></button>
+                    <a href=""><button><i class="fa-solid fa-boxes-stacked"></i><p>Inventarios</p></button></a>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-users"></i><p>Proveedores</p></button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-user-gear"></i><p>Colaboradores</p></button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-person-circle-check"></i><p>Clientes</p></button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i><p>Mascotas</p></button>
                 </div>
             </div>
-            <div class="right">
-                <div class="profile-adm container-right" id="container-right">
+            <div class="container-right">
+                <div class="profile-adm welcome" id="container-right">
+                    <h1>Bienvenido(a) al panel de administracion</h1>
+                    <p>Dirijase al menu lateral para poder navegar dentro del sitio. </p>
+                    <i class="fa-solid fa-face-smile-beam"></i>
+                </div>
+                <div class="profile-adm container-right user" id="container-right2">
                     <div class="user-information">
                         <h1>Datos</h1>
                         <form id="form-user-information" action="?b=profile&s=updateUser" method="post">
@@ -93,7 +71,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="profile-adm container-right2" id="container-right2">
+                <div class="profile-adm container-right2" id="container-right3">
                     <div class="title">
                         <h1>proveedores</h1>
                     </div>
@@ -154,7 +132,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="profile-adm container-right3" id="container-right3">
+                <div class="profile-adm container-right3" id="container-right4">
                     <div class="title">
                         <h1>Colaboradores</h1>
                     </div>
@@ -229,7 +207,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="profile-adm container-right4" id="container-right4">
+                <div class="profile-adm container-right4" id="container-right5">
                     <div class="title">
                         <h1>Clientes</h1>
                     </div>
@@ -305,8 +283,7 @@
                         </tbody>
                     </table>
                 </div>
-
-                <div class="profile-adm container-right5" id="container-right5">
+                <div class="profile-adm container-right5" id="container-right6">
                     <div class="title">
                         <h1>mascota</h1>
                     </div>
@@ -367,37 +344,27 @@
                         <?php } ?>
                     </table>
                 </div>
+                
             </div>
-        </div>
-    </main>
-    <footer>
-        <div class="footer-bottom">
-            <p>
-                <img src="assets/img/logo.jpg" alt="">
-                <i>@2023 Clinica Animal World | Veterinaria para mascotas en Colombia</i>
-                <br><br>
-            </p>
-            <p>
-                Sitio creado por
-                <img src="assets/img/logo-removebg-blast-software.png" alt="Logo Blast Software" title="Blast Software">
-                <strong>BLast Software</strong>
-            </p>
-        </div>
-    </footer>
-</div>
 
-<!-- Alerts -->
-<script src="assets/Javascript/alert-profile.js"></script>
+        </main>
+        
+    </div>
 
-<!-- Menu Profile -->
-<script src="assets/Javascript/menu-profile-administrator.js"></script>
-<!-- Calendar -->
-<script src="assets/Javascript/calendar.js"></script>
-<!-- Form Disable and Enable -->
-<script src="assets/Javascript/form-disable-enable.js"></script>
-<!--Font Awesome-->
-<script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
+    <!-- Alerts -->
+    <script src="assets/Javascript/alert-profile.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Menu Profile -->
+    <script src="assets/Javascript/menu-profile-administrator.js"></script>
+    <!-- Calendar -->
+    <script src="assets/Javascript/calendar.js"></script>
+    <!-- Form Disable and Enable -->
+    <script src="assets/Javascript/form-disable-enable.js"></script>
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
 
-<script src="assets/Javascript/real_time_search.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="assets/Javascript/real_time_search.js"></script>
+</body>
+</html>
