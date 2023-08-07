@@ -1,7 +1,7 @@
 <?php
 
 require_once "model/newAccount.php";
-
+include "lib/privileges/privilegios.php";
 class newAccountController
 {
 
@@ -37,7 +37,7 @@ class newAccountController
                     }else{
                         $param1= "numid"; 
                         $param2= "numid"; 
-                        $table= "cliente"; 
+                        $table= "usuario"; 
                         if($this->object->userExist($param1, $param2, $table, $_POST['ctNumId'])){
                             redirect("?b=newaccount&s=Inicio")->error("Ya existe una cuenta con este numero de identificacion")->send();
                         }else{
@@ -58,8 +58,9 @@ class newAccountController
                                                 redirect("?b=newaccount&s=Inicio")->error("Los numeros de telefono no pueden tener letras")->send();
                                             }else{
                                                 $m = new newAccount(); 
-                                                $m->name = trim($nombre); 
-                                                $m->numid = trim($_POST['ctNumId']); 
+                                                $m->name = $_POST['ctNombre']; 
+                                                $m->sname = $_POST['ctApellido'];
+                                                $m->id = trim($_POST['ctNumId']); 
                                                 $m->email = trim($_POST['ctEmail']); 
                                                 $m->uname = trim($_POST['ctNick']); 
                                                 $m->pass = md5(trim($_POST['ctPass'])); 
@@ -67,6 +68,7 @@ class newAccountController
                                                 $m->zone = $_POST['selTipoUbicacion']; 
                                                 $m->phone = trim($_POST['ctTel']); 
                                                 $m->phonealt = trim($_POST['ctTel2']); 
+                                                $m->privileges = Privilegios::User->get(); 
     
                                                 if($this->object->saveUser($m)){
                                                     redirect("?b=login")->success("Cuenta creada con exito, inicia sesión")->send();

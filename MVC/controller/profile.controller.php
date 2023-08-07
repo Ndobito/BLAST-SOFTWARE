@@ -1,6 +1,6 @@
 <?php
 include_once "model/Profile.php";
-include_once 'lib/privilegios.php';
+include_once 'lib/privileges/privilegios.php';
 
 class ProfileController
 {
@@ -11,48 +11,24 @@ class ProfileController
     }
 
     //-----Metodo para redireccionar segun el rol de inicio de sesión-----//
-    public function Inicio($rol)
+    public function Inicio()
     {
         // var_dump(Privilegios::Admin->get(), $_SESSION["privilegios"]);
         // if ((Privilegios::Admin->get() & $_SESSION["privilegios"]) != Privilegios::Admin->get()) {
         //     redirect("?")->error("No tiene permisos")->send();
         // }
-
-        $style = "<link rel='stylesheet' href='assets/css/style-$rol.css'>";
+        
+        $style = "<link rel='stylesheet' href='assets/css/style-admin.css'>";
         require_once "view/head.php";
         $proveedores = $this->object->getProveedores();
         $empleado = $this->object->getEmpleado();
         $cliente = $this->object->getCliente();
         $mascota = $this->object->getMascota();
         $usuario = $_SESSION['usuario'];
+        $privilegios = $this->object->getPrivileges();
         $proveedores = $this->object->getProveedores();
-        switch ($rol) {
-            case 'admin':
-                $name = $_SESSION['usuario'];
-                $user = $this->object->selectUser($usuario);
-                $data = compact('user');
-                break;
-            case 'customer':
-                $usuario = $this->object->selectUser($usuario);
-                $data = compact('persona');
-                break;
-            case 'recepcionist':
-                $administrador = $this->object->selectUser($usuario);
-                $data = compact('persona');
-                break;
-            case 'collaborator':
-                $administrador = $this->object->selectUser($usuario);
-                $data = compact('persona');
-                break;
-            case 'vet':
-                $administrador = $this->object->selectUser($usuario);
-                $data = compact('persona');
-                break;
-            default:
-                echo "Rol indefinido";
-                break;
-        }
-        require_once "view/profile/" . $rol . "/profile.php";
+        $user = $this->object->selectUser($usuario);
+        require_once "view/profile/profile.php";
         require_once "view/footerprofile.php";
     }
 

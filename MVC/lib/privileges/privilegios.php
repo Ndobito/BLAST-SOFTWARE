@@ -2,7 +2,8 @@
 
 enum Privilegios: int {
     case User = 1;
-    case Doctor = 2;
+    case Recepcionist = 2; 
+    case Doctor = 3;
     case Admin = 4;
     public function get(): int{
         return match ($this) {

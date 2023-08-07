@@ -79,7 +79,13 @@ main {
 }
 
 .left button.user-data{
+    margin-top: 40px;
     margin-bottom: 50px;
+}
+
+.left button.user-data div p:nth-child(1){
+    font-size: 15px;
+    font-weight: 600;
 }
 
 .left button{

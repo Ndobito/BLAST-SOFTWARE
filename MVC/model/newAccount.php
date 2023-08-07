@@ -5,7 +5,7 @@ class newAccount{
 
     private $consulta;
     
-    public $id, $name, $numid, $uname, $email, $pass, $dir, $zone, $phone, $phonealt;
+    public $id, $name, $sname, $uname, $email, $pass, $dir, $zone, $phone, $phonealt, $privileges;
     
     public function __construct(){
         try{
@@ -17,17 +17,19 @@ class newAccount{
 
     public function saveUser(newAccount $data){
         try{
-            $user= "INSERT INTO cliente(numid, nomcli, emacli, usercli, passcli, dircli, tzonecli, telcli, telaltcli) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $user= "INSERT INTO usuario(dniuser, nameuser, surnameuser, nickuser, passuser, emailuser, diruser, zoneuser, phoneuser, phonealtuser, privileges) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $opr = $this -> consulta -> prepare($user)-> execute(array(
-                $data -> numid,
+                $data -> id,
                 $data -> name, 
-                $data -> email, 
+                $data-> sname,
                 $data -> uname, 
                 $data -> pass, 
+                $data -> email, 
                 $data -> dir, 
                 $data -> zone, 
                 $data -> phone, 
                 $data -> phonealt, 
+                $data -> privileges
             )); 
             return $opr; 
         } catch (Exception $error){

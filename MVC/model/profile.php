@@ -140,7 +140,7 @@ class Profile
     // -----Metodo para Seleccionar el nombre del Usuario----- //
     public function selectUser($nombreUsuario)
     {
-         $query = "SELECT * FROM administrador WHERE nickadmin ='" . $nombreUsuario . "'";
+         $query = "SELECT * FROM usuario WHERE nickuser ='" . $nombreUsuario . "'";
          $stmt = $this->conexion->prepare($query);
          $stmt->execute();
          $result = $stmt->get_result();
@@ -339,5 +339,19 @@ class Profile
             echo "Error: ".$e->getMessage(); 
         }
     }
+
+    // -----Metodo para Obtener Privilegios del Usuario------ //
+    public function getPrivileges()
+    {
+    $query = "SELECT privileges FROM usuario WHERE nickuser = ?";
+    $resultado = mysqli_execute_query($this->conexion, $query, [$_SESSION["usuario"]]);
+
+    if (mysqli_num_rows($resultado) > 0) {
+        $row = mysqli_fetch_assoc($resultado);
+        return (int)$row["privileges"];
+    } else {
+        return false;
+    }
+}
 
 }

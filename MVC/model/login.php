@@ -11,7 +11,7 @@ class Login
 
     public function validarUsuario($usuario)
     {
-        $query = "(SELECT 'cliente' AS rol FROM cliente WHERE usercli = '$usuario') UNION (SELECT 'administrador' AS rol FROM administrador WHERE nickadmin = '$usuario') UNION (SELECT 'colaborador' AS rol FROM colaborador WHERE nomcol = '$usuario')";
+        $query = "(SELECT 'usuario' AS rol FROM usuario WHERE nickuser = '$usuario')";
 
         $resultado = mysqli_query($this->conexion, $query);
 
@@ -23,7 +23,7 @@ class Login
     }
 
     public function validarPassword($pass){
-        $query = "(SELECT 'cliente' AS rol FROM cliente WHERE passcli = '$pass') UNION (SELECT 'administrador' AS rol FROM administrador WHERE passadmin = '$pass') UNION (SELECT 'colaborador' AS rol FROM colaborador WHERE passcol = '$pass')";
+        $query = "(SELECT 'usuario' AS rol FROM usuario WHERE passuser = '$pass')";
 
         $resultado = mysqli_query($this->conexion, $query);
 
@@ -35,7 +35,7 @@ class Login
     }
 
     public function obtenerPrivilegios() {
-        $query = "(SELECT privilegios FROM administrador WHERE nickadmin = ?)";
+        $query = "(SELECT privileges FROM usuario WHERE nickuser = ?)";
         $resultado = mysqli_execute_query($this->conexion, $query, [$_SESSION["usuario"]]);
 
         if (mysqli_num_rows($resultado) > 0) {
@@ -61,21 +61,21 @@ class Login
     //     }
     // }
 
-    public function obtenerRol($usuario)
-    {
-        $query = "(SELECT 'cliente' AS rol FROM cliente WHERE usercli = '$usuario')
-                  UNION
-                  (SELECT 'administrador' AS rol FROM administrador WHERE nickadmin = '$usuario')
-                  UNION
-                  (SELECT 'colaborador' AS rol FROM colaborador WHERE nomcol = '$usuario')";
-        $resultado = mysqli_query($this->conexion, $query);
+    // public function obtenerRol($usuario)
+    // {
+    //     $query = "(SELECT 'cliente' AS rol FROM cliente WHERE usercli = '$usuario')
+    //               UNION
+    //               (SELECT 'administrador' AS rol FROM administrador WHERE nickadmin = '$usuario')
+    //               UNION
+    //               (SELECT 'colaborador' AS rol FROM colaborador WHERE nomcol = '$usuario')";
+    //     $resultado = mysqli_query($this->conexion, $query);
 
-        if ($fila = mysqli_fetch_assoc($resultado)) {
-            return $fila['rol'];
-        } else {
-            return false;
-        }
-    }
+    //     if ($fila = mysqli_fetch_assoc($resultado)) {
+    //         return $fila['rol'];
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     public function obtenerRolColaborador($usuario)
     {

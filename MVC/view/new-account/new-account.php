@@ -1,7 +1,3 @@
-<?php 
-
-?>
-
 <body>
     <div class="container-background">
         <div class="container-form">

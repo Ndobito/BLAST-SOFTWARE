@@ -13,8 +13,9 @@
                     <button class="user-data">
                         <img src="assets/img/usuario.png" alt="">
                         <div>
-                            <p><?php echo $user['nomadmin'] . " " . $user['apeadmin']; ?></p>
-                            <p>rol</p>
+                            <p><?php echo $user['nameuser'] . " " . $user['surnameuser']; ?></p>
+                            <p><?php echo ($privilegios === 1) ? 'Cliente' : (($privilegios === 2) ? 'Recepcionista' : (($privilegios === 3) ? 'Doctor' : (($privilegios === 4) ? 'Administrador' : 'Indefinido'))); ?></p>
+
                         </div>
                     </button>
                     <button class="profile-adm-btn"><i class="fa-solid fa-house-user"></i><p>Inicio</p></button>
@@ -36,34 +37,34 @@
                     <div class="user-information">
                         <h1>Datos</h1>
                         <form id="form-user-information" action="?b=profile&s=updateUser" method="post">
-                            <input name="ctIdUser" type="hidden" value="<?php echo $user['idadmin'] ?>">
+                            <input name="ctIdUser" type="hidden" value="<?php echo $user['dniuser'] ?>">
                             <label for="ctNameUser">Nombres*</label>
                             <input type="text" name="ctNameUser" id="ctNameUser"
-                                value="<?php echo $user['nomadmin'] ?? "Sin definir"; ?>" disabled>
+                                value="<?php echo $user['nameuser'] ?? "Sin definir"; ?>" disabled>
                             <label for="ctSurNameUser">Apellidos *</label>
                             <input type="text" name="ctSurNameUser" id="ctSurNameUser"
-                                value="<?php echo $user['apeadmin'] ?? "Sin definir"; ?>" disabled>
+                                value="<?php echo $user['surnameuser'] ?? "Sin definir"; ?>" disabled>
                             <label for="ctNameuser">Nickname: *</label>
                             <input type="text" name="ctNickUser" id="ctNickUser"
-                                value="<?php echo $user['nickadmin']; ?>" disabled>
+                                value="<?php echo $user['nickuser']; ?>" disabled>
                             <label for="ctNameuser">Direccion *</label>
-                            <input type="text" name="ctAdrUser" id="ctAdrUser" value="<?php echo $user['diradmin']; ?>"
+                            <input type="text" name="ctAdrUser" id="ctAdrUser" value="<?php echo $user['diruser']; ?>"
                                 disabled>
                             <div>
                                 <div>
                                     <label for="ctEmailUser">Correo Eletrónico *</label>
                                     <input type="text" name="ctEmailUser" id="ctEmailUser"
-                                        value="<?php echo $user['emaadmin']; ?>" disabled>
+                                        value="<?php echo $user['emailuser']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCelUser">Numero de Celular 1 *</label>
                                     <input type="text" name="ctNumCelUser" id="ctNumCelUser"
-                                        value="<?php echo $user['teladmin']; ?>" disabled>
+                                        value="<?php echo $user['phoneuser']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCel2">Numero de Celular 2</label>
                                     <input type="text" name="ctNumCel2" id="ctNumCel2"
-                                        value="<?php echo $user['teladmin2']; ?>" disabled>
+                                        value="<?php echo $user['phonealtuser']; ?>" disabled>
 
                                 </div>
                             </div>
