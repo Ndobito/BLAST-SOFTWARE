@@ -5,7 +5,7 @@ class Profile
 {
     private $conexion;
 
-    public $id, $nombre, $apellido, $nick, $direccion, $email, $numcel, $numcel2, $file;
+    public $id, $nombre, $apellido, $nick, $direccion, $zona,  $email, $numcel, $numcel2, $file;
 
     // -----Constructor de la Conexion-----//
     public function __construct()
@@ -161,23 +161,24 @@ class Profile
         return $result;
     }
 
-    // -----Metodo para actualizar informacion de Usuario Admin----- //
-    public function update(Profile $administrador)
+    // -----Metodo para actualizar informacion de Usuario----- //
+    public function update(Profile $user)
     {
-        $update = "UPDATE administrador SET nomadmin = ?, apeadmin = ?, nickadmin = ?, diradmin = ?, emaadmin = ?, teladmin = ?, teladmin2 = ? WHERE idadmin = ? ";
+        $update = "UPDATE usuario SET dniuser = ?, nameuser = ?, surnameuser = ?, emailuser = ?, diruser = ?, zoneuser = ?, phoneuser = ?, phonealtuser = ? WHERE dniuser = ? ";
 
         try {
             $stmt = $this->conexion->prepare($update);
             $stmt->bind_param(
-                "sssssssi",
-                $administrador->nombre,
-                $administrador->apellido,
-                $administrador->nick,
-                $administrador->direccion,
-                $administrador->email,
-                $administrador->numcel,
-                $administrador->numcel2,
-                $administrador->id
+                "ssssssssi",
+                $user->id,
+                $user->nombre,
+                $user->apellido,
+                $user->email,
+                $user->direccion,
+                $user->zona,
+                $user->numcel,
+                $user->numcel2,
+                $user->id
             );
 
             $stmt->execute();
@@ -331,14 +332,16 @@ class Profile
             $sql = "SELECT $param1 FROM $table WHERE $param2='".$value."'"; 
             $result = $this->conexion->query($sql);
             if($result->num_rows > 0 ){
-                return true;
+                $row = $result->fetch_assoc(); // Obtener la fila del resultado como un array asociativo
+                return $row[$param1]; // Devolver el valor del nombre de usuario si existe
             } else{
-                return false; 
+                return null; // Devolver null si el usuario no existe
             } 
-        }catch(Exception $e){
+        } catch(Exception $e){
             echo "Error: ".$e->getMessage(); 
         }
     }
+
 
     // -----Metodo para Obtener Privilegios del Usuario------ //
     public function getPrivileges()

@@ -39,7 +39,7 @@
                     <select type="select" name="selTipoUbicacion" required id="input-obligatorio">
                         <option selected disabled>Selectiona el tipo de ubicación</option>
                         <option value="rural" >Rural</option>
-                        <option value="urbano">Urbano</option>
+                        <option value="urbana">Urbana</option>
                     </select>
                     <div class="numbers">
                         <div class="input-container">

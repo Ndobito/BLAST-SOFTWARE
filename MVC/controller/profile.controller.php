@@ -302,27 +302,38 @@ class ProfileController
     public function updateUser()
     {
         if (isset($_REQUEST['btnUpdateProfile'])) {
-            if ($_POST['ctNameUser'] == "" || $_POST['ctSurNameUser'] == "" || $_POST['ctNickUser'] == "" || $_POST['ctAdrUser'] ==  "" || $_POST['ctEmailUser'] == "" || $_POST['ctNumCelUser'] == "") {
+            if ($_POST['ctIdUser'] == "" || $_POST['ctNameUser'] == "" || $_POST['ctSurNameUser'] == "" || $_POST['ctAdrUser'] ==  "" || $_POST['selZone'] == "" || $_POST['ctEmailUser'] == "" || $_POST['ctNumCelUser'] == "") {
                 redirect("?b=profile&s=Inicio&p=admin&v=true")->error("Se deben llenar todos los campos")->send();
             } else {
-                $u = new Profile();
-                $u->id = $_POST['ctIdUser'];
-                $u->nombre = $_POST['ctNameUser'];
-                $u->apellido = $_POST['ctSurNameUser'];
-                $u->nick = $_POST['ctNickUser'];
-                $u->email = $_POST['ctEmailUser'];
-                $u->direccion = $_POST['ctAdrUser'];
-                $u->numcel = $_POST['ctNumCelUser'];
-                $u->numcel2 = $_POST['ctNumCel2'];
-                if ($this->object->update($u)) {
-                    if ($_POST['ctNickUser'] != $_SESSION["usuario"]) {
-                        session_destroy();
-                        redirect("index.php")->success("Se ha actualizado el nombre de usuario, vuelva a iniciar sesión")->send();
-                    } else {
-                        redirect("?b=profile&s=Inicio&p=admin")->success("Se ha actualizado la información del usuario")->send();
+                if($this->object->verifyLeterString($_POST['ctIdUser'])){
+                    redirect("?b=profile&s=Inicio")->error("El numero de Identificacion no puede llevar letras")->send();
+                }else{
+                    if($this->object->verifyNumberString($_POST['ctNameUser']) || $this->object->verifyNumberString($_POST['ctSurNameUser'])){
+                        redirect("?b=profile&s=Inicio")->error("Los nombres y apellidos no pueden llevar numeros")->send();
+                    }else{
+                        if(!$this->object->verifyEmailString($_POST['ctEmailUser'])){
+                            redirect("?b=profile&s=Inicio")->error("Formato de correo electronico invalido")->send();
+                        }else{
+                            if($this->object->verifyLeterString($_POST['ctNumCelUser']) || $this->object->verifyLeterString($_POST['ctNumCel2'])){
+                                redirect("?b=profile&s=Inicio")->error("Los numero de telefonos no pueden contener letras")->send();
+                            }else{
+                                $u = new Profile();
+                                $u->id = $_POST['ctIdUser'];
+                                $u->nombre = $_POST['ctNameUser'];
+                                $u->apellido = $_POST['ctSurNameUser'];
+                                $u->email = $_POST['ctEmailUser'];
+                                $u->direccion = $_POST['ctAdrUser'];
+                                $u->zona = $_POST['selZone']; 
+                                $u->numcel = $_POST['ctNumCelUser'];
+                                $u->numcel2 = $_POST['ctNumCel2'];
+                                if ($this->object->update($u)) {
+                                    redirect("?b=profile&s=Inicio")->success("Se ha actualizado la información del usuario")->send();
+                                } else {
+                                    redirect("?b=profile&s=Inicio&p=admin")->error("No se pudo actualizar el usuario")->send();
+                                }
+                            }
+                        }
                     }
-                } else {
-                    redirect("?b=profile&s=Inicio&p=admin")->error("No se pudo actualizar el usuario")->send();
                 }
             }
         }
