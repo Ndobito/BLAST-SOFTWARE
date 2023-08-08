@@ -1,5 +1,5 @@
 <body>
-    <div class="container">
+    <div class="container-sm">
         <div class="header">
             <a href="?b=index&s=Inicio&p=admin"><i class="fa-solid fa-arrow-left"></i></a>
             <div>
@@ -7,7 +7,7 @@
                 <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar Sesion</span></a>
             </div>
         </div>
-        <main>
+        <main style="display: block">
             <div class="container-left">
                 <div class="left">
                     <button class="user-data">
@@ -15,11 +15,11 @@
                         <div>
                             <p><?php echo $user['nameuser'] . " " . $user['surnameuser']; ?></p>
                             <p><?php echo ($privilegios === 1) ? 'Cliente' : (($privilegios === 2) ? 'Recepcionista' : (($privilegios === 3) ? 'Doctor' : (($privilegios === 4) ? 'Administrador' : 'Indefinido'))); ?></p>
-
+                            
                         </div>
                     </button>
                     <button class="profile-adm-btn"><i class="fa-solid fa-house-user"></i><p>Inicio</p></button>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-user-pen"></i><p>Datos del usuario</p></button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-user-pen"></i><p style="white-space: nowrap">Datos del usuario</p></button>
                     <a href="?b=inventory&s=listado"><button><i class="fa-solid fa-boxes-stacked"></i><p>Inventarios</p></button></a>
                     <button class="profile-adm-btn"><i class="fa-solid fa-users"></i><p>Proveedores</p></button>
                     <button class="profile-adm-btn"><i class="fa-solid fa-user-gear"></i><p>Colaboradores</p></button>
