@@ -70,6 +70,7 @@
                 </p>
             </div>
         </footer>
+    <script src="assets/Javascript/global.js"></script>
     </div>
 
     <!-- Font Awesome -->

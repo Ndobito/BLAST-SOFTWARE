@@ -1,5 +1,5 @@
 <body>
-    <div class="container">
+    <div class="container" style="min-height: 500px">
         <header>
             <div class="header-top">
                 <div class="social-networks">

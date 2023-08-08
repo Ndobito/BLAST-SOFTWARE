@@ -1,4 +1,4 @@
-<footer>
+<footer style="margin: 0; height: auto">
     <div class="footer-bottom">
         <p>
             <img src="assets/img/logo.jpg" alt="">
@@ -12,3 +12,4 @@
         </p>
     </div>
 </footer>
+    <script src="assets/Javascript/global.js"></script>
