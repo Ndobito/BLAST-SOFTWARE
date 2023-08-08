@@ -171,44 +171,60 @@
                                 <th>Id</th>
                                 <th>DNI</th>
                                 <th>Nombres</th>
-                                <th>Correo</th>
+                                <th>Apellidos</th>
+                                <th>Nickuser</th>
+                                <th>Email</th>
                                 <th>Direccion</th>
+                                <th>Zona</th>
                                 <th>Telefono</th>
-                                <th>Rol</th>
+                                <th>Telefono Alt.</th>
+                                <th>Privilegios</th>
                             </tr>
                         </thead>
                         <tbody id="resultados-empleados">
-                            <?php foreach ($empleado as $colaborador) { ?>
+                            <?php foreach ($users as $key=>$colaborador) { ?>
                             <tr>
                                 <td>
-                                    <?php echo $colaborador['idcol']; ?>
+                                    <?php echo $key+1 ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['dnicol']; ?>
+                                    <?php echo ($colaborador['dniuser'] == Privilegios::User->get()+Privilegios::Recepcionist->get()) ? $colaborador['dniuser'] : "" ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['nomcol']; ?>
+                                    <?php echo $colaborador['nameuser']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['emacol']; ?>
+                                    <?php echo $colaborador['surnameuser']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['dircol']; ?>
+                                    <?php echo $colaborador['nickuser']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['telcol']; ?>
+                                    <?php echo $colaborador['emailuser']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['rolcol']; ?>
+                                    <?php echo $colaborador['diruser']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $colaborador['zoneuser']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $colaborador['phoneuser']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $colaborador['phonealtuser']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $colaborador['privileges']; ?>
                                 </td>
                                 <td class="icons1">
                                     <a
-                                        href="?b=profile&s=optionEditRedirec&p=colaborador&idcola=<?= $colaborador['idcol']; ?>">
+                                        href="?b=profile&s=optionEditRedirec&p=colaborador&idcola=<?= $colaborador['dniuser']; ?>">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
                                 <td class="icons2">
-                                    <a onclick="alertProfile(this.id, 'colaborador')" id="<?php echo $proveedor['idprov']; ?>">
+                                    <a onclick="alertProfile(this.id, 'colaborador')" id="<?php echo $proveedor['dniuser']; ?>">
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
                                 </td>

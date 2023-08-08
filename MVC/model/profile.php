@@ -16,7 +16,7 @@ class Profile
     // ----- Metodo para obtener proveedores-----//
     public function getProveedores()
     {
-        $query = "SELECT * FROM proveedor";
+        $query = "SELECT * FROM usuario";
         $result = $this->conexion->query($query);
         $proveedores = array();
 
@@ -31,9 +31,9 @@ class Profile
     }
 
     // -----Metodo pata obtener los empleados en profile----- //
-    public function getEmpleado()
+    public function getUsers()
     {
-        $query = "SELECT * FROM colaborador";
+        $query = "SELECT * FROM usuario";
         $result = $this->conexion->query($query);
         $empleado = array();
 

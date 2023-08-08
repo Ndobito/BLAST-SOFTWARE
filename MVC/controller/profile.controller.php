@@ -20,13 +20,16 @@ class ProfileController
         
         $style = "<link rel='stylesheet' href='assets/css/style-admin.css'>";
         require_once "view/head.php";
-        $proveedores = $this->object->getProveedores();
-        $empleado = $this->object->getEmpleado();
-        $cliente = $this->object->getCliente();
-        $mascota = $this->object->getMascota();
-        $usuario = $_SESSION['usuario'];
         $privilegios = $this->object->getPrivileges();
-        $proveedores = $this->object->getProveedores();
+        if($privilegios == Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()+Privilegios::Admin->get()){
+            // -----Variables para obtener las listas a mostrar----- //
+            $proveedores = $this->object->getProveedores();
+            $users = $this->object->getUsers(); 
+            $cliente = $this->object->getCliente();
+            $mascota = $this->object->getMascota();
+
+        }
+        $usuario = $_SESSION['usuario'];
         $user = $this->object->selectUser($usuario);
         require_once "view/profile/profile.php";
         require_once "view/footerprofile.php";
@@ -133,32 +136,32 @@ class ProfileController
     }
 
     // -----Metodo oara mostrar los resultados del buscador de Colaborador------ //
-    public function buscarColaborador()
-    {
-        $searchTerm = $_POST['buscar_empleado'];
-        $empleados = $this->object->getEmpleado();
+    // public function buscarColaborador()
+    // {
+    //     $searchTerm = $_POST['buscar_empleado'];
+    //     $empleados = $this->object->getEmpleado();
 
-        $filteredEmpleados = array_filter($empleados, function ($empleado) use ($searchTerm) {
-            return (stripos($empleado['idcol'], $searchTerm) !== false) ||
-                (stripos($empleado['dnicol'], $searchTerm) !== false) ||
-                (stripos($empleado['nomcol'], $searchTerm) !== false) ||
-                (stripos($empleado['rolcol'], $searchTerm) !== false);
-        });
+    //     $filteredEmpleados = array_filter($empleados, function ($empleado) use ($searchTerm) {
+    //         return (stripos($empleado['idcol'], $searchTerm) !== false) ||
+    //             (stripos($empleado['dnicol'], $searchTerm) !== false) ||
+    //             (stripos($empleado['nomcol'], $searchTerm) !== false) ||
+    //             (stripos($empleado['rolcol'], $searchTerm) !== false);
+    //     });
 
-        foreach ($filteredEmpleados as $empleado) {
-            echo '<tr>';
-            echo '<td>' . $empleado['idcol'] . '</td>';
-            echo '<td>' . ($empleado['dnicol'] ?? "Sin definir") . '</td>';
-            echo '<td>' . ($empleado['nomcol'] ?? "Sin definir") . '</td>';
-            echo '<td>' . ($empleado['emacol'] ?? "Sin definir") . '</td>';
-            echo '<td>' . ($empleado['dircol'] ?? "Sin definir") . '</td>';
-            echo '<td>' . ($empleado['telcol'] ?? "Sin definir") . '</td>';
-            echo '<td>' . ($empleado['rolcol'] ?? "Sin definir") . '</td>';
-            echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
-            echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
-            echo '</tr>';
-        }
-    }
+    //     foreach ($filteredEmpleados as $empleado) {
+    //         echo '<tr>';
+    //         echo '<td>' . $empleado['idcol'] . '</td>';
+    //         echo '<td>' . ($empleado['dnicol'] ?? "Sin definir") . '</td>';
+    //         echo '<td>' . ($empleado['nomcol'] ?? "Sin definir") . '</td>';
+    //         echo '<td>' . ($empleado['emacol'] ?? "Sin definir") . '</td>';
+    //         echo '<td>' . ($empleado['dircol'] ?? "Sin definir") . '</td>';
+    //         echo '<td>' . ($empleado['telcol'] ?? "Sin definir") . '</td>';
+    //         echo '<td>' . ($empleado['rolcol'] ?? "Sin definir") . '</td>';
+    //         echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
+    //         echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
+    //         echo '</tr>';
+    //     }
+    // }
 
     // -----Metodo para mostrar los resultados del buscador de Clientes------ //
     public function buscarClientes()
