@@ -3,7 +3,7 @@
         <div class="header">
             <a href="?b=index&s=Inicio&p=admin"><i class="fa-solid fa-arrow-left"></i></a>
             <div>
-                <a href="#"><i class="fa-solid fa-key"></i><span>Cambiar contraseña</span></a>
+                <a href="?b=restorepassword&s=Inicio"><i class="fa-solid fa-key"></i><span>Cambiar contraseña</span></a>
                 <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar Sesion</span></a>
             </div>
         </div>

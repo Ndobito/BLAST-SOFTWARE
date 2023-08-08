@@ -68,7 +68,7 @@ class newAccountController
                                                 $m->zone = $_POST['selTipoUbicacion']; 
                                                 $m->phone = trim($_POST['ctTel']); 
                                                 $m->phonealt = trim($_POST['ctTel2']); 
-                                                $m->privileges = Privilegios::Admin->get(); 
+                                                $m->privileges = Privilegios::User->get(); 
     
                                                 if($this->object->saveUser($m)){
                                                     redirect("?b=login")->success("Cuenta creada con exito, inicia sesión")->send();
