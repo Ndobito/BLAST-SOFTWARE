@@ -53,7 +53,8 @@ a{
 
 main {
     display: grid;
-    grid-template-columns: 250px auto;
+    grid-template-columns: 100%;
+    grid-template-rows: 60vh auto;
 }
 
 
@@ -70,12 +71,12 @@ main {
 }
 
 .container-left .left:hover{
-    transition: 1s ease-in;
+    transition: 0.5s ease-in;
     width: 250px;
-    -webkit-transition: 1s ease-in;
-    -moz-transition: 1s ease-in;
-    -ms-transition: 1s ease-in;
-    -o-transition: 1s ease-in;
+    -webkit-transition: 0.5s ease-in;
+    -moz-transition: 0.5s ease-in;
+    -ms-transition: 0.5s ease-in;
+    -o-transition: 0.5s ease-in;
 }
 
 .left button.user-data{
@@ -600,7 +601,6 @@ footer {
 @media (min-width: 426px) {
 
 
-
     /* Footer */
 
     /*Footer Bottom*/
@@ -627,6 +627,7 @@ footer {
 /*  */
 @media (min-width:769px) {
 
+
     /* Container Profile */
 
     .container-main-profile {
@@ -648,6 +649,12 @@ footer {
 
 @media (min-width:1023px) {
 
+    main {
+        display: grid;
+        grid-template-columns: 20% 80%;
+        grid-template-rows: none;
+    }
+
     /* Right */
     .right {
         width: 80%;
@@ -668,6 +675,7 @@ footer {
     /*Footer*/
     footer {
         height: 12.4%;
+        margin-top: 30vh;
     }
 
     /* Footer Boottom */
