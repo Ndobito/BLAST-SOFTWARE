@@ -168,7 +168,6 @@
                     <table class="table-container">
                         <thead>
                             <tr>
-                                <th>Id</th>
                                 <th>DNI</th>
                                 <th>Nombres</th>
                                 <th>Apellidos</th>
@@ -182,13 +181,16 @@
                             </tr>
                         </thead>
                         <tbody id="resultados-empleados">
-                            <?php foreach ($users as $key=>$colaborador) { ?>
+                            <?php 
+                            foreach ($users as $key=>$colaborador) { 
+                                $value = $colaborador['privileges']; 
+                                $user = isset($roles[$value]) ? $roles[$value] : "";    
+
+                                if(!empty($user)){
+                            ?>
                             <tr>
                                 <td>
-                                    <?php echo $key+1 ?>
-                                </td>
-                                <td>
-                                    <?php echo ($colaborador['dniuser'] == Privilegios::User->get()+Privilegios::Recepcionist->get()) ? $colaborador['dniuser'] : "" ?>
+                                    <?php echo $colaborador['dniuser']; ?>
                                 </td>
                                 <td>
                                     <?php echo $colaborador['nameuser']; ?>
@@ -215,7 +217,7 @@
                                     <?php echo $colaborador['phonealtuser']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['privileges']; ?>
+                                    <?php echo ($colaborador['privileges'] == Privilegios::User->get()+Privilegios::Recepcionist->get()) ? "Recepcionista" : (($colaborador['privileges'] == Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()) ? "Doctor" : "") ?>
                                 </td>
                                 <td class="icons1">
                                     <a
@@ -224,12 +226,15 @@
                                     </a>
                                 </td>
                                 <td class="icons2">
-                                    <a onclick="alertProfile(this.id, 'colaborador')" id="<?php echo $proveedor['dniuser']; ?>">
+                                    <a onclick="alertProfile(this.id, 'colaborador')" id="<?php echo $colaborador['dniuser']; ?>">
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
                                 </td>
                             </tr>
-                            <?php } ?>
+                            <?php
+                                } 
+                            }
+                                ?>
                         </tbody>
                     </table>
                 </div>

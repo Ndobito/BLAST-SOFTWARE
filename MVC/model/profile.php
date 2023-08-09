@@ -16,7 +16,7 @@ class Profile
     // ----- Metodo para obtener proveedores-----//
     public function getProveedores()
     {
-        $query = "SELECT * FROM usuario";
+        $query = "SELECT * FROM proveedor";
         $result = $this->conexion->query($query);
         $proveedores = array();
 

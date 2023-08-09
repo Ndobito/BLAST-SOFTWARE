@@ -60,19 +60,6 @@ class newAccountController
                                                 $m = new newAccount();
                                                 $m->name = $_POST['ctNombre'];
                                                 $m->sname = $_POST['ctApellido'];
-<<<<<<< HEAD
-                                                $m->id = trim($_POST['ctNumId']); 
-                                                $m->email = trim($_POST['ctEmail']); 
-                                                $m->uname = trim($_POST['ctNick']); 
-                                                $m->pass = md5(trim($_POST['ctPass'])); 
-                                                $m->dir = trim($_POST['ctAddres']); 
-                                                $m->zone = $_POST['selTipoUbicacion']; 
-                                                $m->phone = trim($_POST['ctTel']); 
-                                                $m->phonealt = trim($_POST['ctTel2']); 
-                                                $m->privileges = Privilegios::User->get(); 
-    
-                                                if($this->object->saveUser($m)){
-=======
                                                 $m->id = trim($_POST['ctNumId']);
                                                 $m->email = trim($_POST['ctEmail']);
                                                 $m->uname = trim($_POST['ctNick']);
@@ -84,7 +71,6 @@ class newAccountController
                                                 $m->privileges = Privilegios::User->get();
 
                                                 if ($this->object->saveUser($m)) {
->>>>>>> c94cdf24d765adcf69fabdb1c94d28911c4ad4a1
                                                     redirect("?b=login")->success("Cuenta creada con exito, inicia sesión")->send();
                                                 } else {
                                                     redirect("?b=newaccount&s=Inicio")->error("Error al crear la cuenta, intentelo nuevamente.")->send();

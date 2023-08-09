@@ -17,7 +17,10 @@ class ProfileController
         // if ((Privilegios::Admin->get() & $_SESSION["privilegios"]) != Privilegios::Admin->get()) {
         //     redirect("?")->error("No tiene permisos")->send();
         // }
-        
+        $roles = [
+            Privilegios::User->get()+Privilegios::Recepcionist->get() => "Recepcionista",
+            Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get() => "Doctor"
+        ]; 
         $style = "<link rel='stylesheet' href='assets/css/style-admin.css'>";
         require_once "view/head.php";
         $privilegios = $this->object->getPrivileges();
