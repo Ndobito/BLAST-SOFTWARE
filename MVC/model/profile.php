@@ -31,9 +31,9 @@ class Profile
     }
 
     // -----Metodo pata obtener los empleados en profile----- //
-    public function getEmpleado()
+    public function getUsers()
     {
-        $query = "SELECT * FROM colaborador";
+        $query = "SELECT * FROM usuario";
         $result = $this->conexion->query($query);
         $empleado = array();
 

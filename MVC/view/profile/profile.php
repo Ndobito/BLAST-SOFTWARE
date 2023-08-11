@@ -6,6 +6,9 @@
                 <a href="#"><i class="fa-solid fa-key"></i><span>Cambiar contraseña</span></a>
                 <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar
                         Sesion</span></a>
+                <a href="?b=restorepassword&s=Inicio"><i class="fa-solid fa-key"></i><span>Cambiar contraseña</span></a>
+                <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar
+                        Sesion</span></a>
             </div>
         </div>
         <main style="display: block">
@@ -190,53 +193,76 @@
                     <table class="table-container">
                         <thead>
                             <tr>
-                                <th>Id</th>
                                 <th>DNI</th>
                                 <th>Nombres</th>
-                                <th>Correo</th>
+                                <th>Apellidos</th>
+                                <th>Nickuser</th>
+                                <th>Email</th>
                                 <th>Direccion</th>
+                                <th>Zona</th>
                                 <th>Telefono</th>
-                                <th>Rol</th>
+                                <th>Telefono Alt.</th>
+                                <th>Privilegios</th>
                             </tr>
                         </thead>
                         <tbody id="resultados-empleados">
-                            <?php foreach ($empleado as $colaborador) { ?>
+                            <?php 
+                            foreach ($users as $key=>$colaborador) { 
+                                $value = $colaborador['privileges']; 
+                                $user = isset($roles[$value]) ? $roles[$value] : "";    
+
+                                if(!empty($user)){
+                            ?>
                             <tr>
                                 <td>
-                                    <?php echo $colaborador['idcol']; ?>
+                                    <?php echo $colaborador['dniuser']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['dnicol']; ?>
+                                    <?php echo $colaborador['nameuser']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['nomcol']; ?>
+                                    <?php echo $colaborador['surnameuser']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['emacol']; ?>
+                                    <?php echo $colaborador['nickuser']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['dircol']; ?>
+                                    <?php echo $colaborador['emailuser']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['telcol']; ?>
+                                    <?php echo $colaborador['diruser']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['rolcol']; ?>
+                                    <?php echo $colaborador['zoneuser']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $colaborador['phoneuser']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $colaborador['phonealtuser']; ?>
+                                </td>
+                                <td>
+                                    <?php echo ($colaborador['privileges'] == Privilegios::User->get()+Privilegios::Recepcionist->get()) ? "Recepcionista" : (($colaborador['privileges'] == Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()) ? "Doctor" : "") ?>
                                 </td>
                                 <td class="icons1">
                                     <a
-                                        href="?b=profile&s=optionEditRedirec&p=colaborador&idcola=<?= $colaborador['idcol']; ?>">
+                                        href="?b=profile&s=optionEditRedirec&p=colaborador&idcola=<?= $colaborador['dniuser']; ?>">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
                                 <td class="icons2">
                                     <a onclick="alertProfile(this.id, 'colaborador')"
                                         id="<?php echo $proveedor['idprov']; ?>">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
+                                        <a onclick="alertProfile(this.id, 'colaborador')"
+                                            id="<?php echo $colaborador['dniuser']; ?>">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
                                 </td>
                             </tr>
-                            <?php } ?>
+                            <?php
+                                } 
+                            }
+                                ?>
                         </tbody>
                     </table>
                 </div>
