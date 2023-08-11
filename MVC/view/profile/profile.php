@@ -38,7 +38,7 @@
                     <div class="user-information">
                         <h1>Datos</h1>
                         <form id="form-user-information" action="?b=profile&s=updateUser" method="post">
-                            <label for="ctNameUser">Numero de Identificacion*</label>    
+                            <label for="ctNameUser">Numero de Identificacion*</label>
                             <input name="ctIdUser" type="number" value="<?php echo $user['dniuser'] ?>" disabled>
                             <label for="ctNameUser">Nombres*</label>
                             <input type="text" name="ctNameUser" id="ctNameUser"
@@ -51,9 +51,13 @@
                                 disabled>
                             <label for="ctNameuser">Zona: *</label>
                             <select name="selZone" id="ctZone" disabled>
-                                <option <?php echo ($user['zoneuser'] <> "urbana" && $user['zoneuser'] <> "rural") ? "selected" : "" ?> disabled></option>
-                                <option <?php echo ($user['zoneuser'] === "rural") ? "selected" : "" ?> value="rural">rural</option>
-                                <option <?php echo ($user['zoneuser'] === "urbana") ? "selected" : "" ?> value="urbana">urbana</option>
+                                <option
+                                    <?php echo ($user['zoneuser'] <> "urbana" && $user['zoneuser'] <> "rural") ? "selected" : "" ?>
+                                    disabled></option>
+                                <option <?php echo ($user['zoneuser'] === "rural") ? "selected" : "" ?> value="rural">
+                                    rural</option>
+                                <option <?php echo ($user['zoneuser'] === "urbana") ? "selected" : "" ?> value="urbana">
+                                    urbana</option>
                             </select>
                             <div>
                                 <div>
@@ -113,30 +117,105 @@
                                     <th>Telefono</th>
                                 </tr>
                             </thead>
-                            <tbody id='resultados-proveedor'>
-                                <?php foreach ($proveedores as $proveedor) { ?>
+                            <tbody id='resultados-proveedor'>";
+                            foreach ($proveedores as $proveedor) {
+                                echo "
                                 <tr>
-                                    <td><?php echo {$proveedor['idprov']}; ?></td>
-                                    <td><?php echo {$proveedor['nomprov']} ?? 'Sin definir'; ?></td>
-                                    <td><?php echo {$proveedor['dirprov']} ?? 'Sin definir'; ?></td>
-                                    <td><?php echo {$proveedor['emaprov']} ?? 'Sin definir'; ?></td>
-                                    <td><?php echo {$proveedor['telprov']} ?? 'Sin definir'; ?></td>
+                                    <td>" . $proveedor['idprov'] . "</td>
+                                    <td>" . ($proveedor['nomprov'] ?? 'Sin definir') . "</td>
+                                    <td>" . ($proveedor['dirprov'] ?? 'Sin definir') . "</td>
+                                    <td>" . ($proveedor['emaprov'] ?? 'Sin definir') . "</td>
+                                    <td>" . ($proveedor['telprov'] ?? 'Sin definir') . "</td>
                                     <td class='icons1'>
-                                        <a href='?b=profile&s=optionEditRedirec&p=proveedor&idprov=<?= {$proveedor['idprov']}; ?>' id='Proveedor'>
+                                        <a href='?b=profile&s=optionEditRedirec&p=proveedor&idprov=" . $proveedor['idprov'] . "' id='Proveedor'>
                                             <i class='fa fa-pencil fa-lg' aria-hidden='true'></i>
                                         </a>
                                     </td>
                                     <td class='icons2'>
-                                        <a onclick='alertProfile(this.id, \"proveedor\")' id='<?php echo {$proveedor['idprov']}; ?>'>
+                                        <a onclick='alertProfile(this.id, \"proveedor\")' id='" . $proveedor['idprov'] . "'>
                                             <i class='fa-solid fa-trash-can' aria-hidden='true'></i>
                                         </a>
                                     </td>
-                                </tr>
-                                <?php } ?>
-                            </tbody>
+                                </tr>";
+                            }
+                            echo "
+                            </tbody>;
                         </table>
-                    </div>
-                    ";
+                    </div>";
+                    echo "
+                        <div class=\"profile-adm container-right3\" id=\"container-right4\">
+                            <div class=\"title\">
+                                <h1>Colaboradores</h1>
+                            </div>
+                            <div class=\"table-container\">
+                                <div class=\"form-container\">
+                                    <div class=\"input-group\">
+                                        <span class=\"input-group-btn\">
+                                            <a href=\"?b=profile&s=optionSaveRedirec&p=colaborador\"><button class=\"btn btn-default\" type=\"submit\">Agregar</button></a>
+                                        </span>
+                                    </div>
+                                    <form method=\"POST\" action=\"?b=profile&s=buscarColaborador\">
+                                        <div class=\"input-group\">
+                                            <input type=\"text\" class=\"form-control search-input\" id=\"searchcol\" placeholder=\"Buscar Empleado\" name=\"buscar_empleado\">
+                                            <span class=\"input-group-btn\">
+                                                <button class=\"btn btn-default\" id=\"miBoton\" type=\"button\">Buscar</button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <table class=\"table-container\">
+                                <thead>
+                                    <tr>
+                                        <th>DNI</th>
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
+                                        <th>Nickuser</th>
+                                        <th>Email</th>
+                                        <th>Direccion</th>
+                                        <th>Zona</th>
+                                        <th>Telefono</th>
+                                        <th>Telefono Alt.</th>
+                                        <th>Privilegios</th>
+                                    </tr>
+                                </thead>
+                                <tbody id=\"resultados-empleados\">";
+                        foreach ($users as $key => $colaborador) {
+                            $value = $colaborador['privileges'];
+                            $user = isset($roles[$value]) ? $roles[$value] : "";
+
+                            if (!empty($user)) {
+                                echo "
+                                <tr>
+                                    <td>" . $colaborador['dniuser'] . "</td>
+                                    <td>" . $colaborador['nameuser'] . "</td>
+                                    <td>" . $colaborador['surnameuser'] . "</td>
+                                    <td>" . $colaborador['nickuser'] . "</td>
+                                    <td>" . $colaborador['emailuser'] . "</td>
+                                    <td>" . $colaborador['diruser'] . "</td>
+                                    <td>" . $colaborador['zoneuser'] . "</td>
+                                    <td>" . $colaborador['phoneuser'] . "</td>
+                                    <td>" . $colaborador['phonealtuser'] . "</td>";
+                                    echo "
+                                        <td>" . (($colaborador['privileges'] == Privilegios::User->get() + Privilegios::Recepcionist->get()) ? 'Recepcionista' : (($colaborador['privileges'] == Privilegios::User->get() + Privilegios::Recepcionist->get() + Privilegios::Doctor->get()) ? 'Doctor' : '')) . "</td>";
+                                    echo "
+                                    <td class=\"icons1\">
+                                        <a href=\"?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaborador['dniuser'] . "\">
+                                            <i class=\"fa fa-pencil fa-lg\" aria-hidden=\"true\"></i>
+                                        </a>
+                                    </td>
+                                    <td class=\"icons2\">
+                                        <a onclick=\"alertProfile(this.id, 'colaborador')\" id=\"" . $colaborador['dniuser'] . "\">
+                                            <i class=\"fa-solid fa-trash\"></i>
+                                        </a>
+                                    </td>
+                                </tr>";
+                            }
+                        }
+                        echo "
+                                </tbody>
+                            </table>
+                        </div>";
                 }
                 ?>
                 <div class='profile-adm container-right4' id='container-right5'>
@@ -278,11 +357,11 @@
                         <?php } ?>
                     </table>
                 </div>
-                
+
             </div>
 
         </main>
-        
+
     </div>
 
     <!-- Alerts -->
@@ -301,4 +380,5 @@
 
     <script src="assets/Javascript/real_time_search.js"></script>
 </body>
+
 </html>

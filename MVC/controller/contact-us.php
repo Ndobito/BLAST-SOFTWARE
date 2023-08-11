@@ -1,5 +1,6 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
   $nombre = $_POST['nombre'];
   $apellido = $_POST['apellido'];
   $email = $_POST['email'];
@@ -25,4 +26,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo 'Ha ocurrido un error al enviar el mensaje.';
   }
 }
-?>
