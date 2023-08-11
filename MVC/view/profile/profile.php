@@ -30,7 +30,7 @@
             <div class="container-right">
                 <div class="profile-adm welcome" id="container-right">
                     <h1>Bienvenido(a) al panel de administracion</h1>
-                    <p>Dirijase al menu lateral para poder navegar dentro del sitio. </p>
+                    <p>Dirijase al menu lateral para poder navegar dentro del sitio mamabicho. </p>
                     <i class="fa-solid fa-face-smile-beam"></i>
                 </div>
                 <div class="profile-adm container-right user" id="container-right2">

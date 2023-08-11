@@ -59,11 +59,11 @@ main {
 
 
 /* Left */
-
 .container-sm{
     min-height: 600px; 
     position: relative;
 }
+
 .container-left{
     position: absolute;
     top: 50%;
@@ -121,9 +121,7 @@ main {
 .left button:hover{
     color: white;
 }
-
-
-
+S
 /* estilos de admin.css */
 
 .right {
