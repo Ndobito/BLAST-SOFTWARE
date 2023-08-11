@@ -3,8 +3,10 @@
         <div class="header">
             <a href="?b=index&s=Inicio&p=admin"><i class="fa-solid fa-arrow-left"></i></a>
             <div>
-                <a href="#"><i class="fa-solid fa-key"></i><span>Cambiar contraseña</span></a>
-                <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar Sesion</span></a>
+            <a href="?b=restorepassword&s=Inicio"><i class="fa-solid fa-key"></i><span>Cambiar contraseña</span></a>
+                <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar
+                        Sesion</span></a>
+                
             </div>
         </div>
         <main style="display: block">
@@ -14,17 +16,32 @@
                         <img src="assets/img/usuario.png" alt="">
                         <div>
                             <p><?php echo $user['nameuser'] . " " . $user['surnameuser']; ?></p>
-                            <p><?php echo ($privilegios === 1) ? 'Cliente' : (($privilegios === 2) ? 'Recepcionista' : (($privilegios === 3) ? 'Doctor' : (($privilegios === 4) ? 'Administrador' : 'Indefinido'))); ?></p>
-                            
+                            <p><?php echo ($privilegios === 1) ? 'Cliente' : (($privilegios === 2) ? 'Recepcionista' : (($privilegios === 3) ? 'Doctor' : (($privilegios === 4) ? 'Administrador' : 'Indefinido'))); ?>
+                            </p>
+
                         </div>
                     </button>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-house-user"></i><p>Inicio</p></button>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-user-pen"></i><p style="white-space: nowrap">Datos del usuario</p></button>
-                    <a href="?b=inventory&s=listado"><button><i class="fa-solid fa-boxes-stacked"></i><p>Inventarios</p></button></a>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-users"></i><p>Proveedores</p></button>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-user-gear"></i><p>Colaboradores</p></button>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-person-circle-check"></i><p>Clientes</p></button>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i><p>Mascotas</p></button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-house-user"></i>
+                        <p>Inicio</p>
+                    </button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-user-pen"></i>
+                        <p style="white-space: nowrap">Datos del usuario</p>
+                    </button>
+                    <a href="?b=inventory&s=listado"><button><i class="fa-solid fa-boxes-stacked"></i>
+                            <p>Inventarios</p>
+                        </button></a>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-users"></i>
+                        <p>Proveedores</p>
+                    </button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-user-gear"></i>
+                        <p>Colaboradores</p>
+                    </button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-person-circle-check"></i>
+                        <p>Clientes</p>
+                    </button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i>
+                        <p>Mascotas</p>
+                    </button>
                 </div>
             </div>
             <div class="container-right">
@@ -37,7 +54,7 @@
                     <div class="user-information">
                         <h1>Datos</h1>
                         <form id="form-user-information" action="?b=profile&s=updateUser" method="post">
-                            <label for="ctNameUser">Numero de Identificacion*</label>    
+                            <label for="ctNameUser">Numero de Identificacion*</label>
                             <input name="ctIdUser" type="number" value="<?php echo $user['dniuser'] ?>" disabled>
                             <label for="ctNameUser">Nombres*</label>
                             <input type="text" name="ctNameUser" id="ctNameUser"
@@ -50,9 +67,13 @@
                                 disabled>
                             <label for="ctNameuser">Zona: *</label>
                             <select name="selZone" id="ctZone" disabled>
-                                <option <?php echo ($user['zoneuser'] <> "urbana" && $user['zoneuser'] <> "rural") ? "selected" : "" ?> disabled></option>
-                                <option <?php echo ($user['zoneuser'] === "rural") ? "selected" : "" ?> value="rural">rural</option>
-                                <option <?php echo ($user['zoneuser'] === "urbana") ? "selected" : "" ?> value="urbana">urbana</option>
+                                <option
+                                    <?php echo ($user['zoneuser'] <> "urbana" && $user['zoneuser'] <> "rural") ? "selected" : "" ?>
+                                    disabled></option>
+                                <option <?php echo ($user['zoneuser'] === "rural") ? "selected" : "" ?> value="rural">
+                                    rural</option>
+                                <option <?php echo ($user['zoneuser'] === "urbana") ? "selected" : "" ?> value="urbana">
+                                    urbana</option>
                             </select>
                             <div>
                                 <div>
@@ -128,12 +149,14 @@
                                     <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="?b=profile&s=optionEditRedirec&p=proveedor&idprov=<?= $proveedor['idprov']; ?>" id="Prveedor">
+                                    <a href="?b=profile&s=optionEditRedirec&p=proveedor&idprov=<?= $proveedor['idprov']; ?>"
+                                        id="Prveedor">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
                                 <td class="icons2">
-                                    <a onclick="alertProfile(this.id, 'proveedor')" id="<?php echo $proveedor['idprov']; ?>">
+                                    <a onclick="alertProfile(this.id, 'proveedor')"
+                                        id="<?php echo $proveedor['idprov']; ?>">
                                         <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
                                     </a>
                                 </td>
@@ -168,52 +191,76 @@
                     <table class="table-container">
                         <thead>
                             <tr>
-                                <th>Id</th>
                                 <th>DNI</th>
                                 <th>Nombres</th>
-                                <th>Correo</th>
+                                <th>Apellidos</th>
+                                <th>Nickuser</th>
+                                <th>Email</th>
                                 <th>Direccion</th>
+                                <th>Zona</th>
                                 <th>Telefono</th>
-                                <th>Rol</th>
+                                <th>Telefono Alt.</th>
+                                <th>Privilegios</th>
                             </tr>
                         </thead>
                         <tbody id="resultados-empleados">
-                            <?php foreach ($empleado as $colaborador) { ?>
+                            <?php 
+                            foreach ($users as $key=>$colaborador) : 
+                                $value = $colaborador['privileges']; 
+                                $user = isset($roles[$value]) ? $roles[$value] : "";    
+
+                                if(!empty($user)){
+                            ?>
                             <tr>
                                 <td>
-                                    <?php echo $colaborador['idcol']; ?>
+                                    <?php echo $colaborador['dniuser']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['dnicol']; ?>
+                                    <?php echo $colaborador['nameuser']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['nomcol']; ?>
+                                    <?php echo $colaborador['surnameuser']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['emacol']; ?>
+                                    <?php echo $colaborador['nickuser']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['dircol']; ?>
+                                    <?php echo $colaborador['emailuser']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['telcol']; ?>
+                                    <?php echo $colaborador['diruser']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $colaborador['rolcol']; ?>
+                                    <?php echo $colaborador['zoneuser']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $colaborador['phoneuser']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $colaborador['phonealtuser']; ?>
+                                </td>
+                                <td>
+                                    <?php echo ($colaborador['privileges'] == Privilegios::User->get()+Privilegios::Recepcionist->get()) ? "Recepcionista" : (($colaborador['privileges'] == Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()) ? "Doctor" : "") ?>
                                 </td>
                                 <td class="icons1">
                                     <a
-                                        href="?b=profile&s=optionEditRedirec&p=colaborador&idcola=<?= $colaborador['idcol']; ?>">
+                                        href="?b=profile&s=optionEditRedirec&p=colaborador&idcola=<?= $colaborador['dniuser']; ?>">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
                                 <td class="icons2">
-                                    <a onclick="alertProfile(this.id, 'colaborador')" id="<?php echo $proveedor['idprov']; ?>">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
+                                    <a onclick="alertProfile(this.id, 'colaborador')"
+                                        id="<?php echo $proveedor['idprov']; ?>">
+                                        <a onclick="alertProfile(this.id, 'colaborador')"
+                                            id="<?php echo $colaborador['dniuser']; ?>">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
                                 </td>
                             </tr>
-                            <?php } ?>
+                            <?php
+                                } 
+                            endforeach;
+                                ?>
                         </tbody>
                     </table>
                 </div>
@@ -237,7 +284,7 @@
                     <table class="table-container">
                         <thead>
                             <tr>
-                                <th>Id</th>
+
                                 <th>N° Identificacion</th>
                                 <th>Nombre</th>
                                 <th>Email</th>
@@ -248,12 +295,10 @@
                                 <th>Telefono Alternaivo</th>
                             </tr>
                         </thead>
-                        <tbody id="resultados">
-                            <?php foreach ($cliente as $key=>$cliente) { ?>
+                        <tbody id="resultados-clientes">
+                            <?php foreach ($cliente as $key => $cliente) { ?>
                             <tr>
-                                <td>
-                                    <?php echo $key+1 ?>
-                                </td>
+
                                 <td>
                                     <?php echo $cliente['numid']; ?>
                                 </td>
@@ -354,11 +399,11 @@
                         <?php } ?>
                     </table>
                 </div>
-                
+
             </div>
 
         </main>
-        
+
     </div>
 
     <!-- Alerts -->
@@ -377,4 +422,5 @@
 
     <script src="assets/Javascript/real_time_search.js"></script>
 </body>
+
 </html>
