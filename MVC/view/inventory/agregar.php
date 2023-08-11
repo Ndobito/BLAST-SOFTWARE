@@ -8,6 +8,8 @@
     <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="../../assets/css/style-editar.css">
     <title>editar producto</title>
+
+<body>
     <header>
         <div class="imagen-logo">
             <img class="logo" src="assets/img/logo-removebg.png" alt="">
@@ -17,51 +19,59 @@
             <h3>Animal World</h3>
         </div>
     </header>
-    <a href="?b=inventory&s=listado"><button class="btn-regresar"><i class="fa-solid fa-arrow-left"></i></button></a>
+
     <div class="container">
+        <div class="regresar">
+            <a href="?b=inventory&s=listado"><button class="btn-regresar"><i
+                        class="fa-solid fa-arrow-left"></i></button>
+            </a>
+        </div>
         <form action="?b=inventory&s=guardar" method="post">
+            <div class="input">
+                <label for="idprov">ID proveedor:</label>
+                <input type="text" id="idprov" name="idprov" placeholder="Agrega el id del proveedor">
+            </div>
+            <div class="input">
 
-            <label for="idprov">ID proveedor:</label>
-            <input type="text" id="idprov" name="idprov" placeholder="agrega el id del proveedor">
+                <label for="nombre">Nombre del producto:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Agrega el nombre del producto">
+            </div>
+            <div class="input">
+                <label for="nombre">Descripcion:</label>
+                <input type="text" id="descripcion" name="descripcion"
+                    placeholder="Agrega  la descripcion del producto">
+            </div>
+            <div class="input">
+                <label for="imagen">Selecciona una imagen:</label>
+                <input type="file" id="imagen" name="imagen">
+            </div>
 
-            <br>
+            <div class="input">
+                <label for="nombre">precio:</label>
+                <input type="text" id="precio" name="precio" placeholder="Agrega el precio del producto">
 
-            <label for="nombre">Nombre del producto:</label>
-            <input type="text" id="nombre" name="nombre" placeholder="agrega el nombre del producto">
-            <br>
-            <label for="nombre">Descripcion:</label>
-            <input type="text" id="descripcion" name="descripcion" placeholder="agrega  la descripcion del producto">
-            <br>
-
-            <label for="imagen">Selecciona una imagen:</label>
-            <input type="file" id="imagen" name="imagen">
-
-            <br>
-            <label for="nombre">precio:</label>
-            <input type="text" id="precio" name="precio" placeholder="agrega el precio del producto">
-            <br>
-            <label for="nombre">precio de venta:</label>
-            <input type="text" id="precio de venta" name="venta" placeholder="agrega el precio de venta del producto">
-            <br>
-            <label for="nombre">Cantidad existente:</label>
-            <input type="text" id="Cantidad existente" name="cantidad"
-                placeholder="agrega la Cantidad existente del producto">
-            <br>
-            <label for="nombre">categoria:</label>
-            <input type="text" id="categoria" name="categoria" placeholder="agrega la categoria del producto">
-            <br>
-            <button class="btn-save">Guardar</button>
-            <br> 
-
+            </div>
+            <div class="input">
+                <label for="nombre">precio de venta:</label>
+                <input type="text" id="precio de venta" name="venta"
+                    placeholder="Agrega el precio de venta del producto">
+            </div>
+            <div class="input">
+                <label for="nombre">Cantidad existente:</label>
+                <input type="text" id="Cantidad existente" name="cantidad"
+                    placeholder="Agrega la Cantidad existente del producto">
+            </div>
+            <div class="input">
+                <label for="nombre">categoria:</label>
+                <input type="text" id="categoria" name="categoria" placeholder="Agrega la categoria del producto">
+            </div>
+            <div class="button">
+                <button class="btn-save">Guardar</button>
+            </div>
         </form>
-
-
     </div>
-</head>
-
-<body>
+    </head>
     <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
-
 </body>
 
 </html>
