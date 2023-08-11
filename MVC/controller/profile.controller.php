@@ -12,28 +12,32 @@ class ProfileController
 
     //-----Metodo para redireccionar segun el rol de inicio de sesión-----//
     public function Inicio()
-    {
-        // var_dump(Privilegios::Admin->get(), $_SESSION["privilegios"]);
-        // if ((Privilegios::Admin->get() & $_SESSION["privilegios"]) != Privilegios::Admin->get()) {
-        //     redirect("?")->error("No tiene permisos")->send();
-        // }
+    {   
+        // -----Diccionario de Rol para filtro de Colaboradores ------ //
         $roles = [
             Privilegios::User->get()+Privilegios::Recepcionist->get() => "Recepcionista",
             Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get() => "Doctor"
         ]; 
-        $style = "<link rel='stylesheet' href='assets/css/style-admin.css'>";
-        require_once "view/head.php";
-        $privilegios = $this->object->getPrivileges();
-        if($privilegios == Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()+Privilegios::Admin->get()){
-            // -----Variables para obtener las listas a mostrar----- //
-            $proveedores = $this->object->getProveedores();
-            $users = $this->object->getUsers(); 
-            $cliente = $this->object->getCliente();
-            $mascota = $this->object->getMascota();
+        
+        // -----Obtener Informacion de Interfaz----- //
+        $privilegios = $this->object->getPrivileges();  
+        $proveedores = $this->object->getProveedores();
+        $users = $this->object->getUsers(); 
+        $mascota = $this->object->getMascota();
 
-        }
+        // ------Varibles de Privilegios----- //
+        $privUser = Privilegios::User->get(); 
+        $privRecepcionist = Privilegios::User->get() + Privilegios::Recepcionist->get(); 
+        $privDoctor = Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get(); 
+        $privAdmin = Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()+Privilegios::Admin->get(); 
+
+        // -----Variables de Sesion----- //
         $usuario = $_SESSION['usuario'];
         $user = $this->object->selectUser($usuario);
+
+        // -----Vistas Requeridas----- //
+        $style = "<link rel='stylesheet' href='assets/css/style-admin.css'>";
+        require_once "view/head.php";
         require_once "view/profile/profile.php";
         require_once "view/footerprofile.php";
     }
@@ -167,33 +171,33 @@ class ProfileController
     // }
 
     // -----Metodo para mostrar los resultados del buscador de Clientes------ //
-    public function buscarClientes()
-    {
-        $searchTerm = $_POST['buscar_cliente'];
-        $clientes = $this->object->getCliente();
+    // public function buscarClientes()
+    // {
+    //     $searchTerm = $_POST['buscar_cliente'];
+    //     $clientes = $this->object->getCliente();
 
-        $filteredcliente = array_filter($clientes, function ($cliente) use ($searchTerm) {
-            return (stripos($cliente['idcli'], $searchTerm) !== false) ||
-                (stripos($cliente['nomcli'], $searchTerm) !== false) ||
-                (stripos($cliente['emacli'], $searchTerm) !== false) ||
-                (stripos($cliente['usercli'], $searchTerm) !== false);
-        });
+    //     $filteredcliente = array_filter($clientes, function ($cliente) use ($searchTerm) {
+    //         return (stripos($cliente['idcli'], $searchTerm) !== false) ||
+    //             (stripos($cliente['nomcli'], $searchTerm) !== false) ||
+    //             (stripos($cliente['emacli'], $searchTerm) !== false) ||
+    //             (stripos($cliente['usercli'], $searchTerm) !== false);
+    //     });
 
-        foreach ($filteredcliente as $cliente) {
-            echo '<tr>';
-            echo '<td>' . $cliente['idcli'] . '</td>';
-            echo '<td>' . ($cliente['nomcli'] ?? "Sin definir") . '</td>';
-            echo '<td>' . ($cliente['emacli'] ?? "Sin definir") . '</td>';
-            echo '<td>' . ($cliente['usercli'] ?? "Sin definir") . '</td>';
-            echo '<td>' . ($cliente['dircli'] ?? "Sin definir") . '</td>';
-            echo '<td>' . ($cliente['tzonecli'] ?? "Sin definir") . '</td>';
-            echo '<td>' . ($cliente['telcli'] ?? "Sin definir") . '</td>';
-            echo '<td>' . ($cliente['telaltcli'] ?? "Sin definir") . '</td>';
-            echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
-            echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
-            echo '</tr>';
-        }
-    }
+    //     foreach ($filteredcliente as $cliente) {
+    //         echo '<tr>';
+    //         echo '<td>' . $cliente['idcli'] . '</td>';
+    //         echo '<td>' . ($cliente['nomcli'] ?? "Sin definir") . '</td>';
+    //         echo '<td>' . ($cliente['emacli'] ?? "Sin definir") . '</td>';
+    //         echo '<td>' . ($cliente['usercli'] ?? "Sin definir") . '</td>';
+    //         echo '<td>' . ($cliente['dircli'] ?? "Sin definir") . '</td>';
+    //         echo '<td>' . ($cliente['tzonecli'] ?? "Sin definir") . '</td>';
+    //         echo '<td>' . ($cliente['telcli'] ?? "Sin definir") . '</td>';
+    //         echo '<td>' . ($cliente['telaltcli'] ?? "Sin definir") . '</td>';
+    //         echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
+    //         echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
+    //         echo '</tr>';
+    //     }
+    // }
 
     // -----Metodo oara mostrar los resultados del buscador de Mascotas------ //
     public function buscarMascotas()
