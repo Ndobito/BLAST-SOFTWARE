@@ -5,6 +5,7 @@ const container2 = document.getElementById("container-right3");
 const container3 = document.getElementById("container-right4");
 const container4 = document.getElementById("container-right5");
 const container5 = document.getElementById("container-right6");
+const container6 = document.getElementById("container-right7");
 
 const profileAdmContainer = document.querySelectorAll(".profile-adm");
 const profileAdmBtn = document.querySelectorAll(".profile-adm-btn");

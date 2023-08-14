@@ -62,6 +62,21 @@ class Profile
         return $mascota;
     }
 
+    // -----Metodo para obtener los productos en Profile----- //
+    public function getProductos()
+    {
+        $query = "SELECT * FROM producto";
+        $result = $this->conexion->query($query);
+        $mascota = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $productos[] = $row;
+            }
+        }
+    }
+       
+
     // -----Metodo para el buscador de clientes en Profile -----//
     public function buscarClientes($buscar)
     {

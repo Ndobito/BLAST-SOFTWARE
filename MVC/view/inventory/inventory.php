@@ -13,22 +13,20 @@
             <div class="container-button">
                 <div class="search-bar">
                     <div class="search">
-                        <a href="?b=profile&s=Inicio&p=admin"><button class="btn-regresar"><i
-                                    class="fa-solid fa-arrow-left"></i></button></a>
-                        <form id="buscador-form" action="?b=inventory&s=listado" method="get">
+                        <a href="?b=profile&s=Inicio&p=admin"><button class="btn-regresar"><i class="fa-solid fa-arrow-left"></i></button></a>
+                        <form id="buscador-form" action="?b=inventory&s=Inicio" method="get">
                             <input id="buscador" name="buscador" type="text" placeholder="Buscar">
-                            <button class="btn-buscar" type="submit"><i
-                                    class="fa-solid fa-magnifying-glass"></i></button>
+                            <button class="btn-buscar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                             <script>
-                            const bf = document.querySelector("#buscador-form");
-                            const bi = document.querySelector("#buscador");
-                            bf.addEventListener("submit", (e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                let url = bf.getAttribute("action");
-                                url += "&search=" + bi.value;
-                                window.location.href = url;
-                            })
+                                const bf = document.querySelector("#buscador-form");
+                                const bi = document.querySelector("#buscador");
+                                bf.addEventListener("submit", (e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    let url = bf.getAttribute("action");
+                                    url += "&search=" + bi.value;
+                                    window.location.href = url;
+                                })
                             </script>
                         </form>
                     </div>
@@ -36,6 +34,13 @@
                         <a href="?b=inventory&s=agregar">
                             <button class="btn-agregar">
                                 <i class="fa-solid fa-plus"></i> Agregar
+                            </button>
+                        </a>
+                    </div>
+                    <div class="search-right">
+                        <a href="?b=inventory&s=newCategory">
+                            <button class="btn-agregar">
+                                <i class="fa-solid fa-plus"></i> Nueva Categoria
                             </button>
                         </a>
                     </div>
@@ -49,7 +54,6 @@
                             <th>Id</th>
                             <th>nombre del producto</th>
                             <th>descripcion</th>
-                            <th>imagen</th>
                             <th>precio</th>
                             <th>precio venta</th>
                             <th>cantidad existente</th>
@@ -61,32 +65,48 @@
                         </thead>
                         <tbody>
                             <?php
-                            if (count($items) > 0) {
-                                foreach ($items as $e) {
+                            foreach ($productos as $e) {
                             ?>
-                            <tr>
-                                <td><?= $e["idprod"] ?></td>
-                                <td><?= $e["nomprod"] ?></td>
-                                <td><?= $e["desprod"] ?></td>
-                                <td></td>
-                                <td><?= $e["precprod"] ?></td>
-                                <td><?= $e["precvenprod"] ?></td>
-                                <td><?= $e["stockprod"] ?></td>
-                                <td><?= $e["catprod"] ?></td>
-                                <td><?= $e["nomprov"] ?></td>
-                                <td><a href="?b=inventory&s=editar&idprod=<?= $e["idprod"] ?>"><button
-                                            class="btn-editar"><i class="fa-solid fa-pen"></i></button></a></td>
-                                <td><a
-                                        href="?b=inventory&s=eliminar&idprod=<?= $e["idprod"] ?>&name=<?= $e["idprod"] ?>"><button
-                                            class="btn-borrar"><i class="fa-solid fa-trash"></i></button></a></td>
-                            </tr>
-                            <?php
-                                }
-                            } else {
-                                ?>
-                            <tr>
-                                <td colspan="11" style="text-align: center;">No hay elementos</td>
-                            </tr>
+                                <tr>
+                                    <td><?php echo  $e["idprod"] ?></td>
+                                    <td><?php echo $e["nomprod"] ?></td>
+                                    <td><?php echo $e["desprod"] ?></td>
+                                    <td><?php echo $e["precprod"] ?></td>
+                                    <td><?php echo $e["precvenprod"] ?></td>
+                                    <td><?php echo $e["stockprod"] ?></td>
+                                    <td>
+                                        <?php
+                                        $categoriaEncontrada = false;
+                                        foreach ($categorias as $categoria) {
+                                            if ($categoria['idcat'] == $e["catprod"]) {
+                                                echo $categoria['namecat'];
+                                                $categoriaEncontrada = true;
+                                                break; // Romper el bucle una vez que se ha encontrado la categoría
+                                            }
+                                        }
+                                        if (!$categoriaEncontrada) {
+                                            echo "Sin categoría";
+                                        }
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $proveedorEncontrado = false;
+                                        foreach ($proveedores as $proveedor) {
+                                            if ($proveedor['idprov'] == $e["idprov"]) {
+                                                echo $proveedor['nomprov'];
+                                                $proveedorEncontrado = true;
+                                                break; // Romper el bucle una vez que se ha encontrado el proveedor
+                                            }
+                                        }
+                                        if (!$proveedorEncontrado) {
+                                            echo "Sin proveedor";
+                                        }
+                                        ?>
+                                    </td>
+                                    <td><a href="?b=inventory&s=editar&idprod=<?= $e["idprod"] ?>"><button class="btn-editar"><i class="fa-solid fa-pen"></i></button></a></td>
+                                    <td><a href="?b=inventory&s=eliminar&idprod=<?= $e["idprod"] ?>&name=<?= $e["idprod"] ?>"><button class="btn-borrar"><i class="fa-solid fa-trash"></i></button></a></td>
+                                </tr>
                             <?php
                             }
                             ?>

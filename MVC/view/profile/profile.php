@@ -20,11 +20,12 @@
                     </button>
                     <button class="profile-adm-btn"><i class="fa-solid fa-house-user"></i><p>Inicio</p></button>
                     <button class="profile-adm-btn"><i class="fa-solid fa-user-pen"></i><p style="white-space: nowrap">Datos del usuario</p></button>
-                    <?php echo ($privilegios <> $privAdmin) ? "" : "<a href='?b=inventory&s=listado'><button><i class='fa-solid fa-boxes-stacked'></i><p>Inventarios</p></button></a>" ?>
+                    <?php echo ($privilegios <> $privAdmin) ? "" : "<a href='?b=inventory&s=Inicio'><button><i class='fa-solid fa-boxes-stacked'></i><p>Inventarios</p></button></a>" ?>
                     <?php echo ($privilegios <> $privAdmin) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-users'></i><p>Proveedores</p></button>" ?>
                     <?php echo ($privilegios <> $privAdmin) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-user-gear'></i><p>Colaboradores</p></button>" ?>
                     <button class="profile-adm-btn"><i class="fa-solid fa-person-circle-check"></i><p>Clientes</p></button>
                     <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i><p>Mascotas</p></button>
+                    <?php echo ($privilegios == $privUser || $privilegios == $privRecepcionist) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-syringe'></i><p>Ventas</p></button>" ?>
                 </div>
             </div>
             <div class="container-right">
@@ -356,7 +357,52 @@
                         <?php } ?>
                     </table>
                 </div>
-
+                <?php 
+                    if ($privilegios == $privUser || $privilegios == $privRecepcionist) {
+                        echo "";
+                    } else {
+                        echo "
+                        <div class='profile-adm container-right2' id='container-right7'>
+                            <div class='title'>
+                                <h1>Venta de Productos</h1>
+                            </div>
+                            <table class='table-container'>
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nombres</th>
+                                        <th>Direccion</th>
+                                        <th>Correo</th>
+                                        <th>Telefono</th>
+                                    </tr>
+                                </thead>
+                                <tbody id='resultados-proveedor'>";
+                                foreach ($productos as $producto) {
+                                    echo "
+                                    <tr>
+                                        <td>" . $producto['idprod'] . "</td>
+                                        <td>" . ($producto['nomprov'] ?? 'Sin definir') . "</td>
+                                        <td>" . ($producto['dirprov'] ?? 'Sin definir') . "</td>
+                                        <td>" . ($producto['emaprov'] ?? 'Sin definir') . "</td>
+                                        <td>" . ($producto['telprov'] ?? 'Sin definir') . "</td>
+                                        <td class='icons1'>
+                                            <a href='?b=profile&s=optionEditRedirec&p=proveedor&idprov=" . $producto['idprov'] . "' id='Proveedor'>
+                                                <i class='fa fa-pencil fa-lg' aria-hidden='true'></i>
+                                            </a>
+                                        </td>
+                                        <td class='icons2'>
+                                            <a onclick='alertProfile(this.id, \"proveedor\")' id='" . $producto['idprov'] . "'>
+                                                <i class='fa-solid fa-trash-can' aria-hidden='true'></i>
+                                            </a>
+                                        </td>
+                                    </tr>";
+                                }
+                                echo "
+                                </tbody>;
+                            </table>
+                        </div>";
+                    }
+                ?>
             </div>
 
         </main>

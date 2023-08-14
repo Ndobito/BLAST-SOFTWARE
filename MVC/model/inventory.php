@@ -3,73 +3,108 @@ require_once './lib/database/database.php';
 class ProductModel {
     
     private $pdo;
-    public $idprod, $nomprod, $desprod, $imgprod, $precprod, $precvenprod, $stockprod, $catprod, $idprov ;
+    public $idprod, $nomprod, $desprod, $precprod, $precvenprod, $stockprod, $catprod, $idprov, $namecat, $descat;
 
     public function __construct()
     {
         $this->pdo = databaseConexion::conexion();
     }
-    public function getAllProducts() {
-        return [
-            ['id' => 1, 'name' => 'Producto 1', 'description' => 'Descripción del producto 1', 'image' => 'imagen1.jpg', 'price' => 10.99, 'sale_price' => 9.99, 'quantity' => 20, 'category' => 'Categoría 1', 'distributor' => 'Distribuidor 1'],
-            ['id' => 2, 'name' => 'Producto 2', 'description' => 'Descripción del producto 2', 'image' => 'imagen2.jpg', 'price' => 19.99, 'sale_price' => 17.99, 'quantity' => 15, 'category' => 'Categoría 2', 'distributor' => 'Distribuidor 2'],
-            ['id' => 3, 'name' => 'Producto 3', 'description' => 'Descripción del producto 3', 'image' => 'imagen3.jpg', 'price' => 8.99, 'sale_price' => 7.99, 'quantity' => 25, 'category' => 'Categoría 1', 'distributor' => 'Distribuidor 1'],
-        ];
+
+    // -----Metodo para seleccionar todos los datos de una tabla ----- //
+    public function getAll($table) {
+        $query = "SELECT * FROM $table";
+        $result = $this->pdo->query($query);
+        $producto = array();
+
+        if ($result->num_rows > 0) {
+            // Recorrer los resultados y almacenarlos en el array $proveedores
+            while ($row = $result->fetch_assoc()) {
+                $producto[] = $row;
+            }
+        }
+        return $producto;
     }
 
-public function guardar( $data){
-    try {
-        $sql = 'INSERT INTO producto (nomprod,desprod,imgprod,precprod,precvenprod,stockprod,catprod,idprov)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-        $this->pdo->prepare($sql)
-        ->execute(
-            array(
-                $data->nomprod,
-                $data->desprod, 
-                $data->imgprod,
-                $data->precprod,
-                $data->precvenprod,
-                $data->stockprod,
-                $data->catprod,
-                $data->idprov,
-            )
-        );
-        setcookie("notify", serialize(["message" => "Se ha agregado el producto"]), 5, "/");
-        return true;
-    } catch (Exception $e) {
-        die($e->getMessage());
+    public function getAllProducts() {
+        $query = "SELECT prd.*, prv.nomprov, cat.namecat FROM producto as prd, proveedor as prv, categoria as cat WHERE prd.idprov = prv.idprov";
+        $sql = "SELECT * FROM producto; ";  
+        $result = $this->pdo->query($sql);
+        $array = array();
+
+        if ($result->num_rows > 0) {
+            // Recorrer los resultados y almacenarlos en el array $proveedores
+            while ($row = $result->fetch_assoc()) {
+                $array[] = $row;
+            }
+        }
+        return $array;
     }
-}
-public function actualizar($data) {
-		try {
-			$sql = 'UPDATE producto SET
-			nomprod = ?,
-			desprod = ?,
-			imgprod = ?,
-            precprod = ?,
-			precvenprod = ?,
-			stockprod = ?,
-            catprod = ?,
-            idprov = ?
-			WHERE idprod = ?';
-			$this->pdo->prepare($sql)
-			->execute(
-				array(
-                    $data->nomprod,
-                    $data->desprod,
-                    $data->imgprod,
-                    $data->precprod,
-                    $data->precvenprod,
-                    $data->stockprod,
-                    $data->catprod,
-                    $data->idprov,
-                    $data->idprod
-				)
-			);
-		} catch (Exception $e) {
-			die($e->getMessage());
-		}
-	}
+
+    public function saveProducto(ProductModel $data){
+        try {
+            $sql = 'INSERT INTO producto (nomprod,desprod,precprod,precvenprod,stockprod,catprod,idprov)
+            VALUES (?, ?, ?, ?, ?, ?, ?)';
+            $action = $this->pdo->prepare($sql); 
+            if($action->execute(array($data->nomprod, $data->desprod,$data->precprod, $data->precvenprod, $data->stockprod, $data->catprod, $data->idprov))){
+                return true; 
+            }else{
+                return false; 
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function saveCategory(ProductModel $data){
+        try{
+            $sql = "INSERT INTO categoria(namecat, descat) VALUES (?, ?)";
+            $result = $this->pdo->prepare($sql)->execute(
+                array(
+                    $data->namecat, 
+                    $data->descat, 
+                )
+            ); 
+            
+            if($result){
+                return true; 
+            }else{
+                return false;
+            }
+
+        }catch(Exception $e){
+            echo "Error al guardar la categoria en la base de datos: ". $e->getMessage(); 
+        }
+    }
+
+    public function actualizar($data) {
+            try {
+                $sql = 'UPDATE producto SET
+                nomprod = ?,
+                desprod = ?,
+                precprod = ?,
+                precvenprod = ?,
+                stockprod = ?,
+                catprod = ?,
+                idprov = ?
+                WHERE idprod = ?';
+                $this->pdo->prepare($sql)
+                ->execute(
+                    array(
+                        $data->nomprod,
+                        $data->desprod,
+                        $data->imgprod,
+                        $data->precprod,
+                        $data->precvenprod,
+                        $data->stockprod,
+                        $data->catprod,
+                        $data->idprov,
+                        $data->idprod
+                    )
+                );
+            } catch (Exception $e) {
+                die($e->getMessage());
+            }
+    }
 
     public function eliminar($data) {
         $sql = "DELETE FROM producto WHERE idprod = ?";
@@ -81,6 +116,12 @@ public function actualizar($data) {
         } catch (Exception $e) {
 			die($e->getMessage());
 		}
+    }   
+
+    // -----Metodo para verificar si un string contiene numeros----- //
+    public function verifyNumberString($string){
+        return preg_match('/\d/', $string) === 1 ? true : false; 
     }
+
 }
 ?>

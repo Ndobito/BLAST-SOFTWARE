@@ -27,6 +27,7 @@ class ProfileController
         $proveedores = $this->object->getProveedores();
         $users = $this->object->getUsers(); 
         $mascota = $this->object->getMascota();
+        $productos = $this->object->getProductos();
 
         $privUser = Privilegios::User->get();
         $privRecepcionist = Privilegios::User->get()+Privilegios::Recepcionist->get();

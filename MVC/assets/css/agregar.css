@@ -70,7 +70,7 @@ header>div:nth-child(2) {
   font-family: var(--font-2);
 }
 
-.input input {
+.input input, .input #selCat {
   padding: 12px;
   border: 1px solid var(--color-7);
   font-family: var(--font-2);
