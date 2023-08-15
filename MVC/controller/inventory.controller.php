@@ -46,6 +46,7 @@ class InventoryController
         require_once 'view/inventory/inventory.php';
 
     }
+
     // public function listado()
     // {
     //     $param = [];
