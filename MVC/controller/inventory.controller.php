@@ -46,29 +46,29 @@ class InventoryController
         require_once 'view/inventory/inventory.php';
 
     }
-    public function listado()
-    {
-        $param = [];
-        $resto = "";
-        if (isset($_REQUEST["search"])) {
-            $resto = "&& (prd.nomprod LIKE ? || prd.desprod LIKE ? || prd.catprod LIKE ? || prv.nomprov LIKE ?)";
-            $param[] = "%" . $_REQUEST["search"] . "%";
-            $param[] = "%" . $_REQUEST["search"] . "%";
-            $param[] = "%" . $_REQUEST["search"] . "%";
-            $param[] = "%" . $_REQUEST["search"] . "%";
-        }
-        $stmt = $this->conexion->prepare("SELECT prd.*, prv.idprov, prv.nomprov, cat.namecat FROM producto as prd, proveedor as prv, categoria as cat WHERE prv.idprov = prd.idprov" . $resto);
-        $stmt->execute($param);
-        $items = [];
-        $result = $stmt->get_result();
-        while ($item = $result->fetch_assoc()) {
-            $items[] = $item;
-        }
+    // public function listado()
+    // {
+    //     $param = [];
+    //     $resto = "";
+    //     if (isset($_REQUEST["search"])) {
+    //         $resto = "&& (prd.nomprod LIKE ? || prd.desprod LIKE ? || prd.catprod LIKE ? || prv.nomprov LIKE ?)";
+    //         $param[] = "%" . $_REQUEST["search"] . "%";
+    //         $param[] = "%" . $_REQUEST["search"] . "%";
+    //         $param[] = "%" . $_REQUEST["search"] . "%";
+    //         $param[] = "%" . $_REQUEST["search"] . "%";
+    //     }
+    //     $stmt = $this->conexion->prepare("SELECT prd.*, prv.idprov, prv.nomprov, cat.namecat FROM producto as prd, proveedor as prv, categoria as cat WHERE prv.idprov = prd.idprov" . $resto);
+    //     $stmt->execute($param);
+    //     $items = [];
+    //     $result = $stmt->get_result();
+    //     while ($item = $result->fetch_assoc()) {
+    //         $items[] = $item;
+    //     }
 
-        $style = "<link rel='stylesheet' href='assets/css/style-inventory.css'>";
-        require_once "view/head.php";
-        require_once 'view/inventory/inventory.php';
-    }
+    //     $style = "<link rel='stylesheet' href='assets/css/style-inventory.css'>";
+    //     require_once "view/head.php";
+    //     require_once 'view/inventory/inventory.php';
+    // }
 
     // -----Metodo para vista de nueva categoria----- // 
     public function newCategory(){
@@ -78,8 +78,14 @@ class InventoryController
     }
 
 
-    public function editar()
-    {
+    public function showEditar()
+    {   
+        // -----Metodos para obtener los datos----- //
+        $productos = $this->model->getAllProducts();
+        $categorias = $this->model->getAll("categoria"); 
+        $proveedores = $this->model->getAll("proveedor"); 
+
+
         $stmt = $this->conexion->prepare("SELECT prd.*, prv.idprov, prv.nomprov FROM producto as prd, proveedor as prv WHERE prv.idprov = prd.idprov && idprod = ?");
         $stmt->execute([$_REQUEST["idprod"]]);
         $result = $stmt->get_result();
@@ -90,7 +96,7 @@ class InventoryController
     }
 
     // -----Metodo para la vista de agregar nuevo producto----- //
-    public function agregar()
+    public function showAdd()
     {      
         $categorias = $this->model->getAll("categoria"); 
         $proveedores = $this->model->getAll("proveedor"); 
@@ -100,21 +106,37 @@ class InventoryController
     }
 
     // -----Metodo para guardar un nuevo producto----- // 
-    public function guardar()
+    public function saveProduct()
     {
-        $prod = new ProductModel();
-        $prod->nomprod = $_POST['name'];
-        $prod->desprod = $_POST['des'];
-        $prod->precprod = $_POST['prec'];
-        $prod->precvenprod = $_POST['precVen'];
-        $prod->stockprod = $_POST['cant'];
-        $prod->catprod = $_POST['selCat'];
-        $prod->idprov = $_POST['selProv'];
-        
-        if($this->model->saveProducto($prod)){
-            redirect("?b=inventory&s=Inicio")->success("Producto agregado con exito!!!")->send();
+        if(empty($_POST['name']) || empty($_POST['des']) || empty($_POST['prec']) || empty($_POST['precVen']) || empty($_POST['cant']) || empty($_POST['selCat']) || empty($_POST['selProv'])){
+            redirect("?b=inventory&s=showAdd")->error("Se deben llenar todos los campos")->send();
         }else{
-            redirect("?b=inventory&s=Inicio")->error("No se agrego el producto")->send();
+            if($this->model->verifyNumberString($_POST['nombre'])){
+                redirect("?b=inventory&s=showAdd")->error("El nombre no puede llevar numeros")->send();
+            }else{
+                if($this->model->verifyLeterString($_POST['precio'])){
+                    redirect("?b=inventory&s=showAdd")->error("El precio no puede llevar letras")->send();
+                }else if($this->model->verifyLeterString($_POST['venta'])){
+                    redirect("?b=inventory&s=showAdd")->error("El precio de venta no puede llevar letras")->send();
+                }else if($this->model->verifyLeterString($_POST['cantidad'])){
+                    redirect("?b=inventory&s=showAdd")->error("La cantidad de productos no puede llevar letras")->send();
+                }else {
+                    $prod = new ProductModel();
+                    $prod->nomprod = $_POST['name'];
+                    $prod->desprod = $_POST['des'];
+                    $prod->precprod = $_POST['prec'];
+                    $prod->precvenprod = $_POST['precVen'];
+                    $prod->stockprod = $_POST['cant'];
+                    $prod->catprod = $_POST['selCat'];
+                    $prod->idprov = $_POST['selProv'];
+                    
+                    if($this->model->saveProducto($prod)){
+                        redirect("?b=inventory&s=Inicio")->success("Producto agregado con exito!!!")->send();
+                    }else{
+                        redirect("?b=inventory&s=Inicio")->error("No se agrego el producto")->send();
+                    }
+                }
+            }
         }
     }
 
@@ -129,17 +151,43 @@ class InventoryController
 
     public function edit()
     {
-        $prod = new ProductModel();
-        $prod->idprod = $_REQUEST['idprod'];
-        $prod->nomprod = $_REQUEST['nombre'];
-        $prod->desprod = $_REQUEST['descripcion'];
-        $prod->precprod = $_REQUEST['precio'];
-        $prod->precvenprod = $_REQUEST['venta'];
-        $prod->stockprod = $_REQUEST['cantidad'];
-        $prod->catprod = $_REQUEST['categoria'];
-        $prod->idprov = $_REQUEST['proveedor'];
-        $this->model->actualizar($prod);
-        redirect("?b=inventory&s=listado")->success("Se ha actualizado el producto <b>" . $_REQUEST["nombre"] . "</b> correctamente")->send();
+        if(empty($_POST['nombre']) || empty($_POST['descripcion']) || empty($_POST['precio']) || empty($_POST['venta']) || empty($_POST['cantidad']) || empty($_POST['selCat']) || empty($_POST['selProv'])){
+            $id = $_REQUEST['idprod']; 
+            redirect("?b=inventory&s=showEditar&idprod=$id")->error("Todos los campos deben estar llenos")->send();
+        }else{
+            if($this->model->verifyNumberString($_POST['nombre'])){
+                $id = $_REQUEST['idprod']; 
+                redirect("?b=inventory&s=showEditar&idprod=$id")->error("El nombre no puede llevar numeros")->send();
+            }else{
+                if($this->model->verifyLeterString($_POST['precio'])){
+                    $id = $_REQUEST['idprod']; 
+                    redirect("?b=inventory&s=showEditar&idprod=$id")->error("El precio no puede llevar letras")->send();
+                }else if($this->model->verifyLeterString($_POST['venta'])){
+                    $id = $_REQUEST['idprod']; 
+                    redirect("?b=inventory&s=showEditar&idprod=$id")->error("El precio de venta no puede llevar letras")->send();
+                }else if($this->model->verifyLeterString($_POST['cantidad'])){
+                    $id = $_REQUEST['idprod']; 
+                    redirect("?b=inventory&s=showEditar&idprod=$id")->error("La cantidad de productos no puede llevar letras")->send();
+                }else {
+                    $prod = new ProductModel();
+                    $prod->idprod = $_POST['idprod'];
+                    $prod->nomprod = $_POST['nombre'];
+                    $prod->desprod = $_POST['descripcion'];
+                    $prod->precprod = $_POST['precio'];
+                    $prod->precvenprod = $_POST['venta'];
+                    $prod->stockprod = $_POST['cantidad'];
+                    $prod->catprod = $_POST['selCat'];
+                    $prod->idprov = $_POST['selProv'];
+                    
+                    if($this->model->actualizar($prod)){
+                        redirect("?b=inventory&s=Inicio")->success("Se ha actualizado el producto <b>" . $_REQUEST["nombre"] . "</b> correctamente")->send();
+                    }else{
+                        redirect("?b=inventory&s=Inicio")->error("Error al editar informacion del Producto")->send();
+                    }
+                    
+                }
+            }
+        }
     }
 
     
@@ -163,5 +211,3 @@ class InventoryController
         }
     }
 }
-
-?>

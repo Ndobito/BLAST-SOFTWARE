@@ -22,18 +22,17 @@
 
     <div class="container">
         <div class="regresar">
-            <a href="?b=inventory&s=listado"><button class="btn-regresar"><i class="fa-solid fa-arrow-left"></i></button>
+            <a href="?b=inventory&s=Inicio"><button class="btn-regresar"><i class="fa-solid fa-arrow-left"></i></button>
             </a>
         </div>
-        <form action="?b=inventory&s=guardar" method="post">
+        <form action="?b=inventory&s=saveProduct" method="post">
             <div class="input">
                 <label for="nombre">Nombre del producto:</label>
                 <input type="text" id="nombre" name="name" placeholder="Agrega el nombre del producto">
             </div>
             <div class="input">
                 <label for="nombre">Descripcion:</label>
-                <input type="text" id="descripcion" name="des"
-                    placeholder="Agrega  la descripcion del producto">
+                <input type="text" id="descripcion" name="des" placeholder="Agrega  la descripcion del producto">
             </div>
             <div class="input">
                 <label for="nombre">Precio:</label>

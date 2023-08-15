@@ -21,7 +21,7 @@
 
     <div class="container">
         <div class="regresar">
-            <a href="?b=inventory&s=listado"><button class="btn-regresar"><i class="fa-solid fa-arrow-left"></i></button>
+            <a href="?b=inventory&s=Inicio"><button class="btn-regresar"><i class="fa-solid fa-arrow-left"></i></button>
             </a>
         </div>
         <form action="?b=inventory&s=guardarCategoria" method="post">

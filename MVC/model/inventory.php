@@ -14,21 +14,6 @@ class ProductModel {
     public function getAll($table) {
         $query = "SELECT * FROM $table";
         $result = $this->pdo->query($query);
-        $producto = array();
-
-        if ($result->num_rows > 0) {
-            // Recorrer los resultados y almacenarlos en el array $proveedores
-            while ($row = $result->fetch_assoc()) {
-                $producto[] = $row;
-            }
-        }
-        return $producto;
-    }
-
-    public function getAllProducts() {
-        $query = "SELECT prd.*, prv.nomprov, cat.namecat FROM producto as prd, proveedor as prv, categoria as cat WHERE prd.idprov = prv.idprov";
-        $sql = "SELECT * FROM producto; ";  
-        $result = $this->pdo->query($sql);
         $array = array();
 
         if ($result->num_rows > 0) {
@@ -38,6 +23,21 @@ class ProductModel {
             }
         }
         return $array;
+    }
+
+    public function getAllProducts() {
+        $query = "SELECT prd.*, prv.nomprov, cat.namecat FROM producto as prd, proveedor as prv, categoria as cat WHERE prd.idprov = prv.idprov";
+        $sql = "SELECT * FROM producto; ";  
+        $result = $this->pdo->query($sql);
+        $producto = array();
+
+        if ($result->num_rows > 0) {
+            // Recorrer los resultados y almacenarlos en el array $proveedores
+            while ($row = $result->fetch_assoc()) {
+                $producto[] = $row;
+            }
+        }
+        return $producto;
     }
 
     public function saveProducto(ProductModel $data){
@@ -92,7 +92,6 @@ class ProductModel {
                     array(
                         $data->nomprod,
                         $data->desprod,
-                        $data->imgprod,
                         $data->precprod,
                         $data->precvenprod,
                         $data->stockprod,
@@ -101,6 +100,7 @@ class ProductModel {
                         $data->idprod
                     )
                 );
+                return true; 
             } catch (Exception $e) {
                 die($e->getMessage());
             }
@@ -121,6 +121,11 @@ class ProductModel {
     // -----Metodo para verificar si un string contiene numeros----- //
     public function verifyNumberString($string){
         return preg_match('/\d/', $string) === 1 ? true : false; 
+    }
+
+    // -----Metodo para verificar que entre los numero haya letras----- //
+    public function verifyLeterString($number){
+        return preg_match('/[a-zA-Z]/', $number) === 1 ? true : false; 
     }
 
 }
