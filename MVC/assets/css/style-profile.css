@@ -24,6 +24,13 @@
 a{
     text-decoration: none;
 }
+
+.fa-xmark{
+    font-size: 18px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
 /* Header Profile */
 
 .header{
@@ -177,9 +184,11 @@ main {
 .user{
     display: none;
 }
+
+
 .container-right .user-information,
 .container-right3 .Pets {
-    width: 90%;
+    width: 60%;
     margin: auto;
     padding: 20px;
     background: var(--color-6);
@@ -279,8 +288,9 @@ main {
 /* Container Right 2 and Container Right 3 */
 
 .container-right2 {
-    width: 100%;
+    max-width: 80%;
     height: 100%;
+    margin-left: 10%;
     padding-top: 20px;
     padding-bottom: 20px;
     display: none;
@@ -292,8 +302,9 @@ main {
 .container-right3,
 .container-right4,
 .container-right5 {
-    width: 100%;
+    max-width: 80%;
     height: 100%;
+    margin-left: 10%;
     padding-top: 20px;
     padding-bottom: 20px;
     display: none;
@@ -559,11 +570,10 @@ tbody .icons2 a:hover {
 /* Footer */
 
 footer {
-    position: absolute;
     width: 100%;
     height: 17%;
     font-family: var(--font-1);
-    display: inline-block;
+    margin-top: 20%;
 }
 
 /* Footer Bottom */
@@ -580,7 +590,6 @@ footer {
     padding: 10px;
     gap: 20px;
     height: 100%;
-    bottom: 0;
 }
 
 .footer-bottom img {

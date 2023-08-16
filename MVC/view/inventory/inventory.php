@@ -105,7 +105,8 @@
                                         ?>
                                     </td>
                                     <td><a href="?b=inventory&s=editar&idprod=<?= $e["idprod"] ?>"><button class="btn-editar"><i class="fa-solid fa-pen"></i></button></a></td>
-                                    <td><a href="?b=inventory&s=eliminar&idprod=<?= $e["idprod"] ?>&name=<?= $e["idprod"] ?>"><button class="btn-borrar"><i class="fa-solid fa-trash"></i></button></a></td>
+                                    
+                                    <td><a><button class="btn-borrar" onclick="deleteProduct(this.id)" id="<?= $e["idprod"] ?>"><i class="fa-solid fa-trash"></i></button></a></td>
                                 </tr>
                             <?php
                             }
@@ -117,6 +118,7 @@
         </div>
     </div>
     <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
+    <script src="assets/Javascript/deleteProduct.js"></script>
 </body>
 
 </html>

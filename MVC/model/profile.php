@@ -13,69 +13,20 @@ class Profile
         $this->conexion = databaseConexion::conexion();
     }
 
-    // ----- Metodo para obtener proveedores-----//
-    public function getProveedores()
-    {
-        $query = "SELECT * FROM proveedor";
+    // -----Metodo para seleccionar todos los datos de una tabla ----- //
+    public function getAll($table) {
+        $query = "SELECT * FROM $table";
         $result = $this->conexion->query($query);
-        $proveedores = array();
+        $producto = array();
 
         if ($result->num_rows > 0) {
             // Recorrer los resultados y almacenarlos en el array $proveedores
             while ($row = $result->fetch_assoc()) {
-                $proveedores[] = $row;
+                $producto[] = $row;
             }
         }
-
-        return $proveedores;
+        return $producto;
     }
-
-    // -----Metodo pata obtener los empleados en profile----- //
-    public function getUsers()
-    {
-        $query = "SELECT * FROM usuario";
-        $result = $this->conexion->query($query);
-        $empleado = array();
-
-        if ($result->num_rows > 0) {
-            // Recorrer los resultados y almacenarlos en el array $proveedores
-            while ($row = $result->fetch_assoc()) {
-                $empleado[] = $row;
-            }
-        }
-        return $empleado;
-    }
-
-    // -----Metodo para obtener las mascotas en Profile----- //
-    public function getMascota()
-    {
-        $query = "SELECT * FROM mascota";
-        $result = $this->conexion->query($query);
-        $mascota = array();
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $mascota[] = $row;
-            }
-        }
-
-        return $mascota;
-    }
-
-    // -----Metodo para obtener los productos en Profile----- //
-    public function getProductos()
-    {
-        $query = "SELECT * FROM producto";
-        $result = $this->conexion->query($query);
-        $mascota = array();
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $productos[] = $row;
-            }
-        }
-    }
-       
 
     // -----Metodo para el buscador de clientes en Profile -----//
     public function buscarClientes($buscar)

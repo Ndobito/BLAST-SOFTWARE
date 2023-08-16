@@ -106,13 +106,15 @@ class ProductModel {
             }
     }
 
-    public function eliminar($data) {
-        $sql = "DELETE FROM producto WHERE idprod = ?";
+    public function deleteProduct($id) {
+        $sql = "DELETE FROM producto WHERE idprod =".$id;
         try {
-            $this->pdo->prepare($sql)
-            ->execute([
-                $data->idprod
-            ]);
+            $result =  $this->pdo->prepare($sql); 
+            if($result->execute()){
+                return true; 
+            }else{
+                return false; 
+            }
         } catch (Exception $e) {
 			die($e->getMessage());
 		}

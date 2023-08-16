@@ -358,53 +358,69 @@
                     </table>
                 </div>
                 <?php 
-                    if ($privilegios == $privUser || $privilegios == $privRecepcionist) {
-                        echo "";
-                    } else {
-                        echo "
-                        <div class='profile-adm container-right2' id='container-right7'>
-                            <div class='title'>
-                                <h1>Venta de Productos</h1>
-                            </div>
+                if ($privilegios == $privUser || $privilegios == $privRecepcionist) {
+                    echo "";
+                } else {
+                    echo "
+                    <div class='profile-adm container-right2' id='container-right7'>
+                        <div class='title'>
+                            <h1>Recetar Productos</h1>
+                        </div>
+                        <form action='#' method='post'>
+                            <input type='number' name='numid' placeholder='Numero de Identificacion del usuario'>
                             <table class='table-container'>
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Nombres</th>
-                                        <th>Direccion</th>
-                                        <th>Correo</th>
-                                        <th>Telefono</th>
+                                        <th>Producto</th>
+                                        <th>Descripcion</th>
+                                        <th>Precio</th>
+                                        <th>Categoria</th>
+                                        <th>Disponibles (und)</th>
+                                        <th>Recetar</th>
                                     </tr>
                                 </thead>
-                                <tbody id='resultados-proveedor'>";
-                                foreach ($productos as $producto) {
+                                <tbody id='resultados-producto'>";
+
+                                foreach ($productos as $key=>$producto) {
                                     echo "
-                                    <tr>
                                         <td>" . $producto['idprod'] . "</td>
-                                        <td>" . ($producto['nomprov'] ?? 'Sin definir') . "</td>
-                                        <td>" . ($producto['dirprov'] ?? 'Sin definir') . "</td>
-                                        <td>" . ($producto['emaprov'] ?? 'Sin definir') . "</td>
-                                        <td>" . ($producto['telprov'] ?? 'Sin definir') . "</td>
-                                        <td class='icons1'>
-                                            <a href='?b=profile&s=optionEditRedirec&p=proveedor&idprov=" . $producto['idprov'] . "' id='Proveedor'>
-                                                <i class='fa fa-pencil fa-lg' aria-hidden='true'></i>
-                                            </a>
-                                        </td>
-                                        <td class='icons2'>
-                                            <a onclick='alertProfile(this.id, \"proveedor\")' id='" . $producto['idprov'] . "'>
-                                                <i class='fa-solid fa-trash-can' aria-hidden='true'></i>
-                                            </a>
-                                        </td>
+                                        <td>" . ($producto['nomprod'] ?? 'Sin definir') . "</td>
+                                        <td>" . ($producto['desprod'] ?? 'Sin definir') . "</td>
+                                        <td>" . ($producto['precvenprod'] ?? 'Sin definir') . "</td>
+                                        <td>";
+                                    foreach ($categorias as $categoria) {
+                                        echo ($categoria['idcat'] === $producto['catprod']) ? $categoria['namecat'] : '';
+                                    }
+                                    echo "</td>
+                                        <td>" . ($producto['stockprod'] ?? 'Sin definir') . "</td>";
+                                    echo "<td><input type='checkbox' name='recetar'></td>
                                     </tr>";
                                 }
                                 echo "
-                                </tbody>;
+                                </tbody>
                             </table>
-                        </div>";
-                    }
-                ?>
-            </div>
+                            <button id='addReceta'>Agregar a la receta</button>
+                            <table class='table-container'>
+                                <thead>
+                                    <th>Producto</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                </thead>
+                                <tbody id='resultados-receta'>
 
+                                </tbody>
+                            </table>
+
+                        </form>
+                    </div>";
+                }
+                ?>
+
+            </div>
+            <div class="profile-adm" id="container-right7">
+                hola
+            </div>
         </main>
 
     </div>

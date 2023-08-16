@@ -24,10 +24,11 @@ class ProfileController
 
         // -----Variables para obtener las listas a mostrar----- //
         $privilegios = $this->object->getPrivileges();
-        $proveedores = $this->object->getProveedores();
-        $users = $this->object->getUsers(); 
-        $mascota = $this->object->getMascota();
-        $productos = $this->object->getProductos();
+        $proveedores = $this->object->getAll("proveedor");
+        $users = $this->object->getAll("usuario"); 
+        $mascota = $this->object->getAll("mascota");
+        $productos = $this->object->getAll("producto");
+        $categorias = $this->object->getAll("categoria"); 
 
         $privUser = Privilegios::User->get();
         $privRecepcionist = Privilegios::User->get()+Privilegios::Recepcionist->get();
@@ -39,7 +40,7 @@ class ProfileController
         $user = $this->object->selectUser($usuario);
 
         // -----Vistas Requeridas----- //
-        $style = "<link rel='stylesheet' href='assets/css/style-admin.css'>";
+        $style = "<link rel='stylesheet' href='assets/css/style-profile.css'>";
         require_once "view/head.php";
         require_once "view/profile/profile.php";
         require_once "view/footerprofile.php";
@@ -125,7 +126,7 @@ class ProfileController
     public function buscarProveedor()
     {
         $searchTerm = $_POST['buscar_proveedor'];
-        $proveedores = $this->object->getProveedores();
+        $proveedores = $this->object->getAll("proveedor");
 
         $filteredProveedores = array_filter($proveedores, function ($proveedor) use ($searchTerm) {
             return (stripos($proveedor['idprov'], $searchTerm) !== false) ||
@@ -207,7 +208,7 @@ class ProfileController
     public function buscarMascotas()
     {
         $searchTerm = $_POST['buscar_mascota'];
-        $mascotas = $this->object->getMascota();
+        $mascotas = $this->object->getAll("mascota");
 
         $filteredmascota = array_filter($mascotas, function ($mascota) use ($searchTerm) {
             return (stripos($mascota['idmas'], $searchTerm) !== false) ||

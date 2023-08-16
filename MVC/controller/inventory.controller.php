@@ -120,11 +120,13 @@ class InventoryController
 
     public function eliminar()
     {
-        $prod = new ProductModel();
-        $prod->idprod = $_REQUEST["idprod"];
-        $this->model->eliminar($prod);
-        setNotify("success", "Se ha eliminado el producto " . $_REQUEST["name"] . " correctamente");
-        redirect("?b=inventory&s=listado");
+        $prod = $_REQUEST["idprod"];
+        if($this->model->deleteProduct($prod)){
+            redirect("?b=inventory&s=Inicio")->success("Producto eliminado con exito")->send();
+        }else{
+            redirect("?b=inventory&s=Inicio")->error("Error al eliminar el producto")->send();
+        }
+        
     }
 
     public function edit()

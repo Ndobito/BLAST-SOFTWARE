@@ -1,4 +1,4 @@
-<footer style="margin: 0; height: auto">
+<footer>
     <div class="footer-bottom">
         <p>
             <img src="assets/img/logo.jpg" alt="">
@@ -12,4 +12,7 @@
         </p>
     </div>
 </footer>
-    <script src="assets/Javascript/global.js"></script>
+<script src="assets/Javascript/global.js"></script>
+<script src="assets/Javascript/rbDesselect.js"></script>
+<script src="assets/Javascript/recetaAdd.js"></script>
+<script src="assets/Javascript/recetaDelete.js"></script>

@@ -8,8 +8,8 @@ enum Privilegios: int {
     public function get(): int{
         return match ($this) {
             static::User => 1,
-            static::Doctor => 2,
-            static::Recepcionist => 3,
+            static::Recepcionist => 2,
+            static::Doctor => 3,
             static::Admin => 4,
         };
     }
