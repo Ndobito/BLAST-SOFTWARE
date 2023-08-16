@@ -25,6 +25,7 @@
                         class="fa-solid fa-arrow-left"></i></button></a>
         </div>
         <form action="?b=inventory&s=edit" method="post">
+            <input type="hidden" value="<?= $producto['idprod'] ?? "" ?>" name="idprod">
             <div class="input">
                 <label for="nombre">Nombre del producto:</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Edita el nombre del producto"
@@ -32,38 +33,41 @@
             </div>
             <div class="input">
                 <label for="nombre">Descripcion:</label>
-                <input type="text" id="descripcion" name="descripcion" placeholder="Edita la descripcion del producto"
-                    value="<?= $producto["desprod"] ?? "" ?>">
+                <input type="text" id="descripcion" name="descripcion" placeholder="Edita la descripcion del producto" value="<?= $producto["desprod"] ?? "" ?>">
             </div>
             <div class="input">
-
-                <label for="imagen">Selecciona una imagen:</label>
-                <input type="file" id="imagen" name="imagen">
+                <label for="nombre">Precio:</label>
+                <input type="text" id="precio" name="precio" placeholder="Edita el precio del producto" value="<?= $producto["precprod"] ?? "" ?>">
             </div>
             <div class="input">
-                <label for="nombre">precio:</label>
-                <input type="text" id="precio" name="precio" placeholder="Edita el precio del producto"
-                    value="<?= $producto["precprod"] ?? "" ?>">
-            </div>
-            <div class="input">
-                <label for="nombre">precio de venta:</label>
-                <input type="text" id="precio de venta" name="venta" placeholder="Edita el precio de venta del producto"
-                    value="<?= $producto["precvenprod"] ?? "" ?>">
+                <label for="nombre">Precio de venta:</label>
+                <input type="text" id="precio de venta" name="venta" placeholder="Edita el precio de venta del producto" value="<?= $producto["precvenprod"] ?? "" ?>">
             </div>
             <div class="input">
                 <label for="nombre">Cantidad existente:</label>
-                <input type="text" id="Cantidad existente" name="cantidad"
-                    placeholder="Edita la Cantidad existente del producto" value="<?= $producto["stockprod"] ?? "" ?>">
+                <input type="text" id="Cantidad existente" name="cantidad" placeholder="Edita la Cantidad existente del producto" value="<?= $producto["stockprod"] ?? "" ?>">
             </div>
             <div class="input">
-                <label for="nombre">categoria:</label>
-                <input type="text" id="categoria" name="categoria" placeholder="Edita la categoria del producto"
-                    value="<?= $producto["catprod"] ?? "" ?>">
+                <label for="nombre">Categoria:</label>
+                <select name="selCat" id="selCat">
+                    <option selected disabled>Seleccione una opcion</option>
+                    <?php
+                        foreach ($categorias as $categoria) {
+                            echo "<option value='" . $categoria['idcat'] . "' " . (($producto['catprod'] == $categoria['idcat']) ? "selected" : "") . ">" . $categoria['namecat'] . "</option>";
+                        }
+                    ?>
+                </select>
             </div>
             <div class="input">
-                <label for="idprov">ID proveedor:</label>
-                <input type="text" id="proveedor" name="proveedor" placeholder="Edita el proveedor del producto"
-                    value="<?= $producto["idprov"] ?? "" ?>">
+                <label for="idprov">Proveedor: </label>
+                <select name="selProv" id="selCat">
+                    <option selected disabled>Seleccione una opcion</option>
+                    <?php
+                        foreach ($proveedores as $proveedor) {
+                            echo "<option value='" . $proveedor['idprov'] . "' " . (($producto['idprov'] == $proveedor['idprov']) ? "selected" : "") . ">" . $proveedor['nomprov'] . "</option>";
+                        }
+                    ?>
+                </select>
             </div>
             <div class="button">
                 <button class="btn-save" type="submit">Guardar</button>

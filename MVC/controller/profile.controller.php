@@ -175,34 +175,35 @@ class ProfileController
     //     }
     // }
 
-    // -----Metodo para mostrar los resultados del buscador de Clientes------ //
-    // public function buscarClientes()
-    // {
-    //     $searchTerm = $_POST['buscar_cliente'];
-    //     $clientes = $this->object->getCliente();
+    //-----Metodo para mostrar los resultados del buscador de Clientes------ //
+    public function buscarClientes()
+    {
+        $searchTerm = $_POST['buscar_cliente'];
+        $clientes = $this->object->getUsers();
 
-    //     $filteredcliente = array_filter($clientes, function ($cliente) use ($searchTerm) {
-    //         return (stripos($cliente['idcli'], $searchTerm) !== false) ||
-    //             (stripos($cliente['nomcli'], $searchTerm) !== false) ||
-    //             (stripos($cliente['emacli'], $searchTerm) !== false) ||
-    //             (stripos($cliente['usercli'], $searchTerm) !== false);
-    //     });
+        $filteredcliente = array_filter($clientes, function ($cliente) use ($searchTerm) {
+            return (stripos($cliente['dniuser'], $searchTerm) !== false) ||
+                (stripos($cliente['nameuser'], $searchTerm) !== false) ||
+                (stripos($cliente['emailuser'], $searchTerm) !== false) ||
+                (stripos($cliente['nickuser'], $searchTerm) !== false);
+        });
 
-    //     foreach ($filteredcliente as $cliente) {
-    //         echo '<tr>';
-    //         echo '<td>' . $cliente['idcli'] . '</td>';
-    //         echo '<td>' . ($cliente['nomcli'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($cliente['emacli'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($cliente['usercli'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($cliente['dircli'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($cliente['tzonecli'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($cliente['telcli'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($cliente['telaltcli'] ?? "Sin definir") . '</td>';
-    //         echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
-    //         echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
-    //         echo '</tr>';
-    //     }
-    // }
+        foreach ($filteredcliente as $cliente) {
+            echo '<tr>';
+            echo '<td>' . $cliente['dniuser'] . '</td>';
+            echo '<td>' . ($cliente['nameuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['surnameuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['nickuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['emailuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['diruser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['zoneuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['phoneuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['phonealtuser'] ?? "Sin definir") . '</td>';
+            echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
+            echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
+            echo '</tr>';
+        }
+    }
 
     // -----Metodo oara mostrar los resultados del buscador de Mascotas------ //
     public function buscarMascotas()
