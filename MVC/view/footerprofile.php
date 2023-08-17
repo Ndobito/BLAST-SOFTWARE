@@ -13,6 +13,4 @@
     </div>
 </footer>
 <script src="assets/Javascript/global.js"></script>
-<script src="assets/Javascript/rbDesselect.js"></script>
-<script src="assets/Javascript/recetaAdd.js"></script>
-<script src="assets/Javascript/recetaDelete.js"></script>
+<script src="assets/Javascript/recetar.js"></script>

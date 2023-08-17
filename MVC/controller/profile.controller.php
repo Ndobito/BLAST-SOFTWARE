@@ -18,8 +18,8 @@ class ProfileController
         //     redirect("?")->error("No tiene permisos")->send();
         // }
         $roles = [
-            Privilegios::User->get()+Privilegios::Recepcionist->get() => "Recepcionista",
-            Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get() => "Doctor"
+            Privilegios::Recepcionist->get() => "Recepcionista",
+            Privilegios::Doctor->get() => "Doctor"
         ]; 
 
         // -----Variables para obtener las listas a mostrar----- //
@@ -31,9 +31,9 @@ class ProfileController
         $categorias = $this->object->getAll("categoria"); 
 
         $privUser = Privilegios::User->get();
-        $privRecepcionist = Privilegios::User->get()+Privilegios::Recepcionist->get();
-        $privDoctor = Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get();
-        $privAdmin = Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()+Privilegios::Admin->get(); 
+        $privRecepcionist = Privilegios::Recepcionist->get();
+        $privDoctor = Privilegios::Doctor->get();
+        $privAdmin = Privilegios::Admin->get(); 
 
         // -----Variables de Session----- //
         $usuario = $_SESSION['usuario'];
@@ -122,6 +122,27 @@ class ProfileController
         }
     }
 
+    // -----Buscar Colaborador en Receta medica----- //
+
+    public function searchUser(){
+        $o = $_REQUEST['p'];
+        switch($o){
+            case "col":
+                if(!empty($_POST['numIdColaborador'])){
+                    if($this->object->verifyLeterString($_POST['numIdColaborador'])){
+                        redirect("?b=profile&s=Inicio")->error("El numero de identificacion no puede llevar letras")->send();
+                    }else{
+                        $id = $_POST['numIdColaborador'];
+                        $colaborador = $this->object->selectNameUser($id); 
+                        header('Content-Type: application/json');
+                        echo json_encode($colaborador); 
+                    }
+                } 
+                break; 
+        } 
+    }
+
+
     // -----Metodo oara mostrar los resultados del buscador de Proveedor------ //
     public function buscarProveedor()
     {
@@ -179,7 +200,7 @@ class ProfileController
     public function buscarClientes()
     {
         $searchTerm = $_POST['buscar_cliente'];
-        $clientes = $this->object->getUsers();
+        $clientes = $this->object->getAll("usuario");
 
         $filteredcliente = array_filter($clientes, function ($cliente) use ($searchTerm) {
             return (stripos($cliente['dniuser'], $searchTerm) !== false) ||
