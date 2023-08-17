@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-06-2023 a las 17:44:35
+-- Tiempo de generación: 11-08-2023 a las 17:59:42
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -20,31 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `veterinaria`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `administrador`
---
-
-CREATE TABLE `administrador` (
-  `idadmin` int(11) NOT NULL COMMENT 'Numero identificador del administrador',
-  `nomadmin` varchar(255) NOT NULL COMMENT 'Nombre del administrador',
-  `emaadmin` varchar(255) NOT NULL COMMENT 'Correo electronico del administrador',
-  `passadmin` varchar(255) NOT NULL COMMENT 'Contraseña del administrador',
-  `diradmin` varchar(255) NOT NULL COMMENT 'Direccion del administrador',
-  `teladmin` varchar(255) NOT NULL COMMENT 'Numero de telefono del administrador',
-  `fileadmin` varchar(255) NOT NULL COMMENT 'Imagen de perfil del administrador',
-  `apeadmin` varchar(50) NOT NULL COMMENT 'apellido del administrador',
-  `teladmin2` varchar(50) NOT NULL COMMENT 'confirmacion de telefono'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `administrador`
---
-
-INSERT INTO `administrador` (`idadmin`, `nomadmin`, `emaadmin`, `passadmin`, `diradmin`, `teladmin`, `fileadmin`, `apeadmin`, `teladmin2`) VALUES
-(1, 'Arturo', 'rrss@hotmial.com', 'arturito123', 'vereda', '', '', 'Cuellar', '');
 
 -- --------------------------------------------------------
 
@@ -72,62 +47,6 @@ CREATE TABLE `cita` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cliente`
---
-
-CREATE TABLE `cliente` (
-  `idcli` int(11) NOT NULL COMMENT 'Numero Identificador del cliente',
-  `dnicli` int(11) NOT NULL COMMENT 'Numero de Identificacion del cliente',
-  `nomcli` varchar(255) NOT NULL COMMENT 'Nombre del cliente',
-  `emacli` varchar(255) NOT NULL COMMENT 'Correo Electronico del cliente',
-  `usercli` varchar(255) NOT NULL COMMENT 'Nombre de Usuario dentro del sistema',
-  `passcli` varchar(255) NOT NULL COMMENT 'Contraseña del Cliente',
-  `dircli` varchar(255) NOT NULL COMMENT 'Direccion del cliente',
-  `tzonecli` int(11) NOT NULL COMMENT 'Zona en la cual se encuentra ubicado el cliente',
-  `telcli` varchar(255) NOT NULL COMMENT 'Numero de Telefono del cliente',
-  `telaltcli` varchar(255) NOT NULL COMMENT 'Numero de telefono alternativo del cliente',
-  `filecli` varchar(255) DEFAULT NULL COMMENT 'Imagen de peril del cliente'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `cliente`
---
-
-INSERT INTO `cliente` (`idcli`, `nomcli`, `emacli`, `usercli`, `passcli`, `dircli`, `tzonecli`, `telcli`, `telaltcli`, `filecli`) VALUES
-(1, 'Jose Alejandro Cuellar', 'jcuellarmenza@gmail.com', 'alejo', 'alejo123', 'Calle 8 #6-87', 0, '3133215141', '0', 'img/alejo.png'),
-(2, 'pepito perez', 'pepe@gmail.com', 'pepe07', 'pepe07', 'calle 5 sur #c-40', 0, '573164567894', '573164567893', NULL),
-(3, '6 6', '6@6', '6', '6', 'calle 5 sur #c-40', 0, '6', '', NULL),
-(4, '6 6', '6@6', '6', '6', 'calle 5 sur #c-40', 0, '6', '', NULL),
-(5, '6 6', '6@6', '6', '6', 'calle 5 sur #c-40', 0, '6', '', NULL);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `colaborador`
---
-
-CREATE TABLE `colaborador` (
-  `idcol` int(11) NOT NULL COMMENT 'Numero identificador del colaborador',
-  `dnicol` int(10) NOT NULL COMMENT 'Numero de identificacion del colaborador',
-  `nomcol` varchar(255) NOT NULL COMMENT 'Nombre del colaborador',
-  `emacol` varchar(255) NOT NULL COMMENT 'Correo electrnico del colaborador',
-  `passcol` varchar(255) NOT NULL COMMENT 'Contraseña del colaborador',
-  `dircol` varchar(255) NOT NULL COMMENT 'Direccion del colaborador',
-  `telcol` varchar(255) NOT NULL COMMENT 'Numero de telefono del colaborador',
-  `rolcol` varchar(255) NOT NULL COMMENT 'Rol que cupa el colaborador en el sistema',
-  `filecol` varchar(255) NOT NULL COMMENT 'Imagen de perfil del colaborador'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `colaborador`
---
-
-INSERT INTO `colaborador` (`idcol`, `dnicol`, `nomcol`, `emacol`, `passcol`, `dircol`, `telcol`, `rolcol`, `filecol`) VALUES
-(1, 0, 'Manuel ', 'marpex@gmail.com', 'mar123', 'Calle 4 #12-34 La Plata-Huila', '3124569878', 'veterinario', 'img/vet1.png');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `diagnostico`
 --
 
@@ -147,8 +66,8 @@ CREATE TABLE `login` (
   `idlog` int(11) NOT NULL COMMENT 'Numero identificador del login',
   `feciniciolog` date NOT NULL COMMENT 'Fecha en la que se realizo el inicio de sesion',
   `fecfinlog` date NOT NULL COMMENT 'Fecha en la que se finalizo dicha sesion',
-  `dnicli` int(11) NOT NULL COMMENT 'FK de cliente(dnicli)',
-  `dnicol` int(11) NOT NULL COMMENT 'FK de colaborador(dnicol)'
+  `idcli` int(11) NOT NULL COMMENT 'FK de cliente(idcli)',
+  `idcol` int(11) NOT NULL COMMENT 'FK de colaborador(idcol)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -163,7 +82,7 @@ CREATE TABLE `mascota` (
   `edadmas` varchar(255) NOT NULL COMMENT 'Edad de la mascota',
   `genmas` varchar(255) NOT NULL COMMENT 'Genero de la mascota',
   `espmas` varchar(255) NOT NULL COMMENT 'Especie de la mascota',
-  `dnicli` int(11) NOT NULL COMMENT 'FK de cliente(dnicli)'
+  `idcli` int(11) NOT NULL COMMENT 'FK de cliente(idcli)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -184,6 +103,14 @@ CREATE TABLE `producto` (
   `idprov` int(11) NOT NULL COMMENT 'FK de proveedor(idprov)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`idprod`, `nomprod`, `desprod`, `imgprod`, `precprod`, `precvenprod`, `stockprod`, `catprod`, `idprov`) VALUES
+(4, 'afasdfasdf', '', '', 0, 0, 0, '', 1),
+(5, 'harina', 'azucar alto', 'kasbdifbeb//kas kj', 2000, 2500, 23, 'harinas', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -202,6 +129,11 @@ CREATE TABLE `proveedor` (
 -- Volcado de datos para la tabla `proveedor`
 --
 
+INSERT INTO `proveedor` (`idprov`, `nomprov`, `dirprov`, `emaprov`, `telprov`) VALUES
+(1, 'Carni la Victoria', 'Calle 12 # 12-02', 'carnicos@gmail.com', '3154659856'),
+(2, 'alejandro', 'calle 8', 'jcuellarmenza@gmail.com', '3133215141'),
+(3, 'Autoservicio el Centro ', 'Calle 6 ', 'elcentro2023@gmail.com', '3133215141');
+
 -- --------------------------------------------------------
 
 --
@@ -219,10 +151,40 @@ CREATE TABLE `registroxservicios` (
   `descreg` varchar(255) NOT NULL,
   `recreg` varchar(255) NOT NULL,
   `valorreg` int(11) NOT NULL,
-  `dnicli` int(11) NOT NULL,
+  `idcli` int(11) NOT NULL,
   `idmas` int(11) NOT NULL,
   `iddiag` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `dniuser` int(11) NOT NULL,
+  `nameuser` varchar(255) NOT NULL,
+  `surnameuser` varchar(255) NOT NULL,
+  `nickuser` varchar(255) NOT NULL,
+  `passuser` varchar(255) NOT NULL,
+  `emailuser` varchar(255) NOT NULL,
+  `diruser` varchar(255) NOT NULL,
+  `zoneuser` varchar(255) DEFAULT NULL,
+  `phoneuser` varchar(255) NOT NULL,
+  `phonealtuser` varchar(255) DEFAULT NULL,
+  `privileges` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`dniuser`, `nameuser`, `surnameuser`, `nickuser`, `passuser`, `emailuser`, `diruser`, `zoneuser`, `phoneuser`, `phonealtuser`, `privileges`) VALUES
+(321987456, 'Karol Juliana', 'Navia Torres', 'Kn1232', '0273832d1b31e0e306a76afa2da0948d', 'karoljuli12@gmail.com', 'Calle 3 # 12-34', 'urbana', '3128569856', '', 4),
+(1029981035, 'Jose Alejandro', 'Cuellar Menza', 'Asalejo1', 'd00cb1987c6c69dc665e046a11dccc6b', 'jcuellarmenza@gmail.com', 'calle 8 # 6-87', 'rural', '3133215141', '3224091130', 10),
+(1080041730, 'Julian ', 'Muñoz', 'Guanki', 'a0967dfb810d9c4fad5035cc452a3581', 'jm065726@gmail.com', 'La plata', 'urbana', '3117813045', '', 1),
+(1234567890, 'Ronaldo Stiven ', 'Rosero ', 'Ronald07', 'fff48e1309cc9939c07a1e44fd537543', 'ronalxd07@gmail.com', 'La plata', 'urbana', '3125469874', '', 6);
 
 -- --------------------------------------------------------
 
@@ -240,7 +202,7 @@ CREATE TABLE `venta` (
   `valorven` int(11) NOT NULL COMMENT 'Preci total de la venta',
   `ivaven` varchar(255) NOT NULL COMMENT 'Porcentaje de IVA para mne ',
   `metpagoven` varchar(255) NOT NULL COMMENT 'Metodo de pago de la compra',
-  `dnicli` int(11) NOT NULL COMMENT 'FK de cliente(dnicli)',
+  `idcli` int(11) NOT NULL COMMENT 'FK de cliente(idcli)',
   `idprod` int(11) NOT NULL COMMENT 'FK de producto(idprod)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -249,31 +211,12 @@ CREATE TABLE `venta` (
 --
 
 --
--- Indices de la tabla `administrador`
---
-ALTER TABLE `administrador`
-  ADD PRIMARY KEY (`idadmin`);
-
---
 -- Indices de la tabla `cita`
 --
 ALTER TABLE `cita`
   ADD PRIMARY KEY (`idcit`),
   ADD KEY `idmas` (`idmas`),
-  ADD KEY `dnicli` (`dnicli`),
-  ADD KEY `dnicol` (`dnicol`);
-
---
--- Indices de la tabla `cliente`
---
-ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`dnicli`);
-
---
--- Indices de la tabla `colaborador`
---
-ALTER TABLE `colaborador`
-  ADD PRIMARY KEY (`dnicol`);
+  ADD KEY `idcol` (`idcol`);
 
 --
 -- Indices de la tabla `diagnostico`
@@ -286,8 +229,7 @@ ALTER TABLE `diagnostico`
 -- Indices de la tabla `login`
 --
 ALTER TABLE `login`
-  ADD PRIMARY KEY (`idlog`),
-  ADD KEY `idcli` (`idcli`);
+  ADD PRIMARY KEY (`idlog`);
 
 --
 -- Indices de la tabla `mascota`
@@ -315,44 +257,31 @@ ALTER TABLE `proveedor`
 ALTER TABLE `registroxservicios`
   ADD PRIMARY KEY (`idreg`),
   ADD KEY `idmas` (`idmas`),
-  ADD KEY `dnicli` (`dnicli`),
+  ADD KEY `idcli` (`idcli`),
   ADD KEY `iddiag` (`iddiag`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`dniuser`);
 
 --
 -- Indices de la tabla `venta`
 --
 ALTER TABLE `venta`
   ADD PRIMARY KEY (`idven`),
-  ADD KEY `idprod` (`idprod`),
-  ADD KEY `dnicli` (`dnicli`);
+  ADD KEY `idprod` (`idprod`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `administrador`
---
-ALTER TABLE `administrador`
-  MODIFY `idadmin` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador del administrador', AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
   MODIFY `idcit` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador de cada cita';
-
---
--- AUTO_INCREMENT de la tabla `cliente`
---
-ALTER TABLE `cliente`
-  MODIFY `idcli` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero Identificador del cliente', AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de la tabla `colaborador`
---
-ALTER TABLE `colaborador`
-  MODIFY `idcol` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador del colaborador', AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `diagnostico`
@@ -370,19 +299,19 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT de la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  MODIFY `idmas` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador de la mascota', AUTO_INCREMENT=2;
+  MODIFY `idmas` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador de la mascota', AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idprod` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador del producto', AUTO_INCREMENT=5;
+  MODIFY `idprod` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador del producto', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `idprov` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero Identificador del Proveedor', AUTO_INCREMENT=2;
+  MODIFY `idprov` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero Identificador del Proveedor', AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `registroxservicios`
@@ -404,27 +333,13 @@ ALTER TABLE `venta`
 -- Filtros para la tabla `cita`
 --
 ALTER TABLE `cita`
-  ADD CONSTRAINT `cita_ibfk_1` FOREIGN KEY (`idmas`) REFERENCES `mascota` (`idmas`),
-  ADD CONSTRAINT `cita_ibfk_2` FOREIGN KEY (`dnicli`) REFERENCES `cliente` (`dnicli`),
-  ADD CONSTRAINT `cita_ibfk_3` FOREIGN KEY (`dnicol`) REFERENCES `colaborador` (`dnicol`);
+  ADD CONSTRAINT `cita_ibfk_1` FOREIGN KEY (`idmas`) REFERENCES `mascota` (`idmas`);
 
 --
 -- Filtros para la tabla `diagnostico`
 --
 ALTER TABLE `diagnostico`
   ADD CONSTRAINT `diagnostico_ibfk_1` FOREIGN KEY (`idcit`) REFERENCES `cita` (`idcit`);
-
---
--- Filtros para la tabla `login`
---
-ALTER TABLE `login`
-  ADD CONSTRAINT `login_ibfk_1` FOREIGN KEY (`dnicli`) REFERENCES `cliente` (`dnicli`);
-
---
--- Filtros para la tabla `mascota`
---
-ALTER TABLE `mascota`
-  ADD CONSTRAINT `mascota_ibfk_1` FOREIGN KEY (`dnicli`) REFERENCES `cliente` (`dnicli`);
 
 --
 -- Filtros para la tabla `producto`
@@ -437,15 +352,13 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `registroxservicios`
   ADD CONSTRAINT `registroxservicios_ibfk_1` FOREIGN KEY (`idmas`) REFERENCES `mascota` (`idmas`),
-  ADD CONSTRAINT `registroxservicios_ibfk_2` FOREIGN KEY (`dnicli`) REFERENCES `cliente` (`dnicli`),
   ADD CONSTRAINT `registroxservicios_ibfk_3` FOREIGN KEY (`iddiag`) REFERENCES `diagnostico` (`iddiag`);
 
 --
 -- Filtros para la tabla `venta`
 --
 ALTER TABLE `venta`
-  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`idprod`) REFERENCES `producto` (`idprod`),
-  ADD CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`dnicli`) REFERENCES `cliente` (`dnicli`);
+  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`idprod`) REFERENCES `producto` (`idprod`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
