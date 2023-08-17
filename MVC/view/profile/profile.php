@@ -25,7 +25,6 @@
                     <?php echo ($privilegios <> $privAdmin) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-user-gear'></i><p>Colaboradores</p></button>" ?>
                     <button class="profile-adm-btn"><i class="fa-solid fa-person-circle-check"></i><p>Clientes</p></button>
                     <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i><p>Mascotas</p></button>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-calendar-check"></i><p>Citas</p></button>
                 </div>
             </div>
             <div class="container-right">
