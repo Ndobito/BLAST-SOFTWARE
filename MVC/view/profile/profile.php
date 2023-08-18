@@ -31,12 +31,8 @@
                     <?php echo ($privilegios <> $privAdmin) ? "" : "<a href='?b=inventory&s=listado'><button><i class='fa-solid fa-boxes-stacked'></i><p>Inventarios</p></button></a>" ?>
                     <?php echo ($privilegios <> $privAdmin) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-users'></i><p>Proveedores</p></button>" ?>
                     <?php echo ($privilegios <> $privAdmin) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-user-gear'></i><p>Colaboradores</p></button>" ?>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-person-circle-check"></i>
-                        <p>Clientes</p>
-                    </button>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i>
-                        <p>Mascotas</p>
-                    </button>
+                    <?php echo ($privilegios == $privUser) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-person-circle-check'></i><p>Clientes</p></button>" ?>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i><p>Mascotas</p></button>
                 </div>
             </div>
             <div class="container-right">
@@ -228,87 +224,72 @@
                             </table>
                         </div>";
                 }
-                ?>
-                <div class='profile-adm container-right4' id='container-right5'>
-                    <div class='title'>
-                        <h1>Clientes</h1>
-                    </div>
-                    <div class='table-container'>
-                        <div class='form-container'>
-                            <form method='POST' action='?b=profile&s=buscarClientes'>
-                                <div class='input-group'>
-                                    <input type='text' class='form-control search-input' placeholder='Buscar cliente'
-                                        name='buscar_cliente' id='searchcli'>
-                                    <span class='input-group-btn'>
-                                        <button class='btn btn-default' id='miBoton' type='button'>Buscar</button>
-                                    </span>
-                                </div>
-                            </form>
+
+                if ($privilegios == $privUser) {
+                    echo "";
+                } else {
+                    echo "
+                    <div class='profile-adm container-right4' id='container-right5'>
+                        <div class='title'>
+                            <h1>Clientes</h1>
                         </div>
-                    </div>
-                    <table class='table-container'>
-                        <thead>
-                            <tr>
-                                <th>N° Identificacion</th>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Usuario</th>
-                                <th>Direccion</th>
-                                <th>Zona</th>
-                                <th>Telefono</th>
-                                <th>Telefono Alternaivo</th>
-                            </tr>
-                        </thead>
-                        <tbody id='resultados'>
-                            <?php
-                            foreach ($users as $key => $cliente) {
-                                if ($cliente['privileges'] == Privilegios::User->get()) {
-                                    ?>
-                                    <tr>
-                                        <td>
-                                            <?php echo $cliente['dniuser']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $cliente['nameuser']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $cliente['surnameuser']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $cliente['nickuser']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $cliente['emailuser']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $cliente['zoneuser']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $cliente['phoneuser']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $cliente['phonealtuser']; ?>
-                                        </td>
-                                        <td class='icons1'>
-                                            <a
-                                                href='?b=profile&s=optionEditRedirec&p=cliente&idcli=<?= $cliente['dniuser']; ?>'>
-                                                <i class='fa fa-pencil fa-lg' aria-hidden='true'></i>
-                                            </a>
-                                        </td>
-                                        <td class='icons2'>
-                                            <a onclick='alertProfile(this.id, ' cliente')'
-                                                id='<?php echo $cliente['dniuser']; ?>'>
-                                                <i class='fa-solid fa-trash-can' aria-hidden='true'></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <?php
-                                }
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
+                        <div class='table-container'>
+                            <div class='form-container'>
+                                <form method='POST' action='?b=profile&s=buscarClientes'>
+                                    <div class='input-group'>
+                                        <input type='text' class='form-control search-input' placeholder='Buscar cliente' name='buscar_cliente' id='searchcli'>
+                                        <span class='input-group-btn'>
+                                            <button class='btn btn-default' id='miBoton' type='button'>Buscar</button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <table class='table-container'>
+                            <thead>
+                                <tr>
+                                    <th>N° Identificacion</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Usuario</th>
+                                    <th>Direccion</th>
+                                    <th>Zona</th>
+                                    <th>Telefono</th>
+                                    <th>Telefono Alternaivo</th>
+                                </tr>
+                            </thead>
+                            <tbody id='resultados'>"; 
+                    foreach ($users as $key => $cliente) {
+                        if ($cliente['privileges'] == Privilegios::User) {  
+                            echo "
+                                <tr>
+                                    <td>" . $cliente['dniuser'] . "</td>
+                                    <td>" . $cliente['nameuser'] . "</td>
+                                    <td>" . $cliente['surnameuser'] . "</td>
+                                    <td>" . $cliente['nickuser'] . "</td>
+                                    <td>" . $cliente['emailuser'] . "</td>
+                                    <td>" . $cliente['zoneuser'] . "</td>
+                                    <td>" . $cliente['phoneuser'] . "</td>
+                                    <td>" . $cliente['phonealtuser'] . "</td>
+                                    <td class='icons1'>
+                                        <a href='?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $cliente['dniuser'] . "'>
+                                            <i class='fa fa-pencil fa-lg' aria-hidden='true'></i>
+                                        </a>
+                                    </td>
+                                    <td class='icons2'>
+                                        <a onclick=\"alertProfile(this.id, 'cliente')\" id='" . $cliente['dniuser'] . "'>
+                                            <i class='fa-solid fa-trash-can' aria-hidden='true'></i>
+                                        </a>
+                                    </td>
+                                </tr>";
+                        }
+                    }
+                    echo "
+                            </tbody>
+                        </table>
+                    </div>";
+                }
+                ?>
                 <div class="profile-adm container-right5" id="container-right6">
                     <div class="title">
                         <h1>mascota</h1>
@@ -390,7 +371,6 @@
         </main>
 
     </div>
-
     <!-- Alerts -->
     <script src="assets/Javascript/alert-profile.js"></script>
 
