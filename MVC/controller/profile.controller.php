@@ -18,20 +18,21 @@ class ProfileController
         //     redirect("?")->error("No tiene permisos")->send();
         // }
         $roles = [
-            Privilegios::User->get()+Privilegios::Recepcionist->get() => "Recepcionista",
-            Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get() => "Doctor"
-        ]; 
+            Privilegios::Recepcionist->get() => "Recepcionista",
+            Privilegios::Doctor->get() => "Doctor",
+            Privilegios::Recepcionist->get() + Privilegios::Doctor->get() => "Doctor, Recepcionista",
+        ];
 
         // -----Variables para obtener las listas a mostrar----- //
         $privilegios = $this->object->getPrivileges();
         $proveedores = $this->object->getProveedores();
-        $users = $this->object->getUsers(); 
+        $users = $this->object->getUsers();
         $mascota = $this->object->getMascota();
 
         $privUser = Privilegios::User->get();
-        $privRecepcionist = Privilegios::User->get()+Privilegios::Recepcionist->get();
-        $privDoctor = Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get();
-        $privAdmin = Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()+Privilegios::Admin->get(); 
+        $privRecepcionist = Privilegios::User->get() + Privilegios::Recepcionist->get();
+        $privDoctor = Privilegios::User->get() + Privilegios::Recepcionist->get() + Privilegios::Doctor->get();
+        $privAdmin = Privilegios::User->get() + Privilegios::Recepcionist->get() + Privilegios::Doctor->get() + Privilegios::Admin->get();
 
         // -----Variables de Session----- //
         $usuario = $_SESSION['usuario'];
@@ -88,8 +89,8 @@ class ProfileController
                     $param = "idmas";
                     $idMascota = $_GET['idmas'];
                     $mascota = $this->object->existProfile($table, $param, $idMascota);
-                    $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
                     require_once "view/head.php";
+                    $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
                     require_once "view/profile/admin/edit/editar-mascota.php";
                 }
                 break;
@@ -112,7 +113,12 @@ class ProfileController
             case 'colaborador':
                 $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
                 require_once "view/head.php";
-                require_once "view/profile/admin/save/agregar-colaborador.php";
+                require_once "view/profile/save/agregar-colaborador.php";
+                break;
+            case 'mascota':
+                $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
+                require_once "view/head.php";
+                require_once "view/profile/save/agregar-mascota.php";
                 break;
             default:
                 redirect("?b=profile&s=Inicio&p=admin")->error("Pagina no encontrada")->send();
@@ -146,61 +152,63 @@ class ProfileController
     }
 
     // -----Metodo oara mostrar los resultados del buscador de Colaborador------ //
-    // public function buscarColaborador()
-    // {
-    //     $searchTerm = $_POST['buscar_empleado'];
-    //     $empleados = $this->object->getEmpleado();
-
-    //     $filteredEmpleados = array_filter($empleados, function ($empleado) use ($searchTerm) {
-    //         return (stripos($empleado['idcol'], $searchTerm) !== false) ||
-    //             (stripos($empleado['dnicol'], $searchTerm) !== false) ||
-    //             (stripos($empleado['nomcol'], $searchTerm) !== false) ||
-    //             (stripos($empleado['rolcol'], $searchTerm) !== false);
-    //     });
-
-    //     foreach ($filteredEmpleados as $empleado) {
-    //         echo '<tr>';
-    //         echo '<td>' . $empleado['idcol'] . '</td>';
-    //         echo '<td>' . ($empleado['dnicol'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($empleado['nomcol'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($empleado['emacol'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($empleado['dircol'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($empleado['telcol'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($empleado['rolcol'] ?? "Sin definir") . '</td>';
-    //         echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
-    //         echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
-    //         echo '</tr>';
-    //     }
-    // }
+    public function buscarColaborador()
+    {
+        $searchTerm = $_POST['buscar_empleado'];
+        $empleados = $this->object->buscarColaborador($searchTerm);
+    
+        $roles = [
+            Privilegios::Recepcionist->get() => "Recepcionista",
+            Privilegios::Doctor->get() => "Doctor",
+            Privilegios::Recepcionist->get() + Privilegios::Doctor->get() => "Doctor, Recepcionista",
+        ];
+    
+        foreach ($empleados as $empleado) {
+            echo '<tr>';
+            echo '<td>' . $empleado['dniuser'] . '</td>';
+            echo '<td>' . ($empleado['nameuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($empleado['surnameuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($empleado['nickuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($empleado['emailuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($empleado['diruser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($empleado['zoneuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($empleado['phoneuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($empleado['phonealtuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($roles[$empleado['privileges']] ?? "Sin definir") . '</td>';
+            echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
+            echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
+            echo '</tr>';
+        }
+    }
+    
 
     // -----Metodo para mostrar los resultados del buscador de Clientes------ //
-    // public function buscarClientes()
-    // {
-    //     $searchTerm = $_POST['buscar_cliente'];
-    //     $clientes = $this->object->getCliente();
+    public function buscarClientes()
+{
+    $searchTerm = $_POST['buscar_cliente'];
+    $clientes = $this->object->buscarClientes($searchTerm);
 
-    //     $filteredcliente = array_filter($clientes, function ($cliente) use ($searchTerm) {
-    //         return (stripos($cliente['idcli'], $searchTerm) !== false) ||
-    //             (stripos($cliente['nomcli'], $searchTerm) !== false) ||
-    //             (stripos($cliente['emacli'], $searchTerm) !== false) ||
-    //             (stripos($cliente['usercli'], $searchTerm) !== false);
-    //     });
+    $roles = [
+        Privilegios::User->get() => "Usuario",
+    ];
 
-    //     foreach ($filteredcliente as $cliente) {
-    //         echo '<tr>';
-    //         echo '<td>' . $cliente['idcli'] . '</td>';
-    //         echo '<td>' . ($cliente['nomcli'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($cliente['emacli'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($cliente['usercli'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($cliente['dircli'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($cliente['tzonecli'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($cliente['telcli'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($cliente['telaltcli'] ?? "Sin definir") . '</td>';
-    //         echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
-    //         echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
-    //         echo '</tr>';
-    //     }
-    // }
+    foreach ($clientes as $cliente) {
+        echo '<tr>';
+        echo '<td>' . $cliente['dniuser'] . '</td>';
+        echo '<td>' . ($cliente['nameuser'] ?? "Sin definir") . '</td>';
+        echo '<td>' . ($cliente['surnameuser'] ?? "Sin definir") . '</td>';
+        echo '<td>' . ($cliente['nickuser'] ?? "Sin definir") . '</td>';
+        echo '<td>' . ($cliente['emailuser'] ?? "Sin definir") . '</td>';
+        echo '<td>' . ($cliente['diruser'] ?? "Sin definir") . '</td>';
+        echo '<td>' . ($cliente['zoneuser'] ?? "Sin definir") . '</td>';
+        echo '<td>' . ($cliente['phoneuser'] ?? "Sin definir") . '</td>';
+        echo '<td>' . ($cliente['phonealtuser'] ?? "Sin definir") . '</td>';
+        echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
+        echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
+        echo '</tr>';
+    }
+}
+
 
     // -----Metodo oara mostrar los resultados del buscador de Mascotas------ //
     public function buscarMascotas()
@@ -274,8 +282,7 @@ class ProfileController
                     redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("Se deben llenar todos los campos")->send();
                 } else {
                     if ($this->object->verifyLeterString($_POST['ctNumId'])) {
-                        redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("El numero de identificacion no puede llevar
-letras")->send();
+                        redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("El numero de identificacion no puede llevar letras")->send();
                     } else {
                         if ($this->object->verifyNumberString($_POST['ctNomCol'])) {
                             redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("El nombre no puede llevar numeros")->send();
@@ -301,8 +308,7 @@ letras")->send();
                                             redirect("?b=profile&s=Inicio&p=admin")->error("Error al crear el usuario")->send();
                                         }
                                     } else {
-                                        redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("La contraseña no cumple con los requisitos minimos de
-seguridad. ")->send();
+                                        redirect("?b=profile&s=optionSaveRedirec&p=colaborador")->error("La contraseña no cumple con los requisitos minimos de seguridad. ")->send();
                                     }
                                 }
                             }
@@ -317,9 +323,29 @@ seguridad. ")->send();
                 ) {
                 }
                 break;
-            default:
-                redirect("?b=profile&s=Inicio&p=admin")->error("404 Not Found: Accion invalida")->send();
-                break;
+        }
+    }
+
+    public function saveMascota()
+    {
+        if (
+            empty($_POST['NomMas']) || empty($_POST['EdadMas']) || empty($_POST['genmas']) ||
+            empty($_POST['espmas'])
+        ) {
+            redirect("?b=profile&s=optionSaveRedirec&p=mascota")->error("Se deben llenar todos los campos")->send();
+        } else {
+            // Aquí falta implementar las validaciones para los campos.
+
+            $nombreMascota = $_POST['NomMas'];
+            $edadMascota = $_POST['EdadMas'];
+            $generoMascota = $_POST['genmas'];
+            $especieMascota = $_POST['espmas'];
+
+            if ($this->object->saveMascota($nombreMascota, $edadMascota, $generoMascota, $especieMascota)) {
+                redirect("?b=profile&s=Inicio&p=admin")->success("Se ha agregado la mascota correctamente")->send();
+            } else {
+                redirect("?b=profile&s=Inicio&p=admin")->error("Error al agregar la mascota")->send();
+            }
         }
     }
 
@@ -382,24 +408,20 @@ seguridad. ")->send();
                         empty($_POST['telcol']) || empty($_POST['rolcol'])
                     ) {
                         $colaboradorId = $_REQUEST['idcola'];
-                        redirect("?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaboradorId)->error("Complete todos los
-campos")->send();
+                        redirect("?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaboradorId)->error("Complete todos los campos")->send();
                     } else {
                         if ($this->object->verifyNumberString($_POST['nomcol'])) {
                             $colaboradorId = $_REQUEST['idcola'];
-                            redirect("?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaboradorId)->error("El nombre no puede conetener
-numeros")->send();
+                            redirect("?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaboradorId)->error("El nombre no puede conetener numeros")->send();
                         } else {
                             if ($this->object->verifyEmailString($_POST['emacol'])) {
                                 if ($this->object->verifyNumberString($_POST['rolcol'])) {
                                     $colaboradorId = $_REQUEST['idcola'];
-                                    redirect("?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaboradorId)->error("El rol no puede conetener
-numeros")->send();
+                                    redirect("?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaboradorId)->error("El rol no puede conetener numeros")->send();
                                 } else {
                                     if ($this->object->verifyLeterString($_POST['telcol'])) {
                                         $colaboradorId = $_REQUEST['idcola'];
-                                        redirect("?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaboradorId)->error("El numero de telefono no puede
-contener letras")->send();
+                                        redirect("?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaboradorId)->error("El numero de telefono no puede contener letras")->send();
                                     } else {
                                     }
                                     $id = $_POST['idcol'];
@@ -417,8 +439,7 @@ contener letras")->send();
                                 }
                             } else {
                                 $colaboradorId = $_REQUEST['idcola'];
-                                redirect("?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaboradorId)->error("El correo electronico no
-cumple con su formato")->send();
+                                redirect("?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaboradorId)->error("El correo electronico no cumple con su formato")->send();
                             }
                         }
                     }
@@ -431,19 +452,16 @@ cumple con su formato")->send();
                         || empty($_POST['ctTelProv'])
                     ) {
                         $ProveedorId = $_REQUEST['idprov'];
-                        redirect("?b=profile&s=optionEditRedirec&p=proveedor&idprov=" . $ProveedorId)->error("Complete todos los
-campos")->send();
+                        redirect("?b=profile&s=optionEditRedirec&p=proveedor&idprov=" . $ProveedorId)->error("Complete todos los campos")->send();
                     } else {
                         if ($this->object->verifyNumberString($_POST['ctNomProv'])) {
                             $ProveedorId = $_REQUEST['idprov'];
-                            redirect("?b=profile&s=optionEditRedirec&p=proveedor&idprov=" . $ProveedorId)->error("El nombre no puede conetener
-numeros")->send();
+                            redirect("?b=profile&s=optionEditRedirec&p=proveedor&idprov=" . $ProveedorId)->error("El nombre no puede conetener numeros")->send();
                         } else {
                             if ($this->object->verifyEmailString($_POST['ctEmaProv'])) {
                                 if ($this->object->verifyLeterString($_POST['ctTelProv'])) {
                                     $ProveedorId = $_REQUEST['idprov'];
-                                    redirect("?b=profile&s=optionEditRedirec&p=proveedor&idprov=" . $ProveedorId)->error("El numero de telefono no puede
-contener letras")->send();
+                                    redirect("?b=profile&s=optionEditRedirec&p=proveedor&idprov=" . $ProveedorId)->error("El numero de telefono no puede contener letras")->send();
                                 } else {
                                     $id = $_POST['ctIdProv'];
                                     $name = $_POST['ctNomProv'];
@@ -459,8 +477,7 @@ contener letras")->send();
                                 }
                             } else {
                                 $ProveedorId = $_REQUEST['idprov'];
-                                redirect("?b=profile&s=optionEditRedirec&p=proveedor&idprov=" . $ProveedorId)->error("El correo electronico no cumple
-con su formato")->send();
+                                redirect("?b=profile&s=optionEditRedirec&p=proveedor&idprov=" . $ProveedorId)->error("El correo electronico no cumple con su formato")->send();
                             }
                         }
                     }
@@ -476,13 +493,11 @@ con su formato")->send();
                         empty($_POST['dircli']) || empty($_POST['zona']) || empty($_POST['telcli'])
                     ) {
                         $clienteId = $_REQUEST['numid'];
-                        redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("Complete todos los campos con el
-(*)")->send();
+                        redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("Complete todos los campos con el (*)")->send();
                     } else {
                         if ($this->object->verifyLeterString($_POST['idcli'])) {
                             $clienteId = $_REQUEST['numid'];
-                            redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("El numero de identificacion no puede
-llevar letras. ")->send();
+                            redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("El numero de identificacion no puede llevar letras. ")->send();
                         } else {
                             if ($this->object->verifyNumberString($_POST['nomcli'])) {
                                 $clienteId = $_REQUEST['numid'];
@@ -491,18 +506,15 @@ llevar letras. ")->send();
                             } else {
                                 if (!$this->object->verifyEmailString($_POST['emacli'])) {
                                     $clienteId = $_REQUEST['numid'];
-                                    redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("El formato del correo electronico es
-invalido. ")->send();
+                                    redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("El formato del correo electronico es invalido. ")->send();
                                 } else {
                                     if ($this->object->userExist("usercli", "cliente", "usercli", $_POST['usercli'])) {
                                         $clienteId = $_REQUEST['numid'];
-                                        redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("Ya existe un nombre de usuario con ese
-nickuser. ")->send();
+                                        redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("Ya existe un nombre de usuario con ese nickuser. ")->send();
                                     } else {
                                         if ($this->object->verifyLeterString($_POST['telcli']) || $this->object->verifyLeterString($_POST['telaltcli'])) {
                                             $clienteId = $_REQUEST['numid'];
-                                            redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("Los numero de telefono no pueden llevar
-letras.")->send();
+                                            redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("Los numero de telefono no pueden llevar letras.")->send();
                                         } else {
                                             $id = $_POST['idcli'];
                                             $nom = $_POST['nomcli'];
@@ -517,8 +529,7 @@ letras.")->send();
                                                 redirect("?b=profile&s=Inicio&p=admin")->success("Se ha actualizado la información del cliente")->send();
                                             } else {
                                                 $clienteId = $_REQUEST['numid'];
-                                                redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("Error al actualizar la informacion del
-cliente.")->send();
+                                                redirect("?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $clienteId)->error("Error al actualizar la informacion del cliente.")->send();
                                             }
                                         }
                                     }
@@ -541,18 +552,15 @@ cliente.")->send();
                     } else {
                         if ($this->object->verifyLeterString($_POST['idmas'])) {
                             $idmas = $_REQUEST['id'];
-                            redirect("?b=profile&s=optionEditRedirec&p=mascota&idmas=" . $idmas)->error("El id de la mascota no puede tener
-letras.")->send();
+                            redirect("?b=profile&s=optionEditRedirec&p=mascota&idmas=" . $idmas)->error("El id de la mascota no puede tener letras.")->send();
                         } else {
                             if ($this->object->verifyNumberString($_POST['nommas'])) {
                                 $idmas = $_REQUEST['id'];
-                                redirect("?b=profile&s=optionEditRedirec&p=mascota&idmas=" . $idmas)->error("El nombre de la mascota no puede tener
-numeros")->send();
+                                redirect("?b=profile&s=optionEditRedirec&p=mascota&idmas=" . $idmas)->error("El nombre de la mascota no puede tener numeros")->send();
                             } else {
                                 if ($this->object->verifyLeterString($_POST['edadmas'])) {
                                     $idmas = $_REQUEST['id'];
-                                    redirect("?b=profile&s=optionEditRedirec&p=mascota&idmas=" . $idmas)->error("La edad debe ser solamente con
-numeros.")->send();
+                                    redirect("?b=profile&s=optionEditRedirec&p=mascota&idmas=" . $idmas)->error("La edad debe ser solamente con numeros.")->send();
                                 } else {
                                     $id = $_POST['idmas'];
                                     $name = $_POST['nommas'];
@@ -592,8 +600,7 @@ numeros.")->send();
                 if ($action) {
                     redirect("?b=profile&s=Inicio&p=admin")->success("Se ha eliminado el proveedor con exito")->send();
                 } else {
-                    redirect("?b=profile&s=Inicio&p=admin")->error("No se pudo eliminar el proveedor, revise que no haya ningun producto
-asignado a este proveedor. ")->send();
+                    redirect("?b=profile&s=Inicio&p=admin")->error("No se pudo eliminar el proveedor, revise que no haya ningun producto asignado a este proveedor. ")->send();
                 }
                 break;
             case 'cliente':
@@ -603,8 +610,7 @@ asignado a este proveedor. ")->send();
                 if ($action) {
                     redirect("?b=profile&s=Inicio&p=admin")->success("Cliente eliminado con exito!")->send();
                 } else {
-                    redirect("?b=profile&s=Inicio&p=admin")->error("No se pudo eliminar el cliente, revise que no haya ninguna mascota
-asociada a este cliente.")->send();
+                    redirect("?b=profile&s=Inicio&p=admin")->error("No se pudo eliminar el cliente, revise que no haya ninguna mascota asociada a este cliente.")->send();
                 }
                 break;
             case 'colaborador':

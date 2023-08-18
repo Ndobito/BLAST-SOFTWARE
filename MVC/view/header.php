@@ -7,14 +7,6 @@
                     <a href="https://api.whatsapp.com/send?phone=3133215141"><i class="fa-brands fa-whatsapp"></i></a>
                     <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
                 </div>
-                <div class="search-bar">
-                    <div>
-                        <form action="#" method="post">
-                            <input type="search" name="ctSearch" id="ctSearch" placeholder="¿Que deseas buscar hoy?">
-                            <i type="submit" id="icon-search" class="fa-solid fa-magnifying-glass"></i>
-                        </form>
-                    </div>
-                </div>
                 <div class="button-register">
                     <div class="button-register">
                         <?php
