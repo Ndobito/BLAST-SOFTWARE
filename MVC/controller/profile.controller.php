@@ -18,27 +18,29 @@ class ProfileController
         //     redirect("?")->error("No tiene permisos")->send();
         // }
         $roles = [
-            Privilegios::User->get()+Privilegios::Recepcionist->get() => "Recepcionista",
-            Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get() => "Doctor"
+            Privilegios::Recepcionist->get() => "Recepcionista",
+            Privilegios::Doctor->get() => "Doctor"
         ]; 
 
         // -----Variables para obtener las listas a mostrar----- //
         $privilegios = $this->object->getPrivileges();
-        $proveedores = $this->object->getProveedores();
-        $users = $this->object->getUsers(); 
-        $mascota = $this->object->getMascota();
+        $proveedores = $this->object->getAll("proveedor");
+        $users = $this->object->getAll("usuario"); 
+        $mascota = $this->object->getAll("mascota");
+        $productos = $this->object->getAll("producto");
+        $categorias = $this->object->getAll("categoria"); 
 
         $privUser = Privilegios::User->get();
-        $privRecepcionist = Privilegios::User->get()+Privilegios::Recepcionist->get();
-        $privDoctor = Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get();
-        $privAdmin = Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()+Privilegios::Admin->get(); 
+        $privRecepcionist = Privilegios::Recepcionist->get();
+        $privDoctor = Privilegios::Doctor->get();
+        $privAdmin = Privilegios::Admin->get(); 
 
         // -----Variables de Session----- //
         $usuario = $_SESSION['usuario'];
         $user = $this->object->selectUser($usuario);
 
         // -----Vistas Requeridas----- //
-        $style = "<link rel='stylesheet' href='assets/css/style-admin.css'>";
+        $style = "<link rel='stylesheet' href='assets/css/style-profile.css'>";
         require_once "view/head.php";
         require_once "view/profile/profile.php";
         require_once "view/footerprofile.php";
@@ -120,11 +122,32 @@ class ProfileController
         }
     }
 
+    // // -----Buscar Colaborador en Receta medica----- //
+
+    // public function searchUser(){
+    //     $o = $_REQUEST['p'];
+    //     switch($o){
+    //         case "col":
+    //             if(!empty($_POST['numIdColaborador'])){
+    //                 if($this->object->verifyLeterString($_POST['numIdColaborador'])){
+    //                     redirect("?b=profile&s=Inicio")->error("El numero de identificacion no puede llevar letras")->send();
+    //                 }else{
+    //                     $id = $_POST['numIdColaborador'];
+    //                     $colaborador = $this->object->selectNameUser($id); 
+    //                     header('Content-Type: application/json');
+    //                     echo json_encode($colaborador); 
+    //                 }
+    //             } 
+    //             break; 
+    //     } 
+    // }
+
+
     // -----Metodo oara mostrar los resultados del buscador de Proveedor------ //
     public function buscarProveedor()
     {
         $searchTerm = $_POST['buscar_proveedor'];
-        $proveedores = $this->object->getProveedores();
+        $proveedores = $this->object->getAll("proveedor");
 
         $filteredProveedores = array_filter($proveedores, function ($proveedor) use ($searchTerm) {
             return (stripos($proveedor['idprov'], $searchTerm) !== false) ||
@@ -173,40 +196,41 @@ class ProfileController
     //     }
     // }
 
-    // -----Metodo para mostrar los resultados del buscador de Clientes------ //
-    // public function buscarClientes()
-    // {
-    //     $searchTerm = $_POST['buscar_cliente'];
-    //     $clientes = $this->object->getCliente();
+    //-----Metodo para mostrar los resultados del buscador de Clientes------ //
+    public function buscarClientes()
+    {
+        $searchTerm = $_POST['buscar_cliente'];
+        $clientes = $this->object->getAll("usuario");
 
-    //     $filteredcliente = array_filter($clientes, function ($cliente) use ($searchTerm) {
-    //         return (stripos($cliente['idcli'], $searchTerm) !== false) ||
-    //             (stripos($cliente['nomcli'], $searchTerm) !== false) ||
-    //             (stripos($cliente['emacli'], $searchTerm) !== false) ||
-    //             (stripos($cliente['usercli'], $searchTerm) !== false);
-    //     });
+        $filteredcliente = array_filter($clientes, function ($cliente) use ($searchTerm) {
+            return (stripos($cliente['dniuser'], $searchTerm) !== false) ||
+                (stripos($cliente['nameuser'], $searchTerm) !== false) ||
+                (stripos($cliente['emailuser'], $searchTerm) !== false) ||
+                (stripos($cliente['nickuser'], $searchTerm) !== false);
+        });
 
-    //     foreach ($filteredcliente as $cliente) {
-    //         echo '<tr>';
-    //         echo '<td>' . $cliente['idcli'] . '</td>';
-    //         echo '<td>' . ($cliente['nomcli'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($cliente['emacli'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($cliente['usercli'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($cliente['dircli'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($cliente['tzonecli'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($cliente['telcli'] ?? "Sin definir") . '</td>';
-    //         echo '<td>' . ($cliente['telaltcli'] ?? "Sin definir") . '</td>';
-    //         echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
-    //         echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
-    //         echo '</tr>';
-    //     }
-    // }
+        foreach ($filteredcliente as $cliente) {
+            echo '<tr>';
+            echo '<td>' . $cliente['dniuser'] . '</td>';
+            echo '<td>' . ($cliente['nameuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['surnameuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['nickuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['emailuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['diruser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['zoneuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['phoneuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['phonealtuser'] ?? "Sin definir") . '</td>';
+            echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
+            echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
+            echo '</tr>';
+        }
+    }
 
     // -----Metodo oara mostrar los resultados del buscador de Mascotas------ //
     public function buscarMascotas()
     {
         $searchTerm = $_POST['buscar_mascota'];
-        $mascotas = $this->object->getMascota();
+        $mascotas = $this->object->getAll("mascota");
 
         $filteredmascota = array_filter($mascotas, function ($mascota) use ($searchTerm) {
             return (stripos($mascota['idmas'], $searchTerm) !== false) ||
@@ -328,35 +352,30 @@ seguridad. ")->send();
     {
         if (isset($_REQUEST['btnUpdateProfile'])) {
             if (
-                $_POST['ctIdUser'] == "" || $_POST['ctNameUser'] == "" || $_POST['ctSurNameUser'] == "" || $_POST['ctAdrUser'] == ""
-                || $_POST['selZone'] == "" || $_POST['ctEmailUser'] == "" || $_POST['ctNumCelUser'] == ""
-            ) {
-                redirect("?b=profile&s=Inicio&p=admin&v=true")->error("Se deben llenar todos los campos")->send();
+                empty($_POST['numid']) || empty($_POST['name']) || empty($_POST['surname']) || empty($_POST['addres']) || empty($_POST['zone']) || empty($_POST['email']) || empty($_POST['phone'])) {
+                redirect("?b=profile&s=Inicio&p=admin&v=true")->error("Se deben llenar todos los campos con (*)")->send();
             } else {
-                if ($this->object->verifyLeterString($_POST['ctIdUser'])) {
+                if ($this->object->verifyLeterString($_POST['numid'])) {
                     redirect("?b=profile&s=Inicio")->error("El numero de Identificacion no puede llevar letras")->send();
                 } else {
-                    if (
-                        $this->object->verifyNumberString($_POST['ctNameUser']) ||
-                        $this->object->verifyNumberString($_POST['ctSurNameUser'])
-                    ) {
+                    if ($this->object->verifyNumberString($_POST['name']) || $this->object->verifyNumberString($_POST['surname'])) {
                         redirect("?b=profile&s=Inicio")->error("Los nombres y apellidos no pueden llevar numeros")->send();
                     } else {
-                        if (!$this->object->verifyEmailString($_POST['ctEmailUser'])) {
+                        if (!$this->object->verifyEmailString($_POST['email'])) {
                             redirect("?b=profile&s=Inicio")->error("Formato de correo electronico invalido")->send();
                         } else {
-                            if ($this->object->verifyLeterString($_POST['ctNumCelUser']) || $this->object->verifyLeterString($_POST['ctNumCel2'])) {
+                            if ($this->object->verifyLeterString($_POST['phone']) || $this->object->verifyLeterString($_POST['phone2'])) {
                                 redirect("?b=profile&s=Inicio")->error("Los numero de telefonos no pueden contener letras")->send();
                             } else {
                                 $u = new Profile();
-                                $u->id = $_POST['ctIdUser'];
-                                $u->nombre = $_POST['ctNameUser'];
-                                $u->apellido = $_POST['ctSurNameUser'];
-                                $u->email = $_POST['ctEmailUser'];
-                                $u->direccion = $_POST['ctAdrUser'];
-                                $u->zona = $_POST['selZone'];
-                                $u->numcel = $_POST['ctNumCelUser'];
-                                $u->numcel2 = $_POST['ctNumCel2'];
+                                $u->id = $_POST['numid'];
+                                $u->nombre = $_POST['name'];
+                                $u->apellido = $_POST['surname'];
+                                $u->email = $_POST['email'];
+                                $u->direccion = $_POST['addres'];
+                                $u->zona = $_POST['zone'];
+                                $u->numcel = $_POST['phone'];
+                                $u->numcel2 = $_POST['phone2'];
                                 if ($this->object->update($u)) {
                                     redirect("?b=profile&s=Inicio")->success("Se ha actualizado la información del usuario")->send();
                                 } else {

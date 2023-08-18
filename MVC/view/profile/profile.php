@@ -20,16 +20,17 @@
                     </button>
                     <button class="profile-adm-btn"><i class="fa-solid fa-house-user"></i><p>Inicio</p></button>
                     <button class="profile-adm-btn"><i class="fa-solid fa-user-pen"></i><p style="white-space: nowrap">Datos del usuario</p></button>
-                    <?php echo ($privilegios <> $privAdmin) ? "" : "<a href='?b=inventory&s=listado'><button><i class='fa-solid fa-boxes-stacked'></i><p>Inventarios</p></button></a>" ?>
+                    <?php echo ($privilegios <> $privAdmin) ? "" : "<a href='?b=inventory&s=Inicio'><button><i class='fa-solid fa-boxes-stacked'></i><p>Inventarios</p></button></a>" ?>
                     <?php echo ($privilegios <> $privAdmin) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-users'></i><p>Proveedores</p></button>" ?>
                     <?php echo ($privilegios <> $privAdmin) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-user-gear'></i><p>Colaboradores</p></button>" ?>
                     <?php echo ($privilegios == $privUser) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-person-circle-check'></i><p>Clientes</p></button>" ?>
                     <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i><p>Mascotas</p></button>
+                    <?php echo ($privilegios == $privUser || $privilegios == $privRecepcionist) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-syringe'></i><p>Recetar</p></button>" ?>
                 </div>
             </div>
             <div class="container-right">
                 <div class="profile-adm welcome" id="container-right">
-                    <h1>Bienvenido(a) al panel de <?php echo ($privilegios === Privilegios::User->get()) ? 'Cliente' : (($privilegios === Privilegios::User->get()+Privilegios::Recepcionist->get()) ? 'Recepcionista' : (($privilegios === Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()) ? 'Doctor' : (($privilegios === Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()+Privilegios::Admin->get()) ? 'Administrador' : 'Indefinido'))); ?></h1>
+                    <h1>Bienvenido(a) al panel de <?php echo ($privilegios ===$privUser) ? 'Cliente' : (($privilegios === $privRecepcionist) ? 'Recepcionista' : (($privilegios === $privDoctor) ? 'Doctor' : (($privilegios === $privAdmin) ? 'Administrador' : 'Indefinido'))); ?></h1>
                     <p>Dirijase al menu lateral para poder navegar dentro del sitio. </p>
                     <i class="fa-solid fa-face-smile-beam"></i>
                 </div>
@@ -37,19 +38,18 @@
                     <div class="user-information">
                         <h1>Datos</h1>
                         <form id="form-user-information" action="?b=profile&s=updateUser" method="post">
-                            <label for="ctNameUser">Numero de Identificacion*</label>
-                            <input name="ctIdUser" type="number" value="<?php echo $user['dniuser'] ?>" disabled>
-                            <label for="ctNameUser">Nombres*</label>
-                            <input type="text" name="ctNameUser" id="ctNameUser"
+                            <input name="numid" type="hidden" value="<?php echo $user['dniuser'] ?>" disabled>
+                            <label for="name">Nombres*</label>
+                            <input type="text" name="name" id="ctNameUser"
                                 value="<?php echo $user['nameuser'] ?? "Sin definir"; ?>" disabled>
-                            <label for="ctSurNameUser">Apellidos *</label>
-                            <input type="text" name="ctSurNameUser" id="ctSurNameUser"
+                            <label for="surname">Apellidos *</label>
+                            <input type="text" name="surname" id="ctSurNameUser"
                                 value="<?php echo $user['surnameuser'] ?? "Sin definir"; ?>" disabled>
-                            <label for="ctNameuser">Direccion *</label>
-                            <input type="text" name="ctAdrUser" id="ctAdrUser" value="<?php echo $user['diruser']; ?>"
+                            <label for="address">Direccion *</label>
+                            <input type="text" name="addres" id="ctAdrUser" value="<?php echo $user['diruser']; ?>"
                                 disabled>
-                            <label for="ctNameuser">Zona: *</label>
-                            <select name="selZone" id="ctZone" disabled>
+                            <label for="zone">Zona: *</label>
+                            <select name="zone" id="ctZone" disabled>
                                 <option
                                     <?php echo ($user['zoneuser'] <> "urbana" && $user['zoneuser'] <> "rural") ? "selected" : "" ?>
                                     disabled></option>
@@ -60,18 +60,18 @@
                             </select>
                             <div>
                                 <div>
-                                    <label for="ctEmailUser">Correo Eletrónico *</label>
-                                    <input type="text" name="ctEmailUser" id="ctEmailUser"
+                                    <label for="email">Correo Eletrónico *</label>
+                                    <input type="text" name="email" id="ctEmailUser"
                                         value="<?php echo $user['emailuser']; ?>" disabled>
                                 </div>
                                 <div>
-                                    <label for="ctNumCelUser">Numero de Celular 1 *</label>
-                                    <input type="text" name="ctNumCelUser" id="ctNumCelUser"
+                                    <label for="phone">Numero de Celular 1 *</label>
+                                    <input type="number" name="phone" id="ctNumCelUser"
                                         value="<?php echo $user['phoneuser']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCel2">Numero de Celular 2</label>
-                                    <input type="text" name="ctNumCel2" id="ctNumCel2"
+                                    <input type="number" name="phone2" id="ctNumCel2"
                                         value="<?php echo $user['phonealtuser']; ?>" disabled>
 
                                 </div>
@@ -79,7 +79,7 @@
                             <div class="updatebutton">
                                 <span id="enableForm1"> Editar</span>
                             </div>
-                            <input type="hidden" name="ctPrivileges" value="<?php echo $privilegios ?>">
+                            <input type="hidden" name="privileges" value="<?php echo $privilegios ?>">
 
                             <input type="submit" name="btnUpdateProfile" value="Guardar">
                         </form>
@@ -196,7 +196,7 @@
                                     <td>" . $colaborador['phoneuser'] . "</td>
                                     <td>" . $colaborador['phonealtuser'] . "</td>";
                                     echo "
-                                        <td>" . (($colaborador['privileges'] == Privilegios::User->get() + Privilegios::Recepcionist->get()) ? 'Recepcionista' : (($colaborador['privileges'] == Privilegios::User->get() + Privilegios::Recepcionist->get() + Privilegios::Doctor->get()) ? 'Doctor' : '')) . "</td>";
+                                        <td>" . (($colaborador['privileges'] == $privRecepcionist) ? 'Recepcionista' : (($colaborador['privileges'] == $privDoctor) ? 'Doctor' : '')) . "</td>";
                                     echo "
                                     <td class=\"icons1\">
                                         <a href=\"?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaborador['dniuser'] . "\">
@@ -216,12 +216,8 @@
                             </table>
                         </div>";
                 }
-
-                if ($privilegios == $privUser) {
-                    echo "";
-                } else {
-                    echo "
-                    <div class='profile-adm container-right4' id='container-right5'>
+                ?>
+                <div class='profile-adm container-right4' id='container-right5'>
                         <div class='title'>
                             <h1>Clientes</h1>
                         </div>
@@ -250,38 +246,54 @@
                                     <th>Telefono Alternaivo</th>
                                 </tr>
                             </thead>
-                            <tbody id='resultados'>"; 
-                    foreach ($users as $key => $cliente) {
-                        if ($cliente['privileges'] == Privilegios::User) {  
-                            echo "
+                            <tbody id='resultados'>
+                                <?php 
+                                    foreach ($users as $key=>$cliente) {
+                                        if($cliente['privileges'] == Privilegios::User->get()){  
+                                ?>
                                 <tr>
-                                    <td>" . $cliente['dniuser'] . "</td>
-                                    <td>" . $cliente['nameuser'] . "</td>
-                                    <td>" . $cliente['surnameuser'] . "</td>
-                                    <td>" . $cliente['nickuser'] . "</td>
-                                    <td>" . $cliente['emailuser'] . "</td>
-                                    <td>" . $cliente['zoneuser'] . "</td>
-                                    <td>" . $cliente['phoneuser'] . "</td>
-                                    <td>" . $cliente['phonealtuser'] . "</td>
+                                    <td>
+                                        <?php echo $cliente['dniuser']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['nameuser']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['surnameuser']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['nickuser']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['emailuser']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['zoneuser']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['phoneuser']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['phonealtuser']; ?>
+                                    </td>
                                     <td class='icons1'>
-                                        <a href='?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $cliente['dniuser'] . "'>
+                                        <a href='?b=profile&s=optionEditRedirec&p=cliente&idcli=<?= $cliente['dniuser']; ?>'>
                                             <i class='fa fa-pencil fa-lg' aria-hidden='true'></i>
                                         </a>
                                     </td>
                                     <td class='icons2'>
-                                        <a onclick=\"alertProfile(this.id, 'cliente')\" id='" . $cliente['dniuser'] . "'>
+                                        <a onclick='alertProfile(this.id, 'cliente')' id='<?php echo $cliente['dniuser']; ?>'>
                                             <i class='fa-solid fa-trash-can' aria-hidden='true'></i>
                                         </a>
                                     </td>
-                                </tr>";
-                        }
-                    }
-                    echo "
+                                </tr>
+                                <?php
+                                        }   
+                                    } 
+                                ?>
                             </tbody>
                         </table>
-                    </div>";
-                }
-                ?>
+                </div>
                 <div class="profile-adm container-right5" id="container-right6">
                     <div class="title">
                         <h1>mascota</h1>
@@ -307,34 +319,34 @@
                                 <th>Numero de identificacion del dueño</th>
                             </tr>
                         </thead>
-                        <?php foreach ($mascota as $mascota) { ?>
+                        <?php foreach ($mascota as $m) { ?>
                         <tbody id="resultados">
                             <tr>
                                 <td>
-                                    <?php echo $mascota['idmas']; ?>
+                                    <?php echo $m['idmas']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $mascota['nommas']; ?>
+                                    <?php echo $m['nommas']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $mascota['edadmas']; ?>
+                                    <?php echo $m['edadmas']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $mascota['genmas']; ?>
+                                    <?php echo $m['genmas']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $mascota['espmas']; ?>
+                                    <?php echo $m['espmas']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $mascota['idcli']; ?>
+                                    <?php echo $m['idcli']; ?>
                                 </td>
                                 <td class="icons1">
-                                    <a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=<?= $mascota['idmas']; ?>">
+                                    <a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=<?= $m['idmas']; ?>">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>
                                 <td class="icons2">
-                                    <a onclick="alertProfile(this.id, 'mascota')" id="<?php echo $mascota['idmas']; ?>">
+                                    <a onclick="alertProfile(this.id, 'mascota')" id="<?php echo $m['idmas']; ?>">
                                         <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
                                     </a>
                                 </td>
@@ -343,9 +355,107 @@
                         <?php } ?>
                     </table>
                 </div>
+                <?php 
+                if ($privilegios == $privUser || $privilegios == $privRecepcionist) {
+                    echo "";
+                } else {
+                    echo "
+                    <div class='profile-adm container-right2' id='container-right7'>
+                        <div class='title'>
+                            <h1>Recetar Productos</h1>
+                        </div>
+                        <form action='#' method='post'>
+                            <div class='header-receta'>
+                                <h1>Datos del Colaborador</h1>
+                                <div class='colaborador'>
+                                    <div>
+                                        <div>
+                                            <input type='number' name='numidcol' id='numIdColaborador' placeholder='Numero de identificacion del colaborador'>
+                                            <button id='searchCol'>Buscar colaborador</button>
+                                        </div>
+                                        <input disabled type='date' name='date' id='date-receta'  placeholder='Fecha Actual'>
+                                    </div>
+                                    <div>
+                                        <input type='text' name='namecol' id='name-col' placeholder='Nombre del Colaborador'>
+                                    </div>
+                                </div>
+                                <h1>Datos de Usuario y Paciente</h1>
+                                <div class='Usuario'>
+                                    <div>
+                                        <div>
+                                            <input type='number' name='numiduser' id='input-receta' placeholder='Numero de identificacion del usuario'>
+                                            <button id='searchUser'>Buscar usuario</button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <input type='text' name='nameuser' id='input-receta' placeholder='Nombre del usuario'>&nbsp; &nbsp; &nbsp; 
+                                        <input type='text' name='addres' id='input-receta' placeholder='Direccion del usuario'>&nbsp; &nbsp; &nbsp;
+                                        <select name='selMas' id='input-receta'>
+                                        <option disabled selected>Seleccione una opcion</option>
+                                        ";
+                                        foreach($mascota as $m) {
+                                            echo "<option>".$m['nommas']."</option>";
+                                        }
+    
+                                        echo "
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <table class='table-container'>
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Producto</th>
+                                        <th>Descripcion</th>
+                                        <th>Precio</th>
+                                        <th>Categoria</th>
+                                        <th>Disponibles (und)</th>
+                                        <th>Recetar</th>
+                                    </tr>
+                                </thead>
+                                <tbody id='resultados-producto'>";
+
+                                foreach ($productos as $key=>$producto) {
+                                    echo "
+                                        <td>" . $producto['idprod'] . "</td>
+                                        <td>" . ($producto['nomprod'] ?? 'Sin definir') . "</td>
+                                        <td>" . ($producto['desprod'] ?? 'Sin definir') . "</td>
+                                        <td>" . ($producto['precvenprod'] ?? 'Sin definir') . "</td>
+                                        <td>";
+                                    foreach ($categorias as $categoria) {
+                                        echo ($categoria['idcat'] === $producto['catprod']) ? $categoria['namecat'] : '';
+                                    }
+                                    echo "</td>
+                                        <td>" . ($producto['stockprod'] ?? 'Sin definir') . "</td>";
+                                    echo "<td><input type='checkbox' name='recetar'></td>
+                                    </tr>";
+                                }
+                                echo "
+                                </tbody>
+                            </table>
+                            <button id='addReceta'>Agregar a la receta</button>
+                            <table class='table-container'>
+                                <thead>
+                                    <th>Producto</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                </thead>
+                                <tbody id='resultados-receta'>
+
+                                </tbody>
+                            </table>
+
+                            <div class='footer-receta'>
+                                <h2>Total a pagar: $ <span id='total-pagar'></span></h2>
+                            </div>
+                        </form>
+                    </div>";
+                }
+                ?>
 
             </div>
-
         </main>
 
     </div>

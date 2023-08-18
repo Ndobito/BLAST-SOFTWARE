@@ -13,53 +13,19 @@ class Profile
         $this->conexion = databaseConexion::conexion();
     }
 
-    // ----- Metodo para obtener proveedores-----//
-    public function getProveedores()
-    {
-        $query = "SELECT * FROM proveedor";
+    // -----Metodo para seleccionar todos los datos de una tabla ----- //
+    public function getAll($table) {
+        $query = "SELECT * FROM $table";
         $result = $this->conexion->query($query);
-        $proveedores = array();
+        $producto = array();
 
         if ($result->num_rows > 0) {
             // Recorrer los resultados y almacenarlos en el array $proveedores
             while ($row = $result->fetch_assoc()) {
-                $proveedores[] = $row;
+                $producto[] = $row;
             }
         }
-
-        return $proveedores;
-    }
-
-    // -----Metodo pata obtener los empleados en profile----- //
-    public function getUsers()
-    {
-        $query = "SELECT * FROM usuario";
-        $result = $this->conexion->query($query);
-        $empleado = array();
-
-        if ($result->num_rows > 0) {
-            // Recorrer los resultados y almacenarlos en el array $proveedores
-            while ($row = $result->fetch_assoc()) {
-                $empleado[] = $row;
-            }
-        }
-        return $empleado;
-    }
-
-    // -----Metodo para obtener las mascotas en Profile----- //
-    public function getMascota()
-    {
-        $query = "SELECT * FROM mascota";
-        $result = $this->conexion->query($query);
-        $mascota = array();
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $mascota[] = $row;
-            }
-        }
-
-        return $mascota;
+        return $producto;
     }
 
     // -----Metodo para el buscador de clientes en Profile -----//
@@ -132,6 +98,20 @@ class Profile
          $administrador = $result->fetch_assoc();
          $stmt->close();
          return $administrador;
+    }
+
+
+    // -----Metodo para Seleccionar el un dato ----- //
+    public function selectParam($param1,$tabla, $param2, $value)
+    {
+        $query = "SELECT $param1 FROM $tabla WHERE $param2 = ?";
+        $stmt = $this->conexion->prepare($query);
+        $stmt->bind_param("i", $value);
+        $stmt->execute();
+        $stmt->bind_result($data);
+        $stmt->fetch();
+        $stmt->close();
+        return $data;
     }
 
     // -----Metodo para verificar existencia en la base de datos ----- //

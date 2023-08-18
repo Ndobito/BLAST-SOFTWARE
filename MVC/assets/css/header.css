@@ -64,7 +64,6 @@ header .header-top{
     color: red;
 }
 
-
 /* Button Register */
 
 .button-register{
@@ -75,7 +74,6 @@ header .header-top{
     text-transform: uppercase; 
     margin-right: 40px;
 }
-
 .button-register button span{
     display: none;
 }
