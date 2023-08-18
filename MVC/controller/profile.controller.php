@@ -122,25 +122,25 @@ class ProfileController
         }
     }
 
-    // -----Buscar Colaborador en Receta medica----- //
+    // // -----Buscar Colaborador en Receta medica----- //
 
-    public function searchUser(){
-        $o = $_REQUEST['p'];
-        switch($o){
-            case "col":
-                if(!empty($_POST['numIdColaborador'])){
-                    if($this->object->verifyLeterString($_POST['numIdColaborador'])){
-                        redirect("?b=profile&s=Inicio")->error("El numero de identificacion no puede llevar letras")->send();
-                    }else{
-                        $id = $_POST['numIdColaborador'];
-                        $colaborador = $this->object->selectNameUser($id); 
-                        header('Content-Type: application/json');
-                        echo json_encode($colaborador); 
-                    }
-                } 
-                break; 
-        } 
-    }
+    // public function searchUser(){
+    //     $o = $_REQUEST['p'];
+    //     switch($o){
+    //         case "col":
+    //             if(!empty($_POST['numIdColaborador'])){
+    //                 if($this->object->verifyLeterString($_POST['numIdColaborador'])){
+    //                     redirect("?b=profile&s=Inicio")->error("El numero de identificacion no puede llevar letras")->send();
+    //                 }else{
+    //                     $id = $_POST['numIdColaborador'];
+    //                     $colaborador = $this->object->selectNameUser($id); 
+    //                     header('Content-Type: application/json');
+    //                     echo json_encode($colaborador); 
+    //                 }
+    //             } 
+    //             break; 
+    //     } 
+    // }
 
 
     // -----Metodo oara mostrar los resultados del buscador de Proveedor------ //
@@ -352,35 +352,30 @@ seguridad. ")->send();
     {
         if (isset($_REQUEST['btnUpdateProfile'])) {
             if (
-                $_POST['ctIdUser'] == "" || $_POST['ctNameUser'] == "" || $_POST['ctSurNameUser'] == "" || $_POST['ctAdrUser'] == ""
-                || $_POST['selZone'] == "" || $_POST['ctEmailUser'] == "" || $_POST['ctNumCelUser'] == ""
-            ) {
-                redirect("?b=profile&s=Inicio&p=admin&v=true")->error("Se deben llenar todos los campos")->send();
+                empty($_POST['numid']) || empty($_POST['name']) || empty($_POST['surname']) || empty($_POST['addres']) || empty($_POST['zone']) || empty($_POST['email']) || empty($_POST['phone'])) {
+                redirect("?b=profile&s=Inicio&p=admin&v=true")->error("Se deben llenar todos los campos con (*)")->send();
             } else {
-                if ($this->object->verifyLeterString($_POST['ctIdUser'])) {
+                if ($this->object->verifyLeterString($_POST['numid'])) {
                     redirect("?b=profile&s=Inicio")->error("El numero de Identificacion no puede llevar letras")->send();
                 } else {
-                    if (
-                        $this->object->verifyNumberString($_POST['ctNameUser']) ||
-                        $this->object->verifyNumberString($_POST['ctSurNameUser'])
-                    ) {
+                    if ($this->object->verifyNumberString($_POST['name']) || $this->object->verifyNumberString($_POST['surname'])) {
                         redirect("?b=profile&s=Inicio")->error("Los nombres y apellidos no pueden llevar numeros")->send();
                     } else {
-                        if (!$this->object->verifyEmailString($_POST['ctEmailUser'])) {
+                        if (!$this->object->verifyEmailString($_POST['email'])) {
                             redirect("?b=profile&s=Inicio")->error("Formato de correo electronico invalido")->send();
                         } else {
-                            if ($this->object->verifyLeterString($_POST['ctNumCelUser']) || $this->object->verifyLeterString($_POST['ctNumCel2'])) {
+                            if ($this->object->verifyLeterString($_POST['phone']) || $this->object->verifyLeterString($_POST['phone2'])) {
                                 redirect("?b=profile&s=Inicio")->error("Los numero de telefonos no pueden contener letras")->send();
                             } else {
                                 $u = new Profile();
-                                $u->id = $_POST['ctIdUser'];
-                                $u->nombre = $_POST['ctNameUser'];
-                                $u->apellido = $_POST['ctSurNameUser'];
-                                $u->email = $_POST['ctEmailUser'];
-                                $u->direccion = $_POST['ctAdrUser'];
-                                $u->zona = $_POST['selZone'];
-                                $u->numcel = $_POST['ctNumCelUser'];
-                                $u->numcel2 = $_POST['ctNumCel2'];
+                                $u->id = $_POST['numid'];
+                                $u->nombre = $_POST['name'];
+                                $u->apellido = $_POST['surname'];
+                                $u->email = $_POST['email'];
+                                $u->direccion = $_POST['addres'];
+                                $u->zona = $_POST['zone'];
+                                $u->numcel = $_POST['phone'];
+                                $u->numcel2 = $_POST['phone2'];
                                 if ($this->object->update($u)) {
                                     redirect("?b=profile&s=Inicio")->success("Se ha actualizado la información del usuario")->send();
                                 } else {

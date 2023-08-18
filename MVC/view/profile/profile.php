@@ -38,19 +38,18 @@
                     <div class="user-information">
                         <h1>Datos</h1>
                         <form id="form-user-information" action="?b=profile&s=updateUser" method="post">
-                            <label for="ctNameUser">Numero de Identificacion*</label>
-                            <input name="ctIdUser" type="number" value="<?php echo $user['dniuser'] ?>" disabled>
-                            <label for="ctNameUser">Nombres*</label>
-                            <input type="text" name="ctNameUser" id="ctNameUser"
+                            <input name="numid" type="hidden" value="<?php echo $user['dniuser'] ?>" disabled>
+                            <label for="name">Nombres*</label>
+                            <input type="text" name="name" id="ctNameUser"
                                 value="<?php echo $user['nameuser'] ?? "Sin definir"; ?>" disabled>
-                            <label for="ctSurNameUser">Apellidos *</label>
-                            <input type="text" name="ctSurNameUser" id="ctSurNameUser"
+                            <label for="surname">Apellidos *</label>
+                            <input type="text" name="surname" id="ctSurNameUser"
                                 value="<?php echo $user['surnameuser'] ?? "Sin definir"; ?>" disabled>
-                            <label for="ctNameuser">Direccion *</label>
-                            <input type="text" name="ctAdrUser" id="ctAdrUser" value="<?php echo $user['diruser']; ?>"
+                            <label for="address">Direccion *</label>
+                            <input type="text" name="addres" id="ctAdrUser" value="<?php echo $user['diruser']; ?>"
                                 disabled>
-                            <label for="ctNameuser">Zona: *</label>
-                            <select name="selZone" id="ctZone" disabled>
+                            <label for="zone">Zona: *</label>
+                            <select name="zone" id="ctZone" disabled>
                                 <option
                                     <?php echo ($user['zoneuser'] <> "urbana" && $user['zoneuser'] <> "rural") ? "selected" : "" ?>
                                     disabled></option>
@@ -61,18 +60,18 @@
                             </select>
                             <div>
                                 <div>
-                                    <label for="ctEmailUser">Correo Eletrónico *</label>
-                                    <input type="text" name="ctEmailUser" id="ctEmailUser"
+                                    <label for="email">Correo Eletrónico *</label>
+                                    <input type="text" name="email" id="ctEmailUser"
                                         value="<?php echo $user['emailuser']; ?>" disabled>
                                 </div>
                                 <div>
-                                    <label for="ctNumCelUser">Numero de Celular 1 *</label>
-                                    <input type="text" name="ctNumCelUser" id="ctNumCelUser"
+                                    <label for="phone">Numero de Celular 1 *</label>
+                                    <input type="number" name="phone" id="ctNumCelUser"
                                         value="<?php echo $user['phoneuser']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCel2">Numero de Celular 2</label>
-                                    <input type="text" name="ctNumCel2" id="ctNumCel2"
+                                    <input type="number" name="phone2" id="ctNumCel2"
                                         value="<?php echo $user['phonealtuser']; ?>" disabled>
 
                                 </div>
@@ -80,7 +79,7 @@
                             <div class="updatebutton">
                                 <span id="enableForm1"> Editar</span>
                             </div>
-                            <input type="hidden" name="ctPrivileges" value="<?php echo $privilegios ?>">
+                            <input type="hidden" name="privileges" value="<?php echo $privilegios ?>">
 
                             <input type="submit" name="btnUpdateProfile" value="Guardar">
                         </form>

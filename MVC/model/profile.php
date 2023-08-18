@@ -101,20 +101,18 @@ class Profile
     }
 
 
-    // -----Metodo para Seleccionar el nombre del Usuario----- //
-    public function selectNameUser($id)
+    // -----Metodo para Seleccionar el un dato ----- //
+    public function selectParam($param1,$tabla, $param2, $value)
     {
-        $query = "SELECT nameuser FROM usuario WHERE id = ?";
+        $query = "SELECT $param1 FROM $tabla WHERE $param2 = ?";
         $stmt = $this->conexion->prepare($query);
-        $stmt->bind_param("i", $id); // "i" indica que es un valor entero
+        $stmt->bind_param("i", $value);
         $stmt->execute();
-        $stmt->bind_result($nameuser); // Vincula el resultado a una variable
-        $stmt->fetch(); // Obtiene el resultado
+        $stmt->bind_result($data);
+        $stmt->fetch();
         $stmt->close();
-        return $nameuser;
+        return $data;
     }
-
-
 
     // -----Metodo para verificar existencia en la base de datos ----- //
     public function existProfile($table,$param, $id)
