@@ -3,10 +3,8 @@
         <div class="header">
             <a href="?b=index&s=Inicio&p=admin"><i class="fa-solid fa-arrow-left"></i></a>
             <div>
-            <a href="?b=restorepassword&s=Inicio"><i class="fa-solid fa-key"></i><span>Cambiar contraseña</span></a>
-                <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar
-                        Sesion</span></a>
-                
+                <a href="?b=restorepassword&s=Inicio"><i class="fa-solid fa-key"></i><span>Cambiar contraseña</span></a>
+                <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar Sesion</span></a>
             </div>
         </div>
         <main style="display: block">
@@ -16,38 +14,24 @@
                         <img src="assets/img/usuario.png" alt="">
                         <div>
                             <p><?php echo $user['nameuser'] . " " . $user['surnameuser']; ?></p>
-                            <p><?php echo ($privilegios === 1) ? 'Cliente' : (($privilegios === 2) ? 'Recepcionista' : (($privilegios === 3) ? 'Doctor' : (($privilegios === 4) ? 'Administrador' : 'Indefinido'))); ?>
-                            </p>
-
+                            <p><?php echo ($privilegios === $privUser) ? 'Cliente' : (($privilegios === $privRecepcionist) ? 'Recepcionista' : (($privilegios === $privDoctor) ? 'Doctor' : (($privilegios === $privAdmin) ? 'Administrador' : 'Indefinido'))); ?></p>
+                            
                         </div>
                     </button>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-house-user"></i>
-                        <p>Inicio</p>
-                    </button>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-user-pen"></i>
-                        <p style="white-space: nowrap">Datos del usuario</p>
-                    </button>
-                    <a href="?b=inventory&s=listado"><button><i class="fa-solid fa-boxes-stacked"></i>
-                            <p>Inventarios</p>
-                        </button></a>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-users"></i>
-                        <p>Proveedores</p>
-                    </button>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-user-gear"></i>
-                        <p>Colaboradores</p>
-                    </button>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-person-circle-check"></i>
-                        <p>Clientes</p>
-                    </button>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i>
-                        <p>Mascotas</p>
-                    </button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-house-user"></i><p>Inicio</p></button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-user-pen"></i><p style="white-space: nowrap">Datos del usuario</p></button>
+                    <?php echo ($privilegios <> $privAdmin) ? "" : "<a href='?b=inventory&s=listado'><button><i class='fa-solid fa-boxes-stacked'></i><p>Inventarios</p></button></a>" ?>
+                    <?php echo ($privilegios <> $privAdmin) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-users'></i><p>Proveedores</p></button>" ?>
+                    <?php echo ($privilegios <> $privAdmin) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-user-gear'></i><p>Colaboradores</p></button>" ?>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-person-circle-check"></i><p>Clientes</p></button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i><p>Mascotas</p></button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-calendar-check"></i><p>Citas</p></button>
                 </div>
             </div>
             <div class="container-right">
                 <div class="profile-adm welcome" id="container-right">
-                    <h1>Bienvenido(a) al panel de administracion</h1>
-                    <p>Dirijase al menu lateral para poder navegar dentro del sitio mamabicho. </p>
+                    <h1>Bienvenido(a) al panel de <?php echo ($privilegios === Privilegios::User->get()) ? 'Cliente' : (($privilegios === Privilegios::User->get()+Privilegios::Recepcionist->get()) ? 'Recepcionista' : (($privilegios === Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()) ? 'Doctor' : (($privilegios === Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()+Privilegios::Admin->get()) ? 'Administrador' : 'Indefinido'))); ?></h1>
+                    <p>Dirijase al menu lateral para poder navegar dentro del sitio. </p>
                     <i class="fa-solid fa-face-smile-beam"></i>
                 </div>
                 <div class="profile-adm container-right user" id="container-right2">
@@ -102,241 +86,215 @@
                         </form>
                     </div>
                 </div>
-                <div class="profile-adm container-right2" id="container-right3">
-                    <div class="title">
-                        <h1>proveedores</h1>
-                    </div>
-                    <div class="table-container">
-                        <div class="form-container">
-                            <div class="input-group">
-                                <a href="?b=profile&s=optionSaveRedirec&p=proveedor"><button class="btn btn-default"
-                                        type="submit">Agregar</button></a>
-                            </div>
-                            <form action="?b=profile&s=buscarProveedor" method="post">
-                                <div class="input-group">
-                                    <input type="text" id="searchprov" class="form-control search-input"
-                                        placeholder="Buscar Proveedor" name="buscar_proveedor">
-                                </div>
-                            </form>
+                <?php 
+                if ($privilegios <> $privAdmin) {
+                    echo "";
+                } else {
+                    echo "
+                    <div class='profile-adm container-right2' id='container-right3'>
+                        <div class='title'>
+                            <h1>proveedores</h1>
                         </div>
-                    </div>
-                    <table class="table-container">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Nombres</th>
-                                <th>Direccion</th>
-                                <th>Correo</th>
-                                <th>Telefono</th>
-                            </tr>
-                        </thead>
-                        <tbody id="resultados-proveedor">
-                            <?php foreach ($proveedores as $proveedor) { ?>
-                            <tr>
-                                <td>
-                                    <?php echo $proveedor['idprov']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $proveedor['nomprov'] ?? "Sin definir"; ?>
-                                </td>
-                                <td>
-                                    <?php echo $proveedor['dirprov'] ?? "Sin definir"; ?>
-                                </td>
-                                <td>
-                                    <?php echo $proveedor['emaprov'] ?? "Sin definir"; ?>
-                                </td>
-                                <td>
-                                    <?php echo $proveedor['telprov'] ?? "Sin definir"; ?>
-                                </td>
-                                <td class="icons1">
-                                    <a href="?b=profile&s=optionEditRedirec&p=proveedor&idprov=<?= $proveedor['idprov']; ?>"
-                                        id="Prveedor">
-                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                                <td class="icons2">
-                                    <a onclick="alertProfile(this.id, 'proveedor')"
-                                        id="<?php echo $proveedor['idprov']; ?>">
-                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="profile-adm container-right3" id="container-right4">
-                    <div class="title">
-                        <h1>Colaboradores</h1>
-                    </div>
-                    <div class="table-container">
-                        <div class="form-container">
-                            <div class="input-group">
-                                <span class="input-group-btn">
-                                    <a href="?b=profile&s=optionSaveRedirec&p=colaborador"><button
-                                            class="btn btn-default" type="submit">Agregar</button></a>
-                                </span>
-                            </div>
-                            <form method="POST" action="?b=profile&s=buscarColaborador">
-                                <div class="input-group">
-                                    <input type="text" class="form-control search-input" id="searchcol"
-                                        placeholder="Buscar Empleado" name="buscar_empleado">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" id="miBoton" type="button">Buscar</button>
-                                    </span>
+                        <div class='table-container'>
+                            <div class='form-container'>
+                                <div class='input-group'>
+                                    <a href='?b=profile&s=optionSaveRedirec&p=proveedor'><button class='btn btn-default' type='submit'>Agregar</button></a>
                                 </div>
-                            </form>
+                                <form action='?b=profile&s=buscarProveedor' method='post'>
+                                    <div class='input-group'>
+                                        <input type='text' id='searchprov' class='form-control search-input' placeholder='Buscar Proveedor' name='buscar_proveedor'>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                    <table class="table-container">
-                        <thead>
-                            <tr>
-                                <th>DNI</th>
-                                <th>Nombres</th>
-                                <th>Apellidos</th>
-                                <th>Nickuser</th>
-                                <th>Email</th>
-                                <th>Direccion</th>
-                                <th>Zona</th>
-                                <th>Telefono</th>
-                                <th>Telefono Alt.</th>
-                                <th>Privilegios</th>
-                            </tr>
-                        </thead>
-                        <tbody id="resultados-empleados">
-                            <?php 
-                            foreach ($users as $key=>$colaborador) : 
-                                $value = $colaborador['privileges']; 
-                                $user = isset($roles[$value]) ? $roles[$value] : "";    
-
-                                if(!empty($user)){
-                            ?>
-                            <tr>
-                                <td>
-                                    <?php echo $colaborador['dniuser']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['nameuser']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['surnameuser']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['nickuser']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['emailuser']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['diruser']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['zoneuser']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['phoneuser']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $colaborador['phonealtuser']; ?>
-                                </td>
-                                <td>
-                                    <?php echo ($colaborador['privileges'] == Privilegios::User->get()+Privilegios::Recepcionist->get()) ? "Recepcionista" : (($colaborador['privileges'] == Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()) ? "Doctor" : "") ?>
-                                </td>
-                                <td class="icons1">
-                                    <a
-                                        href="?b=profile&s=optionEditRedirec&p=colaborador&idcola=<?= $colaborador['dniuser']; ?>">
-                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                                <td class="icons2">
-                                    <a onclick="alertProfile(this.id, 'colaborador')"
-                                        id="<?php echo $proveedor['idprov']; ?>">
-                                        <a onclick="alertProfile(this.id, 'colaborador')"
-                                            id="<?php echo $colaborador['dniuser']; ?>">
-                                            <i class="fa-solid fa-trash"></i>
+                        <table class='table-container'>
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombres</th>
+                                    <th>Direccion</th>
+                                    <th>Correo</th>
+                                    <th>Telefono</th>
+                                </tr>
+                            </thead>
+                            <tbody id='resultados-proveedor'>";
+                            foreach ($proveedores as $proveedor) {
+                                echo "
+                                <tr>
+                                    <td>" . $proveedor['idprov'] . "</td>
+                                    <td>" . ($proveedor['nomprov'] ?? 'Sin definir') . "</td>
+                                    <td>" . ($proveedor['dirprov'] ?? 'Sin definir') . "</td>
+                                    <td>" . ($proveedor['emaprov'] ?? 'Sin definir') . "</td>
+                                    <td>" . ($proveedor['telprov'] ?? 'Sin definir') . "</td>
+                                    <td class='icons1'>
+                                        <a href='?b=profile&s=optionEditRedirec&p=proveedor&idprov=" . $proveedor['idprov'] . "' id='Proveedor'>
+                                            <i class='fa fa-pencil fa-lg' aria-hidden='true'></i>
                                         </a>
-                                </td>
-                            </tr>
-                            <?php
-                                } 
-                            endforeach;
-                                ?>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="profile-adm container-right4" id="container-right5">
-                    <div class="title">
-                        <h1>Clientes</h1>
-                    </div>
-                    <div class="table-container">
-                        <div class="form-container">
-                            <form method="POST" action="?b=profile&s=buscarClientes">
-                                <div class="input-group">
-                                    <input type="text" class="form-control search-input" placeholder="Buscar cliente"
-                                        name="buscar_cliente" id="searchcli">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" id="miBoton" type="button">Buscar</button>
-                                    </span>
+                                    </td>
+                                    <td class='icons2'>
+                                        <a onclick='alertProfile(this.id, \"proveedor\")' id='" . $proveedor['idprov'] . "'>
+                                            <i class='fa-solid fa-trash-can' aria-hidden='true'></i>
+                                        </a>
+                                    </td>
+                                </tr>";
+                            }
+                            echo "
+                            </tbody>;
+                        </table>
+                    </div>";
+                    echo "
+                        <div class=\"profile-adm container-right3\" id=\"container-right4\">
+                            <div class=\"title\">
+                                <h1>Colaboradores</h1>
+                            </div>
+                            <div class=\"table-container\">
+                                <div class=\"form-container\">
+                                    <div class=\"input-group\">
+                                        <span class=\"input-group-btn\">
+                                            <a href=\"?b=profile&s=optionSaveRedirec&p=colaborador\"><button class=\"btn btn-default\" type=\"submit\">Agregar</button></a>
+                                        </span>
+                                    </div>
+                                    <form method=\"POST\" action=\"?b=profile&s=buscarColaborador\">
+                                        <div class=\"input-group\">
+                                            <input type=\"text\" class=\"form-control search-input\" id=\"searchcol\" placeholder=\"Buscar Empleado\" name=\"buscar_empleado\">
+                                            <span class=\"input-group-btn\">
+                                                <button class=\"btn btn-default\" id=\"miBoton\" type=\"button\">Buscar</button>
+                                            </span>
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
+                            </div>
+                            <table class=\"table-container\">
+                                <thead>
+                                    <tr>
+                                        <th>DNI</th>
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
+                                        <th>Nickuser</th>
+                                        <th>Email</th>
+                                        <th>Direccion</th>
+                                        <th>Zona</th>
+                                        <th>Telefono</th>
+                                        <th>Telefono Alt.</th>
+                                        <th>Privilegios</th>
+                                    </tr>
+                                </thead>
+                                <tbody id=\"resultados-empleados\">";
+                        foreach ($users as $key => $colaborador) {
+                            $value = $colaborador['privileges'];
+                            $user = isset($roles[$value]) ? $roles[$value] : "";
+
+                            if (!empty($user)) {
+                                echo "
+                                <tr>
+                                    <td>" . $colaborador['dniuser'] . "</td>
+                                    <td>" . $colaborador['nameuser'] . "</td>
+                                    <td>" . $colaborador['surnameuser'] . "</td>
+                                    <td>" . $colaborador['nickuser'] . "</td>
+                                    <td>" . $colaborador['emailuser'] . "</td>
+                                    <td>" . $colaborador['diruser'] . "</td>
+                                    <td>" . $colaborador['zoneuser'] . "</td>
+                                    <td>" . $colaborador['phoneuser'] . "</td>
+                                    <td>" . $colaborador['phonealtuser'] . "</td>";
+                                    echo "
+                                        <td>" . (($colaborador['privileges'] == Privilegios::User->get() + Privilegios::Recepcionist->get()) ? 'Recepcionista' : (($colaborador['privileges'] == Privilegios::User->get() + Privilegios::Recepcionist->get() + Privilegios::Doctor->get()) ? 'Doctor' : '')) . "</td>";
+                                    echo "
+                                    <td class=\"icons1\">
+                                        <a href=\"?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaborador['dniuser'] . "\">
+                                            <i class=\"fa fa-pencil fa-lg\" aria-hidden=\"true\"></i>
+                                        </a>
+                                    </td>
+                                    <td class=\"icons2\">
+                                        <a onclick=\"alertProfile(this.id, 'colaborador')\" id=\"" . $colaborador['dniuser'] . "\">
+                                            <i class=\"fa-solid fa-trash\"></i>
+                                        </a>
+                                    </td>
+                                </tr>";
+                            }
+                        }
+                        echo "
+                                </tbody>
+                            </table>
+                        </div>";
+                }
+                ?>
+                <div class='profile-adm container-right4' id='container-right5'>
+                        <div class='title'>
+                            <h1>Clientes</h1>
                         </div>
-                    </div>
-                    <table class="table-container">
-                        <thead>
-                            <tr>
-
-                                <th>N° Identificacion</th>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Usuario</th>
-                                <th>Direccion</th>
-                                <th>Zona</th>
-                                <th>Telefono</th>
-                                <th>Telefono Alternaivo</th>
-                            </tr>
-                        </thead>
-                        <tbody id="resultados-clientes">
-                            <?php foreach ($cliente as $key => $cliente) { ?>
-                            <tr>
-
-                                <td>
-                                    <?php echo $cliente['numid']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['nomcli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['emacli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['usercli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['dircli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['tzonecli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['telcli']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cliente['telaltcli']; ?>
-                                </td>
-                                <td class="icons1">
-                                    <a href="?b=profile&s=optionEditRedirec&p=cliente&idcli=<?= $cliente['numid']; ?>">
-                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                                <td class="icons2">
-                                    <a onclick="alertProfile(this.id, 'cliente')" id="<?php echo $cliente['numid']; ?>">
-                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
+                        <div class='table-container'>
+                            <div class='form-container'>
+                                <form method='POST' action='?b=profile&s=buscarClientes'>
+                                    <div class='input-group'>
+                                        <input type='text' class='form-control search-input' placeholder='Buscar cliente'
+                                            name='buscar_cliente' id='searchcli'>
+                                        <span class='input-group-btn'>
+                                            <button class='btn btn-default' id='miBoton' type='button'>Buscar</button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <table class='table-container'>
+                            <thead>
+                                <tr>
+                                    <th>N° Identificacion</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Usuario</th>
+                                    <th>Direccion</th>
+                                    <th>Zona</th>
+                                    <th>Telefono</th>
+                                    <th>Telefono Alternaivo</th>
+                                </tr>
+                            </thead>
+                            <tbody id='resultados'>
+                                <?php 
+                                    foreach ($users as $key=>$cliente) {
+                                        if($cliente['privileges'] == Privilegios::User->get()){  
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $cliente['dniuser']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['nameuser']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['surnameuser']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['nickuser']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['emailuser']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['zoneuser']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['phoneuser']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente['phonealtuser']; ?>
+                                    </td>
+                                    <td class='icons1'>
+                                        <a href='?b=profile&s=optionEditRedirec&p=cliente&idcli=<?= $cliente['dniuser']; ?>'>
+                                            <i class='fa fa-pencil fa-lg' aria-hidden='true'></i>
+                                        </a>
+                                    </td>
+                                    <td class='icons2'>
+                                        <a onclick='alertProfile(this.id, 'cliente')' id='<?php echo $cliente['dniuser']; ?>'>
+                                            <i class='fa-solid fa-trash-can' aria-hidden='true'></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <?php
+                                        }   
+                                    } 
+                                ?>
+                            </tbody>
+                        </table>
                 </div>
                 <div class="profile-adm container-right5" id="container-right6">
                     <div class="title">

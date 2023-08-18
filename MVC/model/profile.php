@@ -46,21 +46,6 @@ class Profile
         return $empleado;
     }
 
-    // -----Metodo para obtener los clientes en Profile----- //
-    public function getCliente()
-    {
-        $query = "SELECT * FROM cliente";
-        $result = $this->conexion->query($query);
-        $cliente = array();
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $cliente[] = $row;
-            }
-        }
-        return $cliente;
-    }
-
     // -----Metodo para obtener las mascotas en Profile----- //
     public function getMascota()
     {
