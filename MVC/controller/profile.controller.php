@@ -155,23 +155,15 @@ class ProfileController
     public function buscarColaborador()
     {
         $searchTerm = $_POST['buscar_empleado'];
-        $empleados = $this->object->getUsers();
-
-        $filteredEmpleados = array_filter($empleados, function ($empleado) use ($searchTerm) {
-            return ($empleado['privileges'] & (Privilegios::Recepcionist->get() | Privilegios::Doctor->get())) &&
-                (stripos($empleado['dniuser'], $searchTerm) !== false ||
-                    stripos($empleado['nameuser'], $searchTerm) !== false ||
-                    stripos($empleado['nickuser'], $searchTerm) !== false ||
-                    stripos($empleado['surnameuser'], $searchTerm) !== false);
-        });
-
+        $empleados = $this->object->buscarColaborador($searchTerm);
+    
         $roles = [
             Privilegios::Recepcionist->get() => "Recepcionista",
             Privilegios::Doctor->get() => "Doctor",
             Privilegios::Recepcionist->get() + Privilegios::Doctor->get() => "Doctor, Recepcionista",
         ];
-
-        foreach ($filteredEmpleados as $empleado) {
+    
+        foreach ($empleados as $empleado) {
             echo '<tr>';
             echo '<td>' . $empleado['dniuser'] . '</td>';
             echo '<td>' . ($empleado['nameuser'] ?? "Sin definir") . '</td>';
@@ -188,37 +180,35 @@ class ProfileController
             echo '</tr>';
         }
     }
-
-
+    
 
     // -----Metodo para mostrar los resultados del buscador de Clientes------ //
-    // public function buscarClientes()
-    // {
-    // $searchTerm = $_POST['buscar_cliente'];
-    // $clientes = $this->object->getCliente();
+    public function buscarClientes()
+{
+    $searchTerm = $_POST['buscar_cliente'];
+    $clientes = $this->object->buscarClientes($searchTerm);
 
-    // $filteredcliente = array_filter($clientes, function ($cliente) use ($searchTerm) {
-    // return (stripos($cliente['idcli'], $searchTerm) !== false) ||
-    // (stripos($cliente['nomcli'], $searchTerm) !== false) ||
-    // (stripos($cliente['emacli'], $searchTerm) !== false) ||
-    // (stripos($cliente['usercli'], $searchTerm) !== false);
-    // });
+    $roles = [
+        Privilegios::User->get() => "Usuario",
+    ];
 
-    // foreach ($filteredcliente as $cliente) {
-    // echo '<tr>';
-    // echo '<td>' . $cliente['idcli'] . '</td>';
-    // echo '<td>' . ($cliente['nomcli'] ?? "Sin definir") . '</td>';
-    // echo '<td>' . ($cliente['emacli'] ?? "Sin definir") . '</td>';
-    // echo '<td>' . ($cliente['usercli'] ?? "Sin definir") . '</td>';
-    // echo '<td>' . ($cliente['dircli'] ?? "Sin definir") . '</td>';
-    // echo '<td>' . ($cliente['tzonecli'] ?? "Sin definir") . '</td>';
-    // echo '<td>' . ($cliente['telcli'] ?? "Sin definir") . '</td>';
-    // echo '<td>' . ($cliente['telaltcli'] ?? "Sin definir") . '</td>';
-    // echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
-    // echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
-    // echo '</tr>';
-    // }
-    // }
+    foreach ($clientes as $cliente) {
+        echo '<tr>';
+        echo '<td>' . $cliente['dniuser'] . '</td>';
+        echo '<td>' . ($cliente['nameuser'] ?? "Sin definir") . '</td>';
+        echo '<td>' . ($cliente['surnameuser'] ?? "Sin definir") . '</td>';
+        echo '<td>' . ($cliente['nickuser'] ?? "Sin definir") . '</td>';
+        echo '<td>' . ($cliente['emailuser'] ?? "Sin definir") . '</td>';
+        echo '<td>' . ($cliente['diruser'] ?? "Sin definir") . '</td>';
+        echo '<td>' . ($cliente['zoneuser'] ?? "Sin definir") . '</td>';
+        echo '<td>' . ($cliente['phoneuser'] ?? "Sin definir") . '</td>';
+        echo '<td>' . ($cliente['phonealtuser'] ?? "Sin definir") . '</td>';
+        echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
+        echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
+        echo '</tr>';
+    }
+}
+
 
     // -----Metodo oara mostrar los resultados del buscador de Mascotas------ //
     public function buscarMascotas()
@@ -340,7 +330,7 @@ class ProfileController
     {
         if (
             empty($_POST['NomMas']) || empty($_POST['EdadMas']) || empty($_POST['genmas']) ||
-            empty($_POST['espmas']) 
+            empty($_POST['espmas'])
         ) {
             redirect("?b=profile&s=optionSaveRedirec&p=mascota")->error("Se deben llenar todos los campos")->send();
         } else {
@@ -350,7 +340,7 @@ class ProfileController
             $edadMascota = $_POST['EdadMas'];
             $generoMascota = $_POST['genmas'];
             $especieMascota = $_POST['espmas'];
-    
+
             if ($this->object->saveMascota($nombreMascota, $edadMascota, $generoMascota, $especieMascota)) {
                 redirect("?b=profile&s=Inicio&p=admin")->success("Se ha agregado la mascota correctamente")->send();
             } else {
@@ -358,7 +348,7 @@ class ProfileController
             }
         }
     }
-    
+
     //-----Metodo para actualizar Datos de Usuario-----//
     public function updateUser()
     {

@@ -65,17 +65,18 @@ class Profile
     // -----Metodo para el buscador de clientes en Profile -----//
     public function buscarClientes($buscar)
     {
-        $query = "SELECT * FROM cliente WHERE idcli LIKE '%$buscar%'";
+        $query = "SELECT * FROM usuario WHERE (privileges = " . Privilegios::User->get() . ") AND (dniuser LIKE '%$buscar%' OR nameuser LIKE '%$buscar%' OR surnameuser LIKE '%$buscar%' OR nickuser LIKE '%$buscar%')";
         $result = $this->conexion->query($query);
-        $cliente = array();
-
+        $clientes = array();
+    
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $cliente[] = $row;
+                $clientes[] = $row;
             }
         }
-        return $cliente;
+        return $clientes;
     }
+    
 
     // -----Metodo del para el buscador de mascotas de Profile----- //
     public function buscarMascotas($buscar)
@@ -109,18 +110,21 @@ class Profile
     // -----Metodo para el buscador de empleados en Profile----- //
     public function buscarColaborador($buscar)
     {
-        $query = "SELECT * FROM usuario WHERE (privileges = " . Privilegios::Recepcionist->get() . " OR privileges = " . Privilegios::Doctor->get() . " OR privileges = " . Privilegios::Recepcionist->get() + Privilegios::Doctor->get() . ") AND (dniuser LIKE '%$buscar%' OR nameuser LIKE '%$buscar%' OR surnameuser LIKE '%$buscar%' OR nickuser LIKE '%$buscar%')";
+        $query = "SELECT * FROM usuario WHERE (privileges = " . Privilegios::Recepcionist->get() . " OR privileges = " . Privilegios::Doctor->get() . " OR privileges = " . (Privilegios::Recepcionist->get() | Privilegios::Doctor->get()) . ") AND (dniuser LIKE '%$buscar%' OR nameuser LIKE '%$buscar%' OR surnameuser LIKE '%$buscar%' OR nickuser LIKE '%$buscar%')";
         $result = $this->conexion->query($query);
         $empleados = array();
-
+    
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $empleados[] = $row;
             }
         }
-
+    
         return $empleados;
     }
+    
+
+
 
 
     // -----Metodo para Seleccionar el nombre del Usuario----- //

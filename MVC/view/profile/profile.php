@@ -32,7 +32,9 @@
                     <?php echo ($privilegios <> $privAdmin) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-users'></i><p>Proveedores</p></button>" ?>
                     <?php echo ($privilegios <> $privAdmin) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-user-gear'></i><p>Colaboradores</p></button>" ?>
                     <?php echo ($privilegios == $privUser) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-person-circle-check'></i><p>Clientes</p></button>" ?>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i><p>Mascotas</p></button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i>
+                        <p>Mascotas</p>
+                    </button>
                 </div>
             </div>
             <div class="container-right">
@@ -250,17 +252,21 @@
                                 <tr>
                                     <th>N° Identificacion</th>
                                     <th>Nombre</th>
-                                    <th>Email</th>
+                                    <th>Apellido</th>
                                     <th>Usuario</th>
+                                    <th>Email</th>
                                     <th>Direccion</th>
                                     <th>Zona</th>
                                     <th>Telefono</th>
                                     <th>Telefono Alternaivo</th>
                                 </tr>
                             </thead>
-                            <tbody id='resultados'>"; 
-                    foreach ($users as $key => $cliente) {
-                        if ($cliente['privileges'] == Privilegios::User) {  
+                            <tbody id='resultados-clientes'>";
+
+                    foreach ($users as $cliente) {
+                        $value = $cliente['privileges'];
+
+                        if ($value == $privUser) {
                             echo "
                                 <tr>
                                     <td>" . $cliente['dniuser'] . "</td>
@@ -268,6 +274,7 @@
                                     <td>" . $cliente['surnameuser'] . "</td>
                                     <td>" . $cliente['nickuser'] . "</td>
                                     <td>" . $cliente['emailuser'] . "</td>
+                                    <td>" . $cliente['diruser'] . "</td>
                                     <td>" . $cliente['zoneuser'] . "</td>
                                     <td>" . $cliente['phoneuser'] . "</td>
                                     <td>" . $cliente['phonealtuser'] . "</td>
