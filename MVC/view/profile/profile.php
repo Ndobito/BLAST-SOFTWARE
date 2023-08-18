@@ -38,7 +38,9 @@
                     <div class="user-information">
                         <h1>Datos</h1>
                         <form id="form-user-information" action="?b=profile&s=updateUser" method="post">
-                            <input name="numid" type="hidden" value="<?php echo $user['dniuser'] ?>" disabled>
+                            <input name="nick" type="hidden" value="<?php echo $user['nickuser'] ?>" disabled>
+                            <label for="name">Numero de identificacion*</label>
+                            <input name="numid" type="number" value="<?php echo $user['dniuser'] ?>" disabled>
                             <label for="name">Nombres*</label>
                             <input type="text" name="name" id="ctNameUser"
                                 value="<?php echo $user['nameuser'] ?? "Sin definir"; ?>" disabled>
@@ -119,26 +121,26 @@
                             <tbody id='resultados-proveedor'>";
                             foreach ($proveedores as $proveedor) {
                                 echo "
-                                <tr>
-                                    <td>" . $proveedor['idprov'] . "</td>
-                                    <td>" . ($proveedor['nomprov'] ?? 'Sin definir') . "</td>
-                                    <td>" . ($proveedor['dirprov'] ?? 'Sin definir') . "</td>
-                                    <td>" . ($proveedor['emaprov'] ?? 'Sin definir') . "</td>
-                                    <td>" . ($proveedor['telprov'] ?? 'Sin definir') . "</td>
-                                    <td class='icons1'>
-                                        <a href='?b=profile&s=optionEditRedirec&p=proveedor&idprov=" . $proveedor['idprov'] . "' id='Proveedor'>
-                                            <i class='fa fa-pencil fa-lg' aria-hidden='true'></i>
-                                        </a>
-                                    </td>
-                                    <td class='icons2'>
-                                        <a onclick='alertProfile(this.id, \"proveedor\")' id='" . $proveedor['idprov'] . "'>
-                                            <i class='fa-solid fa-trash-can' aria-hidden='true'></i>
-                                        </a>
-                                    </td>
-                                </tr>";
+                                    <tr>
+                                        <td>" . $proveedor['idprov'] . "</td>
+                                        <td>" . ($proveedor['nomprov'] ?? 'Sin definir') . "</td>
+                                        <td>" . ($proveedor['dirprov'] ?? 'Sin definir') . "</td>
+                                        <td>" . ($proveedor['emaprov'] ?? 'Sin definir') . "</td>
+                                        <td>" . ($proveedor['telprov'] ?? 'Sin definir') . "</td>
+                                        <td class='icons1'>
+                                            <a href='?b=profile&s=optionEditRedirec&p=proveedor&idprov=" . $proveedor['idprov'] . "' id='Proveedor'>
+                                                <i class='fa fa-pencil fa-lg' aria-hidden='true'></i>
+                                            </a>
+                                        </td>
+                                        <td class='icons2'>
+                                            <a onclick='alertProfile(this.id, \"proveedor\", \"" . addslashes($proveedor['nomprov']) . "\")' id='" . $proveedor['idprov'] . "'>
+                                                <i class='fa-solid fa-trash-can' aria-hidden='true'></i>
+                                            </a>
+                                        </td>
+                                    </tr>";
                             }
                             echo "
-                            </tbody>;
+                            </tbody>
                         </table>
                     </div>";
                     echo "

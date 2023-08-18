@@ -1,10 +1,10 @@
-function alertProfile(id, rol){
+function alertProfile(id, rol, name){
 
     switch(rol){
         case 'proveedor':
-            var respuesta = confirm("¿Esta seguro(a) de eliminar este proveedor?");
+            var respuesta = confirm("¿Esta seguro(a) de eliminar al proveedor "+name+"?");
             if(respuesta === true){
-                window.location.href = "?b=profile&s=deleteProfile&p=proveedor&id="+id; 
+                window.location.href = "?b=profile&s=deleteProfile&p=proveedor&id="+id+"name="+name; 
             } 
             break;
         case 'colaborador':

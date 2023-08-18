@@ -13,6 +13,20 @@ class Profile
         $this->conexion = databaseConexion::conexion();
     }
 
+    // ----------METODOS GLOBALES---------- //
+
+    // -----Metodo para verificar existencia en la base de datos ----- //
+    public function existProfile($table,$param, $id)
+    {
+        $stmt = $this->conexion->prepare("SELECT * FROM $table WHERE $param = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $result = $result->fetch_assoc();
+        $stmt->close();
+        return $result;
+    }
+
     // -----Metodo para seleccionar todos los datos de una tabla ----- //
     public function getAll($table) {
         $query = "SELECT * FROM $table";
@@ -27,6 +41,91 @@ class Profile
         }
         return $producto;
     }
+
+    // -----Metodo para Seleccionar el un dato ----- //
+    public function selectParam($param1,$tabla, $param2, $value)
+    {
+        $query = "SELECT $param1 FROM $tabla WHERE $param2 = ?";
+        $stmt = $this->conexion->prepare($query);
+        $stmt->bind_param("i", $value);
+        $stmt->execute();
+        $stmt->bind_result($result);
+        $stmt->fetch();
+        $stmt->close();
+        return $result;
+    }
+
+    // -----Metodo para Seleccionar el nombre e id de un usuario segun su id ----- //
+    public function selectNameIDUser($value)
+    {
+        $query = "SELECT dniuser, nickuser FROM usuario WHERE dniuser = ?";
+        $stmt = $this->conexion->prepare($query);
+        $stmt->bind_param("i", $value);
+        $stmt->execute();
+        $stmt->bind_result($dniuser, $nameuser);
+        $stmt->fetch();
+        $stmt->close();
+        $result = array(
+            'dniuser' => $dniuser,
+            'nickuser' => $nameuser
+        );
+        return $result;
+    }
+
+    // -----Metodo para eliminar Profiles----- //
+    public function deleteUser($table, $param , $id) {
+        $sql = "DELETE FROM $table WHERE $param = ?";
+        try {
+            if($this->conexion->prepare($sql)->execute([$id])){
+                return true; 
+            } else{
+                return false; 
+            }
+        } catch (Exception $e) {
+            return false; 
+		}
+    }
+
+    // ----------METODOS DEL PROVEEDOR---------- // 
+
+    // -----Metodo para agregar un nuevo Proveedor----- //
+    public function saveProveedor(Profile $data){
+        try {
+            $sql = 'INSERT INTO proveedor(nomprov, dirprov, emaprov, telprov) VALUES (?, ?, ?, ?)';
+            $stmt = $this->conexion->prepare($sql);
+            if($stmt->execute([$data->nombre, $data->direccion, $data->email, $data->numcel])) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+    
+    // -----Metodo para actualizar informacion de Proveedor----- //
+    public function updateProveedor(Profile $data)
+    {
+        $stmt = $this->conexion->prepare("UPDATE proveedor SET nomprov = ?, dirprov = ?, emaprov = ?, telprov = ? WHERE idprov = ?");
+        
+        // Vincular los valores de los atributos a las variables de enlace
+        $stmt->bind_param("ssssi", $data->nombre, $data->direccion, $data->email, $data->numcel, $data->id);
+        
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+
+
+
+
+
+
+
+
 
     // -----Metodo para el buscador de clientes en Profile -----//
     public function buscarClientes($buscar)
@@ -100,32 +199,6 @@ class Profile
          return $administrador;
     }
 
-
-    // -----Metodo para Seleccionar el un dato ----- //
-    public function selectParam($param1,$tabla, $param2, $value)
-    {
-        $query = "SELECT $param1 FROM $tabla WHERE $param2 = ?";
-        $stmt = $this->conexion->prepare($query);
-        $stmt->bind_param("i", $value);
-        $stmt->execute();
-        $stmt->bind_result($data);
-        $stmt->fetch();
-        $stmt->close();
-        return $data;
-    }
-
-    // -----Metodo para verificar existencia en la base de datos ----- //
-    public function existProfile($table,$param, $id)
-    {
-        $stmt = $this->conexion->prepare("SELECT * FROM $table WHERE $param = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $result = $result->fetch_assoc();
-        $stmt->close();
-        return $result;
-    }
-
     // -----Metodo para actualizar informacion de Usuario----- //
     public function update(Profile $user)
     {
@@ -154,17 +227,7 @@ class Profile
         }
     }
 
-    // -----Metodo para actualizar informacion de Proveedor----- //
-    public function updateProveedor($idProv, $nombreProv, $direccionProv, $emailProv, $telefonoProv){
-        $stmt = $this->conexion->prepare("UPDATE proveedor SET nomprov = ?, dirprov = ?, emaprov = ?, telprov = ? WHERE idprov = ?");
-        $stmt->bind_param("ssssi", $nombreProv, $direccionProv, $emailProv, $telefonoProv, $idProv);
     
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     // -----Metodo para actualizar informacion de Empleados----- //
     public function updateColaborador($idCol, $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol){
@@ -213,21 +276,6 @@ class Profile
         }
     }
 
-    // -----Metodo para agregar un nuevo Proveedor----- //
-    public function saveProveedor($nombreProv, $direccionProv, $emailProv, $telefonoProv){
-        try {
-            $sql = 'INSERT INTO proveedor(idprov, nomprov, dirprov, emaprov, telprov) VALUES (?, ?, ?, ?, ?)';
-            $stmt = $this->conexion->prepare($sql);
-            if($stmt->execute(["sssi",  $nombreProv, $direccionProv, $emailProv, $telefonoProv])) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
-
     // -----Metodo para agregar un nuevo Colaborador----- //
     public function saveColaborador( $dnicol, $nombreCol, $emailCol, $passwordCol, $direccionCol,  $telefonoCol, $rolCol){
         try {
@@ -241,20 +289,6 @@ class Profile
         } catch (Exception $e) {
             die($e->getMessage());
         }
-    }
-
-    // -----Metodo para eliminar Profiles----- //
-    public function deleteUser($table, $param , $id) {
-        $sql = "DELETE FROM $table WHERE $param = ?";
-        try {
-            if($this->conexion->prepare($sql)->execute([$id])){
-                return true; 
-            } else{
-                return false; 
-            }
-        } catch (Exception $e) {
-            return false; 
-		}
     }
 
     // -----Metodo para verificar si un string contiene numeros----- //

@@ -11,31 +11,30 @@
                 </div>
             </div>
             <div class="form">
-                <form action="?b=editarinfo&s=GuardarProveedor" method="POST">
-                    <input type="hidden" name="ctIdProv" id="ctIdProv">
+                <form action="?b=profile&s=saveProveedor" method="POST">
                     <div class="input-container">
                         <label for="ctNomProv">Nombre</label>
-                        <input type="text" name="ctNomProv" id="ctNomProv" class="input" autocomplete="off">
+                        <input type="text" name="name" id="ctNomProv" class="input" autocomplete="off">
                         <span>Nombre</span>
                     </div>
                     <div class="input-container">
                         <label for="ctDirProv">Dirección</label>
-                        <input type="text" name="ctDirProv" id="ctDirProv" class="input" autocomplete="off">
+                        <input type="text" name="addres" id="ctDirProv" class="input" autocomplete="off">
                         <span>Dirección</span>
                     </div>
                     <div class="input-container">
                         <label for="ctEmaProv">E-mail</label>
-                        <input type="email" name="ctEmaProv" id="ctEmaProv" class="input" autocomplete="off">
+                        <input type="email" name="email" id="ctEmaProv" class="input" autocomplete="off">
                         <span>E-mail</span>
                     </div>
                     <div class="input-container">
                         <label for="ctTelProv">Teléfono</label>
-                        <input type="number" name="ctTelProv" id="ctTelProv" class="input" autocomplete="off">
+                        <input type="number" name="phone" id="ctTelProv" class="input" autocomplete="off">
                         <span>Teléfono</span>
                     </div>
                     <div class="buttons">
                         <input type="submit" name="btnEditar" value="Guardar" class="btn-save btn">
-                        <a href="?b=profile&s=Inicio&p=admin" class="btn-regresar btn">Cancelar</a>
+                        <a href="?b=profile&s=Inicio" class="btn-regresar btn">Cancelar</a>
                     </div>
                 </form>
             </div>
