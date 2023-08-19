@@ -27,14 +27,6 @@ body {
     background-color: whitesmoke;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100%;
-}
-
 .header {
     display: flex;
     justify-content: space-between;
@@ -69,11 +61,15 @@ body {
 
 
 .edit {
-    width: 650px;
-    border-radius: 20px;
-    
-    text-align: center;
-    position: relative;
+    max-width: 650px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
 }
 
 /* form */

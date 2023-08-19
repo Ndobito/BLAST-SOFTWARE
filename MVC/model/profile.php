@@ -5,7 +5,7 @@ class Profile
 {
     private $conexion;
 
-    public $id, $dni, $nombre, $apellido, $nick, $direccion, $zona,  $email, $numcel, $numcel2, $file;
+    public $id, $dni, $name, $surname, $nick, $pass, $addres, $zone,  $email, $phone, $phone2, $privileges;
 
     // -----Constructor de la Conexion-----//
     public function __construct()
@@ -46,9 +46,8 @@ class Profile
     // -----Metodo para Seleccionar el un dato ----- //
     public function selectParam($param1,$tabla, $param2, $value)
     {
-        $query = "SELECT $param1 FROM $tabla WHERE $param2 = ?";
+        $query = "SELECT $param1 FROM $tabla WHERE $param2 = '".$value."'";
         $stmt = $this->conexion->prepare($query);
-        $stmt->bind_param("i", $value);
         $stmt->execute();
         $stmt->bind_result($result);
         $stmt->fetch();
@@ -115,6 +114,19 @@ class Profile
         return $producto;
     }
 
+    // -----Metodo para Seleccionar el nombre del Usuario----- //
+    public function selectUser($nombreUsuario)
+    {
+         $query = "SELECT * FROM usuario WHERE nickuser ='" . $nombreUsuario . "'";
+         $stmt = $this->conexion->prepare($query);
+         $stmt->execute();
+         $result = $stmt->get_result();
+         $administrador = $result->fetch_assoc();
+         $stmt->close();
+         return $administrador;
+    }
+
+
     // ----------METODOS DEL PROVEEDOR---------- // 
 
     // -----Metodo para agregar un nuevo Proveedor----- //
@@ -122,7 +134,7 @@ class Profile
         try {
             $sql = 'INSERT INTO proveedor(nomprov, dirprov, emaprov, telprov) VALUES (?, ?, ?, ?)';
             $stmt = $this->conexion->prepare($sql);
-            if($stmt->execute([$data->nombre, $data->direccion, $data->email, $data->numcel])) {
+            if($stmt->execute([$data->name, $data->addres, $data->email, $data->phone])) {
                 return true;
             } else {
                 return false;
@@ -138,7 +150,7 @@ class Profile
         $stmt = $this->conexion->prepare("UPDATE proveedor SET nomprov = ?, dirprov = ?, emaprov = ?, telprov = ? WHERE idprov = ?");
         
         // Vincular los valores de los atributos a las variables de enlace
-        $stmt->bind_param("ssssi", $data->nombre, $data->direccion, $data->email, $data->numcel, $data->id);
+        $stmt->bind_param("ssssi", $data->name, $data->addres, $data->email, $data->phone, $data->id);
         
         if ($stmt->execute()) {
             return true;
@@ -147,85 +159,21 @@ class Profile
         }
     }
     
+    // ----------METODOS DE USUARIO---------- //
 
-
-
-
-
-
-
-
-
-    // -----Metodo para el buscador de clientes en Profile -----//
-    public function buscarClientes($buscar)
-    {
-        $query = "SELECT * FROM cliente WHERE idcli LIKE '%$buscar%'";
-        $result = $this->conexion->query($query);
-        $cliente = array();
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $cliente[] = $row;
-            }
+    // -----Metodo para guardar informacion de Usuario----- //
+    public function saveUser(Profile $data){
+        try{
+            $user= "INSERT INTO usuario(dniuser, nameuser, surnameuser, nickuser, passuser, emailuser, diruser, zoneuser, phoneuser, phonealtuser, privileges) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $opr = $this ->conexion-> prepare($user);
+            if($opr->execute(array($data ->dni ,$data -> name, $data-> surname,$data -> nick, $data -> pass, $data -> email, $data -> addres, $data -> zone, $data -> phone, $data -> phone2, $data -> privileges))){
+                return true; 
+            }else{
+                return false;
+            } 
+        } catch (Exception $error){
+            echo "No se puede registrar el Usuario: ". $error->getMessage();
         }
-        return $cliente;
-    }
-
-    // -----Metodo del para el buscador de mascotas de Profile----- //
-    public function buscarMascotas($buscar)
-    {
-        $query = "SELECT * FROM mascota WHERE idmas LIKE '%$buscar%'";
-        $result = $this->conexion->query($query);
-        $mascota = array();
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $mascota[] = $row;
-            }
-        }
-        return $mascota;
-    }
-
-    // -----Metodo del para el buscador de proveedores de Profile----- //
-    public function buscarProveedor($buscar)
-    {
-        $query = "SELECT * FROM proveedor WHERE idprov LIKE '%$buscar%'";
-        $result = $this->conexion->query($query);
-        $proveedores = array();
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $proveedores[] = $row;
-            }
-        }
-        return $proveedores;
-    }
-
-    // -----Metodo para el buscador de empleados en Profile----- //
-    public function buscarEmpleado($buscar)
-    {
-        $query = "SELECT * FROM colaborador WHERE idcol LIKE '%$buscar%'";
-        $result = $this->conexion->query($query);
-        $empleados = array();
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $empleados[] = $row;
-            }
-        }
-
-        return $empleados;
-    }
-     
-    // -----Metodo para Seleccionar el nombre del Usuario----- //
-    public function selectUser($nombreUsuario)
-    {
-         $query = "SELECT * FROM usuario WHERE nickuser ='" . $nombreUsuario . "'";
-         $stmt = $this->conexion->prepare($query);
-         $stmt->execute();
-         $result = $stmt->get_result();
-         $administrador = $result->fetch_assoc();
-         $stmt->close();
-         return $administrador;
     }
 
     // -----Metodo para actualizar informacion de Usuario----- //
@@ -237,13 +185,13 @@ class Profile
             $stmt->bind_param(
                 "ssssssssi",
                 $user->dni,
-                $user->nombre,
-                $user->apellido,
+                $user->name,
+                $user->surname,
                 $user->email,
-                $user->direccion,
-                $user->zona,
-                $user->numcel,
-                $user->numcel2,
+                $user->addres,
+                $user->zone,
+                $user->phone,
+                $user->phone2,
                 $user->id
             );
             if($stmt->execute()){
@@ -257,6 +205,10 @@ class Profile
             return false;
         }
     }
+
+
+
+
 
     
 

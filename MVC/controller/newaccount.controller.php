@@ -50,7 +50,7 @@ class newAccountController
                                     $param1 = "idcli";
                                     $param2 = "usercli";
                                     $table = "cliente";
-                                    if ($this->object->userExist($param1, $$param2, $table, $_POST['ctNick'])) {
+                                    if ($this->object->userExist($param1, $param2, $table, $_POST['ctNick'])) {
                                         redirect("?b=newaccount&s=Inicio")->error("El Nickname ya se encuentra registrado")->send();
                                     } else {
                                         if ($this->object->verifyPasswordString($_POST['ctPass'])) {

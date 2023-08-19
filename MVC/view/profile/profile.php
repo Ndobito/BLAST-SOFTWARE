@@ -151,7 +151,7 @@
                                 <div class=\"form-container\">
                                     <div class=\"input-group\">
                                         <span class=\"input-group-btn\">
-                                            <a href=\"?b=profile&s=optionSaveRedirec&p=colaborador\"><button class=\"btn btn-default\" type=\"submit\">Agregar</button></a>
+                                            <a href=\"?b=profile&s=optionSaveRedirec&p=Colaborador\"><button class=\"btn btn-default\" type=\"submit\">Agregar</button></a>
                                         </span>
                                     </div>
                                     <form method=\"POST\" action=\"?b=profile&s=buscarColaborador\">
