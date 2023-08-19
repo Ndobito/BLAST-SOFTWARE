@@ -38,7 +38,7 @@
                     <div class="user-information">
                         <h1>Datos</h1>
                         <form id="form-user-information" action="?b=profile&s=updateUser" method="post">
-                            <input name="nick" type="hidden" value="<?php echo $user['nickuser'] ?>" disabled>
+                            <input name="id" type="hidden" value="<?php echo $user['iduser'] ?>" disabled>
                             <label for="name">Numero de identificacion*</label>
                             <input name="numid" type="number" value="<?php echo $user['dniuser'] ?>" disabled>
                             <label for="name">Nombres*</label>
@@ -81,7 +81,6 @@
                             <div class="updatebutton">
                                 <span id="enableForm1"> Editar</span>
                             </div>
-                            <input type="hidden" name="privileges" value="<?php echo $privilegios ?>">
 
                             <input type="submit" name="btnUpdateProfile" value="Guardar">
                         </form>

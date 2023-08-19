@@ -5,7 +5,7 @@ class Profile
 {
     private $conexion;
 
-    public $id, $nombre, $apellido, $nick, $direccion, $zona,  $email, $numcel, $numcel2, $file;
+    public $id, $dni, $nombre, $apellido, $nick, $direccion, $zona,  $email, $numcel, $numcel2, $file;
 
     // -----Constructor de la Conexion-----//
     public function __construct()
@@ -41,6 +41,7 @@ class Profile
         }
         return $producto;
     }
+
 
     // -----Metodo para Seleccionar el un dato ----- //
     public function selectParam($param1,$tabla, $param2, $value)
@@ -84,6 +85,34 @@ class Profile
         } catch (Exception $e) {
             return false; 
 		}
+    }
+
+    // -----Metodo para Seleccionar el un dato - Return true ----- //
+    public function selectParamBoolean($tabla, $param2, $value)
+    {
+        $query = "SELECT COUNT(*) FROM $tabla WHERE $param2 = ?";
+        $stmt = $this->conexion->prepare($query);
+        $stmt->bind_param("i", $value);
+        $stmt->execute();
+        $stmt->bind_result($count);
+        $stmt->fetch();
+        $stmt->close();
+        
+        return $count > 0;
+    }
+
+    public function getAllUser($id) {
+        $query = "SELECT * FROM usuario WHERE dniuser =  '".$id."'";
+        $result = $this->conexion->query($query);
+        $producto = array();
+
+        if ($result->num_rows > 0) {
+            // Recorrer los resultados y almacenarlos en el array $proveedores
+            while ($row = $result->fetch_assoc()) {
+                $producto[] = $row;
+            }
+        }
+        return $producto;
     }
 
     // ----------METODOS DEL PROVEEDOR---------- // 
@@ -202,13 +231,12 @@ class Profile
     // -----Metodo para actualizar informacion de Usuario----- //
     public function update(Profile $user)
     {
-        $update = "UPDATE usuario SET dniuser = ?, nameuser = ?, surnameuser = ?, emailuser = ?, diruser = ?, zoneuser = ?, phoneuser = ?, phonealtuser = ? WHERE dniuser = ? ";
-
+        $update = "UPDATE usuario SET dniuser = ?, nameuser = ?, surnameuser = ?, emailuser = ?, diruser = ?, zoneuser = ?, phoneuser = ?, phonealtuser = ? WHERE iduser = ? ";
         try {
             $stmt = $this->conexion->prepare($update);
             $stmt->bind_param(
                 "ssssssssi",
-                $user->id,
+                $user->dni,
                 $user->nombre,
                 $user->apellido,
                 $user->email,
@@ -218,9 +246,12 @@ class Profile
                 $user->numcel2,
                 $user->id
             );
-
-            $stmt->execute();
-            return true;
+            if($stmt->execute()){
+                return true;
+            }else{
+                return false; 
+            }
+            
         } catch (Exception $e) {
             echo "Error al actualizar datos: " . $e->getMessage();
             return false;

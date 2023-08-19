@@ -133,46 +133,81 @@ class ProfileController
     {
         if (isset($_REQUEST['btnUpdateProfile'])) {
             if (
-                empty($_POST['numid']) || empty($_POST['name']) || empty($_POST['surname']) || empty($_POST['addres']) || empty($_POST['zone']) || empty($_POST['email']) || empty($_POST['phone'])) {
+                empty($_POST['numid']) || empty($_POST['name']) || empty($_POST['surname']) || empty($_POST['addres']) || empty($_POST['zone']) || empty($_POST['email']) || empty($_POST['phone'])
+            ) {
                 redirect("?b=profile&s=Inicio")->error("Se deben llenar todos los campos con (*)")->send();
             } else {
                 if ($this->object->verifyLeterString($_POST['numid'])) {
-                    redirect("?b=profile&s=Inicio")->error("El numero de Identificacion no puede llevar letras")->send();
+                    redirect("?b=profile&s=Inicio")->error("El número de Identificación no puede llevar letras")->send();
                 } else {
-                    $user = $this->object->selectNameIDUser($_POST['numid']);
-                    if ($user !== null) {
-                        if ($_POST['numid'] == $user['dniuser'] && $_POST['nick'] == $user['nickuser']) {
-                            if ($this->object->verifyNumberString($_POST['name']) || $this->object->verifyNumberString($_POST['surname'])) {
-                                redirect("?b=profile&s=Inicio")->error("Los nombres y apellidos no pueden llevar numeros")->send();
-                            } else {
-                                if (!$this->object->verifyEmailString($_POST['email'])) {
-                                    redirect("?b=profile&s=Inicio")->error("Formato de correo electronico invalido")->send();
+                
+                if ($this->object->selectParamBoolean("usuario","dniuser",$_POST['numid'])) {
+                        $currentUser = $this->object->getAllUser($_POST['numid']);
+                        if (!empty($currentUser)) {
+                            $primerUsuario = $currentUser[0];
+                            if ($primerUsuario['nickuser'] == $_SESSION['usuario']) {
+                                if ($this->object->verifyNumberString($_POST['name']) || $this->object->verifyNumberString($_POST['surname'])) {
+                                    redirect("?b=profile&s=Inicio")->error("Los nombres y apellidos no pueden llevar numeros")->send();
                                 } else {
-                                    if ($this->object->verifyLeterString($_POST['phone']) || $this->object->verifyLeterString($_POST['phone2'])) {
-                                        redirect("?b=profile&s=Inicio")->error("Los numero de telefonos no pueden contener letras")->send();
+                                    if (!$this->object->verifyEmailString($_POST['email'])) {
+                                        redirect("?b=profile&s=Inicio")->error("Formato de correo electronico invalido")->send();
                                     } else {
-                                        $u = new Profile();
-                                        $u->id = $_POST['numid'];
-                                        $u->nombre = $_POST['name'];
-                                        $u->apellido = $_POST['surname'];
-                                        $u->email = $_POST['email'];
-                                        $u->direccion = $_POST['addres'];
-                                        $u->zona = $_POST['zone'];
-                                        $u->numcel = $_POST['phone'];
-                                        $u->numcel2 = $_POST['phone2'];
-                                        if ($this->object->update($u)) {
-                                            redirect("?b=profile&s=Inicio")->success("Se ha actualizado la información del usuario")->send();
+                                        if ($this->object->verifyLeterString($_POST['phone']) || $this->object->verifyLeterString($_POST['phone2'])) {
+                                            redirect("?b=profile&s=Inicio")->error("Los numero de telefonos no pueden contener letras")->send();
                                         } else {
-                                            redirect("?b=profile&s=Inicio&p=admin")->error("No se pudo actualizar el usuario")->send();
+                                            $u = new Profile();
+                                            $u->id = $_POST['numid'];
+                                            $u->nombre = $_POST['name'];
+                                            $u->apellido = $_POST['surname'];
+                                            $u->email = $_POST['email'];
+                                            $u->direccion = $_POST['addres'];
+                                            $u->zona = $_POST['zone'];
+                                            $u->numcel = $_POST['phone'];
+                                            $u->numcel2 = $_POST['phone2'];
+                                            if ($this->object->update($u)) {
+                                                redirect("?b=profile&s=Inicio")->success("Se ha actualizado la información del usuario")->send();
+                                            } else {
+                                                redirect("?b=profile&s=Inicio&p=admin")->error("No se pudo actualizar el usuario")->send();
+                                            }
                                         }
                                     }
                                 }
+                            } else {
+                                // El número de identificación existe, pero pertenece a otro usuario
+                                redirect("?b=profile&s=Inicio")->error("El número de Identificación se encuentra registrado con otro usuario")->send();
                             }
                         } else {
-                            redirect("?b=profile&s=Inicio")->error("El numero de identificacion ya se encuntra registrado con otro usuario")->send();
+                            redirect("?b=profile&s=Inicio")->error("No se encontraron usuarios para el número de identificación proporcionado.")->send();
                         }
                     } else {
-                        echo "Usuario no encontrado";
+                        if ($this->object->verifyNumberString($_POST['name']) || $this->object->verifyNumberString($_POST['surname'])) {
+                            redirect("?b=profile&s=Inicio")->error("Los nombres y apellidos no pueden llevar numeros")->send();
+                        } else {
+                            if (!$this->object->verifyEmailString($_POST['email'])) {
+                                redirect("?b=profile&s=Inicio")->error("Formato de correo electronico invalido")->send();
+                            } else {
+                                if ($this->object->verifyLeterString($_POST['phone']) || $this->object->verifyLeterString($_POST['phone2'])) {
+                                    redirect("?b=profile&s=Inicio")->error("Los numero de telefonos no pueden contener letras")->send();
+                                } else {
+                                    $u = new Profile();
+                                    $u->id = $_POST['id'];
+                                    $u->dni = $_POST['numid'];
+                                    $u->nombre = $_POST['name'];
+                                    $u->apellido = $_POST['surname'];
+                                    $u->email = $_POST['email'];
+                                    $u->direccion = $_POST['addres'];
+                                    $u->zona = $_POST['zone'];
+                                    $u->numcel = $_POST['phone'];
+                                    $u->numcel2 = $_POST['phone2'];
+
+                                    if ($this->object->update($u)) {
+                                        redirect("?b=profile&s=Inicio")->success("Se ha actualizado la información del usuario")->send();
+                                    } else {
+                                        redirect("?b=profile&s=Inicio&p=admin")->error("No se pudo actualizar el usuario")->send();
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
