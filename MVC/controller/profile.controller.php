@@ -26,6 +26,7 @@ class ProfileController
         $productos = $this->object->getAll("producto");
         $categorias = $this->object->getAll("categoria"); 
 
+        // -----Variables de Privilegios----- //
         $privUser = Privilegios::User->get();
         $privRecepcionist = Privilegios::Recepcionist->get();
         $privDoctor = Privilegios::Doctor->get();
@@ -60,11 +61,22 @@ class ProfileController
                 require_once "view/head.php"; 
                 require_once "view/profile/save/agregar-proveedor.php";
                 break;
-            case 'Colaborador' || 'Cliente':
+            case 'Colaborador':
                 $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
                 require_once "view/head.php";
                 require_once "view/profile/save/agregar-user.php";
                 break;
+            case 'Cliente':
+                $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
+                require_once "view/head.php";
+                require_once "view/profile/save/agregar-user.php";
+                break;
+            case 'mascota':
+                $dueños = $this->object->getAll("usuario");
+                $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
+                require_once "view/head.php";
+                require_once "view/profile/save/agregar-mascota.php";
+                break; 
             default:
                 redirect("?b=profile&s=errorPage")->error("Pagina no encontrada")->send();
                 break;
@@ -87,26 +99,15 @@ class ProfileController
                     require_once "view/profile/edit/editar-proveedor.php";
                 }
                 break;
-            case 'colaborador':
-                if ($_GET['idcola']) {
-                    $table = "colaborador";
-                    $param = "idcol";
-                    $idColaborador = $_GET['idcola'];
-                    $colaborador = $this->object->existProfile($table, $param, $idColaborador);
+            case 'Colaborador' || 'Cliente':
+                if($_REQUEST['iduser']) {
+                    $table = "usuario";
+                    $param = "dniuser";
+                    $idUser = $_REQUEST['iduser'];
+                    $colaborador = $this->object->existProfile($table, $param, $idUser);
                     $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
                     require_once "view/head.php";
-                    require_once "view/profile/admin/edit/editar-colaborador.php";
-                }
-                break;
-            case 'cliente':
-                if ($_GET['idcli']) {
-                    $table = "cliente";
-                    $param = "numid";
-                    $idCliente = $_GET['idcli'];
-                    $cliente = $this->object->existProfile($table, $param, $idCliente);
-                    $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
-                    require_once "view/head.php";
-                    require_once "view/profile/admin/edit/editar-cliente.php";
+                    require_once "view/profile/edit/editar-user.php";
                 }
                 break;
             case 'mascota':
@@ -133,32 +134,30 @@ class ProfileController
     {   
         $rol = ($_REQUEST['p'] == "Colaborador") ? "Colaborador" : (($_REQUEST['p'] == "Cliente") ? "Cliente" : "");
 
-        if(empty($_POST['numid']) || empty($_POST['name']) || empty($_POST['surname']) || empty($_POST['email']) || empty($_POST['nick']) || empty($_POST['pass']) || empty($_POST['pass2']) || empty($_POST['addres']) || empty($_POST['phone']) || empty($_POST['rol'])){
-            redirect("?b=profile&s=optionSaveredirec&p=$rol")->error("Complete todos los campos")->send();
+        if(empty($_POST['numid']) || empty($_POST['name']) || empty($_POST['surname']) || empty($_POST['email']) || empty($_POST['nick']) || empty($_POST['pass']) || empty($_POST['pass2']) || empty($_POST['addres']) || empty($_POST['phone']) || empty($_POST['zone']) || empty($_POST['rol'])){
+            redirect("?b=profile&s=optionSaveRedirec&p=$rol")->error("Complete todos los campos")->send();
         }else{
             if($this->object->verifyLeterString($_POST['numid'])){
                 redirect("?b=profile&s=optionSaveredirec&p=$rol")->error("El numero de Identificacion no puede llevar letras")->send();
             }else{
                 if($this->object->selectParam("dniuser", "usuario", "dniuser", $_POST['numid'])){
-                    redirect("?b=profile&s=optionSaveredirec&p=$rol")->error("El numero de identificacion ya esta registrado con otro usuario")->send();
+                    redirect("?b=profile&s=optionSaveRedirec&p=$rol")->error("El numero de identificacion ya esta registrado con otro usuario")->send();
                 }else{
                     if($this->object->verifyNumberString($_POST['name']) || $this->object->verifyNumberString($_POST['surname'])){
-                        redirect("?b=profile&s=optionSaveredirec&p=$rol")->error("Los nombres y apellidos deben ir sin numeros")->send();
+                        redirect("?b=profile&s=optionSaveRedirec&p=$rol")->error("Los nombres y apellidos deben ir sin numeros")->send();
                     }else{
                         if(!$this->object->verifyEmailString($_POST['email'])){
-                            redirect("?b=profile&s=optionSaveredirec&p=$rol")->error("Formato de correo electronico invalido")->send();
+                            redirect("?b=profile&s=optionSaveRedirec&p=$rol")->error("Formato de correo electronico invalido")->send();
                         }else{
-                            if($this->object->selectParam("nickuser", "usuario", "nickuser", $_POST['nick'])){
-                                var_dump($this->object->selectParam("nickuser", "usuario", "nickuser", $_POST['nick'])); 
-                                var_dump($_POST['nick']); 
-                                // redirect("?b=profile&s=optionSaveredirec&p=$rol")->error("El nickname ingresado se encuentra en uso")->send();
+                            if($this->object->selectParam("nickuser", "usuario", "nickuser", $_POST['nick'])){ 
+                                redirect("?b=profile&s=optionSaveRedirec&p=$rol")->error("El nickname ingresado se encuentra en uso")->send();
                             }else{
                                 if($_POST['pass'] === $_POST['pass2']){
                                     if(!$this->object->verifyPasswordString($_POST['pass'])){
-                                        redirect("?b=profile&s=optionSaveredirec&p=$rol")->error("La contraseña no cumple con los estandares basicos de seguridad")->send();
+                                        redirect("?b=profile&s=optionSaveRedirec&p=$rol")->error("La contraseña no cumple con los estandares basicos de seguridad")->send();
                                     }else{
                                         if($this->object->verifyLeterString($_POST['phone']) || $this->object->verifyLeterString($_POST['phone2'])){
-                                            redirect("?b=profile&s=optionSaveredirec&p=$rol")->error("Los numeros de telefono pueden llevar letras")->send();
+                                            redirect("?b=profile&s=optionSaveRedirec&p=$rol")->error("Los numeros de telefono pueden llevar letras")->send();
                                         }else{
                                             $c = new Profile(); 
 
@@ -182,7 +181,7 @@ class ProfileController
                                         }
                                     }
                                 }else{
-                                    redirect("?b=profile&s=optionSaveredirec&p=$rol")->error("Las contraseñas no coinciden")->send();
+                                    redirect("?b=profile&s=optionSaveRedirec&p=$rol")->error("Las contraseñas no coinciden")->send();
                                 }
                             }
                         }
@@ -194,30 +193,56 @@ class ProfileController
 
     //-----Metodo para actualizar datos de usuario-----// check
     public function updateUser()
-    {
-        if (isset($_REQUEST['btnUpdateProfile'])) {
-            if (
-                empty($_POST['numid']) || empty($_POST['name']) || empty($_POST['surname']) || empty($_POST['addres']) || empty($_POST['zone']) || empty($_POST['email']) || empty($_POST['phone'])
-            ) {
-                redirect("?b=profile&s=Inicio")->error("Se deben llenar todos los campos con (*)")->send();
+    {   
+        $apodo = (isset($_REQUEST['nickname'])) ? $_REQUEST['nickname'] : $_SESSION['usuario']; 
+        $rol = (isset($_REQUEST['p'])) ? $_REQUEST['p'] : ""; 
+        $dni = (isset($_REQUEST['iduser'])) ? $_REQUEST['iduser'] : ""; 
+        $id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : "";
+        if (isset($_POST['btnUpdateProfile'])) {
+            if (empty($_POST['numid']) || empty($_POST['name']) || empty($_POST['surname']) || empty($_POST['addres']) || empty($_POST['zone']) || empty($_POST['email']) || empty($_POST['phone'])) {
+                if(!empty($rol) && $rol == "Colaborador"){
+                    redirect("?b=profile&s=optionEditRedirec&p=Colaborador&iduser=$dni")->error("Se deben llenar todos los campos")->send();    
+                }else if(!empty($rol) && $rol == "Cliente"){
+                    redirect("?b=profile&s=optionEditRedirec&p=Cliente&iduser=$dni")->error("Se deben llenar todos los campos")->send();
+                }else{
+                    redirect("?b=profile&s=Inicio")->error("Se deben llenar todos los campos con (*)")->send();
+                }
             } else {
                 if ($this->object->verifyLeterString($_POST['numid'])) {
-                    redirect("?b=profile&s=Inicio")->error("El número de Identificación no puede llevar letras")->send();
+                    if(!empty($rol) && $rol == "Colaborador"){
+                        redirect("?b=profile&s=optionEditRedirec&p=Colaborador&iduser=$dni")->error("El numero de identificacion no puede llevar letras")->send();    
+                    }else if(!empty($rol) && $rol == "Cliente"){
+                        redirect("?b=profile&s=optionEditRedirec&p=Cliente&iduser=$dni")->error("El numero de identificacion no puede llevar letras")->send();
+                    }else{
+                        redirect("?b=profile&s=Inicio")->error("El numero de identificacion no puede llevar letras")->send();
+                    }
                 } else {
                     if ($this->object->selectParamBoolean("usuario","dniuser",$_POST['numid'])) {
                         $currentUser = $this->object->getAllUser($_POST['numid']);
                         if (!empty($currentUser)) {
                             $primerUsuario = $currentUser[0];
-                            if ($primerUsuario['nickuser'] == $_SESSION['usuario']) {
-                                $this->verifyUpdateUser(); 
+                            if ($primerUsuario['nickuser'] == $apodo) {
+                                $this->verifyUpdateUser($dni, $rol, $id); 
                             } else {
-                                redirect("?b=profile&s=Inicio")->error("El número de Identificación se encuentra registrado con otro usuario")->send();
+                                if(!empty($rol) && $rol == "Colaborador"){
+                                    redirect("?b=profile&s=optionEditRedirec&p=Colaborador&iduser=$dni")->error("El número de Identificación se encuentra registrado con otro usuario")->send();    
+                                }else if(!empty($rol) && $rol == "Cliente"){
+                                    redirect("?b=profile&s=optionEditRedirec&p=Cliente&iduser=$dni")->error("El número de Identificación se encuentra registrado con otro usuario")->send();
+                                }else{
+                                    redirect("?b=profile&s=Inicio")->error("El número de Identificación se encuentra registrado con otro usuario")->send();
+                                }
                             }
                         } else {
-                            redirect("?b=profile&s=Inicio")->error("No se encontraron usuarios para el número de identificación proporcionado.")->send();
+                            if(!empty($rol) && $rol == "Colaborador"){
+                                redirect("?b=profile&s=optionEditRedirec&p=Colaborador&iduser=$dni")->error("No se encontraron usuarios para el número de identificación proporcionado.")->send();    
+                            }else if(!empty($rol) && $rol == "Cliente"){
+                                redirect("?b=profile&s=optionEditRedirec&p=Cliente&iduser=$dni")->error("No se encontraron usuarios para el número de identificación proporcionado.")->send();
+                            }else{
+                                redirect("?b=profile&s=Inicio")->error("No se encontraron usuarios para el número de identificación proporcionado.")->send();
+                            }
                         }
                     } else {
-                        $this->verifyUpdateUser(); 
+                        $this->verifyUpdateUser($dni, $rol, $id); 
                     }
                 }
             }
@@ -225,21 +250,41 @@ class ProfileController
     }
 
     // -----Segunda parte para la actualizacion de datos de un usuario----- // check 
-    private function verifyUpdateUser(){
+    private function verifyUpdateUser($dni, $rol, $id){
+
         if ($this->object->verifyNumberString($_POST['name']) || $this->object->verifyNumberString($_POST['surname'])) {
-            redirect("?b=profile&s=Inicio")->error("Los nombres y apellidos no pueden llevar numeros")->send();
+            if(!empty($rol) && $rol == "Colaborador"){
+                redirect("?b=profile&s=optionEditRedirec&p=Colaborador&iduser=$dni")->error("Los nombres y apellidos no pueden llevar numeros")->send();    
+            }else if(!empty($rol) && $rol == "Cliente"){
+                redirect("?b=profile&s=optionEditRedirec&p=Cliente&iduser=$dni")->error("Los nombres y apellidos no pueden llevar numeros")->send();
+            }else{
+                redirect("?b=profile&s=Inicio")->error("Los nombres y apellidos no pueden llevar numeros")->send();
+            }
         } else {
             if (!$this->object->verifyEmailString($_POST['email'])) {
-                redirect("?b=profile&s=Inicio")->error("Formato de correo electronico invalido")->send();
+                if(!empty($rol) && $rol == "Colaborador"){
+                    redirect("?b=profile&s=optionEditRedirec&p=Colaborador&iduser=$dni")->error("Formato de correo electronico invalido")->send();    
+                }else if(!empty($rol) && $rol == "Cliente"){
+                    redirect("?b=profile&s=optionEditRedirec&p=Cliente&iduser=$dni")->error("Formato de correo electronico invalido")->send();
+                }else{
+                    redirect("?b=profile&s=Inicio")->error("Formato de correo electronico invalido")->send();
+                }
             } else {
                 if ($this->object->verifyLeterString($_POST['phone']) || $this->object->verifyLeterString($_POST['phone2'])) {
-                    redirect("?b=profile&s=Inicio")->error("Los numero de telefonos no pueden contener letras")->send();
+                    if(!empty($rol) && $rol == "Colaborador"){
+                        redirect("?b=profile&s=optionEditRedirec&p=Colaborador&iduser=$dni")->error("Los numeros de telefono no pueden llevar letras")->send();    
+                    }else if(!empty($rol) && $rol == "Cliente"){
+                        redirect("?b=profile&s=optionEditRedirec&p=Cliente&iduser=$dni")->error("Los numeros de telefono no pueden llevar letras")->send();
+                    }else{
+                        redirect("?b=profile&s=Inicio")->error("Los numeros de telefono no pueden llevar letras")->send();
+                    }
                 } else {
                     $u = new Profile();
-                    $u->id = $_POST['id'];
+                    $u->id = $id;
                     $u->dni = $_POST['numid'];
                     $u->name = $_POST['name'];
                     $u->surname = $_POST['surname'];
+                    $u->nick = $_POST['nick'];
                     $u->email = $_POST['email'];
                     $u->addres = $_POST['addres'];
                     $u->zone = $_POST['zone'];
@@ -255,6 +300,20 @@ class ProfileController
             }
         }
     }
+
+    // -----Metodo para eliminar un usuario ----- //
+    public function deleteUser()
+    {
+        $table = "usuario";
+        $param = "dniuser";
+        $id = $_REQUEST['id']; 
+        $action = $this->object->deleteUser($table, $param, $id);
+        if ($action) {
+            redirect("?b=profile&s=Inicio")->success("Se ha eliminado el usuario ".$_REQUEST['name']." con exito")->send();
+        } else {
+            redirect("?b=profile&s=Inicio&p=admin")->error("No se pudo eliminar el usuario.")->send();
+        }
+    } 
 
     // -----METODOS DE PROVEEDOR ----- //
 
@@ -289,7 +348,6 @@ class ProfileController
     }
 
     // -----Metodo para Editar la informacion del Proveedor ----- //
-
     public function editProveedor(){
         if(empty($_POST['id']) || empty($_POST['name']) || empty($_POST['addres']) || empty($_POST['email']) || empty($_POST['phone'])){
             $id = $_REQUEST['idprov'];
@@ -327,13 +385,12 @@ class ProfileController
     }  
     
     // -----Metodo para eliminar Proveedor ----- //
-
     public function deleteProveedor()
     {
         $table = "proveedor";
         $param = "idprov";
         $id = $_REQUEST['id']; 
-        var_dump($action = $this->object->deleteUser($table, $param, $id));
+        $action = $this->object->deleteUser($table, $param, $id);
         if ($action) {
             redirect("?b=profile&s=Inicio&p=admin")->success("Se ha eliminado el proveedor ".$_REQUEST['name']." con exito")->send();
         } else {
@@ -341,10 +398,31 @@ class ProfileController
         }
     }
 
+    // ----------METODOS DE MASCOTA---------- //
 
+    // -----Metodo para guardar una mascota-----//
+    public function saveMascota(){
+        if(empty($_POST['name']) || empty($_POST['age']) || empty($_POST['gen']) || empty($_POST['esp']) || empty($_POST['owner'])){
+            redirect("?b=profile&s=optionSaveRedirec&p=mascota")->error("Complete todos los campos")->send();
+        }else{
+            if($this->object->verifyNumberString($_POST['name'])){
+                redirect("?b=profile&s=optionSaveRedirec&p=mascota")->error("El nombre de lamascota no debe llevar numeros")->send();
+            }else{
+                $p = new Profile(); 
+                $p->name = $_POST['name'];
+                $p->age = $_POST['age'];
+                $p->gen = $_POST['gen'];
+                $p->esp = $_POST['esp'];
+                $p->owner = $_POST['owner'];
 
-
-
+                if($this->object->saveMascota($p)){
+                    redirect("?b=profile&s=Inicio")->success("Mascota ".$_POST['name']." agregada con exito!")->send();
+                }else{
+                    redirect("?b=profile&s=Inicio")->error("Error al guardar la mascota")->send();
+                }
+            }
+        }
+    }
 
 
 

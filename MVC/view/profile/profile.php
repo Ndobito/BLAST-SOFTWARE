@@ -37,8 +37,7 @@
                 <div class="profile-adm container-right user" id="container-right2">
                     <div class="user-information">
                         <h1>Datos</h1>
-                        <form id="form-user-information" action="?b=profile&s=updateUser" method="post">
-                            <input name="id" type="hidden" value="<?php echo $user['iduser'] ?>" disabled>
+                        <form id="form-user-information" action="?b=profile&s=updateUser&id=<?= $user['iduser'] ?>" method="post">
                             <label for="name">Numero de identificacion*</label>
                             <input name="numid" type="number" value="<?php echo $user['dniuser'] ?>" disabled>
                             <label for="name">Nombres*</label>
@@ -47,6 +46,8 @@
                             <label for="surname">Apellidos *</label>
                             <input type="text" name="surname" id="ctSurNameUser"
                                 value="<?php echo $user['surnameuser'] ?? "Sin definir"; ?>" disabled>
+                            <input type="hidden" name="nick" id="ctSurNameUser"
+                                value="<?php echo $user['nickuser'] ?? "Sin definir"; ?>" disabled>
                             <label for="address">Direccion *</label>
                             <input type="text" name="addres" id="ctAdrUser" value="<?php echo $user['diruser']; ?>"
                                 disabled>
@@ -197,15 +198,15 @@
                                     <td>" . $colaborador['phoneuser'] . "</td>
                                     <td>" . $colaborador['phonealtuser'] . "</td>";
                                     echo "
-                                        <td>" . (($colaborador['privileges'] == $privRecepcionist) ? 'Recepcionista' : (($colaborador['privileges'] == $privDoctor) ? 'Doctor' : '')) . "</td>";
+                                        <td>" . (($colaborador['privileges'] == $privRecepcionist) ? 'Recepcionista' : (($colaborador['privileges'] == $privDoctor) ? 'Veterinario(a)' : '')) . "</td>";
                                     echo "
                                     <td class=\"icons1\">
-                                        <a href=\"?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaborador['dniuser'] . "\">
+                                        <a href=\"?b=profile&s=optionEditRedirec&p=Colaborador&iduser=" . $colaborador['dniuser'] . "\">
                                             <i class=\"fa fa-pencil fa-lg\" aria-hidden=\"true\"></i>
                                         </a>
                                     </td>
                                     <td class=\"icons2\">
-                                        <a onclick=\"alertProfile(this.id, 'colaborador')\" id=\"" . $colaborador['dniuser'] . "\">
+                                    <a onclick='alertProfile(this.id, \"usuario\", \"" . addslashes($colaborador['nameuser']) . "\")' id='" . $colaborador['dniuser'] . "'>
                                             <i class=\"fa-solid fa-trash\"></i>
                                         </a>
                                     </td>
@@ -224,6 +225,9 @@
                         </div>
                         <div class='table-container'>
                             <div class='form-container'>
+                                <div class='input-group'>
+                                    <a href='?b=profile&s=optionSaveRedirec&p=Cliente'><button class='btn btn-default' type='submit'>Agregar</button></a>
+                                </div>
                                 <form method='POST' action='?b=profile&s=buscarClientes'>
                                     <div class='input-group'>
                                         <input type='text' class='form-control search-input' placeholder='Buscar cliente' name='buscar_cliente' id='searchcli'>
@@ -277,14 +281,14 @@
                                     <td>
                                         <?php echo $cliente['phonealtuser']; ?>
                                     </td>
-                                    <td class='icons1'>
-                                        <a href='?b=profile&s=optionEditRedirec&p=cliente&idcli=<?= $cliente['dniuser']; ?>'>
-                                            <i class='fa fa-pencil fa-lg' aria-hidden='true'></i>
+                                    <td class="icons1">
+                                        <a href="?b=profile&s=optionEditRedirec&p=Cliente&iduser=<?= $cliente['dniuser'] ?>">
+                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                         </a>
                                     </td>
-                                    <td class='icons2'>
-                                        <a onclick='alertProfile(this.id, 'cliente')' id='<?php echo $cliente['dniuser']; ?>'>
-                                            <i class='fa-solid fa-trash-can' aria-hidden='true'></i>
+                                    <td class="icons2">
+                                        <a onclick='alertProfile(this.id, "usuario", "<?php echo addslashes($cliente['nameuser']); ?>")' id="<?php echo $cliente['dniuser']; ?>">
+                                            <i class="fa-solid fa-trash"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -301,6 +305,9 @@
                     </div>
                     <div class="table-container">
                         <div class="form-container">
+                            <div class='input-group'>
+                                <a href='?b=profile&s=optionSaveRedirec&p=mascota'><button class='btn btn-default' type='submit'>Agregar</button></a>
+                            </div>
                             <form method="POST" action="?b=profile&s=buscarMascotas">
                                 <div class="input-group">
                                     <input type="text" class="form-control search-input" placeholder="Buscar mascota"
@@ -320,40 +327,39 @@
                                 <th>Numero de identificacion del dueño</th>
                             </tr>
                         </thead>
-                        <?php foreach ($mascota as $m) { ?>
                         <tbody id="resultados">
-                            <tr>
-                                <td>
-                                    <?php echo $m['idmas']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $m['nommas']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $m['edadmas']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $m['genmas']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $m['espmas']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $m['idcli']; ?>
-                                </td>
-                                <td class="icons1">
-                                    <a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=<?= $m['idmas']; ?>">
-                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                                <td class="icons2">
-                                    <a onclick="alertProfile(this.id, 'mascota')" id="<?php echo $m['idmas']; ?>">
-                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            <?php foreach ($mascota as $m) { ?>
+                                <tr>
+                                    <td><?php echo $m['idmas']; ?></td>
+                                    <td><?php echo $m['nommas']; ?></td>
+                                    <td><?php echo $m['edadmas']; ?></td>
+                                    <td><?php echo $m['genmas']; ?></td>
+                                    <td><?php echo $m['espmas']; ?></td>
+                                    <td>
+                                        <?php
+                                        $dueño = array_filter($users, function ($usuario) use ($m) {
+                                            return $usuario['iduser'] == $m['idcli'];
+                                        });
+                                        
+                                        if (!empty($dueño)) {
+                                            $dueño = reset($dueño);
+                                            echo $dueño['dniuser']; 
+                                        }
+                                        ?>
+                                    </td>
+                                    <td class="icons1">
+                                        <a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=<?= $m['idmas']; ?>">
+                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    <td class="icons2">
+                                        <a onclick="alertProfile(this.id, 'mascota')" id="<?php echo $m['idmas']; ?>">
+                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
-                        <?php } ?>
                     </table>
                 </div>
                 <?php 

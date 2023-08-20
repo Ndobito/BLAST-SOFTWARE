@@ -2,21 +2,17 @@ function alertProfile(id, rol, name){
 
     switch(rol){
         case 'proveedor':
+            console.log(id, rol, name);
             var respuesta = confirm("¿Esta seguro(a) de eliminar al proveedor "+name+"?");
             if(respuesta === true){
-                window.location.href = "?b=profile&s=deleteProfile&p=proveedor&id="+id+"name="+name; 
+                window.location.href = "?b=profile&s=deleteProveedor&id="+id+"&name="+name; 
             } 
             break;
-        case 'colaborador':
-            var respuesta = confirm("¿Esta seguro(a) de eliminar este colaborador?");
+        case 'usuario':
+            console.log(id); 
+            var respuesta = confirm("¿Esta seguro(a) de eliminar el usuario "+name+"?");
             if(respuesta === true){
-                window.location.href = "?b=profile&s=deleteProfile&p=colaborador&id="+id; 
-            } 
-            break;
-        case 'cliente':
-            var respuesta = confirm("¿Esta seguro(a) de eliminar este cliente?");
-            if(respuesta === true){
-                window.location.href = "?b=profile&s=deleteProfile&p=cliente&id="+id; 
+                window.location.href = "?b=profile&s=deleteUser&id="+id+"name="+name; 
             } 
             break;
         case 'mascota':

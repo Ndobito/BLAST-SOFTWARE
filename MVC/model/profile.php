@@ -6,6 +6,7 @@ class Profile
     private $conexion;
 
     public $id, $dni, $name, $surname, $nick, $pass, $addres, $zone,  $email, $phone, $phone2, $privileges;
+    public $age, $gen, $esp, $owner; 
 
     // -----Constructor de la Conexion-----//
     public function __construct()
@@ -14,6 +15,40 @@ class Profile
     }
 
     // ----------METODOS GLOBALES---------- //
+
+    // -----Metodo para verificar si un string contiene numeros----- //
+    public function verifyNumberString($string){
+        return preg_match('/\d/', $string) === 1 ? true : false; 
+    }
+
+    // -----Metodo para verificar que un string sea un correo electronico----- //
+    public function verifyEmailString($string){
+        return filter_var($string, FILTER_VALIDATE_EMAIL) ? true : false;
+    }
+
+    // -----Metodo para verificar que entre los numero haya letras----- //
+    public function verifyLeterString($number){
+        return preg_match('/[a-zA-Z]/', $number) === 1 ? true : false; 
+    }
+
+    // -----Metodo para verificar contraseña----- //
+    public function verifyPasswordString($password){
+        $longmin = 8; 
+        $mayus = true; 
+        $minus = true; 
+        $number = true; 
+
+        // -----Verificar longitud minima----- //
+        $longpass = (strlen($password) < $longmin) ? false : true;
+        // -----Verificar mayuscula----- //
+        $mayuspass = ($mayus && preg_match('/[A-Z]/', $password)) ? true : false;  
+        // -----Verificar minuscula----- //
+        $minuspass = ($minus && preg_match('/[a-z]/', $password)) ? true : false; 
+        // Verificar numeros----- //
+        $numberpass = ($number && preg_match('/[0-9]/', $password)) ? true : false;
+
+        return ($longpass === true && $mayuspass === true && $minuspass === true && $numberpass === true) ? true : false; 
+    }
 
     // -----Metodo para verificar existencia en la base de datos ----- //
     public function existProfile($table,$param, $id)
@@ -117,13 +152,13 @@ class Profile
     // -----Metodo para Seleccionar el nombre del Usuario----- //
     public function selectUser($nombreUsuario)
     {
-         $query = "SELECT * FROM usuario WHERE nickuser ='" . $nombreUsuario . "'";
-         $stmt = $this->conexion->prepare($query);
-         $stmt->execute();
-         $result = $stmt->get_result();
-         $administrador = $result->fetch_assoc();
-         $stmt->close();
-         return $administrador;
+        $query = "SELECT * FROM usuario WHERE nickuser ='" . $nombreUsuario . "'";
+        $stmt = $this->conexion->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $administrador = $result->fetch_assoc();
+        $stmt->close();
+        return $administrador;
     }
 
 
@@ -158,8 +193,37 @@ class Profile
             return false;
         }
     }
-    
     // ----------METODOS DE USUARIO---------- //
+
+    // ------Metodo para verificar si un usuario existe------ //
+    public function userExist($param1, $param2, $table, $value){
+        try{
+            $sql = "SELECT $param1 FROM $table WHERE $param2='".$value."'"; 
+            $result = $this->conexion->query($sql);
+            if($result->num_rows > 0 ){
+                $row = $result->fetch_assoc(); // Obtener la fila del resultado como un array asociativo
+                return $row[$param1]; // Devolver el valor del nombre de usuario si existe
+            } else{
+                return null; // Devolver null si el usuario no existe
+            } 
+        } catch(Exception $e){
+            echo "Error: ".$e->getMessage(); 
+        }
+    }
+
+    // -----Metodo para Obtener Privilegios del Usuario------ //
+    public function getPrivileges()
+    {
+        $query = "SELECT privileges FROM usuario WHERE nickuser = ?";
+        $resultado = mysqli_execute_query($this->conexion, $query, [$_SESSION["usuario"]]);
+
+        if (mysqli_num_rows($resultado) > 0) {
+            $row = mysqli_fetch_assoc($resultado);
+            return (int)$row["privileges"];
+        } else {
+            return false;
+        }
+    }
 
     // -----Metodo para guardar informacion de Usuario----- //
     public function saveUser(Profile $data){
@@ -178,15 +242,17 @@ class Profile
 
     // -----Metodo para actualizar informacion de Usuario----- //
     public function update(Profile $user)
-    {
-        $update = "UPDATE usuario SET dniuser = ?, nameuser = ?, surnameuser = ?, emailuser = ?, diruser = ?, zoneuser = ?, phoneuser = ?, phonealtuser = ? WHERE iduser = ? ";
+    {   
+        
+        $update = "UPDATE usuario SET dniuser = ?, nameuser = ?, surnameuser = ?, nickuser= ?, emailuser = ?, diruser = ?, zoneuser = ?, phoneuser = ?, phonealtuser = ? WHERE iduser = ? ";
         try {
             $stmt = $this->conexion->prepare($update);
             $stmt->bind_param(
-                "ssssssssi",
+                "sssssssssi",
                 $user->dni,
                 $user->name,
                 $user->surname,
+                $user->nick,
                 $user->email,
                 $user->addres,
                 $user->zone,
@@ -202,45 +268,33 @@ class Profile
             
         } catch (Exception $e) {
             echo "Error al actualizar datos: " . $e->getMessage();
-            return false;
         }
     }
 
 
+    // ----------METODOS PARA MASCOTA---------- //
 
-
-
-    
-
-    // -----Metodo para actualizar informacion de Empleados----- //
-    public function updateColaborador($idCol, $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol){
-        $stmt = $this->conexion->prepare("UPDATE colaborador SET nomcol = ?, dircol = ?, emacol = ?, telcol = ?, rolcol = ? WHERE idcol = ?");
-        $stmt->bind_param("sssssi", $nombreCol, $direccionCol, $emailCol, $telefonoCol, $rolCol, $idCol);
-    
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false; 
-        }
-    }
-
-    // -----Metodo para actualizar informacion de Cliente----- //
-    public function updateCliente($idCli, $nombreCli, $emailCli,  $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli){
-
-        try {
-            $stmt = $this->conexion->prepare("UPDATE cliente SET numid = ?, nomcli = ?, emacli = ?, usercli = ?, dircli = ?, tzonecli = ?, telcli = ?, telaltcli = ?  WHERE numid = ?");
-            $stmt->bind_param("ssssssssi", $idCli,  $nombreCli, $emailCli,  $userCli, $direccionCli, $tzonecli, $telefonoCli, $telefonoaltCli, $idCli);
-        
-            if ($stmt->execute()) {
+    // -----Metodo para Guardar una Mascota----- //
+    public function saveMascota(Profile $data){
+        try{
+            $insert = "INSERT INTO mascota(nommas, edadmas, genmas, espmas, idcli) VALUES(?,?,?,?,?)"; 
+            $action = $this->conexion->prepare($insert); 
+            if($action->execute(array($data->name, $data->age, $data->gen, $data->esp, $data->owner))){
                 return true; 
-                exit();
-            } else {
+            }else{
                 return false; 
             }
-        } catch (Exception $e) {
-            die($e->getMessage());
+        }catch(Exception $e){
+            echo "Error al guardar mascota en la Base de Datos: ". $e->getMessage();
         }
     }
+
+
+
+    
+
+    
+
     
     // -----Metodo para actualizar informacion de mascota----- //
     public function updateMascota($idmas, $nombremas, $edadmas,  $genmas, $espciemas){
@@ -258,85 +312,4 @@ class Profile
             die($e->getMessage());
         }
     }
-
-    // -----Metodo para agregar un nuevo Colaborador----- //
-    public function saveColaborador( $dnicol, $nombreCol, $emailCol, $passwordCol, $direccionCol,  $telefonoCol, $rolCol){
-        try {
-            $sql = 'INSERT INTO colaborador(dnicol, nomcol, emacol, passcol, dircol, telcol, rolcol) VALUES (?, ?, ?, ?, ?, ?, ?)';
-            $stmt = $this->conexion->prepare($sql);
-            if($stmt->execute([$dnicol, $nombreCol, $emailCol, $passwordCol, $direccionCol,  $telefonoCol, $rolCol])) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
-
-    // -----Metodo para verificar si un string contiene numeros----- //
-    public function verifyNumberString($string){
-        return preg_match('/\d/', $string) === 1 ? true : false; 
-    }
-
-    // -----Metodo para verificar que un string sea un correo electronico----- //
-    public function verifyEmailString($string){
-        return filter_var($string, FILTER_VALIDATE_EMAIL) ? true : false;
-    }
-
-    // -----Metodo para verificar que entre los numero haya letras----- //
-    public function verifyLeterString($number){
-        return preg_match('/[a-zA-Z]/', $number) === 1 ? true : false; 
-    }
-
-    // -----Metodo para verificar contraseña----- //
-    public function verifyPasswordString($password){
-        $longmin = 8; 
-        $mayus = true; 
-        $minus = true; 
-        $number = true; 
-
-        // -----Verificar longitud minima----- //
-        $longpass = (strlen($password) < $longmin) ? false : true;
-        // -----Verificar mayuscula----- //
-        $mayuspass = ($mayus && preg_match('/[A-Z]/', $password)) ? true : false;  
-        // -----Verificar minuscula----- //
-        $minuspass = ($minus && preg_match('/[a-z]/', $password)) ? true : false; 
-        // Verificar numeros----- //
-        $numberpass = ($number && preg_match('/[0-9]/', $password)) ? true : false;
-
-        return ($longpass === true && $mayuspass === true && $minuspass === true && $numberpass === true) ? true : false; 
-    }
-
-    // ------Metodo para verificar si un usuario existe------ //
-    public function userExist($param1, $param2, $table, $value){
-        try{
-            $sql = "SELECT $param1 FROM $table WHERE $param2='".$value."'"; 
-            $result = $this->conexion->query($sql);
-            if($result->num_rows > 0 ){
-                $row = $result->fetch_assoc(); // Obtener la fila del resultado como un array asociativo
-                return $row[$param1]; // Devolver el valor del nombre de usuario si existe
-            } else{
-                return null; // Devolver null si el usuario no existe
-            } 
-        } catch(Exception $e){
-            echo "Error: ".$e->getMessage(); 
-        }
-    }
-
-
-    // -----Metodo para Obtener Privilegios del Usuario------ //
-    public function getPrivileges()
-    {
-    $query = "SELECT privileges FROM usuario WHERE nickuser = ?";
-    $resultado = mysqli_execute_query($this->conexion, $query, [$_SESSION["usuario"]]);
-
-    if (mysqli_num_rows($resultado) > 0) {
-        $row = mysqli_fetch_assoc($resultado);
-        return (int)$row["privileges"];
-    } else {
-        return false;
-    }
-}
-
 }

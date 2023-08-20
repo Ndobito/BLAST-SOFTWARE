@@ -20,7 +20,7 @@
                     <div class="input-container">
                         <label for="ctNomProv">Nombres</label>
                         <input type="text" name="name" id="ctNomProv" class="input" autocomplete="off" required>
-                        <span>Nombre</span>
+                        <span>Nombres</span>
                     </div>
                     <div class="input-container">
                         <label for="ctNomProv">Apellidos</label>
@@ -57,6 +57,15 @@
                         <span>Dirección</span>
                     </div>
                     <div class="input-container">
+                        <label for="zone">Zona</label>
+                        <select name="zone" class="input" id="zone">
+                            <option disabled selected>Seleccione una opcion</option>
+                            <option value="urbana">Urbana</option>
+                            <option value="rural">Rural</option>
+                        </select>
+                        <span>Zona</span>
+                    </div>
+                    <div class="input-container">
                         <label for="ctTelProv">Teléfono</label>
                         <input type="number" name="phone" id="ctTelProv" class="input" autocomplete="off" required>
                         <span>Teléfono</span>
@@ -83,8 +92,9 @@
                             echo "
                             <div class='input-container'>
                                 <label for='selrolUser'>Rol</label>
-                                <select disabled class='input' name='rol' id='selRolUser'>
-                                    <option selected value='cliente' disabled>Cliente</option>
+                                <select class='input' name='rol' id='selRolUser'>
+                                <option selected disabled>Seleccione una opcion</option>
+                                    <option value='cliente'>Cliente</option>
                                 </select>
                                 <span>Rol</span>
                             </div>      
