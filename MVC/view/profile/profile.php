@@ -4,7 +4,12 @@
             <a href="?b=index&s=Inicio&p=admin"><i class="fa-solid fa-arrow-left"></i></a>
             <div>
                 <a href="?b=restorepassword&s=Inicio"><i class="fa-solid fa-key"></i><span>Cambiar contraseña</span></a>
+<<<<<<< HEAD
                 <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar Sesion</span></a>
+=======
+                <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar
+                        Sesion</span></a>
+>>>>>>> 1cc6557674235f888eac324aee31a789df6c4a93
             </div>
         </div>
         <main style="display: block">
@@ -13,23 +18,42 @@
                     <button class="user-data">
                         <img src="assets/img/usuario.png" alt="">
                         <div>
-                            <p><?php echo $user['nameuser'] . " " . $user['surnameuser']; ?></p>
-                            <p><?php echo ($privilegios === $privUser) ? 'Cliente' : (($privilegios === $privRecepcionist) ? 'Recepcionista' : (($privilegios === $privDoctor) ? 'Doctor' : (($privilegios === $privAdmin) ? 'Administrador' : 'Indefinido'))); ?></p>
-                            
+                            <p>
+                                <?php echo $user['nameuser'] . " " . $user['surnameuser']; ?>
+                            </p>
+                            <p>
+                                <?php echo ($privilegios === $privUser) ? 'Cliente' : (($privilegios === $privRecepcionist) ? 'Recepcionista' : (($privilegios === $privDoctor) ? 'Doctor' : (($privilegios === $privAdmin) ? 'Administrador' : 'Indefinido'))); ?>
+                            </p>
                         </div>
                     </button>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-house-user"></i><p>Inicio</p></button>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-user-pen"></i><p style="white-space: nowrap">Datos del usuario</p></button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-house-user"></i>
+                        <p>Inicio</p>
+                    </button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-user-pen"></i>
+                        <p style="white-space: nowrap">Datos del usuario</p>
+                    </button>
                     <?php echo ($privilegios <> $privAdmin) ? "" : "<a href='?b=inventory&s=listado'><button><i class='fa-solid fa-boxes-stacked'></i><p>Inventarios</p></button></a>" ?>
                     <?php echo ($privilegios <> $privAdmin) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-users'></i><p>Proveedores</p></button>" ?>
                     <?php echo ($privilegios <> $privAdmin) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-user-gear'></i><p>Colaboradores</p></button>" ?>
                     <?php echo ($privilegios == $privUser) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-person-circle-check'></i><p>Clientes</p></button>" ?>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i><p>Mascotas</p></button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i>
+                        <p>Mascotas</p>
+                    </button>
                 </div>
             </div>
             <div class="container-right">
                 <div class="profile-adm welcome" id="container-right">
+<<<<<<< HEAD
                     <h1>Bienvenido(a) al panel de <?php echo ($privilegios === $privUser) ? 'Cliente' : (($privilegios === $privRecepcionist) ? 'Recepcionista' : (($privilegios === $privDoctor) ? 'Doctor' : (($privilegios === $privAdmin) ? 'Administrador' : 'Indefinido'))); ?></h1>
+=======
+<<<<<<< HEAD
+                    <h1>Bienvenido(a) al panel de <?php echo ($privilegios === Privilegios::User->get()) ? 'Cliente' : (($privilegios === Privilegios::User->get()+Privilegios::Recepcionist->get()) ? 'Recepcionista' : (($privilegios === Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()) ? 'Doctor' : (($privilegios === Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()+Privilegios::Admin->get()) ? 'Administrador' : 'Indefinido'))); ?></h1>
+=======
+                    <h1>Bienvenido(a) al panel de
+                        <?php echo ($privilegios === Privilegios::User->get()) ? 'Cliente' : (($privilegios === Privilegios::User->get() + Privilegios::Recepcionist->get()) ? 'Recepcionista' : (($privilegios === Privilegios::User->get() + Privilegios::Recepcionist->get() + Privilegios::Doctor->get()) ? 'Doctor' : (($privilegios === Privilegios::User->get() + Privilegios::Recepcionist->get() + Privilegios::Doctor->get() + Privilegios::Admin->get()) ? 'Administrador' : 'Indefinido'))); ?>
+                    </h1>
+>>>>>>> 1cc6557674235f888eac324aee31a789df6c4a93
+>>>>>>> dc0ebd0f8d29e0a39b7225b56e65ad72ca78ec58
                     <p>Dirijase al menu lateral para poder navegar dentro del sitio. </p>
                     <i class="fa-solid fa-face-smile-beam"></i>
                 </div>
@@ -50,9 +74,7 @@
                                 disabled>
                             <label for="ctNameuser">Zona: *</label>
                             <select name="selZone" id="ctZone" disabled>
-                                <option
-                                    <?php echo ($user['zoneuser'] <> "urbana" && $user['zoneuser'] <> "rural") ? "selected" : "" ?>
-                                    disabled></option>
+                                <option <?php echo ($user['zoneuser'] <> "urbana" && $user['zoneuser'] <> "rural") ? "selected" : "" ?> disabled></option>
                                 <option <?php echo ($user['zoneuser'] === "rural") ? "selected" : "" ?> value="rural">
                                     rural</option>
                                 <option <?php echo ($user['zoneuser'] === "urbana") ? "selected" : "" ?> value="urbana">
@@ -85,7 +107,7 @@
                         </form>
                     </div>
                 </div>
-                <?php 
+                <?php
                 if ($privilegios <> $privAdmin) {
                     echo "";
                 } else {
@@ -117,8 +139,8 @@
                                 </tr>
                             </thead>
                             <tbody id='resultados-proveedor'>";
-                            foreach ($proveedores as $proveedor) {
-                                echo "
+                    foreach ($proveedores as $proveedor) {
+                        echo "
                                 <tr>
                                     <td>" . $proveedor['idprov'] . "</td>
                                     <td>" . ($proveedor['nomprov'] ?? 'Sin definir') . "</td>
@@ -136,8 +158,8 @@
                                         </a>
                                     </td>
                                 </tr>";
-                            }
-                            echo "
+                    }
+                    echo "
                             </tbody>;
                         </table>
                     </div>";
@@ -179,12 +201,12 @@
                                     </tr>
                                 </thead>
                                 <tbody id=\"resultados-empleados\">";
-                        foreach ($users as $key => $colaborador) {
-                            $value = $colaborador['privileges'];
-                            $user = isset($roles[$value]) ? $roles[$value] : "";
+                    foreach ($users as $key => $colaborador) {
+                        $value = $colaborador['privileges'];
+                        $user = isset($roles[$value]) ? $roles[$value] : "";
 
-                            if (!empty($user)) {
-                                echo "
+                        if (!empty($user)) {
+                            echo "
                                 <tr>
                                     <td>" . $colaborador['dniuser'] . "</td>
                                     <td>" . $colaborador['nameuser'] . "</td>
@@ -195,9 +217,9 @@
                                     <td>" . $colaborador['zoneuser'] . "</td>
                                     <td>" . $colaborador['phoneuser'] . "</td>
                                     <td>" . $colaborador['phonealtuser'] . "</td>";
-                                    echo "
-                                        <td>" . (($colaborador['privileges'] == Privilegios::User->get() + Privilegios::Recepcionist->get()) ? 'Recepcionista' : (($colaborador['privileges'] == Privilegios::User->get() + Privilegios::Recepcionist->get() + Privilegios::Doctor->get()) ? 'Doctor' : '')) . "</td>";
-                                    echo "
+                            echo "
+                                        <td>" . $roles[$value] . "</td>";
+                            echo "
                                     <td class=\"icons1\">
                                         <a href=\"?b=profile&s=optionEditRedirec&p=colaborador&idcola=" . $colaborador['dniuser'] . "\">
                                             <i class=\"fa fa-pencil fa-lg\" aria-hidden=\"true\"></i>
@@ -209,9 +231,9 @@
                                         </a>
                                     </td>
                                 </tr>";
-                            }
                         }
-                        echo "
+                    }
+                    echo "
                                 </tbody>
                             </table>
                         </div>";
@@ -242,17 +264,21 @@
                                 <tr>
                                     <th>N° Identificacion</th>
                                     <th>Nombre</th>
-                                    <th>Email</th>
+                                    <th>Apellido</th>
                                     <th>Usuario</th>
+                                    <th>Email</th>
                                     <th>Direccion</th>
                                     <th>Zona</th>
                                     <th>Telefono</th>
                                     <th>Telefono Alternaivo</th>
                                 </tr>
                             </thead>
-                            <tbody id='resultados'>"; 
-                    foreach ($users as $key => $cliente) {
-                        if ($cliente['privileges'] == Privilegios::User) {  
+                            <tbody id='resultados-clientes'>";
+
+                    foreach ($users as $cliente) {
+                        $value = $cliente['privileges'];
+
+                        if ($value == $privUser) {
                             echo "
                                 <tr>
                                     <td>" . $cliente['dniuser'] . "</td>
@@ -260,6 +286,7 @@
                                     <td>" . $cliente['surnameuser'] . "</td>
                                     <td>" . $cliente['nickuser'] . "</td>
                                     <td>" . $cliente['emailuser'] . "</td>
+                                    <td>" . $cliente['diruser'] . "</td>
                                     <td>" . $cliente['zoneuser'] . "</td>
                                     <td>" . $cliente['phoneuser'] . "</td>
                                     <td>" . $cliente['phonealtuser'] . "</td>
@@ -288,6 +315,20 @@
                     </div>
                     <div class="table-container">
                         <div class="form-container">
+                            <?php
+                            if ($privilegios <> $privUser) {
+                                echo "";
+                            } else {
+                                echo "
+                                <div class='input-group'>
+                                    <span class='input-group-btn'>
+                                        <a href='?b=profile&s=optionSaveRedirec&p=mascota'>
+                                            <button class='btn btn-default' type='submit'>Agregar</button>
+                                        </a>
+                                    </span> 
+                                </div>";
+                            }
+                            ?>
                             <form method="POST" action="?b=profile&s=buscarMascotas">
                                 <div class="input-group">
                                     <input type="text" class="form-control search-input" placeholder="Buscar mascota"
@@ -308,38 +349,38 @@
                             </tr>
                         </thead>
                         <?php foreach ($mascota as $mascota) { ?>
-                        <tbody id="resultados">
-                            <tr>
-                                <td>
-                                    <?php echo $mascota['idmas']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $mascota['nommas']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $mascota['edadmas']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $mascota['genmas']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $mascota['espmas']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $mascota['idcli']; ?>
-                                </td>
-                                <td class="icons1">
-                                    <a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=<?= $mascota['idmas']; ?>">
-                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                                <td class="icons2">
-                                    <a onclick="alertProfile(this.id, 'mascota')" id="<?php echo $mascota['idmas']; ?>">
-                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
+                            <tbody id="resultados">
+                                <tr>
+                                    <td>
+                                        <?php echo $mascota['idmas']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['nommas']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['edadmas']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['genmas']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['espmas']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $mascota['dniuser']; ?>
+                                    </td>
+                                    <td class="icons1">
+                                        <a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=<?= $mascota['idmas']; ?>">
+                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    <td class="icons2">
+                                        <a onclick="alertProfile(this.id, 'mascota')" id="<?php echo $mascota['idmas']; ?>">
+                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
                         <?php } ?>
                     </table>
                 </div>

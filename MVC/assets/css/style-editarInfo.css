@@ -94,15 +94,9 @@ body {
     margin: 3.5rem 0;
 }
 
-<<<<<<< HEAD
 .input {
-=======
-.form form div input, .form form div select {
-    margin-top: 5px;
->>>>>>> 1e2c59cee00296b2145a9c0e8193ee7b198f6f01
     width: 100%;
     outline: none;
-<<<<<<< HEAD
     border: 2px solid var(--color-2);
     background: none;
     padding: 0.8rem 1.9rem;
@@ -112,23 +106,6 @@ body {
     letter-spacing: 0.5px;
     border-radius: 10px;
     transition: 0.3s;
-=======
-    padding: 5px 5px 5px 10px;
-    font-size: 12pt;
-}
-
-p.verifyPass{
-    color: var(--color-8);
-    font-family: var(--font-2);
-    font-size: 12px;
-}
-
-.form form div input:focus{
-    background-color: var(--color-11);
-}
-.form form div input:hover{
-    background-color: var(--color-11);
->>>>>>> 1e2c59cee00296b2145a9c0e8193ee7b198f6f01
 }
 
 select.input {

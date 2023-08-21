@@ -1,11 +1,13 @@
-<?php 
+<?php
 
-enum Privilegios: int {
+enum Privilegios: int
+{
     case User = 1;
-    case Recepcionist = 2; 
+    case Recepcionist = 2;
     case Doctor = 4;
     case Admin = 8;
-    public function get(): int{
+    public function get(): int
+    {
         return match ($this) {
             static::User => 1,
             static::Recepcionist => 2,
@@ -14,7 +16,8 @@ enum Privilegios: int {
         };
     }
 
-    public static function check($rol) {
+    public static function check($rol)
+    {
         return ($rol & $_SESSION["privilegios"]) == $rol ? true : false;
     }
 }
