@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-08-2023 a las 17:59:42
+-- Tiempo de generación: 21-08-2023 a las 03:47:09
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `veterinaria`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `idcat` int(11) NOT NULL COMMENT 'Identificador de la categoria',
+  `namecat` varchar(255) NOT NULL COMMENT 'Nombre de la categoria',
+  `descat` varchar(255) NOT NULL COMMENT 'Descripcion de la categoria'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`idcat`, `namecat`, `descat`) VALUES
+(1, 'Medicamentos', 'Productos de formulacion medica'),
+(2, 'Purinas', 'Productos de alimento para animales');
 
 -- --------------------------------------------------------
 
@@ -85,6 +105,14 @@ CREATE TABLE `mascota` (
   `idcli` int(11) NOT NULL COMMENT 'FK de cliente(idcli)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `mascota`
+--
+
+INSERT INTO `mascota` (`idmas`, `nommas`, `edadmas`, `genmas`, `espmas`, `idcli`) VALUES
+(9, 'Manolo', '2 años', 'Macho', 'canino', 9),
+(13, 'Sol', '1 mes', 'Hembra', 'felino', 11);
+
 -- --------------------------------------------------------
 
 --
@@ -95,11 +123,10 @@ CREATE TABLE `producto` (
   `idprod` int(11) NOT NULL COMMENT 'Numero identificador del producto',
   `nomprod` varchar(255) NOT NULL COMMENT 'Nombre del prodcuto',
   `desprod` varchar(255) NOT NULL COMMENT 'Descripcion del producto',
-  `imgprod` varchar(255) NOT NULL COMMENT 'Ruta de la imagen del producto',
   `precprod` int(11) NOT NULL COMMENT 'Costo de adquision del producto',
   `precvenprod` int(11) NOT NULL COMMENT 'Precio de venta al publico',
   `stockprod` int(11) NOT NULL COMMENT 'Numero de productos existentes',
-  `catprod` varchar(255) NOT NULL COMMENT 'Categoria del producto',
+  `catprod` int(11) NOT NULL COMMENT 'Fk de la Categoria del producto',
   `idprov` int(11) NOT NULL COMMENT 'FK de proveedor(idprov)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -107,9 +134,9 @@ CREATE TABLE `producto` (
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`idprod`, `nomprod`, `desprod`, `imgprod`, `precprod`, `precvenprod`, `stockprod`, `catprod`, `idprov`) VALUES
-(4, 'afasdfasdf', '', '', 0, 0, 0, '', 1),
-(5, 'harina', 'azucar alto', 'kasbdifbeb//kas kj', 2000, 2500, 23, 'harinas', 2);
+INSERT INTO `producto` (`idprod`, `nomprod`, `desprod`, `precprod`, `precvenprod`, `stockprod`, `catprod`, `idprov`) VALUES
+(6, 'Purina para cachorros', 'Alimento para caninos de 6 a 12 meses de edad', 2800, 5000, 15, 2, 2),
+(8, 'Ivermectina', 'Producto desparasitante', 3000, 4500, 23, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -130,9 +157,8 @@ CREATE TABLE `proveedor` (
 --
 
 INSERT INTO `proveedor` (`idprov`, `nomprov`, `dirprov`, `emaprov`, `telprov`) VALUES
-(1, 'Carni la Victoria', 'Calle 12 # 12-02', 'carnicos@gmail.com', '3154659856'),
 (2, 'alejandro', 'calle 8', 'jcuellarmenza@gmail.com', '3133215141'),
-(3, 'Autoservicio el Centro ', 'Calle 6 ', 'elcentro2023@gmail.com', '3133215141');
+(5, 'Autoservicio El Centro', 'El centro ', 'elcentro@gmail.com', '3156895689');
 
 -- --------------------------------------------------------
 
@@ -163,6 +189,7 @@ CREATE TABLE `registroxservicios` (
 --
 
 CREATE TABLE `usuario` (
+  `iduser` int(11) NOT NULL,
   `dniuser` int(11) NOT NULL,
   `nameuser` varchar(255) NOT NULL,
   `surnameuser` varchar(255) NOT NULL,
@@ -173,18 +200,20 @@ CREATE TABLE `usuario` (
   `zoneuser` varchar(255) DEFAULT NULL,
   `phoneuser` varchar(255) NOT NULL,
   `phonealtuser` varchar(255) DEFAULT NULL,
-  `privileges` int(11) NOT NULL
+  `privileges` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`dniuser`, `nameuser`, `surnameuser`, `nickuser`, `passuser`, `emailuser`, `diruser`, `zoneuser`, `phoneuser`, `phonealtuser`, `privileges`) VALUES
-(321987456, 'Karol Juliana', 'Navia Torres', 'Kn1232', '0273832d1b31e0e306a76afa2da0948d', 'karoljuli12@gmail.com', 'Calle 3 # 12-34', 'urbana', '3128569856', '', 4),
-(1029981035, 'Jose Alejandro', 'Cuellar Menza', 'Asalejo1', 'd00cb1987c6c69dc665e046a11dccc6b', 'jcuellarmenza@gmail.com', 'calle 8 # 6-87', 'rural', '3133215141', '3224091130', 10),
-(1080041730, 'Julian ', 'Muñoz', 'Guanki', 'a0967dfb810d9c4fad5035cc452a3581', 'jm065726@gmail.com', 'La plata', 'urbana', '3117813045', '', 1),
-(1234567890, 'Ronaldo Stiven ', 'Rosero ', 'Ronald07', 'fff48e1309cc9939c07a1e44fd537543', 'ronalxd07@gmail.com', 'La plata', 'urbana', '3125469874', '', 6);
+INSERT INTO `usuario` (`iduser`, `dniuser`, `nameuser`, `surnameuser`, `nickuser`, `passuser`, `emailuser`, `diruser`, `zoneuser`, `phoneuser`, `phonealtuser`, `privileges`) VALUES
+(2, 321987456, 'Karol Juliana', 'Navia Torres', 'Kn1232', '0273832d1b31e0e306a76afa2da0948d', 'karoljuli12@gmail.com', 'Calle 3 # 12-34', 'urbana', '3128569856', '', 2),
+(4, 1029981035, 'Jose Alejandro', 'Cuellar Menza', 'Asalejo1', 'd00cb1987c6c69dc665e046a11dccc6b', 'jcuellarmenza@gmail.com', 'calle 8 # 6-87', 'rural', '3133215141', '3224091130', 8),
+(6, 1234567890, 'Ronaldo Stiven ', 'Rosero ', 'Ronald07', 'fff48e1309cc9939c07a1e44fd537543', 'ronalxd07@gmail.com', 'La plata', 'urbana', '3125469874', '', 4),
+(7, 83256076, 'Diever ', 'Cuellar Cabrera', 'Diever07', 'ada3be3334966b18f1d6e7ebab799849', 'diever2018@gmail.com', 'Guamal', 'rural', '3208486109', '3208486109', 2),
+(9, 1029981256, 'Julian ', 'Muñoz', 'Guanki', 'a0967dfb810d9c4fad5035cc452a3581', 'guanki07@gmail.com', 'La plata', 'urbana', '3125698749', '', 1),
+(11, 1026566645, 'Thomas Matias ', 'Cuellar Menza', 'Thomas123', 'a7397d8d7e79daa0609c1e92782712f7', 'jcuellarmenza@gmail.com', 'Vereda la reforma', 'rural', '3145757762', '3145757762', 1);
 
 -- --------------------------------------------------------
 
@@ -209,6 +238,12 @@ CREATE TABLE `venta` (
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`idcat`);
 
 --
 -- Indices de la tabla `cita`
@@ -243,7 +278,8 @@ ALTER TABLE `mascota`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`idprod`),
-  ADD KEY `idprov` (`idprov`);
+  ADD KEY `idprov` (`idprov`),
+  ADD KEY `catprod` (`catprod`);
 
 --
 -- Indices de la tabla `proveedor`
@@ -264,7 +300,7 @@ ALTER TABLE `registroxservicios`
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`dniuser`);
+  ADD PRIMARY KEY (`iduser`);
 
 --
 -- Indices de la tabla `venta`
@@ -276,6 +312,12 @@ ALTER TABLE `venta`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `idcat` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador de la categoria', AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `cita`
@@ -299,25 +341,31 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT de la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  MODIFY `idmas` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador de la mascota', AUTO_INCREMENT=9;
+  MODIFY `idmas` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador de la mascota', AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idprod` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador del producto', AUTO_INCREMENT=6;
+  MODIFY `idprod` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador del producto', AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `idprov` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero Identificador del Proveedor', AUTO_INCREMENT=5;
+  MODIFY `idprov` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero Identificador del Proveedor', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `registroxservicios`
 --
 ALTER TABLE `registroxservicios`
   MODIFY `idreg` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `venta`
@@ -342,10 +390,17 @@ ALTER TABLE `diagnostico`
   ADD CONSTRAINT `diagnostico_ibfk_1` FOREIGN KEY (`idcit`) REFERENCES `cita` (`idcit`);
 
 --
+-- Filtros para la tabla `mascota`
+--
+ALTER TABLE `mascota`
+  ADD CONSTRAINT `mascota_ibfk_1` FOREIGN KEY (`idcli`) REFERENCES `usuario` (`iduser`);
+
+--
 -- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`idprov`) REFERENCES `proveedor` (`idprov`);
+  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`idprov`) REFERENCES `proveedor` (`idprov`),
+  ADD CONSTRAINT `producto_ibfk_2` FOREIGN KEY (`catprod`) REFERENCES `categoria` (`idcat`);
 
 --
 -- Filtros para la tabla `registroxservicios`
