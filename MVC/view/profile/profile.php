@@ -473,7 +473,7 @@
                     echo "
                     <div class='profile-adm container-right2' id='container-right7'>
                         <div class='title'>
-                            <h1>Recetar Productos</h1>
+                            <h1>Recetar Productos</h1><br><br>
                         </div>
                         <form action='#' method='post'>
                             <div class='header-receta'>
@@ -481,8 +481,7 @@
                                 <div class='colaborador'>
                                     <div>
                                         <div>
-                                            <input type='number' name='numidcol' id='numIdColaborador' placeholder='Numero de identificacion del colaborador'>
-                                            <button id='searchCol'>Buscar colaborador</button>
+                                            <input type='number' name='numidcol' id='numIdColaborador' placeholder='Numero de identificacion del colaborador'><br><br>
                                         </div>
                                         <input disabled type='date' name='date' id='date-receta'  placeholder='Fecha Actual'>
                                     </div>
@@ -490,22 +489,28 @@
                                         <input type='text' name='namecol' id='name-col' placeholder='Nombre del Colaborador'>
                                     </div>
                                 </div>
-                                <h1>Datos de Usuario y Paciente</h1>
+                                <h1>Datos de Usuario y Paciente</h1><br><br>
                                 <div class='Usuario'>
                                     <div>
                                         <div>
-                                            <input type='number' name='numiduser' id='input-receta' placeholder='Numero de identificacion del usuario'>
-                                            <button id='searchUser'>Buscar usuario</button>
+                                            <input type='number' name='dniuser' id='input-receta' autocomplete='off' placeholder='Numero de identificacion del usuario'>&nbsp; &nbsp; &nbsp;
+                                            <input type='text' name='name' id='input-receta' placeholder='Nombre del usuario' autocomplete='off'>&nbsp; &nbsp; &nbsp; 
                                         </div>
                                     </div>
                                     <div>
-                                        <input type='text' name='nameuser' id='input-receta' placeholder='Nombre del usuario'>&nbsp; &nbsp; &nbsp; 
-                                        <input type='text' name='addres' id='input-receta' placeholder='Direccion del usuario'>&nbsp; &nbsp; &nbsp;
+                                        <input type='text' name='addres' id='input-receta' placeholder='Numero de Telefono del usuario' autocomplete='off'>&nbsp; &nbsp; &nbsp; 
+                                        <input type='text' name='addres' id='input-receta' placeholder='Direccion del usuario' autocomplete='off'>&nbsp; &nbsp; &nbsp;
                                         <select name='selMas' id='input-receta'>
                                         <option disabled selected>Seleccione una opcion</option>
                                         ";
                     foreach ($mascota as $m) {
-                        echo "<option>" . $m['nommas'] . "</option>";
+                        foreach($users as $r){
+                            if($r['iduser'] == $m['idcli']){
+                                echo "<option>".$m['nommas']." - ".$r['dniuser']."</option>";
+                            }
+                            
+                        }
+                        
                     }
 
                     echo "
