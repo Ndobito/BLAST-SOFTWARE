@@ -288,21 +288,12 @@ class Profile
             echo "Error al guardar mascota en la Base de Datos: ". $e->getMessage();
         }
     }
-
-
-
-    
-
-    
-
     
     // -----Metodo para actualizar informacion de mascota----- //
-    public function updateMascota($idmas, $nombremas, $edadmas,  $genmas, $espciemas){
+    public function updateMascota(Profile $data){
         try {
             $stmt = $this->conexion->prepare("UPDATE mascota SET nommas = ?, edadmas = ?, genmas = ?, espmas = ? WHERE idmas = ?");
-            $stmt->bind_param("ssssi",  $nombremas, $edadmas,  $genmas, $espciemas, $idmas);
-
-            if ($stmt->execute()) {
+            if ($stmt->execute(array($data->name, $data->age, $data->gen, $data->esp, $data->id))) {
                 return true;
                 exit();
             } else {

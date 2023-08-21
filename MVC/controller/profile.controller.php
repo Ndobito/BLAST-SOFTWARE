@@ -73,6 +73,9 @@ class ProfileController
                 break;
             case 'mascota':
                 $dueños = $this->object->getAll("usuario");
+                $usuario = $_SESSION['usuario'];
+                $user = $this->object->selectUser($usuario);
+                $privilegios = $this->object->getPrivileges();
                 $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
                 require_once "view/head.php";
                 require_once "view/profile/save/agregar-mascota.php";
@@ -99,7 +102,18 @@ class ProfileController
                     require_once "view/profile/edit/editar-proveedor.php";
                 }
                 break;
-            case 'Colaborador' || 'Cliente':
+            case 'Colaborador':
+                if($_REQUEST['iduser']) {
+                    $table = "usuario";
+                    $param = "dniuser";
+                    $idUser = $_REQUEST['iduser'];
+                    $colaborador = $this->object->existProfile($table, $param, $idUser);
+                    $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
+                    require_once "view/head.php";
+                    require_once "view/profile/edit/editar-user.php";
+                }
+                break;
+            case 'Cliente':
                 if($_REQUEST['iduser']) {
                     $table = "usuario";
                     $param = "dniuser";
@@ -118,7 +132,7 @@ class ProfileController
                     $mascota = $this->object->existProfile($table, $param, $idMascota);
                     $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
                     require_once "view/head.php";
-                    require_once "view/profile/admin/edit/editar-mascota.php";
+                    require_once "view/profile/edit/editar-mascota.php";
                 }
                 break;
             default:
@@ -392,9 +406,9 @@ class ProfileController
         $id = $_REQUEST['id']; 
         $action = $this->object->deleteUser($table, $param, $id);
         if ($action) {
-            redirect("?b=profile&s=Inicio&p=admin")->success("Se ha eliminado el proveedor ".$_REQUEST['name']." con exito")->send();
+            redirect("?b=profile&s=Inicio")->success("Se ha eliminado el proveedor ".$_REQUEST['name']." con exito")->send();
         } else {
-            redirect("?b=profile&s=Inicio&p=admin")->error("No se pudo eliminar el proveedor, revise que no haya ningun producto asignado a este proveedor. ")->send();
+            redirect("?b=profile&s=Inicio")->error("No se pudo eliminar el proveedor, revise que no haya ningun producto asignado a este proveedor. ")->send();
         }
     }
 
@@ -406,7 +420,7 @@ class ProfileController
             redirect("?b=profile&s=optionSaveRedirec&p=mascota")->error("Complete todos los campos")->send();
         }else{
             if($this->object->verifyNumberString($_POST['name'])){
-                redirect("?b=profile&s=optionSaveRedirec&p=mascota")->error("El nombre de lamascota no debe llevar numeros")->send();
+                redirect("?b=profile&s=optionSaveRedirec&p=mascota")->error("El nombre de la mascota no debe llevar numeros")->send();
             }else{
                 $p = new Profile(); 
                 $p->name = $_POST['name'];
@@ -424,7 +438,45 @@ class ProfileController
         }
     }
 
+    // -----Metodo para editar la informacion de la mascota-----//
 
+    public function updateMascota(){
+        $id = $_REQUEST['id']; 
+        
+        if(empty($_POST['name']) || empty($_POST['age']) || empty($_POST['gen']) || empty($_POST['esp'])){
+            redirect("?b=profile&s=optionEditRedirec&p=mascota&idmas=$id")->error("Complete todos los campos")->send();
+        }else{
+            if($this->object->verifyNumberString($_POST['name'])){
+                redirect("?b=profile&s=optionEditRedirec&p=mascota&idmas=$id")->error("El nombre de la mascota no puede llevar numeros")->send(); 
+            }else{
+                $up = new Profile();
+                $up->id = $id;
+                $up->name = $_POST['name'];
+                $up->age = $_POST['age'];
+                $up->gen = $_POST['gen'];
+                $up->esp = $_POST['esp'];
+
+                if($this->object->updateMascota($up)){
+                    redirect("?b=profile&s=Inicio")->success("La informacion de la mascota <strong>".$_POST['name']."</strong> ha sido actualizada con exito!")->send();
+                }else{
+                    redirect("?b=profile&s=Inicio")->error("Error al actualizar la mascota <strong>".$_POST['name']."</strong>")->send();
+                }
+            }
+        }
+    }
+
+    // -----Metodo eliminar una mascota----- //
+    public function deleteMascota(){
+        $table = "mascota";
+        $param = "idmas";
+        $id = $_REQUEST['id']; 
+        $action = $this->object->deleteUser($table, $param, $id);
+        if ($action) {
+            redirect("?b=profile&s=Inicio")->success("Se ha eliminado la mascota con exito")->send();
+        } else {
+            redirect("?b=profile&s=Inicio&p=admin")->error("Error al eliminar la mascota")->send();
+        }
+    }
 
 
     //Metodo para cerrar Sesion

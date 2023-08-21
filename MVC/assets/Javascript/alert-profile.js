@@ -16,9 +16,9 @@ function alertProfile(id, rol, name){
             } 
             break;
         case 'mascota':
-            var respuesta = confirm("¿Esta seguro(a) de eliminar esta mascota?");
+            var respuesta = confirm("¿Esta seguro(a) de eliminar esta mascota "+name+"?");
             if(respuesta === true){
-                window.location.href = "?b=profile&s=deleteProfile&p=mascota&id="+id; 
+                window.location.href = "?b=profile&s=deleteMascota&id="+id+"name="+name; 
             } 
             break;
         default:

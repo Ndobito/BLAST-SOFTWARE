@@ -44,20 +44,42 @@
                         </select>
                         <span>Especie&nbsp;&nbsp;</span>
                     </div>
-                    <div class="input-container">
-                        <label for="ctTelProv">Porpietario</label>
-                        <select name="owner" class="input" required>
-                            <option disabled selected>Seleccione una opcion</option>
-                            <?php
-                                foreach ($dueños as $value) {
-                                    if($value['privileges'] == Privilegios::User->get()){
+                    <?php
+                        if($privilegios == Privilegios::User->get()){
+                            echo '
+                            <div class="input-container">
+                                <label for="ctTelProv">Porpietario</label>
+                                <select name="owner" class="input" required>
+                                    <option disabled selected>Seleccione una opcion</option>';
+
+                            foreach ($dueños as $value) {
+                                if ($value['privileges'] == Privilegios::User->get()) {
+                                    if($value['nickuser'] == $_SESSION['usuario']){
                                         echo "<option value=".$value['iduser']." >".$value['nameuser']." ".$value['surnameuser']."</option>"; 
                                     }
                                 }
-                            ?>
-                        </select>
-                        <span>Porpietario&nbsp;&nbsp;</span>
-                    </div>
+                            }
+                            echo '</select>
+                                <span>Porpietario&nbsp;&nbsp;</span>
+                            </div>';
+                        }else{
+                            echo '
+                            <div class="input-container">
+                                <label for="ctTelProv">Porpietario</label>
+                                <select name="owner" class="input" required>
+                                    <option disabled selected>Seleccione una opcion</option>';
+
+                            foreach ($dueños as $value) {
+                                if ($value['privileges'] == Privilegios::User->get()) {
+                                    echo "<option value=".$value['iduser']." >".$value['nameuser']." ".$value['surnameuser']."</option>"; 
+                                }
+                            }
+
+                            echo '</select>
+                                <span>Porpietario&nbsp;&nbsp;</span>
+                            </div>';
+                        }
+                    ?>
                     <div class="buttons">
                         <input type="submit" name="btnEditar" value="Guardar" class="btn-save btn">
                         <a href="?b=profile&s=Inicio" class="btn-regresar btn">Cancelar</a>

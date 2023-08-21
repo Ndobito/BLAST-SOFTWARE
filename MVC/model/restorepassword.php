@@ -17,11 +17,7 @@ class restorePassword
 
     public function verifyUser($usuario)
     {
-        $query = "(SELECT 'cliente' AS rol FROM cliente WHERE usercli = '$usuario')
-                  UNION
-                  (SELECT 'administrador' AS rol FROM administrador WHERE nickadmin = '$usuario')
-                  UNION
-                  (SELECT 'colaborador' AS rol FROM colaborador WHERE nomcol = '$usuario')";
+        $query = "(SELECT 'cliente' AS rol FROM usuario WHERE nickuser = '$usuario')";
         $resultado = mysqli_query($this->consulta, $query);
 
         if (mysqli_num_rows($resultado) > 0) {
@@ -31,15 +27,16 @@ class restorePassword
         }
     }
 
-    public function verifyEmail($email, $user)
+    public function verifyEmail($email)
     {
-        $query = "(SELECT 'cliente' AS rol FROM cliente WHERE emacli = '$email' AND usercli='$user') UNION (SELECT 'administrador' AS rol FROM administrador WHERE emaadmin = '$email' AND nickadmin='$user') UNION (SELECT 'colaborador' AS rol FROM colaborador WHERE emacol = '$email' AND nickcol='$user')";
+        $query = "(SELECT 'cliente' AS rol FROM usuario WHERE emailuser = '$email')";
         $resultado = mysqli_query($this->consulta, $query);
 
-        if (mysqli_num_rows($resultado) > 0) {
+        if ($resultado && mysqli_num_rows($resultado) > 0) {
             return true;
         } else {
             return false;
         }
     }
+
 }
