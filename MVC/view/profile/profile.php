@@ -29,7 +29,7 @@
             </div>
             <div class="container-right">
                 <div class="profile-adm welcome" id="container-right">
-                    <h1>Bienvenido(a) al panel de <?php echo ($privilegios === Privilegios::User->get()) ? 'Cliente' : (($privilegios === Privilegios::User->get()+Privilegios::Recepcionist->get()) ? 'Recepcionista' : (($privilegios === Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()) ? 'Doctor' : (($privilegios === Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()+Privilegios::Admin->get()) ? 'Administrador' : 'Indefinido'))); ?></h1>
+                    <h1>Bienvenido(a) al panel de <?php echo ($privilegios === $privUser) ? 'Cliente' : (($privilegios === $privRecepcionist) ? 'Recepcionista' : (($privilegios === $privDoctor) ? 'Doctor' : (($privilegios === $privAdmin) ? 'Administrador' : 'Indefinido'))); ?></h1>
                     <p>Dirijase al menu lateral para poder navegar dentro del sitio. </p>
                     <i class="fa-solid fa-face-smile-beam"></i>
                 </div>

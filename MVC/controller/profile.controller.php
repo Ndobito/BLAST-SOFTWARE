@@ -29,9 +29,9 @@ class ProfileController
         $mascota = $this->object->getMascota();
 
         $privUser = Privilegios::User->get();
-        $privRecepcionist = Privilegios::User->get()+Privilegios::Recepcionist->get();
-        $privDoctor = Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get();
-        $privAdmin = Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()+Privilegios::Admin->get(); 
+        $privRecepcionist = Privilegios::Recepcionist->get();
+        $privDoctor = Privilegios::Doctor->get();
+        $privAdmin = Privilegios::Admin->get(); 
 
         // -----Variables de Session----- //
         $usuario = $_SESSION['usuario'];
