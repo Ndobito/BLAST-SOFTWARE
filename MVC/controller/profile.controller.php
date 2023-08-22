@@ -188,7 +188,7 @@ class ProfileController
                                             $c->privileges = ($_POST['rol'] == "recepcionista") ? Privilegios::Recepcionist->get() : (($_POST['rol'] == "veterinario") ? Privilegios::Doctor->get() : (($_POST['rol'] == "cliente") ? Privilegios::User->get() : null));
 
                                             if($this->object->saveUser($c)){
-                                                redirect("?b=profile&s=Inicio")->success("Colaborador <strong>".$_REQUEST['name'] ." ".$_REQUEST['surname']."</strong> agregado con exito")->send();
+                                                redirect("?b=profile&s=Inicio")->success("Usuario <strong>".$_REQUEST['name'] ." ".$_REQUEST['surname']."</strong> agregado con exito")->send();
                                             }else{
                                                 redirect("?b=profile&s=Inicio")->error("Error en agregar al colaborador <strong>".$_REQUEST['name'] ." ".$_REQUEST['surname']."</strong>")->send();
                                             }

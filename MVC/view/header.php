@@ -14,7 +14,6 @@
                             $usuario = $_SESSION['usuario'];
                             echo "<a href='?b=profile&s=Inicio'><button><i class='fa-solid fa-user'></i>&nbsp;<span>" . $usuario . "</span></button></a>";
                         } else {
-                            // Si la sesión no está iniciada, mostrar el botón de iniciar sesión
                             echo '<a href="?b=login"><button><i class="fa-solid fa-user"></i>&nbsp;<span>Iniciar Sesión</span></button></a>';
                         }
                         ?>
@@ -32,7 +31,7 @@
                         <a href='?b=knowus&s=Inicio'><li>Conocenos</li></a>
                         <a href='?b=bookappointment&s=Inicio'><li>Servicios y Reservas</li></a>
                         <a href='?b=contactus&s=Inicio'><li>Contactenos</li></a>
-                    </ul>;
+                    </ul>
                 </div>
                 <div class="icon-menu">
                     <i id="open-menu"  class="fa-solid fa-bars"></i>
@@ -41,12 +40,10 @@
             </div>
         </header>
         <div class="panel-menu" id="panel-menu">
-        <ul>
-            <a href='?b=index&s=Inicio'><li>Inicio</li></a>
-            <a href='?b=knowus&s=Inicio'><li>Conocenos</li></a>
-            <a href='?b=bookappointment&s=Inicio'><li>Servicios y Reservas</li></a>
-            <a href='?b=contactus&s=Inicio'><li>Contactenos</li></a>
-        </ul>
+            <ul>
+                <a href='?b=index&s=Inicio'><li>Inicio</li></a>
+                <a href='?b=knowus&s=Inicio'><li>Conocenos</li></a>
+                <a href='?b=bookappointment&s=Inicio'><li>Servicios y Reservas</li></a>
+                <a href='?b=contactus&s=Inicio'><li>Contactenos</li></a>
+            </ul>
         </div>
-
-

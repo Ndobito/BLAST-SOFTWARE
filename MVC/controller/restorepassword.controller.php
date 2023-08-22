@@ -5,9 +5,9 @@ include_once "model/restorepassword.php";
 require 'lib/PHPMailer/src/PHPMailer.php';
 require 'lib/PHPMailer/src/SMTP.php';
 require 'lib/PHPMailer/src/Exception.php';
+use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
 
 class restorePasswordController{
 
@@ -34,7 +34,7 @@ class restorePasswordController{
             $email = $_POST['ctEmail'];
             if(filter_var($email, FILTER_VALIDATE_EMAIL)){
                 if($this->object->verifyUser($user)){
-                    if($this->object->verifyEmail($email, $user)){
+                    if($this->object->verifyEmail($email)){
                         $asunto = "ANIMAL WORLD - RECUPERACION DE CONTRASEÑA"; 
                         $mensaje = "Hola,
                         

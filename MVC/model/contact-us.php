@@ -1,8 +1,15 @@
 <?php
-class InicioController{
-    public function index(){
-     
-        $view ="MVC/view/contact-us/contac-us.php";
-        include_once "index.php";
+
+include_once "lib/database/database.php";
+
+class contactUs{
+    private $consulta; 
+
+    public function __construct(){
+        try {
+            $this->consulta = databaseConexion::conexion();
+        } catch (Exception $e) {
+            echo "Error de Conexion " . $e->getMessage();
+        }
     }
 }
