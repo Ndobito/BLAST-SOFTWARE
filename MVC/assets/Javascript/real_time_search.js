@@ -17,7 +17,7 @@ $(document).ready(function () {
     });
   }
 
-  // Buscador de empleados
+  // Buscador de Colaboradores
   $("#searchcol").on("input", function () {
     buscarEmpleado();
   });

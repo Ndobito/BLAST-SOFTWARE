@@ -329,6 +329,36 @@ class ProfileController
         }
     } 
 
+    // -----Metodo para buscar Proveedores-----//
+    public function buscarColaborador()
+    {
+        $searchTerm = $_POST['buscar_empleado'];
+        $proveedores = $this->object->getAll("proveedor");
+
+        $filteredProveedores = array_filter($proveedores, function ($proveedor) use ($searchTerm) {
+            return (stripos($proveedor['iduser'], $searchTerm) !== false) ||
+                (stripos($proveedor['nameuser'], $searchTerm) !== false);
+        });
+
+        foreach ($filteredProveedores as $proveedor) {
+            echo '<tr>';
+            echo '<td>' . $proveedor['dniuser'] . '</td>';
+            echo '<td>' . ($proveedor['nameuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($proveedor['surnameuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($proveedor['nickuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($proveedor['emailuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($proveedor['addresuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($proveedor['zoneuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($proveedor['phoneuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($proveedor['phonealtuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($proveedor['privileges'] ?? "Sin definir") . '</td>';
+            echo '<td class="icons1"><a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=<?= $mascota["idmas"]; ?>"><i
+    class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
+            echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
+            echo '</tr>';
+        }
+    }
+
     // -----METODOS DE PROVEEDOR ----- //
 
     // -----Metodo para guardar la informacion de un Proveedor----- //
@@ -409,6 +439,31 @@ class ProfileController
             redirect("?b=profile&s=Inicio")->success("Se ha eliminado el proveedor ".$_REQUEST['name']." con exito")->send();
         } else {
             redirect("?b=profile&s=Inicio")->error("No se pudo eliminar el proveedor, revise que no haya ningun producto asignado a este proveedor. ")->send();
+        }
+    }
+
+    // -----Metodo para buscar Proveedores-----//
+    public function buscarProveedor()
+    {
+        $searchTerm = $_POST['buscar_proveedor'];
+        $proveedores = $this->object->getAll("proveedor");
+
+        $filteredProveedores = array_filter($proveedores, function ($proveedor) use ($searchTerm) {
+            return (stripos($proveedor['idprov'], $searchTerm) !== false) ||
+                (stripos($proveedor['nomprov'], $searchTerm) !== false);
+        });
+
+        foreach ($filteredProveedores as $proveedor) {
+            echo '<tr>';
+            echo '<td>' . $proveedor['idprov'] . '</td>';
+            echo '<td>' . ($proveedor['nomprov'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($proveedor['dirprov'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($proveedor['emaprov'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($proveedor['telprov'] ?? "Sin definir") . '</td>';
+            echo '<td class="icons1"><a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=<?= $mascota["idmas"]; ?>"><i
+    class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
+            echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
+            echo '</tr>';
         }
     }
 

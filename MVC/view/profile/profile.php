@@ -98,7 +98,7 @@
                                 <div class='input-group'>
                                     <a href='?b=profile&s=optionSaveRedirec&p=proveedor'><button class='btn btn-default' type='submit'>Agregar</button></a>
                                 </div>
-                                <form action='?b=profile&s=buscarProveedor' method='post'>
+                                <form method='post'>
                                     <div class='input-group'>
                                         <input type='text' id='searchprov' class='form-control search-input' placeholder='Buscar Proveedor' name='buscar_proveedor'>
                                     </div>
@@ -152,12 +152,9 @@
                                             <a href=\"?b=profile&s=optionSaveRedirec&p=Colaborador\"><button class=\"btn btn-default\" type=\"submit\">Agregar</button></a>
                                         </span>
                                     </div>
-                                    <form method=\"POST\" action=\"?b=profile&s=buscarColaborador\">
+                                    <form method=\"POST\">
                                         <div class=\"input-group\">
                                             <input type=\"text\" class=\"form-control search-input\" id=\"searchcol\" placeholder=\"Buscar Empleado\" name=\"buscar_empleado\">
-                                            <span class=\"input-group-btn\">
-                                                <button class=\"btn btn-default\" id=\"miBoton\" type=\"button\">Buscar</button>
-                                            </span>
                                         </div>
                                     </form>
                                 </div>
