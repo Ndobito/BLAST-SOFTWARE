@@ -30,7 +30,9 @@ class LoginController
             $password_valido = $this->loginModel->validarPassword($passEncrypt);
             if ($usuario_valido) {
                 if ($password_valido) {
+                    session_destroy(); 
                     session_start();
+                    
                     $_SESSION['usuario'] = $usuario;
                     $_SESSION['ultimaActividad'] = time();
                     $privilegios = $this->loginModel->obtenerPrivilegios();
