@@ -42,132 +42,64 @@ a{
 
 .container-services{
     padding: 10px;
-    background: var(--color-6);
-}
-
-.container-services .cont-service{
-    margin-top: 30px;
-    margin-bottom: 10px;
-}
-
-.container-services .cont-service .service{
     background: var(--color-5);
-    text-align: center;
-    display: grid;
-    grid-template-columns: 33.3% 33.3% 33.3%;
-    padding: 20px 10px 20px 10px;
-    font-size: 10px;
-    font-family: var(--font-1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
 }
 
-.container-services .cont-service .service button, .container-services .cont-service .reserve button{
-    padding: 12px;
-    background: var(--color-9);
-    font-family: var(--font-1);
-    font-weight: bold;
-    color: var(--color-5);
+.container-service{
+    width: 400px;
+    text-align: center;
+    border-radius: 20px;
     border: none;
-    border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
+    margin: 15px;
+    box-shadow: 0px 0px 20px -10px var(--color-3);
 }
 
-.container-services .cont-service .service button:hover,.container-services .cont-service .reserve button:hover{
-    opacity: 0.8;
+.container-service:hover{
+    box-shadow: 0px 0px 20px -5px var(--color-2);
 }
 
-/* Reserve */
-
-.reserve{ 
-    display: none;
-    background: var(--color-5);
-    border-top: 2px solid var(--color-9);
-    padding: 20px;
+.container-service div:nth-child(1) h1{
+    margin-top: 20px;
+    font-family: var(--font-2);
+    font-size: 25px;
 }
 
-.reserve h1{
-    margin-top: 50px;
-    margin-left: 10%;
-    margin-bottom: 20px;
+.container-service div:nth-child(1) div{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    overflow: hidden;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+.container-service div:nth-child(1) div i{
+    font-size: 70px;
+    margin-top: 30px;
+}
+
+.container-service:hover div:nth-child(1) div{
+    border-color: var(--color-4);
+    transition: 1s ease;
+}
+
+.container-service:hover div:nth-child(1) div i{
+    transition: 1s ease;
+    margin-top: 10px;
+}
+
+.container-service > div:nth-child(2){
+    padding: 40px;
+}
+
+.container-service > div:nth-child(2) p{
     font-family: var(--font-1);
-}
-
-.reserve p{
-    margin-bottom: 20px;
-    font-family: var(--font-1);
-}
-
-/* Calendar */
-
-#calendar {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.slider-calendar {
-    display: flex;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    height: 80%;
-}
-
-.slide {
-    margin: 20vh 0vh 20vh 0vh;
-    display: inline-block;
-    scroll-snap-align: center;
-    width: 100%;
-    padding: 0 10px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-.container-calendar table th,
-.container-calendar table td {
-    font-family: var(--font-2);
-    padding: 10px;
-    text-align: center;
-    color: var(--color-4);
-    background: var(--color-5);
-    border: 1px solid var(--color-7);
-}
-
-.container-calendar table td:hover{
-    background: var(--color-4);
-    color: var(--color-5);
-}
-
-table caption {
-    font-family: var(--font-2);
-    font-size: 1.5rem;
-    color: var(--color-9);
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border: 1px solid var(--color-4);
-}
-
-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-/* Calendar Citas */
-
-#calendar-citas{
-    height: 20%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    font-family: var(--font-2);
-    font-size: 20px;
-    padding: 0px 10px 30px 30px;
+    font-size: 15px;
 }
 
 /* Footer */
