@@ -32,7 +32,7 @@ class ProfileController
         $privUser = Privilegios::User->get();
         $privRecepcionist = Privilegios::Recepcionist->get();
         $privDoctor = Privilegios::Doctor->get();
-        $privAdmin = Privilegios::Admin->get(); 
+        $privAdmin = Privilegios::Admin->get();
 
         // -----Variables de Session----- //
         $usuario = $_SESSION['usuario'];
@@ -144,7 +144,7 @@ class ProfileController
             echo '<td>' . ($proveedor['dirprov'] ?? "Sin definir") . '</td>';
             echo '<td>' . ($proveedor['emaprov'] ?? "Sin definir") . '</td>';
             echo '<td>' . ($proveedor['telprov'] ?? "Sin definir") . '</td>';
-            echo '<td class="icons1"><a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=<?= $mascota["idmas"]; ?>"><i
+            echo '<td class="icons1"><a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=<?= $mascota["idmas"]; ?><i
     class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
             echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
             echo '</tr>';
@@ -156,13 +156,13 @@ class ProfileController
     {
         $searchTerm = $_POST['buscar_empleado'];
         $empleados = $this->object->buscarColaborador($searchTerm);
-    
+
         $roles = [
             Privilegios::Recepcionist->get() => "Recepcionista",
             Privilegios::Doctor->get() => "Doctor",
             Privilegios::Recepcionist->get() + Privilegios::Doctor->get() => "Doctor, Recepcionista",
         ];
-    
+
         foreach ($empleados as $empleado) {
             echo '<tr>';
             echo '<td>' . $empleado['dniuser'] . '</td>';
@@ -180,34 +180,34 @@ class ProfileController
             echo '</tr>';
         }
     }
-    
+
 
     // -----Metodo para mostrar los resultados del buscador de Clientes------ //
     public function buscarClientes()
-{
-    $searchTerm = $_POST['buscar_cliente'];
-    $clientes = $this->object->buscarClientes($searchTerm);
+    {
+        $searchTerm = $_POST['buscar_cliente'];
+        $clientes = $this->object->buscarClientes($searchTerm);
 
-    $roles = [
-        Privilegios::User->get() => "Usuario",
-    ];
+        $roles = [
+            Privilegios::User->get() => "Usuario",
+        ];
 
-    foreach ($clientes as $cliente) {
-        echo '<tr>';
-        echo '<td>' . $cliente['dniuser'] . '</td>';
-        echo '<td>' . ($cliente['nameuser'] ?? "Sin definir") . '</td>';
-        echo '<td>' . ($cliente['surnameuser'] ?? "Sin definir") . '</td>';
-        echo '<td>' . ($cliente['nickuser'] ?? "Sin definir") . '</td>';
-        echo '<td>' . ($cliente['emailuser'] ?? "Sin definir") . '</td>';
-        echo '<td>' . ($cliente['diruser'] ?? "Sin definir") . '</td>';
-        echo '<td>' . ($cliente['zoneuser'] ?? "Sin definir") . '</td>';
-        echo '<td>' . ($cliente['phoneuser'] ?? "Sin definir") . '</td>';
-        echo '<td>' . ($cliente['phonealtuser'] ?? "Sin definir") . '</td>';
-        echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
-        echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
-        echo '</tr>';
+        foreach ($clientes as $cliente) {
+            echo '<tr>';
+            echo '<td>' . $cliente['dniuser'] . '</td>';
+            echo '<td>' . ($cliente['nameuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['surnameuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['nickuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['emailuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['diruser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['zoneuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['phoneuser'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($cliente['phonealtuser'] ?? "Sin definir") . '</td>';
+            echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
+            echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
+            echo '</tr>';
+        }
     }
-}
 
 
     // -----Metodo oara mostrar los resultados del buscador de Mascotas------ //

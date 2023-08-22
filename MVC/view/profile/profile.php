@@ -4,12 +4,8 @@
             <a href="?b=index&s=Inicio&p=admin"><i class="fa-solid fa-arrow-left"></i></a>
             <div>
                 <a href="?b=restorepassword&s=Inicio"><i class="fa-solid fa-key"></i><span>Cambiar contraseña</span></a>
-<<<<<<< HEAD
-                <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar Sesion</span></a>
-=======
                 <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar
                         Sesion</span></a>
->>>>>>> 1cc6557674235f888eac324aee31a789df6c4a93
             </div>
         </div>
         <main style="display: block">
@@ -43,17 +39,9 @@
             </div>
             <div class="container-right">
                 <div class="profile-adm welcome" id="container-right">
-<<<<<<< HEAD
-                    <h1>Bienvenido(a) al panel de <?php echo ($privilegios === $privUser) ? 'Cliente' : (($privilegios === $privRecepcionist) ? 'Recepcionista' : (($privilegios === $privDoctor) ? 'Doctor' : (($privilegios === $privAdmin) ? 'Administrador' : 'Indefinido'))); ?></h1>
-=======
-<<<<<<< HEAD
-                    <h1>Bienvenido(a) al panel de <?php echo ($privilegios === Privilegios::User->get()) ? 'Cliente' : (($privilegios === Privilegios::User->get()+Privilegios::Recepcionist->get()) ? 'Recepcionista' : (($privilegios === Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()) ? 'Doctor' : (($privilegios === Privilegios::User->get()+Privilegios::Recepcionist->get()+Privilegios::Doctor->get()+Privilegios::Admin->get()) ? 'Administrador' : 'Indefinido'))); ?></h1>
-=======
                     <h1>Bienvenido(a) al panel de
                         <?php echo ($privilegios === Privilegios::User->get()) ? 'Cliente' : (($privilegios === Privilegios::User->get() + Privilegios::Recepcionist->get()) ? 'Recepcionista' : (($privilegios === Privilegios::User->get() + Privilegios::Recepcionist->get() + Privilegios::Doctor->get()) ? 'Doctor' : (($privilegios === Privilegios::User->get() + Privilegios::Recepcionist->get() + Privilegios::Doctor->get() + Privilegios::Admin->get()) ? 'Administrador' : 'Indefinido'))); ?>
                     </h1>
->>>>>>> 1cc6557674235f888eac324aee31a789df6c4a93
->>>>>>> dc0ebd0f8d29e0a39b7225b56e65ad72ca78ec58
                     <p>Dirijase al menu lateral para poder navegar dentro del sitio. </p>
                     <i class="fa-solid fa-face-smile-beam"></i>
                 </div>
@@ -128,14 +116,15 @@
                                 </form>
                             </div>
                         </div>
-                        <table class='table-container'>
+                        <div class='table-wrapper'>
+                        <table class='table-container content-table'>
                             <thead>
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombres</th>
                                     <th>Direccion</th>
                                     <th>Correo</th>
-                                    <th>Telefono</th>
+                                    <th class='hide-on-small'>Telefono</th>
                                 </tr>
                             </thead>
                             <tbody id='resultados-proveedor'>";
@@ -162,6 +151,7 @@
                     echo "
                             </tbody>;
                         </table>
+                        </div>
                     </div>";
                     echo "
                         <div class=\"profile-adm container-right3\" id=\"container-right4\">
@@ -178,14 +168,12 @@
                                     <form method=\"POST\" action=\"?b=profile&s=buscarColaborador\">
                                         <div class=\"input-group\">
                                             <input type=\"text\" class=\"form-control search-input\" id=\"searchcol\" placeholder=\"Buscar Empleado\" name=\"buscar_empleado\">
-                                            <span class=\"input-group-btn\">
-                                                <button class=\"btn btn-default\" id=\"miBoton\" type=\"button\">Buscar</button>
-                                            </span>
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                            <table class=\"table-container\">
+                            <div class='table-wrapper'>
+                            <table class=\"table-container content-table\">
                                 <thead>
                                     <tr>
                                         <th>DNI</th>
@@ -216,7 +204,7 @@
                                     <td>" . $colaborador['diruser'] . "</td>
                                     <td>" . $colaborador['zoneuser'] . "</td>
                                     <td>" . $colaborador['phoneuser'] . "</td>
-                                    <td>" . $colaborador['phonealtuser'] . "</td>";
+                                    <td class='hide-on-small'>" . $colaborador['phonealtuser'] . "</td>";
                             echo "
                                         <td>" . $roles[$value] . "</td>";
                             echo "
@@ -236,6 +224,7 @@
                     echo "
                                 </tbody>
                             </table>
+                            </div>
                         </div>";
                 }
 
@@ -252,14 +241,12 @@
                                 <form method='POST' action='?b=profile&s=buscarClientes'>
                                     <div class='input-group'>
                                         <input type='text' class='form-control search-input' placeholder='Buscar cliente' name='buscar_cliente' id='searchcli'>
-                                        <span class='input-group-btn'>
-                                            <button class='btn btn-default' id='miBoton' type='button'>Buscar</button>
-                                        </span>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                        <table class='table-container'>
+                        <div class='table-wrapper'>
+                        <table class='table-container content-table'>
                             <thead>
                                 <tr>
                                     <th>N° Identificacion</th>
@@ -270,7 +257,7 @@
                                     <th>Direccion</th>
                                     <th>Zona</th>
                                     <th>Telefono</th>
-                                    <th>Telefono Alternaivo</th>
+                                    <th >Telefono Alternaivo</th>
                                 </tr>
                             </thead>
                             <tbody id='resultados-clientes'>";
@@ -289,7 +276,7 @@
                                     <td>" . $cliente['diruser'] . "</td>
                                     <td>" . $cliente['zoneuser'] . "</td>
                                     <td>" . $cliente['phoneuser'] . "</td>
-                                    <td>" . $cliente['phonealtuser'] . "</td>
+                                    <td class='hide-on-small'>" . $cliente['phonealtuser'] . "</td>
                                     <td class='icons1'>
                                         <a href='?b=profile&s=optionEditRedirec&p=cliente&idcli=" . $cliente['dniuser'] . "'>
                                             <i class='fa fa-pencil fa-lg' aria-hidden='true'></i>
@@ -306,6 +293,7 @@
                     echo "
                             </tbody>
                         </table>
+                        </div>
                     </div>";
                 }
                 ?>
@@ -337,52 +325,56 @@
                             </form>
                         </div>
                     </div>
-                    <table class="table-container">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Nombre</th>
-                                <th>Edad</th>
-                                <th>Genero</th>
-                                <th>Especie</th>
-                                <th>Numero de identificacion del dueño</th>
-                            </tr>
-                        </thead>
-                        <?php foreach ($mascota as $mascota) { ?>
-                            <tbody id="resultados">
+                    <div class='table-wrapper'>
+                        <table class="table-container content-table">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        <?php echo $mascota['idmas']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $mascota['nommas']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $mascota['edadmas']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $mascota['genmas']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $mascota['espmas']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $mascota['dniuser']; ?>
-                                    </td>
-                                    <td class="icons1">
-                                        <a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=<?= $mascota['idmas']; ?>">
-                                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                    <td class="icons2">
-                                        <a onclick="alertProfile(this.id, 'mascota')" id="<?php echo $mascota['idmas']; ?>">
-                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Edad</th>
+                                    <th>Genero</th>
+                                    <th>Especie</th>
+                                    <th class="hide-on-small">Numero de identificacion del dueño</th>
                                 </tr>
-                            </tbody>
-                        <?php } ?>
-                    </table>
+                            </thead>
+                            <?php foreach ($mascota as $mascota) { ?>
+                                <tbody id="resultados">
+                                    <tr>
+                                        <td>
+                                            <?php echo $mascota['idmas']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $mascota['nommas']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $mascota['edadmas']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $mascota['genmas']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $mascota['espmas']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $mascota['dniuser']; ?>
+                                        </td>
+                                        <td class="icons1">
+                                            <a
+                                                href="?b=profile&s=optionEditRedirec&p=mascota&idmas=<?= $mascota['idmas']; ?>">
+                                                <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                        <td class="icons2">
+                                            <a onclick="alertProfile(this.id, 'mascota')"
+                                                id="<?php echo $mascota['idmas']; ?>">
+                                                <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            <?php } ?>
+                        </table>
+                    </div>
                 </div>
 
             </div>

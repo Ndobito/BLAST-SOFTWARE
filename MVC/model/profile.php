@@ -68,7 +68,7 @@ class Profile
         $query = "SELECT * FROM usuario WHERE (privileges = " . Privilegios::User->get() . ") AND (dniuser LIKE '%$buscar%' OR nameuser LIKE '%$buscar%' OR surnameuser LIKE '%$buscar%' OR nickuser LIKE '%$buscar%')";
         $result = $this->conexion->query($query);
         $clientes = array();
-    
+
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $clientes[] = $row;
@@ -76,7 +76,7 @@ class Profile
         }
         return $clientes;
     }
-    
+
 
     // -----Metodo del para el buscador de mascotas de Profile----- //
     public function buscarMascotas($buscar)
@@ -113,16 +113,16 @@ class Profile
         $query = "SELECT * FROM usuario WHERE (privileges = " . Privilegios::Recepcionist->get() . " OR privileges = " . Privilegios::Doctor->get() . " OR privileges = " . (Privilegios::Recepcionist->get() | Privilegios::Doctor->get()) . ") AND (dniuser LIKE '%$buscar%' OR nameuser LIKE '%$buscar%' OR surnameuser LIKE '%$buscar%' OR nickuser LIKE '%$buscar%')";
         $result = $this->conexion->query($query);
         $empleados = array();
-    
+
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $empleados[] = $row;
             }
         }
-    
+
         return $empleados;
     }
-    
+
 
 
 
