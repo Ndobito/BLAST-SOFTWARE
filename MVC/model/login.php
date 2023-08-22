@@ -22,8 +22,8 @@ class Login
         }
     }
 
-    public function validarPassword($pass){
-        $query = "(SELECT 'usuario' AS rol FROM usuario WHERE passuser = '$pass')";
+    public function validarPassword($pass, $user){
+        $query = "(SELECT 'usuario' AS rol FROM usuario WHERE passuser = '$pass' AND nickuser='$user')";
 
         $resultado = mysqli_query($this->conexion, $query);
 

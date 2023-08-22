@@ -27,7 +27,7 @@ class LoginController
             header('Location: ?b=login');
         } else {
             $usuario_valido = $this->loginModel->validarUsuario($usuario);
-            $password_valido = $this->loginModel->validarPassword($passEncrypt);
+            $password_valido = $this->loginModel->validarPassword($passEncrypt, $usuario);
             if ($usuario_valido) {
                 if ($password_valido) {
                     session_destroy(); 
