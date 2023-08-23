@@ -220,8 +220,7 @@ class ProfileController
             return (stripos($mascota['idmas'], $searchTerm) !== false) ||
                 (stripos($mascota['nommas'], $searchTerm) !== false) ||
                 (stripos($mascota['edadmas'], $searchTerm) !== false) ||
-                (stripos($mascota['genmas'], $searchTerm) !== false) ||
-                (stripos($mascota['idcli'], $searchTerm) !== false);
+                (stripos($mascota['genmas'], $searchTerm) !== false);
         });
 
         foreach ($filteredmascota as $mascota) {
