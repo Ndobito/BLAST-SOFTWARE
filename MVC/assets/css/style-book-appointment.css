@@ -122,19 +122,24 @@ a{
 .container-service > div:nth-child(3) button:hover{
     transition: 0.5s;
     background: orangered;
-    color: white;
 }
 
     /* Window */
     .formService{
-        background: #00000094;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7); /* Color de fondo oscuro con opacidad */
+        z-index: 9999; /* Asegura que el contenedor se superponga a otros elementos */
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        position: absolute;
-        top: 0;
-        width: 100%;
+        color: white;
+        overflow-y: auto;
+        visibility: hidden;
     }
 
     .formService i{
@@ -146,14 +151,71 @@ a{
         cursor: pointer;
     }
 
+    .formService h1{
+        color: white;
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        text-align: center;
+        font-family: var(--font-2);
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+}
+
     .form{
-        background: #2c72ff8f; 
+        background: #2c72ff8f;
         max-width: 1000px;
+        padding: 30px;
+        transform: translateY(45%);
+        -webkit-transform: translateY(45%);
+        -moz-transform: translateY(45%);
+        -ms-transform: translateY(45%);
+        -o-transform: translateY(45%);
+}
+
+    .form p{
+        font-family: var(--font-1);
+        margin-bottom: 20px;
     }
+
+    form > div > div > h2{
+        text-align: center;
+        font-family: var(--font-2);
+    }
+
+    form > div:nth-child(2){
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    form > div:nth-child(2) input{
+        color: white;
+        background-color: var(--color-4);
+        border: none;
+        padding: 15px 20px 15px 20px;
+        font-family: var(--font-1);
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    form > div:nth-child(2) input:hover{
+        transition: 1s;
+        background-color: orangered;
+        color: var(--color-4);
+        -webkit-transition: 1s;
+        -moz-transition: 1s;
+        -ms-transition: 1s;
+        -o-transition: 1s;
+}
 
     .input-container {
         position: relative;
         margin: 3.5rem 0;
+        color: white;
     }
     
     .input {
@@ -162,7 +224,7 @@ a{
         border: 2px solid var(--color-4);
         background: none;
         padding: 0.8rem 1.9rem;
-        color: var(--color-7);
+        color: var(--color-4);
         font-weight: 500;
         font-size: 0.95rem;
         letter-spacing: 0.5px;
@@ -182,7 +244,7 @@ a{
         left: 15px;
         transform: translateY(-50%);
         padding: 0 0.4rem;
-        color: var(--color-6);
+        color: var(--color-5);
         font-size: 0.9rem;
         font-weight: 600;
         pointer-events: none;
@@ -197,7 +259,11 @@ a{
     .input:-webkit-autofill:active {
         -webkit-box-shadow: 0 0 0 1000px transparent inset;
         transition: background-color 5000s ease-in-out 0s;
-    }
+        -webkit-transition: background-color 5000s ease-in-out 0s;
+        -moz-transition: background-color 5000s ease-in-out 0s;
+        -ms-transition: background-color 5000s ease-in-out 0s;
+        -o-transition: background-color 5000s ease-in-out 0s;
+}
     
     input[type=number]::-webkit-inner-spin-button, 
     input[type=number]::-webkit-outer-spin-button { 
@@ -227,7 +293,7 @@ a{
         opacity: 0;
         transition: 0.3s;
         height: 5px;
-        background-color: var(--color-5);
+        background-color: #2c72ff8f;
         top: 50%;
         transform: translateY(-50%);
     }
@@ -422,6 +488,17 @@ footer{
 }
 
 @media (min-width:1025px) {
+
+    /* Window */
+
+    .container-form-service{
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+
+    .container-form-service > div{
+        padding: 20px;
+    }
 
     /* Footer Top*/
 
