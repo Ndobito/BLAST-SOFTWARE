@@ -10,7 +10,7 @@
                         <div class="circle-icon"><i class="fa-regular fa-calendar-check"></i></div>
                     </div>
                     <div>
-                        <p>En nuestra clínica veterinaria, brindamos atención experta a tus mascotas. Consultas dedicadas y cuidado de calidad garantizado. Precios accesibles desde $25.00 pesos. Confía en nosotros para el bienestar de tu compañero peludo.</p>
+                        <p>En nuestra clínica veterinaria, brindamos atención experta a tus mascotas. Consultas dedicadas y cuidado de calidad garantizado. Precios accesibles desde $25.000 pesos. Confía en nosotros para el bienestar de tu compañero peludo.</p>
                     </div>
                     <div>
                         <button onclick="mostrarForm()">Agendar Cita</button>

@@ -101,6 +101,7 @@ a{
 .container-service > div:nth-child(2) p{
     font-family: var(--font-1);
     font-size: 15px;
+    height: 130px;
 }
 
 .container-service > div:nth-child(3){
@@ -121,7 +122,8 @@ a{
 
 .container-service > div:nth-child(3) button:hover{
     transition: 0.5s;
-    background: orangered;
+    color: var(--color-5);
+    background: var(--color-9);
 }
 
     /* Window */
@@ -224,7 +226,7 @@ a{
         border: 2px solid var(--color-4);
         background: none;
         padding: 0.8rem 1.9rem;
-        color: var(--color-4);
+        color: var(--color-5);
         font-weight: 500;
         font-size: 0.95rem;
         letter-spacing: 0.5px;
@@ -238,6 +240,10 @@ a{
         -moz-appearance: none;
     }
     
+    select.input option{
+        background: var(--color-4);
+    }
+
     .input-container label {
         position: absolute;
         top: 50%;
@@ -318,41 +324,6 @@ a{
         width: 50%;
         opacity: 1;
     }
-    
-    
-.btn-save,
-.btn-regresar {
-    width: 40%;
-    padding: 12px;
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-    color: var(--color-5);
-    background-color: var(--color-6);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-}
-
-.btn-save {
-    font-size: 12.7pt;
-}
-
-.buttons .btn-save:hover,
-.buttons .btn-regresar:hover {
-    background-color: var(--color-10);
-    transform: scale(1.05);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
-
-.buttons .btn-save:hover {
-    background-color: #00bdb9;
-}
-
-.buttons .btn-regresar:hover {
-    background-color: #ff5959;
-}
 
 
 
@@ -489,7 +460,16 @@ footer{
 
 @media (min-width:1025px) {
 
+    
     /* Window */
+
+    .formService h1{
+        top: 5%;
+    }
+
+    .form{
+        transform: translateY(5%);
+    }
 
     .container-form-service{
         display: grid;
