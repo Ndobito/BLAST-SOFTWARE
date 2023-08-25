@@ -59,7 +59,7 @@
             <h1>Agendamiento de Servicios</h1>
             <div class="form">
                 <p>Recuerde que para solicitar los servicios debe encontrase registrado y tener mascotas registradas</p>
-                <form action="#" method="post">
+                <form action="?b=bookappointment&s=appointmentRequest" method="post">
                     <div class="container-form-service">
                         <div>
                             <h2>Datos de Usuario</h2>
@@ -71,7 +71,7 @@
                             </div>
                             <div class="input-container">
                                 <label class="tex">Nombre</label>
-                                <input type="text" name="addres" class="input" autocomplete="off">
+                                <input type="text" name="name" class="input" autocomplete="off">
                                 <span>Direccion</span>
                             </div>
                             <div class="input-container">
@@ -156,5 +156,7 @@
     <script src="assets/Javascript/edit-and-save.js"></script>
     <!-- Form Visible -->
     <script src="assets/Javascript/FormAppointments.js"></script>
+    <!-- Form Visible -->
+    <script src="assets/Javascript/deleteProduct.js"></script>
 </body>
 </html>

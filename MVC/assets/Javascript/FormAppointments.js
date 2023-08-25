@@ -9,3 +9,10 @@ function mostrarForm(){
 function ocultarForm(){
     panelService.style.visibility="hidden";
 }
+
+window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('p') === 'showForm') {
+        setTimeout(mostrarForm, 3000);
+    }
+}

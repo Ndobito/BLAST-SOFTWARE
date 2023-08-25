@@ -10,8 +10,13 @@ class Profile
 
     // -----Constructor de la Conexion-----//
     public function __construct()
-    {
-        $this->conexion = databaseConexion::conexion();
+    {   
+        try{
+            $this->conexion = databaseConexion::conexion();
+        }catch(Exception $e){
+            echo "Erro en la conxion de la Base de Datos: "- $e->getMessage(); 
+        }
+        
     }
 
     // ----------METODOS GLOBALES---------- //
