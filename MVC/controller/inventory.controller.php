@@ -47,29 +47,6 @@ class InventoryController
 
     }
 
-    // public function listado()
-    // {
-    //     $param = [];
-    //     $resto = "";
-    //     if (isset($_REQUEST["search"])) {
-    //         $resto = "&& (prd.nomprod LIKE ? || prd.desprod LIKE ? || prd.catprod LIKE ? || prv.nomprov LIKE ?)";
-    //         $param[] = "%" . $_REQUEST["search"] . "%";
-    //         $param[] = "%" . $_REQUEST["search"] . "%";
-    //         $param[] = "%" . $_REQUEST["search"] . "%";
-    //         $param[] = "%" . $_REQUEST["search"] . "%";
-    //     }
-    //     $stmt = $this->conexion->prepare("SELECT prd.*, prv.idprov, prv.nomprov, cat.namecat FROM producto as prd, proveedor as prv, categoria as cat WHERE prv.idprov = prd.idprov" . $resto);
-    //     $stmt->execute($param);
-    //     $items = [];
-    //     $result = $stmt->get_result();
-    //     while ($item = $result->fetch_assoc()) {
-    //         $items[] = $item;
-    //     }
-
-    //     $style = "<link rel='stylesheet' href='assets/css/style-inventory.css'>";
-    //     require_once "view/head.php";
-    //     require_once 'view/inventory/inventory.php';
-    // }
 
     // -----Metodo para vista de nueva categoria----- // 
     public function newCategory(){
@@ -78,7 +55,7 @@ class InventoryController
         require_once "view/inventory/new-category.php"; 
     }
 
-
+    // -----Metodo para vista de editar un producto----- //
     public function showEditar()
     {   
         // -----Metodos para obtener los datos----- //
