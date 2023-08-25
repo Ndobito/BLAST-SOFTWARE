@@ -10,7 +10,7 @@ Password: Ronald07
 
 Recepcionist: 
 User: Kn1232	
-Password:KarolJuli123
+Password: KarolJuli123
 
 Cliente: 
 User:	Guanki	

@@ -418,7 +418,7 @@ table {
     border-collapse: collapse;
     width: 100%;
     margin: 20px 0;
-    box-shadow: -5px 15px 15px -8px rgba(0,0,0,0.61);
+    box-shadow: -5px 15px 15px -21px rgba(0,0,0,0.61);
 }
 
 thead tr {
