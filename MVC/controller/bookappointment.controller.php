@@ -24,10 +24,46 @@ class bookAppointmentController{
         }else{
             if($this->object->verifyLeterString($_POST['numid'])){
                 redirect("?b=bookappointment&p=showForm")->error("El numero de identificacion no debe llevar letras")->send();
-            }else{
-                if($this->object->verifyNumberString($_POST['name'] || $this->object->verifyNumberString($_POST['namepet']))){
-                    
-                }else{}
+            }else{ 
+                if($this->object->verifyNumberString($_POST['name']) || $this->object->verifyNumberString($_POST['namepet'])){
+                    redirect("?b=bookappointment&p=showForm")->error("El nombre del usuario y/o de la mascota no deben llevar numeros")->send();
+                }else{
+                    if($this->object->verifyLeterString($_POST['phone'])){
+                        redirect("?b=bookappointment&p=showForm")->error("El numero de telefono no debe llevar letras")->send();
+                    }else{
+                        if(!$this->object->verifyEmailString($_POST['email'])){
+                            redirect("?b=bookappointment&p=showForm")->error("Formato de correo electronico invalido!")->send();
+                        }else{
+                            $iduser = $this->object->userExist($_POST['numid']); 
+                            if($iduser){
+                                if($this->object->existMascota($_POST['namepet'], $_POST['esppet'], $iduser)){
+                                    $c = new bookAppointment(); 
+                                    $c->dni = $_POST['numid']; 
+                                    $c->nameuser = $_POST['name']; 
+                                    $c->addresuser = $_POST['addres']; 
+                                    $c->phone = $_POST['phone']; 
+                                    $c->email = $_POST['email']; 
+                                    $c->namepet = $_POST['namepet']; 
+                                    $c->gen = $_POST['genpet']; 
+                                    $c->esp = $_POST['esppet']; 
+                                    $c->motive = $_POST['motive']; 
+                                    $c->service = $_POST['service']; 
+                                    $c->datesol =  date("Y/m/d"); 
+
+                                    if($this->object->saveCita($c)){
+                                        redirect("?b=bookappointment")->success("La <strong>".$_POST['service']."</strong> para <strong>".$_POST['namepet']."</strong> ha sido registrada con exito")->send();
+                                    }else{
+                                        redirect("?b=bookappointment")->error("Error al registrar ".$_POST['service']." para ".$_POST['namepet'])->send();
+                                    }
+                                }else{
+                                    redirect("?b=bookappointment&p=showForm")->error("La mascota no se encuentra resgitrada o se encuentra registrada con otro usuario!")->send();
+                                }
+                            }else{
+                                redirect("?b=bookappointment&p=showForm")->error("El usuario no se encuentra registrado!")->send();
+                            }
+                        }
+                    }
+                }
             }
         }
     }

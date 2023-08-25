@@ -16,3 +16,8 @@ window.onload = function() {
         setTimeout(mostrarForm, 3000);
     }
 }
+
+function errorAlert(){
+    console.log(1); 
+    alert("¡Inicia sesion para poder solicitar nuestros servicios!"); 
+}

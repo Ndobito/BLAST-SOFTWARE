@@ -13,7 +13,7 @@
                         <p>En nuestra clínica veterinaria, brindamos atención experta a tus mascotas. Consultas dedicadas y cuidado de calidad garantizado. Precios accesibles desde $25.000 pesos. Confía en nosotros para el bienestar de tu compañero peludo.</p>
                     </div>
                     <div>
-                        <button onclick="mostrarForm()">Agendar Cita</button>
+                        <button <?php echo (isset($_SESSION['usuario']) ? 'onclick="mostrarForm()"' : 'onclick="errorAlert()"');?> >Agendar Cita</button>
                     </div>
                 </div>
                 <div class="container-service">
@@ -25,7 +25,7 @@
                         <p>Nuestro servicio de cirugía garantiza procedimientos expertos y seguros, respaldados por profesionales altamente calificados. Obtén resultados excepcionales y recupera tu bienestar a través de nuestras soluciones médicas confiables.</p>
                     </div>
                     <div>
-                        <button onclick="mostrarForm()">Agendar Cirugia</button>
+                        <button <?php echo (isset($_SESSION['usuario']) ? 'onclick="mostrarForm()"' : 'onclick="errorAlert()"');?> >Agendar Cirugia</button>
                     </div>
                 </div>
                 <div class="container-service">
@@ -37,7 +37,7 @@
                         <p>Nuestro servicio de laboratorio en la veterinaria ofrece análisis rápidos y precisos en menos de 3 días. Por tan solo $50.000 pesos, obtén diagnósticos confiables para cuidar de tu mascota.</p>
                     </div>
                     <div>
-                        <button onclick="mostrarForm()">Agendar Examenes</button>
+                        <button <?php echo (isset($_SESSION['usuario']) ? 'onclick="mostrarForm()"' : 'onclick="errorAlert()"');?> >Agendar Examenes</button>
                     </div>
                 </div>
                 <div class="container-service">
@@ -49,7 +49,7 @@
                         <p>En nuestra veterinaria, proporcionamos servicios de radiografía a tan solo $150.000 pesos. Obtén diagnósticos precisos en menos de 4 días para el bienestar rápido y seguro de tu adorado compañero.</p>
                     </div>
                     <div>
-                        <button onclick="mostrarForm()">Agendar Radiografia</button>
+                        <button <?php echo (isset($_SESSION['usuario']) ? 'onclick="mostrarForm()"' : 'onclick="errorAlert()"');?> >Agendar Radiografia</button>
                     </div>
                 </div>
             </div>
