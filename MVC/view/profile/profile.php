@@ -588,5 +588,4 @@
 
     <script src="assets/Javascript/real_time_search.js"></script>
 </body>
-
 </html>
