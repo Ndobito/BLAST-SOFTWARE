@@ -58,7 +58,7 @@ $(document).ready(function () {
 
   function buscarMascotas() {
     var searchTerm = $("#searchmas").val();
-
+    
     $.ajax({
       type: "post",
       url: "?b=profile&s=buscarMascotas",

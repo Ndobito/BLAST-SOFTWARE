@@ -120,14 +120,15 @@
                                 </form>
                             </div>
                         </div>
-                        <table class='table-container'>
+                        <div class='table-wrapper'>
+                        <table class='table-container content-table'>                        
                             <thead>
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombres</th>
                                     <th>Direccion</th>
                                     <th>Correo</th>
-                                    <th>Telefono</th>
+                                    <th class='hide-on-small'>Telefono</th>
                                 </tr>
                             </thead>
                             <tbody id='resultados-proveedor'>";
@@ -154,6 +155,7 @@
                     echo "
                             </tbody>
                         </table>
+                        </div>
                     </div>";
                     echo "
                         <div class=\"profile-adm container-right3\" id=\"container-right4\">
@@ -174,7 +176,8 @@
                                     </form>
                                 </div>
                             </div>
-                            <table class=\"table-container\">
+                            <div class=\"table-wrapper\">
+                            <table class=\"table-container content-table\">
                                 <thead>
                                     <tr>
                                         <th>DNI</th>
@@ -186,7 +189,7 @@
                                         <th>Zona</th>
                                         <th>Telefono</th>
                                         <th>Telefono Alt.</th>
-                                        <th>Privilegios</th>
+                                        <th class='hide-on-small'>Privilegios</th>
                                     </tr>
                                 </thead>
                                 <tbody id=\"resultados-empleados\">";
@@ -225,6 +228,7 @@
                     echo "
                                 </tbody>
                             </table>
+                            </div>
                         </div>";
                 }
 
@@ -257,20 +261,22 @@
                             </form>
                         </div>
                     </div>
-                    <table class="table-container">
+                    <div class="table-wrapper">
+                    <table class="table-container content-table">
                         <thead>
                             <tr>
                                 <th>N° Identificacion</th>
                                 <th>Nombre</th>
-                                <th>Email</th>
+                                <th>Apellido</th>
                                 <th>Usuario</th>
+                                <th>Email</th>                                
                                 <th>Direccion</th>
                                 <th>Zona</th>
                                 <th>Telefono</th>
-                                <th>Telefono Alternaivo</th>
+                                <th class="hide-on-small">Telefono Alternaivo</th>
                             </tr>
                         </thead>
-                        <tbody id="resultados">';
+                        <tbody id="resultados-clientes">';
                     foreach ($users as $key => $cliente) {
                         if ($cliente['privileges'] == Privilegios::User->get()) {
                             echo '
@@ -280,6 +286,7 @@
                                 <td>' . $cliente['surnameuser'] . '</td>
                                 <td>' . $cliente['nickuser'] . '</td>
                                 <td>' . $cliente['emailuser'] . '</td>
+                                <td>' . $cliente['diruser'] . '</td>
                                 <td>' . $cliente['zoneuser'] . '</td>
                                 <td>' . $cliente['phoneuser'] . '</td>
                                 <td>' . $cliente['phonealtuser'] . '</td>';
@@ -312,10 +319,12 @@
                     echo '
                         </tbody>
                     </table>
+                    </div>
                 </div>';
                 }
                 ?>
-                <div class="profile-adm container-right5" id="container-right6">
+
+<div class="profile-adm container-right5" id="container-right6">
                     <div class="title">
                         <h1>Mascota</h1>
                     </div>
@@ -452,7 +461,7 @@
                                 </div>
                             </div>
 
-                            <table class='table-container'>
+                            <table class='table-container content-table'>
                                 <thead>
                                     <tr>
                                         <th>Id</th>
@@ -461,7 +470,7 @@
                                         <th>Precio</th>
                                         <th>Categoria</th>
                                         <th>Disponibles (und)</th>
-                                        <th>Recetar</th>
+                                        <th class='hide-on-small'>Recetar</th>
                                     </tr>
                                 </thead>
                                 <tbody id='resultados-producto'>";
