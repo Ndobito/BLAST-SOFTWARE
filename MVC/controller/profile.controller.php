@@ -142,6 +142,17 @@ class ProfileController
         }
     }
 
+    public function sheduleService(){
+        echo $_POST['idcit']; 
+        echo "<br><br>"; 
+        echo $_POST['dniuser']; 
+        echo "<br><br>";
+        echo $_POST['dateasig']; 
+        echo "<br><br>";
+        echo $_POST['selcol']; 
+    }
+
+
     // -----METODOS DE USUARIO ----- //
 
     //-----Metodo para actualizar datos de usuario-----//

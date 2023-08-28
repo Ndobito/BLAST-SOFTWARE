@@ -33,10 +33,9 @@
                     <?php echo ($privilegios <> $privAdmin) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-users'></i><p>Proveedores</p></button>" ?>
                     <?php echo ($privilegios <> $privAdmin) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-user-gear'></i><p>Colaboradores</p></button>" ?>
                     <?php echo ($privilegios == $privUser) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-person-circle-check'></i><p>Clientes</p></button>" ?>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i>
-                        <p>Mascotas</p>
-                    </button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i><p>Mascotas</p></button>
                     <?php echo ($privilegios == $privUser || $privilegios == $privRecepcionist) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-syringe'></i><p>Recetar</p></button>" ?>
+                    <button class="profile-adm-btn"><i class="fa-regular fa-calendar-check"></i><p>Citas</p></button>
                 </div>
             </div>
             <div class="container-right">
@@ -193,7 +192,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id='resultados-empleados'>";
-                    foreach ($users as $key => $colaborador) {
+                    foreach ($users as $colaborador) {
                         $value = $colaborador['privileges'];
                         $user = isset($roles[$value]) ? $roles[$value] : "";
 
@@ -516,13 +515,13 @@
                     </div>";
                 }
                 ?>
+
             </div>
         </main>
 
     </div>
     <!-- Alerts -->
     <script src="assets/Javascript/alert-profile.js"></script>
-
     <!-- Menu Profile -->
     <script src="assets/Javascript/menu-profile-administrator.js"></script>
     <!-- Calendar -->
