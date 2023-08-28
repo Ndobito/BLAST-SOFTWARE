@@ -4,7 +4,8 @@
             <a href="?b=index&s=Inicio&p=admin"><i class="fa-solid fa-arrow-left"></i></a>
             <div>
                 <a href="?b=restorepassword&s=Inicio"><i class="fa-solid fa-key"></i><span>Cambiar contraseña</span></a>
-                <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar Sesion</span></a>
+                <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar
+                        Sesion</span></a>
             </div>
         </div>
         <main style="display: block">
@@ -112,7 +113,7 @@
                                 <div class='input-group'>
                                     <a href='?b=profile&s=optionSaveRedirec&p=proveedor'><button class='btn btn-default' type='submit'>Agregar</button></a>
                                 </div>
-                                <form method='post'>
+                                <form method='post'  onsubmit='return false;'>
                                     <div class='input-group'>
                                         <input type='text' id='searchprov' class='form-control search-input' placeholder='Buscar Proveedor' name='buscar_proveedor'>
                                     </div>
@@ -145,7 +146,7 @@
                                             </a>
                                         </td>
                                         <td class='icons2'>
-                                            <a onclick='alertProfile(this.id, \"proveedor\", \"" . addslashes($proveedor['nomprov']) . "\")' id='" . $proveedor['idprov'] . "'>
+                                            <a onclick='alertProfile(this.id, 'proveedor', '" . addslashes($proveedor['nomprov']) . "')' id='" . $proveedor['idprov'] . "'>
                                                 <i class='fa-solid fa-trash-can' aria-hidden='true'></i>
                                             </a>
                                         </td>
@@ -157,26 +158,26 @@
                         </div>
                     </div>";
                     echo "
-                        <div class=\"profile-adm container-right3\" id=\"container-right4\">
-                            <div class=\"title\">
+                        <div class='profile-adm container-right3' id='container-right4'>
+                            <div class='title'>
                                 <h1>Colaboradores</h1>
                             </div>
-                            <div class=\"table-container\">
-                                <div class=\"form-container\">
-                                    <div class=\"input-group\">
-                                        <span class=\"input-group-btn\">
-                                            <a href=\"?b=profile&s=optionSaveRedirec&p=Colaborador\"><button class=\"btn btn-default\" type=\"submit\">Agregar</button></a>
+                            <div class='table-container'>
+                                <div class='form-container'>
+                                    <div class='input-group'>
+                                        <span class='input-group-btn'>
+                                            <a href='?b=profile&s=optionSaveRedirec&p=Colaborador'><button class='btn btn-default' type='submit'>Agregar</button></a>
                                         </span>
                                     </div>
-                                    <form method=\"POST\">
-                                        <div class=\"input-group\">
-                                            <input type=\"text\" class=\"form-control search-input\" id=\"searchcol\" placeholder=\"Buscar Empleado\" name=\"buscar_empleado\">
+                                    <form method='POST' onsubmit='return false;''>
+                                        <div class='input-group'>
+                                            <input type='text' class='form-control search-input' id='searchcol' placeholder='Buscar Empleado' name='buscar_empleado'>
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                            <div class=\"table-wrapper\">
-                            <table class=\"table-container content-table\">
+                            <div class='table-wrapper'>
+                            <table class='table-container content-table'>
                                 <thead>
                                     <tr>
                                         <th>DNI</th>
@@ -191,7 +192,7 @@
                                         <th class='hide-on-small'>Privilegios</th>
                                     </tr>
                                 </thead>
-                                <tbody id=\"resultados-empleados\">";
+                                <tbody id='resultados-empleados'>";
                     foreach ($users as $key => $colaborador) {
                         $value = $colaborador['privileges'];
                         $user = isset($roles[$value]) ? $roles[$value] : "";
@@ -211,14 +212,14 @@
                             echo "
                                         <td>" . (($colaborador['privileges'] == $privRecepcionist) ? 'Recepcionista' : (($colaborador['privileges'] == $privDoctor) ? 'Veterinario(a)' : '')) . "</td>";
                             echo "
-                                    <td class=\"icons1\">
-                                        <a href=\"?b=profile&s=optionEditRedirec&p=Colaborador&iduser=" . $colaborador['dniuser'] . "\">
-                                            <i class=\"fa fa-pencil fa-lg\" aria-hidden=\"true\"></i>
+                                    <td class='icons1'>
+                                        <a href='?b=profile&s=optionEditRedirec&p=Colaborador&iduser=" . $colaborador['dniuser'] . "'>
+                                            <i class='fa fa-pencil fa-lg' aria-hidden='true'></i>
                                         </a>
                                     </td>
-                                    <td class=\"icons2\">
-                                    <a onclick='alertProfile(this.id, \"usuario\", \"" . addslashes($colaborador['nameuser']) . "\")' id='" . $colaborador['dniuser'] . "'>
-                                            <i class=\"fa-solid fa-trash\"></i>
+                                    <td class='icons2'>
+                                    <a onclick='alertProfile(this.id, 'usuario', '" . addslashes($colaborador['nameuser']) . "')' id='" . $colaborador['dniuser'] . "'>
+                                            <i class='fa-solid fa-trash'></i>
                                         </a>
                                     </td>
                                 </tr>";
@@ -250,7 +251,7 @@
                         ';
                     }
                     echo '          
-                            <form method="POST" action="?b=profile&s=buscarClientes">
+                            <form method="POST" action="?b=profile&s=buscarClientes"  onsubmit="return false;">
                                 <div class="input-group">
                                     <input type="text" class="form-control search-input" placeholder="Buscar cliente" name="buscar_cliente" id="searchcli">                                
                                 </div>
@@ -319,7 +320,6 @@
                 </div>';
                 }
                 ?>
-
                 <div class="profile-adm container-right5" id="container-right6">
                     <div class="title">
                         <h1>Mascota</h1>
@@ -339,7 +339,7 @@
                             <?php
                             if ($privilegios == $privRecepcionist || $privilegios == $privDoctor || $privilegios == $privAdmin) {
                                 echo " 
-                                    <form method='POST' action='?b=profile&s=buscarMascotas'>
+                                    <form method='POST' action='?b=profile&s=buscarMascotas'  onsubmit='return false;'>
                                         <div class='input-group'>
                                             <input type='text' class='form-control search-input' placeholder='Buscar mascota'
                                                 name='buscar_mascota' id='searchmas'>
@@ -536,4 +536,5 @@
 
     <script src="assets/Javascript/real_time_search.js"></script>
 </body>
+
 </html>

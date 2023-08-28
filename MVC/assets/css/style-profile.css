@@ -375,7 +375,7 @@ main {
 
 .form-container input[type="text"] {
     display: block;
-    width: 30%;
+    width: 31%;
     border: none;
     border-radius: 5px;
     font-size: 10pt;
@@ -476,23 +476,24 @@ tbody .icons1,
 tbody .icons2 {
     background-color: var(--color-10);
     text-align: center;
-    transition: all .5s ease;
+    transition: all .1s ease;
+    cursor: pointer;
 }
 
 tbody .icons1 a,
 tbody .icons2 a {
     color: var(--color-5);
-    transition: all .5s ease;
+    transition: all .1s ease;
 }
 
 tbody .icons1 a:hover {
     color: #007fff;
-    transition: all .5s ease;
+    transition: all .1s ease;
 }
 
 tbody .icons2 a:hover {
     color: #ff0000;
-    transition: all .5s ease;
+    transition: all .1s ease;
 }
 
 .ventana-emergente {
