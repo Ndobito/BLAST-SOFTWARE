@@ -6,57 +6,56 @@ class Profile
     private $conexion;
 
     public $id, $dni, $name, $surname, $nick, $pass, $addres, $zone,  $email, $phone, $phone2, $privileges;
-    public $age, $gen, $esp, $owner; 
+    public $age, $gen, $esp, $owner;
 
     // -----Constructor de la Conexion-----//
     public function __construct()
-    {   
-        try{
-            $this->conexion = databaseConexion::conexion();
-        }catch(Exception $e){
-            echo "Erro en la conxion de la Base de Datos: "- $e->getMessage(); 
-        }
-        
+    {
+        $this->conexion = databaseConexion::conexion();
     }
 
     // ----------METODOS GLOBALES---------- //
 
     // -----Metodo para verificar si un string contiene numeros----- //
-    public function verifyNumberString($string){
-        return preg_match('/\d/', $string) === 1 ? true : false; 
+    public function verifyNumberString($string)
+    {
+        return preg_match('/\d/', $string) === 1 ? true : false;
     }
 
     // -----Metodo para verificar que un string sea un correo electronico----- //
-    public function verifyEmailString($string){
+    public function verifyEmailString($string)
+    {
         return filter_var($string, FILTER_VALIDATE_EMAIL) ? true : false;
     }
 
     // -----Metodo para verificar que entre los numero haya letras----- //
-    public function verifyLeterString($number){
-        return preg_match('/[a-zA-Z]/', $number) === 1 ? true : false; 
+    public function verifyLeterString($number)
+    {
+        return preg_match('/[a-zA-Z]/', $number) === 1 ? true : false;
     }
 
     // -----Metodo para verificar contraseña----- //
-    public function verifyPasswordString($password){
-        $longmin = 8; 
-        $mayus = true; 
-        $minus = true; 
-        $number = true; 
+    public function verifyPasswordString($password)
+    {
+        $longmin = 8;
+        $mayus = true;
+        $minus = true;
+        $number = true;
 
         // -----Verificar longitud minima----- //
         $longpass = (strlen($password) < $longmin) ? false : true;
         // -----Verificar mayuscula----- //
-        $mayuspass = ($mayus && preg_match('/[A-Z]/', $password)) ? true : false;  
+        $mayuspass = ($mayus && preg_match('/[A-Z]/', $password)) ? true : false;
         // -----Verificar minuscula----- //
-        $minuspass = ($minus && preg_match('/[a-z]/', $password)) ? true : false; 
+        $minuspass = ($minus && preg_match('/[a-z]/', $password)) ? true : false;
         // Verificar numeros----- //
         $numberpass = ($number && preg_match('/[0-9]/', $password)) ? true : false;
 
-        return ($longpass === true && $mayuspass === true && $minuspass === true && $numberpass === true) ? true : false; 
+        return ($longpass === true && $mayuspass === true && $minuspass === true && $numberpass === true) ? true : false;
     }
 
     // -----Metodo para verificar existencia en la base de datos ----- //
-    public function existProfile($table,$param, $id)
+    public function existProfile($table, $param, $id)
     {
         $stmt = $this->conexion->prepare("SELECT * FROM $table WHERE $param = ?");
         $stmt->bind_param("i", $id);
@@ -68,7 +67,8 @@ class Profile
     }
 
     // -----Metodo para seleccionar todos los datos de una tabla ----- //
-    public function getAll($table) {
+    public function getAll($table)
+    {
         $query = "SELECT * FROM $table";
         $result = $this->conexion->query($query);
         $producto = array();
@@ -84,9 +84,9 @@ class Profile
 
 
     // -----Metodo para Seleccionar el un dato ----- //
-    public function selectParam($param1,$tabla, $param2, $value)
+    public function selectParam($param1, $tabla, $param2, $value)
     {
-        $query = "SELECT $param1 FROM $tabla WHERE $param2 = '".$value."'";
+        $query = "SELECT $param1 FROM $tabla WHERE $param2 = '" . $value . "'";
         $stmt = $this->conexion->prepare($query);
         $stmt->execute();
         $stmt->bind_result($result);
@@ -113,17 +113,18 @@ class Profile
     }
 
     // -----Metodo para eliminar Profiles----- //
-    public function deleteUser($table, $param , $id) {
+    public function deleteUser($table, $param, $id)
+    {
         $sql = "DELETE FROM $table WHERE $param = ?";
         try {
-            if($this->conexion->prepare($sql)->execute([$id])){
-                return true; 
-            } else{
-                return false; 
+            if ($this->conexion->prepare($sql)->execute([$id])) {
+                return true;
+            } else {
+                return false;
             }
         } catch (Exception $e) {
-            return false; 
-		}
+            return false;
+        }
     }
 
     // -----Metodo para Seleccionar el un dato - Return true ----- //
@@ -136,12 +137,13 @@ class Profile
         $stmt->bind_result($count);
         $stmt->fetch();
         $stmt->close();
-        
+
         return $count > 0;
     }
 
-    public function getAllUser($id) {
-        $query = "SELECT * FROM usuario WHERE dniuser =  '".$id."'";
+    public function getAllUser($id)
+    {
+        $query = "SELECT * FROM usuario WHERE dniuser =  '" . $id . "'";
         $result = $this->conexion->query($query);
         $producto = array();
 
@@ -170,11 +172,12 @@ class Profile
     // ----------METODOS DEL PROVEEDOR---------- // 
 
     // -----Metodo para agregar un nuevo Proveedor----- //
-    public function saveProveedor(Profile $data){
+    public function saveProveedor(Profile $data)
+    {
         try {
             $sql = 'INSERT INTO proveedor(nomprov, dirprov, emaprov, telprov) VALUES (?, ?, ?, ?)';
             $stmt = $this->conexion->prepare($sql);
-            if($stmt->execute([$data->name, $data->addres, $data->email, $data->phone])) {
+            if ($stmt->execute([$data->name, $data->addres, $data->email, $data->phone])) {
                 return true;
             } else {
                 return false;
@@ -183,15 +186,15 @@ class Profile
             die($e->getMessage());
         }
     }
-    
+
     // -----Metodo para actualizar informacion de Proveedor----- //
     public function updateProveedor(Profile $data)
     {
         $stmt = $this->conexion->prepare("UPDATE proveedor SET nomprov = ?, dirprov = ?, emaprov = ?, telprov = ? WHERE idprov = ?");
-        
+
         // Vincular los valores de los atributos a las variables de enlace
         $stmt->bind_param("ssssi", $data->name, $data->addres, $data->email, $data->phone, $data->id);
-        
+
         if ($stmt->execute()) {
             return true;
         } else {
@@ -201,58 +204,56 @@ class Profile
     // ----------METODOS DE USUARIO---------- //
 
     // ------Metodo para verificar si un usuario existe------ //
-    public function userExist($param1, $param2, $table, $value){
-        try{
-            $sql = "SELECT $param1 FROM $table WHERE $param2='".$value."'"; 
+    public function userExist($param1, $param2, $table, $value)
+    {
+        try {
+            $sql = "SELECT $param1 FROM $table WHERE $param2='" . $value . "'";
             $result = $this->conexion->query($sql);
-            if($result->num_rows > 0 ){
+            if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc(); // Obtener la fila del resultado como un array asociativo
                 return $row[$param1]; // Devolver el valor del nombre de usuario si existe
-            } else{
+            } else {
                 return null; // Devolver null si el usuario no existe
-            } 
-        } catch(Exception $e){
-            echo "Error: ".$e->getMessage(); 
+            }
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
         }
     }
 
     // -----Metodo para Obtener Privilegios del Usuario------ //
     public function getPrivileges()
-{
-    $query = "SELECT privileges FROM usuario WHERE nickuser = ?";
-    $stmt = mysqli_prepare($this->conexion, $query);
-    mysqli_stmt_bind_param($stmt, "s", $_SESSION['usuario']);
-    mysqli_stmt_execute($stmt);
-    $resultado = mysqli_stmt_get_result($stmt);
-    
-    if (mysqli_num_rows($resultado) > 0) {
-        $row = mysqli_fetch_assoc($resultado);
-        return (int)$row["privileges"];
-    } else {
-        return false;
-    }
-}
+    {
+        $query = "SELECT privileges FROM usuario WHERE nickuser = ?";
+        $resultado = mysqli_execute_query($this->conexion, $query, [$_SESSION["usuario"]]);
 
+        if (mysqli_num_rows($resultado) > 0) {
+            $row = mysqli_fetch_assoc($resultado);
+            return (int)$row["privileges"];
+        } else {
+            return false;
+        }
+    }
 
     // -----Metodo para guardar informacion de Usuario----- //
-    public function saveUser(Profile $data){
-        try{
-            $user= "INSERT INTO usuario(dniuser, nameuser, surnameuser, nickuser, passuser, emailuser, diruser, zoneuser, phoneuser, phonealtuser, privileges) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $opr = $this ->conexion-> prepare($user);
-            if($opr->execute(array($data ->dni ,$data -> name, $data-> surname,$data -> nick, $data -> pass, $data -> email, $data -> addres, $data -> zone, $data -> phone, $data -> phone2, $data -> privileges))){
-                return true; 
-            }else{
+    public function saveUser(Profile $data)
+    {
+        try {
+            $user = "INSERT INTO usuario(dniuser, nameuser, surnameuser, nickuser, passuser, emailuser, diruser, zoneuser, phoneuser, phonealtuser, privileges) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $opr = $this->conexion->prepare($user);
+            if ($opr->execute(array($data->dni, $data->name, $data->surname, $data->nick, $data->pass, $data->email, $data->addres, $data->zone, $data->phone, $data->phone2, $data->privileges))) {
+                return true;
+            } else {
                 return false;
-            } 
-        } catch (Exception $error){
-            echo "No se puede registrar el Usuario: ". $error->getMessage();
+            }
+        } catch (Exception $error) {
+            echo "No se puede registrar el Usuario: " . $error->getMessage();
         }
     }
 
     // -----Metodo para actualizar informacion de Usuario----- //
     public function update(Profile $user)
-    {   
-        
+    {
+
         $update = "UPDATE usuario SET dniuser = ?, nameuser = ?, surnameuser = ?, nickuser= ?, emailuser = ?, diruser = ?, zoneuser = ?, phoneuser = ?, phonealtuser = ? WHERE iduser = ? ";
         try {
             $stmt = $this->conexion->prepare($update);
@@ -269,12 +270,11 @@ class Profile
                 $user->phone2,
                 $user->id
             );
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 return true;
-            }else{
-                return false; 
+            } else {
+                return false;
             }
-            
         } catch (Exception $e) {
             echo "Error al actualizar datos: " . $e->getMessage();
         }
@@ -284,32 +284,94 @@ class Profile
     // ----------METODOS PARA MASCOTA---------- //
 
     // -----Metodo para Guardar una Mascota----- //
-    public function saveMascota(Profile $data){
-        try{
-            $insert = "INSERT INTO mascota(nommas, edadmas, genmas, espmas, idcli) VALUES(?,?,?,?,?)"; 
-            $action = $this->conexion->prepare($insert); 
-            if($action->execute(array($data->name, $data->age, $data->gen, $data->esp, $data->owner))){
-                return true; 
-            }else{
-                return false; 
+    public function saveMascota(Profile $data)
+    {
+        try {
+            $insert = "INSERT INTO mascota(nommas, edadmas, genmas, espmas, idcli) VALUES(?,?,?,?,?)";
+            $action = $this->conexion->prepare($insert);
+            if ($action->execute(array($data->name, $data->age, $data->gen, $data->esp, $data->owner))) {
+                return true;
+            } else {
+                return false;
             }
-        }catch(Exception $e){
-            echo "Error al guardar mascota en la Base de Datos: ". $e->getMessage();
+        } catch (Exception $e) {
+            echo "Error al guardar mascota en la Base de Datos: " . $e->getMessage();
         }
     }
-    
+
     // -----Metodo para actualizar informacion de mascota----- //
-    public function updateMascota(Profile $data){
+    public function updateMascota(Profile $data)
+    {
         try {
             $stmt = $this->conexion->prepare("UPDATE mascota SET nommas = ?, edadmas = ?, genmas = ?, espmas = ? WHERE idmas = ?");
             if ($stmt->execute(array($data->name, $data->age, $data->gen, $data->esp, $data->id))) {
                 return true;
                 exit();
             } else {
-                return false; 
+                return false;
             }
         } catch (Exception $e) {
             die($e->getMessage());
         }
+    }
+
+    // -----Metodo para el buscador de clientes en Profile -----//
+    public function buscarClientes($buscar)
+    {
+        $query = "SELECT * FROM usuario WHERE (privileges = " . Privilegios::User->get() . ") AND (dniuser LIKE '%$buscar%' OR nameuser LIKE '%$buscar%' OR surnameuser LIKE '%$buscar%' OR nickuser LIKE '%$buscar%')";
+        $result = $this->conexion->query($query);
+        $clientes = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $clientes[] = $row;
+            }
+        }
+        return $clientes;
+    }
+
+    // -----Metodo del para el buscador de mascotas de Profile----- //
+    public function buscarMascotas($buscar)
+    {
+        $query = "SELECT * FROM mascota WHERE idmas LIKE '%$buscar%'";
+        $result = $this->conexion->query($query);
+        $mascota = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $mascota[] = $row;
+            }
+        }
+        return $mascota;
+    }
+
+    // -----Metodo del para el buscador de proveedores de Profile----- //
+    public function buscarProveedor($buscar)
+    {
+        $query = "SELECT * FROM proveedor WHERE idprov LIKE '%$buscar%'";
+        $result = $this->conexion->query($query);
+        $proveedores = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $proveedores[] = $row;
+            }
+        }
+        return $proveedores;
+    }
+
+    // -----Metodo para el buscador de empleados en Profile----- //
+    public function buscarColaborador($buscar)
+    {
+        $query = "SELECT * FROM usuario WHERE (privileges = " . Privilegios::Recepcionist->get() . " OR privileges = " . Privilegios::Doctor->get() . " OR privileges = " . (Privilegios::Recepcionist->get() | Privilegios::Doctor->get()) . ") AND (dniuser LIKE '%$buscar%' OR nameuser LIKE '%$buscar%' OR surnameuser LIKE '%$buscar%' OR nickuser LIKE '%$buscar%')";
+        $result = $this->conexion->query($query);
+        $empleados = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $empleados[] = $row;
+            }
+        }
+
+        return $empleados;
     }
 }
