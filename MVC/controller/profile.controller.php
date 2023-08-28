@@ -24,7 +24,8 @@ class ProfileController
         $users = $this->object->getAll("usuario"); 
         $mascota = $this->object->getAll("mascota");
         $productos = $this->object->getAll("producto");
-        $categorias = $this->object->getAll("categoria"); 
+        $categorias = $this->object->getAll("categoria");
+        $cita = $this->object->getAll("cita"); 
 
         // -----Variables de Privilegios----- //
         $privUser = Privilegios::User->get();
@@ -140,6 +141,17 @@ class ProfileController
                 break;
         }
     }
+
+    public function sheduleService(){
+        echo $_POST['idcit']; 
+        echo "<br><br>"; 
+        echo $_POST['dniuser']; 
+        echo "<br><br>";
+        echo $_POST['dateasig']; 
+        echo "<br><br>";
+        echo $_POST['selcol']; 
+    }
+
 
     // -----METODOS DE USUARIO ----- //
 

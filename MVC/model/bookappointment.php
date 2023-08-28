@@ -7,7 +7,7 @@ class bookAppointment{
 
     private $consulta; 
 
-    public $id, $dni, $nameuser, $addresuser, $phone, $email, $namepet, $esp, $gen, $motive, $datesol, $dateasig, $hour,$service, $idcol; 
+    public $id, $dni, $nameuser, $addresuser, $phone, $email, $namepet, $esp, $gen, $motive, $datesol, $dateasig, $hour,$service, $idcol, $state; 
     public function __construct(){
         try{
             $this -> consulta = databaseConexion::conexion();
@@ -65,9 +65,9 @@ class bookAppointment{
 
     public function saveCita(bookAppointment $data){
         try{
-            $sql = "INSERT INTO cita(dniusercit, nameusercit, addresusercit, phoneusercit, emailusercit, namemascit, espmascit, genmascit, motcit, servicecit, datesolcit) VALUES (?,?,?,?,?,?,?,?,?,?,?)"; 
+            $sql = "INSERT INTO cita(dniusercit, nameusercit, addresusercit, phoneusercit, emailusercit, namemascit, espmascit, genmascit, motcit, servicecit, datesolcit, statecit) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"; 
             $action = $this->consulta->prepare($sql); 
-            if($action->execute(array($data->dni, $data->nameuser, $data->addresuser, $data->phone, $data->email, $data->namepet, $data->esp, $data->gen, $data->motive, $data->service,$data->datesol))){
+            if($action->execute(array($data->dni, $data->nameuser, $data->addresuser, $data->phone, $data->email, $data->namepet, $data->esp, $data->gen, $data->motive, $data->service,$data->datesol, $data->state))){
                 return true; 
             }else{
                 return false; 
