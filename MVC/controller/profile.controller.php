@@ -215,14 +215,18 @@ class ProfileController
     {
         $searchTerm = $_POST['buscar_mascota'];
         $mascotas = $this->object->getMascota();
-
+        $privilegios = $_SESSION["privilegios"];
+        $privUser = Privilegios::User->get();
+        $usuario = $_SESSION['usuario'];
+        $user = $this->object->selectUser($usuario);    
+        $users = $this->object->getUsers();
+    
         $filteredmascota = array_filter($mascotas, function ($mascota) use ($searchTerm) {
             return (stripos($mascota['idmas'], $searchTerm) !== false) ||
                 (stripos($mascota['nommas'], $searchTerm) !== false) ||
                 (stripos($mascota['edadmas'], $searchTerm) !== false) ||
                 (stripos($mascota['genmas'], $searchTerm) !== false);
-        });
-
+        });    
         foreach ($filteredmascota as $mascota) {
             echo '<tr>';
             echo '<td>' . $mascota['idmas'] . '</td>';
@@ -230,12 +234,31 @@ class ProfileController
             echo '<td>' . ($mascota['edadmas'] ?? "Sin definir") . '</td>';
             echo '<td>' . ($mascota['genmas'] ?? "Sin definir") . '</td>';
             echo '<td>' . ($mascota['espmas'] ?? "Sin definir") . '</td>';
-            echo '<td>' . ($mascota['idcli'] ?? "Sin definir") . '</td>';
-            echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
-            echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
+            echo '<td>';
+            if ($privilegios == $privUser) {
+                echo $user['dniuser'];
+            } else {
+                $dueño = array_filter($users, function ($usuario) use ($mascota) {
+                    return $usuario['iduser'] == $mascota['idcli'];
+                });
+    
+                if (!empty($dueño)) {
+                    $dueño = reset($dueño);
+                    echo $dueño['dniuser'];
+                }
+            }
+            echo '</td>';
+            if ($privilegios != Privilegios::Doctor->get()) {
+                echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
+            }
+            if ($privilegios != Privilegios::Doctor->get() && $privilegios != Privilegios::Recepcionist->get()) {
+                echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
+            }
+    
             echo '</tr>';
         }
     }
+    
 
     // -----Metodo para guardar la informacion de Colaboradores y Proveedores----- //
     public function saveProfile()

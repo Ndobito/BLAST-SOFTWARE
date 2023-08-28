@@ -50,21 +50,16 @@
                 <div class="profile-adm container-right user" id="container-right2">
                     <div class="user-information">
                         <h1>Datos</h1>
-                        <form id="form-user-information" action="?b=profile&s=updateUser&id=<?= $user['iduser'] ?>"
-                            method="post">
+                        <form id="form-user-information" action="?b=profile&s=updateUser&id=<?= $user['iduser'] ?>" method="post">
                             <label for="name">Numero de identificacion*</label>
                             <input name="numid" type="number" value="<?php echo $user['dniuser'] ?>" disabled>
                             <label for="name">Nombres*</label>
-                            <input type="text" name="name" id="ctNameUser"
-                                value="<?php echo $user['nameuser'] ?? "Sin definir"; ?>" disabled>
+                            <input type="text" name="name" id="ctNameUser" value="<?php echo $user['nameuser'] ?? "Sin definir"; ?>" disabled>
                             <label for="surname">Apellidos *</label>
-                            <input type="text" name="surname" id="ctSurNameUser"
-                                value="<?php echo $user['surnameuser'] ?? "Sin definir"; ?>" disabled>
-                            <input type="hidden" name="nick" id="ctSurNameUser"
-                                value="<?php echo $user['nickuser'] ?? "Sin definir"; ?>" disabled>
+                            <input type="text" name="surname" id="ctSurNameUser" value="<?php echo $user['surnameuser'] ?? "Sin definir"; ?>" disabled>
+                            <input type="hidden" name="nick" id="ctSurNameUser" value="<?php echo $user['nickuser'] ?? "Sin definir"; ?>" disabled>
                             <label for="address">Direccion *</label>
-                            <input type="text" name="addres" id="ctAdrUser" value="<?php echo $user['diruser']; ?>"
-                                disabled>
+                            <input type="text" name="addres" id="ctAdrUser" value="<?php echo $user['diruser']; ?>" disabled>
                             <label for="zone">Zona: *</label>
                             <select name="zone" id="ctZone" disabled>
                                 <option <?php echo ($user['zoneuser'] <> "urbana" && $user['zoneuser'] <> "rural") ? "selected" : "" ?> disabled></option>
@@ -76,18 +71,15 @@
                             <div>
                                 <div>
                                     <label for="email">Correo Eletrónico *</label>
-                                    <input type="text" name="email" id="ctEmailUser"
-                                        value="<?php echo $user['emailuser']; ?>" disabled>
+                                    <input type="text" name="email" id="ctEmailUser" value="<?php echo $user['emailuser']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="phone">Numero de Celular 1 *</label>
-                                    <input type="number" name="phone" id="ctNumCelUser"
-                                        value="<?php echo $user['phoneuser']; ?>" disabled>
+                                    <input type="number" name="phone" id="ctNumCelUser" value="<?php echo $user['phoneuser']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCel2">Numero de Celular 2</label>
-                                    <input type="number" name="phone2" id="ctNumCel2"
-                                        value="<?php echo $user['phonealtuser']; ?>" disabled>
+                                    <input type="number" name="phone2" id="ctNumCel2" value="<?php echo $user['phonealtuser']; ?>" disabled>
 
                                 </div>
                             </div>
@@ -324,7 +316,7 @@
                 }
                 ?>
 
-<div class="profile-adm container-right5" id="container-right6">
+                <div class="profile-adm container-right5" id="container-right6">
                     <div class="title">
                         <h1>Mascota</h1>
                     </div>
@@ -340,12 +332,20 @@
                                 }
                             }
                             ?>
-                            <form method="POST" action="?b=profile&s=buscarMascotas">
-                                <div class="input-group">
-                                    <input type="text" class="form-control search-input" placeholder="Buscar mascota"
-                                        name="buscar_mascota" id="searchmas">
-                                </div>
-                            </form>
+                            <?php
+                            if ($privilegios === $privAdmin || $privilegios === ($privDoctor + $privRecepcionist) || $privilegios === ($privAdmin + $privDoctor + $privRecepcionist)) {
+                                echo " 
+                                    <form method='POST' action='?b=profile&s=buscarMascotas'>
+                                        <div class='input-group'>
+                                            <input type='text' class='form-control search-input' placeholder='Buscar mascota'
+                                                name='buscar_mascota' id='searchmas'>
+                                        </div>
+                                    </form>";
+                            } else {
+                                echo "";
+                            }
+                            ?>
+
                         </div>
                     </div>
                     <table class="table-container">
@@ -356,14 +356,14 @@
                                 <th>Edad</th>
                                 <th>Genero</th>
                                 <th>Especie</th>
-                                <th>Numero de identificacion del dueño</th>
+                                <th class="hide-on-small">Numero de identificacion del dueño</th>
                             </tr>
                         </thead>
                         <tbody id="resultados-mascotas">
                             <?php
                             foreach ($mascota as $m) {
                                 if ($privilegios == $privUser && $m['idcli'] != $user['iduser']) {
-                                    continue; 
+                                    continue;
                                 }
                                 echo '<tr>';
                                 echo '<td>' . $m['idmas'] . '</td>';
@@ -450,9 +450,7 @@
                             if ($r['iduser'] == $m['idcli']) {
                                 echo "<option>" . $m['nommas'] . " - " . $r['dniuser'] . "</option>";
                             }
-
                         }
-
                     }
 
                     echo "
