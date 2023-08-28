@@ -4,7 +4,8 @@
             <a href="?b=index&s=Inicio&p=admin"><i class="fa-solid fa-arrow-left"></i></a>
             <div>
                 <a href="?b=restorepassword&s=Inicio"><i class="fa-solid fa-key"></i><span>Cambiar contraseña</span></a>
-                <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar Sesion</span></a>
+                <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar
+                        Sesion</span></a>
             </div>
         </div>
         <main style="display: block">
@@ -13,8 +14,12 @@
                     <button class="user-data">
                         <img src="assets/img/usuario.png" alt="">
                         <div>
-                            <p><?php echo $user['nameuser'] . " " . $user['surnameuser']; ?></p>
-                            <p><?php echo ($privilegios === $privUser) ? 'Cliente' : (($privilegios === $privRecepcionist) ? 'Recepcionista' : (($privilegios === $privDoctor) ? 'Doctor' : (($privilegios === $privAdmin) ? 'Administrador' : 'Indefinido'))); ?></p>
+                            <p>
+                                <?php echo $user['nameuser'] . " " . $user['surnameuser']; ?>
+                            </p>
+                            <p>
+                                <?php echo ($privilegios === $privUser) ? 'Cliente' : (($privilegios === $privRecepcionist) ? 'Recepcionista' : (($privilegios === $privDoctor) ? 'Doctor' : (($privilegios === $privAdmin) ? 'Administrador' : 'Indefinido'))); ?>
+                            </p>
 
                         </div>
                     </button>
@@ -35,23 +40,30 @@
             </div>
             <div class="container-right">
                 <div class="profile-adm welcome" id="container-right">
-                    <h1>Bienvenido(a) al panel de <?php echo ($privilegios === $privUser) ? 'Cliente' : (($privilegios === $privRecepcionist) ? 'Recepcionista' : (($privilegios === $privDoctor) ? 'Doctor' : (($privilegios === $privAdmin) ? 'Administrador' : 'Indefinido'))); ?></h1>
+                    <h1>Bienvenido(a) al panel de
+                        <?php echo ($privilegios === $privUser) ? 'Cliente' : (($privilegios === $privRecepcionist) ? 'Recepcionista' : (($privilegios === $privDoctor) ? 'Doctor' : (($privilegios === $privAdmin) ? 'Administrador' : 'Indefinido'))); ?>
+                    </h1>
                     <p>Dirijase al menu lateral para poder navegar dentro del sitio. </p>
                     <i class="fa-solid fa-face-smile-beam"></i>
                 </div>
                 <div class="profile-adm container-right user" id="container-right2">
                     <div class="user-information">
                         <h1>Datos</h1>
-                        <form id="form-user-information" action="?b=profile&s=updateUser&id=<?= $user['iduser'] ?>" method="post">
+                        <form id="form-user-information" action="?b=profile&s=updateUser&id=<?= $user['iduser'] ?>"
+                            method="post">
                             <label for="name">Numero de identificacion*</label>
                             <input name="numid" type="number" value="<?php echo $user['dniuser'] ?>" disabled>
                             <label for="name">Nombres*</label>
-                            <input type="text" name="name" id="ctNameUser" value="<?php echo $user['nameuser'] ?? "Sin definir"; ?>" disabled>
+                            <input type="text" name="name" id="ctNameUser"
+                                value="<?php echo $user['nameuser'] ?? "Sin definir"; ?>" disabled>
                             <label for="surname">Apellidos *</label>
-                            <input type="text" name="surname" id="ctSurNameUser" value="<?php echo $user['surnameuser'] ?? "Sin definir"; ?>" disabled>
-                            <input type="hidden" name="nick" id="ctSurNameUser" value="<?php echo $user['nickuser'] ?? "Sin definir"; ?>" disabled>
+                            <input type="text" name="surname" id="ctSurNameUser"
+                                value="<?php echo $user['surnameuser'] ?? "Sin definir"; ?>" disabled>
+                            <input type="hidden" name="nick" id="ctSurNameUser"
+                                value="<?php echo $user['nickuser'] ?? "Sin definir"; ?>" disabled>
                             <label for="address">Direccion *</label>
-                            <input type="text" name="addres" id="ctAdrUser" value="<?php echo $user['diruser']; ?>" disabled>
+                            <input type="text" name="addres" id="ctAdrUser" value="<?php echo $user['diruser']; ?>"
+                                disabled>
                             <label for="zone">Zona: *</label>
                             <select name="zone" id="ctZone" disabled>
                                 <option <?php echo ($user['zoneuser'] <> "urbana" && $user['zoneuser'] <> "rural") ? "selected" : "" ?> disabled></option>
@@ -63,15 +75,18 @@
                             <div>
                                 <div>
                                     <label for="email">Correo Eletrónico *</label>
-                                    <input type="text" name="email" id="ctEmailUser" value="<?php echo $user['emailuser']; ?>" disabled>
+                                    <input type="text" name="email" id="ctEmailUser"
+                                        value="<?php echo $user['emailuser']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="phone">Numero de Celular 1 *</label>
-                                    <input type="number" name="phone" id="ctNumCelUser" value="<?php echo $user['phoneuser']; ?>" disabled>
+                                    <input type="number" name="phone" id="ctNumCelUser"
+                                        value="<?php echo $user['phoneuser']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCel2">Numero de Celular 2</label>
-                                    <input type="number" name="phone2" id="ctNumCel2" value="<?php echo $user['phonealtuser']; ?>" disabled>
+                                    <input type="number" name="phone2" id="ctNumCel2"
+                                        value="<?php echo $user['phonealtuser']; ?>" disabled>
 
                                 </div>
                             </div>
@@ -97,21 +112,22 @@
                                 <div class='input-group'>
                                     <a href='?b=profile&s=optionSaveRedirec&p=proveedor'><button class='btn btn-default' type='submit'>Agregar</button></a>
                                 </div>
-                                <form method='post'>
+                                <form method='post'  onsubmit='return false;'>
                                     <div class='input-group'>
                                         <input type='text' id='searchprov' class='form-control search-input' placeholder='Buscar Proveedor' name='buscar_proveedor'>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                        <table class='table-container'>
+                        <div class='table-wrapper'>
+                        <table class='table-container content-table'>                        
                             <thead>
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombres</th>
                                     <th>Direccion</th>
                                     <th>Correo</th>
-                                    <th>Telefono</th>
+                                    <th class='hide-on-small'>Telefono</th>
                                 </tr>
                             </thead>
                             <tbody id='resultados-proveedor'>";
@@ -129,7 +145,7 @@
                                             </a>
                                         </td>
                                         <td class='icons2'>
-                                            <a onclick='alertProfile(this.id, \"proveedor\", \"" . addslashes($proveedor['nomprov']) . "\")' id='" . $proveedor['idprov'] . "'>
+                                            <a onclick='alertProfile(this.id, 'proveedor', '" . addslashes($proveedor['nomprov']) . "')' id='" . $proveedor['idprov'] . "'>
                                                 <i class='fa-solid fa-trash-can' aria-hidden='true'></i>
                                             </a>
                                         </td>
@@ -138,27 +154,29 @@
                     echo "
                             </tbody>
                         </table>
+                        </div>
                     </div>";
                     echo "
-                        <div class=\"profile-adm container-right3\" id=\"container-right4\">
-                            <div class=\"title\">
+                        <div class='profile-adm container-right3' id='container-right4'>
+                            <div class='title'>
                                 <h1>Colaboradores</h1>
                             </div>
-                            <div class=\"table-container\">
-                                <div class=\"form-container\">
-                                    <div class=\"input-group\">
-                                        <span class=\"input-group-btn\">
-                                            <a href=\"?b=profile&s=optionSaveRedirec&p=Colaborador\"><button class=\"btn btn-default\" type=\"submit\">Agregar</button></a>
+                            <div class='table-container'>
+                                <div class='form-container'>
+                                    <div class='input-group'>
+                                        <span class='input-group-btn'>
+                                            <a href='?b=profile&s=optionSaveRedirec&p=Colaborador'><button class='btn btn-default' type='submit'>Agregar</button></a>
                                         </span>
                                     </div>
-                                    <form method=\"POST\">
-                                        <div class=\"input-group\">
-                                            <input type=\"text\" class=\"form-control search-input\" id=\"searchcol\" placeholder=\"Buscar Empleado\" name=\"buscar_empleado\">
+                                    <form method='POST' onsubmit='return false;''>
+                                        <div class='input-group'>
+                                            <input type='text' class='form-control search-input' id='searchcol' placeholder='Buscar Empleado' name='buscar_empleado'>
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                            <table class=\"table-container\">
+                            <div class='table-wrapper'>
+                            <table class='table-container content-table'>
                                 <thead>
                                     <tr>
                                         <th>DNI</th>
@@ -170,10 +188,10 @@
                                         <th>Zona</th>
                                         <th>Telefono</th>
                                         <th>Telefono Alt.</th>
-                                        <th>Privilegios</th>
+                                        <th class='hide-on-small'>Privilegios</th>
                                     </tr>
                                 </thead>
-                                <tbody id=\"resultados-empleados\">";
+                                <tbody id='resultados-empleados'>";
                     foreach ($users as $colaborador) {
                         $value = $colaborador['privileges'];
                         $user = isset($roles[$value]) ? $roles[$value] : "";
@@ -193,14 +211,14 @@
                             echo "
                                         <td>" . (($colaborador['privileges'] == $privRecepcionist) ? 'Recepcionista' : (($colaborador['privileges'] == $privDoctor) ? 'Veterinario(a)' : '')) . "</td>";
                             echo "
-                                    <td class=\"icons1\">
-                                        <a href=\"?b=profile&s=optionEditRedirec&p=Colaborador&iduser=" . $colaborador['dniuser'] . "\">
-                                            <i class=\"fa fa-pencil fa-lg\" aria-hidden=\"true\"></i>
+                                    <td class='icons1'>
+                                        <a href='?b=profile&s=optionEditRedirec&p=Colaborador&iduser=" . $colaborador['dniuser'] . "'>
+                                            <i class='fa fa-pencil fa-lg' aria-hidden='true'></i>
                                         </a>
                                     </td>
-                                    <td class=\"icons2\">
-                                    <a onclick='alertProfile(this.id, \"usuario\", \"" . addslashes($colaborador['nameuser']) . "\")' id='" . $colaborador['dniuser'] . "'>
-                                            <i class=\"fa-solid fa-trash\"></i>
+                                    <td class='icons2'>
+                                    <a onclick='alertProfile(this.id, 'usuario', '" . addslashes($colaborador['nameuser']) . "')' id='" . $colaborador['dniuser'] . "'>
+                                            <i class='fa-solid fa-trash'></i>
                                         </a>
                                     </td>
                                 </tr>";
@@ -209,6 +227,7 @@
                     echo "
                                 </tbody>
                             </table>
+                            </div>
                         </div>";
                 }
 
@@ -231,30 +250,29 @@
                         ';
                     }
                     echo '          
-                            <form method="POST" action="?b=profile&s=buscarClientes">
+                            <form method="POST" action="?b=profile&s=buscarClientes"  onsubmit="return false;">
                                 <div class="input-group">
-                                    <input type="text" class="form-control search-input" placeholder="Buscar cliente" name="buscar_cliente" id="searchcli">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" id="miBoton" type="button">Buscar</button>
-                                    </span>
+                                    <input type="text" class="form-control search-input" placeholder="Buscar cliente" name="buscar_cliente" id="searchcli">                                
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <table class="table-container">
+                    <div class="table-wrapper">
+                    <table class="table-container content-table">
                         <thead>
                             <tr>
                                 <th>N° Identificacion</th>
                                 <th>Nombre</th>
-                                <th>Email</th>
+                                <th>Apellido</th>
                                 <th>Usuario</th>
+                                <th>Email</th>                                
                                 <th>Direccion</th>
                                 <th>Zona</th>
                                 <th>Telefono</th>
-                                <th>Telefono Alternaivo</th>
+                                <th class="hide-on-small">Telefono Alternaivo</th>
                             </tr>
                         </thead>
-                        <tbody id="resultados">';
+                        <tbody id="resultados-clientes">';
                     foreach ($users as $key => $cliente) {
                         if ($cliente['privileges'] == Privilegios::User->get()) {
                             echo '
@@ -264,20 +282,21 @@
                                 <td>' . $cliente['surnameuser'] . '</td>
                                 <td>' . $cliente['nickuser'] . '</td>
                                 <td>' . $cliente['emailuser'] . '</td>
+                                <td>' . $cliente['diruser'] . '</td>
                                 <td>' . $cliente['zoneuser'] . '</td>
                                 <td>' . $cliente['phoneuser'] . '</td>
                                 <td>' . $cliente['phonealtuser'] . '</td>';
-                            if($privilegios == $privDoctor){
+                            if ($privilegios == $privDoctor) {
                                 echo '';
-                            }else{
-                                echo'
+                            } else {
+                                echo '
                                 <td class="icons1">
                                     <a href="?b=profile&s=optionEditRedirec&p=Cliente&iduser=' . $cliente['dniuser'] . '">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>';
                             }
-                                
+
                             if ($privilegios !== Privilegios::Admin->get()) {
                                 echo '';
                             } else {
@@ -296,114 +315,44 @@
                     echo '
                         </tbody>
                     </table>
+                    </div>
                 </div>';
                 }
-
-                if ($privilegios == $privUser) {
-                    echo '
-                    <div class="profile-adm container-right5" id="container-right6">
-                        <div class="title">
-                            <h1>Mascota</h1>
-                        </div>
-                        <div class="table-container">
-                            <div class="form-container">';
-                    if ($privilegios == Privilegios::Doctor->get() || $privilegios == Privilegios::Recepcionist->get()) {
-                        echo '';
-                    } else {
-                        echo '
-                            <div class="input-group">
-                                <a href="?b=profile&s=optionSaveRedirec&p=mascota"><button class="btn btn-default" type="submit">Agregar</button></a>
-                            </div>
-                        ';
-                    }
-                    echo '          
-                        <form method="POST" action="?b=profile&s=buscarMascotas">
-                            <div class="input-group">
-                                <input type="text" class="form-control search-input" placeholder="Buscar mascota"
-                                    name="buscar_mascota" id="searchmas">
-                            </div>
-                        </form>
-                        </div>
-                        </div>';
-                        echo '
-                    <table class="table-container">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Nombre</th>
-                                <th>Edad</th>
-                                <th>Genero</th>
-                                <th>Especie</th>
-                                <th>Numero de identificacion del dueño</th>
-                            </tr>
-                        </thead>
-                        <tbody id="resultados">';
-
-                foreach ($mascota as $m) {
-                    if ($m['idcli'] == $user['iduser']) {
-                        echo '
-                            <tr>
-                                <td>' . $m['idmas'] . '</td>
-                                <td>' . $m['nommas'] . '</td>
-                                <td>' . $m['edadmas'] . '</td>
-                                <td>' . $m['genmas'] . '</td>
-                                <td>' . $m['espmas'] . '</td>
-                                <td>' . $user['dniuser'] . '</td>';
-                            if($privilegios == $privDoctor){
-                                echo "";
-                            }else{
-                                echo'
-                                <td class="icons1">
-                                    <a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=' . $m['idmas'] . '">
-                                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                                    </a>
-                                </td>';
-                            }
-
-                        if ($privilegios == Privilegios::Doctor->get() || $privilegios == Privilegios::Recepcionist->get()) {
-                            echo '';
-                        } else {
-                            echo '
-                                <td class="icons2">
-                                    <a onclick=\'alertProfile(this.id, "mascota", "' . addslashes($m['nommas']) . '")\' id="' . $m['idmas'] . '">
-                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>';
-                        }
-                    }
-                }
-                echo '
-                        </tbody>
-                    </table>
-                </div>';
-                } else {
-                    echo '
-                    <div class="profile-adm container-right5" id="container-right6">
-                        <div class="title">
-                            <h1>Mascota</h1>
-                        </div>
-                        <div class="table-container">
-                            <div class="form-container">';
-                    if ($privilegios == Privilegios::Doctor->get() || $privilegios == Privilegios::Recepcionist->get()) {
-                        echo '';
-                    } else {
-                        echo '
+                ?>
+                <div class="profile-adm container-right5" id="container-right6">
+                    <div class="title">
+                        <h1>Mascota</h1>
+                    </div>
+                    <div class="table-container">
+                        <div class="form-container">
+                            <?php
+                            if ($privilegios !== Privilegios::User->get()) {
+                                echo '';
+                            } else {
+                                echo '
                                 <div class="input-group">
                                     <a href="?b=profile&s=optionSaveRedirec&p=mascota"><button class="btn btn-default" type="submit">Agregar</button></a>
-                                </div>
-                            ';
-                    }
-                    echo '          
-                                <form method="POST" action="?b=profile&s=buscarMascotas">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control search-input" placeholder="Buscar mascota"
-                                            name="buscar_mascota" id="searchmas">
-                                    </div>
-                                </form>
-                            </div>
+                                </div>';
+                            }
+                            ?>
+                            <?php
+                            if ($privilegios == $privRecepcionist || $privilegios == $privDoctor || $privilegios == $privAdmin) {
+                                echo " 
+                                    <form method='POST' action='?b=profile&s=buscarMascotas'  onsubmit='return false;'>
+                                        <div class='input-group'>
+                                            <input type='text' class='form-control search-input' placeholder='Buscar mascota'
+                                                name='buscar_mascota' id='searchmas'>
+                                        </div>
+                                    </form>";
+                            } else {
+                                echo "";
+                            }
+                            ?>
+
                         </div>
-                        <table class="table-container">
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="table-container content-table">
                             <thead>
                                 <tr>
                                     <th>Id</th>
@@ -411,57 +360,59 @@
                                     <th>Edad</th>
                                     <th>Genero</th>
                                     <th>Especie</th>
-                                    <th>Numero de identificacion del dueño</th>
+                                    <th class="hide-on-small">Numero de identificacion del dueño</th>
                                 </tr>
                             </thead>
-                            <tbody id="resultados">';
-                    foreach ($mascota as $m) {
-                        echo '
-                                <tr>
-                                    <td>' . $m['idmas'] . '</td>
-                                    <td>' . $m['nommas'] . '</td>
-                                    <td>' . $m['edadmas'] . '</td>
-                                    <td>' . $m['genmas'] . '</td>
-                                    <td>' . $m['espmas'] . '</td>
-                                    <td>';
-                        $dueño = array_filter($users, function ($usuario) use ($m) {
-                            return $usuario['iduser'] == $m['idcli'];
-                        });
+                            <tbody id="resultados-mascotas">
+                                <?php
+                                foreach ($mascota as $m) {
+                                    if ($privilegios == $privUser && $m['idcli'] != $user['iduser']) {
+                                        continue;
+                                    }
+                                    echo '<tr>';
+                                    echo '<td>' . $m['idmas'] . '</td>';
+                                    echo '<td>' . $m['nommas'] . '</td>';
+                                    echo '<td>' . $m['edadmas'] . '</td>';
+                                    echo '<td>' . $m['genmas'] . '</td>';
+                                    echo '<td>' . $m['espmas'] . '</td>';
+                                    echo '<td>';
+                                    if ($privilegios == $privUser) {
+                                        echo $user['dniuser'];
+                                    } else {
+                                        $dueño = array_filter($users, function ($usuario) use ($m) {
+                                            return $usuario['iduser'] == $m['idcli'];
+                                        });
 
-                        if (!empty($dueño)) {
-                            $dueño = reset($dueño);
-                            echo $dueño['dniuser'];
-                        }
-                        if($privilegios == $privDoctor){
-                            echo '';
-                        }else{
-                            echo '
-                                </td>
+                                        if (!empty($dueño)) {
+                                            $dueño = reset($dueño);
+                                            echo $dueño['dniuser'];
+                                        }
+                                    }
+                                    echo '</td>';
+                                    if ($privilegios != $privDoctor) {
+                                        echo '
                                 <td class="icons1">
                                     <a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=' . $m['idmas'] . '">
                                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </td>';
-                        }
-                        if ($privilegios == Privilegios::Doctor->get() || $privilegios == Privilegios::Recepcionist->get()) {
-                            echo '';
-                        } else {
-                            echo '
-                                    <td class="icons2">
-                                        <a onclick=\'alertProfile(this.id, "mascota", "' . addslashes($m['nommas']) . '")\' id="' . $m['idmas'] . '">
-                                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            ';
-                        }
-                    }
-                    echo '
+                                    }
+                                    if ($privilegios != Privilegios::Doctor->get() && $privilegios != Privilegios::Recepcionist->get()) {
+                                        echo '
+                                <td class="icons2">
+                                    <a onclick=\'alertProfile(this.id, "mascota", "' . addslashes($m['nommas']) . '")\' id="' . $m['idmas'] . '">
+                                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                    </a>
+                                </td>';
+                                    }
+                                    echo '</tr>';
+                                }
+                                ?>
                             </tbody>
                         </table>
-                    </div>';
-                }
-                ?>
+                    </div>
+                </div>
+
                 <?php
                 if ($privilegios == $privUser || $privilegios == $privRecepcionist) {
                     echo "";
@@ -500,13 +451,11 @@
                                         <option disabled selected>Seleccione una opcion</option>
                                         ";
                     foreach ($mascota as $m) {
-                        foreach($users as $r){
-                            if($r['iduser'] == $m['idcli']){
-                                echo "<option>".$m['nommas']." - ".$r['dniuser']."</option>";
+                        foreach ($users as $r) {
+                            if ($r['iduser'] == $m['idcli']) {
+                                echo "<option>" . $m['nommas'] . " - " . $r['dniuser'] . "</option>";
                             }
-                            
                         }
-                        
                     }
 
                     echo "
@@ -515,7 +464,7 @@
                                 </div>
                             </div>
 
-                            <table class='table-container'>
+                            <table class='table-container content-table'>
                                 <thead>
                                     <tr>
                                         <th>Id</th>
@@ -524,7 +473,7 @@
                                         <th>Precio</th>
                                         <th>Categoria</th>
                                         <th>Disponibles (und)</th>
-                                        <th>Recetar</th>
+                                        <th class='hide-on-small'>Recetar</th>
                                     </tr>
                                 </thead>
                                 <tbody id='resultados-producto'>";
@@ -568,87 +517,6 @@
                 ?>
 
             </div>
-            <div class="profile-adm container-right2" id="container-right8">
-                <div class='title'>
-                    <h1>Solicitud de Citas</h1><br><br>
-                </div>
-                <div class="form-appointment colaborador" >
-                    <div>
-                        <form action="?b=profile&s=sheduleservice" method="post">
-                            <div>
-                                <input type="number" name="idcit" placeholder="Id cita" required>
-                                <input type="number" name="dniuser" placeholder="DNI del usuario" required>
-                                <input type="date" name="dateasig" placeholder="Fecha de Asignación" required>
-                                <select name="selcol" required>
-                                    <option selected disabled>Seleccione una opcion</option>
-                                    <?php
-                                        foreach ($users as $col) {
-                                            $value2 = ($col['privileges'] == Privilegios::Doctor->get()) ? $col['privileges'] : "" ; 
-                                            $user2 = isset($roles[$value2]) ? $roles[$value2] : "" ;
-                                            if(!empty($user2)){
-                                                echo '<option value="'.$col['iduser'].'">'.$col['nameuser'].' '.$col['surnameuser'].'</option>'; 
-                                            }
-                                        }
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <button type="submit">Agendar Servicio</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="table-container">
-                    <div class="form-container">
-                        <div class="input-group">
-                            <a href="?b=bookappointment"><button class="btn btn-default" type="submit">Solicitar servicio</button></a>
-                        </div>
-                        <form method="POST">
-                            <div class="input-group">
-                                <input type="text" class="form-control search-input" placeholder="Buscar cita   " name="#" id="#">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <table class='table-container'>
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>DNI Usuario</th>
-                            <th>Nombre</th>
-                            <th>N° Telefono</th>
-                            <th>Email</th>
-                            <th>Nombre Mascota</th>
-                            <th>Especie Mascota</th>
-                            <th>Genero Mascota</th>
-                            <th>Motivo</th>
-                            <th>Servicio Solicitado</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                            foreach($cita as $c){
-                        ?>  
-                        <tr>
-                            <td><?= $c['idcita'] ?></td>
-                            <td><?= $c['dniusercit'] ?></td>
-                            <td><?= $c['nameusercit'] ?></td>
-                            <td><?= $c['phoneusercit'] ?></td>
-                            <td><?= $c['emailusercit'] ?></td>
-                            <td><?= $c['namemascit'] ?></td>
-                            <td><?= $c['espmascit'] ?></td>
-                            <td><?= $c['genmascit'] ?></td>
-                            <td><?= $c['motcit'] ?></td>
-                            <td><?= $c['servicecit'] ?></td>
-                            <td><?= $c['statecit'] ?></td>
-                        </tr>
-                        <?php
-                            }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
         </main>
 
     </div>
@@ -667,4 +535,5 @@
 
     <script src="assets/Javascript/real_time_search.js"></script>
 </body>
+
 </html>

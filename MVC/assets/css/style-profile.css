@@ -1,6 +1,6 @@
 /* Global Cofiguration */
 
-:root{
+:root {
     --color-1: #83DFFD;
     --color-2: #8FE3FF;
     --color-3: #303030;
@@ -21,11 +21,12 @@
     font-family: 'Microsoft-Yaheni';
     src: url(../fonts/chinese.msyh.ttf);
 }
-a{
+
+a {
     text-decoration: none;
 }
 
-.fa-xmark{
+.fa-xmark {
     font-size: 18px;
     margin-left: 15px;
     cursor: pointer;
@@ -33,26 +34,26 @@ a{
 
 /* Header Profile */
 
-.header{
-    background: var(--color-5); 
+.header {
+    background: var(--color-5);
     padding: 15px;
     display: flex;
     justify-content: space-between;
-    box-shadow: 0px 20px 18px -10px rgba(0,0,0,0.61);
+    box-shadow: 0px 20px 18px -10px rgba(0, 0, 0, 0.61);
 }
 
-.header a{
+.header a {
     text-decoration: none;
     color: black;
     cursor: pointer;
 }
 
-.header a i{
+.header a i {
     color: var(--color-9);
     margin-right: 10px;
 }
 
-.header > div a {
+.header>div a {
     margin-right: 20px;
 }
 
@@ -67,15 +68,16 @@ main {
 
 /* Left */
 
-.container-sm{
-    min-height: 600px; 
+.container-sm {
+    min-height: 600px;
     position: relative;
 }
-.container-left{
+
+.container-left {
     position: absolute;
     top: 70%;
     transform: translateY(-50%);
-    z-index:2;
+    z-index: 2;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
@@ -92,7 +94,7 @@ main {
     overflow-x: hidden;
 }
 
-.container-left .left:hover{
+.container-left .left:hover {
     transition: 0.5s ease-in;
     width: 250px;
     -webkit-transition: 0.5s ease-in;
@@ -101,17 +103,17 @@ main {
     -o-transition: 0.5s ease-in;
 }
 
-.left button.user-data{
+.left button.user-data {
     margin-top: 40px;
     margin-bottom: 50px;
 }
 
-.left button.user-data div p:nth-child(1){
+.left button.user-data div p:nth-child(1) {
     font-size: 15px;
     font-weight: 600;
 }
 
-.left button{
+.left button {
     height: 35px;
     display: flex;
     justify-content: left;
@@ -119,13 +121,14 @@ main {
     font-family: var(--font-2);
     font-size: 18px;
     gap: 20px;
-    background: none;border: none;
+    background: none;
+    border: none;
     cursor: pointer;
     margin-top: 10px;
     margin-bottom: 20px;
 }
 
-.left button:hover{
+.left button:hover {
     color: white;
 }
 
@@ -147,9 +150,9 @@ main {
     padding-bottom: 20px;
 }
 
-.welcome{
+.welcome {
     background: var(--color-5);
-    box-shadow: 0px 0px 29px 0px rgba(0,0,0,0.61);
+    box-shadow: 0px 0px 29px 0px rgba(0, 0, 0, 0.61);
     width: 80%;
     margin-left: 50%;
     transform: translateX(-50%);
@@ -166,22 +169,22 @@ main {
     -o-border-radius: 20px;
 }
 
-.welcome h1{
+.welcome h1 {
     font-family: var(--font-2);
 }
 
-.welcome p{
+.welcome p {
     margin-top: 50px;
     font-family: var(--font-1);
 }
 
-.welcome i{
+.welcome i {
     margin-top: 100px;
     color: var(--color-9);
     font-size: 40px;
 }
 
-.user{
+.user {
     display: none;
 }
 
@@ -349,6 +352,20 @@ main {
     margin: 0 auto;
 }
 
+.small-column {
+    width: 70px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 10px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 10px;
+    max-width: 100%;
+}
+
 .form-container {
     display: flex;
     justify-content: space-between;
@@ -358,7 +375,7 @@ main {
 
 .form-container input[type="text"] {
     display: block;
-    width: 30%;
+    width: 31%;
     border: none;
     border-radius: 5px;
     font-size: 10pt;
@@ -460,23 +477,24 @@ tbody .icons1,
 tbody .icons2 {
     background-color: var(--color-10);
     text-align: center;
-    transition: all .5s ease;
+    transition: all .1s ease;
+    cursor: pointer;
 }
 
 tbody .icons1 a,
 tbody .icons2 a {
     color: var(--color-5);
-    transition: all .5s ease;
+    transition: all .1s ease;
 }
 
 tbody .icons1 a:hover {
     color: #007fff;
-    transition: all .5s ease;
+    transition: all .1s ease;
 }
 
 tbody .icons2 a:hover {
     color: #ff0000;
-    transition: all .5s ease;
+    transition: all .1s ease;
 }
 
 .ventana-emergente {
@@ -570,38 +588,38 @@ tbody .icons2 a:hover {
 
 /* Receta */
 
-.header-receta, .footer-receta{
+.header-receta, .footer-receta {
     max-width: 1200px;
     margin-left: 10%;
 }
 
-.header-receta h1{
+.header-receta h1 {
     text-align: center;
     font-family: var(--font-2);
     font-size: 25px;
 }
 
-.footer-receta h2{
+.footer-receta h2 {
     text-align: left;
     font-family: var(--font-2);
     font-size: 15px;
     margin-top: 30px;
 }
 
-.footer-receta h2 span{
+.footer-receta h2 span {
     font-family: var(--font-2);
     font-size: 18px;
     font-weight: bold;
 }
 
-.header-receta > .colaborador > div:nth-child(1), .header-receta > .user > div:nth-child(1){
+.header-receta>.colaborador>div:nth-child(1), .header-receta>.user>div:nth-child(1) {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 
-#resultados-receta input[name=cantidad]{
+#resultados-receta input[name=cantidad] {
     width: 50px;
     border: 1px solid var(--color-10);
     padding: 10px;
@@ -610,8 +628,8 @@ tbody .icons2 a:hover {
     text-align: center;
 }
 
-#resultados-receta td i{
-    font-size: 18px ;
+#resultados-receta td i {
+    font-size: 18px;
     margin: 5px;
     color: var(--color-9);
 }
@@ -624,18 +642,7 @@ tbody .icons2 a:hover {
     margin-bottom: 50px;
 }
 
-.form-appointment > div form > div:nth-child(1){
-    display: flex;
-    width: 100%;
-    gap: 20px;
-}
-
-.form-appointment > div form > div:nth-child(2){
-    display: flex;
-    justify-content: right;
-}
-
-.colaborador input[type=date], .colaborador select, .colaborador input[type=number], .Usuario input[type=number], #container-right7 input[type=text], #container-right7 select{
+.colaborador input[type=number], .Usuario input[type=number], #container-right7 input[type=text], #container-right7 select {
     border: 1px solid var(--color-10);
     padding: 10px;
     border-radius: 8px;
@@ -645,7 +652,7 @@ tbody .icons2 a:hover {
 }
 
 
-#searchUser, #searchCol,  #addReceta{
+#searchUser, #searchCol, #addReceta {
     background: var(--color-2);
     color: #191919;
     padding: 10px;
@@ -657,12 +664,12 @@ tbody .icons2 a:hover {
     margin-bottom: 40px;
 }
 
-#searchUser:hover, #addReceta:hover{
+#searchUser:hover, #addReceta:hover {
     transition: .5s ease;
     color: white;
 }
 
-#addReceta{
+#addReceta {
     margin-left: 10%;
 }
 
@@ -822,4 +829,45 @@ footer {
         height: 50px;
         margin-left: 30px;
     }
+}
+
+/* styles responsive tables */
+
+@media screen and (max-width: 768px) {
+    .hide-on-small {
+        display: table-cell;
     }
+
+    .small-column {
+        width: auto;
+        font-size: 12px;
+    }
+
+    .input-group button {
+        margin-left: 75px;
+    }
+
+    .form-container input[type="text"] {
+        width: 50%;
+    }
+
+    .content-table {
+        margin: 50px;
+        margin-top: 0px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .form-container input[type="text"] {
+        width: 100%;
+    }
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .input-group a {
+        padding-bottom: 30px;
+    }
+    
+}
