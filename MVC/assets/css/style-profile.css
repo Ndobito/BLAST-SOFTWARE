@@ -642,13 +642,18 @@ tbody .icons2 a:hover {
     margin-bottom: 50px;
 }
 
-.colaborador input[type=number], .Usuario input[type=number], #container-right7 input[type=text], #container-right7 select {
+.colaborador select, .colaborador input[type=date], .colaborador input[type=number], .Usuario input[type=number], #container-right7 input[type=text], #container-right7 select {
     border: 1px solid var(--color-10);
     padding: 10px;
     border-radius: 8px;
     font-family: var(--font-2);
     width: 300px;
     margin-bottom: 20px;
+}
+
+.colaborador form div:nth-child(1){
+    display: flex;
+    gap: 30px;
 }
 
 
