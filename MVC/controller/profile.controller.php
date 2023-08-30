@@ -25,6 +25,7 @@ class ProfileController
         $mascota = $this->object->getAll("mascota");
         $productos = $this->object->getAll("producto");
         $categorias = $this->object->getAll("categoria");
+        $cita = $this->object->getAll("cita");
 
         // -----Variables de Privilegios----- //
         $privUser = Privilegios::User->get();

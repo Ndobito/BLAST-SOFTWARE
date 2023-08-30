@@ -1,3 +1,6 @@
+<?php
+var_dump($_SESSION["usuario"]);
+?>
 <body>
     <div class="container-sm">
         <div class="header">
@@ -520,7 +523,86 @@
                     </div>";
                 }
                 ?>
-
+                <div class="profile-adm container-right2" id="container-right8">
+                <div class='title'>
+                    <h1>Solicitud de Citas</h1><br><br>
+                </div>
+                <div class="form-appointment colaborador" >
+                    <div>
+                        <form action="?b=profile&s=sheduleservice" method="post">
+                            <div>
+                                <input type="number" name="idcit" placeholder="Id cita" required>
+                                <input type="number" name="dniuser" placeholder="DNI del usuario" required>
+                                <input type="date" name="dateasig" placeholder="Fecha de Asignación" required>
+                                <select name="selcol" required>
+                                    <option selected disabled>Seleccione una opcion</option>
+                                    <?php
+                                        foreach ($users as $col) {
+                                            $value2 = ($col['privileges'] == Privilegios::Doctor->get()) ? $col['privileges'] : "" ; 
+                                            $user2 = isset($roles[$value2]) ? $roles[$value2] : "" ;
+                                            if(!empty($user2)){
+                                                echo '<option value="'.$col['iduser'].'">'.$col['nameuser'].' '.$col['surnameuser'].'</option>'; 
+                                            }
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <button type="submit">Agendar Servicio</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <div class="form-container">
+                        <div class="input-group">
+                            <a href="?b=bookappointment"><button class="btn btn-default" type="submit">Solicitar servicio</button></a>
+                        </div>
+                        <form method="POST">
+                            <div class="input-group">
+                                <input type="text" class="form-control search-input" placeholder="Buscar cita   " name="#" id="#">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <table class='table-container'>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>DNI Usuario</th>
+                            <th>Nombre</th>
+                            <th>N° Telefono</th>
+                            <th>Email</th>
+                            <th>Nombre Mascota</th>
+                            <th>Especie Mascota</th>
+                            <th>Genero Mascota</th>
+                            <th>Motivo</th>
+                            <th>Servicio Solicitado</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            foreach($cita as $c){
+                        ?>  
+                        <tr>
+                            <td><?= $c['idcita'] ?></td>
+                            <td><?= $c['dniusercit'] ?></td>
+                            <td><?= $c['nameusercit'] ?></td>
+                            <td><?= $c['phoneusercit'] ?></td>
+                            <td><?= $c['emailusercit'] ?></td>
+                            <td><?= $c['namemascit'] ?></td>
+                            <td><?= $c['espmascit'] ?></td>
+                            <td><?= $c['genmascit'] ?></td>
+                            <td><?= $c['motcit'] ?></td>
+                            <td><?= $c['servicecit'] ?></td>
+                            <td><?= $c['statecit'] ?></td>
+                        </tr>
+                        <?php
+                            }
+                        ?>
+                    </tbody>
+                </table>
             </div>
         </main>
 
@@ -535,9 +617,9 @@
     <script src="assets/Javascript/form-disable-enable.js"></script>
     <!--Font Awesome-->
     <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
-
+    <!-- Library JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <!-- Serach -->
     <script src="assets/Javascript/real_time_search.js"></script>
 </body>
 
