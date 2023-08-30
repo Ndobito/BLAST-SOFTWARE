@@ -86,14 +86,22 @@ class Profile
     // -----Metodo para Seleccionar el un dato ----- //
     public function selectParam($param1, $tabla, $param2, $value)
     {
-        $query = "SELECT $param1 FROM $tabla WHERE $param2 = '" . $value . "'";
+        $query = "SELECT $param1 FROM $tabla WHERE $param2 = ?";
         $stmt = $this->conexion->prepare($query);
+        if (!$stmt) {
+            throw new Exception("Error in preparing statement: " . $this->conexion->error);
+        }
+        $stmt->bind_param("s", $value);
         $stmt->execute();
+        if (!$stmt->execute()) {
+            throw new Exception("Error executing statement: " . $stmt->error);
+        }
         $stmt->bind_result($result);
         $stmt->fetch();
         $stmt->close();
         return $result;
     }
+
 
     // -----Metodo para Seleccionar el nombre e id de un usuario segun su id ----- //
     public function selectNameIDUser($value)
@@ -148,13 +156,33 @@ class Profile
         $producto = array();
 
         if ($result->num_rows > 0) {
-            // Recorrer los resultados y almacenarlos en el array $proveedores
             while ($row = $result->fetch_assoc()) {
                 $producto[] = $row;
             }
         }
         return $producto;
     }
+
+    // -----Metodo para seleccionar todas de las horas en citas----- // 
+    public function getHours($fecha, $idcol)
+    {
+        $query = "SELECT hourcit FROM cita WHERE datecit = ? AND idcolcit = ?";
+        $consulta = $this->conexion->prepare($query); 
+        $consulta->bind_param("ss", $fecha, $idcol);
+        $consulta->execute();
+        $consulta->bind_result($hourcit);
+
+        $hours = array();
+
+        while ($consulta->fetch()) {
+            $hours[] = $hourcit; 
+        }
+
+        $consulta->close();
+        return $hours; 
+    }
+
+    
 
     // -----Metodo para Seleccionar el nombre del Usuario----- //
     public function selectUser($nombreUsuario)
@@ -238,10 +266,8 @@ class Profile
             } else {
                 return false;
             }
-            
             mysqli_stmt_close($stmt);
         } else {
-            // Handle the case where the statement preparation fails
             return false;
         }
     }

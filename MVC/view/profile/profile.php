@@ -1,14 +1,10 @@
-<?php
-var_dump($_SESSION["usuario"]);
-?>
 <body>
     <div class="container-sm">
         <div class="header">
             <a href="?b=index&s=Inicio&p=admin"><i class="fa-solid fa-arrow-left"></i></a>
             <div>
                 <a href="?b=restorepassword&s=Inicio"><i class="fa-solid fa-key"></i><span>Cambiar contraseña</span></a>
-                <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar
-                        Sesion</span></a>
+                <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar Sesion</span></a>
             </div>
         </div>
         <main style="display: block">
@@ -38,7 +34,7 @@ var_dump($_SESSION["usuario"]);
                     <?php echo ($privilegios == $privUser) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-person-circle-check'></i><p>Clientes</p></button>" ?>
                     <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i><p>Mascotas</p></button>
                     <?php echo ($privilegios == $privUser || $privilegios == $privRecepcionist) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-syringe'></i><p>Recetar</p></button>" ?>
-                    <button class="profile-adm-btn"><i class="fa-regular fa-calendar-check"></i><p>Citas</p></button>
+                    <?php echo ($privilegios == $privAdmin || $privilegios == $privRecepcionist) ? "<button class='profile-adm-btn'><i class='fa-regular fa-calendar-check'></i><p>Citas</p></button>" : "" ?>
                 </div>
             </div>
             <div class="container-right">
@@ -492,7 +488,7 @@ var_dump($_SESSION["usuario"]);
                             echo ($categoria['idcat'] === $producto['catprod']) ? $categoria['namecat'] : '';
                         }
                         echo "</td>
-                                        <td>" . ($producto['stockprod'] ?? 'Sin definir') . "</td>";
+                        <td>" . ($producto['stockprod'] ?? 'Sin definir') . "</td>";
                         echo "<td><input type='checkbox' name='recetar'></td>
                                     </tr>";
                     }
@@ -517,30 +513,42 @@ var_dump($_SESSION["usuario"]);
                         </form>
                     </div>";
                 }
-                ?>
-                <div class="profile-adm container-right2" id="container-right8">
-                <div class='title'>
+
+                if($privilegios == $privAdmin || $privilegios== $privRecepcionist){
+                    echo '<div class="profile-adm container-right2" id="container-right8">
+                <div class=\'title\'>
                     <h1>Solicitud de Citas</h1><br><br>
                 </div>
                 <div class="form-appointment colaborador" >
+                    <div onclick="cleanForm()"><span>Limpiar</span><i class="fa-solid fa-delete-left"></i></div>
                     <div>
-                        <form action="?b=profile&s=sheduleservice" method="post">
+                        <form action="?b=profile&s=sheduleservice" method="post" class="form-cita">
                             <div>
-                                <input type="number" name="idcit" placeholder="Id cita" required>
-                                <input type="number" name="dniuser" placeholder="DNI del usuario" required>
-                                <input type="date" name="dateasig" placeholder="Fecha de Asignación" required>
-                                <select name="selcol" required>
-                                    <option selected disabled>Seleccione una opcion</option>
-                                    <?php
-                                        foreach ($users as $col) {
-                                            $value2 = ($col['privileges'] == Privilegios::Doctor->get()) ? $col['privileges'] : "" ; 
-                                            $user2 = isset($roles[$value2]) ? $roles[$value2] : "" ;
-                                            if(!empty($user2)){
-                                                echo '<option value="'.$col['iduser'].'">'.$col['nameuser'].' '.$col['surnameuser'].'</option>'; 
-                                            }
+                                <div class="input-cita">
+                                    <div><label for="idcit">Id de la Cita</label></div>
+                                    <div><input type="number" name="idcit" placeholder="Id cita" id="cita-id" required></div>
+                                </div>
+                                <div class="input-cita">
+                                    <div><label for="dniuser">Numero de DNI del Usuario </label></div>
+                                    <div><input type="number" name="dniuser"  placeholder="DNI del usuario" id="cita-dni" required></div>
+                                </div>
+                                <div class="input-cita">
+                                    <div><label for="dateasig">Fecha de Asignacion de la cita</label></div>
+                                    <div><input type="date" name="dateasig" placeholder="Fecha de Asignación" required></div>
+                                </div>
+                                <div class="input-cita">
+                                    <div><label for="selcol">Asignar Colaborador</label></div>
+                                    <div><select name="selcol" required>
+                                    <option selected disabled>Seleccione una opcion</option>';
+                                    foreach ($users as $col) {
+                                        $value2 = ($col['privileges'] == Privilegios::Doctor->get()) ? $col['privileges'] : "" ; 
+                                        $user2 = isset($roles[$value2]) ? $roles[$value2] : "" ;
+                                        if(!empty($user2)){
+                                            echo '<option value="'.$col['iduser'].'">'.$col['nameuser'].' '.$col['surnameuser'].'</option>'; 
                                         }
-                                    ?>
-                                </select>
+                                    }
+                        echo       '</select></div>
+                                </div>
                             </div>
                             <div class="input-group">
                                 <button type="submit">Agendar Servicio</button>
@@ -555,12 +563,12 @@ var_dump($_SESSION["usuario"]);
                         </div>
                         <form method="POST">
                             <div class="input-group">
-                                <input type="text" class="form-control search-input" placeholder="Buscar cita   " name="#" id="#">
+                                <input type="text" class="form-control search-input" placeholder="Buscar cita" name="#" id="#">
                             </div>
                         </form>
                     </div>
                 </div>
-                <table class='table-container'>
+                <table class=\'table-container\'>
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -574,31 +582,36 @@ var_dump($_SESSION["usuario"]);
                             <th>Motivo</th>
                             <th>Servicio Solicitado</th>
                             <th>Estado</th>
+                            <th>Fecha Asignación</th>
+                            <th>Hora Asignada</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php
-                            foreach($cita as $c){
-                        ?>  
-                        <tr onclick="getCita()" class="tr-cita">
-                            <td><?= $c['idcita'] ?></td>
-                            <td><?= $c['dniusercit'] ?></td>
-                            <td><?= $c['nameusercit'] ?></td>
-                            <td><?= $c['phoneusercit'] ?></td>
-                            <td><?= $c['emailusercit'] ?></td>
-                            <td><?= $c['namemascit'] ?></td>
-                            <td><?= $c['espmascit'] ?></td>
-                            <td><?= $c['genmascit'] ?></td>
-                            <td><?= $c['motcit'] ?></td>
-                            <td><?= $c['servicecit'] ?></td>
-                            <td><?= $c['statecit'] ?></td>
-                        </tr>
-                        <?php
-                            }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
+                    <tbody>';
+                    foreach($cita as $c) {
+                        echo '<tr onclick="getCita(this)" class="tr-cita" data-id="' . $c['idcita'] . '" data-dni="' . $c['dniusercit'] . '">
+                                <td>' . $c['idcita'] . '</td>
+                                <td>' . $c['dniusercit'] . '</td>
+                                <td>' . $c['nameusercit'] . '</td>
+                                <td>' . $c['phoneusercit'] . '</td>
+                                <td>' . $c['emailusercit'] . '</td>
+                                <td>' . $c['namemascit'] . '</td>
+                                <td>' . $c['espmascit'] . '</td>
+                                <td>' . $c['genmascit'] . '</td>
+                                <td>' . $c['motcit'] . '</td>
+                                <td>' . $c['servicecit'] . '</td>
+                                <td>' . $c['statecit'] . '</td>
+                                <td>' . ($c['datecit'] == NULL ? "No Asignado" : $c['datecit']) . '</td>
+                                <td>' . ($c['hourcit'] == NULL ? "No Asignado" : $c['datecit']) . '</td>
+                            </tr>';
+                    }
+                echo '  </tbody>
+                    </table>
+                </div>';
+                }else{
+                    echo ""; 
+                }
+                ?>
+                
         </main>
 
     </div>

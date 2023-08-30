@@ -144,13 +144,25 @@ class ProfileController
     }
 
     public function sheduleService(){
-        echo $_POST['idcit']; 
-        echo "<br><br>"; 
-        echo $_POST['dniuser']; 
-        echo "<br><br>";
-        echo $_POST['dateasig']; 
-        echo "<br><br>";
-        echo $_POST['selcol']; 
+        
+        if(empty($_POST['idcit']) || empty($_POST['dniuser']) || empty($_POST['dateasig']) || empty($_POST['selcol'])){
+            redirect("?b=profile&s=Inicio")->error("Complee todos los campos!")->send();
+        }else{
+            if($this->object->verifyLeterString($_POST['idcit'])){
+                redirect("?b=profile&s=Inicio")->error("El id de la cita no debe llevar numeros!")->send();
+            }else{
+                if($this->object->verifyLeterString($_POST['dniuser'])){
+                    redirect("?b=profile&s=Inicio")->error("El DNI del usuario no debe llevar numeros!")->send();
+                }else{
+                    $cliente = $this->object->existProfile("cita", "dniusercit", $_POST['dniuser']); 
+                    $horas = $this->object->getHours($_POST['dateasig'], $_POST['selcol']); 
+                    $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
+                    require_once "view/head.php";
+                    require_once "view/profile/save/asignar-cita.php";
+                }
+            }
+        }
+        
     }
 
 
