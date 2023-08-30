@@ -33,9 +33,13 @@
                     <?php echo ($privilegios <> $privAdmin) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-users'></i><p>Proveedores</p></button>" ?>
                     <?php echo ($privilegios <> $privAdmin) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-user-gear'></i><p>Colaboradores</p></button>" ?>
                     <?php echo ($privilegios == $privUser) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-person-circle-check'></i><p>Clientes</p></button>" ?>
-                    <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i><p>Mascotas</p></button>
+                    <button class="profile-adm-btn"><i class="fa-solid fa-dog"></i>
+                        <p>Mascotas</p>
+                    </button>
                     <?php echo ($privilegios == $privUser || $privilegios == $privRecepcionist) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-syringe'></i><p>Recetar</p></button>" ?>
-                    <button class="profile-adm-btn"><i class="fa-regular fa-calendar-check"></i><p>Citas</p></button>
+                    <button class="profile-adm-btn"><i class="fa-regular fa-calendar-check"></i>
+                        <p>Citas</p>
+                    </button>
                 </div>
             </div>
             <div class="container-right">
@@ -477,23 +481,24 @@
                                     </tr>
                                 </thead>
                                 <tbody id='resultados-producto'>";
-
-                    foreach ($productos as $key => $producto) {
-                        echo "
+                                    foreach ($productos as $key => $producto) {
+                                        echo "
                                         <td>" . $producto['idprod'] . "</td>
                                         <td>" . ($producto['nomprod'] ?? 'Sin definir') . "</td>
                                         <td>" . ($producto['desprod'] ?? 'Sin definir') . "</td>
                                         <td>" . ($producto['precvenprod'] ?? 'Sin definir') . "</td>
                                         <td>";
-                        foreach ($categorias as $categoria) {
-                            echo ($categoria['idcat'] === $producto['catprod']) ? $categoria['namecat'] : '';
-                        }
-                        echo "</td>
-                                        <td>" . ($producto['stockprod'] ?? 'Sin definir') . "</td>";
-                        echo "<td><input type='checkbox' name='recetar'></td>
-                                    </tr>";
-                    }
-                    echo "
+                                    foreach ($categorias as $categoria) {
+                                        echo ($categoria['idcat'] === $producto['catprod']) ? $categoria['namecat'] : '';
+                                    }
+                                    echo 
+                                     "</td>
+                                     <td>" . ($producto['stockprod'] ?? 'Sin definir') . "</td>";
+                                    echo 
+                                     "<td><input type='checkbox' name='recetar'></td>
+                                     </tr>";
+                                    }
+                                    echo "
                                 </tbody>
                             </table>
                             <button id='addReceta'>Agregar a la receta</button>
