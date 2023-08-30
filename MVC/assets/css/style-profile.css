@@ -636,10 +636,25 @@ tbody .icons2 a:hover {
 
 .form-appointment{
     text-align: left;
-    max-width: 1200px;
     margin-left: 50%;
     transform: translateX(-50%);
     margin-bottom: 50px;
+}
+
+.form-appointment > div:nth-child(1){
+    font-size: 15px;
+    margin-left: 85%;
+    transform: translateX(-60%);
+    margin-bottom: 30px;
+    cursor: pointer;
+    font-family: var(--font-1);
+    position: absolute;
+    top: -20%;
+    right: -10%;
+}
+
+.form-appointment > div:nth-child(1) span{
+    margin-right: 10px;
 }
 
 .colaborador select, .colaborador input[type=date], .colaborador input[type=number], .Usuario input[type=number], #container-right7 input[type=text], #container-right7 select {
@@ -651,11 +666,28 @@ tbody .icons2 a:hover {
     margin-bottom: 20px;
 }
 
-.colaborador form div:nth-child(1){
-    display: flex;
-    gap: 30px;
+.form-cita{
+    margin-top: 30px;
 }
 
+.form-cita > div:nth-child(1) > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-cita > div:nth-child(1) > div label{
+    font-family: var(--font-2);
+}
+
+.tr-cita{
+    cursor: pointer;
+}
+
+.tr-cita:hover{
+    transition: 1s ease;
+    background-color: var(--color-2);
+}
 
 #searchUser, #searchCol, #addReceta {
     background: var(--color-2);
