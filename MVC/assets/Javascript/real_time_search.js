@@ -68,5 +68,22 @@ $(document).ready(function () {
     });
   }
 
+  // Buscador de cita
+  $("#searchcita").on("input", function () {
+    buscarCita();
+  });
+
+  function buscarMascotas() {
+    var searchTerm = $("#searchcita").val();
+
+    $.ajax({
+      type: "post",
+      url: "?b=profile&s=buscarCita",
+      data: { buscar_cita: searchTerm },
+    }).done(function (response) {
+      $("#resultados-cita").html(response);
+    });
+  }
+
 });
 

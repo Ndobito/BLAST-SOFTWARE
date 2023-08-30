@@ -143,14 +143,15 @@ class ProfileController
         }
     }
 
-    public function sheduleService(){
-        echo $_POST['idcit']; 
-        echo "<br><br>"; 
-        echo $_POST['dniuser']; 
+    public function sheduleService()
+    {
+        echo $_POST['idcit'];
         echo "<br><br>";
-        echo $_POST['dateasig']; 
+        echo $_POST['dniuser'];
         echo "<br><br>";
-        echo $_POST['selcol']; 
+        echo $_POST['dateasig'];
+        echo "<br><br>";
+        echo $_POST['selcol'];
     }
 
 
@@ -622,6 +623,35 @@ class ProfileController
             echo '<td>' . ($roles[$empleado['privileges']] ?? "Sin definir") . '</td>';
             echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
             echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
+            echo '</tr>';
+        }
+    }
+
+    // -----Metodo para buscar Citas-----//
+    public function buscarCita()
+    {
+        $searchTerm = $_POST['buscar_cita'];
+        $cita = $this->object->getAll("cita");
+
+        $filteredcita = array_filter($cita, function ($c) use ($searchTerm) {
+            return (stripos($c['idcita'], $searchTerm) !== false) ||
+                (stripos($c['dniusercit'], $searchTerm) !== false) ||
+                (stripos($c['nameusercli'], $searchTerm) !== false);
+        });
+
+        foreach ($filteredcita as $c) {
+            echo '<tr>';
+            echo '<td>' . $c['idcita'] . '</td>';
+            echo '<td>' . ($c['dniusercit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['nameusercit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['phoneusercit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['emailusercit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['namemascit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['espmascit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['genmascit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['motcit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['servicecit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['statecit'] ?? "Sin definir") . '</td>';
             echo '</tr>';
         }
     }

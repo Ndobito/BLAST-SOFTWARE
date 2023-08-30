@@ -1,6 +1,3 @@
-<?php
-var_dump($_SESSION["usuario"]);
-?>
 <body>
     <div class="container-sm">
         <div class="header">
@@ -484,24 +481,24 @@ var_dump($_SESSION["usuario"]);
                                     </tr>
                                 </thead>
                                 <tbody id='resultados-producto'>";
-                                    foreach ($productos as $key => $producto) {
-                                        echo "
+                    foreach ($productos as $key => $producto) {
+                        echo "
                                         <td>" . $producto['idprod'] . "</td>
                                         <td>" . ($producto['nomprod'] ?? 'Sin definir') . "</td>
                                         <td>" . ($producto['desprod'] ?? 'Sin definir') . "</td>
                                         <td>" . ($producto['precvenprod'] ?? 'Sin definir') . "</td>
                                         <td>";
-                                    foreach ($categorias as $categoria) {
-                                        echo ($categoria['idcat'] === $producto['catprod']) ? $categoria['namecat'] : '';
-                                    }
-                                    echo 
-                                     "</td>
+                        foreach ($categorias as $categoria) {
+                            echo ($categoria['idcat'] === $producto['catprod']) ? $categoria['namecat'] : '';
+                        }
+                        echo
+                            "</td>
                                      <td>" . ($producto['stockprod'] ?? 'Sin definir') . "</td>";
-                                    echo 
-                                     "<td><input type='checkbox' name='recetar'></td>
+                        echo
+                            "<td><input type='checkbox' name='recetar'></td>
                                      </tr>";
-                                    }
-                                    echo "
+                    }
+                    echo "
                                 </tbody>
                             </table>
                             <button id='addReceta'>Agregar a la receta</button>
@@ -524,86 +521,112 @@ var_dump($_SESSION["usuario"]);
                 }
                 ?>
                 <div class="profile-adm container-right2" id="container-right8">
-                <div class='title'>
-                    <h1>Solicitud de Citas</h1><br><br>
-                </div>
-                <div class="form-appointment colaborador" >
-                    <div>
-                        <form action="?b=profile&s=sheduleservice" method="post">
-                            <div>
-                                <input type="number" name="idcit" placeholder="Id cita" required>
-                                <input type="number" name="dniuser" placeholder="DNI del usuario" required>
-                                <input type="date" name="dateasig" placeholder="Fecha de Asignación" required>
-                                <select name="selcol" required>
-                                    <option selected disabled>Seleccione una opcion</option>
-                                    <?php
+                    <div class='title'>
+                        <h1>Solicitud de Citas</h1><br><br>
+                    </div>
+                    <div class="form-appointment colaborador">
+                        <div>
+                            <form action="?b=profile&s=sheduleservice" method="post">
+                                <div>
+                                    <input type="number" name="idcit" placeholder="Id cita" required>
+                                    <input type="number" name="dniuser" placeholder="DNI del usuario" required>
+                                    <input type="date" name="dateasig" placeholder="Fecha de Asignación" required>
+                                    <select name="selcol" required>
+                                        <option selected disabled>Seleccione una opcion</option>
+                                        <?php
                                         foreach ($users as $col) {
-                                            $value2 = ($col['privileges'] == Privilegios::Doctor->get()) ? $col['privileges'] : "" ; 
-                                            $user2 = isset($roles[$value2]) ? $roles[$value2] : "" ;
-                                            if(!empty($user2)){
-                                                echo '<option value="'.$col['iduser'].'">'.$col['nameuser'].' '.$col['surnameuser'].'</option>'; 
+                                            $value2 = ($col['privileges'] == Privilegios::Doctor->get()) ? $col['privileges'] : "";
+                                            $user2 = isset($roles[$value2]) ? $roles[$value2] : "";
+                                            if (!empty($user2)) {
+                                                echo '<option value="' . $col['iduser'] . '">' . $col['nameuser'] . ' ' . $col['surnameuser'] . '</option>';
                                             }
                                         }
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <button type="submit">Agendar Servicio</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="table-container">
-                    <div class="form-container">
-                        <div class="input-group">
-                            <a href="?b=bookappointment"><button class="btn btn-default" type="submit">Solicitar servicio</button></a>
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <button type="submit">Agendar Servicio</button>
+                                </div>
+                            </form>
                         </div>
-                        <form method="POST">
+                    </div>
+                    <div class="table-container">
+                        <div class="form-container">
                             <div class="input-group">
-                                <input type="text" class="form-control search-input" placeholder="Buscar cita   " name="#" id="#">
+                                <a href="?b=bookappointment"><button class="btn btn-default" type="submit">Solicitar
+                                        servicio</button></a>
                             </div>
-                        </form>
+                            <form method="POST" action='?b=profile&s=buscarCita' onsubmit='return false;'>
+                                <div class="input-group">
+                                    <input type="text" class="form-control search-input" placeholder="Buscar cita"
+                                        name="buscar_cita" id="searchcita">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class='table-container content-table'>
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>DNI Usuario</th>
+                                    <th>Nombre</th>
+                                    <th>N° Telefono</th>
+                                    <th>Email</th>
+                                    <th>Nombre Mascota</th>
+                                    <th>Especie Mascota</th>
+                                    <th>Genero Mascota</th>
+                                    <th>Motivo</th>
+                                    <th>Servicio Solicitado</th>
+                                    <th class='hide-on-small'>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultados-cita">
+                                <?php
+                                foreach ($cita as $c) {
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <?= $c['idcita'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $c['dniusercit'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $c['nameusercit'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $c['phoneusercit'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $c['emailusercit'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $c['namemascit'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $c['espmascit'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $c['genmascit'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $c['motcit'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $c['servicecit'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $c['statecit'] ?>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <table class='table-container'>
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>DNI Usuario</th>
-                            <th>Nombre</th>
-                            <th>N° Telefono</th>
-                            <th>Email</th>
-                            <th>Nombre Mascota</th>
-                            <th>Especie Mascota</th>
-                            <th>Genero Mascota</th>
-                            <th>Motivo</th>
-                            <th>Servicio Solicitado</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                            foreach($cita as $c){
-                        ?>  
-                        <tr>
-                            <td><?= $c['idcita'] ?></td>
-                            <td><?= $c['dniusercit'] ?></td>
-                            <td><?= $c['nameusercit'] ?></td>
-                            <td><?= $c['phoneusercit'] ?></td>
-                            <td><?= $c['emailusercit'] ?></td>
-                            <td><?= $c['namemascit'] ?></td>
-                            <td><?= $c['espmascit'] ?></td>
-                            <td><?= $c['genmascit'] ?></td>
-                            <td><?= $c['motcit'] ?></td>
-                            <td><?= $c['servicecit'] ?></td>
-                            <td><?= $c['statecit'] ?></td>
-                        </tr>
-                        <?php
-                            }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
         </main>
 
     </div>
