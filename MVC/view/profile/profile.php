@@ -1,3 +1,6 @@
+<?php
+var_dump($_SESSION["usuario"]);
+?>
 <body>
     <div class="container-sm">
         <div class="header">

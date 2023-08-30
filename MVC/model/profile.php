@@ -224,15 +224,28 @@ class Profile
     public function getPrivileges()
     {
         $query = "SELECT privileges FROM usuario WHERE nickuser = ?";
-        $resultado = mysqli_execute_query($this->conexion, $query, [$_SESSION["usuario"]]);
-
-        if (mysqli_num_rows($resultado) > 0) {
-            $row = mysqli_fetch_assoc($resultado);
-            return (int)$row["privileges"];
+        $stmt = mysqli_prepare($this->conexion, $query);
+        
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "s", $_SESSION['usuario']);
+            mysqli_stmt_execute($stmt);
+            
+            $resultado = mysqli_stmt_get_result($stmt);
+            
+            if (mysqli_num_rows($resultado) > 0) {
+                $row = mysqli_fetch_assoc($resultado);
+                return (int)$row["privileges"];
+            } else {
+                return false;
+            }
+            
+            mysqli_stmt_close($stmt);
         } else {
+            // Handle the case where the statement preparation fails
             return false;
         }
     }
+
 
     // -----Metodo para guardar informacion de Usuario----- //
     public function saveUser(Profile $data)
