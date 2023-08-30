@@ -577,7 +577,7 @@
                         <?php
                             foreach($cita as $c){
                         ?>  
-                        <tr>
+                        <tr onclick="getCita()" class="tr-cita">
                             <td><?= $c['idcita'] ?></td>
                             <td><?= $c['dniusercit'] ?></td>
                             <td><?= $c['nameusercit'] ?></td>
@@ -613,6 +613,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Serach -->
     <script src="assets/Javascript/real_time_search.js"></script>
+    <!-- Get Data Cita -->
+    <script src="assets/Javascript/getDataCita.js"></script>
 </body>
 
 </html>

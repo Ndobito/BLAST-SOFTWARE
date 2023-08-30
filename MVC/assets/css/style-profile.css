@@ -656,6 +656,14 @@ tbody .icons2 a:hover {
     gap: 30px;
 }
 
+.tr-cita{
+    cursor: pointer;
+}
+
+.tr-cita:hover{
+    transition: 1s ease;
+    background-color: var(--color-2);
+}
 
 #searchUser, #searchCol, #addReceta {
     background: var(--color-2);
