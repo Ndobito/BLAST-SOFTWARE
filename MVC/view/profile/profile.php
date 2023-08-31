@@ -4,7 +4,8 @@
             <a href="?b=index&s=Inicio&p=admin"><i class="fa-solid fa-arrow-left"></i></a>
             <div>
                 <a href="?b=restorepassword&s=Inicio"><i class="fa-solid fa-key"></i><span>Cambiar contraseña</span></a>
-                <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar Sesion</span></a>
+                <a onclick="destroySession()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Cerrar
+                        Sesion</span></a>
             </div>
         </div>
         <main style="display: block">
@@ -50,21 +51,16 @@
                 <div class="profile-adm container-right user" id="container-right2">
                     <div class="user-information">
                         <h1>Datos</h1>
-                        <form id="form-user-information" action="?b=profile&s=updateUser&id=<?= $user['iduser'] ?>"
-                            method="post">
+                        <form id="form-user-information" action="?b=profile&s=updateUser&id=<?= $user['iduser'] ?>" method="post">
                             <label for="name">Numero de identificacion*</label>
                             <input name="numid" type="number" value="<?php echo $user['dniuser'] ?>" disabled>
                             <label for="name">Nombres*</label>
-                            <input type="text" name="name" id="ctNameUser"
-                                value="<?php echo $user['nameuser'] ?? "Sin definir"; ?>" disabled>
+                            <input type="text" name="name" id="ctNameUser" value="<?php echo $user['nameuser'] ?? "Sin definir"; ?>" disabled>
                             <label for="surname">Apellidos *</label>
-                            <input type="text" name="surname" id="ctSurNameUser"
-                                value="<?php echo $user['surnameuser'] ?? "Sin definir"; ?>" disabled>
-                            <input type="hidden" name="nick" id="ctSurNameUser"
-                                value="<?php echo $user['nickuser'] ?? "Sin definir"; ?>" disabled>
+                            <input type="text" name="surname" id="ctSurNameUser" value="<?php echo $user['surnameuser'] ?? "Sin definir"; ?>" disabled>
+                            <input type="hidden" name="nick" id="ctSurNameUser" value="<?php echo $user['nickuser'] ?? "Sin definir"; ?>" disabled>
                             <label for="address">Direccion *</label>
-                            <input type="text" name="addres" id="ctAdrUser" value="<?php echo $user['diruser']; ?>"
-                                disabled>
+                            <input type="text" name="addres" id="ctAdrUser" value="<?php echo $user['diruser']; ?>" disabled>
                             <label for="zone">Zona: *</label>
                             <select name="zone" id="ctZone" disabled>
                                 <option <?php echo ($user['zoneuser'] <> "urbana" && $user['zoneuser'] <> "rural") ? "selected" : "" ?> disabled></option>
@@ -76,18 +72,15 @@
                             <div>
                                 <div>
                                     <label for="email">Correo Eletrónico *</label>
-                                    <input type="text" name="email" id="ctEmailUser"
-                                        value="<?php echo $user['emailuser']; ?>" disabled>
+                                    <input type="text" name="email" id="ctEmailUser" value="<?php echo $user['emailuser']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="phone">Numero de Celular 1 *</label>
-                                    <input type="number" name="phone" id="ctNumCelUser"
-                                        value="<?php echo $user['phoneuser']; ?>" disabled>
+                                    <input type="number" name="phone" id="ctNumCelUser" value="<?php echo $user['phoneuser']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCel2">Numero de Celular 2</label>
-                                    <input type="number" name="phone2" id="ctNumCel2"
-                                        value="<?php echo $user['phonealtuser']; ?>" disabled>
+                                    <input type="number" name="phone2" id="ctNumCel2" value="<?php echo $user['phonealtuser']; ?>" disabled>
 
                                 </div>
                             </div>
@@ -515,7 +508,7 @@
                     </div>";
                 }
 
-                if($privilegios == $privAdmin || $privilegios== $privRecepcionist){
+                if ($privilegios == $privAdmin || $privilegios == $privRecepcionist) {
                     echo '<div class="profile-adm container-right2" id="container-right8">
                 <div class=\'title\'>
                     <h1>Solicitud de Citas</h1><br><br>
@@ -541,14 +534,14 @@
                                     <div><label for="selcol">Asignar Colaborador</label></div>
                                     <div><select name="selcol" required>
                                     <option selected disabled>Seleccione una opcion</option>';
-                                    foreach ($users as $col) {
-                                        $value2 = ($col['privileges'] == Privilegios::Doctor->get()) ? $col['privileges'] : "" ; 
-                                        $user2 = isset($roles[$value2]) ? $roles[$value2] : "" ;
-                                        if(!empty($user2)){
-                                            echo '<option value="'.$col['iduser'].'">'.$col['nameuser'].' '.$col['surnameuser'].'</option>'; 
-                                        }
-                                    }
-                        echo       '</select></div>
+                    foreach ($users as $col) {
+                        $value2 = ($col['privileges'] == Privilegios::Doctor->get()) ? $col['privileges'] : "";
+                        $user2 = isset($roles[$value2]) ? $roles[$value2] : "";
+                        if (!empty($user2)) {
+                            echo '<option value="' . $col['iduser'] . '">' . $col['nameuser'] . ' ' . $col['surnameuser'] . '</option>';
+                        }
+                    }
+                    echo '</select></div>
                                 </div>
                             </div>
                             <div class="input-group">
@@ -562,14 +555,15 @@
                         <div class="input-group">
                             <a href="?b=bookappointment"><button class="btn btn-default" type="submit">Solicitar servicio</button></a>
                         </div>
-                        <form method="POST">
+                        <form method="POST" action="?b=profile&s=buscarCita">
                             <div class="input-group">
-                                <input type="text" class="form-control search-input" placeholder="Buscar cita" name="#" id="#">
+                                <input type="text" class="form-control search-input" placeholder="Buscar cita" name="buscar_cita" id="searchcita">
                             </div>
                         </form>
                     </div>
                 </div>
-                <table class=\'table-container\'>
+                <div class="table-wrapper">
+                <table class=\'table-container content-table\'>
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -584,11 +578,11 @@
                             <th>Servicio Solicitado</th>
                             <th>Estado</th>
                             <th>Fecha Asignación</th>
-                            <th>Hora Asignada</th>
+                            <th class="hide-on-small">Hora Asignada</th>
                         </tr>
                     </thead>
-                    <tbody>';
-                    foreach($cita as $c) {
+                    <tbody id="resultados-cita">';
+                    foreach ($cita as $c) {
                         echo '<tr onclick="getCita(this)" class="tr-cita" data-id="' . $c['idcita'] . '" data-dni="' . $c['dniusercit'] . '">
                                 <td>' . $c['idcita'] . '</td>
                                 <td>' . $c['dniusercit'] . '</td>
@@ -605,14 +599,14 @@
                                 <td>' . ($c['hourcit'] == NULL ? "No Asignado" : $c['datecit']) . '</td>
                             </tr>';
                     }
-                echo '  </tbody>
+                    echo '  </tbody>
                     </table>
+                    </div>
                 </div>';
-                }else{
-                    echo ""; 
+                } else {
+                    echo "";
                 }
                 ?>
-                
         </main>
 
     </div>

@@ -73,7 +73,7 @@ $(document).ready(function () {
     buscarCita();
   });
 
-  function buscarMascotas() {
+  function buscarCita() {
     var searchTerm = $("#searchcita").val();
 
     $.ajax({

@@ -645,9 +645,12 @@ class ProfileController
         $cita = $this->object->getAll("cita");
 
         $filteredcita = array_filter($cita, function ($c) use ($searchTerm) {
-            return (stripos($c['idcita'], $searchTerm) !== false) ||
+                return (stripos($c['idcita'], $searchTerm) !== false) ||
                 (stripos($c['dniusercit'], $searchTerm) !== false) ||
-                (stripos($c['nameusercli'], $searchTerm) !== false);
+                (stripos($c['nameusercit'], $searchTerm) !== false)||
+                (stripos($c['servicecit'], $searchTerm) !==false)||
+                (stripos($c['namemascit'], $searchTerm)!==false)||
+                (stripos($c['statecit'], $searchTerm) !== false);
         });
 
         foreach ($filteredcita as $c) {
@@ -663,6 +666,8 @@ class ProfileController
             echo '<td>' . ($c['motcit'] ?? "Sin definir") . '</td>';
             echo '<td>' . ($c['servicecit'] ?? "Sin definir") . '</td>';
             echo '<td>' . ($c['statecit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['datecit'] == NULL ? "No Asignado" : $c['datecit']) . '</td>';
+            echo '<td>' . ($c['hourcit'] == NULL ? "No Asignado" : $c['datecit']) . '</td>';
             echo '</tr>';
         }
     }

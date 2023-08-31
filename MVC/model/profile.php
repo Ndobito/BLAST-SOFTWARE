@@ -417,15 +417,16 @@ class Profile
     // -----Metodo para el buscador citas en profile----- //
     public function buscarCita($buscar)
     {
-        $query = "SELECT * FROM cita WHERE idcita LIKE '%$buscar%'";
+        $query = "SELECT * FROM cita WHERE idcita LIKE";
         $result = $this->conexion->query($query);
         $cita = array();
-
-        if ($result->num_rows > 0){
-            while ($row = $result->fetch_assoc()){
+    
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
                 $cita[] = $row;
             }
         }
         return $cita;
     }
+    
 }
