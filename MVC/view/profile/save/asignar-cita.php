@@ -64,8 +64,13 @@
                     </div>
                     <div class="input-container">
                         <label for="ctNomProv">Fecha de Creacion de Solicitud</label>
-                        <input type="date" name="date" id="ctNomProv" class="input" autocomplete="off" value="<?= $cliente['datesolcit'] ?? "No definido" ?>" required disabled>
+                        <input type="date" name="datesol" id="ctNomProv" class="input" autocomplete="off" value="<?= $cliente['datesolcit'] ?? "No definido" ?>" required disabled>
                         <span>Fecha de Creacion de Solictud&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    </div>
+                    <div class="input-container">
+                        <label for="ctNomProv">Fecha de Asigancion de Cita </label>
+                        <input type="date" name="dateasig" id="ctNomProv" class="input" autocomplete="off" value="<?= $_POST['dateasig'] ?? "No definido" ?>" required disabled>
+                        <span>Fecha de Asignacion de Cita&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     </div>
                         <?php 
                             $horasDis = ["07:00:00","07:30:00", "08:00:00", "08:30:00", "09:00:00", "09:30:00", "10:00:00", "10:30:00", "11:00:00", "11:30:00", "13:00:00", "13:30:00", "14:00:00", "14:30:00", "15:00:00", "15:30:00", "16:00:00", "16:30:00"];
