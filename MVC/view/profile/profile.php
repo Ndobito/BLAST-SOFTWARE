@@ -550,8 +550,8 @@
                         echo       '</select></div>
                                 </div>
                             </div>
-                            <div class="input-group">
-                                <button type="submit">Agendar Servicio</button>
+                            <div class="input-group" id="assignButtonContainer">
+                                <button type="submit" id="assigButton">Agendar Servicio</button>
                             </div>
                         </form>
                     </div>
@@ -600,8 +600,8 @@
                                 <td>' . $c['motcit'] . '</td>
                                 <td>' . $c['servicecit'] . '</td>
                                 <td>' . $c['statecit'] . '</td>
-                                <td>' . ($c['datecit'] == NULL ? "No Asignado" : $c['datecit']) . '</td>
-                                <td>' . ($c['hourcit'] == NULL ? "No Asignado" : $c['datecit']) . '</td>
+                                <td>' . ($c['datecit'] == NULL ? "No asignado" : $c['datecit']) . '</td>
+                                <td>' . ($c['hourcit'] == NULL ? "No asignado" : $c['datecit']) . '</td>
                             </tr>';
                     }
                 echo '  </tbody>
