@@ -638,6 +638,35 @@ class ProfileController
         }
     }
 
+    // -----Metodo para buscar Citas-----//
+    public function buscarCita()
+    {
+        $searchTerm = $_POST['buscar_cita'];
+        $cita = $this->object->getAll("cita");
+
+        $filteredcita = array_filter($cita, function ($c) use ($searchTerm) {
+            return (stripos($c['idcita'], $searchTerm) !== false) ||
+                (stripos($c['dniusercit'], $searchTerm) !== false) ||
+                (stripos($c['nameusercli'], $searchTerm) !== false);
+        });
+
+        foreach ($filteredcita as $c) {
+            echo '<tr>';
+            echo '<td>' . $c['idcita'] . '</td>';
+            echo '<td>' . ($c['dniusercit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['nameusercit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['phoneusercit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['emailusercit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['namemascit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['espmascit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['genmascit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['motcit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['servicecit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['statecit'] ?? "Sin definir") . '</td>';
+            echo '</tr>';
+        }
+    }
+
 
 
 
