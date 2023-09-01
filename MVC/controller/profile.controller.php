@@ -143,26 +143,26 @@ class ProfileController
         }
     }
 
-    public function sheduleService(){
-        
-        if(empty($_POST['idcit']) || empty($_POST['dniuser']) || empty($_POST['dateasig']) || empty($_POST['selcol'])){
-            redirect("?b=profile&s=Inicio")->error("Complee todos los campos!")->send();
-        }else{
-            if($this->object->verifyLeterString($_POST['idcit'])){
+    public function sheduleService()
+    {
+        if (empty($_POST['idcit']) || empty($_POST['dniuser']) || empty($_POST['dateasig']) || empty($_POST['selcol'])) {
+            redirect("?b=profile&s=Inicio")->error("Complete todos los campos!")->send();
+        } else {
+            if ($this->object->verifyLeterString($_POST['idcit'])) {
                 redirect("?b=profile&s=Inicio")->error("El id de la cita no debe llevar numeros!")->send();
-            }else{
-                if($this->object->verifyLeterString($_POST['dniuser'])){
+            } else {
+                if ($this->object->verifyLeterString($_POST['dniuser'])) {
                     redirect("?b=profile&s=Inicio")->error("El DNI del usuario no debe llevar numeros!")->send();
-                }else{
-                    $cliente = $this->object->existProfile("cita", "dniusercit", $_POST['dniuser']); 
-                    $horas = $this->object->getHours($_POST['dateasig'], $_POST['selcol']); 
+                } else {
+                    $colaborador = $this->object->getAll("usuario");
+                    $cliente = $this->object->existProfile("cita", "dniusercit", $_POST['dniuser']);
+                    $horas = $this->object->getHours($_POST['dateasig'], $_POST['selcol']);
                     $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
                     require_once "view/head.php";
                     require_once "view/profile/save/asignar-cita.php";
                 }
             }
         }
-        
     }
 
 
@@ -408,7 +408,6 @@ class ProfileController
                     } else {
                         redirect("?b=profile&s=Inicio")->error("Error al guardar el proveedor")->send();
                     }
-
                 }
             }
         }
@@ -445,7 +444,6 @@ class ProfileController
                         } else {
                             redirect("?b=profile&s=Inicio")->error("Error al editar informacion del Proveedor <strong>" . $_POST['name'] . "</strong>")->send();
                         }
-
                     }
                 }
             }
@@ -484,7 +482,8 @@ class ProfileController
             echo '<td>' . ($proveedor['dirprov'] ?? "Sin definir") . '</td>';
             echo '<td>' . ($proveedor['emaprov'] ?? "Sin definir") . '</td>';
             echo '<td>' . ($proveedor['telprov'] ?? "Sin definir") . '</td>';
-            echo '<td class="icons1"><a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=<?= $mascota["idmas"]; ?><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
+            echo '<td class="icons1"><a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=<?= $mascota["idmas"]; ?><i
+    class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
             echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
             echo '</tr>';
         }
@@ -495,7 +494,10 @@ class ProfileController
     // -----Metodo para guardar una mascota-----//
     public function saveMascota()
     {
-        if (empty($_POST['name']) || empty($_POST['age']) || empty($_POST['gen']) || empty($_POST['esp']) || empty($_POST['owner'])) {
+        if (
+            empty($_POST['name']) || empty($_POST['age']) || empty($_POST['gen']) || empty($_POST['esp']) ||
+            empty($_POST['owner'])
+        ) {
             redirect("?b=profile&s=optionSaveRedirec&p=mascota")->error("Complete todos los campos")->send();
         } else {
             if ($this->object->verifyNumberString($_POST['name'])) {
@@ -527,7 +529,8 @@ class ProfileController
             redirect("?b=profile&s=optionEditRedirec&p=mascota&idmas=$id")->error("Complete todos los campos")->send();
         } else {
             if ($this->object->verifyNumberString($_POST['name'])) {
-                redirect("?b=profile&s=optionEditRedirec&p=mascota&idmas=$id")->error("El nombre de la mascota no puede llevar numeros")->send();
+                redirect("?b=profile&s=optionEditRedirec&p=mascota&idmas=$id")->error("El nombre de la mascota no puede llevar
+numeros")->send();
             } else {
                 $up = new Profile();
                 $up->id = $id;
@@ -537,9 +540,11 @@ class ProfileController
                 $up->esp = $_POST['esp'];
 
                 if ($this->object->updateMascota($up)) {
-                    redirect("?b=profile&s=Inicio")->success("La informacion de la mascota <strong>" . $_POST['name'] . "</strong> ha sido actualizada con exito!")->send();
+                    redirect("?b=profile&s=Inicio")->success("La informacion de la mascota <strong>" . $_POST['name'] . "</strong> ha sido
+actualizada con exito!")->send();
                 } else {
-                    redirect("?b=profile&s=Inicio")->error("Error al actualizar la mascota <strong>" . $_POST['name'] . "</strong>")->send();
+                    redirect("?b=profile&s=Inicio")->error("Error al actualizar la mascota <strong>" . $_POST['name'] .
+                        "</strong>")->send();
                 }
             }
         }
@@ -645,11 +650,11 @@ class ProfileController
         $cita = $this->object->getAll("cita");
 
         $filteredcita = array_filter($cita, function ($c) use ($searchTerm) {
-                return (stripos($c['idcita'], $searchTerm) !== false) ||
+            return (stripos($c['idcita'], $searchTerm) !== false) ||
                 (stripos($c['dniusercit'], $searchTerm) !== false) ||
-                (stripos($c['nameusercit'], $searchTerm) !== false)||
-                (stripos($c['servicecit'], $searchTerm) !==false)||
-                (stripos($c['namemascit'], $searchTerm)!==false)||
+                (stripos($c['nameusercit'], $searchTerm) !== false) ||
+                (stripos($c['servicecit'], $searchTerm) !== false) ||
+                (stripos($c['namemascit'], $searchTerm) !== false) ||
                 (stripos($c['statecit'], $searchTerm) !== false);
         });
 
@@ -672,8 +677,32 @@ class ProfileController
         }
     }
 
+    // ---------METODOS PARA CITA---------//
 
+    // -----Metodo par asignar cita-----//
+    public function assigAppointment()
+    {
+        if (empty($_POST['idcit']) || empty($_POST['dateasig']) || empty($_POST['selhour']) || empty($_POST['selcol'])) {
+            redirect("?b=profile&s=Inicio")->error("Intente asignar la cita nuevamente y verifique que complete todos los campos!")->send();
+        } else {
+            $ap = new Profile(); 
+            $ap->idcit = $_POST['idcit'];
+            $timestamp = strtotime($_POST['dateasig']);
+            $fecha = date("Y-m-d", $timestamp);
+            $ap->dateasig = $fecha;
+            $timestamp = strtotime($_POST['selhour']);
+            $hora = date("H:i:s", $timestamp);
+            $ap->hourasig = $hora;
+            $ap->colasig = $_POST['selcol'];
+            $ap->statecit = "Asignado"; 
 
+            if($this->object->updateAppointment($ap)){
+                redirect("?b=profile&s=Inicio")->success("La cita del usuario <strong>".$_POST['nameuser']."</strong> y su mascota <strong>".$_POST['namemas']."</strong> asiganda con exito!")->send();
+            }else{
+                redirect("?b=profile&s=Inicio")->error("Error al asignar la cita")->send();
+            }
+        }
+    }
 
     //Metodo para cerrar Sesion
     public function cerrarSesion()

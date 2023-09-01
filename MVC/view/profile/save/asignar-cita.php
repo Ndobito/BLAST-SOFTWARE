@@ -11,7 +11,8 @@
                 </div>
             </div>
             <div class="form">
-                <form action="#" method="POST">
+                <form action="?b=profile&s=assigAppointment" method="POST">
+                <input type="hidden" name="idcit" value="<?= $_POST['idcit'] ?>" >
                 <div class="input-container">
                         <label for="ctNomProv">Numero de Documento</label>
                         <input type="text" name="dniuser" id="ctNomProv" class="input" autocomplete="off" value="<?= $cliente['dniusercit'] ?? "No definido" ?>" required disabled>
@@ -69,22 +70,28 @@
                     </div>
                     <div class="input-container">
                         <label for="ctNomProv">Fecha de Asigancion de Cita </label>
-                        <input type="date" name="dateasig" id="ctNomProv" class="input" autocomplete="off" value="<?= $_POST['dateasig'] ?? "No definido" ?>" required disabled>
+                        <input type="date" name="dateasig" id="ctNomProv" class="input" autocomplete="off" value="<?= $_POST['dateasig'] ?? "No definido" ?>" required readonly>
                         <span>Fecha de Asignacion de Cita&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     </div>
                         <?php 
                             $horasDis = ["07:00:00","07:30:00", "08:00:00", "08:30:00", "09:00:00", "09:30:00", "10:00:00", "10:30:00", "11:00:00", "11:30:00", "13:00:00", "13:30:00", "14:00:00", "14:30:00", "15:00:00", "15:30:00", "16:00:00", "16:30:00"];
                             if(empty($horas)){
-                                echo "<select name='selhour'>"; 
+                                echo "<div class='input-container'>";
+                                echo "<label>Asignar hora</label>";
+                                echo "<select name='selhour' class='input'>
+                                <option selected disabled>Seleccione una opcion</option>"; 
                                 for ($z=0; $z < count($horasDis); $z++) { 
                                     echo "<option value='".$horasDis[$z]."'>".$horasDis[$z]."</option>"; 
                                     
                                 }
                                 echo "</select>";
+                                echo "<span>Asignar Hora</span>"; 
+                                echo "</div>"; 
                             }else{
                                 echo "<div class='input-container'>"; 
                                     echo "<label>Asignar hora</label>"; 
-                                    echo "<select name='selhour' class='input'>"; 
+                                    echo "<select name='selhour' class='input'>
+                                    <option selected disabled>Seleccione una opcion</option>"; 
                                     for ($i=0; $i < count($horasDis); $i++) { 
                                         for ($j=0; $j < count($horas); $j++) { 
                                             echo ($horas[$j] == $horasDis[$i]) ? "" : "<option value='".$horasDis[$i]."'>".$horasDis[$i]."</option>";     
@@ -96,7 +103,20 @@
                             }
                             
                         ?>
+                    <div class="input-container">
+                        <label for="selcol">Persona asiganada</label>
+                        <select name="selcol" class="input">
 
+                            <?php
+                                foreach ($colaborador as $value) {
+                                    if($value['privileges'] == Privilegios::Doctor->get()){
+                                        echo ($value['iduser'] == $_POST['selcol']) ? "<option value=".$value['iduser'].">".$value['nameuser']." ".$value['surnameuser']."</option>" : "<option disabled>No encontrado</option>"; 
+                                    }
+                                }
+                            ?>
+                        </select>
+                        <span>Persona asignada</span>
+                    </div>
                     <div class="buttons">
                         <input type="submit" name="btnEditar" value="Guardar" class="btn-save btn">
                         <a href="?b=profile&s=Inicio" class="btn-regresar btn">Cancelar</a>

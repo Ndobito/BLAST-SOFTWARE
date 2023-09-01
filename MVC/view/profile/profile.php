@@ -562,27 +562,59 @@
                         </form>
                     </div>
                 </div>
-                <div class="table-wrapper">
-                <table class=\'table-container content-table\'>
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>DNI Usuario</th>
-                            <th>Nombre</th>
-                            <th>N° Telefono</th>
-                            <th>Email</th>
-                            <th>Nombre Mascota</th>
-                            <th>Especie Mascota</th>
-                            <th>Genero Mascota</th>
-                            <th>Motivo</th>
-                            <th>Servicio Solicitado</th>
-                            <th>Estado</th>
-                            <th>Fecha Asignación</th>
-                            <th class="hide-on-small">Hora Asignada</th>
-                        </tr>
-                    </thead>
-                    <tbody id="resultados-cita">';
+                <div class="table-wrapper">';
+
+                    $citasConNombresUsuarios = array();
                     foreach ($cita as $c) {
+                        $usuarioAsignado = "No asignado";
+                        foreach ($users as $colcit) {
+                            if (!empty($c['idcolcit']) && $c['idcolcit'] == $colcit['iduser']) {
+                                $usuarioAsignado = $colcit['nameuser'] . " " . $colcit['surnameuser'];
+                                break;
+                            }
+                        }
+                        $citasConNombresUsuarios[] = array(
+                            'idcita' => $c['idcita'],
+                            'dniusercit' => $c['dniusercit'],
+                            'nameusercit' => $c['nameusercit'],
+                            'phoneusercit' => $c['phoneusercit'],
+                            'emailusercit' => $c['emailusercit'],
+                            'namemascit' => $c['namemascit'],
+                            'espmascit' => $c['espmascit'],
+                            'genmascit' => $c['genmascit'],
+                            'motcit' => $c['motcit'],
+                            'servicecit' => $c['servicecit'],
+                            'datesolcit' => date('d-m-Y', strtotime($c['datesolcit'])),
+                            'statecit' => $c['statecit'],
+                            'datecit' => ($c['datecit'] == NULL ? "No asignado" : date('d-m-Y', strtotime($c['datecit']))),
+                            'hourcit' => ($c['hourcit'] == NULL ? "No asignado" : $c['hourcit']),
+                            'nombreUsuarioAsignado' => $usuarioAsignado,
+                        );
+                    }
+
+                    // Ahora, crea la tabla utilizando el arreglo $citasConNombresUsuarios
+                    echo '<table class=\'table-container content-table\'>
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>DNI Usuario</th>
+                                    <th>Nombre</th>
+                                    <th>N° Telefono</th>
+                                    <th>Email</th>
+                                    <th>Nombre Mascota</th>
+                                    <th>Especie Mascota</th>
+                                    <th>Genero Mascota</th>
+                                    <th>Motivo</th>
+                                    <th>Servicio Solicitado</th>
+                                    <th>Fecha de Solicitud</th>
+                                    <th>Estado</th>
+                                    <th>Fecha Asignación</th>
+                                    <th class="hide-on-small">Hora Asignada</th>
+                                    <th>Personal Asignado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultados-cita">';
+                    foreach ($citasConNombresUsuarios as $c) {
                         echo '<tr onclick="getCita(this)" class="tr-cita" data-id="' . $c['idcita'] . '" data-dni="' . $c['dniusercit'] . '">
                                 <td>' . $c['idcita'] . '</td>
                                 <td>' . $c['dniusercit'] . '</td>
@@ -594,17 +626,18 @@
                                 <td>' . $c['genmascit'] . '</td>
                                 <td>' . $c['motcit'] . '</td>
                                 <td>' . $c['servicecit'] . '</td>
+                                <td>' . $c['datesolcit'] . '</td>
                                 <td>' . $c['statecit'] . '</td>
-                                <td>' . ($c['datecit'] == NULL ? "No asignado" : $c['datecit']) . '</td>
-                                <td>' . ($c['hourcit'] == NULL ? "No asignado" : $c['datecit']) . '</td>
+                                <td>' . $c['datecit'] . '</td>
+                                <td>' . $c['hourcit'] . '</td>
+                                <td>' . $c['nombreUsuarioAsignado'] . '</td>
                             </tr>';
                     }
-                    echo '  </tbody>
-                    </table>
+                    echo '</tbody></table>
                     </div>
                 </div>';
-                } else {
-                    echo "";
+                } else if($privilegios == $privUser){
+                    echo "hola";
                 }
                 ?>
         </main>

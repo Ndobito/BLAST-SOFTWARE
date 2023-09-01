@@ -7,6 +7,7 @@ class Profile
 
     public $id, $dni, $name, $surname, $nick, $pass, $addres, $zone,  $email, $phone, $phone2, $privileges;
     public $age, $gen, $esp, $owner;
+    public $idcit, $dateasig, $hourasig, $colasig, $statecit; 
 
     // -----Constructor de la Conexion-----//
     public function __construct()
@@ -163,25 +164,6 @@ class Profile
         return $producto;
     }
 
-    // -----Metodo para seleccionar todas de las horas en citas----- // 
-    public function getHours($fecha, $idcol)
-    {
-        $query = "SELECT hourcit FROM cita WHERE datecit = ? AND idcolcit = ?";
-        $consulta = $this->conexion->prepare($query); 
-        $consulta->bind_param("ss", $fecha, $idcol);
-        $consulta->execute();
-        $consulta->bind_result($hourcit);
-
-        $hours = array();
-
-        while ($consulta->fetch()) {
-            $hours[] = $hourcit; 
-        }
-
-        $consulta->close();
-        return $hours; 
-    }
-
     
 
     // -----Metodo para Seleccionar el nombre del Usuario----- //
@@ -228,6 +210,21 @@ class Profile
         } else {
             return false;
         }
+    }
+
+    // -----Metodo del para el buscador de proveedores de Profile----- //
+    public function buscarProveedor($buscar)
+    {
+        $query = "SELECT * FROM proveedor WHERE idprov LIKE '%$buscar%'";
+        $result = $this->conexion->query($query);
+        $proveedores = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $proveedores[] = $row;
+            }
+        }
+        return $proveedores;
     }
     // ----------METODOS DE USUARIO---------- //
 
@@ -319,6 +316,36 @@ class Profile
         }
     }
 
+    // -----Metodo para el buscador de clientes en Profile -----//
+    public function buscarClientes($buscar)
+    {
+        $query = "SELECT * FROM usuario WHERE (privileges = " . Privilegios::User->get() . ") AND (dniuser LIKE '%$buscar%' OR nameuser LIKE '%$buscar%' OR surnameuser LIKE '%$buscar%' OR nickuser LIKE '%$buscar%')";
+        $result = $this->conexion->query($query);
+        $clientes = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $clientes[] = $row;
+            }
+        }
+        return $clientes;
+    }
+
+    // -----Metodo para el buscador de empleados en Profile----- //
+    public function buscarColaborador($buscar)
+    {
+        $query = "SELECT * FROM usuario WHERE (privileges = " . Privilegios::Recepcionist->get() . " OR privileges = " . Privilegios::Doctor->get() . " OR privileges = " . (Privilegios::Recepcionist->get() | Privilegios::Doctor->get()) . ") AND (dniuser LIKE '%$buscar%' OR nameuser LIKE '%$buscar%' OR surnameuser LIKE '%$buscar%' OR nickuser LIKE '%$buscar%')";
+        $result = $this->conexion->query($query);
+        $empleados = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $empleados[] = $row;
+            }
+        }
+
+        return $empleados;
+    }
 
     // ----------METODOS PARA MASCOTA---------- //
 
@@ -354,21 +381,6 @@ class Profile
         }
     }
 
-    // -----Metodo para el buscador de clientes en Profile -----//
-    public function buscarClientes($buscar)
-    {
-        $query = "SELECT * FROM usuario WHERE (privileges = " . Privilegios::User->get() . ") AND (dniuser LIKE '%$buscar%' OR nameuser LIKE '%$buscar%' OR surnameuser LIKE '%$buscar%' OR nickuser LIKE '%$buscar%')";
-        $result = $this->conexion->query($query);
-        $clientes = array();
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $clientes[] = $row;
-            }
-        }
-        return $clientes;
-    }
-
     // -----Metodo del para el buscador de mascotas de Profile----- //
     public function buscarMascotas($buscar)
     {
@@ -383,36 +395,42 @@ class Profile
         return $mascota;
     }
 
-    // -----Metodo del para el buscador de proveedores de Profile----- //
-    public function buscarProveedor($buscar)
+    // ---------METODOS DE CITA---------//
+
+    // -----Metodo para seleccionar todas de las horas en citas----- // 
+    public function getHours($fecha, $idcol)
     {
-        $query = "SELECT * FROM proveedor WHERE idprov LIKE '%$buscar%'";
-        $result = $this->conexion->query($query);
-        $proveedores = array();
+        $query = "SELECT hourcit FROM cita WHERE datecit = ? AND idcolcit = ?";
+        $consulta = $this->conexion->prepare($query); 
+        $consulta->bind_param("ss", $fecha, $idcol);
+        $consulta->execute();
+        $consulta->bind_result($hourcit);
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $proveedores[] = $row;
-            }
-        }
-        return $proveedores;
-    }
+        $hours = array();
 
-    // -----Metodo para el buscador de empleados en Profile----- //
-    public function buscarColaborador($buscar)
-    {
-        $query = "SELECT * FROM usuario WHERE (privileges = " . Privilegios::Recepcionist->get() . " OR privileges = " . Privilegios::Doctor->get() . " OR privileges = " . (Privilegios::Recepcionist->get() | Privilegios::Doctor->get()) . ") AND (dniuser LIKE '%$buscar%' OR nameuser LIKE '%$buscar%' OR surnameuser LIKE '%$buscar%' OR nickuser LIKE '%$buscar%')";
-        $result = $this->conexion->query($query);
-        $empleados = array();
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $empleados[] = $row;
-            }
+        while ($consulta->fetch()) {
+            $hours[] = $hourcit; 
         }
 
-        return $empleados;
+        $consulta->close();
+        return $hours; 
     }
+
+    // -----Metodo para guardar asignar una cita----- // 
+    public function updateAppointment(Profile $data){
+        try{
+            $query = "UPDATE cita SET datecit = ?, hourcit = ?, idcolcit = ?, statecit = ? WHERE idcit = ?"; 
+            $action = $this->conexion->prepare($query); 
+            if($action->execute(array($data->dateasig, $data->hourasig, $data->colasig, $data->statecit, $data->idcit))){
+                return true; 
+            }else{
+                return false; 
+            }
+        }catch(Exception $e){
+            echo "Error al asignar la cita: ".$e->getMessage(); 
+        }
+    }
+
 
     // -----Metodo para el buscador citas en profile----- //
     public function buscarCita($buscar)

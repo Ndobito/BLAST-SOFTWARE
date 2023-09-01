@@ -2,7 +2,7 @@
 function getCita(row) {
     const idCita = row.getAttribute("data-id");
     const dniUsuario = row.getAttribute("data-dni");
-    const estadoCita = row.querySelector("td:nth-child(11)").textContent; 
+    const estadoCita = row.querySelector("td:nth-child(12)").textContent; 
     const inputid = document.getElementById('cita-id'); 
     const inputdni = document.getElementById('cita-dni'); 
     const assignButtonContainer = document.getElementById('assignButtonContainer');
