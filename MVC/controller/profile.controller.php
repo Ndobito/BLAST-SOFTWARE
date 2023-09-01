@@ -699,7 +699,8 @@ actualizada con exito!")->send();
             if($this->object->updateAppointment($ap)){
                 redirect("?b=profile&s=Inicio")->success("La cita del usuario <strong>".$_POST['nameuser']."</strong> y su mascota <strong>".$_POST['namemas']."</strong> asiganda con exito!")->send();
             }else{
-                redirect("?b=profile&s=Inicio")->error("Error al asignar la cita")->send();
+                var_dump($this->object->updateAppointment($ap));
+                // redirect("?b=profile&s=Inicio")->error("Error al asignar la cita")->send();
             }
         }
     }

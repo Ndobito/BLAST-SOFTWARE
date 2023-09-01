@@ -419,7 +419,7 @@ class Profile
     // -----Metodo para guardar asignar una cita----- // 
     public function updateAppointment(Profile $data){
         try{
-            $query = "UPDATE cita SET datecit = ?, hourcit = ?, idcolcit = ?, statecit = ? WHERE idcit = ?"; 
+            $query = "UPDATE cita SET datecit = ?, hourcit = ?, idcolcit = ?, statecit = ? WHERE idcita = ?"; 
             $action = $this->conexion->prepare($query); 
             if($action->execute(array($data->dateasig, $data->hourasig, $data->colasig, $data->statecit, $data->idcit))){
                 return true; 
