@@ -1,0 +1,17 @@
+Crdenciales de Acceso: 
+
+Administrador: 
+User: Asalejo1
+Pass: Asaeljo123
+
+Doctor: 
+User: Ronald07	
+Password: Ronald07	
+
+Recepcionist: 
+User: Kn1232	
+Password:KarolJuli123
+
+Cliente: 
+User:	Guanki	
+Password: Paloma20
