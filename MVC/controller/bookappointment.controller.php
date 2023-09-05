@@ -49,7 +49,7 @@ class bookAppointmentController{
                                     $c->motive = $_POST['motive']; 
                                     $c->service = $_POST['service']; 
                                     $c->datesol =  date("Y/m/d"); 
-                                    $c->state = "No Asignado"; 
+                                    $c->state = "No asignado"; 
 
                                     if($this->object->saveCita($c)){
                                         redirect("?b=bookappointment")->success("La <strong>".$_POST['service']."</strong> para <strong>".$_POST['namepet']."</strong> ha sido registrada con exito")->send();

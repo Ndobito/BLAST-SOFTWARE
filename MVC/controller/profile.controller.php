@@ -155,7 +155,7 @@ class ProfileController
                     redirect("?b=profile&s=Inicio")->error("El DNI del usuario no debe llevar numeros!")->send();
                 } else {
                     $colaborador = $this->object->getAll("usuario");
-                    $cliente = $this->object->existProfile("cita", "dniusercit", $_POST['dniuser']);
+                    $cliente = $this->object->existProfile("cita", "idcita", $_POST['idcit']);
                     $horas = $this->object->getHours($_POST['dateasig'], $_POST['selcol']);
                     $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
                     require_once "view/head.php";
@@ -764,10 +764,16 @@ actualizada con exito!")->send();
             if($this->object->updateAppointment($ap)){
                 redirect("?b=profile&s=Inicio")->success("La cita del usuario <strong>".$_POST['nameuser']."</strong> y su mascota <strong>".$_POST['namemas']."</strong> asiganda con exito!")->send();
             }else{
-                var_dump($this->object->updateAppointment($ap));
-                // redirect("?b=profile&s=Inicio")->error("Error al asignar la cita")->send();
+                redirect("?b=profile&s=Inicio")->error("Error al asignar la cita")->send();
             }
         }
+    }
+
+    // ----------METODOS PARA RECETAR ---------- // 
+
+    // -----Mostrar Formulario de receta-----//
+    public function showReceta(){
+        echo "showReceta"; 
     }
 
     //Metodo para cerrar Sesion

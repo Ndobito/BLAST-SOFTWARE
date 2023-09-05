@@ -73,36 +73,40 @@
                         <input type="date" name="dateasig" id="ctNomProv" class="input" autocomplete="off" value="<?= $_POST['dateasig'] ?? "No definido" ?>" required readonly>
                         <span>Fecha de Asignacion de Cita&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     </div>
-                        <?php 
-                            $horasDis = ["07:00:00","07:30:00", "08:00:00", "08:30:00", "09:00:00", "09:30:00", "10:00:00", "10:30:00", "11:00:00", "11:30:00", "13:00:00", "13:30:00", "14:00:00", "14:30:00", "15:00:00", "15:30:00", "16:00:00", "16:30:00"];
-                            if(empty($horas)){
-                                echo "<div class='input-container'>";
-                                echo "<label>Asignar hora</label>";
-                                echo "<select name='selhour' class='input'>
+                    <?php
+                        $horasDis = ["07:00:00","07:30:00", "08:00:00", "08:30:00", "09:00:00", "09:30:00", "10:00:00", "10:30:00", "11:00:00", "11:30:00", "13:00:00", "13:30:00", "14:00:00", "14:30:00", "15:00:00", "15:30:00", "16:00:00", "16:30:00"];
+
+                        if(empty($horas)){
+                            echo "<div class='input-container'>";
+                            echo "<label>Asignar hora</label>";
+                            echo "<select name='selhour' class='input'>
                                 <option selected disabled>Seleccione una opcion</option>"; 
-                                for ($z=0; $z < count($horasDis); $z++) { 
-                                    echo "<option value='".$horasDis[$z]."'>".$horasDis[$z]."</option>"; 
-                                    
-                                }
-                                echo "</select>";
-                                echo "<span>Asignar Hora</span>"; 
-                                echo "</div>"; 
-                            }else{
-                                echo "<div class='input-container'>"; 
-                                    echo "<label>Asignar hora</label>"; 
-                                    echo "<select name='selhour' class='input'>
-                                    <option selected disabled>Seleccione una opcion</option>"; 
-                                    for ($i=0; $i < count($horasDis); $i++) { 
-                                        for ($j=0; $j < count($horas); $j++) { 
-                                            echo ($horas[$j] == $horasDis[$i]) ? "" : "<option value='".$horasDis[$i]."'>".$horasDis[$i]."</option>";     
-                                        }
-                                    }
-                                    echo "</select>";
-                                    echo "<span>Asignar Hora</span>"; 
-                                echo "</div>"; 
+                            
+                            foreach ($horasDis as $hora) {
+                                echo "<option value='$hora'>$hora</option>"; 
                             }
                             
-                        ?>
+                            echo "</select>";
+                            echo "<span>Asignar Hora</span>"; 
+                            echo "</div>"; 
+                        } else {
+                            echo "<div class='input-container'>"; 
+                            echo "<label>Asignar hora</label>"; 
+                            echo "<select name='selhour' class='input'>
+                                <option selected disabled>Seleccione una opcion</option>"; 
+                            
+                            foreach ($horasDis as $hora) {
+                                if (!in_array($hora, $horas)) {
+                                    echo "<option value='$hora'>$hora</option>"; 
+                                }
+                            }
+                            
+                            echo "</select>";
+                            echo "<span>Asignar Hora</span>"; 
+                            echo "</div>"; 
+                        }
+                    ?>
+
                     <div class="input-container">
                         <label for="selcol">Persona asiganada</label>
                         <select name="selcol" class="input">

@@ -67,6 +67,7 @@ class Profile
         return $result;
     }
 
+
     // -----Metodo para seleccionar todos los datos de una tabla ----- //
     public function getAll($table)
     {
@@ -447,4 +448,23 @@ class Profile
         return $cita;
     }
     
+
+    // ----------METODOS PARA RECETAR ---------- // 
+
+    // -----Mostrar Formulario de receta-----//
+    public function showReceta(){
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $productos = json_decode($_POST["productos"], true);
+            $totalPagar = floatval($_POST["total_pagar"]);
+
+            // Realizar la verificación y generación de la receta aquí
+            // ...
+            
+            // Ejemplo: Imprimir los datos recibidos
+            echo "Productos:";
+            print_r($productos);
+            echo "Total a pagar: $totalPagar";
+        }
+
+    }
 }
