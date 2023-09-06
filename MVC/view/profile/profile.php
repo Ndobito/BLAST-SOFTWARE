@@ -439,104 +439,102 @@
                     echo "";
                 } else {
                     echo "
-                    <div class='profile-adm container-right2' id='container-right7'>
-                        <div class='title'>
-                            <h1>Recetar Productos</h1><br><br>
-                        </div>
-                        <div class='header-receta'>
-                        <form action='?b=profile&s=showReceta' class='sendReceta'>
-                            <h1>Datos del Colaborador</h1>
-                            <div class='colaborador'>
-                                <div>
-                                    <div>
-                                        <input type='number' name='numidcol' id='numIdColaborador' placeholder='Numero de identificacion del colaborador'><br><br>
-                                    </div>
-                                    <input disabled type='date' name='date' id='date-receta'  placeholder='Fecha Actual'>
-                                </div>
-                                <div>
-                                    <input type='text' name='namecol' id='name-col' placeholder='Nombre del Colaborador'>
-                                </div>
+                        <div class='profile-adm container-right2' id='container-right7'>
+                            <div class='title'>
+                                <h1>Recetar Productos</h1><br><br>
                             </div>
-                            <h1>Datos de Usuario y Paciente</h1><br><br>
-                            <div class='Usuario'>
-                                <div>
-                                    <div>
-                                        <input type='number' name='dniuser' id='input-receta' autocomplete='off' placeholder='Numero de identificacion del usuario'>&nbsp; &nbsp; &nbsp;
-                                        <input type='text' name='name' id='input-receta' placeholder='Nombre del usuario' autocomplete='off'>&nbsp; &nbsp; &nbsp; 
+                            <div class='header-receta'>
+                                <form action='?b=profile&s=showReceta' class='sendReceta' method='post'> <!-- Added method='post' -->
+                                    <h1>Datos del Colaborador</h1>
+                                    <div class='colaborador'>
+                                        <div>
+                                            <div>
+                                                <input type='number' name='numidcol' id='numIdColaborador' placeholder='Numero de identificacion del colaborador'><br><br>
+                                            </div>
+                                            <input disabled type='date' name='date' id='date-receta' placeholder='Fecha Actual'>
+                                        </div>
+                                        <div>
+                                            <input type='text' name='namecol' id='name-col' placeholder='Nombre del Colaborador'>
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <input type='text' name='addres' id='input-receta' placeholder='Numero de Telefono del usuario' autocomplete='off'>&nbsp; &nbsp; &nbsp; 
-                                    <input type='text' name='addres' id='input-receta' placeholder='Direccion del usuario' autocomplete='off'>&nbsp; &nbsp; &nbsp;
-                                    <select name='selMas' id='input-receta'>
-                                    <option disabled selected>Seleccione una opcion</option>
-                                    ";
-                foreach ($mascota as $m) {
-                    foreach ($users as $r) {
-                        if ($r['iduser'] == $m['idcli']) {
-                            echo "<option>" . $m['nommas'] . " - " . $r['dniuser'] . "</option>";
-                        }
-                    }
-                }
+                                    <h1>Datos de Usuario y Paciente</h1><br><br>
+                                    <div class='Usuario'>
+                                        <div>
+                                            <div>
+                                                <input type='number' name='dniuser' id='input-receta' autocomplete='off' placeholder='Numero de identificacion del usuario'>&nbsp; &nbsp; &nbsp;
+                                                <input type='text' name='name' id='input-receta' placeholder='Nombre del usuario' autocomplete='off'>&nbsp; &nbsp; &nbsp; 
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <input type='text' name='addres' id='input-receta' placeholder='Numero de Telefono del usuario' autocomplete='off'>&nbsp; &nbsp; &nbsp; 
+                                            <input type='text' name='addres' id='input-receta' placeholder='Direccion del usuario' autocomplete='off'>&nbsp; &nbsp; &nbsp;
+                                            <select name='selMas' id='input-receta'>
+                                                <option disabled selected>Seleccione una opcion</option>";
+                                                foreach ($mascota as $m) {
+                                                    foreach ($users as $r) {
+                                                        if ($r['iduser'] == $m['idcli']) {
+                                                            echo "<option>" . $m['nommas'] . " - " . $r['dniuser'] . "</option>";
+                                                        }
+                                                    }
+                                                }
+                                        echo "
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <table class='table-container content-table'>
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Producto</th>
+                                                <th>Descripcion</th>
+                                                <th>Precio</th>
+                                                <th>Categoria</th>
+                                                <th>Disponibles (und)</th>
+                                                <th class='hide-on-small'>Recetar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id='resultados-producto'>";
+                                            foreach ($productos as $key => $producto) {
+                                                echo "<tr>
+                                                    <td>" . $producto['idprod'] . "</td>
+                                                    <td>" . ($producto['nomprod'] ?? 'Sin definir') . "</td>
+                                                    <td>" . ($producto['desprod'] ?? 'Sin definir') . "</td>
+                                                    <td>" . ($producto['precvenprod'] ?? 'Sin definir') . "</td>
+                                                    <td>";
+                                                foreach ($categorias as $categoria) {
+                                                    echo ($categoria['idcat'] === $producto['catprod']) ? $categoria['namecat'] : '';
+                                                }
+                                                echo "</td>
+                                                    <td>" . ($producto['stockprod'] ?? 'Sin definir') . "</td>";
+                                                echo "<td><input type='checkbox' name='recetar'></td>
+                                                </tr>";
+                                            }
+                        echo "
+                                        </tbody>
+                                    </table>
+                                    <button id='addReceta'>Agregar a la receta</button>
+                                    <table class='table-container'>
+                                        <thead>
+                                            <th>Producto</th>
+                                            <th>Precio</th>
+                                            <th>Cantidad</th>
+                                        </thead>
+                                        <tbody id='resultados-receta'>
 
-                echo "
-                                    </select>
-                                </div>
+                                        </tbody>
+                                    </table>
+
+                                    <div class='footer-receta'>
+                                        <h2>Total a pagar: $ <span id='total-pagar'></span></h2>
+                                    </div>
+                                    <input type='text' id='productos' name='nameprod'>
+                                    <input type='text' id='cantidad' name='cantprod'>
+                                    <input type='text' id='precio' name='precprod'>
+                                    <button type='submit'>Generar Receta</button>
+                                </form> <!-- Close the form tag here -->
                             </div>
-                        </div>
+                        </div>";
 
-                        <table class='table-container content-table'>
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Producto</th>
-                                    <th>Descripcion</th>
-                                    <th>Precio</th>
-                                    <th>Categoria</th>
-                                    <th>Disponibles (und)</th>
-                                    <th class='hide-on-small'>Recetar</th>
-                                </tr>
-                            </thead>
-                            <tbody id='resultados-producto'>";
-                foreach ($productos as $key => $producto) {
-                    echo "
-                                    <td>" . $producto['idprod'] . "</td>
-                                    <td>" . ($producto['nomprod'] ?? 'Sin definir') . "</td>
-                                    <td>" . ($producto['desprod'] ?? 'Sin definir') . "</td>
-                                    <td>" . ($producto['precvenprod'] ?? 'Sin definir') . "</td>
-                                    <td>";
-                    foreach ($categorias as $categoria) {
-                        echo ($categoria['idcat'] === $producto['catprod']) ? $categoria['namecat'] : '';
-                    }
-                    echo "</td>
-                    <td>" . ($producto['stockprod'] ?? 'Sin definir') . "</td>";
-                    echo "<td><input type='checkbox' name='recetar'></td>
-                                </tr>";
-                }
-                echo "
-                            </tbody>
-                        </table>
-                        <button id='addReceta'>Agregar a la receta</button>
-                        <table class='table-container'>
-                            <thead>
-                                <th>Producto</th>
-                                <th>Precio</th>
-                                <th>Cantidad</th>
-                            </thead>
-                            <tbody id='resultados-receta'>
-
-                            </tbody>
-                        </table>
-
-                        <div class='footer-receta'>
-                            <h2>Total a pagar: $ <span id='total-pagar'></span></h2>
-                            <button type='submit'>Generar Receta</button>
-                        </div>
-                            <input type='text' id='productos' name='nameprod'>
-                            <input type='text' id='cantidad' name='cantprod'>
-                            <input type='text' id='precio' name='precprod'>
-                        </form>
-                    </div>";
                 }
                 
                 if ($privilegios == $privAdmin || $privilegios == $privRecepcionist || $privilegios == $privUser) {

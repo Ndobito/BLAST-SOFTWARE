@@ -773,7 +773,8 @@ actualizada con exito!")->send();
 
     // -----Mostrar Formulario de receta-----//
     public function showReceta(){
-        echo "showReceta"; 
+        include_once "view/head.php"; 
+        include_once "view/profile/save/new-receta.php"; 
     }
 
     //Metodo para cerrar Sesion
