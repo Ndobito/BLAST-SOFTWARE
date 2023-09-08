@@ -306,31 +306,6 @@ main {
   display: none;
 }
 
-/* Slider Calendar */
-
-#calendar {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.slider-calendar {
-  display: flex;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  height: 80%;
-}
-
-.slide {
-  margin: 20vh 0vh 20vh 0vh;
-  display: inline-block;
-  scroll-snap-align: center;
-  width: 100%;
-  padding: 0 10px;
-}
-
 .title {
   text-transform: uppercase;
   text-align: center;
@@ -638,6 +613,12 @@ tbody .icons2 a:hover {
   opacity: 0.7;
 }
 
+.colaborador{
+  width: 100%;
+  display: flex;
+  gap: 20px;
+}
+
 .header-receta > .colaborador > div:nth-child(1),
 .header-receta > .user > div:nth-child(1) {
   display: flex;
@@ -658,6 +639,27 @@ tbody .icons2 a:hover {
   font-size: 18px;
   margin: 5px;
   color: var(--color-9);
+}
+
+#sendReceta{
+  margin-left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px 10px 20px;
+  background-color: var(--color-9);
+  font-family: var(--font-2);
+  color: var(--color-5);
+  border: none;
+  margin-top: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+#sendReceta:hover{
+  transition: .5s ease;
+  background-color: var(--color-1);
+  color: var(--color-4);
+  border-radius: 5px;
 }
 
 .form-appointment {

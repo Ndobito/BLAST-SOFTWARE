@@ -773,9 +773,25 @@ actualizada con exito!")->send();
 
     // -----Mostrar Formulario de receta-----//
     public function showReceta(){
-        include_once "view/head.php"; 
-        include_once "view/profile/save/new-receta.php"; 
+
+
+        if(empty($_POST['numidcol']) || empty($_POST['namecol']) || empty($_POST['']) || empty($_POST['dniuser']) || empty($_POST['name']) || empty($_POST['addres']) || empty($_POST['phone']) || empty($_POST['selMas']) || empty($_POST['receta']) || empty($_POST['nameprod']) || empty($_POST['cantprod']) || empty($_POST['precprod'])){
+            redirect("?b=profile&s=Inicio")->error("Campos vacios: Asegurese de completar todos los campos y selccionar productos para recetar!")->send();
+        }else{
+            if($this->object->verifyLeterString($_POST['numidcol']) || $this->object->verifyLeterString($_POST['dniuser'])){
+                redirect("?b=profile&s=Inicio")->error("Verifique que los numeros de identificacion no lleven letras!")->send();
+            }else{
+                // if($this->object->){}else{}
+            }
+        }
+
+
+        // include_once "view/head.php"; 
+        // include_once "view/profile/save/new-receta.php"; 
     }
+
+
+
 
     //Metodo para cerrar Sesion
     public function cerrarSesion()

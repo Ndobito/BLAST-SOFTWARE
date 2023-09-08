@@ -431,6 +431,7 @@
                                 ?>
                             </tbody>
                         </table>
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
                     </div>
                 </div>
 
@@ -444,36 +445,57 @@
                                 <h1>Recetar Productos</h1><br><br>
                             </div>
                             <div class='header-receta'>
-                                <form action='?b=profile&s=showReceta' class='sendReceta' method='post'> <!-- Added method='post' -->
+                                <form action='?b=profile&s=showReceta' class='sendReceta' method='post'>
+                                    <br><br>
                                     <h1>Datos del Colaborador</h1>
-                                    <div class='colaborador'>
+                                    <br><br><br><br>
+                                    <div class='colaborador'>";
+                                    if($privilegios == $privDoctor){
+                                        echo "
                                         <div>
                                             <div>
-                                                <input type='number' name='numidcol' id='numIdColaborador' placeholder='Numero de identificacion del colaborador'><br><br>
+                                                <input type='number' name='numidcol' id='numIdColaborador' readonly value='".$user['dniuser']."' placeholder='Numero de identificacion del colaborador' required><br><br>
                                             </div>
-                                            <input disabled type='date' name='date' id='date-receta' placeholder='Fecha Actual'>
+                                        <input readonly type='date' name='date' id='date-receta' placeholder='Fecha Actual' required>
                                         </div>
                                         <div>
-                                            <input type='text' name='namecol' id='name-col' placeholder='Nombre del Colaborador'>
+                                            <input readonly type='text' name='namecol' value='".$user['nameuser']." ".$user['surnameuser']."' id='name-col' placeholder='Nombre del Colaborador' required>
                                         </div>
+                                        "; 
+                                    }else{
+                                        echo "
+                                        <div>
+                                        <div>
+                                            <input type='number' name='numidcol' id='numIdColaborador' placeholder='Numero de identificacion del colaborador' required><br><br>
+                                        </div>
+                                        <input readonly type='date' name='date' id='date-receta' placeholder='Fecha Actual' required>
                                     </div>
-                                    <h1>Datos de Usuario y Paciente</h1><br><br>
+                                    <div>
+                                        <input type='text' name='namecol' id='name-col' placeholder='Nombre del Colaborador' required>
+                                    </div>
+                                        "; 
+                                    }
+                                    echo "
+                                    </div>
+                                    <br><br><br><br>
+                                    <h1>Datos de Usuario y Paciente</h1>
+                                    <br><br>
                                     <div class='Usuario'>
                                         <div>
                                             <div>
-                                                <input type='number' name='dniuser' id='input-receta' autocomplete='off' placeholder='Numero de identificacion del usuario'>&nbsp; &nbsp; &nbsp;
-                                                <input type='text' name='name' id='input-receta' placeholder='Nombre del usuario' autocomplete='off'>&nbsp; &nbsp; &nbsp; 
+                                                <input type='number' name='dniuser' id='input-receta' autocomplete='off' placeholder='Numero de identificacion del usuario' required>&nbsp; &nbsp; &nbsp;
+                                                <input type='text' name='name' id='input-receta' placeholder='Nombre del usuario' autocomplete='off' required>&nbsp; &nbsp; &nbsp; 
                                             </div>
                                         </div>
                                         <div>
-                                            <input type='text' name='addres' id='input-receta' placeholder='Numero de Telefono del usuario' autocomplete='off'>&nbsp; &nbsp; &nbsp; 
-                                            <input type='text' name='addres' id='input-receta' placeholder='Direccion del usuario' autocomplete='off'>&nbsp; &nbsp; &nbsp;
-                                            <select name='selMas' id='input-receta'>
+                                            <input type='text' name='phone' id='input-receta' placeholder='Numero de Telefono del usuario' autocomplete='off' required>&nbsp; &nbsp; &nbsp; 
+                                            <input type='text' name='addres' id='input-receta' placeholder='Direccion del usuario' autocomplete='off' required>&nbsp; &nbsp; &nbsp;
+                                            <select name='selMas' id='input-receta' required>
                                                 <option disabled selected>Seleccione una opcion</option>";
                                                 foreach ($mascota as $m) {
                                                     foreach ($users as $r) {
                                                         if ($r['iduser'] == $m['idcli']) {
-                                                            echo "<option>" . $m['nommas'] . " - " . $r['dniuser'] . "</option>";
+                                                            echo "<option value='".$m['idmas']."'>" . $m['nommas'] . " - " . $r['dniuser'] . "</option>";
                                                         }
                                                     }
                                                 }
@@ -481,6 +503,13 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <br><br><br><br>
+                                    <h1>Receta</h1>
+                                    <br><br>
+                                    <textarea name='receta' cols='160' rows='10' placeholder='Escriba la receta a seguir ...' required></textarea>
+                                    <br><br><br><br>
+                                    <h1>Listado de Productos</h1>
+                                    <br><br>
                                     <table class='table-container content-table'>
                                         <thead>
                                             <tr>
@@ -512,7 +541,11 @@
                         echo "
                                         </tbody>
                                     </table>
+                                    <br><br>
                                     <button id='addReceta'>Agregar a la receta</button>
+                                    <br><br><br><br>
+                                    <h1>Productos seleccionados para la receta</h1>
+                                    <br><br>
                                     <table class='table-container'>
                                         <thead>
                                             <th>Producto</th>
@@ -523,14 +556,14 @@
 
                                         </tbody>
                                     </table>
-
+                                    <br><br>
                                     <div class='footer-receta'>
                                         <h2>Total a pagar: $ <span id='total-pagar'></span></h2>
                                     </div>
-                                    <input type='text' id='productos' name='nameprod'>
-                                    <input type='text' id='cantidad' name='cantprod'>
-                                    <input type='text' id='precio' name='precprod'>
-                                    <button type='submit'>Generar Receta</button>
+                                    <input type='hidden' id='productos' name='nameprod' required>
+                                    <input type='hidden' id='cantidad' name='cantprod' required>
+                                    <input type='hidden' id='precio' name='precprod' required>
+                                    <button type='submit' id='sendReceta'>Generar Receta</button>
                                 </form> <!-- Close the form tag here -->
                             </div>
                         </div>";
