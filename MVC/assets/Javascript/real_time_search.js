@@ -51,6 +51,23 @@ $(document).ready(function () {
     });
   }
 
+  // Buscador de clientes para doctor
+  $("#searchcli2").on("input", function () {
+    buscarClientes2();
+  });
+
+  function buscarClientes2() {
+    var searchTerm = $("#searchcli2").val();
+
+    $.ajax({
+      type: "post",
+      url: "?b=profile&s=buscarClientes2",
+      data: { buscar_cliente: searchTerm },
+    }).done(function (response) {
+      $("#resultados-clientes").html(response);
+    });
+  }
+
   // Buscador de mascotas
   $("#searchmas").on("input", function () {
     buscarMascotas();
@@ -65,6 +82,40 @@ $(document).ready(function () {
       data: { buscar_mascota: searchTerm },
     }).done(function (response) {
       $("#resultados-mascotas").html(response);
+    });
+  }
+
+  // Buscador de mascotas 2
+  $("#searchmas2").on("input", function () {
+    buscarMascotas();
+  });
+
+  function buscarMascotas() {
+    var searchTerm = $("#searchmas2").val();
+
+    $.ajax({
+      type: "post",
+      url: "?b=profile&s=buscarMascotas2",
+      data: { buscar_mascota: searchTerm },
+    }).done(function (response) {
+      $("#resultados-mascotas").html(response);
+    });
+  }
+
+  // Buscador de cita
+  $("#searchcita").on("input", function () {
+    buscarCita();
+  });
+
+  function buscarCita() {
+    var searchTerm = $("#searchcita").val();
+
+    $.ajax({
+      type: "post",
+      url: "?b=profile&s=buscarCita",
+      data: { buscar_cita: searchTerm },
+    }).done(function (response) {
+      $("#resultados-cita").html(response);
     });
   }
 

@@ -12,5 +12,5 @@
         </p>
     </div>
 </footer>
-<script src="assets/Javascript/global.js"></script>
+
 <script src="assets/Javascript/recetar.js"></script>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-08-2023 a las 03:47:09
+-- Tiempo de generación: 08-09-2023 a las 18:06:30
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -39,7 +39,8 @@ CREATE TABLE `categoria` (
 
 INSERT INTO `categoria` (`idcat`, `namecat`, `descat`) VALUES
 (1, 'Medicamentos', 'Productos de formulacion medica'),
-(2, 'Purinas', 'Productos de alimento para animales');
+(2, 'Purinas', 'Productos de alimento para animales'),
+(3, 'Juguetes', 'Productos de entretenimiento para mascotas');
 
 -- --------------------------------------------------------
 
@@ -48,47 +49,33 @@ INSERT INTO `categoria` (`idcat`, `namecat`, `descat`) VALUES
 --
 
 CREATE TABLE `cita` (
-  `idcit` int(11) NOT NULL COMMENT 'Numero identificador de cada cita',
-  `feccit` date NOT NULL COMMENT 'Fecha en que se agenda la cita',
-  `nomclicit` varchar(255) NOT NULL COMMENT 'Nombre del dueño de la mascota',
-  `telcit` varchar(255) NOT NULL COMMENT 'Numero de telefono del dueño de la mascota',
-  `emacit` varchar(255) NOT NULL COMMENT 'Correo electronico del cuidador de la mascota',
-  `nommascit` varchar(255) NOT NULL COMMENT 'Nombre de la mascota',
+  `idcita` int(11) NOT NULL COMMENT 'Identificador de la cita',
+  `dniusercit` int(11) NOT NULL COMMENT 'DNI del usuario ',
+  `nameusercit` varchar(255) NOT NULL COMMENT 'Nombre del usuario',
+  `addresusercit` varchar(255) NOT NULL COMMENT 'Direccion del usuario',
+  `phoneusercit` varchar(255) NOT NULL COMMENT 'Numero de telefono del usuario',
+  `emailusercit` varchar(255) NOT NULL COMMENT 'Email del usuario',
+  `namemascit` varchar(255) NOT NULL COMMENT 'Nombre de la mascota',
   `espmascit` varchar(255) NOT NULL COMMENT 'Especie de la mascota',
-  `edadmascit` varchar(255) NOT NULL COMMENT 'Edad de la mascota',
   `genmascit` varchar(255) NOT NULL COMMENT 'Genero de la mascota',
-  `motcit` varchar(255) NOT NULL COMMENT 'Motivo de la cita',
-  `observcit` varchar(255) DEFAULT NULL COMMENT 'Observaciones',
-  `idmas` int(11) NOT NULL COMMENT 'FK de mascota(idmas)',
-  `idcli` int(11) NOT NULL COMMENT 'FK de cliente(idcli)',
-  `idcol` int(11) NOT NULL COMMENT 'FK de colaborador(idcol)'
+  `motcit` varchar(255) NOT NULL COMMENT 'Motivo de la solicitud del servicio',
+  `servicecit` varchar(255) NOT NULL COMMENT 'Servicio que solicita el usuario\r\n',
+  `datesolcit` date NOT NULL COMMENT 'Fecha de solicitud de la cita',
+  `datecit` date DEFAULT NULL COMMENT 'Fecha de asignacion de la cita',
+  `hourcit` time DEFAULT NULL COMMENT 'Hora de asignacion de la cita',
+  `idcolcit` int(11) DEFAULT NULL COMMENT 'FK del colaborador que atenderá()',
+  `statecit` varchar(255) NOT NULL COMMENT 'Estado de la cita'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Estructura de tabla para la tabla `diagnostico`
+-- Volcado de datos para la tabla `cita`
 --
 
-CREATE TABLE `diagnostico` (
-  `iddiag` int(11) NOT NULL COMMENT 'Numero identificador del diagnostico',
-  `docdiag` varchar(255) NOT NULL COMMENT 'Documento que contiene el diagnostico',
-  `idcit` int(11) NOT NULL COMMENT 'FK de cita(idcit)'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `login`
---
-
-CREATE TABLE `login` (
-  `idlog` int(11) NOT NULL COMMENT 'Numero identificador del login',
-  `feciniciolog` date NOT NULL COMMENT 'Fecha en la que se realizo el inicio de sesion',
-  `fecfinlog` date NOT NULL COMMENT 'Fecha en la que se finalizo dicha sesion',
-  `idcli` int(11) NOT NULL COMMENT 'FK de cliente(idcli)',
-  `idcol` int(11) NOT NULL COMMENT 'FK de colaborador(idcol)'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `cita` (`idcita`, `dniusercit`, `nameusercit`, `addresusercit`, `phoneusercit`, `emailusercit`, `namemascit`, `espmascit`, `genmascit`, `motcit`, `servicecit`, `datesolcit`, `datecit`, `hourcit`, `idcolcit`, `statecit`) VALUES
+(2, 1029981256, 'Julian Muñoz', 'Calle 5', '3133215141', 'jcuellarmenza@gmail.com', 'Manolo', 'canino', 'Macho', 'dolores estomacales por parte del paciente', 'cita', '2023-08-25', '2023-08-26', '07:30:00', 6, 'Asignado'),
+(3, 1026566645, 'Thomas Matias Cuellar Menza', 'La plata', '3142757762', 'thomasmatiascuellarmenza@gmail.com', 'Sol', 'felino', 'Hembra', 'Presenta caida del pelo', 'laboratorio', '2023-08-28', '2023-09-15', '08:30:00', 6, 'Asignado'),
+(4, 1026566645, 'Thomas Matias Cuellar Menza', 'Calle 8 la Plata', '3224091130', 'thomas123@gmail.com', 'Sol', 'felino', 'Hembra', 'Dolor en las garras', 'cita', '2023-09-05', '2023-08-26', '08:30:00', 6, 'Asignado'),
+(5, 1026566645, 'Thomas matias Cuellar Menza', 'l aplata', '315165131', 'hhbdw@gmail.com', 'Sol', 'felino', 'Hembra', 'caida de pelo', 'laboratorio', '2023-09-05', '2023-08-26', '08:30:00', 13, 'Asignado');
 
 -- --------------------------------------------------------
 
@@ -135,8 +122,11 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`idprod`, `nomprod`, `desprod`, `precprod`, `precvenprod`, `stockprod`, `catprod`, `idprov`) VALUES
-(6, 'Purina para cachorros', 'Alimento para caninos de 6 a 12 meses de edad', 2800, 5000, 15, 2, 2),
-(8, 'Ivermectina', 'Producto desparasitante', 3000, 4500, 23, 1, 2);
+(8, 'Ivermectina', 'Producto desparasitante', 3000, 4500, 23, 1, 2),
+(9, 'Hueso de hule', 'Juguete para caninos', 2500, 5000, 12, 3, 2),
+(10, 'Neguón', 'Productos desparacitante de uso recetario', 10800, 15000, 23, 1, 2),
+(11, 'Purina Dog Chow', 'Purina para caninos ', 4000, 6000, 8, 2, 5),
+(12, 'Collar para gatos', 'Collares para gatos', 5000, 6800, 22, 3, 5);
 
 -- --------------------------------------------------------
 
@@ -163,23 +153,18 @@ INSERT INTO `proveedor` (`idprov`, `nomprov`, `dirprov`, `emaprov`, `telprov`) V
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `registroxservicios`
+-- Estructura de tabla para la tabla `receta`
 --
 
-CREATE TABLE `registroxservicios` (
-  `idreg` int(11) NOT NULL,
-  `fecexpreg` date NOT NULL,
-  `rsocempreg` varchar(255) NOT NULL,
-  `nitempreg` varchar(255) NOT NULL,
-  `dirempreg` varchar(255) NOT NULL,
-  `nommasreg` varchar(255) NOT NULL,
-  `nomclireg` varchar(255) NOT NULL,
-  `descreg` varchar(255) NOT NULL,
-  `recreg` varchar(255) NOT NULL,
-  `valorreg` int(11) NOT NULL,
-  `idcli` int(11) NOT NULL,
-  `idmas` int(11) NOT NULL,
-  `iddiag` int(11) NOT NULL
+CREATE TABLE `receta` (
+  `idrec` int(11) NOT NULL COMMENT 'Numero identificador de la receta',
+  `dnicolrec` int(11) NOT NULL COMMENT 'Numero de documento del colaborador que recetó. ',
+  `dniuserrec` int(11) NOT NULL COMMENT 'Numero de documento del cliente al que se le receta. ',
+  `idmasrec` int(11) NOT NULL COMMENT 'Id de la mascota a la que se le receta',
+  `prodrec` varchar(255) NOT NULL COMMENT 'Productos seleccionados en la receta. ',
+  `precrec` int(11) NOT NULL COMMENT 'Cantidades seleccionadas en la receta',
+  `fecharec` varchar(255) NOT NULL COMMENT 'Fecha de generación de la receta',
+  `indrec` varchar(255) NOT NULL COMMENT 'Procedimiento que se le realiza a la mascota'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -213,27 +198,8 @@ INSERT INTO `usuario` (`iduser`, `dniuser`, `nameuser`, `surnameuser`, `nickuser
 (6, 1234567890, 'Ronaldo Stiven ', 'Rosero ', 'Ronald07', 'fff48e1309cc9939c07a1e44fd537543', 'ronalxd07@gmail.com', 'La plata', 'urbana', '3125469874', '', 4),
 (7, 83256076, 'Diever ', 'Cuellar Cabrera', 'Diever07', 'ada3be3334966b18f1d6e7ebab799849', 'diever2018@gmail.com', 'Guamal', 'rural', '3208486109', '3208486109', 2),
 (9, 1029981256, 'Julian ', 'Muñoz', 'Guanki', 'a0967dfb810d9c4fad5035cc452a3581', 'guanki07@gmail.com', 'La plata', 'urbana', '3125698749', '', 1),
-(11, 1026566645, 'Thomas Matias ', 'Cuellar Menza', 'Thomas123', 'a7397d8d7e79daa0609c1e92782712f7', 'jcuellarmenza@gmail.com', 'Vereda la reforma', 'rural', '3145757762', '3145757762', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `venta`
---
-
-CREATE TABLE `venta` (
-  `idven` int(11) NOT NULL COMMENT 'Numero identificador de la venta',
-  `fecexpven` date NOT NULL COMMENT 'Fecha de expedicion de la venta',
-  `nitven` varchar(255) NOT NULL COMMENT 'NIT de la empresa ',
-  `rsocven` varchar(255) NOT NULL COMMENT 'Nombre de la empresa',
-  `dirven` varchar(255) NOT NULL COMMENT 'Direccion de la empresa',
-  `prodven` varchar(255) NOT NULL COMMENT 'Productos vendidos',
-  `valorven` int(11) NOT NULL COMMENT 'Preci total de la venta',
-  `ivaven` varchar(255) NOT NULL COMMENT 'Porcentaje de IVA para mne ',
-  `metpagoven` varchar(255) NOT NULL COMMENT 'Metodo de pago de la compra',
-  `idcli` int(11) NOT NULL COMMENT 'FK de cliente(idcli)',
-  `idprod` int(11) NOT NULL COMMENT 'FK de producto(idprod)'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(11, 1026566645, 'Thomas Matias ', 'Cuellar Menza', 'Thomas123', 'a7397d8d7e79daa0609c1e92782712f7', 'jcuellarmenza@gmail.com', 'Vereda la reforma', 'rural', '3145757762', '3145757762', 1),
+(13, 2147483647, 'Juan David ', 'Sanchez Plazas', 'Jxd9008', '1caf163d2d1e70758652f79bc35fe3cf', 'juanxd@gmail.com', 'la plata', 'urbana', '3125469874', '3125469874', 4);
 
 --
 -- Índices para tablas volcadas
@@ -249,22 +215,8 @@ ALTER TABLE `categoria`
 -- Indices de la tabla `cita`
 --
 ALTER TABLE `cita`
-  ADD PRIMARY KEY (`idcit`),
-  ADD KEY `idmas` (`idmas`),
-  ADD KEY `idcol` (`idcol`);
-
---
--- Indices de la tabla `diagnostico`
---
-ALTER TABLE `diagnostico`
-  ADD PRIMARY KEY (`iddiag`),
-  ADD KEY `idcit` (`idcit`);
-
---
--- Indices de la tabla `login`
---
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`idlog`);
+  ADD PRIMARY KEY (`idcita`),
+  ADD KEY `idcolcit` (`idcolcit`);
 
 --
 -- Indices de la tabla `mascota`
@@ -288,26 +240,17 @@ ALTER TABLE `proveedor`
   ADD PRIMARY KEY (`idprov`);
 
 --
--- Indices de la tabla `registroxservicios`
+-- Indices de la tabla `receta`
 --
-ALTER TABLE `registroxservicios`
-  ADD PRIMARY KEY (`idreg`),
-  ADD KEY `idmas` (`idmas`),
-  ADD KEY `idcli` (`idcli`),
-  ADD KEY `iddiag` (`iddiag`);
+ALTER TABLE `receta`
+  ADD PRIMARY KEY (`idrec`),
+  ADD KEY `idmasrec` (`idmasrec`);
 
 --
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`iduser`);
-
---
--- Indices de la tabla `venta`
---
-ALTER TABLE `venta`
-  ADD PRIMARY KEY (`idven`),
-  ADD KEY `idprod` (`idprod`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -317,25 +260,13 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idcat` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador de la categoria', AUTO_INCREMENT=3;
+  MODIFY `idcat` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador de la categoria', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `idcit` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador de cada cita';
-
---
--- AUTO_INCREMENT de la tabla `diagnostico`
---
-ALTER TABLE `diagnostico`
-  MODIFY `iddiag` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador del diagnostico';
-
---
--- AUTO_INCREMENT de la tabla `login`
---
-ALTER TABLE `login`
-  MODIFY `idlog` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador del login';
+  MODIFY `idcita` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador de la cita', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `mascota`
@@ -347,7 +278,7 @@ ALTER TABLE `mascota`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idprod` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador del producto', AUTO_INCREMENT=9;
+  MODIFY `idprod` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador del producto', AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
@@ -356,22 +287,16 @@ ALTER TABLE `proveedor`
   MODIFY `idprov` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero Identificador del Proveedor', AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `registroxservicios`
+-- AUTO_INCREMENT de la tabla `receta`
 --
-ALTER TABLE `registroxservicios`
-  MODIFY `idreg` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `receta`
+  MODIFY `idrec` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador de la receta';
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT de la tabla `venta`
---
-ALTER TABLE `venta`
-  MODIFY `idven` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador de la venta';
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restricciones para tablas volcadas
@@ -381,13 +306,7 @@ ALTER TABLE `venta`
 -- Filtros para la tabla `cita`
 --
 ALTER TABLE `cita`
-  ADD CONSTRAINT `cita_ibfk_1` FOREIGN KEY (`idmas`) REFERENCES `mascota` (`idmas`);
-
---
--- Filtros para la tabla `diagnostico`
---
-ALTER TABLE `diagnostico`
-  ADD CONSTRAINT `diagnostico_ibfk_1` FOREIGN KEY (`idcit`) REFERENCES `cita` (`idcit`);
+  ADD CONSTRAINT `cita_ibfk_1` FOREIGN KEY (`idcolcit`) REFERENCES `usuario` (`iduser`);
 
 --
 -- Filtros para la tabla `mascota`
@@ -403,17 +322,10 @@ ALTER TABLE `producto`
   ADD CONSTRAINT `producto_ibfk_2` FOREIGN KEY (`catprod`) REFERENCES `categoria` (`idcat`);
 
 --
--- Filtros para la tabla `registroxservicios`
+-- Filtros para la tabla `receta`
 --
-ALTER TABLE `registroxservicios`
-  ADD CONSTRAINT `registroxservicios_ibfk_1` FOREIGN KEY (`idmas`) REFERENCES `mascota` (`idmas`),
-  ADD CONSTRAINT `registroxservicios_ibfk_3` FOREIGN KEY (`iddiag`) REFERENCES `diagnostico` (`iddiag`);
-
---
--- Filtros para la tabla `venta`
---
-ALTER TABLE `venta`
-  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`idprod`) REFERENCES `producto` (`idprod`);
+ALTER TABLE `receta`
+  ADD CONSTRAINT `receta_ibfk_1` FOREIGN KEY (`idmasrec`) REFERENCES `mascota` (`idmas`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
