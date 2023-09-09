@@ -1,7 +1,0 @@
-function formServices(){
-
-} 
-
-function closeForm(){
-    
-}
