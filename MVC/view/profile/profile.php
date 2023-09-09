@@ -446,32 +446,25 @@
                             </div>
                             <div class='header-receta'>
                                 <form action='?b=profile&s=showReceta' class='sendReceta' method='post'>
-                                    <br><br>
                                     <h1>Datos del Colaborador</h1>
-                                    <br><br><br><br>
+                                    <br><br>
                                     <div class='colaborador'>";
                                     if($privilegios == $privDoctor){
                                         echo "
                                         <div>
                                             <div>
-                                                <input type='number' name='numidcol' id='numIdColaborador' readonly value='".$user['dniuser']."' placeholder='Numero de identificacion del colaborador' required><br><br>
+                                                <input type='number' name='numidcol' id='numIdColaborador' readonly value='".$user['dniuser']."' placeholder='Numero de identificacion del colaborador' required>
                                             </div>
                                         <input readonly type='date' name='date' id='date-receta' placeholder='Fecha Actual' required>
-                                        </div>
-                                        <div>
-                                            <input readonly type='text' name='namecol' value='".$user['nameuser']." ".$user['surnameuser']."' id='name-col' placeholder='Nombre del Colaborador' required>
                                         </div>
                                         "; 
                                     }else{
                                         echo "
                                         <div>
                                         <div>
-                                            <input type='number' name='numidcol' id='numIdColaborador' placeholder='Numero de identificacion del colaborador' required><br><br>
+                                            <input type='number' name='numidcol' id='numIdColaborador' placeholder='Numero de identificacion del colaborador' required>
                                         </div>
                                         <input readonly type='date' name='date' id='date-receta' placeholder='Fecha Actual' required>
-                                    </div>
-                                    <div>
-                                        <input type='text' name='namecol' id='name-col' placeholder='Nombre del Colaborador' required>
                                     </div>
                                         "; 
                                     }
@@ -483,14 +476,8 @@
                                     <div class='Usuario'>
                                         <div>
                                             <div>
-                                                <input type='number' name='dniuser' id='input-receta' autocomplete='off' placeholder='Numero de identificacion del usuario' required>&nbsp; &nbsp; &nbsp;
-                                                <input type='text' name='name' id='input-receta' placeholder='Nombre del usuario' autocomplete='off' required>&nbsp; &nbsp; &nbsp; 
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <input type='text' name='phone' id='input-receta' placeholder='Numero de Telefono del usuario' autocomplete='off' required>&nbsp; &nbsp; &nbsp; 
-                                            <input type='text' name='addres' id='input-receta' placeholder='Direccion del usuario' autocomplete='off' required>&nbsp; &nbsp; &nbsp;
-                                            <select name='selMas' id='input-receta' required>
+                                                <input type='number' name='dniuser' id='input-receta' autocomplete='off' placeholder='Numero de identificacion del usuario' required>
+                                                <select name='selMas' id='input-receta' required>
                                                 <option disabled selected>Seleccione una opcion</option>";
                                                 foreach ($mascota as $m) {
                                                     foreach ($users as $r) {
@@ -499,14 +486,15 @@
                                                         }
                                                     }
                                                 }
-                                        echo "
+                                                echo "
                                             </select>
+                                            </div>
                                         </div>
                                     </div>
                                     <br><br><br><br>
                                     <h1>Receta</h1>
                                     <br><br>
-                                    <textarea name='receta' cols='160' rows='10' placeholder='Escriba la receta a seguir ...' required></textarea>
+                                    <textarea name='receta' placeholder='Escriba la receta a seguir ...' required></textarea>
                                     <br><br><br><br>
                                     <h1>Listado de Productos</h1>
                                     <br><br>
@@ -524,7 +512,8 @@
                                         </thead>
                                         <tbody id='resultados-producto'>";
                                             foreach ($productos as $key => $producto) {
-                                                echo "<tr>
+                                                if($producto['stockprod'] <> 0){
+                                                    echo "<tr>
                                                     <td>" . $producto['idprod'] . "</td>
                                                     <td>" . ($producto['nomprod'] ?? 'Sin definir') . "</td>
                                                     <td>" . ($producto['desprod'] ?? 'Sin definir') . "</td>
@@ -537,6 +526,7 @@
                                                     <td>" . ($producto['stockprod'] ?? 'Sin definir') . "</td>";
                                                 echo "<td><input type='checkbox' name='recetar'></td>
                                                 </tr>";
+                                                }
                                             }
                         echo "
                                         </tbody>
@@ -564,7 +554,7 @@
                                     <input type='hidden' id='cantidad' name='cantprod' required>
                                     <input type='hidden' id='precio' name='precprod' required>
                                     <button type='submit' id='sendReceta'>Generar Receta</button>
-                                </form> <!-- Close the form tag here -->
+                                </form>
                             </div>
                         </div>";
 

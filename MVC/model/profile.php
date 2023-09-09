@@ -29,7 +29,7 @@ class Profile
         return filter_var($string, FILTER_VALIDATE_EMAIL) ? true : false;
     }
 
-    // -----Metodo para verificar que entre los numero haya letras----- //
+    // -----Metodo para verificar que entre los numeros haya letras----- //
     public function verifyLeterString($number)
     {
         return preg_match('/[a-zA-Z]/', $number) === 1 ? true : false;
@@ -150,7 +150,7 @@ class Profile
 
         return $count > 0;
     }
-
+    // -----Metodo para seleccionar todos los datos de un usuario segun su dni----- //
     public function getAllUser($id)
     {
         $query = "SELECT * FROM usuario WHERE dniuser =  '" . $id . "'";
@@ -164,7 +164,20 @@ class Profile
         }
         return $producto;
     }
+    // -----Metodo para seleccionar todos los datos de una mascota----- //
+    public function getAllPet($id)
+    {
+        $query = "SELECT * FROM mascota WHERE idmas =  '$id'";
+        $result = $this->conexion->query($query);
+        $producto = array();
 
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $producto[] = $row;
+            }
+        }
+        return $producto;
+    }
     
 
     // -----Metodo para Seleccionar el nombre del Usuario----- //
@@ -448,4 +461,24 @@ class Profile
         return $cita;
     }
     
+
+    // ---------METODOS DE RECETAR-------- //
+
+    // -----Metodo para tomar los los productos segun su nombre----- //
+    public function getValProduct($name){
+        try {
+            $sql = "SELECT precvenprod FROM producto WHERE nomprod = '$name'";
+            $result = $this->conexion->query($sql);
+
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                return $row["precvenprod"];
+            } else {
+                return "No se encontró el valor unitario";
+            }
+        } catch (Exception $th) {
+            echo "Error al consultar producto: ". $th->getMessage();
+        }
+
+    } 
 }

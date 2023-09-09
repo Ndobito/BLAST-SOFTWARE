@@ -583,6 +583,15 @@ tbody .icons2 a:hover {
   font-size: 25px;
 }
 
+textarea[name=receta]{
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  letter-spacing: 1px;
+}
+
+
 .footer-receta h2 {
   text-align: left;
   font-family: var(--font-2);
@@ -619,11 +628,11 @@ tbody .icons2 a:hover {
   gap: 20px;
 }
 
-.header-receta > .colaborador > div:nth-child(1),
-.header-receta > .user > div:nth-child(1) {
-  display: flex;
-  justify-content: space-between;
+.colaborador > div:nth-child(1),
+.Usuario > div > div:nth-child(1)  {
+  display: flex !important;
   align-items: center;
+  gap: 30px;
 }
 
 #resultados-receta input[name="cantidad"] {

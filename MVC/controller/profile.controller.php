@@ -775,22 +775,54 @@ actualizada con exito!")->send();
     public function showReceta(){
 
 
-        if(empty($_POST['numidcol']) || empty($_POST['namecol']) || empty($_POST['']) || empty($_POST['dniuser']) || empty($_POST['name']) || empty($_POST['addres']) || empty($_POST['phone']) || empty($_POST['selMas']) || empty($_POST['receta']) || empty($_POST['nameprod']) || empty($_POST['cantprod']) || empty($_POST['precprod'])){
+        if(empty($_POST['numidcol']) || empty($_POST['dniuser']) || empty($_POST['selMas']) || empty($_POST['receta']) || empty($_POST['nameprod']) || empty($_POST['cantprod']) || empty($_POST['precprod'])){
             redirect("?b=profile&s=Inicio")->error("Campos vacios: Asegurese de completar todos los campos y selccionar productos para recetar!")->send();
         }else{
             if($this->object->verifyLeterString($_POST['numidcol']) || $this->object->verifyLeterString($_POST['dniuser'])){
                 redirect("?b=profile&s=Inicio")->error("Verifique que los numeros de identificacion no lleven letras!")->send();
             }else{
-                // if($this->object->){}else{}
+                $vet = $this->object->getAllUser($_POST['numidcol']);
+                $user = $this->object->getAllUser($_POST['dniuser']);
+                $pet = $this->object->getAllPet($_POST['selMas']);
+
+                if($vet){
+                    if($user){
+                        if($pet){
+                            foreach ($user as $value) {
+                                foreach ($pet as $value2) {
+                                    if($value['iduser'] == $value2['idcli']){
+                                        foreach ($vet as $value3) {
+                                            $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
+                                            include_once "view/head.php"; 
+                                            include_once "view/profile/save/new-receta.php";    
+                                        }
+                                    }else{
+                                        redirect("?b=profile&s=Inicio")->error("La mascota no pertenece al cliente!")->send();
+                                    }
+                                }
+                            }
+                            
+                        }else{
+                            redirect("?b=profile&s=Inicio")->error("La mascota no existe!")->send();
+                        }
+                    }else{
+                        redirect("?b=profile&s=Inicio")->error("El cliente con numero de documento <strong>".$_POST['dniuser']."</strong> no existe!")->send();
+                    }
+                }else{
+                    redirect("?b=profile&s=Inicio")->error("El usuario con numero de documento <strong>".$_POST['numidcol']."</strong> no existe!")->send();
+                }
             }
         }
-
-
-        // include_once "view/head.php"; 
-        // include_once "view/profile/save/new-receta.php"; 
     }
 
+    // -----Metodo para Calcular el Precio de un producto segun su cantidad---- //
+    public function calcPrecio($cantidad, $precio){
+        return $cantidad * $precio; 
+    }
 
+    public function preVentProd($name){
+        return $this->object->getValProduct($name); 
+    }
 
 
     //Metodo para cerrar Sesion

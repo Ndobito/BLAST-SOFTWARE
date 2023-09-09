@@ -6,80 +6,73 @@
                     <img src="assets/img/logo-removebg.png" alt="Animal World">
                 </div>
                 <div class="informacion-title">
-                    <h1>Agregar Mascota</h1>
-                    <h3>Tu información es importante</h3>
+                    <h1>Nueva Receta</h1>
+                    <h3>La salud de tus mascotas es nuestra prioridad</h3>
                 </div>
             </div>
             <div class="form">
                 <form action="?b=profile&s=saveMascota" method="POST">
                     <div class="input-container">
-                        <label for="ctNomProv">Nombre</label>
-                        <input type="text" name="name" id="ctNomProv" class="input" autocomplete="off" required>
-                        <span>Nombre</span>
+                        <label for="ctNomProv">Fecha</label>
+                        <input type="text" value="<?= $_POST['date']; ?>" name="idcol" id="ctNomProv" class="input" autocomplete="off" readonly required>
+                        <span>Fecha</span>
                     </div>
                     <div class="input-container">
-                        <label for="ctDirProv">Edad </label>
-                        <input type="text" name="age" id="ctDirProv" class="input" required autocomplete="off">
-                        <span>Edad &nbsp;&nbsp;</span>
+                        <label for="ctNomProv">DNI Veterinario</label>
+                        <input type="text" value="<?= $value3['dniuser']; ?>" name="idcol" id="ctNomProv" class="input" autocomplete="off" readonly required>
+                        <span>DNI Veterinario</span>
                     </div>
                     <div class="input-container">
-                        <label for="ctEmaProv">Genero</label>
-                        <select name="gen" class="input" required>
-                            <option selected disabled>Seleccione una opcion</option>
-                            <option value="Macho">Macho</option>
-                            <option value="Hembra">Hembra</option>
-                        </select>
-                        <span>Genero&nbsp;&nbsp;</span>
+                        <label for="ctNomProv">DNI Usuario</label>
+                        <input type="text" value="<?= $value['dniuser']; ?>" name="iduser" id="ctNomProv" class="input" autocomplete="off" readonly required>
+                        <span>DNI Veterinario</span>
                     </div>
                     <div class="input-container">
-                        <label for="ctEmaProv">Especie</label>
-                        <select name="esp" class="input" required>
-                            <option selected disabled>Seleccione una opcion</option></option>
-                            <option value="canino">Canino</option>
-                            <option value="felino">Felino</option>
-                            <option value="bovino">Bovino</option>
-                            <option value="equino">Equino</option>
-                            <option value="porcino">Porcino</option>
-                            <option value="ave">Ave</option>
-                        </select>
-                        <span>Especie&nbsp;&nbsp;</span>
+                        <label for="ctNomProv">Mascota</label>
+                        <input type="text" value="<?= $value2['nommas']; ?>" id="ctNomProv" class="input" autocomplete="off" readonly required>
+                        <span>DNI Veterinario</span>
+                        <input type="hidden" value="<?= $value2['idmas']; ?>" name="idmas" id="ctNomProv" class="input" autocomplete="off" readonly required>
                     </div>
+                    <input type="hidden" value="<?= $_POST['nameprod']; ?>" name="prodcuts" required readonly>
+                    <input type="hidden" value="<?= $_POST['cantprod']; ?>" name="prodcuts" required readonly>
+                    <input type="hidden" value="<?= $_POST['precprod']; ?>" name="prodcuts" required readonly>
                     <?php
-                        if($privilegios == Privilegios::User->get()){
-                            echo '
-                            <div class="input-container">
-                                <label for="ctTelProv">Porpietario</label>
-                                <select name="owner" class="input" required>
-                                    <option disabled selected>Seleccione una opcion</option>';
-
-                            foreach ($dueños as $value) {
-                                if ($value['privileges'] == Privilegios::User->get()) {
-                                    if($value['nickuser'] == $_SESSION['usuario']){
-                                        echo "<option value=".$value['iduser']." >".$value['nameuser']." ".$value['surnameuser']."</option>"; 
-                                    }
-                                }
-                            }
-                            echo '</select>
-                                <span>Porpietario&nbsp;&nbsp;</span>
-                            </div>';
-                        }else{
-                            echo '
-                            <div class="input-container">
-                                <label for="ctTelProv">Porpietario</label>
-                                <select name="owner" class="input" required>
-                                    <option disabled selected>Seleccione una opcion</option>';
-
-                            foreach ($dueños as $value) {
-                                if ($value['privileges'] == Privilegios::User->get()) {
-                                    echo "<option value=".$value['iduser']." >".$value['nameuser']." ".$value['surnameuser']."</option>"; 
-                                }
-                            }
-
-                            echo '</select>
-                                <span>Porpietario&nbsp;&nbsp;</span>
-                            </div>';
-                        }
+                        $caja1 = explode(",", $_POST['nameprod']);
+                        $caja2 = explode(",", $_POST['cantprod']);
+                        $r = new ProfileController(); 
                     ?>
+                    <table>
+                        <thead>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Precio Total</th>
+                        </thead>
+                        <tbody>
+                            <?php
+                                for ($i=0; $i < count($caja1) ; $i++) { 
+                                    $precio = $r->preVentProd(trim($caja1[$i]));
+                                    $preciot = $r->calcPrecio(trim(intval($caja2[$i])), trim(intval($precio)));
+                        echo "
+                            <tr>
+                                <td>".$caja1[$i]."</td>
+                                <td>".$caja2[$i]."</td>
+                                <td>".$precio."</td>
+                                <td>".$preciot."</td>
+                            </tr>";        
+                                }    
+                            ?>
+                            <tr>
+                                <th>Total:</th>
+                                <td colspan="3"><input type="number" name="preciot" value="<?= $_POST['precprod'] ?>" readonly required></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="input-container">
+                        <label for="ctNomProv">Receta</label>
+                        <textarea id="ctNomProv" class="input" autocomplete="off" readonly required><?= $_POST['receta']; ?></textarea>
+                        <span>Receta</span>
+                    </div>
                     <div class="buttons">
                         <input type="submit" name="btnEditar" value="Guardar" class="btn-save btn">
                         <a href="?b=profile&s=Inicio" class="btn-regresar btn">Cancelar</a>
