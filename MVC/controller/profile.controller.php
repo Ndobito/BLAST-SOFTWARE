@@ -1,6 +1,7 @@
 <?php
 include_once "model/Profile.php";
 include_once 'lib/privileges/privilegios.php';
+require_once 'lib/fpdf/fpdf.php'; 
 
 class ProfileController
 {
@@ -26,6 +27,7 @@ class ProfileController
         $productos = $this->object->getAll("producto");
         $categorias = $this->object->getAll("categoria");
         $cita = $this->object->getAll("cita");
+        $recetas = $this->object->getAll("receta");
 
         // -----Variables de Privilegios----- //
         $privUser = Privilegios::User->get();
@@ -78,6 +80,9 @@ class ProfileController
                 $usuario = $_SESSION['usuario'];
                 $user = $this->object->selectUser($usuario);
                 $privilegios = $this->object->getPrivileges();
+
+                ($privilegios == Privilegios::User->get()) ? $userdata =  $this->object->getAllUserNick($usuario) : ""; 
+                
                 $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
                 require_once "view/head.php";
                 require_once "view/profile/save/agregar-mascota.php";
@@ -824,6 +829,109 @@ actualizada con exito!")->send();
         return $this->object->getValProduct($name); 
     }
 
+    public function saveReceta(){
+
+        $rec = new Profile(); 
+    
+        $rec->dnicol = $_POST['idcol'];
+        $rec->dni = $_POST['iduser'];
+        $rec->idmas = $_POST['idmas'];
+        $rec->prod = $_POST['products'];
+        $rec->cant = $_POST['cantprod'];
+        $rec->prec = $_POST['prect'];
+        $rec->date = $_POST['date'];
+        $rec->rec = $_POST['receta'];
+
+        if($this->object->saveReceta($rec)){
+            redirect("?b=profile&s=Inicio")->success("Receta Guardada con exito!")->send();
+        }else{
+            redirect("?b=profile&s=Inicio")->error("Error al guardar la receta!")->send();
+        }
+
+    }
+
+    // -----Metodo para guardar informacion de la receta y generar PDF ----- //
+    public function generateReceta(){
+        $pdf = new FPDF('P', 'mm', 'A4');
+        $pdf->AddPage();
+        $pdf->SetFont('Times', '', 12);
+
+        $pdf->Cell(0, 10, 'RECETA VETERINARIA - ANIMAL WORLD ', 0, 1, 'C');
+
+        $receta = $this->object->getAllReceta($_POST['idrec']);
+        
+        foreach ($receta as $receta) {
+            $vet = $this->object->getAllUser($receta['dnicolrec']);
+            $user = $this->object->getAllUser($receta['dniuserrec']);
+            $pet = $this->object->getAllPet($receta['idmasrec']);
+
+            if($vet){
+                if($user){
+                    if($pet){
+                        foreach ($user as $value) {
+                            foreach ($pet as $value2) {
+                                if($value['iduser'] == $value2['idcli']){
+                                    foreach ($vet as $value3) {
+                                        $pdf->Cell(0, 10, 'Fecha: ' . $receta['fecharec'], 0, 1, 'R');
+                                        $pdf->Cell(0, 10, '-- Datos del Veterinario -- ', 0, 1, 'C');
+                                        $pdf->Cell(0, 10, 'DNI Veterinario: ' . $value3['dniuser'], 0, 1);
+                                        $pdf->Cell(0, 10, 'Nombre del Veterinario: ' . $value3['nameuser']. ' '. $value3['surnameuser'], 0, 1);
+                                        $pdf->Cell(0, 10, '-- Datos del Usuario y su Mascota -- ', 0, 1, 'C');
+                                        $pdf->Cell(0, 10, 'DNI Usuario: ' . $value['dniuser'], 0, 1);
+                                        $pdf->Cell(0, 10, utf8_decode('Nombre del Usuario: ' . $value['nameuser']. ' '. $value['surnameuser']), 0, 1);
+                                        $pdf->Cell(0, 10, 'Mascota: ' . $value2['nommas'], 0, 1);
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+            }
+
+            $pdf->Ln();
+            $pdf->Cell(0, 10, 'Productos Recetados:', 0, 1);
+            $pdf->Cell(40, 10, 'Producto', 1, 0, 'C');
+            $pdf->Cell(40, 10, 'Cantidad', 1, 0, 'C');
+            $pdf->Cell(40, 10, 'Precio Unitario', 1, 0, 'C');
+            $pdf->Cell(40, 10, 'Precio Total', 1, 0, 'C');
+            $pdf->Ln(); 
+
+            $caja1 = explode(",", $receta['prodrec']);
+            $caja2 = explode(",", $receta['cantprodrec']);
+            $r = new ProfileController(); 
+
+            for ($i = 0; $i < count($caja1); $i++) {
+                $precio = $r->preVentProd(trim($caja1[$i]));
+                $preciot = $r->calcPrecio(trim(intval($caja2[$i])), trim(intval($precio)));
+
+                $pdf->Cell(40, 10, $caja1[$i], 1, 0, 'C');
+                $pdf->Cell(40, 10, $caja2[$i], 1, 0, 'C');
+                $pdf->Cell(40, 10, ' $ '.$precio, 1, 0, 'C');
+                $pdf->Cell(40, 10, ' $ '.$preciot, 1, 0, 'C');
+                $pdf->Ln(); 
+            }
+
+            $pdf->Cell(120, 10, 'Total:', 1);
+            $pdf->Cell(40, 10, ' $ '.$receta['precrec'], 1, 0, 'R');
+            $pdf->Ln();
+            $pdf->Ln();
+
+            $pdf->Cell(0, 10, 'Receta:', 0, 1);
+            $pdf->MultiCell(0, 10, $receta['indrec'], 0, 'L');
+        }
+
+        ob_start();
+        $pdf->Output();
+        $pdfContent = ob_get_clean();
+
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="receta_veterinaria_'.$_POST['iduser'].'.pdf"');
+        header('Content-Length: ' . strlen($pdfContent));
+
+        echo $pdfContent;
+        exit(); 
+    }
+    
 
     //Metodo para cerrar Sesion
     public function cerrarSesion()

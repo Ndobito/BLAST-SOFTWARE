@@ -577,6 +577,42 @@ tbody .icons2 a:hover {
   margin-left: 10%;
 }
 
+#idrecrec{
+  font-family: var(--font-1);
+  border: none;
+  color: var(--color-4);
+  font-size: 10pt;
+  width: 100px;
+  font-weight: 800;
+  text-align: center;
+}
+
+#btnGenRec{
+  width: 120px;
+  padding: 8px;
+  background: var(--color-9);
+  color: var(--color-5);
+  border: none;
+  font-family: var(--font-2);
+  font-size: 10pt;
+  cursor: pointer;
+}
+
+#btnGenRec:hover{
+  transition: .5s ease-in-out;
+  color: var(--color-4);
+  background: var(--color-1);
+  border-radius: 10px;
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -ms-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
 .header-receta h1 {
   text-align: center;
   font-family: var(--font-2);

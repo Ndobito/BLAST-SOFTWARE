@@ -11,10 +11,10 @@
                 </div>
             </div>
             <div class="form">
-                <form action="?b=profile&s=saveMascota" method="POST">
+                <form action="?b=profile&s=saveReceta" method="POST">
                     <div class="input-container">
                         <label for="ctNomProv">Fecha</label>
-                        <input type="text" value="<?= $_POST['date']; ?>" name="idcol" id="ctNomProv" class="input" autocomplete="off" readonly required>
+                        <input type="text" value="<?= $_POST['date']; ?>" name="date" id="ctNomProv" class="input" autocomplete="off" readonly required>
                         <span>Fecha</span>
                     </div>
                     <div class="input-container">
@@ -30,12 +30,12 @@
                     <div class="input-container">
                         <label for="ctNomProv">Mascota</label>
                         <input type="text" value="<?= $value2['nommas']; ?>" id="ctNomProv" class="input" autocomplete="off" readonly required>
-                        <span>DNI Veterinario</span>
+                        <span>Mascota</span>
                         <input type="hidden" value="<?= $value2['idmas']; ?>" name="idmas" id="ctNomProv" class="input" autocomplete="off" readonly required>
                     </div>
-                    <input type="hidden" value="<?= $_POST['nameprod']; ?>" name="prodcuts" required readonly>
-                    <input type="hidden" value="<?= $_POST['cantprod']; ?>" name="prodcuts" required readonly>
-                    <input type="hidden" value="<?= $_POST['precprod']; ?>" name="prodcuts" required readonly>
+                    <input type="hidden" value="<?= $_POST['nameprod']; ?>" name="products" required readonly>
+                    <input type="hidden" value="<?= $_POST['cantprod']; ?>" name="cantprod" required readonly>
+                    <input type="hidden" value="<?= $_POST['precprod']; ?>" name="prect" required readonly>
                     <?php
                         $caja1 = explode(",", $_POST['nameprod']);
                         $caja2 = explode(",", $_POST['cantprod']);
@@ -70,7 +70,7 @@
                     </table>
                     <div class="input-container">
                         <label for="ctNomProv">Receta</label>
-                        <textarea id="ctNomProv" class="input" autocomplete="off" readonly required><?= $_POST['receta']; ?></textarea>
+                        <textarea name="receta" id="ctNomProv" class="input" autocomplete="off" readonly required><?= $_POST['receta']; ?></textarea>
                         <span>Receta</span>
                     </div>
                     <div class="buttons">

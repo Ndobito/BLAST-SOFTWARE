@@ -45,24 +45,21 @@
                         <span>Especie&nbsp;&nbsp;</span>
                     </div>
                     <?php
-                        if($privilegios == Privilegios::User->get()){
+                        if ($privilegios == Privilegios::User->get()) {
+                            $ownerName = '';
+                            $id = ''; 
+                            foreach ($userdata as $owner) {
+                                $ownerName .= $owner['nameuser'] . " " . $owner['surnameuser'];
+                                $id .= $owner['iduser'];
+                            }
                             echo '
                             <div class="input-container">
                                 <label for="ctTelProv">Porpietario</label>
-                                <select name="owner" class="input" required>
-                                    <option disabled selected>Seleccione una opcion</option>';
-
-                            foreach ($dueños as $value) {
-                                if ($value['privileges'] == Privilegios::User->get()) {
-                                    if($value['nickuser'] == $_SESSION['usuario']){
-                                        echo "<option value=".$value['iduser']." >".$value['nameuser']." ".$value['surnameuser']."</option>"; 
-                                    }
-                                }
-                            }
-                            echo '</select>
+                                <input readonly type="text" class="input" value="' . $ownerName . '">
+                                <input readonly type="hidden" name="owner" class="input" value="' . $id . '">
                                 <span>Porpietario&nbsp;&nbsp;</span>
                             </div>';
-                        }else{
+                        } else {
                             echo '
                             <div class="input-container">
                                 <label for="ctTelProv">Porpietario</label>
@@ -71,7 +68,7 @@
 
                             foreach ($dueños as $value) {
                                 if ($value['privileges'] == Privilegios::User->get()) {
-                                    echo "<option value=".$value['iduser']." >".$value['nameuser']." ".$value['surnameuser']."</option>"; 
+                                    echo "<option value=" . $value['iduser'] . " >" . $value['nameuser'] . " " . $value['surnameuser'] . "</option>";
                                 }
                             }
 
@@ -80,6 +77,7 @@
                             </div>';
                         }
                     ?>
+
                     <div class="buttons">
                         <input type="submit" name="btnEditar" value="Guardar" class="btn-save btn">
                         <a href="?b=profile&s=Inicio" class="btn-regresar btn">Cancelar</a>

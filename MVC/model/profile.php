@@ -1,13 +1,15 @@
 <?php
 include_once 'lib/database/database.php';
 
+
 class Profile
 {
     private $conexion;
 
     public $id, $dni, $name, $surname, $nick, $pass, $addres, $zone,  $email, $phone, $phone2, $privileges;
-    public $age, $gen, $esp, $owner;
+    public $idmas, $age, $gen, $esp, $owner;
     public $idcit, $dateasig, $hourasig, $colasig, $statecit; 
+    public $dnicol, $prod, $cant ,$prec, $date, $rec; 
 
     // -----Constructor de la Conexion-----//
     public function __construct()
@@ -150,6 +152,22 @@ class Profile
 
         return $count > 0;
     }
+
+    // -----Metodo para seleccionar todos los datos de un usuario segun su nick----- //
+    public function getAllUserNick($nick)
+    {
+        $query = "SELECT * FROM usuario WHERE nickuser  =  '" . $nick . "'";
+        $result = $this->conexion->query($query);
+        $producto = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $producto[] = $row;
+            }
+        }
+        return $producto;
+    }
+
     // -----Metodo para seleccionar todos los datos de un usuario segun su dni----- //
     public function getAllUser($id)
     {
@@ -164,10 +182,26 @@ class Profile
         }
         return $producto;
     }
+
     // -----Metodo para seleccionar todos los datos de una mascota----- //
     public function getAllPet($id)
     {
         $query = "SELECT * FROM mascota WHERE idmas =  '$id'";
+        $result = $this->conexion->query($query);
+        $producto = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $producto[] = $row;
+            }
+        }
+        return $producto;
+    }
+
+    // -----Metodo para seleccionar todos los datos de una mascota----- //
+    public function getAllReceta($id)
+    {
+        $query = "SELECT * FROM receta WHERE idrec =  '$id'";
         $result = $this->conexion->query($query);
         $producto = array();
 
@@ -481,4 +515,18 @@ class Profile
         }
 
     } 
+
+    // -----Metodo para guardar una receta---- //
+    public function saveReceta(Profile $data){
+        try{
+            $a = $this->conexion->prepare("INSERT INTO receta(dnicolrec, dniuserrec, idmasrec, prodrec, cantprodrec, precrec, fecharec, indrec) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            if($a->execute(array($data->dnicol, $data->dni, $data->idmas, $data->prod, $data->cant, $data->prec, $data->date, $data->rec))){
+                return true; 
+            }else{
+                return false; 
+            }
+        }catch(Exception $e){
+            echo "Error al guardar receta: ". $e->getMessage();
+        }
+    }
 }

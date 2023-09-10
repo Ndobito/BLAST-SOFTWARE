@@ -38,6 +38,7 @@
                     </button>
                     <?php echo ($privilegios == $privUser || $privilegios == $privRecepcionist) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-syringe'></i><p>Recetar</p></button>" ?>
                     <?php echo ($privilegios == $privAdmin || $privilegios == $privRecepcionist || $privilegios == $privUser) ? "<button class='profile-adm-btn'><i class='fa-regular fa-calendar-check'></i><p>Citas</p></button>" : "" ?>
+                    <?php echo ($privilegios == $privUser || $privilegios == $privRecepcionist) ? "" : "<button class='profile-adm-btn'><i class='fa-solid fa-clipboard-list'></i><p>Listado Recetas</p></button>" ?>
                 </div>
             </div>
             <div class="container-right">
@@ -334,13 +335,13 @@
                     <div class="table-container">
                         <div class="form-container">
                             <?php
-                            if ($privilegios == Privilegios::User->get()) {
-                                echo '';
-                            } else {
+                            if ($privilegios == $privUser || $privilegios == $privAdmin) {
                                 echo '
                                 <div class="input-group">
                                     <a href="?b=profile&s=optionSaveRedirec&p=mascota"><button class="btn btn-default" type="submit">Agregar</button></a>
                                 </div>';
+                            } else {
+                                echo '';
                             }
                             ?>
                             <?php
@@ -431,7 +432,6 @@
                                 ?>
                             </tbody>
                         </table>
-                        <textarea name="" id="" cols="30" rows="10"></textarea>
                     </div>
                 </div>
 
@@ -559,7 +559,6 @@
                         </div>";
 
                 }
-                
                 if ($privilegios == $privAdmin || $privilegios == $privRecepcionist || $privilegios == $privUser) {
                     echo '<div class="profile-adm container-right2" id="container-right8">
                 <div class=\'title\'>
@@ -769,6 +768,55 @@
                     echo '</tbody></table>
                     </div>
                 </div>';
+                }
+
+                if ($privilegios == $privUser || $privilegios == $privRecepcionist) {
+                    echo "";
+                } else {
+                    echo '<div class="profile-adm container-right2" id="container-right9">';
+                    echo '<div class="title">';
+                    echo '<h1>Listado de Recetas</h1><br><br>';
+                    echo '</div>';
+                    
+                    echo '<div class="table-wrapper">';
+                    echo '<table class="table-container content-table">';
+                    echo '<thead>';
+                    echo '<tr>';
+                    echo '<th>Id</th>';
+                    echo '<th>DNI Veterinario</th>';
+                    echo '<th>DNI Usuario</th>';
+                    echo '<th>Nombre Mascota</th>';
+                    echo '<th>Productos</th>';
+                    echo '<th>Valor</th>';
+                    echo '<th>Fecha Expedición</th>'; 
+                    echo '<th>Indicaciones</th>';
+                    echo '</tr>';
+                    echo '</thead>';
+                    echo '<form action="?b=profile&s=generateReceta" method="POST">';
+                    echo '<tbody id="resultados-">';
+                    foreach ($recetas as $r) {
+                        echo '<tr>';
+                        echo '<td><input readonly type="number" id="idrecrec" name="idrec" value="' . $r['idrec'] . '"></td>';
+                        echo '<td>' . $r['dnicolrec'] . '</td>';
+                        echo '<td>' . $r['dniuserrec'] . '</td>';
+                        foreach ($mascota as $masrec) {
+                            if($masrec['idmas'] == $r['idmasrec']){
+                                echo '<td>' . $masrec['nommas'] . '</td>';
+                            }
+                        }
+                        echo '<td>' . $r['prodrec'] . '</td>';
+                        echo '<td>' . $r['precrec'] . '</td>';
+                        echo '<td>' . $r['fecharec'] . '</td>';
+                        echo '<td id="indicaciones">' . $r['indrec'] . '</td>';
+                        echo '<td><button id="btnGenRec" type="submit">Generar Receta</button></td>';
+                        echo '</tr>';
+                    }
+                    echo '</tbody>';
+                    echo '</form>';
+                    echo '</table>';
+                    echo '</div>';
+                    echo '</div>';
+
                 }
                 ?>
         </main>
