@@ -632,8 +632,8 @@ actualizada con exito!")->send();
                 }
             }
             echo '</td>';
-            if ($privilegios != Privilegios::Doctor->get()) {
-                echo '<td class="icons1"><a href="#"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
+            if ($privilegios == Privilegios::Recepcionist->get()) {
+                echo '<td class="icons1"><a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=' . $mascota['idmas'] . '"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
             }
             if ($privilegios != Privilegios::Doctor->get() && $privilegios != Privilegios::Recepcionist->get()) {
                 echo '<td class="icons2"><a href="#"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></a></td>';
@@ -679,6 +679,49 @@ actualizada con exito!")->send();
                     echo $dueño['dniuser'];
                 }
             }
+            echo '</tr>';
+        }
+    }
+
+    public function buscarMascotas3()
+    {
+        $searchTerm = $_POST['buscar_mascota'];
+        $mascotas = $this->object->getAll("mascota");
+
+        $privilegios = $_SESSION["privilegios"];
+        $usuario = $_SESSION['usuario'];
+        $user = $this->object->selectUser($usuario);
+        $users = $this->object->getAll("usuario");
+
+        $filteredmascota = array_filter($mascotas, function ($mascota) use ($searchTerm) {
+            return (stripos($mascota['idmas'], $searchTerm) !== false) ||
+                (stripos($mascota['nommas'], $searchTerm) !== false) ||
+                (stripos($mascota['edadmas'], $searchTerm) !== false) ||
+                (stripos($mascota['genmas'], $searchTerm) !== false);
+        });
+
+        foreach ($filteredmascota as $mascota) {
+            echo '<tr>';
+            echo '<td>' . $mascota['idmas'] . '</td>';
+            echo '<td>' . ($mascota['nommas'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($mascota['edadmas'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($mascota['genmas'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($mascota['espmas'] ?? "Sin definir") . '</td>';
+            echo '<td>';
+            if ($privilegios == Privilegios::User->get()) {
+                echo $user['dniuser'];
+            } else {
+                $dueño = array_filter($users, function ($usuario) use ($mascota) {
+                    return $usuario['iduser'] == $mascota['idcli'];
+                });
+
+                if (!empty($dueño)) {
+                    $dueño = reset($dueño);
+                    echo $dueño['dniuser'];
+                }
+            }
+            echo '</td>';
+            echo '<td class="icons1"><a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=' . $mascota['idmas'] . '"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>';
             echo '</tr>';
         }
     }

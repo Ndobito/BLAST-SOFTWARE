@@ -87,15 +87,32 @@ $(document).ready(function () {
 
   // Buscador de mascotas 2
   $("#searchmas2").on("input", function () {
-    buscarMascotas();
+    buscarMascotas2();
   });
 
-  function buscarMascotas() {
+  function buscarMascotas2() {
     var searchTerm = $("#searchmas2").val();
 
     $.ajax({
       type: "post",
       url: "?b=profile&s=buscarMascotas2",
+      data: { buscar_mascota: searchTerm },
+    }).done(function (response) {
+      $("#resultados-mascotas").html(response);
+    });
+  }
+
+  // Buscador de mascotas 3
+  $("#searchmas3").on("input", function () {
+    buscarMascotas3();
+  });
+
+  function buscarMascotas3() {
+    var searchTerm = $("#searchmas3").val();
+
+    $.ajax({
+      type: "post",
+      url: "?b=profile&s=buscarMascotas3",
       data: { buscar_mascota: searchTerm },
     }).done(function (response) {
       $("#resultados-mascotas").html(response);

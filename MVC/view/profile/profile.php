@@ -346,14 +346,22 @@
                             ?>
                             <?php
                             if ($privilegios == $privRecepcionist || $privilegios == $privDoctor || $privilegios == $privAdmin) {
-                                if($privilegios == $privAdmin){
+                                if($privilegios === $privAdmin){
                                     echo " 
                                     <form method='POST' action='?b=profile&s=buscarMascotas'  onsubmit='return false;'>
                                         <div class='input-group'>
-                                            <input type='text' class='form-control search-input' placeholder='Buscar mascota'
-                                                name='buscar_mascota' id='searchmas'>
+                                            <input type='text' class='form-control search-input' placeholder='Buscar mascota' name='buscar_mascota' id='searchmas'>
                                         </div>
                                     </form>";
+                                }
+
+                                if($privilegios === $privRecepcionist){
+                                    echo " 
+                                    <form method='POST' action='?b=profile&s=buscarMascotas3'  onsubmit='return false;'>
+                                        <div class='input-group'>
+                                            <input type='text' class='form-control search-input' placeholder='Buscar mascota' name='buscar_mascota' id='searchmas3'>
+                                        </div>
+                                    </form>"; 
                                 }else{
                                     echo " 
                                     <form method='POST' action='?b=profile&s=buscarMascotas2'  onsubmit='return false;'>
@@ -362,7 +370,6 @@
                                         </div>
                                     </form>";
                                 }
-                                
                             } else {
                                 echo "";
                             }
@@ -418,7 +425,7 @@
                                             </a>
                                         </td>';
                                     }
-                                    if ($privilegios == $privDoctor || $privilegios == $privUser) {
+                                    if ($privilegios == $privDoctor || $privilegios == $privUser || $privilegios == $privRecepcionist) {
                                     }else{
                                         echo '
                                 <td class="icons2">
