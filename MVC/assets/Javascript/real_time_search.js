@@ -135,7 +135,7 @@ $(document).ready(function () {
       $("#resultados-cita").html(response);
     });
   }
-  
+
   // Buscador de producto
   $("#searchinv").on("input", function () {
     buscarProducto();

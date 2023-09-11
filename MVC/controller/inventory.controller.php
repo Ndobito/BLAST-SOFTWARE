@@ -201,7 +201,8 @@ class InventoryController
         
 
         $filteredcita = array_filter($productos, function ($e) use ($searchTerm) {
-            return (stripos($e['idprod'], $searchTerm) !== false);
+            return (stripos($e['idprod'], $searchTerm) !== false)||
+            (stripos($e['nomprod'], $searchTerm) !== false);
 
         });
 
@@ -215,7 +216,7 @@ class InventoryController
             echo '<td>' . $e['stockprod'] ?? "Sin definir" . '</td>';
             echo '<td>' . $e['catprod'] ?? "Sin definir" . '</td>';
             echo '<td>' . $e['idprov'] ?? "Sin definir" . '</td>';
-            echo '<td>' . ($e['dniusercit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . $e['dniusercit'] ?? "Sin definir" . '</td>';
             echo '<td><a href="?b=inventory&s=showEditar&idprod=<?= $e["idprod"] ?>"><button class="btn-editar"><i class="fa-solid fa-pen"></i></button></a></td>';
             echo '<td><a><button class="btn-borrar" onclick="deleteProduct(this.id)" id="<?= $e["idprod"] ?>"><i class="fa-solid fa-trash"></i></button></a></td>';
             echo '</tr>';

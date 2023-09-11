@@ -15,8 +15,8 @@
                     <div class="search">
                         <a href="?b=profile&s=Inicio"><button class="btn-regresar"><i
                                     class="fa-solid fa-arrow-left"></i></button></a>
-                        <form id="buscador-form" action="?b=inventory&s=buscarProducto" method="get">
-                            <input id="buscador searchinv" class="form-control search-input" placeholder="Buscar" name="buscar_inventario">
+                        <form method='POST' action='?b=profile&s=buscarProducto'  onsubmit='return false;'>
+                            <input type='text' class="form-control search-input" placeholder="Buscar" name="buscar_inventario" id="buscador searchinv">
                             <button class="btn-buscar" type="submit"><i
                                     class="fa-solid fa-magnifying-glass"></i></button>
                             <!-- <script>
