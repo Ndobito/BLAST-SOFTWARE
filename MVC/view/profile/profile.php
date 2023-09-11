@@ -635,7 +635,7 @@
                                 $citasConNombresUsuarios[] = array(
                                     'idcita' => $c['idcita'],
                                     'dniusercit' => $c['dniusercit'],
-                                    'nameusercit' => $c['nameusercit'],
+                                    'nameusercit' => $c['nam eusercit'],
                                     'phoneusercit' => $c['phoneusercit'],
                                     'emailusercit' => $c['emailusercit'],
                                     'namemascit' => $c['namemascit'],

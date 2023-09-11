@@ -118,6 +118,23 @@ $(document).ready(function () {
       $("#resultados-cita").html(response);
     });
   }
+  
+  // Buscador de producto
+  $("#searchinv").on("input", function () {
+    buscarProducto();
+  });
+
+  function buscarProducto() {
+    var searchTerm = $("#searchinv").val();
+
+    $.ajax({
+      type: "post",
+      url: "?b=profile&s=buscarProducto",
+      data: { buscar_inventario: searchTerm },
+    }).done(function (response) {
+      $("#resultados-inventario").html(response);
+    });
+  }
 
 });
 

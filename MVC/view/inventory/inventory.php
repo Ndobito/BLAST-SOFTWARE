@@ -13,11 +13,13 @@
             <div class="container-button">
                 <div class="search-bar">
                     <div class="search">
-                        <a href="?b=profile&s=Inicio"><button class="btn-regresar"><i class="fa-solid fa-arrow-left"></i></button></a>
-                        <form id="buscador-form" action="?b=inventory&s=Inicio" method="get">
-                            <input id="buscador" name="buscador" type="text" placeholder="Buscar">
-                            <button class="btn-buscar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                            <script>
+                        <a href="?b=profile&s=Inicio"><button class="btn-regresar"><i
+                                    class="fa-solid fa-arrow-left"></i></button></a>
+                        <form id="buscador-form" action="?b=inventory&s=buscarProducto" method="get">
+                            <input id="buscador searchinv" class="form-control search-input" placeholder="Buscar" name="buscar_inventario">
+                            <button class="btn-buscar" type="submit"><i
+                                    class="fa-solid fa-magnifying-glass"></i></button>
+                            <!-- <script>
                                 const bf = document.querySelector("#buscador-form");
                                 const bi = document.querySelector("#buscador");
                                 bf.addEventListener("submit", (e) => {
@@ -27,7 +29,7 @@
                                     url += "&search=" + bi.value;
                                     window.location.href = url;
                                 })
-                            </script>
+                            </script> -->
                         </form>
                     </div>
                     <div class="search-right">
@@ -48,8 +50,8 @@
             </div>
             <div class="container-table1">
                 <div class="table-wrapper">
-                    <table class="content-table">
-                        <thead></thead>
+                    <table class="table-container content-table">
+                        <thead>
                         <tr>
                             <th>Id</th>
                             <th>nombre del producto</th>
@@ -63,17 +65,29 @@
                             <th></th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="resultados-inventario">
                             <?php
                             foreach ($productos as $e) {
-                            ?>
+                                ?>
                                 <tr>
-                                    <td><?php echo  $e["idprod"] ?></td>
-                                    <td><?php echo $e["nomprod"] ?></td>
-                                    <td><?php echo $e["desprod"] ?></td>
-                                    <td><?php echo $e["precprod"] ?></td>
-                                    <td><?php echo $e["precvenprod"] ?></td>
-                                    <td><?php echo $e["stockprod"] ?></td>
+                                    <td>
+                                        <?php echo $e["idprod"] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $e["nomprod"] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $e["desprod"] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $e["precprod"] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $e["precvenprod"] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $e["stockprod"] ?>
+                                    </td>
                                     <td>
                                         <?php
                                         $categoriaEncontrada = false;
@@ -104,11 +118,13 @@
                                         }
                                         ?>
                                     </td>
-                                    <td><a href="?b=inventory&s=showEditar&idprod=<?= $e["idprod"] ?>"><button class="btn-editar"><i class="fa-solid fa-pen"></i></button></a></td>
-                                    
-                                    <td><a><button class="btn-borrar" onclick="deleteProduct(this.id)" id="<?= $e["idprod"] ?>"><i class="fa-solid fa-trash"></i></button></a></td>
+                                    <td><a href="?b=inventory&s=showEditar&idprod=<?= $e["idprod"] ?>"><button
+                                                class="btn-editar"><i class="fa-solid fa-pen"></i></button></a></td>
+
+                                    <td><a><button class="btn-borrar" onclick="deleteProduct(this.id)"
+                                                id="<?= $e["idprod"] ?>"><i class="fa-solid fa-trash"></i></button></a></td>
                                 </tr>
-                            <?php
+                                <?php
                             }
                             ?>
                         </tbody>
@@ -117,8 +133,15 @@
             </div>
         </div>
     </div>
-    <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
-    <script src="assets/Javascript/deleteProduct.js"></script>
+
 </body>
+<!--  -->
+<script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
+<!--  -->
+<script src="assets/Javascript/deleteProduct.js"></script>
+<!-- Library JQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Serach -->
+<script src="assets/Javascript/real_time_search.js"></script>
 
 </html>

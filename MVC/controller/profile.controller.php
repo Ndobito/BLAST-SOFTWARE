@@ -718,6 +718,11 @@ actualizada con exito!")->send();
     {
         $searchTerm = $_POST['buscar_cita'];
         $cita = $this->object->getAll("cita");
+        $privilegios = $_SESSION["privilegios"];
+        $usuario = $_SESSION['usuario'];
+        $user = $this->object->selectUser($usuario);
+        $users = $this->object->getAll("usuario");
+        
 
         $filteredcita = array_filter($cita, function ($c) use ($searchTerm) {
             return (stripos($c['idcita'], $searchTerm) !== false) ||
@@ -740,9 +745,11 @@ actualizada con exito!")->send();
             echo '<td>' . ($c['genmascit'] ?? "Sin definir") . '</td>';
             echo '<td>' . ($c['motcit'] ?? "Sin definir") . '</td>';
             echo '<td>' . ($c['servicecit'] ?? "Sin definir") . '</td>';
+            echo '<td>' . ($c['datesolcit'] == NULL ? "No Asignado" : $c['datesolcit']) . '</td>';
             echo '<td>' . ($c['statecit'] ?? "Sin definir") . '</td>';
             echo '<td>' . ($c['datecit'] == NULL ? "No Asignado" : $c['datecit']) . '</td>';
-            echo '<td>' . ($c['hourcit'] == NULL ? "No Asignado" : $c['datecit']) . '</td>';
+            echo '<td>' . ($c['hourcit'] == NULL ? "No Asignado" : $c['hourcit']) . '</td>';
+            echo '<td>' . ($c['idcolcit'] ?? "Sin definir") . '</td>';
             echo '</tr>';
         }
     }
