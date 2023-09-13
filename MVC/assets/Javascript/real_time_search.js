@@ -1,157 +1,173 @@
-$(document).ready(function () {
-  // Buscador de proveedores
+$(document).ready(function () { // Buscador de proveedores
 
-  $("#searchprov").on("input", function () {
-    buscarProveedor();
-  });
-
-  function buscarProveedor() {
-    var searchTerm = $("#searchprov").val();
-
-    $.ajax({
-      type: "post",
-      url: "?b=profile&s=buscarProveedor",
-      data: { buscar_proveedor: searchTerm },
-    }).done(function (response) {
-      $("#resultados-proveedor").html(response);
+    $("#searchprov").on("input", function () {
+        buscarProveedor();
     });
-  }
 
-  // Buscador de Colaboradores
-  $("#searchcol").on("input", function () {
-    buscarEmpleado();
-  });
+    function buscarProveedor() {
+        var searchTerm = $("#searchprov").val();
 
-  function buscarEmpleado() {
-    var searchTerm = $("#searchcol").val();
+        $.ajax({
+            type: "post",
+            url: "?b=profile&s=buscarProveedor",
+            data: {
+                buscar_proveedor: searchTerm
+            }
+        }).done(function (response) {
+            $("#resultados-proveedor").html(response);
+        });
+    }
 
-    $.ajax({
-      type: "post",
-      url: "?b=profile&s=buscarColaborador",
-      data: { buscar_empleado: searchTerm },
-    }).done(function (response) {
-      $("#resultados-empleados").html(response);
+    // Buscador de Colaboradores
+    $("#searchcol").on("input", function () {
+        buscarEmpleado();
     });
-  }
 
-  // Buscador de clientes
-  $("#searchcli").on("input", function () {
-    buscarClientes();
-  });
+    function buscarEmpleado() {
+        var searchTerm = $("#searchcol").val();
 
-  function buscarClientes() {
-    var searchTerm = $("#searchcli").val();
+        $.ajax({
+            type: "post",
+            url: "?b=profile&s=buscarColaborador",
+            data: {
+                buscar_empleado: searchTerm
+            }
+        }).done(function (response) {
+            $("#resultados-empleados").html(response);
+        });
+    }
 
-    $.ajax({
-      type: "post",
-      url: "?b=profile&s=buscarClientes",
-      data: { buscar_cliente: searchTerm },
-    }).done(function (response) {
-      $("#resultados-clientes").html(response);
+    // Buscador de clientes
+    $("#searchcli").on("input", function () {
+        buscarClientes();
     });
-  }
 
-  // Buscador de clientes para doctor
-  $("#searchcli2").on("input", function () {
-    buscarClientes2();
-  });
+    function buscarClientes() {
+        var searchTerm = $("#searchcli").val();
 
-  function buscarClientes2() {
-    var searchTerm = $("#searchcli2").val();
+        $.ajax({
+            type: "post",
+            url: "?b=profile&s=buscarClientes",
+            data: {
+                buscar_cliente: searchTerm
+            }
+        }).done(function (response) {
+            $("#resultados-clientes").html(response);
+        });
+    }
 
-    $.ajax({
-      type: "post",
-      url: "?b=profile&s=buscarClientes2",
-      data: { buscar_cliente: searchTerm },
-    }).done(function (response) {
-      $("#resultados-clientes").html(response);
+    // Buscador de clientes para doctor
+    $("#searchcli2").on("input", function () {
+        buscarClientes2();
     });
-  }
 
-  // Buscador de mascotas
-  $("#searchmas").on("input", function () {
-    buscarMascotas();
-  });
+    function buscarClientes2() {
+        var searchTerm = $("#searchcli2").val();
 
-  function buscarMascotas() {
-    var searchTerm = $("#searchmas").val();
+        $.ajax({
+            type: "post",
+            url: "?b=profile&s=buscarClientes2",
+            data: {
+                buscar_cliente: searchTerm
+            }
+        }).done(function (response) {
+            $("#resultados-clientes").html(response);
+        });
+    }
 
-    $.ajax({
-      type: "post",
-      url: "?b=profile&s=buscarMascotas",
-      data: { buscar_mascota: searchTerm },
-    }).done(function (response) {
-      $("#resultados-mascotas").html(response);
+    // Buscador de mascotas
+    $("#searchmas").on("input", function () {
+        buscarMascotas();
     });
-  }
 
-  // Buscador de mascotas 2
-  $("#searchmas2").on("input", function () {
-    buscarMascotas2();
-  });
+    function buscarMascotas() {
+        var searchTerm = $("#searchmas").val();
 
-  function buscarMascotas2() {
-    var searchTerm = $("#searchmas2").val();
+        $.ajax({
+            type: "post",
+            url: "?b=profile&s=buscarMascotas",
+            data: {
+                buscar_mascota: searchTerm
+            }
+        }).done(function (response) {
+            $("#resultados-mascotas").html(response);
+        });
+    }
 
-    $.ajax({
-      type: "post",
-      url: "?b=profile&s=buscarMascotas2",
-      data: { buscar_mascota: searchTerm },
-    }).done(function (response) {
-      $("#resultados-mascotas").html(response);
+    // Buscador de mascotas 2
+    $("#searchmas2").on("input", function () {
+        buscarMascotas2();
     });
-  }
 
-  // Buscador de mascotas 3
-  $("#searchmas3").on("input", function () {
-    buscarMascotas3();
-  });
+    function buscarMascotas2() {
+        var searchTerm = $("#searchmas2").val();
 
-  function buscarMascotas3() {
-    var searchTerm = $("#searchmas3").val();
+        $.ajax({
+            type: "post",
+            url: "?b=profile&s=buscarMascotas2",
+            data: {
+                buscar_mascota: searchTerm
+            }
+        }).done(function (response) {
+            $("#resultados-mascotas").html(response);
+        });
+    }
 
-    $.ajax({
-      type: "post",
-      url: "?b=profile&s=buscarMascotas3",
-      data: { buscar_mascota: searchTerm },
-    }).done(function (response) {
-      $("#resultados-mascotas").html(response);
+    // Buscador de mascotas 3
+    $("#searchmas3").on("input", function () {
+        buscarMascotas3();
     });
-  }
 
-  // Buscador de cita
-  $("#searchcita").on("input", function () {
-    buscarCita();
-  });
+    function buscarMascotas3() {
+        var searchTerm = $("#searchmas3").val();
 
-  function buscarCita() {
-    var searchTerm = $("#searchcita").val();
+        $.ajax({
+            type: "post",
+            url: "?b=profile&s=buscarMascotas3",
+            data: {
+                buscar_mascota: searchTerm
+            }
+        }).done(function (response) {
+            $("#resultados-mascotas").html(response);
+        });
+    }
 
-    $.ajax({
-      type: "post",
-      url: "?b=profile&s=buscarCita",
-      data: { buscar_cita: searchTerm },
-    }).done(function (response) {
-      $("#resultados-cita").html(response);
+    // Buscador de cita
+    $("#searchcita").on("input", function () {
+        buscarCita();
     });
-  }
 
-  // Buscador de producto
-  $("#searchinv").on("input", function () {
-    buscarProducto();
-  });
+    function buscarCita() {
+        var searchTerm = $("#searchcita").val();
 
-  function buscarProducto() {
-    var searchTerm = $("#searchinv").val();
+        $.ajax({
+            type: "post",
+            url: "?b=profile&s=buscarCita",
+            data: {
+                buscar_cita: searchTerm
+            }
+        }).done(function (response) {
+            $("#resultados-cita").html(response);
+        });
+    }
 
-    $.ajax({
-      type: "post",
-      url: "?b=profile&s=buscarProducto",
-      data: { buscar_inventario: searchTerm },
-    }).done(function (response) {
-      $("#resultados-inventario").html(response);
+    // Buscador de producto
+    $("#searchinv").on("input", function () {
+        buscarProducto();
     });
-  }
+
+    function buscarProducto() {
+        var searchTerm = $("#searchinv").val();
+
+        $.ajax({
+            type: "post",
+            url: "?b=profile&s=buscarProducto",
+            data: {
+                buscar_inventario: searchTerm
+            }
+        }).done(function (response) {
+            $("#resultados-inventarios").html(response);
+        });
+    }
 
 });
-

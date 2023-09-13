@@ -13,12 +13,10 @@
             <div class="container-button">
                 <div class="search-bar">
                     <div class="search">
-                        <a href="?b=profile&s=Inicio"><button class="btn-regresar"><i
-                                    class="fa-solid fa-arrow-left"></i></button></a>
-                        <form method='POST' action='?b=profile&s=buscarProducto'  onsubmit='return false;'>
-                            <input type='text' class="form-control search-input" placeholder="Buscar" name="buscar_inventario" id="buscador searchinv">
-                            <button class="btn-buscar" type="submit"><i
-                                    class="fa-solid fa-magnifying-glass"></i></button>
+                        <a href="?b=profile&s=Inicio"><button class="btn-regresar"><i class="fa-solid fa-arrow-left"></i></button></a>
+                        <form method='POST' action='?b=profile&s=buscarProducto' onsubmit='return false;'>
+                            <input type='text' class="form-control search-input" placeholder="Buscar" name="buscar_producto" id="searchinv buscador">
+                            <button class="btn-buscar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                             <!-- <script>
                                 const bf = document.querySelector("#buscador-form");
                                 const bi = document.querySelector("#buscador");
@@ -52,23 +50,23 @@
                 <div class="table-wrapper">
                     <table class="table-container content-table">
                         <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>nombre del producto</th>
-                            <th>descripcion</th>
-                            <th>precio</th>
-                            <th>precio venta</th>
-                            <th>cantidad existente</th>
-                            <th>categoria</th>
-                            <th class="hide-on-small">nombre del distribuidor</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
+                            <tr>
+                                <th>Id</th>
+                                <th>nombre del producto</th>
+                                <th>descripcion</th>
+                                <th>precio</th>
+                                <th>precio venta</th>
+                                <th>cantidad existente</th>
+                                <th>categoria</th>
+                                <th class="hide-on-small">nombre del distribuidor</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
                         </thead>
-                        <tbody id="resultados-inventario">
+                        <tbody id="resultados-inventarios">
                             <?php
                             foreach ($productos as $e) {
-                                ?>
+                            ?>
                                 <tr>
                                     <td>
                                         <?php echo $e["idprod"] ?>
@@ -118,13 +116,11 @@
                                         }
                                         ?>
                                     </td>
-                                    <td><a href="?b=inventory&s=showEditar&idprod=<?= $e["idprod"] ?>"><button
-                                                class="btn-editar"><i class="fa-solid fa-pen"></i></button></a></td>
+                                    <td><a href="?b=inventory&s=showEditar&idprod=<?= $e["idprod"] ?>"><button class="btn-editar"><i class="fa-solid fa-pen"></i></button></a></td>
 
-                                    <td><a><button class="btn-borrar" onclick="deleteProduct(this.id)"
-                                                id="<?= $e["idprod"] ?>"><i class="fa-solid fa-trash"></i></button></a></td>
+                                    <td><a><button class="btn-borrar" onclick="deleteProduct(this.id)" id="<?= $e["idprod"] ?>"><i class="fa-solid fa-trash"></i></button></a></td>
                                 </tr>
-                                <?php
+                            <?php
                             }
                             ?>
                         </tbody>
