@@ -1,7 +1,7 @@
 <?php
 include_once "model/Profile.php";
 include_once 'lib/privileges/privilegios.php';
-require_once 'lib/fpdf/fpdf.php'; 
+require_once 'lib/fpdf/fpdf.php';
 
 class ProfileController
 {
@@ -81,8 +81,8 @@ class ProfileController
                 $user = $this->object->selectUser($usuario);
                 $privilegios = $this->object->getPrivileges();
 
-                ($privilegios == Privilegios::User->get()) ? $userdata =  $this->object->getAllUserNick($usuario) : ""; 
-                
+                ($privilegios == Privilegios::User->get()) ? $userdata = $this->object->getAllUserNick($usuario) : "";
+
                 $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
                 require_once "view/head.php";
                 require_once "view/profile/save/agregar-mascota.php";
@@ -765,7 +765,7 @@ actualizada con exito!")->send();
         $usuario = $_SESSION['usuario'];
         $user = $this->object->selectUser($usuario);
         $users = $this->object->getAll("usuario");
-        
+
 
         $filteredcita = array_filter($cita, function ($c) use ($searchTerm) {
             return (stripos($c['idcita'], $searchTerm) !== false) ||
@@ -805,7 +805,7 @@ actualizada con exito!")->send();
         if (empty($_POST['idcit']) || empty($_POST['dateasig']) || empty($_POST['selhour']) || empty($_POST['selcol'])) {
             redirect("?b=profile&s=Inicio")->error("Intente asignar la cita nuevamente y verifique que complete todos los campos!")->send();
         } else {
-            $ap = new Profile(); 
+            $ap = new Profile();
             $ap->idcit = $_POST['idcit'];
             $timestamp = strtotime($_POST['dateasig']);
             $fecha = date("Y-m-d", $timestamp);
@@ -814,11 +814,11 @@ actualizada con exito!")->send();
             $hora = date("H:i:s", $timestamp);
             $ap->hourasig = $hora;
             $ap->colasig = $_POST['selcol'];
-            $ap->statecit = "Asignado"; 
+            $ap->statecit = "Asignado";
 
-            if($this->object->updateAppointment($ap)){
-                redirect("?b=profile&s=Inicio")->success("La cita del usuario <strong>".$_POST['nameuser']."</strong> y su mascota <strong>".$_POST['namemas']."</strong> asiganda con exito!")->send();
-            }else{
+            if ($this->object->updateAppointment($ap)) {
+                redirect("?b=profile&s=Inicio")->success("La cita del usuario <strong>" . $_POST['nameuser'] . "</strong> y su mascota <strong>" . $_POST['namemas'] . "</strong> asiganda con exito!")->send();
+            } else {
                 redirect("?b=profile&s=Inicio")->error("Error al asignar la cita")->send();
             }
         }
@@ -827,62 +827,66 @@ actualizada con exito!")->send();
     // ----------METODOS PARA RECETAR ---------- // 
 
     // -----Mostrar Formulario de receta-----//
-    public function showReceta(){
+    public function showReceta()
+    {
 
 
-        if(empty($_POST['numidcol']) || empty($_POST['dniuser']) || empty($_POST['selMas']) || empty($_POST['receta']) || empty($_POST['nameprod']) || empty($_POST['cantprod']) || empty($_POST['precprod'])){
+        if (empty($_POST['numidcol']) || empty($_POST['dniuser']) || empty($_POST['selMas']) || empty($_POST['receta']) || empty($_POST['nameprod']) || empty($_POST['cantprod']) || empty($_POST['precprod'])) {
             redirect("?b=profile&s=Inicio")->error("Campos vacios: Asegurese de completar todos los campos y selccionar productos para recetar!")->send();
-        }else{
-            if($this->object->verifyLeterString($_POST['numidcol']) || $this->object->verifyLeterString($_POST['dniuser'])){
+        } else {
+            if ($this->object->verifyLeterString($_POST['numidcol']) || $this->object->verifyLeterString($_POST['dniuser'])) {
                 redirect("?b=profile&s=Inicio")->error("Verifique que los numeros de identificacion no lleven letras!")->send();
-            }else{
+            } else {
                 $vet = $this->object->getAllUser($_POST['numidcol']);
                 $user = $this->object->getAllUser($_POST['dniuser']);
                 $pet = $this->object->getAllPet($_POST['selMas']);
 
-                if($vet){
-                    if($user){
-                        if($pet){
+                if ($vet) {
+                    if ($user) {
+                        if ($pet) {
                             foreach ($user as $value) {
                                 foreach ($pet as $value2) {
-                                    if($value['iduser'] == $value2['idcli']){
+                                    if ($value['iduser'] == $value2['idcli']) {
                                         foreach ($vet as $value3) {
                                             $style = "<link rel='stylesheet' type='text/css' href='assets/css/style-editarInfo.css'>";
-                                            include_once "view/head.php"; 
-                                            include_once "view/profile/save/new-receta.php";    
+                                            include_once "view/head.php";
+                                            include_once "view/profile/save/new-receta.php";
                                         }
-                                    }else{
+                                    } else {
                                         redirect("?b=profile&s=Inicio")->error("La mascota no pertenece al cliente!")->send();
                                     }
                                 }
                             }
-                            
-                        }else{
+
+                        } else {
                             redirect("?b=profile&s=Inicio")->error("La mascota no existe!")->send();
                         }
-                    }else{
-                        redirect("?b=profile&s=Inicio")->error("El cliente con numero de documento <strong>".$_POST['dniuser']."</strong> no existe!")->send();
+                    } else {
+                        redirect("?b=profile&s=Inicio")->error("El cliente con numero de documento <strong>" . $_POST['dniuser'] . "</strong> no existe!")->send();
                     }
-                }else{
-                    redirect("?b=profile&s=Inicio")->error("El usuario con numero de documento <strong>".$_POST['numidcol']."</strong> no existe!")->send();
+                } else {
+                    redirect("?b=profile&s=Inicio")->error("El usuario con numero de documento <strong>" . $_POST['numidcol'] . "</strong> no existe!")->send();
                 }
             }
         }
     }
 
     // -----Metodo para Calcular el Precio de un producto segun su cantidad---- //
-    public function calcPrecio($cantidad, $precio){
-        return $cantidad * $precio; 
+    public function calcPrecio($cantidad, $precio)
+    {
+        return $cantidad * $precio;
     }
 
-    public function preVentProd($name){
-        return $this->object->getValProduct($name); 
+    public function preVentProd($name)
+    {
+        return $this->object->getValProduct($name);
     }
 
-    public function saveReceta(){
+    public function saveReceta()
+    {
 
-        $rec = new Profile(); 
-    
+        $rec = new Profile();
+
         $rec->dnicol = $_POST['idcol'];
         $rec->dni = $_POST['iduser'];
         $rec->idmas = $_POST['idmas'];
@@ -892,16 +896,17 @@ actualizada con exito!")->send();
         $rec->date = $_POST['date'];
         $rec->rec = $_POST['receta'];
 
-        if($this->object->saveReceta($rec)){
+        if ($this->object->saveReceta($rec)) {
             redirect("?b=profile&s=Inicio")->success("Receta Guardada con exito!")->send();
-        }else{
+        } else {
             redirect("?b=profile&s=Inicio")->error("Error al guardar la receta!")->send();
         }
 
     }
 
     // -----Metodo para guardar informacion de la receta y generar PDF ----- //
-    public function generateReceta(){
+    public function generateReceta()
+    {
         $pdf = new FPDF('P', 'mm', 'A4');
         $pdf->AddPage();
         $pdf->SetFont('Times', '', 12);
@@ -909,31 +914,31 @@ actualizada con exito!")->send();
         $pdf->Cell(0, 10, 'RECETA VETERINARIA - ANIMAL WORLD ', 0, 1, 'C');
 
         $receta = $this->object->getAllReceta($_POST['idrec']);
-        
+
         foreach ($receta as $receta) {
             $vet = $this->object->getAllUser($receta['dnicolrec']);
             $user = $this->object->getAllUser($receta['dniuserrec']);
             $pet = $this->object->getAllPet($receta['idmasrec']);
 
-            if($vet){
-                if($user){
-                    if($pet){
+            if ($vet) {
+                if ($user) {
+                    if ($pet) {
                         foreach ($user as $value) {
                             foreach ($pet as $value2) {
-                                if($value['iduser'] == $value2['idcli']){
+                                if ($value['iduser'] == $value2['idcli']) {
                                     foreach ($vet as $value3) {
                                         $pdf->Cell(0, 10, 'Fecha: ' . $receta['fecharec'], 0, 1, 'R');
                                         $pdf->Cell(0, 10, '-- Datos del Veterinario -- ', 0, 1, 'C');
                                         $pdf->Cell(0, 10, 'DNI Veterinario: ' . $value3['dniuser'], 0, 1);
-                                        $pdf->Cell(0, 10, 'Nombre del Veterinario: ' . $value3['nameuser']. ' '. $value3['surnameuser'], 0, 1);
+                                        $pdf->Cell(0, 10, 'Nombre del Veterinario: ' . $value3['nameuser'] . ' ' . $value3['surnameuser'], 0, 1);
                                         $pdf->Cell(0, 10, '-- Datos del Usuario y su Mascota -- ', 0, 1, 'C');
                                         $pdf->Cell(0, 10, 'DNI Usuario: ' . $value['dniuser'], 0, 1);
-                                        $pdf->Cell(0, 10, utf8_decode('Nombre del Usuario: ' . $value['nameuser']. ' '. $value['surnameuser']), 0, 1);
+                                        $pdf->Cell(0, 10, utf8_decode('Nombre del Usuario: ' . $value['nameuser'] . ' ' . $value['surnameuser']), 0, 1);
                                         $pdf->Cell(0, 10, 'Mascota: ' . $value2['nommas'], 0, 1);
                                     }
                                 }
                             }
-                        } 
+                        }
                     }
                 }
             }
@@ -944,11 +949,11 @@ actualizada con exito!")->send();
             $pdf->Cell(40, 10, 'Cantidad', 1, 0, 'C');
             $pdf->Cell(40, 10, 'Precio Unitario', 1, 0, 'C');
             $pdf->Cell(40, 10, 'Precio Total', 1, 0, 'C');
-            $pdf->Ln(); 
+            $pdf->Ln();
 
             $caja1 = explode(",", $receta['prodrec']);
             $caja2 = explode(",", $receta['cantprodrec']);
-            $r = new ProfileController(); 
+            $r = new ProfileController();
 
             for ($i = 0; $i < count($caja1); $i++) {
                 $precio = $r->preVentProd(trim($caja1[$i]));
@@ -956,13 +961,13 @@ actualizada con exito!")->send();
 
                 $pdf->Cell(40, 10, $caja1[$i], 1, 0, 'C');
                 $pdf->Cell(40, 10, $caja2[$i], 1, 0, 'C');
-                $pdf->Cell(40, 10, ' $ '.$precio, 1, 0, 'C');
-                $pdf->Cell(40, 10, ' $ '.$preciot, 1, 0, 'C');
-                $pdf->Ln(); 
+                $pdf->Cell(40, 10, ' $ ' . $precio, 1, 0, 'C');
+                $pdf->Cell(40, 10, ' $ ' . $preciot, 1, 0, 'C');
+                $pdf->Ln();
             }
 
             $pdf->Cell(120, 10, 'Total:', 1);
-            $pdf->Cell(40, 10, ' $ '.$receta['precrec'], 1, 0, 'R');
+            $pdf->Cell(40, 10, ' $ ' . $receta['precrec'], 1, 0, 'R');
             $pdf->Ln();
             $pdf->Ln();
 
@@ -975,13 +980,13 @@ actualizada con exito!")->send();
         $pdfContent = ob_get_clean();
 
         header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="receta_veterinaria_'.$_POST['iduser'].'.pdf"');
+        header('Content-Disposition: attachment; filename="receta_veterinaria_' . $_POST['iduser'] . '.pdf"');
         header('Content-Length: ' . strlen($pdfContent));
 
         echo $pdfContent;
-        exit(); 
+        exit();
     }
-    
+
 
     //Metodo para cerrar Sesion
     public function cerrarSesion()

@@ -27,18 +27,18 @@
                 }
                 </script>
                 <form action="?b=login&s=validarUser" method="post" onsubmit="return validarForm()">
-                    <div>
+                    <div class="divForm">
                         <label for="ctUser">Usuario</label>
                         <div class="input">
                             <i class="fa-solid fa-paw" id="icono"></i>
-                            <input type="text" placeholder="user" id="ctUser" name="ctUser" required>
+                            <input type="text" placeholder="User" id="ctUser" name="ctUser" required>
                         </div>
-                    </div>
+                    </div class="divForm">
                     <div>
                         <label for="ctPass">Contraseña</label>
                         <div class="input">
                             <i class="fa-solid fa-lock" id="icono"></i>
-                            <input type="password" placeholder="Contraseña" id="ctPass" name="ctPassword" required>
+                            <input type="password" placeholder="Password" id="ctPass" name="ctPassword" required>
                         </div>
                     </div>
                     <div>

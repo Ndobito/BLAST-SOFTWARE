@@ -6,10 +6,10 @@ class Profile
 {
     private $conexion;
 
-    public $id, $dni, $name, $surname, $nick, $pass, $addres, $zone,  $email, $phone, $phone2, $privileges;
+    public $id, $dni, $name, $surname, $nick, $pass, $addres, $zone, $email, $phone, $phone2, $privileges;
     public $idmas, $age, $gen, $esp, $owner;
-    public $idcit, $dateasig, $hourasig, $colasig, $statecit; 
-    public $dnicol, $prod, $cant ,$prec, $date, $rec; 
+    public $idcit, $dateasig, $hourasig, $colasig, $statecit;
+    public $dnicol, $prod, $cant, $prec, $date, $rec;
 
     // -----Constructor de la Conexion-----//
     public function __construct()
@@ -212,7 +212,7 @@ class Profile
         }
         return $producto;
     }
-    
+
 
     // -----Metodo para Seleccionar el nombre del Usuario----- //
     public function selectUser($nombreUsuario)
@@ -298,16 +298,16 @@ class Profile
     {
         $query = "SELECT privileges FROM usuario WHERE nickuser = ?";
         $stmt = mysqli_prepare($this->conexion, $query);
-        
+
         if ($stmt) {
             mysqli_stmt_bind_param($stmt, "s", $_SESSION['usuario']);
             mysqli_stmt_execute($stmt);
-            
+
             $resultado = mysqli_stmt_get_result($stmt);
-            
+
             if (mysqli_num_rows($resultado) > 0) {
                 $row = mysqli_fetch_assoc($resultado);
-                return (int)$row["privileges"];
+                return (int) $row["privileges"];
             } else {
                 return false;
             }
@@ -449,7 +449,7 @@ class Profile
     public function getHours($fecha, $idcol)
     {
         $query = "SELECT hourcit FROM cita WHERE datecit = ? AND idcolcit = ?";
-        $consulta = $this->conexion->prepare($query); 
+        $consulta = $this->conexion->prepare($query);
         $consulta->bind_param("ss", $fecha, $idcol);
         $consulta->execute();
         $consulta->bind_result($hourcit);
@@ -457,25 +457,26 @@ class Profile
         $hours = array();
 
         while ($consulta->fetch()) {
-            $hours[] = $hourcit; 
+            $hours[] = $hourcit;
         }
 
         $consulta->close();
-        return $hours; 
+        return $hours;
     }
 
     // -----Metodo para guardar asignar una cita----- // 
-    public function updateAppointment(Profile $data){
-        try{
-            $query = "UPDATE cita SET datecit = ?, hourcit = ?, idcolcit = ?, statecit = ? WHERE idcita = ?"; 
-            $action = $this->conexion->prepare($query); 
-            if($action->execute(array($data->dateasig, $data->hourasig, $data->colasig, $data->statecit, $data->idcit))){
-                return true; 
-            }else{
-                return false; 
+    public function updateAppointment(Profile $data)
+    {
+        try {
+            $query = "UPDATE cita SET datecit = ?, hourcit = ?, idcolcit = ?, statecit = ? WHERE idcita = ?";
+            $action = $this->conexion->prepare($query);
+            if ($action->execute(array($data->dateasig, $data->hourasig, $data->colasig, $data->statecit, $data->idcit))) {
+                return true;
+            } else {
+                return false;
             }
-        }catch(Exception $e){
-            echo "Error al asignar la cita: ".$e->getMessage(); 
+        } catch (Exception $e) {
+            echo "Error al asignar la cita: " . $e->getMessage();
         }
     }
 
@@ -486,7 +487,7 @@ class Profile
         $query = "SELECT * FROM cita WHERE idcita LIKE";
         $result = $this->conexion->query($query);
         $cita = array();
-    
+
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $cita[] = $row;
@@ -494,12 +495,13 @@ class Profile
         }
         return $cita;
     }
-    
+
 
     // ---------METODOS DE RECETAR-------- //
 
     // -----Metodo para tomar los los productos segun su nombre----- //
-    public function getValProduct($name){
+    public function getValProduct($name)
+    {
         try {
             $sql = "SELECT precvenprod FROM producto WHERE nomprod = '$name'";
             $result = $this->conexion->query($sql);
@@ -511,22 +513,23 @@ class Profile
                 return "No se encontró el valor unitario";
             }
         } catch (Exception $th) {
-            echo "Error al consultar producto: ". $th->getMessage();
+            echo "Error al consultar producto: " . $th->getMessage();
         }
 
-    } 
+    }
 
     // -----Metodo para guardar una receta---- //
-    public function saveReceta(Profile $data){
-        try{
+    public function saveReceta(Profile $data)
+    {
+        try {
             $a = $this->conexion->prepare("INSERT INTO receta(dnicolrec, dniuserrec, idmasrec, prodrec, cantprodrec, precrec, fecharec, indrec) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            if($a->execute(array($data->dnicol, $data->dni, $data->idmas, $data->prod, $data->cant, $data->prec, $data->date, $data->rec))){
-                return true; 
-            }else{
-                return false; 
+            if ($a->execute(array($data->dnicol, $data->dni, $data->idmas, $data->prod, $data->cant, $data->prec, $data->date, $data->rec))) {
+                return true;
+            } else {
+                return false;
             }
-        }catch(Exception $e){
-            echo "Error al guardar receta: ". $e->getMessage();
+        } catch (Exception $e) {
+            echo "Error al guardar receta: " . $e->getMessage();
         }
     }
 }

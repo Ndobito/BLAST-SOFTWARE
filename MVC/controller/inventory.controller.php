@@ -16,37 +16,39 @@ class InventoryController
 
     public function Inicio()
     {
+        $this->listado();
+    }
+
+    public function listado()
+    {
         // -----Metodos para obtener los datos----- //
         $productos = $this->model->getAllProducts();
         $categorias = $this->model->getAll("categoria");
         $proveedores = $this->model->getAll("proveedor");
-        // -----Buscador----- //
+
+        // -----Metodos para el buscador----- //
         $param = [];
         $resto = "";
-        $condition = "";
         if (isset($_REQUEST["search"])) {
-            $condition = " WHERE prd.nomprod LIKE ?";
+            $resto = "&& (prd.nomprod LIKE ? || prd.desprod LIKE ? || prd.catprod LIKE ? || prv.nomprov LIKE ?)";
+            $param[] = "%" . $_REQUEST["search"] . "%";
+            $param[] = "%" . $_REQUEST["search"] . "%";
+            $param[] = "%" . $_REQUEST["search"] . "%";
             $param[] = "%" . $_REQUEST["search"] . "%";
         }
-
-        $stmt = $this->conexion->prepare("SELECT prd.*, prv.idprov, prv.nomprov, cat.namecat FROM producto as prd
-            INNER JOIN proveedor as prv ON prv.idprov = prd.idprov
-            INNER JOIN categoria as cat ON cat.idcat = prd.catprod
-            $condition");
+        $stmt = $this->conexion->prepare("SELECT prd.*, prv.idprov, prv.nomprov FROM producto as prd, proveedor as prv WHERE prv.idprov = prd.idprov" . $resto);
         $stmt->execute($param);
-
-        $items = [];
+        $productos = [];
         $result = $stmt->get_result();
         while ($item = $result->fetch_assoc()) {
-            $items[] = $item;
+            $productos[] = $item;
         }
-        // -----Vistas-----//
+
+        // -----Estilos----- //
         $style = "<link rel='stylesheet' href='assets/css/style-inventory.css'>";
         require_once "view/head.php";
         require_once 'view/inventory/inventory.php';
-
     }
-
 
     // -----Metodo para vista de nueva categoria----- // 
     public function newCategory()
@@ -190,36 +192,6 @@ class InventoryController
             }
         } else {
             var_dump(empty($_POST['nameCat']));
-        }
-    }
-
-    // -----Metodo para buscar Producto-----//
-    public function buscarProducto()
-    {
-        $searchTerm = $_POST['buscar_inventario'];
-        $productos = $this->model->getAllProducts();
-        
-
-        $filteredcita = array_filter($productos, function ($e) use ($searchTerm) {
-            return (stripos($e['idprod'], $searchTerm) !== false)||
-            (stripos($e['nomprod'], $searchTerm) !== false);
-
-        });
-
-        foreach ($filteredcita as $e) {
-            echo '<tr>';
-            echo '<td>' . $e['idprod'] ?? "Sin definir" . '</td>';
-            echo '<td>' . $e['nomprod'] ?? "Sin definir" . '</td>';
-            echo '<td>' . $e['desprod'] ?? "Sin definir" . '</td>';
-            echo '<td>' . $e['precprod'] ?? "Sin definir" . '</td>';
-            echo '<td>' . $e['precvenprod'] ?? "Sin definir" . '</td>';
-            echo '<td>' . $e['stockprod'] ?? "Sin definir" . '</td>';
-            echo '<td>' . $e['catprod'] ?? "Sin definir" . '</td>';
-            echo '<td>' . $e['idprov'] ?? "Sin definir" . '</td>';
-            echo '<td>' . $e['dniusercit'] ?? "Sin definir" . '</td>';
-            echo '<td><a href="?b=inventory&s=showEditar&idprod=<?= $e["idprod"] ?>"><button class="btn-editar"><i class="fa-solid fa-pen"></i></button></a></td>';
-            echo '<td><a><button class="btn-borrar" onclick="deleteProduct(this.id)" id="<?= $e["idprod"] ?>"><i class="fa-solid fa-trash"></i></button></a></td>';
-            echo '</tr>';
         }
     }
 }

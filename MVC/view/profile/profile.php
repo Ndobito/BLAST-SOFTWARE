@@ -52,16 +52,21 @@
                 <div class="profile-adm container-right user" id="container-right2">
                     <div class="user-information">
                         <h1>Datos</h1>
-                        <form id="form-user-information" action="?b=profile&s=updateUser&id=<?= $user['iduser'] ?>" method="post">
+                        <form id="form-user-information" action="?b=profile&s=updateUser&id=<?= $user['iduser'] ?>"
+                            method="post">
                             <label for="name">Numero de identificacion*</label>
                             <input name="numid" type="number" value="<?php echo $user['dniuser'] ?>" disabled>
                             <label for="name">Nombres*</label>
-                            <input type="text" name="name" id="ctNameUser" value="<?php echo $user['nameuser'] ?? "Sin definir"; ?>" disabled>
+                            <input type="text" name="name" id="ctNameUser"
+                                value="<?php echo $user['nameuser'] ?? "Sin definir"; ?>" disabled>
                             <label for="surname">Apellidos *</label>
-                            <input type="text" name="surname" id="ctSurNameUser" value="<?php echo $user['surnameuser'] ?? "Sin definir"; ?>" disabled>
-                            <input type="hidden" name="nick" id="ctSurNameUser" value="<?php echo $user['nickuser'] ?? "Sin definir"; ?>" disabled>
+                            <input type="text" name="surname" id="ctSurNameUser"
+                                value="<?php echo $user['surnameuser'] ?? "Sin definir"; ?>" disabled>
+                            <input type="hidden" name="nick" id="ctSurNameUser"
+                                value="<?php echo $user['nickuser'] ?? "Sin definir"; ?>" disabled>
                             <label for="address">Direccion *</label>
-                            <input type="text" name="addres" id="ctAdrUser" value="<?php echo $user['diruser']; ?>" disabled>
+                            <input type="text" name="addres" id="ctAdrUser" value="<?php echo $user['diruser']; ?>"
+                                disabled>
                             <label for="zone">Zona: *</label>
                             <select name="zone" id="ctZone" disabled>
                                 <option <?php echo ($user['zoneuser'] <> "urbana" && $user['zoneuser'] <> "rural") ? "selected" : "" ?> disabled></option>
@@ -73,15 +78,18 @@
                             <div>
                                 <div>
                                     <label for="email">Correo Eletrónico *</label>
-                                    <input type="text" name="email" id="ctEmailUser" value="<?php echo $user['emailuser']; ?>" disabled>
+                                    <input type="text" name="email" id="ctEmailUser"
+                                        value="<?php echo $user['emailuser']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="phone">Numero de Celular 1 *</label>
-                                    <input type="number" name="phone" id="ctNumCelUser" value="<?php echo $user['phoneuser']; ?>" disabled>
+                                    <input type="number" name="phone" id="ctNumCelUser"
+                                        value="<?php echo $user['phoneuser']; ?>" disabled>
                                 </div>
                                 <div>
                                     <label for="ctNumCel2">Numero de Celular 2</label>
-                                    <input type="number" name="phone2" id="ctNumCel2" value="<?php echo $user['phonealtuser']; ?>" disabled>
+                                    <input type="number" name="phone2" id="ctNumCel2"
+                                        value="<?php echo $user['phonealtuser']; ?>" disabled>
 
                                 </div>
                             </div>
@@ -201,8 +209,8 @@
                                     <td>" . $colaborador['emailuser'] . "</td>
                                     <td>" . $colaborador['diruser'] . "</td>
                                     <td>" . $colaborador['zoneuser'] . "</td>
-                                    <td>" . $colaborador['phoneuser'] . "</td>
-                                    <td>" . $colaborador['phonealtuser'] . "</td>";
+                                    <td>" . ($colaborador['phoneuser'] ?? 'Sin definir') . "</td>
+                                    <td>" . ($colaborador['phonealtuser'] ?? 'Sin definir') . "</td>";
                             echo "
                                         <td>" . (($colaborador['privileges'] == $privRecepcionist) ? 'Recepcionista' : (($colaborador['privileges'] == $privDoctor) ? 'Veterinario(a)' : '')) . "</td>";
                             echo "
@@ -245,22 +253,22 @@
                         ';
                     }
 
-                    if($privilegios == $privDoctor){
+                    if ($privilegios == $privDoctor) {
                         echo '
                         <form method="POST" action="?b=profile&s=buscarClientes" onsubmit="return false;">
                             <div class="input-group">
                                 <input type="text" class="form-control search-input" placeholder="Buscar cliente" name="buscar_cliente" id="searchcli2">                                
                             </div>
                         </form>
-                        '; 
-                    }else{
+                        ';
+                    } else {
                         echo '
                         <form method="POST" action="?b=profile&s=buscarClientes"  onsubmit="return false;">
                             <div class="input-group">
                                 <input type="text" class="form-control search-input" placeholder="Buscar cliente" name="buscar_cliente" id="searchcli">                                
                             </div>
                         </form>
-                        '; 
+                        ';
                     }
 
                     echo '          
@@ -345,24 +353,25 @@
                             }
                             ?>
                             <?php
+
                             if ($privilegios == $privRecepcionist || $privilegios == $privDoctor || $privilegios == $privAdmin) {
-                                if($privilegios === $privAdmin){
+
+                                if ($privilegios === $privAdmin) {
                                     echo " 
                                     <form method='POST' action='?b=profile&s=buscarMascotas'  onsubmit='return false;'>
                                         <div class='input-group'>
                                             <input type='text' class='form-control search-input' placeholder='Buscar mascota' name='buscar_mascota' id='searchmas'>
                                         </div>
                                     </form>";
-                                }
-
-                                if($privilegios === $privRecepcionist){
+                                } elseif ($privilegios === $privRecepcionist) {
                                     echo " 
                                     <form method='POST' action='?b=profile&s=buscarMascotas3'  onsubmit='return false;'>
                                         <div class='input-group'>
                                             <input type='text' class='form-control search-input' placeholder='Buscar mascota' name='buscar_mascota' id='searchmas3'>
                                         </div>
-                                    </form>"; 
-                                }else{
+                                    </form>";
+
+                                } else {
                                     echo " 
                                     <form method='POST' action='?b=profile&s=buscarMascotas2'  onsubmit='return false;'>
                                         <div class='input-group'>
@@ -374,7 +383,6 @@
                                 echo "";
                             }
                             ?>
-
                         </div>
                     </div>
                     <div class="table-wrapper">
@@ -416,8 +424,8 @@
                                     }
                                     echo '</td>';
                                     if ($privilegios == $privDoctor || $privilegios == $privUser) {
-                                        
-                                    }else{
+
+                                    } else {
                                         echo '
                                         <td class="icons1">
                                             <a href="?b=profile&s=optionEditRedirec&p=mascota&idmas=' . $m['idmas'] . '">
@@ -426,7 +434,7 @@
                                         </td>';
                                     }
                                     if ($privilegios == $privDoctor || $privilegios == $privUser || $privilegios == $privRecepcionist) {
-                                    }else{
+                                    } else {
                                         echo '
                                 <td class="icons2">
                                     <a onclick=\'alertProfile(this.id, "mascota", "' . addslashes($m['nommas']) . '")\' id="' . $m['idmas'] . '">
@@ -456,26 +464,26 @@
                                     <h1>Datos del Colaborador</h1>
                                     <br><br>
                                     <div class='colaborador'>";
-                                    if($privilegios == $privDoctor){
-                                        echo "
+                    if ($privilegios == $privDoctor) {
+                        echo "
                                         <div>
                                             <div>
-                                                <input type='number' name='numidcol' id='numIdColaborador' readonly value='".$user['dniuser']."' placeholder='Numero de identificacion del colaborador' required>
+                                                <input type='number' name='numidcol' id='numIdColaborador' readonly value='" . $user['dniuser'] . "' placeholder='Numero de identificacion del colaborador' required>
                                             </div>
                                         <input readonly type='date' name='date' id='date-receta' placeholder='Fecha Actual' required>
                                         </div>
-                                        "; 
-                                    }else{
-                                        echo "
+                                        ";
+                    } else {
+                        echo "
                                         <div>
                                         <div>
                                             <input type='number' name='numidcol' id='numIdColaborador' placeholder='Numero de identificacion del colaborador' required>
                                         </div>
                                         <input readonly type='date' name='date' id='date-receta' placeholder='Fecha Actual' required>
                                     </div>
-                                        "; 
-                                    }
-                                    echo "
+                                        ";
+                    }
+                    echo "
                                     </div>
                                     <br><br><br><br>
                                     <h1>Datos de Usuario y Paciente</h1>
@@ -486,14 +494,14 @@
                                                 <input type='number' name='dniuser' id='input-receta' autocomplete='off' placeholder='Numero de identificacion del usuario' required>
                                                 <select name='selMas' id='input-receta' required>
                                                 <option disabled selected>Seleccione una opcion</option>";
-                                                foreach ($mascota as $m) {
-                                                    foreach ($users as $r) {
-                                                        if ($r['iduser'] == $m['idcli']) {
-                                                            echo "<option value='".$m['idmas']."'>" . $m['nommas'] . " - " . $r['dniuser'] . "</option>";
-                                                        }
-                                                    }
-                                                }
-                                                echo "
+                    foreach ($mascota as $m) {
+                        foreach ($users as $r) {
+                            if ($r['iduser'] == $m['idcli']) {
+                                echo "<option value='" . $m['idmas'] . "'>" . $m['nommas'] . " - " . $r['dniuser'] . "</option>";
+                            }
+                        }
+                    }
+                    echo "
                                             </select>
                                             </div>
                                         </div>
@@ -518,24 +526,24 @@
                                             </tr>
                                         </thead>
                                         <tbody id='resultados-producto'>";
-                                            foreach ($productos as $key => $producto) {
-                                                if($producto['stockprod'] <> 0){
-                                                    echo "<tr>
+                    foreach ($productos as $key => $producto) {
+                        if ($producto['stockprod'] <> 0) {
+                            echo "<tr>
                                                     <td>" . $producto['idprod'] . "</td>
                                                     <td>" . ($producto['nomprod'] ?? 'Sin definir') . "</td>
                                                     <td>" . ($producto['desprod'] ?? 'Sin definir') . "</td>
                                                     <td>" . ($producto['precvenprod'] ?? 'Sin definir') . "</td>
                                                     <td>";
-                                                foreach ($categorias as $categoria) {
-                                                    echo ($categoria['idcat'] === $producto['catprod']) ? $categoria['namecat'] : '';
-                                                }
-                                                echo "</td>
+                            foreach ($categorias as $categoria) {
+                                echo ($categoria['idcat'] === $producto['catprod']) ? $categoria['namecat'] : '';
+                            }
+                            echo "</td>
                                                     <td>" . ($producto['stockprod'] ?? 'Sin definir') . "</td>";
-                                                echo "<td><input type='checkbox' name='recetar'></td>
+                            echo "<td><input type='checkbox' name='recetar'></td>
                                                 </tr>";
-                                                }
-                                            }
-                        echo "
+                        }
+                    }
+                    echo "
                                         </tbody>
                                     </table>
                                     <br><br>
@@ -571,8 +579,8 @@
                 <div class=\'title\'>
                     <h1>Solicitud de Citas</h1><br><br>
                 </div>';
-                    if($privilegios == $privUser){
-                    }else{
+                    if ($privilegios == $privUser) {
+                    } else {
                         echo '
                         <div class="form-appointment colaborador" >
                     <div onclick="cleanForm()"><span>Limpiar</span><i class="fa-solid fa-delete-left"></i></div>
@@ -595,14 +603,14 @@
                                     <div><label for="selcol">Asignar Colaborador</label></div>
                                     <div><select name="selcol" required>
                                     <option selected disabled>Seleccione una opcion</option>';
-                    foreach ($users as $col) {
-                        $value2 = ($col['privileges'] == Privilegios::Doctor->get()) ? $col['privileges'] : "";
-                        $user2 = isset($roles[$value2]) ? $roles[$value2] : "";
-                        if (!empty($user2)) {
-                            echo '<option value="' . $col['iduser'] . '">' . $col['nameuser'] . ' ' . $col['surnameuser'] . '</option>';
+                        foreach ($users as $col) {
+                            $value2 = ($col['privileges'] == Privilegios::Doctor->get()) ? $col['privileges'] : "";
+                            $user2 = isset($roles[$value2]) ? $roles[$value2] : "";
+                            if (!empty($user2)) {
+                                echo '<option value="' . $col['iduser'] . '">' . $col['nameuser'] . ' ' . $col['surnameuser'] . '</option>';
+                            }
                         }
-                    }
-                    echo '</select></div>
+                        echo '</select></div>
                                 </div>
                             </div>
                             <div class="input-group" id="assignButtonContainer">
@@ -611,28 +619,29 @@
                         </form>
                     </div>
                 </div>
-                        '; 
+                        ';
                     }
-                echo '
+                    echo '
                 <div class="table-container">
                     <div class="form-container">
                         <div class="input-group">
                             <a href="?b=bookappointment"><button class="btn btn-default" type="submit">Solicitar servicio</button></a>
                         </div>';
 
-                        if($privilegios == $privUser){}else{
-                            echo '
+                    if ($privilegios == $privUser) {
+                    } else {
+                        echo '
                         <form method="POST" action="?b=profile&s=buscarCita">
                             <div class="input-group">
                                 <input type="text" class="form-control search-input" placeholder="Buscar cita" name="buscar_cita" id="searchcita">
                             </div>
-                        </form>'; 
-                        }
-                        echo '
+                        </form>';
+                    }
+                    echo '
                     </div>
                 </div>
                 <div class="table-wrapper">';
-                    if($privilegios == $privUser){
+                    if ($privilegios == $privUser) {
                         $userDNI = $user['dniuser'];
                         $citasConNombresUsuarios = array();
                         foreach ($cita as $c) {
@@ -700,37 +709,37 @@
                                     <td>' . $c['nombreUsuarioAsignado'] . '</td>
                                 </tr>';
                         }
-                    }else{
+                    } else {
                         $citasConNombresUsuarios = array();
-                    foreach ($cita as $c) {
-                        $usuarioAsignado = "No asignado";
-                        foreach ($users as $colcit) {
-                            if (!empty($c['idcolcit']) && $c['idcolcit'] == $colcit['iduser']) {
-                                $usuarioAsignado = $colcit['nameuser'] . " " . $colcit['surnameuser'];
-                                break;
+                        foreach ($cita as $c) {
+                            $usuarioAsignado = "No asignado";
+                            foreach ($users as $colcit) {
+                                if (!empty($c['idcolcit']) && $c['idcolcit'] == $colcit['iduser']) {
+                                    $usuarioAsignado = $colcit['nameuser'] . " " . $colcit['surnameuser'];
+                                    break;
+                                }
                             }
+                            $citasConNombresUsuarios[] = array(
+                                'idcita' => $c['idcita'],
+                                'dniusercit' => $c['dniusercit'],
+                                'nameusercit' => $c['nameusercit'],
+                                'phoneusercit' => $c['phoneusercit'],
+                                'emailusercit' => $c['emailusercit'],
+                                'namemascit' => $c['namemascit'],
+                                'espmascit' => $c['espmascit'],
+                                'genmascit' => $c['genmascit'],
+                                'motcit' => $c['motcit'],
+                                'servicecit' => $c['servicecit'],
+                                'datesolcit' => date('d-m-Y', strtotime($c['datesolcit'])),
+                                'statecit' => $c['statecit'],
+                                'datecit' => ($c['datecit'] == NULL ? "No asignado" : date('d-m-Y', strtotime($c['datecit']))),
+                                'hourcit' => ($c['hourcit'] == NULL ? "No asignado" : $c['hourcit']),
+                                'nombreUsuarioAsignado' => $usuarioAsignado,
+                            );
                         }
-                        $citasConNombresUsuarios[] = array(
-                            'idcita' => $c['idcita'],
-                            'dniusercit' => $c['dniusercit'],
-                            'nameusercit' => $c['nameusercit'],
-                            'phoneusercit' => $c['phoneusercit'],
-                            'emailusercit' => $c['emailusercit'],
-                            'namemascit' => $c['namemascit'],
-                            'espmascit' => $c['espmascit'],
-                            'genmascit' => $c['genmascit'],
-                            'motcit' => $c['motcit'],
-                            'servicecit' => $c['servicecit'],
-                            'datesolcit' => date('d-m-Y', strtotime($c['datesolcit'])),
-                            'statecit' => $c['statecit'],
-                            'datecit' => ($c['datecit'] == NULL ? "No asignado" : date('d-m-Y', strtotime($c['datecit']))),
-                            'hourcit' => ($c['hourcit'] == NULL ? "No asignado" : $c['hourcit']),
-                            'nombreUsuarioAsignado' => $usuarioAsignado,
-                        );
-                    }
 
-                    // Ahora, crea la tabla utilizando el arreglo $citasConNombresUsuarios
-                    echo '<table class=\'table-container content-table\'>
+                        // Ahora, crea la tabla utilizando el arreglo $citasConNombresUsuarios
+                        echo '<table class=\'table-container content-table\'>
                             <thead>
                                 <tr>
                                     <th>Id</th>
@@ -751,8 +760,8 @@
                                 </tr>
                             </thead>
                             <tbody id="resultados-cita">';
-                    foreach ($citasConNombresUsuarios as $c) {
-                        echo '<tr onclick="getCita(this)" class="tr-cita" data-id="' . $c['idcita'] . '" data-dni="' . $c['dniusercit'] . '">
+                        foreach ($citasConNombresUsuarios as $c) {
+                            echo '<tr onclick="getCita(this)" class="tr-cita" data-id="' . $c['idcita'] . '" data-dni="' . $c['dniusercit'] . '">
                                 <td>' . $c['idcita'] . '</td>
                                 <td>' . $c['dniusercit'] . '</td>
                                 <td>' . $c['nameusercit'] . '</td>
@@ -769,9 +778,9 @@
                                 <td>' . $c['hourcit'] . '</td>
                                 <td>' . $c['nombreUsuarioAsignado'] . '</td>
                             </tr>';
+                        }
                     }
-                    }
-                    
+
                     echo '</tbody></table>
                     </div>
                 </div>';
@@ -784,7 +793,7 @@
                     echo '<div class="title">';
                     echo '<h1>Listado de Recetas</h1><br><br>';
                     echo '</div>';
-                    
+
                     echo '<div class="table-wrapper">';
                     echo '<table class="table-container content-table">';
                     echo '<thead>';
@@ -795,7 +804,7 @@
                     echo '<th>Nombre Mascota</th>';
                     echo '<th>Productos</th>';
                     echo '<th>Valor</th>';
-                    echo '<th>Fecha Expedición</th>'; 
+                    echo '<th>Fecha Expedición</th>';
                     echo '<th>Indicaciones</th>';
                     echo '</tr>';
                     echo '</thead>';
@@ -807,7 +816,7 @@
                         echo '<td>' . $r['dnicolrec'] . '</td>';
                         echo '<td>' . $r['dniuserrec'] . '</td>';
                         foreach ($mascota as $masrec) {
-                            if($masrec['idmas'] == $r['idmasrec']){
+                            if ($masrec['idmas'] == $r['idmasrec']) {
                                 echo '<td>' . $masrec['nommas'] . '</td>';
                             }
                         }
@@ -829,8 +838,8 @@
         </main>
 
         <script>
-    
-</script>
+
+        </script>
     </div>
     <!-- Alerts -->
     <script src="assets/Javascript/alert-profile.js"></script>

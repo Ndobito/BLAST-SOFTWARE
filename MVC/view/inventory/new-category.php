@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="../../assets/css/style-editar.css">
     <title>editar producto</title>
+
 <body>
     <header>
         <div class="imagen-logo">
@@ -31,8 +32,7 @@
             </div>
             <div class="input">
                 <label for="nombre">Descripcion:</label>
-                <input type="text" id="desCat" name="desCat"
-                    placeholder="Agrega  la descripcion del producto">
+                <input type="text" id="desCat" name="desCat" placeholder="Agrega  la descripcion del producto">
             </div>
             <div class="button">
                 <button class="btn-save" type="submit">Guardar</button>

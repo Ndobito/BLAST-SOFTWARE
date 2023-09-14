@@ -139,20 +139,5 @@ class ProductModel
         return preg_match('/[a-zA-Z]/', $number) === 1 ? true : false;
     }
 
-    // -----Metodo del para el buscador de productos en inventario----- //
-    public function buscarProducto($buscar)
-    {
-        $query = "SELECT * FROM producto WHERE idprov LIKE '%$buscar%'";
-        $result = $this->pdo->query($query);
-        $producto = array();
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $producto[] = $row;
-            }
-        }
-        return $producto;
-    }
-
 }
 ?>

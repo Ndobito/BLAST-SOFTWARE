@@ -72,114 +72,137 @@ a{
 
 /* Container Cards */
 
-.container-cards{
+/* Estilos para las tarjetas usando las variables definidas en :root */
+.container-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 40px 20px 40px 20px;
-    background: rgb(241,252,255);
-    background: linear-gradient(180deg, rgba(241,252,255,1) 5%, rgba(172,213,222,1) 100%);
-    gap: 20px;
-}
-
-.container-cards .card{
-    width: 300px;
-    border: 2px solid var(--color-4);
-    background: transparent;
-    padding: 10px;
-}
-
-.container-cards .card h1{
+    gap: 100px;
+    padding: 40px;
+    background: linear-gradient(
+      180deg,
+      var(--color-1) 5%, 
+      var(--color-8) 100%
+    );
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 600px;
+    background: var(--color-5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     text-align: center;
-    margin: 30px 0px 30px 0px;
+  }
+  
+  .card h1 {
+    margin: 20px 0;
     text-transform: uppercase;
-    font-family: var(--font-2);
-    letter-spacing: 3px;
-}
-
-.container-cards .card p{
+    color: var(--color-4); 
     font-family: var(--font-1);
-    padding: 10px;
-}
-
-.container-cards .card:hover{
-    transition: 1s ease;
+    transition: color 0.3s ease;
+  }
+  
+  .card p {
+    color: var(--color-7); 
+    font-family: var(--font-2);
+    line-height: 1.5;
+    transition: color 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     background: var(--color-10);
-    -webkit-transition: 1s ease;
-    -moz-transition: 1s ease;
-    -ms-transition: 1s ease;
-    -o-transition: 1s ease;
-    color: var(--color-5);
-}
-
-
+  }
+  
+  .card:hover h1 {
+    color: var(--color-5); 
+  }
+  
+  .card:hover p {
+    color: var(--color-1); 
+  }  
 
 /* Container Team */
 
-.container-team{
-    padding: 20px;
-    background: var(--color-8);
-}
-
-.container-team > div:nth-child(1) h1{
-    font-family: var(--font-2);
-    font-size: 25px;
+/* Estilos para la presentación del personal de trabajo */
+.container-team {
+    padding: 40px 0;
+    background: linear-gradient(
+      180deg,
+      var(--color-8) 0%, /* Cambio de gradiente de color de fondo */
+      var(--color-1) 100%
+    );
     text-align: center;
-}
-
-/* Container of Person Team */
-
-.container-team-person{
-    padding-top: 30px;
-}
-
-.container-team-person{
+  }
+  
+  .container-team h1 {
+    font-family: var(--font-2);
+    font-size: 30px;
+    color: var(--color-4);
+    margin-bottom: 40px;
+  }
+  
+  /* Estilos para el contenedor del equipo de trabajo */
+  .container-team-person {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.container-team-person > div > div{
-    width: 100%;
-    height: 350px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    background: var(--color-6);
-    overflow: hidden;
-    margin-bottom: 50px;
-}
-
-.container-team-person > div > div img{
-    width: 70%;
-    height: 110%;
-}
-
-.container-team-person > div > div:hover img{
-    margin-top: -15px;
-    transition: all .5s ease;
-    -webkit-transition: all .5s ease;
-    -moz-transition: all .5s ease;
-    -ms-transition: all .5s ease;
-    -o-transition: all .5s ease;
-}
-
-.container-team-person > div{
-    font-family: var(--font-1);
+    gap: 20px;
+  }
+  
+  /* Estilos para cada persona del equipo */
+  .container-team-person > div {
+    background: var(--color-5);
+    padding: 20px;
+    border-radius: 10px;
     text-align: center;
-}
-
-.container-team-person > div h2{
-    margin-top: 20px;
-}
-
-.container-team-person > div p{
-    margin-bottom: 40px;
-}
-
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 370px;
+    width: 100%;
+  }
+  
+  .container-team-person > div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .container-team-person > div > div {
+    width: 100%;
+    height: 270px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 20px;
+  }
+  
+  .container-team-person > div > div img {
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .container-team-person > div:hover img {
+    transform: scale(1.1);
+  }
+  
+  .container-team-person > div h2 {
+    font-family: var(--font-2);
+    font-size: 20px;
+    color: var(--color-4);
+    margin: 10px 0;
+  }
+  
+  .container-team-person > div p {
+    font-family: var(--font-1);
+    font-size: 16px;
+    color: var(--color-7);
+    margin-bottom: 20px;
+  }
+  
 /* Footer */
 
 footer{
@@ -273,9 +296,9 @@ footer{
 
 @media (min-width: 426px){
 
-    /* Container Team Person */
-    .container-team-person > div{
-        width: 70%;
+    .container-team-person{
+        display: flex;
+        flex-direction: column;
     }
     
     /*Footer Bottom*/
@@ -335,7 +358,6 @@ footer{
 
     .container-team-person > div{
         width: 400px;
-        height: 520px;
     }
      
     /* Footer Top*/
@@ -364,7 +386,7 @@ footer{
     /* Container Cards */
 
     .container-cards{
-        gap: 40px;
+        gap: 100px;
     }
 
     .container-cards .card{
@@ -408,22 +430,19 @@ footer{
     
 
     /* Container Cards */
-    .container-cards{
-        gap: 100px;
-    }
 
     .container-cards .card{
-        width: 500px;
+        width: 550px;
         margin-top: 100px;
         margin-bottom: 100px;
     }
 
     .container-cards .card h1{
-        font-size: 40px;
+        font-size: 30px;
     }
 
     .container-cards .card p{
-        font-size: 20px;
+        font-size: 17px;
     }
 
     /* Container Information */
