@@ -1,1 +1,6 @@
-CUMPLIMINETO DE LOS FALTANTES - 100%
+INDICACIONES GENERALES
+
+BASE DE DATOS 
+
+  + Dentro de su servidor local cree la base de datos con el nombre de "veterinaria" e importe el documento llamado " " ubicado en lib/database/...
+  + Para acceder a cada uno de los roles (cliente, recepcionista, colaborador y administrador) dirijase al documento de texto "Credenciales.txt" ubicado en lib/privileges/...
