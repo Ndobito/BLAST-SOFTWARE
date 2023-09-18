@@ -69,7 +69,6 @@ class ProductModel
                     $data->descat,
                 )
             );
-
             if ($result) {
                 return true;
             } else {
@@ -84,15 +83,7 @@ class ProductModel
     public function actualizar($data)
     {
         try {
-            $sql = 'UPDATE producto SET
-                nomprod = ?,
-                desprod = ?,
-                precprod = ?,
-                precvenprod = ?,
-                stockprod = ?,
-                catprod = ?,
-                idprov = ?
-                WHERE idprod = ?';
+            $sql = 'UPDATE producto SET nomprod = ?,desprod = ?,precprod = ?,precvenprod = ?,stockprod = ?,catprod = ?,idprov = ? WHERE idprod = ?';
             $this->pdo->prepare($sql)
                 ->execute(
                     array(

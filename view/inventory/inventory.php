@@ -13,12 +13,10 @@
             <div class="container-button">
                 <div class="search-bar">
                     <div class="search">
-                        <a href="?b=profile&s=Inicio&p=admin"><button class="btn-regresar"><i
-                                    class="fa-solid fa-arrow-left"></i></button></a>
+                        <a href="?b=profile&s=Inicio&p=admin"><button class="btn-regresar"><i class="fa-solid fa-arrow-left"></i></button></a>
                         <form id="buscador-form" action="?b=inventory&s=listado" method="get">
                             <input id="buscador" name="buscador" type="text" placeholder="Buscar">
-                            <button class="btn-buscar" type="submit"><i
-                                    class="fa-solid fa-magnifying-glass"></i></button>
+                            <button class="btn-buscar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                             <script>
                                 const bf = document.querySelector("#buscador-form");
                                 const bi = document.querySelector("#buscador");
@@ -71,25 +69,12 @@
                                 foreach ($productos as $e) {
                                     ?>
                                     <tr>
-                                        <td>
-                                            <?= $e["idprod"] ?>
-                                        </td>
-                                        <td>
-                                            <?= $e["nomprod"] ?>
-                                        </td>
-                                        <td>
-                                            <?= $e["desprod"] ?>
-                                        </td>
-
-                                        <td>
-                                            <?= $e["precprod"] ?>
-                                        </td>
-                                        <td>
-                                            <?= $e["precvenprod"] ?>
-                                        </td>
-                                        <td>
-                                            <?= $e["stockprod"] ?>
-                                        </td>
+                                        <td><?= $e["idprod"] ?></td>
+                                        <td><?= $e["nomprod"] ?></td>
+                                        <td><?= $e["desprod"] ?></td>
+                                        <td><?= $e["precprod"] ?></td>
+                                        <td><?= $e["precvenprod"] ?></td>
+                                        <td><?= $e["stockprod"] ?></td>
                                         <td>
                                             <?php
                                             $categoriaEncontrada = false;
@@ -120,19 +105,14 @@
                                             }
                                             ?>
                                         </td>
-                                        <td><a href="?b=inventory&s=showEditar&idprod=<?= $e["idprod"] ?>"><button
-                                                    class="btn-editar"><i class="fa-solid fa-pen"></i></button></a></td>
-
-                                        <td><a><button class="btn-borrar" onclick="deleteProduct(this.id)"
-                                                    id="<?= $e["idprod"] ?>"><i class="fa-solid fa-trash"></i></button></a></td>
+                                        <td><a href="?b=inventory&s=showEditar&idprod=<?= $e["idprod"] ?>"><button class="btn-editar"><i class="fa-solid fa-pen"></i></button></a></td>
+                                        <td><a><button class="btn-borrar" onclick="deleteProduct(this.id)" id="<?= $e["idprod"] ?>"><i class="fa-solid fa-trash"></i></button></a></td>
                                     </tr>
                                     <?php
                                 }
                             } else {
                                 ?>
-                                <tr>
-                                    <td colspan="11" style="text-align: center;">No hay elementos</td>
-                                </tr>
+                                <tr><td colspan="11" style="text-align: center;">No hay elementos</td></tr>
                                 <?php
                             }
                             ?>

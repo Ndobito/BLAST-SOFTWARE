@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +7,7 @@
     <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="../../assets/css/style-editar.css">
     <title>editar producto</title>
-
+</head>
 <body>
     <header>
         <div class="imagen-logo">
@@ -39,7 +38,7 @@
             </div>
         </form>
     </div>
-    </head>
+    
     <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
 </body>
 

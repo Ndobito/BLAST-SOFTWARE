@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/style-editar.css">
     <title>editar producto</title>
-
+</head>
 <body>
     <header>
         <div class="imagen-logo">
@@ -78,7 +78,6 @@
             </div>
         </form>
     </div>
-    </head>
 </body>
 <script src="https://kit.fontawesome.com/7fa9974a48.js" crossorigin="anonymous"></script>
 

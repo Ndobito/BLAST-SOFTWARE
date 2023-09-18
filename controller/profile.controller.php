@@ -882,6 +882,7 @@ actualizada con exito!")->send();
         return $this->object->getValProduct($name);
     }
 
+    // ----Metodo para Guardar una nueva receta----- //
     public function saveReceta()
     {
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-09-2023 a las 18:06:30
+-- Tiempo de generación: 18-09-2023 a las 18:22:35
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -33,15 +33,6 @@ CREATE TABLE `categoria` (
   `descat` varchar(255) NOT NULL COMMENT 'Descripcion de la categoria'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `categoria`
---
-
-INSERT INTO `categoria` (`idcat`, `namecat`, `descat`) VALUES
-(1, 'Medicamentos', 'Productos de formulacion medica'),
-(2, 'Purinas', 'Productos de alimento para animales'),
-(3, 'Juguetes', 'Productos de entretenimiento para mascotas');
-
 -- --------------------------------------------------------
 
 --
@@ -67,16 +58,6 @@ CREATE TABLE `cita` (
   `statecit` varchar(255) NOT NULL COMMENT 'Estado de la cita'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `cita`
---
-
-INSERT INTO `cita` (`idcita`, `dniusercit`, `nameusercit`, `addresusercit`, `phoneusercit`, `emailusercit`, `namemascit`, `espmascit`, `genmascit`, `motcit`, `servicecit`, `datesolcit`, `datecit`, `hourcit`, `idcolcit`, `statecit`) VALUES
-(2, 1029981256, 'Julian Muñoz', 'Calle 5', '3133215141', 'jcuellarmenza@gmail.com', 'Manolo', 'canino', 'Macho', 'dolores estomacales por parte del paciente', 'cita', '2023-08-25', '2023-08-26', '07:30:00', 6, 'Asignado'),
-(3, 1026566645, 'Thomas Matias Cuellar Menza', 'La plata', '3142757762', 'thomasmatiascuellarmenza@gmail.com', 'Sol', 'felino', 'Hembra', 'Presenta caida del pelo', 'laboratorio', '2023-08-28', '2023-09-15', '08:30:00', 6, 'Asignado'),
-(4, 1026566645, 'Thomas Matias Cuellar Menza', 'Calle 8 la Plata', '3224091130', 'thomas123@gmail.com', 'Sol', 'felino', 'Hembra', 'Dolor en las garras', 'cita', '2023-09-05', '2023-08-26', '08:30:00', 6, 'Asignado'),
-(5, 1026566645, 'Thomas matias Cuellar Menza', 'l aplata', '315165131', 'hhbdw@gmail.com', 'Sol', 'felino', 'Hembra', 'caida de pelo', 'laboratorio', '2023-09-05', '2023-08-26', '08:30:00', 13, 'Asignado');
-
 -- --------------------------------------------------------
 
 --
@@ -91,14 +72,6 @@ CREATE TABLE `mascota` (
   `espmas` varchar(255) NOT NULL COMMENT 'Especie de la mascota',
   `idcli` int(11) NOT NULL COMMENT 'FK de cliente(idcli)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `mascota`
---
-
-INSERT INTO `mascota` (`idmas`, `nommas`, `edadmas`, `genmas`, `espmas`, `idcli`) VALUES
-(9, 'Manolo', '2 años', 'Macho', 'canino', 9),
-(13, 'Sol', '1 mes', 'Hembra', 'felino', 11);
 
 -- --------------------------------------------------------
 
@@ -117,17 +90,6 @@ CREATE TABLE `producto` (
   `idprov` int(11) NOT NULL COMMENT 'FK de proveedor(idprov)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `producto`
---
-
-INSERT INTO `producto` (`idprod`, `nomprod`, `desprod`, `precprod`, `precvenprod`, `stockprod`, `catprod`, `idprov`) VALUES
-(8, 'Ivermectina', 'Producto desparasitante', 3000, 4500, 23, 1, 2),
-(9, 'Hueso de hule', 'Juguete para caninos', 2500, 5000, 12, 3, 2),
-(10, 'Neguón', 'Productos desparacitante de uso recetario', 10800, 15000, 23, 1, 2),
-(11, 'Purina Dog Chow', 'Purina para caninos ', 4000, 6000, 8, 2, 5),
-(12, 'Collar para gatos', 'Collares para gatos', 5000, 6800, 22, 3, 5);
-
 -- --------------------------------------------------------
 
 --
@@ -136,19 +98,11 @@ INSERT INTO `producto` (`idprod`, `nomprod`, `desprod`, `precprod`, `precvenprod
 
 CREATE TABLE `proveedor` (
   `idprov` int(11) NOT NULL COMMENT 'Numero Identificador del Proveedor',
-  `nomprov` varchar(255) NOT NULL,
+  `nomprov` varchar(255) NOT NULL COMMENT 'Nombre del proveedor',
   `dirprov` varchar(255) NOT NULL COMMENT 'Direccion del Proveedor',
   `emaprov` varchar(255) NOT NULL COMMENT 'Correo electronico del proveedor',
   `telprov` varchar(255) NOT NULL COMMENT 'Numero de telefono del proveedor'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `proveedor`
---
-
-INSERT INTO `proveedor` (`idprov`, `nomprov`, `dirprov`, `emaprov`, `telprov`) VALUES
-(2, 'alejandro', 'calle 8', 'jcuellarmenza@gmail.com', '3133215141'),
-(5, 'Autoservicio El Centro', 'El centro ', 'elcentro@gmail.com', '3156895689');
 
 -- --------------------------------------------------------
 
@@ -162,6 +116,7 @@ CREATE TABLE `receta` (
   `dniuserrec` int(11) NOT NULL COMMENT 'Numero de documento del cliente al que se le receta. ',
   `idmasrec` int(11) NOT NULL COMMENT 'Id de la mascota a la que se le receta',
   `prodrec` varchar(255) NOT NULL COMMENT 'Productos seleccionados en la receta. ',
+  `cantprodrec` varchar(255) NOT NULL COMMENT 'Cantidad de productos seleccionados\r\n',
   `precrec` int(11) NOT NULL COMMENT 'Cantidades seleccionadas en la receta',
   `fecharec` varchar(255) NOT NULL COMMENT 'Fecha de generación de la receta',
   `indrec` varchar(255) NOT NULL COMMENT 'Procedimiento que se le realiza a la mascota'
@@ -194,12 +149,9 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`iduser`, `dniuser`, `nameuser`, `surnameuser`, `nickuser`, `passuser`, `emailuser`, `diruser`, `zoneuser`, `phoneuser`, `phonealtuser`, `privileges`) VALUES
 (2, 321987456, 'Karol Juliana', 'Navia Torres', 'Kn1232', '0273832d1b31e0e306a76afa2da0948d', 'karoljuli12@gmail.com', 'Calle 3 # 12-34', 'urbana', '3128569856', '', 2),
-(4, 1029981035, 'Jose Alejandro', 'Cuellar Menza', 'Asalejo1', 'd00cb1987c6c69dc665e046a11dccc6b', 'jcuellarmenza@gmail.com', 'calle 8 # 6-87', 'rural', '3133215141', '3224091130', 8),
-(6, 1234567890, 'Ronaldo Stiven ', 'Rosero ', 'Ronald07', 'fff48e1309cc9939c07a1e44fd537543', 'ronalxd07@gmail.com', 'La plata', 'urbana', '3125469874', '', 4),
-(7, 83256076, 'Diever ', 'Cuellar Cabrera', 'Diever07', 'ada3be3334966b18f1d6e7ebab799849', 'diever2018@gmail.com', 'Guamal', 'rural', '3208486109', '3208486109', 2),
-(9, 1029981256, 'Julian ', 'Muñoz', 'Guanki', 'a0967dfb810d9c4fad5035cc452a3581', 'guanki07@gmail.com', 'La plata', 'urbana', '3125698749', '', 1),
-(11, 1026566645, 'Thomas Matias ', 'Cuellar Menza', 'Thomas123', 'a7397d8d7e79daa0609c1e92782712f7', 'jcuellarmenza@gmail.com', 'Vereda la reforma', 'rural', '3145757762', '3145757762', 1),
-(13, 2147483647, 'Juan David ', 'Sanchez Plazas', 'Jxd9008', '1caf163d2d1e70758652f79bc35fe3cf', 'juanxd@gmail.com', 'la plata', 'urbana', '3125469874', '3125469874', 4);
+(4, 1029981035, 'Jose Alejandro', 'Cuellar Menza', 'Asalejo1', 'd00cb1987c6c69dc665e046a11dccc6b', 'jcuellarmenza@gmail.com', 'calle 8 # 6-87', 'rural', '3133215141', '', 8),
+(6, 1234567890, 'Ronaldo Stiven ', 'Rosero Trujillo', 'Ronald07', 'fff48e1309cc9939c07a1e44fd537543', 'ronalxd07@gmail.com', 'La plata', 'urbana', '3125469874', '', 4),
+(9, 1029981256, 'Julian ', 'Muñoz Diaz', 'Guanki', 'a0967dfb810d9c4fad5035cc452a3581', 'guanki07@gmail.com', 'Calle 12 # 6-78 Barrio el centro, La Plata, Huila', 'urbana', '3125698749', '', 1);
 
 --
 -- Índices para tablas volcadas
@@ -260,31 +212,31 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idcat` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador de la categoria', AUTO_INCREMENT=4;
+  MODIFY `idcat` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador de la categoria';
 
 --
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `idcita` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador de la cita', AUTO_INCREMENT=6;
+  MODIFY `idcita` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador de la cita';
 
 --
 -- AUTO_INCREMENT de la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  MODIFY `idmas` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador de la mascota', AUTO_INCREMENT=14;
+  MODIFY `idmas` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador de la mascota';
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idprod` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador del producto', AUTO_INCREMENT=13;
+  MODIFY `idprod` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador del producto';
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `idprov` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero Identificador del Proveedor', AUTO_INCREMENT=6;
+  MODIFY `idprov` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero Identificador del Proveedor';
 
 --
 -- AUTO_INCREMENT de la tabla `receta`
