@@ -27,6 +27,7 @@ if (!isset($_REQUEST['b'])) {
     $controller = new $controller();
     call_user_func(array($controller, $action), $params, $value);   
 }
+
 require_once "view/notify.php";
 
 ?>
